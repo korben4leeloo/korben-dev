@@ -1,0 +1,146 @@
+#include "qtogre.h"
+
+#include <OgreRoot.h>
+#include <OgreRenderWindow.h>
+#include <OgreCamera.h>
+#include <OgreViewport.h>
+#include <OgreManualObject.h>
+
+#include <QTimer>
+#include <QElapsedTimer>
+#include <QDebug>
+
+QtOgre::QtOgre(QWidget *parent, Qt::WFlags flags)
+: QMainWindow			(parent, flags)
+, _pOgreRoot			( NULL )
+, _pSceneManager		( NULL )
+, _pCamera				( NULL )
+, _pFrameTimer			( NULL )
+, _pFrameElapsedTimer	( NULL )
+{
+	ui.setupUi(this);
+
+	centralWidget()->setAttribute( Qt::WA_PaintOnScreen, true );
+	centralWidget()->setAttribute( Qt::WA_NoBackground );
+
+	_pOgreRoot = new Ogre::Root( "plugins.cfg", "" );
+
+	const Ogre::RenderSystemList& renderers = _pOgreRoot->getAvailableRenderers();
+
+	_pOgreRoot->setRenderSystem( renderers[0] );
+	_pOgreRoot->initialise( false );
+
+	Ogre::NameValuePairList windowParams;
+	QString strHwnd = QString::number( (int)centralWidget()->winId() );
+
+	windowParams["externalWindowHandle"] = strHwnd.toStdString();
+
+	//_pRenderWindow = _pOgreRoot->createRenderWindow( "TestWindow", centralWidget()->width(), centralWidget()->height(), false, &windowParams );
+	_pRenderWindow = _pOgreRoot->createRenderWindow( "TestWindow", centralWidget()->width(), centralWidget()->height(), false );
+	_pSceneManager = _pOgreRoot->createSceneManager( Ogre::ST_GENERIC, "TestScene" );
+	_pCamera = _pSceneManager->createCamera( "TestSceneCamera" );
+	_pViewport = _pRenderWindow->addViewport( _pCamera );
+
+	_pViewport->setBackgroundColour( Ogre::ColourValue( 0.2f, 0.2f, 0.2f, 1.0f ) );
+
+	_pCamera->setPosition( 0.0f, 0.0f, 2.0f );
+	_pCamera->lookAt( 0.0f, 0.0f, 0.0f );
+	_pCamera->setNearClipDistance( 0.1f );
+
+	Ogre::ManualObject* pTriangleMesh = _pSceneManager->createManualObject();
+
+	pTriangleMesh->begin( "BaseWhite" );
+
+	pTriangleMesh->position( -0.5f, 0.0f, 0.0f );
+	pTriangleMesh->colour( 1.0f, 0.0f, 0.0f, 1.0f );
+
+	pTriangleMesh->position( 0.0f, 0.5f, 0.0f );
+	pTriangleMesh->colour( 0.0f, 1.0f, 0.0f, 1.0f );
+
+	pTriangleMesh->position( 0.5f, 0.0f, 0.0f );
+	pTriangleMesh->colour( 0.0f, 0.0f, 1.0f, 1.0f );
+
+	pTriangleMesh->triangle( 0, 1, 2 );
+	pTriangleMesh->triangle( 0, 2, 1 );
+	pTriangleMesh->end();
+
+	_pSceneManager->setAmbientLight( Ogre::ColourValue( 1.0f, 1.0f, 1.0f, 1.0f ) );
+	_pSceneManager->getRootSceneNode()->attachObject( pTriangleMesh );
+
+	//_pOgreRoot->startRendering();
+
+	_pFrameTimer = new QTimer( this );
+	_pFrameTimer->start( 0 );
+
+	connect( _pFrameTimer, SIGNAL(timeout()), this, SLOT(OnFrameTimerTimeout()) );
+
+	_pFrameElapsedTimer = new QElapsedTimer();
+	_pFrameElapsedTimer->start();
+}
+
+QtOgre::~QtOgre()
+{
+	/*delete _pViewport;
+	delete _pCamera;
+	delete _pSceneManager;
+	delete _pRenderWindow;*/
+	delete _pOgreRoot;
+}
+
+void QtOgre::OnFrameTimerTimeout()
+{
+	_pOgreRoot->renderOneFrame();
+
+	qint64 nElapsed = _pFrameElapsedTimer->nsecsElapsed();
+
+	//qDebug() << (double)nElapsed / 1000000.0;
+	_pFrameElapsedTimer->start();
+}
+
+void QtOgre::resizeEvent( QResizeEvent* event )
+{
+	QWidget::resizeEvent( event );
+
+	if	( _pRenderWindow )
+	{
+		//ogreRenderWindow->resize(newSize.width(), newSize.height());
+		_pRenderWindow->windowMovedOrResized();
+	}
+
+	/*if(ogreCamera)
+	{
+		Ogre::Real aspectRatio = Ogre::Real(newSize.width()) / Ogre::Real(newSize.height());
+		ogreCamera->setAspectRatio(aspectRatio);
+	}*/
+}
+
+void QtOgre::showEvent( QShowEvent* event )
+{
+	QWidget::showEvent( event );
+
+	/*_pFrameTimer = new QTimer( this );
+	_pFrameTimer->start( 0 );
+
+	connect( _pFrameTimer, SIGNAL(timeout()), this, SLOT(OnFrameTimerTimeout()) );
+
+	_pFrameElapsedTimer = new QElapsedTimer();
+	_pFrameElapsedTimer->start();*/
+
+	//if	( _pOgreRoot == NULL )
+	//{
+	//	_pOgreRoot = new Ogre::Root( "plugins.cfg", "" );
+
+	//	const Ogre::RenderSystemList& renderers = _pOgreRoot->getAvailableRenderers();
+
+	//	_pOgreRoot->setRenderSystem( renderers[0] );
+	//	_pOgreRoot->initialise( false );
+
+	//	Ogre::NameValuePairList windowParams;
+	//	QString strHwnd = QString::number( (int)centralWidget()->winId() );
+
+	//	windowParams["externalWindowHandle"] = strHwnd.toStdString();
+
+	//	_pOgreRoot->createRenderWindow( "test", 500, 500, false/*, &windowParams*/ );
+	//	_pOgreRoot->startRendering();
+	//}
+}
