@@ -25,8 +25,13 @@ public:
 						~QtOgre();
 
 protected:
-	virtual void		showEvent( QShowEvent* event );
+	//virtual void		showEvent( QShowEvent* event );
 	virtual void		resizeEvent( QResizeEvent* event );
+	virtual void	paintEvent ( QPaintEvent * event );
+	/*virtual void		mouseMoveEvent( QMouseEvent* event );
+	virtual void		moveEvent( QMoveEvent* event );
+	virtual bool		winEvent( MSG * message, long * result );
+	virtual bool		event( QEvent * event );*/
 
 private slots:
 	void				OnFrameTimerTimeout();
