@@ -10,11 +10,14 @@
 #include <QElapsedTimer>
 #include <QDebug>
 
+static float fRotationSpeed = 2.0f;
+
 QtOgre::QtOgre(QWidget *parent, Qt::WFlags flags)
 : QMainWindow			(parent, flags)
 , _pOgreRoot			( NULL )
 , _pSceneManager		( NULL )
 , _pCamera				( NULL )
+, _pTriangleNode		( NULL )
 , _pFrameTimer			( NULL )
 , _pFrameElapsedTimer	( NULL )
 {
@@ -62,11 +65,12 @@ QtOgre::QtOgre(QWidget *parent, Qt::WFlags flags)
 	pTriangleMesh->colour( 0.0f, 1.0f, 0.0f, 1.0f );
 
 	pTriangleMesh->triangle( 0, 1, 2 );
-	//pTriangleMesh->triangle( 0, 2, 1 );
+	pTriangleMesh->triangle( 0, 2, 1 );
 	pTriangleMesh->end();
 
-	_pSceneManager->setAmbientLight( Ogre::ColourValue( 1.0f, 1.0f, 1.0f, 1.0f ) );
-	_pSceneManager->getRootSceneNode()->attachObject( pTriangleMesh );
+	_pSceneManager->setAmbientLight( Ogre::ColourValue( 1.0f, 1.0f, 0.5f, 1.0f ) );
+	_pTriangleNode = _pSceneManager->getRootSceneNode()->createChildSceneNode( "TriangleNode" );
+	_pTriangleNode->attachObject( pTriangleMesh );
 
 	//_pOgreRoot->startRendering();
 
@@ -92,7 +96,11 @@ void QtOgre::OnFrameTimerTimeout()
 {
 	_pOgreRoot->renderOneFrame();
 
-	qint64 nElapsed = _pFrameElapsedTimer->nsecsElapsed();
+	qint64	nElapsed				= _pFrameElapsedTimer->nsecsElapsed();
+	float	fElapsedTimeInSeconds	= nElapsed / 1000000000.0f;
+	float	fAngle					= fRotationSpeed * fElapsedTimeInSeconds;
+
+	_pTriangleNode->yaw( Ogre::Radian( fAngle ) );
 
 	//qDebug() << (double)nElapsed / 1000000.0;
 	_pFrameElapsedTimer->start();

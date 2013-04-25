@@ -14,6 +14,7 @@ namespace Ogre
 	class SceneManager;
 	class Camera;
 	class Viewport;
+	class SceneNode;
 }
 
 class QtOgre : public QMainWindow
@@ -44,6 +45,7 @@ private:
 	Ogre::SceneManager*	_pSceneManager;
 	Ogre::Camera*		_pCamera;
 	Ogre::Viewport*		_pViewport;
+	Ogre::SceneNode*	_pTriangleNode;
 
 	QTimer*				_pFrameTimer;
 	QElapsedTimer*		_pFrameElapsedTimer;
