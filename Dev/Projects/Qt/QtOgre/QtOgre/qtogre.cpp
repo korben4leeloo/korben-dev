@@ -28,6 +28,9 @@ QtOgre::QtOgre(QWidget *parent, Qt::WFlags flags)
 
 	_pOgreRoot = new Ogre::Root( "plugins.cfg", "" );
 
+	Ogre::ResourceGroupManager::getSingletonPtr()->addResourceLocation( "../../Resources", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true );
+	Ogre::ResourceGroupManager::getSingletonPtr()->initialiseAllResourceGroups();
+
 	const Ogre::RenderSystemList& renderers = _pOgreRoot->getAvailableRenderers();
 
 	_pOgreRoot->setRenderSystem( renderers[0] );
@@ -53,7 +56,8 @@ QtOgre::QtOgre(QWidget *parent, Qt::WFlags flags)
 
 	Ogre::ManualObject* pTriangleMesh = _pSceneManager->createManualObject();
 
-	pTriangleMesh->begin( "BaseWhite" );
+	//pTriangleMesh->begin( "BaseWhite" );
+	pTriangleMesh->begin( "TestMaterial" );
 
 	pTriangleMesh->position( -0.5f, 0.0f, 0.0f );
 	pTriangleMesh->colour( 1.0f, 0.0f, 0.0f, 1.0f );
@@ -61,14 +65,14 @@ QtOgre::QtOgre(QWidget *parent, Qt::WFlags flags)
 	pTriangleMesh->position( 0.5f, 0.0f, 0.0f );
 	pTriangleMesh->colour( 0.0f, 0.0f, 1.0f, 1.0f );
 
-	pTriangleMesh->position( 0.0f, 0.5f, 0.0f );
+	pTriangleMesh->position( 0.0f, 1.0f, 0.0f );
 	pTriangleMesh->colour( 0.0f, 1.0f, 0.0f, 1.0f );
 
 	pTriangleMesh->triangle( 0, 1, 2 );
 	pTriangleMesh->triangle( 0, 2, 1 );
 	pTriangleMesh->end();
 
-	_pSceneManager->setAmbientLight( Ogre::ColourValue( 1.0f, 1.0f, 0.5f, 1.0f ) );
+	//_pSceneManager->setAmbientLight( Ogre::ColourValue( 1.0f, 1.0f, 0.5f, 1.0f ) );
 	_pTriangleNode = _pSceneManager->getRootSceneNode()->createChildSceneNode( "TriangleNode" );
 	_pTriangleNode->attachObject( pTriangleMesh );
 
