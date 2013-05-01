@@ -28,9 +28,6 @@ QtOgre::QtOgre(QWidget *parent, Qt::WFlags flags)
 
 	_pOgreRoot = new Ogre::Root( "plugins.cfg", "" );
 
-	Ogre::ResourceGroupManager::getSingletonPtr()->addResourceLocation( "../../Resources", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true );
-	Ogre::ResourceGroupManager::getSingletonPtr()->initialiseAllResourceGroups();
-
 	const Ogre::RenderSystemList& renderers = _pOgreRoot->getAvailableRenderers();
 
 	_pOgreRoot->setRenderSystem( renderers[0] );
@@ -42,6 +39,10 @@ QtOgre::QtOgre(QWidget *parent, Qt::WFlags flags)
 	windowParams["externalWindowHandle"] = strHwnd.toStdString();
 
 	_pRenderWindow = _pOgreRoot->createRenderWindow( "TestWindow", centralWidget()->width(), centralWidget()->height(), false, &windowParams );
+
+	Ogre::ResourceGroupManager::getSingletonPtr()->addResourceLocation( "../../Resources", "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, true );
+	Ogre::ResourceGroupManager::getSingletonPtr()->initialiseAllResourceGroups();
+
 	//_pRenderWindow = _pOgreRoot->createRenderWindow( "TestWindow", centralWidget()->width(), centralWidget()->height(), false );
 	_pSceneManager = _pOgreRoot->createSceneManager( Ogre::ST_GENERIC, "TestScene" );
 	_pCamera = _pSceneManager->createCamera( "TestSceneCamera" );
@@ -49,7 +50,7 @@ QtOgre::QtOgre(QWidget *parent, Qt::WFlags flags)
 
 	_pViewport->setBackgroundColour( Ogre::ColourValue( 0.2f, 0.2f, 0.2f, 1.0f ) );
 
-	_pCamera->setPosition( 0.0f, 0.0f, 2.0f );
+	_pCamera->setPosition( 0.0f, 0.0f, 3.0f );
 	_pCamera->lookAt( 0.0f, 0.0f, 0.0f );
 	_pCamera->setNearClipDistance( 0.1f );
 	_pCamera->setAspectRatio( (float)centralWidget()->width() / (float)centralWidget()->height() );

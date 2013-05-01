@@ -1,10 +1,20 @@
 material TestMaterial
 {
+	fragment_program TestShader cg
+	{
+		source TestShader.cg
+		entry_point TestShaderMain
+		profiles arbfp1
+	}
+	
 	technique
 	{
 		pass
 		{
-			ambient 0.0 1.0 0.0
+			//ambient 0.0 1.0 0.0
+			fragment_program_ref TestShader
+			{
+			}
 		}
 	}
 }
