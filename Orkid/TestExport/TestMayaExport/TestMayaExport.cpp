@@ -17,6 +17,11 @@ public:
 	virtual bool 	haveWriteMethod() const;
 	virtual MStatus writer( const MFileObject &file, const MString &optionsString, FileAccessMode mode );
 	static void*	creator();
+
+private:
+	void			exportSceneGraph( QTextStream* pExportStream );
+	void			exportDependencyNodes( QTextStream* pExportStream );
+	void			exportMesh( MDagPath* pShapeDagPath );
 };
 
 bool OrkidFileTranslator::haveWriteMethod() const
@@ -33,7 +38,20 @@ MStatus OrkidFileTranslator::writer(const MFileObject &file, const MString &opti
 	exportFile.open( QIODevice::WriteOnly );
 
 	QTextStream exportStream( &exportFile );
-	MItDag		itDag( MItDag::kDepthFirst, MFn::kInvalid, &status );
+	
+	exportSceneGraph( &exportStream );
+	exportDependencyNodes( &exportStream );
+
+	exportFile.close();
+
+	return	( MStatus::kSuccess );
+}
+
+void OrkidFileTranslator::exportSceneGraph(QTextStream *	pExportStream)
+{
+	MStatus	status;
+	//MItDag	itDag( MItDag::kDepthFirst, MFn::kInvalid, &status );
+	MItDag	itDag( MItDag::kDepthFirst, MFn::kTransform, &status );
 
 	while	( itDag.isDone() == false )
 	{
@@ -44,30 +62,54 @@ MStatus OrkidFileTranslator::writer(const MFileObject &file, const MString &opti
 		QString		strNodeName( dagNode.name().asChar() );
 		QString		strFullPathName( dagPath.fullPathName().asChar() );
 		QString		strNodeTypeName( dagNode.typeName().asChar() );
+		uint		uiDepth = itDag.depth();
 
-		for	( uint i = 0; i < itDag.depth(); i++ )
+		for	( uint i = 0; i < uiDepth; i++ )
 		{
-			exportStream << "\t";
+			(*pExportStream) << "\t";
 		}
 
-		exportStream << strNodeName << ": " << strNodeTypeName << " - Path: " << strFullPathName;
+		(*pExportStream) << strNodeName << ": " << strNodeTypeName << " - Path: " << strFullPathName;
 
-		if	( dagPath.hasFn( MFn::kTransform ) )
+		//if	( dagPath.hasFn( MFn::kTransform ) )
 		{
 			MFnTransform	fnTransform( dagPath, &status );
 			MVector			vLocal = fnTransform.getTranslation( MSpace::kTransform, &status );
 
-			exportStream << " - Local transform: " << vLocal.x << " " << vLocal.y << " " << vLocal.z;
+			(*pExportStream) << " - Local transform: " << vLocal.x << " " << vLocal.y << " " << vLocal.z << "\n";
+
+			status = dagPath.extendToShape();
+
+			for	( uint i = 0; i < uiDepth + 1; i++ )
+			{
+				(*pExportStream) << "\t";
+			}
+
+			MFnDagNode	shapeDagNode( dagPath, &status );
+			QString		strShapeNodeName( shapeDagNode.name().asChar() );
+			QString		strShapeFullPathName( dagPath.fullPathName().asChar() );
+			QString		strShapeNodeTypeName( shapeDagNode.typeName().asChar() );
+
+			(*pExportStream) << strShapeNodeName << ": " << strShapeNodeTypeName << " - Path: " << strShapeFullPathName;
 		}
 
-		exportStream << "\n";
+		(*pExportStream) << "\n";
 
 		itDag.next();
 	}
+}
 
-	exportStream << "\n\nDependecy Nodes\n";
+void OrkidFileTranslator::exportMesh( MDagPath* pShapeDagPath )
+{
 
-	MItDependencyNodes itDependencyNodes( MFn::kInvalid, &status );
+}
+
+void	OrkidFileTranslator::exportDependencyNodes(QTextStream *	pExportStream)
+{
+	(*pExportStream) << "\n\nDependency Nodes\n";
+
+	MStatus				status;
+	MItDependencyNodes	itDependencyNodes( MFn::kInvalid, &status );
 
 	while	( itDependencyNodes.isDone() == false )
 	{
@@ -75,14 +117,10 @@ MStatus OrkidFileTranslator::writer(const MFileObject &file, const MString &opti
 		QString				strDependencyNodeName( dependencyNode.name().asChar() );
 		QString				strDependencyNodeTypeName( dependencyNode.typeName().asChar() );
 
-		exportStream << strDependencyNodeName << ": " << strDependencyNodeTypeName << "\n";
+		(*pExportStream) << strDependencyNodeName << ": " << strDependencyNodeTypeName << "\n";
 
 		itDependencyNodes.next();
 	}
-
-	exportFile.close();
-
-	return	( MStatus::kSuccess );
 }
 
 void* OrkidFileTranslator::creator()
