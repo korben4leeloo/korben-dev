@@ -20,7 +20,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{96C3AB6A-A4B4-4FEA-87C2-7447735958A4}.Debug|Win32.ActiveCfg = Debug|Win32
-		{96C3AB6A-A4B4-4FEA-87C2-7447735958A4}.Debug|Win32.Build.0 = Debug|Win32
 		{96C3AB6A-A4B4-4FEA-87C2-7447735958A4}.Debug|x64.ActiveCfg = Debug|Win32
 		{96C3AB6A-A4B4-4FEA-87C2-7447735958A4}.Debug|x64.Build.0 = Debug|Win32
 		{96C3AB6A-A4B4-4FEA-87C2-7447735958A4}.Release|Win32.ActiveCfg = Release|Win32
@@ -28,7 +27,6 @@ Global
 		{96C3AB6A-A4B4-4FEA-87C2-7447735958A4}.Release|x64.ActiveCfg = Release|x64
 		{96C3AB6A-A4B4-4FEA-87C2-7447735958A4}.Release|x64.Build.0 = Release|x64
 		{17D2B076-F26C-4091-A877-6BB35AD9E77B}.Debug|Win32.ActiveCfg = Debug|Win32
-		{17D2B076-F26C-4091-A877-6BB35AD9E77B}.Debug|Win32.Build.0 = Debug|Win32
 		{17D2B076-F26C-4091-A877-6BB35AD9E77B}.Debug|x64.ActiveCfg = Debug|Win32
 		{17D2B076-F26C-4091-A877-6BB35AD9E77B}.Debug|x64.Build.0 = Debug|Win32
 		{17D2B076-F26C-4091-A877-6BB35AD9E77B}.Release|Win32.ActiveCfg = Release|Win32
