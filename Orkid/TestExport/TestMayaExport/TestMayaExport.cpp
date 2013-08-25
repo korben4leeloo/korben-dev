@@ -6,10 +6,21 @@
 #include <maya/MDagPath.h>
 #include <maya/MFnDagNode.h>
 #include <maya/MFnTransform.h>
+#include <maya/MFnMesh.h>
 #include <maya/MVector.h>
 
 #include <QFile>
 #include <QTextStream>
+
+QTextStream &	IndentTabs( QTextStream* pExportStream, uint uiDepth )
+{
+	for	( uint i = 0; i < uiDepth; i++ )
+	{
+		(*pExportStream) << "\t";
+	}
+
+	return	( *pExportStream );
+}
 
 class OrkidFileTranslator: public MPxFileTranslator
 {
@@ -64,36 +75,37 @@ void OrkidFileTranslator::exportSceneGraph(QTextStream *	pExportStream)
 		QString		strNodeTypeName( dagNode.typeName().asChar() );
 		uint		uiDepth = itDag.depth();
 
-		for	( uint i = 0; i < uiDepth; i++ )
+		IndentTabs( pExportStream, dagPath.length() ) << strNodeName << ": " << strNodeTypeName << " - Path: " << strFullPathName;
+
+		MFnTransform	fnTransform( dagPath, &status );
+		MVector			vLocal = fnTransform.getTranslation( MSpace::kTransform, &status );
+
+		(*pExportStream) << " - Local transform: " << vLocal.x << " " << vLocal.y << " " << vLocal.z << "\n";
+
+		status = dagPath.extendToShape();
+
+		MFnDagNode	shapeDagNode( dagPath, &status );
+		QString		strShapeNodeName( shapeDagNode.name().asChar() );
+		QString		strShapeFullPathName( dagPath.fullPathName().asChar() );
+		QString		strShapeNodeTypeName( shapeDagNode.typeName().asChar() );
+
+		IndentTabs( pExportStream, dagPath.length() ) << strShapeNodeName << ": " << strShapeNodeTypeName << " - Path: " << strShapeFullPathName << "\n";
+
+		if	( dagPath.hasFn( MFn::kMesh ) )
 		{
-			(*pExportStream) << "\t";
-		}
+			MFnMesh fnMesh( dagPath, &status );
 
-		(*pExportStream) << strNodeName << ": " << strNodeTypeName << " - Path: " << strFullPathName;
-
-		//if	( dagPath.hasFn( MFn::kTransform ) )
-		{
-			MFnTransform	fnTransform( dagPath, &status );
-			MVector			vLocal = fnTransform.getTranslation( MSpace::kTransform, &status );
-
-			(*pExportStream) << " - Local transform: " << vLocal.x << " " << vLocal.y << " " << vLocal.z << "\n";
-
-			status = dagPath.extendToShape();
-
-			for	( uint i = 0; i < uiDepth + 1; i++ )
+			if	( status != MStatus::kSuccess )
 			{
-				(*pExportStream) << "\t";
+				QString strError( status.errorString().asChar() );
+				IndentTabs( pExportStream, dagPath.length() + 1 ) << "Error: " << strError;
 			}
 
-			MFnDagNode	shapeDagNode( dagPath, &status );
-			QString		strShapeNodeName( shapeDagNode.name().asChar() );
-			QString		strShapeFullPathName( dagPath.fullPathName().asChar() );
-			QString		strShapeNodeTypeName( shapeDagNode.typeName().asChar() );
-
-			(*pExportStream) << strShapeNodeName << ": " << strShapeNodeTypeName << " - Path: " << strShapeFullPathName;
+			IndentTabs( pExportStream, dagPath.length() + 1 ) << "Polygons count: " << fnMesh.numPolygons( &status ) << "\n";
+			IndentTabs( pExportStream, dagPath.length() + 1 ) << "Vertices count: " << fnMesh.numVertices( &status ) << "\n";
+			IndentTabs( pExportStream, dagPath.length() + 1 ) << "Normals count: " << fnMesh.numNormals( &status ) << "\n";
+			IndentTabs( pExportStream, dagPath.length() + 1 ) << "UVs count: " << fnMesh.numUVs( &status ) << "\n";
 		}
-
-		(*pExportStream) << "\n";
 
 		itDag.next();
 	}
