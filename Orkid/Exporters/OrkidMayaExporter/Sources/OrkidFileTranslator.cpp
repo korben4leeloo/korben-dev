@@ -27,21 +27,6 @@
 													\
 	(*_pExportStream) << logInfos;
 
-////-----------------------------------------------------------------------------
-//// Name:		OrkidFileTranslator constructor
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//QTextStream &	IndentTabs( QTextStream* pExportStream, uint uiDepth )
-//{
-//	for	( uint i = 0; i < uiDepth; i++ )
-//	{
-//		(*pExportStream) << "\t";
-//	}
-//
-//	return	( *pExportStream );
-//}
-
 //-----------------------------------------------------------------------------
 // Name:		OrkidFileTranslator constructor
 //
@@ -101,7 +86,6 @@ MStatus	OrkidFileTranslator::writer(const MFileObject &	file,
 void	OrkidFileTranslator::exportSceneGraph()
 {
 	MStatus	status;
-	//MItDag	itDag( MItDag::kDepthFirst, MFn::kInvalid, &status );
 	MItDag	itDag( MItDag::kDepthFirst, MFn::kTransform, &status );
 
 	while	( itDag.isDone() == false )
