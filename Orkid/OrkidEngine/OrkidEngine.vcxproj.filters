@@ -53,9 +53,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="3dEngine\SceneManager\Scene.cpp">
-      <Filter>Source Files\3dEngine\SceneManager</Filter>
-    </ClCompile>
     <ClCompile Include="3dEngine\SceneManager\Entities\Camera\OrkidCamera.cpp">
       <Filter>Source Files\3dEngine\SceneManager\Entities\Camera</Filter>
     </ClCompile>
@@ -68,11 +65,11 @@
     <ClCompile Include="3dEngine\SceneManager\Nodes\OrkidNode.cpp">
       <Filter>Source Files\3dEngine\SceneManager\Nodes</Filter>
     </ClCompile>
+    <ClCompile Include="3dEngine\SceneManager\OrkidScene.cpp">
+      <Filter>Source Files\3dEngine\SceneManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="3dEngine\SceneManager\Scene.h">
-      <Filter>Source Files\3dEngine\SceneManager</Filter>
-    </ClInclude>
     <ClInclude Include="3dEngine\SceneManager\Entities\Camera\OrkidCamera.h">
       <Filter>Source Files\3dEngine\SceneManager\Entities\Camera</Filter>
     </ClInclude>
@@ -84,6 +81,9 @@
     </ClInclude>
     <ClInclude Include="3dEngine\SceneManager\Nodes\OrkidNode.h">
       <Filter>Source Files\3dEngine\SceneManager\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="3dEngine\SceneManager\OrkidScene.h">
+      <Filter>Source Files\3dEngine\SceneManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,9 +5,9 @@
 //
 //*****************************************************************************
 
-#include	"Scene.h"
+#include	"OrkidScene.h"
 
-Scene::Scene()
+OrkidScene::OrkidScene()
 {
 
 }
