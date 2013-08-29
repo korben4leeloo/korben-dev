@@ -6,16 +6,19 @@
 //
 //*****************************************************************************
 
-#ifndef __OrkidEngine_Scene_h__
-#define __OrkidEngine_Scene_h__
+#ifndef __OrkidEngine_OrkidScene_h__
+#define __OrkidEngine_OrkidScene_h__
+
+class OrkidNode;
 
 class OrkidScene
 {
 public:
-					OrkidScene();
-					~OrkidScene();
+				OrkidScene();
+				~OrkidScene();
 
 private:
+	OrkidNode*	_pRootNode;
 };
 
 #endif
