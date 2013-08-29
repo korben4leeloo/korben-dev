@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrkidExporters", "OrkidExporters", "{A7F73B3F-2FE2-4E79-BDEB-363F5BB56D75}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrkidEngine", "OrkidEngine", "{8736FB7E-3A2A-4487-8F38-E697F6FC079F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrkidRuntime", "OrkidRuntime", "{2A669DBC-A01E-49C7-970D-5B63352167C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrkidEditor", "OrkidEditor", "{12CC8F0B-A740-495F-B5B2-348931C60E80}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrkidMayaExporter", "OrkidMayaExporter", "{935D70EB-D067-4D98-AD74-C9731CC54136}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrkidMayaExporter", "OrkidExporters\OrkidMayaExporter\OrkidMayaExporter.vcxproj", "{4F30ECE7-2E05-42E0-8C8D-9292A904A12D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrkidEditor", "OrkidEditor\OrkidEditor.vcxproj", "{D65E11C0-F164-4E20-853B-6C5B19BCC3A3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrkidEngine", "OrkidEngine\OrkidEngine.vcxproj", "{6DBBF689-0136-4205-9458-6A61C8FCC42A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrkidRuntime", "OrkidRuntime\OrkidRuntime.vcxproj", "{1811292D-EA80-4EEB-BA08-B0591CD05197}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F30ECE7-2E05-42E0-8C8D-9292A904A12D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4F30ECE7-2E05-42E0-8C8D-9292A904A12D}.Debug|Win32.Build.0 = Debug|Win32
+		{4F30ECE7-2E05-42E0-8C8D-9292A904A12D}.Release|Win32.ActiveCfg = Release|Win32
+		{4F30ECE7-2E05-42E0-8C8D-9292A904A12D}.Release|Win32.Build.0 = Release|Win32
+		{D65E11C0-F164-4E20-853B-6C5B19BCC3A3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D65E11C0-F164-4E20-853B-6C5B19BCC3A3}.Debug|Win32.Build.0 = Debug|Win32
+		{D65E11C0-F164-4E20-853B-6C5B19BCC3A3}.Release|Win32.ActiveCfg = Release|Win32
+		{D65E11C0-F164-4E20-853B-6C5B19BCC3A3}.Release|Win32.Build.0 = Release|Win32
+		{6DBBF689-0136-4205-9458-6A61C8FCC42A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6DBBF689-0136-4205-9458-6A61C8FCC42A}.Debug|Win32.Build.0 = Debug|Win32
+		{6DBBF689-0136-4205-9458-6A61C8FCC42A}.Release|Win32.ActiveCfg = Release|Win32
+		{6DBBF689-0136-4205-9458-6A61C8FCC42A}.Release|Win32.Build.0 = Release|Win32
+		{1811292D-EA80-4EEB-BA08-B0591CD05197}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1811292D-EA80-4EEB-BA08-B0591CD05197}.Debug|Win32.Build.0 = Debug|Win32
+		{1811292D-EA80-4EEB-BA08-B0591CD05197}.Release|Win32.ActiveCfg = Release|Win32
+		{1811292D-EA80-4EEB-BA08-B0591CD05197}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{935D70EB-D067-4D98-AD74-C9731CC54136} = {A7F73B3F-2FE2-4E79-BDEB-363F5BB56D75}
+		{6DBBF689-0136-4205-9458-6A61C8FCC42A} = {8736FB7E-3A2A-4487-8F38-E697F6FC079F}
+		{1811292D-EA80-4EEB-BA08-B0591CD05197} = {2A669DBC-A01E-49C7-970D-5B63352167C5}
+		{D65E11C0-F164-4E20-853B-6C5B19BCC3A3} = {12CC8F0B-A740-495F-B5B2-348931C60E80}
+		{4F30ECE7-2E05-42E0-8C8D-9292A904A12D} = {935D70EB-D067-4D98-AD74-C9731CC54136}
+	EndGlobalSection
+EndGlobal
