@@ -60,17 +60,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="3dEngine\SceneManager\Entities\Camera\Camera.cpp" />
-    <ClCompile Include="3dEngine\SceneManager\Entities\Light\Light.cpp" />
-    <ClCompile Include="3dEngine\SceneManager\Entities\Mesh\Mesh.cpp" />
-    <ClCompile Include="3dEngine\SceneManager\Nodes\Node.cpp" />
+    <ClCompile Include="3dEngine\SceneManager\Entities\Camera\OrkidCamera.cpp" />
+    <ClCompile Include="3dEngine\SceneManager\Entities\Light\OrkidLight.cpp" />
+    <ClCompile Include="3dEngine\SceneManager\Entities\Mesh\OrkidMesh.cpp" />
+    <ClCompile Include="3dEngine\SceneManager\Nodes\OrkidNode.cpp" />
     <ClCompile Include="3dEngine\SceneManager\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="3dEngine\SceneManager\Entities\Camera\Camera.h" />
-    <ClInclude Include="3dEngine\SceneManager\Entities\Light\Light.h" />
-    <ClInclude Include="3dEngine\SceneManager\Entities\Mesh\Mesh.h" />
-    <ClInclude Include="3dEngine\SceneManager\Nodes\Node.h" />
+    <ClInclude Include="3dEngine\SceneManager\Entities\Camera\OrkidCamera.h" />
+    <ClInclude Include="3dEngine\SceneManager\Entities\Light\OrkidLight.h" />
+    <ClInclude Include="3dEngine\SceneManager\Entities\Mesh\OrkidMesh.h" />
+    <ClInclude Include="3dEngine\SceneManager\Nodes\OrkidNode.h" />
     <ClInclude Include="3dEngine\SceneManager\Scene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -6,38 +6,35 @@
 //
 //*****************************************************************************
 
-#ifndef __OrkidFileTranslator_h__
-#define __OrkidFileTranslator_h__
+#ifndef __OrkidMayaExporter_OrkidFileTranslator_h__
+#define __OrkidMayaExporter_OrkidFileTranslator_h__
 
 #include <maya/MPxFileTranslator.h>
 
 class QFile;
 class QTextStream;
 
-namespace Orkid
+class OrkidFileTranslator: public MPxFileTranslator
 {
-	class OrkidFileTranslator: public MPxFileTranslator
-	{
-	public:
-						OrkidFileTranslator();
-						~OrkidFileTranslator();
+public:
+					OrkidFileTranslator();
+					~OrkidFileTranslator();
 
-		// MPxFileTranslator overloading
-		virtual bool 	haveWriteMethod() const;
-		virtual MStatus writer( const MFileObject& file, const MString& optionsString, FileAccessMode mode );
+	// MPxFileTranslator overloading
+	virtual bool 	haveWriteMethod() const;
+	virtual MStatus writer( const MFileObject& file, const MString& optionsString, FileAccessMode mode );
 
-		// MFnPlugin creator
-		static void*	creator();
+	// MFnPlugin creator
+	static void*	creator();
 
-	private:
-		void			beginExport( const MFileObject& file );
-		void			endExport();
+private:
+	void			beginExport( const MFileObject& file );
+	void			endExport();
 
-		void			exportSceneGraph();
+	void			exportSceneGraph();
 
-		QFile*			_pExportFile;
-		QTextStream*	_pExportStream;
-	};
-}
+	QFile*			_pExportFile;
+	QTextStream*	_pExportStream;
+};
 
 #endif

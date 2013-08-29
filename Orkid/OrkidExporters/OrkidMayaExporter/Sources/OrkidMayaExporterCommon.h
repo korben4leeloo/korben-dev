@@ -6,9 +6,5 @@
 //
 //*****************************************************************************
 
-// Namespaces
-namespace Orkid {}
-using namespace Orkid;
-
 // Defines
 #define ORKID_EXPORT __declspec(dllexport)

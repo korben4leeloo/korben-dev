@@ -53,37 +53,37 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="3dEngine\SceneManager\Nodes\Node.cpp">
-      <Filter>Source Files\3dEngine\SceneManager\Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="3dEngine\SceneManager\Entities\Mesh\Mesh.cpp">
-      <Filter>Source Files\3dEngine\SceneManager\Entities\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="3dEngine\SceneManager\Entities\Light\Light.cpp">
-      <Filter>Source Files\3dEngine\SceneManager\Entities\Light</Filter>
-    </ClCompile>
-    <ClCompile Include="3dEngine\SceneManager\Entities\Camera\Camera.cpp">
-      <Filter>Source Files\3dEngine\SceneManager\Entities\Camera</Filter>
-    </ClCompile>
     <ClCompile Include="3dEngine\SceneManager\Scene.cpp">
       <Filter>Source Files\3dEngine\SceneManager</Filter>
     </ClCompile>
+    <ClCompile Include="3dEngine\SceneManager\Entities\Camera\OrkidCamera.cpp">
+      <Filter>Source Files\3dEngine\SceneManager\Entities\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="3dEngine\SceneManager\Entities\Mesh\OrkidMesh.cpp">
+      <Filter>Source Files\3dEngine\SceneManager\Entities\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="3dEngine\SceneManager\Entities\Light\OrkidLight.cpp">
+      <Filter>Source Files\3dEngine\SceneManager\Entities\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="3dEngine\SceneManager\Nodes\OrkidNode.cpp">
+      <Filter>Source Files\3dEngine\SceneManager\Nodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="3dEngine\SceneManager\Nodes\Node.h">
-      <Filter>Source Files\3dEngine\SceneManager\Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="3dEngine\SceneManager\Entities\Mesh\Mesh.h">
-      <Filter>Source Files\3dEngine\SceneManager\Entities\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="3dEngine\SceneManager\Entities\Light\Light.h">
-      <Filter>Source Files\3dEngine\SceneManager\Entities\Light</Filter>
-    </ClInclude>
-    <ClInclude Include="3dEngine\SceneManager\Entities\Camera\Camera.h">
-      <Filter>Source Files\3dEngine\SceneManager\Entities\Camera</Filter>
-    </ClInclude>
     <ClInclude Include="3dEngine\SceneManager\Scene.h">
       <Filter>Source Files\3dEngine\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="3dEngine\SceneManager\Entities\Camera\OrkidCamera.h">
+      <Filter>Source Files\3dEngine\SceneManager\Entities\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="3dEngine\SceneManager\Entities\Mesh\OrkidMesh.h">
+      <Filter>Source Files\3dEngine\SceneManager\Entities\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="3dEngine\SceneManager\Entities\Light\OrkidLight.h">
+      <Filter>Source Files\3dEngine\SceneManager\Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="3dEngine\SceneManager\Nodes\OrkidNode.h">
+      <Filter>Source Files\3dEngine\SceneManager\Nodes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
