@@ -1,24 +1,24 @@
 //*****************************************************************************
 //
-//	Class:		OrkidNode
+//	Class:		OrkidList
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __OrkidEngine_OrkidNode_h__
-#define __OrkidEngine_OrkidNode_h__
+#ifndef __OrkidCore_OrkidList_h__
+#define __OrkidCore_OrkidList_h__
 
-#include	<Containers/OrkidList.h>
+#include <QList>
 
-class OrkidNode
+template< class T>
+class OrkidList: public QList<T>
 {
 public:
-				OrkidNode();
-				~OrkidNode();
+				OrkidList();
+				~OrkidList();
 
 private:
-	OrkidList<OrkidNode*>	_childrenNodes;
 };
 
 #endif
