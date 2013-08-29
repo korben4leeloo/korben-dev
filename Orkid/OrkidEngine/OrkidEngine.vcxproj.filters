@@ -48,5 +48,8 @@
     <Filter Include="Source Files\ResourceManager">
       <UniqueIdentifier>{58e29c86-ff69-4885-8a4c-04eaad51e34f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Animation\IK">
+      <UniqueIdentifier>{93381abc-fd80-4644-b65c-f8255e2bf91d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
