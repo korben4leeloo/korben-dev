@@ -13,7 +13,7 @@
 #include <maya/MDagPath.h>
 #include <maya/MFnDagNode.h>
 #include <maya/MFnTransform.h>
-#include <maya/MFnMesh.h> 
+#include <maya/MFnMesh.h>
 
 // Qt includes
 #include <QFile>
