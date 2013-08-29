@@ -45,5 +45,8 @@
     <Filter Include="Source Files\3dEngine\SceneManager\Entities\Camera">
       <UniqueIdentifier>{212d2185-1bae-46f3-8597-b06a68e80166}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ResourceManager">
+      <UniqueIdentifier>{58e29c86-ff69-4885-8a4c-04eaad51e34f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
