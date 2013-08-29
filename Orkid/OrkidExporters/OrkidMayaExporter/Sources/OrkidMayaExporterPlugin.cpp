@@ -6,8 +6,8 @@
 //
 //*****************************************************************************
 
-#include "OrkidMayaExporterCommon.h"
-#include "OrkidFileTranslator.h"
+#include <OrkidMayaExporterCommon.h>
+#include <OrkidFileTranslator.h>
 
 #include <maya/MFnPlugin.h>
 #include <maya/MPxFileTranslator.h>

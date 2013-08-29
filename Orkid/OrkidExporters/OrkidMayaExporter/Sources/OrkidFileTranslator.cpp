@@ -5,8 +5,8 @@
 //
 //*****************************************************************************
 
-#include "OrkidMayaExporterCommon.h"
-#include "OrkidFileTranslator.h"
+#include <OrkidMayaExporterCommon.h>
+#include <OrkidFileTranslator.h>
 
 // Maya includes
 #include <maya/MItDag.h>
