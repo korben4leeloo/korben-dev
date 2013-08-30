@@ -41,9 +41,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(KDEV_PATH)/Orkid/OrkidEngine;$(KDEV_PATH)/Orkid/OrkidCore/Sources;$(KDEV_PATH)\Libraries\Math\Eigen_3_2_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -60,6 +62,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\OrkidRuntime.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OrkidCore\OrkidCore.vcxproj">
+      <Project>{9564ab07-fbbd-44cb-89b8-116a30492110}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\OrkidEngine\OrkidEngine.vcxproj">
+      <Project>{6dbbf689-0136-4205-9458-6a61c8fcc42a}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -41,7 +41,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(K3D_QT_DIR)\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(K3D_QT_DIR)\include\QtCore;$(KDEV_PATH)\Libraries\Math\Eigen_3_2_0;$(ProjectDir)\Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -62,9 +62,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Containers\OrkidList.cpp" />
+    <ClCompile Include="Sources\Math\Geometry\OrkidMat4f.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\Geometry\OrkidQuat.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\Geometry\OrkidVec4f.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Containers\OrkidList.h" />
+    <ClInclude Include="Sources\Math\Geometry\OrkidEigenGeometryTransformPlugin.h" />
+    <ClInclude Include="Sources\Math\Geometry\OrkidMat4f.h" />
+    <ClInclude Include="Sources\Math\Geometry\OrkidQuat.h" />
+    <ClInclude Include="Sources\Math\Geometry\OrkidVec4f.h" />
+    <ClInclude Include="Sources\Math\OrkidMathCommon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

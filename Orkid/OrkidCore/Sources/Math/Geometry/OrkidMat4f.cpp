@@ -1,60 +1,51 @@
 //*****************************************************************************
 //
-//	File:		Node.cpp
+//	File:		OrkidMat4f.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"OrkidNode.h"
+#include	"OrkidMat4f.h"
+
+#include	<Math/Geometry/OrkidVec4f.h>
 
 //-----------------------------------------------------------------------------
-// Name:		OrkidNode constructor
+// Name:		OrkidMat4f constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OrkidNode::OrkidNode()
-: _pParentNode( 0 )
+OrkidMat4f::OrkidMat4f()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OrkidNode destructor
+// Name:		OrkidMat4f destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OrkidNode::~OrkidNode()
+OrkidMat4f::~OrkidMat4f()
 {
 
 }
 
 //-----------------------------------------------------------------------------
-// Name:		setParentNode
+// Name:		setTranslation
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-inline void	OrkidNode::setParentNode( OrkidNode* pParentNode )
+inline void	OrkidMat4f::setTranslation( const OrkidVec4f& vTranslation )
 {
-	_pParentNode = pParentNode;
+	//_m.translation() = vTranslation._v;
+	_m.translation() = vTranslation;
 }
 
 //-----------------------------------------------------------------------------
-// Name:		getParentNode
+// Name:		getTranslation
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-inline const OrkidNode*	OrkidNode::getParentNode() const
+inline const OrkidVec4f&	OrkidMat4f::getTranslation() const
 {
-	return	( _pParentNode );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		addChildNode
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-inline void	OrkidNode::addChildNode(OrkidNode *	pChildNode)
-{
-	_childrenNodes.push_back( pChildNode );
-	pChildNode->setParentNode( this );
+	return	( static_cast<OrkidVec4f&>(_m.translation()) );
 }

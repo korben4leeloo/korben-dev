@@ -41,7 +41,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)\OrkidCore\Sources;$(K3D_QT_DIR)\include;$(K3D_QT_DIR)\include\QtCore</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)\OrkidCore\Sources;$(K3D_QT_DIR)\include;$(K3D_QT_DIR)\include\QtCore;$(KDEV_PATH)\Libraries\Math\Eigen_3_2_0</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

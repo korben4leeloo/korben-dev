@@ -1,31 +1,28 @@
 //*****************************************************************************
 //
-//	File:		OrkidScene.cpp
+//	File:		OrkidVec4f.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"OrkidScene.h"
-
-#include	<3dEngine/SceneManager/Nodes/OrkidNode.h>
+#include	"OrkidVec4f.h"
 
 //-----------------------------------------------------------------------------
-// Name:		OrkidScene constructor
+// Name:		OrkidVec4f constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OrkidScene::OrkidScene()
-: _pRootNode( 0 )
+OrkidVec4f::OrkidVec4f()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OrkidScene destructor
+// Name:		OrkidVec4f destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OrkidScene::~OrkidScene()
+OrkidVec4f::~OrkidVec4f()
 {
 
 }

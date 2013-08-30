@@ -15,8 +15,8 @@ template< class T>
 class OrkidList: public QList<T>
 {
 public:
-				OrkidList();
-				~OrkidList();
+	OrkidList();
+	~OrkidList();
 
 private:
 };
