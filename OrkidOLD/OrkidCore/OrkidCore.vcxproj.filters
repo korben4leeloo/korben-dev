@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{6400d922-2e3c-468f-a221-4b72f4beca30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Containers">
+      <UniqueIdentifier>{eb04447d-80a2-407c-b351-d7ea275c18f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Geometry">
+      <UniqueIdentifier>{e7aaa365-95c0-4401-b422-728489c70c2c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\Containers\OrkidList.cpp">
+      <Filter>Source Files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\Geometry\OrkidMat4f.cpp">
+      <Filter>Source Files\Math\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\Geometry\OrkidVec4f.cpp">
+      <Filter>Source Files\Math\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\Geometry\OrkidVec3f.cpp">
+      <Filter>Source Files\Math\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\Geometry\OrkidQuatf.cpp">
+      <Filter>Source Files\Math\Geometry</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\Containers\OrkidList.h">
+      <Filter>Source Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\OrkidMathCommon.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Geometry\OrkidMat4f.h">
+      <Filter>Source Files\Math\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Geometry\OrkidVec4f.h">
+      <Filter>Source Files\Math\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Geometry\OrkidEigenGeometryTransformPlugin.h">
+      <Filter>Source Files\Math\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Geometry\OrkidVec3f.h">
+      <Filter>Source Files\Math\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Geometry\OrkidQuatf.h">
+      <Filter>Source Files\Math\Geometry</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

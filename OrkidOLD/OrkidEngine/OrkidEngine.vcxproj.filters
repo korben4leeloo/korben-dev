@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\3dEngine">
+      <UniqueIdentifier>{1ee3c70e-01ec-44d0-8e76-e828eb3280a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Animation">
+      <UniqueIdentifier>{288718dc-6465-4415-87e3-070ef21b5e0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Physics">
+      <UniqueIdentifier>{610a7b79-b5ee-47cc-be67-f1211896d144}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Network">
+      <UniqueIdentifier>{3c06edac-f394-4414-8e65-f4884055450d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3dEngine\Renderer">
+      <UniqueIdentifier>{9a7f4a47-add4-468f-8fb9-d944a6f2d5ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3dEngine\Renderer\Shaders">
+      <UniqueIdentifier>{b715ad04-1b81-44f6-946e-ae77b05f37d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3dEngine\SceneManager">
+      <UniqueIdentifier>{8236c42a-28fa-4891-82f8-d31dbdc978cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3dEngine\SceneManager\Nodes">
+      <UniqueIdentifier>{a3d23eff-7f37-4042-97ea-c7e61ec7dd58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3dEngine\SceneManager\Entities">
+      <UniqueIdentifier>{7435e7d3-3cea-4b67-b3b4-aadb3bdc8f3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3dEngine\SceneManager\Entities\Mesh">
+      <UniqueIdentifier>{7c54740f-d8d4-4745-80c1-dc8341490dcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3dEngine\SceneManager\Entities\Light">
+      <UniqueIdentifier>{035fa089-534b-4c9a-839a-b3a54aed5825}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3dEngine\SceneManager\Entities\Camera">
+      <UniqueIdentifier>{212d2185-1bae-46f3-8597-b06a68e80166}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ResourceManager">
+      <UniqueIdentifier>{58e29c86-ff69-4885-8a4c-04eaad51e34f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Animation\IK">
+      <UniqueIdentifier>{93381abc-fd80-4644-b65c-f8255e2bf91d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="3dEngine\SceneManager\Entities\Camera\OrkidCamera.cpp">
+      <Filter>Source Files\3dEngine\SceneManager\Entities\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="3dEngine\SceneManager\Entities\Mesh\OrkidMesh.cpp">
+      <Filter>Source Files\3dEngine\SceneManager\Entities\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="3dEngine\SceneManager\Entities\Light\OrkidLight.cpp">
+      <Filter>Source Files\3dEngine\SceneManager\Entities\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="3dEngine\SceneManager\Nodes\OrkidNode.cpp">
+      <Filter>Source Files\3dEngine\SceneManager\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="3dEngine\SceneManager\OrkidScene.cpp">
+      <Filter>Source Files\3dEngine\SceneManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="3dEngine\SceneManager\Entities\Camera\OrkidCamera.h">
+      <Filter>Source Files\3dEngine\SceneManager\Entities\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="3dEngine\SceneManager\Entities\Mesh\OrkidMesh.h">
+      <Filter>Source Files\3dEngine\SceneManager\Entities\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="3dEngine\SceneManager\Entities\Light\OrkidLight.h">
+      <Filter>Source Files\3dEngine\SceneManager\Entities\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="3dEngine\SceneManager\Nodes\OrkidNode.h">
+      <Filter>Source Files\3dEngine\SceneManager\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="3dEngine\SceneManager\OrkidScene.h">
+      <Filter>Source Files\3dEngine\SceneManager</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
