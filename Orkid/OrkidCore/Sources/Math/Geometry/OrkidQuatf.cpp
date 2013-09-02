@@ -1,30 +1,42 @@
 //*****************************************************************************
 //
-//	File:		OrkidMat4f.cpp
+//	File:		OrkidQuatf.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"OrkidMat4f.h"
+#include	"OrkidQuatf.h"
 
+#include	<Math/Geometry/OrkidQuatf.h>
 #include	<Math/Geometry/OrkidVec3f.h>
 
 //-----------------------------------------------------------------------------
-// Name:		OrkidMat4f constructor
+// Name:		OrkidQuatf constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OrkidMat4f::OrkidMat4f()
+OrkidQuatf::OrkidQuatf()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OrkidMat4f destructor
+// Name:		OrkidQuatf constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OrkidMat4f::~OrkidMat4f()
+OrkidQuatf::OrkidQuatf(const OrkidVec3f&	vAxis, 
+					   const float			fAngle)
+{
+	_q = EigenQuatf( EigenAngleAxisf( fAngle, vAxis._v ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		OrkidQuatf destructor
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OrkidQuatf::~OrkidQuatf()
 {
 
 }

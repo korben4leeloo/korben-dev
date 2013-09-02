@@ -6,9 +6,12 @@
 //
 //*****************************************************************************
 
-class OrkidVec3f;
-
 inline void setTranslation( const OrkidVec3f& v )
 {
 	translation() = v;
+}
+
+inline void setQuaternion( const OrkidQuatf& q )
+{
+	linear() = q.toRotationMatrix();
 }

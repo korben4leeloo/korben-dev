@@ -1,30 +1,40 @@
 //*****************************************************************************
 //
-//	File:		OrkidMat4f.cpp
+//	File:		OrkidVec3f.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"OrkidMat4f.h"
-
-#include	<Math/Geometry/OrkidVec3f.h>
+#include	"OrkidVec3f.h"
 
 //-----------------------------------------------------------------------------
-// Name:		OrkidMat4f constructor
+// Name:		OrkidVec3f constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OrkidMat4f::OrkidMat4f()
+OrkidVec3f::OrkidVec3f()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OrkidMat4f destructor
+// Name:		OrkidVec3f constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OrkidMat4f::~OrkidMat4f()
+OrkidVec3f::OrkidVec3f(const float x, 
+					   const float y, 
+					   const float z)
+{
+	_v = EigenVec3f( x, y, z );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		OrkidVec3f destructor
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OrkidVec3f::~OrkidVec3f()
 {
 
 }

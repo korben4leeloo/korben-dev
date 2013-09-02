@@ -23,22 +23,22 @@
     <ClCompile Include="Sources\Containers\OrkidList.cpp">
       <Filter>Source Files\Containers</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Math\Geometry\OrkidQuat.cpp">
-      <Filter>Source Files\Math\Geometry</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Math\Geometry\OrkidMat4f.cpp">
       <Filter>Source Files\Math\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Math\Geometry\OrkidVec4f.cpp">
       <Filter>Source Files\Math\Geometry</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Math\Geometry\OrkidVec3f.cpp">
+      <Filter>Source Files\Math\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\Geometry\OrkidQuatf.cpp">
+      <Filter>Source Files\Math\Geometry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Containers\OrkidList.h">
       <Filter>Source Files\Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Math\Geometry\OrkidQuat.h">
-      <Filter>Source Files\Math\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Math\OrkidMathCommon.h">
       <Filter>Source Files\Math</Filter>
@@ -50,6 +50,12 @@
       <Filter>Source Files\Math\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Math\Geometry\OrkidEigenGeometryTransformPlugin.h">
+      <Filter>Source Files\Math\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Geometry\OrkidVec3f.h">
+      <Filter>Source Files\Math\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Geometry\OrkidQuatf.h">
       <Filter>Source Files\Math\Geometry</Filter>
     </ClInclude>
   </ItemGroup>

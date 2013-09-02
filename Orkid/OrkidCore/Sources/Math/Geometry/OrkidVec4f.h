@@ -11,7 +11,7 @@
 
 #include	<Math/OrkidMathCommon.h>
 
-class OrkidVec4f: public EigenVector4f//: public EigenVector4f
+class OrkidVec4f//: public Eigen::Vector4f//: public EigenVector4f
 {
 	//friend class OrkidMat4f;
 
