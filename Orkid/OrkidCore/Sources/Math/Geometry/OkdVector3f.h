@@ -9,7 +9,7 @@
 #ifndef __OrkidCore_OkdVector3f_h__
 #define __OrkidCore_OkdVector3f_h__
 
-#include	<Math/OkdMathCommon.h>
+#include	<Eigen/Geometry>
 
 class OkdVector3f
 {
@@ -25,9 +25,9 @@ public:
 
 								~OkdVector3f();
 
-	inline static OkdVector3f	UnitX();
-	inline static OkdVector3f	UnitY();
-	inline static OkdVector3f	UnitZ();
+	inline static OkdVector3f	unitX();
+	inline static OkdVector3f	unitY();
+	inline static OkdVector3f	unitZ();
 
 private:
 	EigenVec3f					_v;
@@ -40,31 +40,31 @@ private:
 //*****************************************************************************
 
 //-----------------------------------------------------------------------------
-// Name:		UnitX
+// Name:		unitX
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdVector3f	OkdVector3f::UnitX()
+OkdVector3f	OkdVector3f::unitX()
 {
 	return	( OkdVector3f( 1.0f, 0.0f, 0.0f ) );
 }
 
 //-----------------------------------------------------------------------------
-// Name:		UnitY
+// Name:		unitY
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdVector3f	OkdVector3f::UnitY()
+OkdVector3f	OkdVector3f::unitY()
 {
 	return	( OkdVector3f( 0.0f, 1.0f, 0.0f ) );
 }
 
 //-----------------------------------------------------------------------------
-// Name:		UnitZ
+// Name:		unitZ
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdVector3f	OkdVector3f::UnitZ()
+OkdVector3f	OkdVector3f::unitZ()
 {
 	return	( OkdVector3f( 0.0f, 0.0f, 1.0f ) );
 }

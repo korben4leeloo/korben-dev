@@ -35,6 +35,9 @@
     <ClCompile Include="Sources\Math\Geometry\OkdVector4f.cpp">
       <Filter>Source Files\Math\Geometry</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Containers\OkdVector.cpp">
+      <Filter>Source Files\Containers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Containers\OkdList.h">
@@ -52,8 +55,11 @@
     <ClInclude Include="Sources\Math\Geometry\OkdVector4f.h">
       <Filter>Source Files\Math\Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Math\OkdMathCommon.h">
-      <Filter>Source Files\Math</Filter>
+    <ClInclude Include="Sources\OrkidRoot.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Containers\OkdVector.h">
+      <Filter>Source Files\Containers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -9,30 +9,30 @@
 #ifndef __OrkidCore_OkdQuaternionf_h__
 #define __OrkidCore_OkdQuaternionf_h__
 
-#include	<Math/OkdMathCommon.h>
+#include	<Eigen/Geometry>
 
 class OkdVector3f;
 
 class OkdQuaternionf
 {
-						friend class OkdMatrix4f;
+							friend class OkdMatrix4f;
 
 private:
-						typedef Eigen::Quaternionf	EigenQuatf;
-						typedef Eigen::AngleAxisf	EigenAngleAxisf;
+							typedef Eigen::Quaternionf	EigenQuatf;
+							typedef Eigen::AngleAxisf	EigenAngleAxisf;
 
 public:
-						OkdQuaternionf();
-						OkdQuaternionf( const OkdVector3f& vAxis, const float fAngle );
+							OkdQuaternionf();
+							OkdQuaternionf( const OkdVector3f& vAxis, const float fAngle );
 
-						~OkdQuaternionf();
+							~OkdQuaternionf();
 
-	//inline void			setIdentity();
+	inline void				setIdentity();
 
-	//inline OkdQuaternionf	operator*( const OkdQuaternionf& mOther );
+	inline OkdQuaternionf	operator*( const OkdQuaternionf& qOther );
 
 private:
-	EigenQuatf	_q;
+	EigenQuatf				_q;
 };
 
 //*****************************************************************************
@@ -41,27 +41,27 @@ private:
 //
 //*****************************************************************************
 
-////-----------------------------------------------------------------------------
-//// Name:		setIdentity
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//void	OkdQuaternionf::setIdentity()
-//{
-//	_m.setIdentity();
-//}
-
-////-----------------------------------------------------------------------------
-//// Name:		operator*
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//inline OkdQuaternionf	OkdQuaternionf::operator*( const OkdQuaternionf& mOther )
-//{
-//	OkdQuaternionf mResult;
+//-----------------------------------------------------------------------------
+// Name:		setIdentity
 //
-//	mResult._m = _m * mOther._m;
-//	return	( mResult );
-//}
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdQuaternionf::setIdentity()
+{
+	_q.setIdentity();
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator*
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+inline OkdQuaternionf	OkdQuaternionf::operator*( const OkdQuaternionf& qOther )
+{
+	OkdQuaternionf qResult;
+
+	qResult._q = _q * qOther._q;
+	return	( qResult );
+}
 
 #endif

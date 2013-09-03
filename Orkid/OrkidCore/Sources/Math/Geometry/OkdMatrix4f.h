@@ -9,7 +9,8 @@
 #ifndef __OrkidCore_OkdMatrix4f_h__
 #define __OrkidCore_OkdMatrix4f_h__
 
-#include	<Math/OkdMathCommon.h>
+#include	<Eigen/Geometry>
+
 #include	<Math/Geometry/OkdVector3f.h>
 #include	<Math/Geometry/OkdQuaternionf.h>
 
