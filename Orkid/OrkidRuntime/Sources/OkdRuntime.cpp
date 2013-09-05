@@ -119,11 +119,17 @@ bool createWindow(LPCSTR title, int width, int height) {
 	applications. Here we will make the calls to create our window, setup our scene and then
 	perform our 'infinite' loop which processes messages and renders.
 */
+extern "C" {
 int WINAPI WinMain(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
                      LPSTR    lpCmdLine,
                      int       nCmdShow) {
 	MSG msg;
+
+	/*HMODULE hLib = LoadLibrary( "D:\\DevJJA\\SVN\\korben-dev\\Orkid\\Debug\\OrkidRuntimeDll.dll" );
+	FARPROC procAddr = GetProcAddress( hLib, "orkidRuntimeDllMainEntry" );*/
+
+	//GetLastError():
 
 	/**
 		The following 6 lines of code do conversion between char arrays and LPCWSTR variables
@@ -162,4 +168,67 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	}
 
 	return (int) msg.wParam;
+}
+
+int __declspec(dllexport) launch( HMODULE hRuntimeModule )
+{
+	MSG msg;
+	char *orig = "OpenGL 3 Project"; // Our windows title
+
+	//createWindow(orig, 500, 500); // Create our OpenGL window
+
+	WNDCLASS windowClass;
+	HWND hWnd;
+	DWORD dwExStyle = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
+
+	//hInstance = GetModuleHandle( "OrkidRuntime.exe" );
+
+	windowClass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
+	windowClass.lpfnWndProc = (WNDPROC) WndProc;
+	windowClass.cbClsExtra = 0;
+	windowClass.cbWndExtra = 0;
+	//windowClass.hInstance = hInstance;
+	windowClass.hInstance = hRuntimeModule;
+	/*windowClass.hIcon = LoadIcon(NULL, IDI_WINLOGO);
+	windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);*/
+	windowClass.hIcon = 0;
+	windowClass.hCursor = 0;
+	windowClass.hbrBackground = NULL;
+	windowClass.lpszMenuName = NULL;
+	windowClass.lpszClassName = "";
+
+	if (!RegisterClass(&windowClass)) {
+		return false;
+	}
+
+	hWnd = CreateWindowEx(dwExStyle, "", "", WS_OVERLAPPEDWINDOW,
+		CW_USEDEFAULT, 0, 500, 500, NULL, NULL, hInstance, NULL);
+
+	//openglContext.create30Context(hWnd); // Create our OpenGL context on the given window we just created
+	openGLContext.create( hWnd );
+
+	ShowWindow(hWnd, SW_SHOW);
+	UpdateWindow(hWnd);
+
+	//openglContext.setupScene(); // Setup our OpenGL scene
+
+	while (running)
+	{
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) { // If we have a message to process, process it
+			if (msg.message == WM_QUIT) {
+				running = false; // Set running to false if we have a message to quit
+			}
+			else {
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+		}
+		else { // If we don't have a message to process
+			//openglContext.renderScene(); // Render our scene (which also handles swapping of buffers)
+			openGLContext.render();
+		}
+	}
+
+	return	( 0 );
+}
 }

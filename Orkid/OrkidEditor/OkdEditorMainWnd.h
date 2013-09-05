@@ -1,25 +1,37 @@
-#ifndef OKDEDITORMAINWND_H
-#define OKDEDITORMAINWND_H
+//*****************************************************************************
+//
+//	Class:		OkdEditorMainWnd
+//
+//	Created:	2013-08-26
+//
+//*****************************************************************************
+
+#ifndef __OrkidEditor_OkdEditorMainWnd_h__
+#define __OrkidEditor_OkdEditorMainWnd_h__
 
 #include <QtWidgets/QMainWindow>
 #include "ui_OkdEditorMainWnd.h"
 
 #include	<QTimer>
 
+class QThread;
+
 class OkdEditorMainWnd : public QMainWindow
 {
-	Q_OBJECT
+								Q_OBJECT
 
 public:
-	OkdEditorMainWnd(QWidget *parent = 0);
-	~OkdEditorMainWnd();
+								OkdEditorMainWnd( QWidget* pParentWidget = 0 );
+								~OkdEditorMainWnd();
 
 public slots:
-	void loopUpdate();
+	void						loopUpdate();
+	void						runtimeExeThreadStarted();
 
 private:
-	Ui::OkdEditorMainWndClass ui;
-	QTimer _loopTimer;
+	Ui::OkdEditorMainWndClass	ui;
+	QTimer						_loopTimer;
+	QThread*					_pRuntimeDllThread;
 };
 
-#endif // OKDEDITORMAINWND_H
+#endif // __OrkidEditor_OkdEditorMainWnd_h__

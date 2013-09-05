@@ -1,10 +1,19 @@
-#include "OkdEditorMainWnd.h"
-#include <QtWidgets/QApplication>
+//*****************************************************************************
+//
+//	File:		OrkidEditorMain.cpp
+//	Created:	2013-08-26
+//
+//*****************************************************************************
+
+#include	"OkdEditorMainWnd.h"
+#include	<QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
 {
-	QApplication a(argc, argv);
-	OkdEditorMainWnd w;
-	w.show();
-	return a.exec();
+	QApplication		orkidEditorApp( argc, argv );
+	OkdEditorMainWnd	orkidEditorMainWnd;
+
+	orkidEditorMainWnd.show();
+
+	return	( orkidEditorApp.exec() );
 }

@@ -113,6 +113,8 @@ OrkidErrorCode	OkdOpenGLContext::create(const HWND	hWnd)
 }
 #endif
 
+static int nFrame = 0;
+
 //-----------------------------------------------------------------------------
 // Name:		render
 //
@@ -120,7 +122,12 @@ OrkidErrorCode	OkdOpenGLContext::create(const HWND	hWnd)
 //-----------------------------------------------------------------------------
 void	OkdOpenGLContext::render()
 {
-	glClearColor(0.4f, 0.6f, 0.9f, 0.0f);
+	nFrame++;
+
+	float fColor = (float)(nFrame%50) / 50.0f;
+
+	//glClearColor(0.4f, 0.6f, 0.9f, 0.0f);
+	glClearColor( fColor * 0.4f, fColor - 0.6f, fColor * 0.9f, 0.0f );
 	glViewport(0, 0, 500, 500); // Set the viewport size to fill the window
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT); // Clear required buffers
 	SwapBuffers( _hDeviceContext ); // Swap buffers so we can see our rendering

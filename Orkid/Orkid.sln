@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrkidCore", "OrkidCore\Orki
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrkidEditor", "OrkidEditor\OrkidEditor.vcxproj", "{B56C51FB-83DD-4392-9CD5-93ED6C8DE58B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrkidRuntimeDll", "OrkidRuntimeDll\OrkidRuntimeDll.vcxproj", "{25C5F3E0-BB1E-420F-B8ED-E64B96BBC3A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -37,6 +39,10 @@ Global
 		{B56C51FB-83DD-4392-9CD5-93ED6C8DE58B}.Debug|Win32.Build.0 = Debug|Win32
 		{B56C51FB-83DD-4392-9CD5-93ED6C8DE58B}.Release|Win32.ActiveCfg = Release|Win32
 		{B56C51FB-83DD-4392-9CD5-93ED6C8DE58B}.Release|Win32.Build.0 = Release|Win32
+		{25C5F3E0-BB1E-420F-B8ED-E64B96BBC3A0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{25C5F3E0-BB1E-420F-B8ED-E64B96BBC3A0}.Debug|Win32.Build.0 = Debug|Win32
+		{25C5F3E0-BB1E-420F-B8ED-E64B96BBC3A0}.Release|Win32.ActiveCfg = Release|Win32
+		{25C5F3E0-BB1E-420F-B8ED-E64B96BBC3A0}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
