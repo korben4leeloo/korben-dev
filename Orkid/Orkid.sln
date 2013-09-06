@@ -13,6 +13,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrkidEditor", "OrkidEditor\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrkidRuntimeDll", "OrkidRuntimeDll\OrkidRuntimeDll.vcxproj", "{25C5F3E0-BB1E-420F-B8ED-E64B96BBC3A0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1598302B-5F3A-46B4-81C9-DE6F228D585A}"
+	ProjectSection(SolutionItems) = preProject
+		OrkidRoot.h = OrkidRoot.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32

@@ -19,12 +19,20 @@
     <ClCompile Include="Sources\3dEngine\SceneManager\OkdScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\3dEngine\Orkid3dEngineRoot.h" />
     <ClInclude Include="Sources\3dEngine\Renderer\OpenGL\OkdOpenGLContext.h" />
+    <ClInclude Include="Sources\3dEngine\Renderer\OpenGL\OrkidOpenGLRoot.h" />
+    <ClInclude Include="Sources\3dEngine\Renderer\OrkidRendererRoot.h" />
     <ClInclude Include="Sources\3dEngine\SceneManager\Entities\Camera\OkdCamera.h" />
     <ClInclude Include="Sources\3dEngine\SceneManager\Entities\Light\OkdLight.h" />
     <ClInclude Include="Sources\3dEngine\SceneManager\Entities\Mesh\OkdMesh.h" />
+    <ClInclude Include="Sources\3dEngine\SceneManager\Entities\Mesh\OrkidMeshRoot.h" />
+    <ClInclude Include="Sources\3dEngine\SceneManager\Entities\OrkidEntitiesRoot.h" />
     <ClInclude Include="Sources\3dEngine\SceneManager\Nodes\OkdNode.h" />
+    <ClInclude Include="Sources\3dEngine\SceneManager\Nodes\OrkidNodesRoot.h" />
     <ClInclude Include="Sources\3dEngine\SceneManager\OkdScene.h" />
+    <ClInclude Include="Sources\3dEngine\SceneManager\OrkidSceneManagerRoot.h" />
+    <ClInclude Include="Sources\OrkidEngineRoot.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6DBBF689-0136-4205-9458-6A61C8FCC42A}</ProjectGuid>
@@ -57,7 +65,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)\Sources;$(SolutionDir)\OrkidCore\Sources;$(K3D_QT_DIR)\include;$(K3D_QT_DIR)\include\QtCore;$(KDEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KDEV_PATH)\Libraries\OpenGL\glew\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(K3D_QT_DIR)\include;$(K3D_QT_DIR)\include\QtCore;$(KDEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KDEV_PATH)\Libraries\OpenGL\glew\include;$(KORBEN_DEV_ORKID_PATH)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

@@ -7,7 +7,7 @@
 
 #include	"OkdScene.h"
 
-#include	<3dEngine/SceneManager/Nodes/OkdNode.h>
+#include	ORKID_ENGINE_H(3dEngine/SceneManager/Nodes/OkdNode)
 
 //-----------------------------------------------------------------------------
 // Name:		OkdScene constructor

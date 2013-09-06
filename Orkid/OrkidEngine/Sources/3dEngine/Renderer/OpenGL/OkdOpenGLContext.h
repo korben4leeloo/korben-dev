@@ -9,7 +9,7 @@
 #ifndef __OrkidEngine_OkdOpenGLContext_h__
 #define __OrkidEngine_OkdOpenGLContext_h__
 
-#include	<OrkidRoot.h>
+#include	"OrkidOpenGLRoot.h"
 
 #ifdef _WIN32
 	#include	<Windows.h>

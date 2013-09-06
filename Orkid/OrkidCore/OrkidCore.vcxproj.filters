@@ -51,11 +51,17 @@
     <ClInclude Include="Sources\Math\Geometry\OkdVector4f.h">
       <Filter>Sources\Math\Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\OrkidRoot.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Containers\OkdVector.h">
       <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\OrkidCoreRoot.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Geometry\OrkidGeometryRoot.h">
+      <Filter>Sources\Math\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\OrkidMathRoot.h">
+      <Filter>Sources\Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -9,7 +9,7 @@
 #ifndef __OrkidCore_OkdQuaternionf_h__
 #define __OrkidCore_OkdQuaternionf_h__
 
-#include	<Eigen/Geometry>
+#include	"OrkidGeometryRoot.h"
 
 class OkdVector3f;
 

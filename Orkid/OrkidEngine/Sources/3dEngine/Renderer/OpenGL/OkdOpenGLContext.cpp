@@ -7,7 +7,7 @@
 
 #include	"OkdOpenGLContext.h"
 
-#include	<Containers/OkdVector.h>
+#include	ORKID_CORE_H(Containers/OkdVector)
 
 // OpenGL includes
 #include	<GL/glew.h>

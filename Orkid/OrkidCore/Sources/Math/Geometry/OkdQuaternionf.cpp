@@ -7,8 +7,7 @@
 
 #include	"OkdQuaternionf.h"
 
-#include	<Math/Geometry/OkdQuaternionf.h>
-#include	<Math/Geometry/OkdVector3f.h>
+#include	ORKID_MATH_H(Geometry/OkdVector3f)
 
 //-----------------------------------------------------------------------------
 // Name:		OkdQuaternionf constructor

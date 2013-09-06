@@ -5,11 +5,13 @@
 //
 //*****************************************************************************
 
+#include	"OrkidRuntimeRoot.h"
+
 //#include	<3dEngine/SceneManager/OkdScene.h>
 
-#include	<Math/Geometry/OkdMatrix4f.h>
-#include	<Math/Geometry/OkdVector3f.h>
-#include	<Math/Geometry/OkdQuaternionf.h>
+#include	ORKID_MATH_H(Geometry/OkdMatrix4f)
+#include	ORKID_MATH_H(Geometry/OkdVector3f)
+#include	ORKID_MATH_H(Geometry/OkdQuaternionf)
 
 //int main()
 //{
@@ -43,7 +45,7 @@
 //}
 
 #include	<Windows.h>
-#include	<3dEngine/Renderer/OpenGL/OkdOpenGLContext.h>
+#include	ORKID_ENGINE_H(3dEngine/Renderer/OpenGL/OkdOpenGLContext)
 
 //OpenGLContext openglContext; // Our OpenGL Context class
 OkdOpenGLContext openGLContext;

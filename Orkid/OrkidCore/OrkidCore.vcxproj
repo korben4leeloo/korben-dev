@@ -25,7 +25,9 @@
     <ClInclude Include="Sources\Math\Geometry\OkdQuaternionf.h" />
     <ClInclude Include="Sources\Math\Geometry\OkdVector3f.h" />
     <ClInclude Include="Sources\Math\Geometry\OkdVector4f.h" />
-    <ClInclude Include="Sources\OrkidRoot.h" />
+    <ClInclude Include="Sources\Math\Geometry\OrkidGeometryRoot.h" />
+    <ClInclude Include="Sources\Math\OrkidMathRoot.h" />
+    <ClInclude Include="Sources\OrkidCoreRoot.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9564AB07-FBBD-44CB-89B8-116A30492110}</ProjectGuid>
@@ -58,7 +60,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(K3D_QT_DIR)\include\QtCore;$(KDEV_PATH)\Libraries\Math\Eigen_3_2_0;$(ProjectDir)\Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(KORBEN_DEV_QT_PATH)\include\QtCore;$(KORBEN_DEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KORBEN_DEV_ORKID_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>
+      </ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

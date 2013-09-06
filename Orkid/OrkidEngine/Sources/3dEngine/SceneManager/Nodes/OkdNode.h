@@ -9,8 +9,10 @@
 #ifndef __OrkidEngine_OkdNode_h__
 #define __OrkidEngine_OkdNode_h__
 
-#include	<Containers/OkdList.h>
-#include	<Math/Geometry/OkdMatrix4f.h>
+#include	"OrkidNodesRoot.h"
+
+#include	ORKID_CORE_H(Containers/OkdList)
+#include	ORKID_CORE_H(Math/Geometry/OkdMatrix4f)
 
 class OkdNode;
 typedef OkdList<OkdNode*> OkdNodeList;

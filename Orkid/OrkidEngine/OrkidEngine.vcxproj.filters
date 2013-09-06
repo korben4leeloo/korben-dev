@@ -90,5 +90,29 @@
     <ClInclude Include="Sources\3dEngine\Renderer\OpenGL\OkdOpenGLContext.h">
       <Filter>Sources\3dEngine\Renderer\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\OrkidEngineRoot.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\3dEngine\SceneManager\Entities\Mesh\OrkidMeshRoot.h">
+      <Filter>Sources\3dEngine\SceneManager\Entities\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\3dEngine\SceneManager\Entities\OrkidEntitiesRoot.h">
+      <Filter>Sources\3dEngine\SceneManager\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\3dEngine\SceneManager\OrkidSceneManagerRoot.h">
+      <Filter>Sources\3dEngine\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\3dEngine\SceneManager\Nodes\OrkidNodesRoot.h">
+      <Filter>Sources\3dEngine\SceneManager\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\3dEngine\Renderer\OpenGL\OrkidOpenGLRoot.h">
+      <Filter>Sources\3dEngine\Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\3dEngine\Renderer\OrkidRendererRoot.h">
+      <Filter>Sources\3dEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\3dEngine\Orkid3dEngineRoot.h">
+      <Filter>Sources\3dEngine</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

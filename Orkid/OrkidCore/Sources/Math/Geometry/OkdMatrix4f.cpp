@@ -7,8 +7,6 @@
 
 #include	"OkdMatrix4f.h"
 
-#include	<Math/Geometry/OkdVector3f.h>
-
 //-----------------------------------------------------------------------------
 // Name:		OkdMatrix4f constructor
 //

@@ -9,33 +9,33 @@
 #ifndef __OrkidCore_OkdMatrix4f_h__
 #define __OrkidCore_OkdMatrix4f_h__
 
-#include	<Eigen/Geometry>
+#include	"OrkidGeometryRoot.h"
 
-#include	<Math/Geometry/OkdVector3f.h>
-#include	<Math/Geometry/OkdQuaternionf.h>
+#include	ORKID_MATH_H(Geometry/OkdVector3f)
+#include	ORKID_MATH_H(Geometry/OkdQuaternionf)
 
 class OkdMatrix4f
 {
 private:
-						typedef Eigen::Transform<float, 3, Eigen::Affine> EigenTransform4f;
+							typedef Eigen::Transform<float, 3, Eigen::Affine> EigenTransform4f;
 
 public:
-						OkdMatrix4f();
-						~OkdMatrix4f();
+							OkdMatrix4f();
+							~OkdMatrix4f();
 
-	inline void			setIdentity();
+	inline void				setIdentity();
 
-	inline void			setTranslation( const OkdVector3f& vTranslation );
+	inline void				setTranslation( const OkdVector3f& vTranslation );
 	inline OkdVector3f		getTranslation() const;
 
-	inline void			setRotation( const OkdQuaternionf& qRotation );
+	inline void				setRotation( const OkdQuaternionf& qRotation );
 
-	inline OkdQuaternionf		getQuaternion() const;
+	inline OkdQuaternionf	getQuaternion() const;
 
 	inline OkdMatrix4f		operator*( const OkdMatrix4f& mOther );
 
 private:
-	EigenTransform4f	_m;
+	EigenTransform4f		_m;
 };
 
 //*****************************************************************************

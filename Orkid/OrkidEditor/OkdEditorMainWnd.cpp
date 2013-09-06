@@ -91,7 +91,7 @@ void	OkdEditorMainWnd::runtimeExeThreadStarted()
 
 	if	( runtimeMainPtr )
 	{
-		(*runtimeMainPtr)( hLib, (HWND)winId() );
+		(*runtimeMainPtr)( hLib, (HWND)centralWidget()->winId() );
 	}
 }
 

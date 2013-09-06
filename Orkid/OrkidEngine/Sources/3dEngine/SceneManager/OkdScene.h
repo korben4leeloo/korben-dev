@@ -9,6 +9,8 @@
 #ifndef __OrkidEngine_OkdScene_h__
 #define __OrkidEngine_OkdScene_h__
 
+#include	"OrkidSceneManagerRoot.h"
+
 class OrkidNode;
 
 class OkdScene
