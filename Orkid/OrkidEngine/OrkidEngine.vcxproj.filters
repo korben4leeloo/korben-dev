@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Sources\Animation">
+      <UniqueIdentifier>{288718dc-6465-4415-87e3-070ef21b5e0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Physics">
+      <UniqueIdentifier>{610a7b79-b5ee-47cc-be67-f1211896d144}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Network">
+      <UniqueIdentifier>{3c06edac-f394-4414-8e65-f4884055450d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\ResourceManager">
+      <UniqueIdentifier>{58e29c86-ff69-4885-8a4c-04eaad51e34f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\OpenGL">
+      <UniqueIdentifier>{3fa7df17-15cc-403d-b096-4c2cd6c18374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Entities">
+      <UniqueIdentifier>{8064806b-0c81-4a12-a38d-ec5bc1855acd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\IK">
+      <UniqueIdentifier>{93381abc-fd80-4644-b65c-f8255e2bf91d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\SceneGraph">
+      <UniqueIdentifier>{a0ad9b4d-ebe6-4c22-ae37-346a5e0851ce}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\OrkidEngineRoot.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\OpenGL\OkdOpenGLContext.h">
+      <Filter>Sources\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Entities\OkdCamera.h">
+      <Filter>Sources\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Entities\OkdLight.h">
+      <Filter>Sources\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Entities\OkdMesh.h">
+      <Filter>Sources\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\SceneGraph\OkdNode.h">
+      <Filter>Sources\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\SceneGraph\OkdScene.h">
+      <Filter>Sources\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Entities\Root.h">
+      <Filter>Sources\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\OpenGL\Root.h">
+      <Filter>Sources\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\SceneGraph\Root.h">
+      <Filter>Sources\SceneGraph</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
+      <Filter>Sources\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Entities\OkdLight.cpp">
+      <Filter>Sources\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Entities\OkdMesh.cpp">
+      <Filter>Sources\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Entities\OkdCamera.cpp">
+      <Filter>Sources\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\SceneGraph\OkdScene.cpp">
+      <Filter>Sources\SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\SceneGraph\OkdNode.cpp">
+      <Filter>Sources\SceneGraph</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
