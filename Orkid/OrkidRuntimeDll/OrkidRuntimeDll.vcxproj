@@ -75,12 +75,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="OrkidRuntimeDll.cpp" />
+    <ClCompile Include="Sources\OrkidRuntimeDllMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OrkidEngine\OrkidEngine.vcxproj">
       <Project>{6dbbf689-0136-4205-9458-6a61c8fcc42a}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\OrkidRuntimeDllRoot.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
