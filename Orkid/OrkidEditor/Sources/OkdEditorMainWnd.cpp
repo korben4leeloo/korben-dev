@@ -91,10 +91,6 @@ void	OkdEditorMainWnd::runtimeExeThreadStarted()
 
 	strRuntimeDllPath.sprintf( "%s\\Debug\\OrkidRuntimeDll.dll", pcEnv );
 
-	//wchar_t* pcTemp = new wchar_t[strRuntimeDllPath.length()];
-	//strRuntimeDllPath.toWCharArray( pcTemp );!
-
-	//HMODULE hLib = LoadLibrary( pcTemp );
 	HMODULE hLib = LoadLibrary( strRuntimeDllPath.utf16() );
 	RuntimeExeLaunchFunc runtimeMainPtr = (RuntimeExeLaunchFunc)GetProcAddress( hLib, "launch" );
 
@@ -102,8 +98,6 @@ void	OkdEditorMainWnd::runtimeExeThreadStarted()
 	{
 		(*runtimeMainPtr)( hLib, (HWND)centralWidget()->winId() );
 	}
-
-	//delete[] pcTemp;
 }
 
 //-----------------------------------------------------------------------------
