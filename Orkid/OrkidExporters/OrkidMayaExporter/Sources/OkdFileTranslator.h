@@ -13,6 +13,7 @@
 
 class QFile;
 class QTextStream;
+class QDataStream;
 
 class OkdFileTranslator: public MPxFileTranslator
 {
@@ -34,7 +35,9 @@ private:
 	void			exportSceneGraph();
 
 	QFile*			_pExportFile;
-	QTextStream*	_pExportStream;
+	QFile*			_pExportLogFile;
+	QDataStream*	_pExportStream;
+	QTextStream*	_pExportLogStream;
 };
 
 #endif

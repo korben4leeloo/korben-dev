@@ -18,14 +18,15 @@
 // Qt includes
 #include <QFile>
 #include <QTextStream>
+#include <QDataStream>
 
 #define	WRITE_LOG_INFOS( uiIndent, logInfos )		\
 	for	( uint i = 0; i < uiIndent; i++ )	\
 	{												\
-		(*_pExportStream) << "\t";					\
+		(*_pExportLogStream) << "\t";					\
 	}												\
 													\
-	(*_pExportStream) << logInfos;
+	(*_pExportLogStream) << logInfos;
 
 //-----------------------------------------------------------------------------
 // Name:		OkdFileTranslator constructor
@@ -35,6 +36,8 @@
 OkdFileTranslator::OkdFileTranslator()
 : _pExportFile		( 0 )
 , _pExportStream	( 0 )
+, _pExportLogFile	( 0 )
+, _pExportLogStream	( 0 )
 {
 	
 }
@@ -116,11 +119,22 @@ void	OkdFileTranslator::exportSceneGraph()
 		if	( dagPath.hasFn( MFn::kMesh ) )
 		{
 			MFnMesh fnMesh( dagPath, &status );
+			uint	uiVertexCount	= fnMesh.numVertices( &status );
+			uint	uiPolygonCount	= fnMesh.numPolygons( &status );
 
-			WRITE_LOG_INFOS( dagPath.length() + 1, "Polygons count: " << fnMesh.numPolygons( &status ) << "\n" );
+			WRITE_LOG_INFOS( dagPath.length() + 1, "Polygons count: " << uiPolygonCount << "\n" );
 			WRITE_LOG_INFOS( dagPath.length() + 1, "Vertices count: " << fnMesh.numVertices( &status ) << "\n" );
 			WRITE_LOG_INFOS( dagPath.length() + 1, "Normals count: " << fnMesh.numNormals( &status ) << "\n" );
 			WRITE_LOG_INFOS( dagPath.length() + 1, "UVs count: " << fnMesh.numUVs( &status ) << "\n" );
+
+			const float* pLocalPoints = fnMesh.getRawPoints( &status );
+
+			_pExportStream->writeRawData( (char*)pLocalPoints, uiVertexCount * 3 * sizeof(pLocalPoints[0]) );
+			
+			for	( uint i = 0; i < uiPolygonCount; i++ )
+			{
+
+			}
 		}
 
 		itDag.next();
@@ -134,14 +148,24 @@ void	OkdFileTranslator::exportSceneGraph()
 //-----------------------------------------------------------------------------
 void	OkdFileTranslator::beginExport(const MFileObject &	file)
 {
-	const MString strFileName = file.fullName();
+	const MString	strFileName = file.fullName();
+	QString			strLogFileName( strFileName.asChar() );
+
+	strLogFileName.replace( ".okd", ".log" );
 
 	// Create export file
 	_pExportFile = new QFile( strFileName.asChar() );
 	_pExportFile->open( QIODevice::WriteOnly );
 
 	// Create export stream
-	_pExportStream = new QTextStream( _pExportFile );
+	_pExportStream = new QDataStream( _pExportFile );
+
+	// Create export log file
+	_pExportLogFile = new QFile( strLogFileName );
+	_pExportLogFile->open( QIODevice::WriteOnly );
+
+	// Create export log stream
+	_pExportLogStream = new QTextStream( _pExportLogFile );
 }
 
 //-----------------------------------------------------------------------------
@@ -152,6 +176,7 @@ void	OkdFileTranslator::beginExport(const MFileObject &	file)
 void	OkdFileTranslator::endExport()
 {
 	_pExportFile->close();
+	_pExportLogFile->close();
 }
 
 //-----------------------------------------------------------------------------
