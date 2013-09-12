@@ -6,11 +6,11 @@
 //
 //*****************************************************************************
 
-#include <OkdMayaExporterCommon.h>
-#include <OkdFileTranslator.h>
+#include	"OrkidMayaExporterRoot.h"
+#include	ORKID_MAYA_EXPORTER_H(OkdFileTranslator)
 
-#include <maya/MFnPlugin.h>
-#include <maya/MPxFileTranslator.h>
+#include	<maya/MFnPlugin.h>
+#include	<maya/MPxFileTranslator.h>
 
 //-----------------------------------------------------------------------------
 // Name:		initializePlugin

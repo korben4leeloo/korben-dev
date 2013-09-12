@@ -11,21 +11,33 @@
 
 #include	"Root.h"
 
-#include	ORKID_CORE_H(Containers/OkdVector)
+#include	ORKID_CORE_H(Math/OkdVector3f)
 
 class OkdMesh
 {
 public:
-			OkdMesh();
-			~OkdMesh();
+					OkdMesh();
+					~OkdMesh();
+
+	void			setVertexArray( const float* pVertexArray, uint uiVertexCount );
+	void			setPolygonArray( const uint* pPolygonArray, uint uiPolygonCount );
 
 private:
-	uint	_uiVertexCount;
-	uint	_uiPolygonCount;
-	uint	_uiNormalCount;
-	uint	_uiUVCount;
+	struct	OkdMeshPolygon
+	{
+		uint _vertexIdArray[3];
+	};
 
-	//OrkidVector<
+	void			releaseVertexArray();
+	void			releasePolygonArray();
+
+	uint			_uiVertexCount;
+	uint			_uiPolygonCount;
+	uint			_uiNormalCount;
+	uint			_uiUVCount;
+
+	OkdVector3f*	_pVertexArray;
+	OkdMeshPolygon*	_pPolygonArray;
 };
 
 #endif

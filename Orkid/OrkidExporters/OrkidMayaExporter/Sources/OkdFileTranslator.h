@@ -9,7 +9,9 @@
 #ifndef __OrkidMayaExporter_OkdFileTranslator_h__
 #define __OrkidMayaExporter_OkdFileTranslator_h__
 
-#include <maya/MPxFileTranslator.h>
+#include	"OrkidMayaExporterRoot.h"
+
+#include	<maya/MPxFileTranslator.h>
 
 class QFile;
 class QTextStream;

@@ -5,27 +5,28 @@
 //
 //*****************************************************************************
 
-#include <OkdMayaExporterCommon.h>
-#include <OkdFileTranslator.h>
+#include	"OkdFileTranslator.h"
+
+#include	ORKID_ENGINE_H(Entities/OkdMesh)
 
 // Maya includes
-#include <maya/MItDag.h>
-#include <maya/MDagPath.h>
-#include <maya/MFnDagNode.h>
-#include <maya/MFnTransform.h>
-#include <maya/MFnMesh.h>
+#include	<maya/MItDag.h>
+#include	<maya/MDagPath.h>
+#include	<maya/MFnDagNode.h>
+#include	<maya/MFnTransform.h>
+#include	<maya/MFnMesh.h>
 
 // Qt includes
-#include <QFile>
-#include <QTextStream>
-#include <QDataStream>
+#include	<QFile>
+#include	<QTextStream>
+#include	<QDataStream>
 
-#define	WRITE_LOG_INFOS( uiIndent, logInfos )		\
-	for	( uint i = 0; i < uiIndent; i++ )	\
-	{												\
-		(*_pExportLogStream) << "\t";					\
-	}												\
-													\
+#define	WRITE_LOG_INFOS( uiIndent, logInfos )									\
+	for	( uint uiIndentIndex = 0; uiIndentIndex < uiIndent; uiIndentIndex++ )	\
+	{																			\
+		(*_pExportLogStream) << "\t";											\
+	}																			\
+																				\
 	(*_pExportLogStream) << logInfos;
 
 //-----------------------------------------------------------------------------
@@ -133,7 +134,18 @@ void	OkdFileTranslator::exportSceneGraph()
 			
 			for	( uint i = 0; i < uiPolygonCount; i++ )
 			{
+				MIntArray vertexList;
 
+				fnMesh.getPolygonVertices( i, vertexList );
+
+				if	( vertexList.length() != 3 )
+				{
+					WRITE_LOG_INFOS( dagPath.length() + 1, "Polygon " << i << " is not a triangle" );
+					return;
+				}
+
+				(*_pExportStream) << vertexList[0] << vertexList[1] << vertexList[2];
+				WRITE_LOG_INFOS( dagPath.length() + 1, vertexList[0] << " " << vertexList[1] << " " << vertexList[2] << "\n" );
 			}
 		}
 

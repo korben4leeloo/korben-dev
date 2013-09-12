@@ -17,6 +17,7 @@
   <ItemGroup>
     <ClInclude Include="Sources\OkdFileTranslator.h" />
     <ClInclude Include="Sources\OkdMayaExporterCommon.h" />
+    <ClInclude Include="Sources\OrkidMayaExporterRoot.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4F30ECE7-2E05-42E0-8C8D-9292A904A12D}</ProjectGuid>
@@ -51,8 +52,8 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>NT_PLUGIN;REQUIRE_IOSTREAM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(K3D_MAYA_DIR)\include;$(K3D_QT_DIR)\include;$(K3D_QT_DIR)\include\QtCore;$(ProjectDir)\sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NT_PLUGIN;REQUIRE_IOSTREAM;ORKID_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(K3D_MAYA_DIR)\include;$(K3D_QT_DIR)\include;$(K3D_QT_DIR)\include\QtCore;$(KDEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KORBEN_DEV_ORKID_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
