@@ -16,7 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\OkdFileTranslator.h" />
-    <ClInclude Include="Sources\OkdMayaExporterCommon.h" />
     <ClInclude Include="Sources\OrkidMayaExporterRoot.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

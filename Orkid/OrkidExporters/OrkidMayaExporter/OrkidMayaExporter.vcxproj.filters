@@ -18,9 +18,6 @@
     <ClInclude Include="Sources\OkdFileTranslator.h">
       <Filter>Sources</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\OkdMayaExporterCommon.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\OrkidMayaExporterRoot.h">
       <Filter>Sources</Filter>
     </ClInclude>
