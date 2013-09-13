@@ -19,6 +19,10 @@
     <ClInclude Include="Sources\Math\OkdVector4f.h" />
     <ClInclude Include="Sources\Math\Root.h" />
     <ClInclude Include="Sources\OrkidCoreRoot.h" />
+    <ClInclude Include="Sources\Stream\OkdFile.h" />
+    <ClInclude Include="Sources\Stream\OkdStream.h" />
+    <ClInclude Include="Sources\Stream\OkdString.h" />
+    <ClInclude Include="Sources\Stream\Root.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Containers\OkdList.cpp" />
@@ -27,6 +31,9 @@
     <ClCompile Include="Sources\Math\OkdQuaternionf.cpp" />
     <ClCompile Include="Sources\Math\OkdVector3f.cpp" />
     <ClCompile Include="Sources\Math\OkdVector4f.cpp" />
+    <ClCompile Include="Sources\Stream\OkdFile.cpp" />
+    <ClCompile Include="Sources\Stream\OkdStream.cpp" />
+    <ClCompile Include="Sources\Stream\OkdString.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9564AB07-FBBD-44CB-89B8-116A30492110}</ProjectGuid>
@@ -59,7 +66,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(KORBEN_DEV_QT_PATH)\include\QtCore;$(KORBEN_DEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KORBEN_DEV_ORKID_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(KORBEN_DEV_QT_PATH)\include;$(KORBEN_DEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KORBEN_DEV_ORKID_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>
       </ForcedIncludeFiles>
     </ClCompile>

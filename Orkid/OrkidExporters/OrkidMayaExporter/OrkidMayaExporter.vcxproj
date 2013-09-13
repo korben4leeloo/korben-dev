@@ -18,6 +18,14 @@
     <ClInclude Include="Sources\OkdFileTranslator.h" />
     <ClInclude Include="Sources\OrkidMayaExporterRoot.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\OrkidCore\OrkidCore.vcxproj">
+      <Project>{9564ab07-fbbd-44cb-89b8-116a30492110}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OrkidEngine\OrkidEngine.vcxproj">
+      <Project>{6dbbf689-0136-4205-9458-6a61c8fcc42a}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4F30ECE7-2E05-42E0-8C8D-9292A904A12D}</ProjectGuid>
     <RootNamespace>OrkidMayaExporter</RootNamespace>

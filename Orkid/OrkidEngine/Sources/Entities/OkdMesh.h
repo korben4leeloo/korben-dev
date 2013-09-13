@@ -19,8 +19,10 @@ public:
 					OkdMesh();
 					~OkdMesh();
 
-	void			setVertexArray( const float* pVertexArray, uint uiVertexCount );
-	void			setPolygonArray( const uint* pPolygonArray, uint uiPolygonCount );
+	void			create( const float* pVertexArray, const uint uiVertexCount, const uint uiPolygonCount );
+	void			setPolygon( const uint uiPolygonIndex, const uint* pVertexIdArray );
+
+	void			writeToStream();
 
 private:
 	struct	OkdMeshPolygon

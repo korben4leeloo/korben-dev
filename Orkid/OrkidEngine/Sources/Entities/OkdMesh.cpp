@@ -35,35 +35,35 @@ OkdMesh::~OkdMesh()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		setVertexArray
+// Name:		create
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdMesh::setVertexArray(const float*	pVertexArray, 
-								uint			uiVertexCount )
+void	OkdMesh::create(const float*	pVertexArray, 
+						const uint		uiVertexCount,
+						const uint		uiPolygonCount)
 {
 	releaseVertexArray();
+	releasePolygonArray();
 
-	_uiVertexCount = uiVertexCount;
+	_uiVertexCount	= uiVertexCount;
+	_uiPolygonCount	= uiPolygonCount;
 
-	_pVertexArray = new OkdVector3f[uiVertexCount];
-	memcpy( _pVertexArray, pVertexArray, uiVertexCount * 3 );
+	_pVertexArray	= new OkdVector3f[uiVertexCount];
+	_pPolygonArray	= new OkdMeshPolygon[uiPolygonCount];
+
+	memcpy( _pVertexArray, pVertexArray, uiVertexCount * sizeof(OkdVector3f) );
 }
 
 //-----------------------------------------------------------------------------
-// Name:		setPolygonArray
+// Name:		setPolygon
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdMesh::setPolygonArray(const uint*	pPolygonArray, 
-								 uint			uiPolygonCount)
+void	OkdMesh::setPolygon(const uint	uiPolygonIndex, 
+							const uint*	pVertexIdArray)
 {
-	releasePolygonArray();
-
-	_uiPolygonCount = uiPolygonCount;
-
-	_pPolygonArray = new OkdMeshPolygon[uiPolygonCount];
-	memcpy( _pPolygonArray, pPolygonArray, uiPolygonCount * 3 );
+	memcpy( _pPolygonArray[uiPolygonIndex]._vertexIdArray, pVertexIdArray, 3 * sizeof(uint) );
 }
 
 //-----------------------------------------------------------------------------
