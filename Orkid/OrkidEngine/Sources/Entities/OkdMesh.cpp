@@ -115,6 +115,8 @@ void	OkdMesh::writeToStream(OkdFileStream* pStream)
 	stream << _uiVertexCount;
 	stream << _uiPolygonCount;
 
-	stream.writeRawData( (const char*)_pVertexArray, _uiVertexCount * sizeof(OkdVector3f) );
-	stream.writeRawData( (const char*)_pPolygonArray, _uiPolygonCount * sizeof(OkdMeshPolygon) );
+	/*stream.writeRawData( (const char*)_pVertexArray, _uiVertexCount * sizeof(OkdVector3f) );
+	stream.writeRawData( (const char*)_pPolygonArray, _uiPolygonCount * sizeof(OkdMeshPolygon) );*/
+	stream.write( (const char*)_pVertexArray, _uiVertexCount * sizeof(OkdVector3f) );
+	stream.write( (const char*)_pPolygonArray, _uiPolygonCount * sizeof(OkdMeshPolygon) );
 }
