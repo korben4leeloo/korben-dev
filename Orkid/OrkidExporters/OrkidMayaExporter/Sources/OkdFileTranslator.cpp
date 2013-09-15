@@ -7,6 +7,11 @@
 
 #include	"OkdFileTranslator.h"
 
+// Orkid includes
+#include	ORKID_CORE_H(String/OkdString)
+#include	ORKID_CORE_H(Stream/OkdFile)
+#include	ORKID_CORE_H(Stream/OkdStream)
+
 #include	ORKID_ENGINE_H(Entities/OkdMesh)
 
 // Maya includes
@@ -15,11 +20,6 @@
 #include	<maya/MFnDagNode.h>
 #include	<maya/MFnTransform.h>
 #include	<maya/MFnMesh.h>
-
-// Qt includes
-#include	<QFile>
-#include	<QTextStream>
-#include	<QDataStream>
 
 #define	WRITE_LOG_INFOS( uiIndent, logInfos )									\
 	for	( uint uiIndentIndex = 0; uiIndentIndex < uiIndent; uiIndentIndex++ )	\
@@ -99,9 +99,9 @@ void	OkdFileTranslator::exportSceneGraph()
 
 		// Get transform infos
 		MFnDagNode		dagNode( dagPath, &status );
-		QString			strNodeName( dagNode.name().asChar() );
-		QString			strFullPathName( dagPath.fullPathName().asChar() );
-		QString			strNodeTypeName( dagNode.typeName().asChar() );
+		OkdString		strNodeName( dagNode.name().asChar() );
+		OkdString		strFullPathName( dagPath.fullPathName().asChar() );
+		OkdString		strNodeTypeName( dagNode.typeName().asChar() );
 		MFnTransform	fnTransform( dagPath, &status );
 		MVector			vLocal = fnTransform.getTranslation( MSpace::kTransform, &status );
 
@@ -111,9 +111,9 @@ void	OkdFileTranslator::exportSceneGraph()
 		status = dagPath.extendToShape();
 
 		MFnDagNode	shapeDagNode( dagPath, &status );
-		QString		strShapeNodeName( shapeDagNode.name().asChar() );
-		QString		strShapeFullPathName( dagPath.fullPathName().asChar() );
-		QString		strShapeNodeTypeName( shapeDagNode.typeName().asChar() );
+		OkdString	strShapeNodeName( shapeDagNode.name().asChar() );
+		OkdString	strShapeFullPathName( dagPath.fullPathName().asChar() );
+		OkdString	strShapeNodeTypeName( shapeDagNode.typeName().asChar() );
 
 		WRITE_LOG_INFOS( dagPath.length(), strShapeNodeName << ": " << strShapeNodeTypeName << " - Path: " << strShapeFullPathName << "\n" );
 
@@ -133,11 +133,7 @@ void	OkdFileTranslator::exportSceneGraph()
 
 			orkidMesh.create( pLocalPoints, uiVertexCount, uiPolygonCount );
 
-			_pExportStream->writeRawData( (char*)pLocalPoints, uiVertexCount * 3 * sizeof(pLocalPoints[0]) );
-
-			std::string s = "test";
-
-			s.replace( "st", "kk" );
+			//_pExportStream->writeRawData( (char*)pLocalPoints, uiVertexCount * 3 * sizeof(pLocalPoints[0]) );
 			
 			for	( uint i = 0; i < uiPolygonCount; i++ )
 			{
@@ -152,9 +148,11 @@ void	OkdFileTranslator::exportSceneGraph()
 				fnMesh.getPolygonTriangleVertices( i, 0, vertexIdArray );
 				orkidMesh.setPolygon( i, (const uint*)vertexIdArray );
 
-				(*_pExportStream) << vertexIdArray[0] << vertexIdArray[1] << vertexIdArray[2];
+				//(*_pExportStream) << vertexIdArray[0] << vertexIdArray[1] << vertexIdArray[2];
 				WRITE_LOG_INFOS( dagPath.length() + 1, vertexIdArray[0] << " " << vertexIdArray[1] << " " << vertexIdArray[2] << "\n" );
 			}
+
+			orkidMesh.writeToStream( _pExportStream );
 		}
 
 		itDag.next();
@@ -174,18 +172,18 @@ void	OkdFileTranslator::beginExport(const MFileObject &	file)
 	strLogFileName.replace( ".okd", ".log" );
 
 	// Create export file
-	_pExportFile = new QFile( strFileName.asChar() );
+	_pExportFile = new OkdFile( strFileName.asChar() );
 	_pExportFile->open( QIODevice::WriteOnly );
 
 	// Create export stream
-	_pExportStream = new QDataStream( _pExportFile );
+	_pExportStream = new OkdBinaryStream( _pExportFile );
 
 	// Create export log file
-	_pExportLogFile = new QFile( strLogFileName );
+	_pExportLogFile = new OkdFile( strLogFileName );
 	_pExportLogFile->open( QIODevice::WriteOnly );
 
 	// Create export log stream
-	_pExportLogStream = new QTextStream( _pExportLogFile );
+	_pExportLogStream = new OkdTextStream( _pExportLogFile );
 }
 
 //-----------------------------------------------------------------------------

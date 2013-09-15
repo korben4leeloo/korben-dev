@@ -22,7 +22,7 @@ public:
 	void			create( const float* pVertexArray, const uint uiVertexCount, const uint uiPolygonCount );
 	void			setPolygon( const uint uiPolygonIndex, const uint* pVertexIdArray );
 
-	void			writeToStream();
+	void			writeToStream( OkdBinaryStream* pStream );
 
 private:
 	struct	OkdMeshPolygon

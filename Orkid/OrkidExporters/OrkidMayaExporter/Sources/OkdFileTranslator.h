@@ -10,36 +10,35 @@
 #define __OrkidMayaExporter_OkdFileTranslator_h__
 
 #include	"OrkidMayaExporterRoot.h"
-
 #include	<maya/MPxFileTranslator.h>
 
-class QFile;
-class QTextStream;
-class QDataStream;
+//class OkdFile;
+//class OkdBinaryStream;
+//class OkdTextStream;
 
 class OkdFileTranslator: public MPxFileTranslator
 {
 public:
-					OkdFileTranslator();
-					~OkdFileTranslator();
+						OkdFileTranslator();
+						~OkdFileTranslator();
 
 	// MPxFileTranslator overloading
-	virtual bool 	haveWriteMethod() const;
-	virtual MStatus writer( const MFileObject& file, const MString& optionsString, FileAccessMode mode );
+	virtual bool 		haveWriteMethod() const;
+	virtual MStatus		writer( const MFileObject& file, const MString& optionsString, FileAccessMode mode );
 
 	// MFnPlugin creator
-	static void*	creator();
+	static void*		creator();
 
 private:
-	void			beginExport( const MFileObject& file );
-	void			endExport();
+	void				beginExport( const MFileObject& file );
+	void				endExport();
 
-	void			exportSceneGraph();
+	void				exportSceneGraph();
 
-	QFile*			_pExportFile;
-	QFile*			_pExportLogFile;
-	QDataStream*	_pExportStream;
-	QTextStream*	_pExportLogStream;
+	OkdFile*			_pExportFile;
+	OkdFile*			_pExportLogFile;
+	OkdBinaryStream*	_pExportStream;
+	OkdTextStream*		_pExportLogStream;
 };
 
 #endif

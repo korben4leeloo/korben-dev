@@ -1,20 +1,9 @@
 //*****************************************************************************
 //
-//	Class:		OkdList
+//	File:		Root.h
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __OrkidCore_OkdList_h__
-#define __OrkidCore_OkdList_h__
-
-#include <QList>
-
-template<typename T>
-class OkdList: public QList<T>
-{
-
-};
-
-#endif
+#include	"../OrkidCoreRoot.h"

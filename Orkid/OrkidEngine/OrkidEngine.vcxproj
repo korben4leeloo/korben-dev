@@ -61,7 +61,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(K3D_QT_DIR)\include;$(K3D_QT_DIR)\include\QtCore;$(KDEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KDEV_PATH)\Libraries\OpenGL\glew\include;$(KORBEN_DEV_ORKID_PATH)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(KORBEN_DEV_QT_PATH)\include;$(KORBEN_DEV_QT_PATH)\include\QtCore;$(KORBEN_DEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KORBEN_DEV_PATH)\Libraries\OpenGL\glew\include;$(KORBEN_DEV_ORKID_PATH)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

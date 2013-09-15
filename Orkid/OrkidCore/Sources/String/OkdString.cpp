@@ -1,75 +1,58 @@
 //*****************************************************************************
 //
-//	File:		OkdFile.cpp
+//	File:		OkdString.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-//#include	"OkdFile.h"
-
-//#include	ORKID_CORE_H(String/OkdString)
-//
-////#include	<io.h>
+//#include	"OkdString.h"
 //
 ////-----------------------------------------------------------------------------
-//// Name:		OkdFile constructor
+//// Name:		OkdString constructor
 ////
 //// Created:		2013-08-26
 ////-----------------------------------------------------------------------------
-//OkdFile::OkdFile()
-////: _pFile( 0 )
-////: _nFileHandle( -1 )
+//OkdString::OkdString()
+//{
+//
+//}
+//
+////-----------------------------------------------------------------------------
+//// Name:		OkdString constructor
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdString::OkdString(const char*	pBuffer)
+//: _str( pBuffer )
+//{
+//
+//}
+//
+////-----------------------------------------------------------------------------
+//// Name:		OkdString destructor
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdString::~OkdString()
 //{
 //	
 //}
 //
 ////-----------------------------------------------------------------------------
-//// Name:		OkdFile destructor
+//// Name:		replace
 ////
 //// Created:		2013-08-26
 ////-----------------------------------------------------------------------------
-//OkdFile::~OkdFile()
+//void	OkdString::replace( const OkdString& strSourcePattern, const OkdString& strTargetPattern )
 //{
-//	close();
-//}
+//	int uiOffset				= 0;
+//	int nPatternPos				= _str.find( strSourcePattern._str, uiOffset );
+//	int nSourcePatternLength	= strlen( strSourcePattern._str.data() );
+//	int nTargetPatternLength	= strlen( strTargetPattern._str.data() );
 //
-////-----------------------------------------------------------------------------
-//// Name:		open
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//void	OkdFile::open(const OkdString&			strFileName, 
-//					  const OrkidFileOpenMode	openMode)
-//{
-//	close();
-//
-//	_file.setFileName( strFileName );
-//
-//	/*errno_t result = fopen_s( &_pFile, pcFileName, "" );
-//	ORKID_ASSERT( result == 0 );*/
-//
-//	/*errno_t result = _sopen_s( &_nFileHandle, pcFileName, 0, 0, 0 );
-//	ORKID_ASSERT( result == 0 );*/
-//}
-//
-////-----------------------------------------------------------------------------
-//// Name:		close
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//void	OkdFile::close()
-//{
-//	_file.close();
-//
-//	/*if	( _pFile )
+//	while	( nPatternPos != std::string::npos )
 //	{
-//		fclose( _pFile );
-//		_pFile = 0;
-//	}*/
-//
-//	/*if	( _nFileHandle != -1 )
-//	{
-//		_close( _nFileHandle );
-//		_nFileHandle = -1;
-//	}*/
+//		_str.replace( nPatternPos, nSourcePatternLength, strTargetPattern._str );
+//		nPatternPos = _str.find( strSourcePattern._str, nPatternPos + nTargetPatternLength );
+//	}
 //}

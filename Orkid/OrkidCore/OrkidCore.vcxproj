@@ -21,8 +21,9 @@
     <ClInclude Include="Sources\OrkidCoreRoot.h" />
     <ClInclude Include="Sources\Stream\OkdFile.h" />
     <ClInclude Include="Sources\Stream\OkdStream.h" />
-    <ClInclude Include="Sources\Stream\OkdString.h" />
     <ClInclude Include="Sources\Stream\Root.h" />
+    <ClInclude Include="Sources\String\OkdString.h" />
+    <ClInclude Include="Sources\String\Root.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Containers\OkdList.cpp" />
@@ -33,7 +34,7 @@
     <ClCompile Include="Sources\Math\OkdVector4f.cpp" />
     <ClCompile Include="Sources\Stream\OkdFile.cpp" />
     <ClCompile Include="Sources\Stream\OkdStream.cpp" />
-    <ClCompile Include="Sources\Stream\OkdString.cpp" />
+    <ClCompile Include="Sources\String\OkdString.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9564AB07-FBBD-44CB-89B8-116A30492110}</ProjectGuid>

@@ -9,16 +9,12 @@
 #ifndef __OrkidCore_OkdVector_h__
 #define __OrkidCore_OkdVector_h__
 
-#include <QVector>
-
-template< class T>
-class OkdVector: public QVector<T>
-{
-public:
-	OkdVector();
-	~OkdVector();
-
-private:
-};
+//#include <QVector>
+//
+//template<typename T>
+//class OkdVector: public QVector<T>
+//{
+//
+//};
 
 #endif

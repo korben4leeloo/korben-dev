@@ -1,30 +1,32 @@
 //*****************************************************************************
 //
-//	Class:		OkdStream
+//	Class:		OkdString
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __OrkidCore_OkdStream_h__
-#define __OrkidCore_OkdStream_h__
+#ifndef __OrkidCore_OkdString_h__
+#define __OrkidCore_OkdString_h__
 
-#include	<QtCore/QDataStream>
-#include	<QtCore/QTextStream>
+//#include	<string>
+#include	<QtCore/QString>
+//typedef QString OkdString;
 
-//typedef QDataStream OkdBinaryStream;
-//typedef QTextStream OkdTextStream;
-
-//class OkdStream
+//class OkdString
 //{
 //public:
-//				OkdStream();
-//				~OkdStream();
+//				OkdString();
+//				OkdString( const char* pBuffer );
+//				~OkdString();
 //
-//	inline void	write( const char* pcBuffer, const uint uiBufferSize );
+//	void		replace( const OkdString& strSource, const OkdString& strTarget );
+//
+//	//inline operator		QString() const;
 //
 //private:
-//	QDataStream	_stream;
+//	//QString				_str;
+//	std::string	_str;
 //};
 //
 ////*****************************************************************************
@@ -32,14 +34,13 @@
 ////*****************************************************************************
 //
 ////-----------------------------------------------------------------------------
-//// Name:		write
+//// Name:		operator QString()
 ////
 //// Created:		2013-08-26
 ////-----------------------------------------------------------------------------
-//void	OkdStream::write(const char*	pcBuffer, 
-//						 const uint		uiBufferSize)
+//OkdString::operator QString() const
 //{
-//	_stream.writeRawData( pcBuffer, uiBufferSize );
+//	return	( _str );
 //}
 
 #endif

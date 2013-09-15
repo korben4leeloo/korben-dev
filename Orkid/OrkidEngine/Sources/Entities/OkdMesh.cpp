@@ -7,6 +7,8 @@
 
 #include	"OkdMesh.h"
 
+#include	ORKID_CORE_H(Stream/OkdStream)
+
 //-----------------------------------------------------------------------------
 // Name:		OkdMesh constructor
 //
@@ -96,4 +98,23 @@ void	OkdMesh::releasePolygonArray()
 		_pPolygonArray	= 0;
 		_uiPolygonCount	= 0;
 	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		writeToStream
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdMesh::writeToStream(OkdBinaryStream* pStream)
+{
+	ORKID_ASSERT( _pVertexArray );
+	ORKID_ASSERT( _pPolygonArray );
+
+	OkdBinaryStream& stream = *pStream;
+
+	stream << _uiVertexCount;
+	stream << _uiPolygonCount;
+
+	stream.writeRawData( (const char*)_pVertexArray, _uiVertexCount * sizeof(OkdVector3f) );
+	stream.writeRawData( (const char*)_pPolygonArray, _uiPolygonCount * sizeof(OkdMeshPolygon) );
 }
