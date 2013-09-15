@@ -105,12 +105,12 @@ void	OkdMesh::releasePolygonArray()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdMesh::writeToStream(OkdBinaryStream* pStream)
+void	OkdMesh::writeToStream(OkdFileStream* pStream)
 {
 	ORKID_ASSERT( _pVertexArray );
 	ORKID_ASSERT( _pPolygonArray );
 
-	OkdBinaryStream& stream = *pStream;
+	OkdFileStream& stream = *pStream;
 
 	stream << _uiVertexCount;
 	stream << _uiPolygonCount;

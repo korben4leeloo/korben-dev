@@ -9,7 +9,7 @@
 
 // Orkid includes
 #include	ORKID_CORE_H(String/OkdString)
-#include	ORKID_CORE_H(Stream/OkdFile)
+//#include	ORKID_CORE_H(Stream/OkdFile)
 #include	ORKID_CORE_H(Stream/OkdStream)
 
 #include	ORKID_ENGINE_H(Entities/OkdMesh)
@@ -24,10 +24,18 @@
 #define	WRITE_LOG_INFOS( uiIndent, logInfos )									\
 	for	( uint uiIndentIndex = 0; uiIndentIndex < uiIndent; uiIndentIndex++ )	\
 	{																			\
-		(*_pExportLogStream) << "\t";											\
+	(*_pExportLogStream) << "\t";											\
 	}																			\
-																				\
+	\
 	(*_pExportLogStream) << logInfos;
+
+//#define	WRITE_LOG_INFOS( uiIndent, logInfos )									\
+//	for	( uint uiIndentIndex = 0; uiIndentIndex < uiIndent; uiIndentIndex++ )	\
+//	{																			\
+//		(*_pExportLogFile) << "\t";											\
+//	}																			\
+//																				\
+//	(*_pExportLogFile) << logInfos;
 
 //-----------------------------------------------------------------------------
 // Name:		OkdFileTranslator constructor
@@ -35,9 +43,9 @@
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 OkdFileTranslator::OkdFileTranslator()
-: _pExportFile		( 0 )
-, _pExportStream	( 0 )
-, _pExportLogFile	( 0 )
+//: _pExportFile		( 0 )
+: _pExportStream	( 0 )
+//, _pExportLogFile	( 0 )
 , _pExportLogStream	( 0 )
 {
 	
@@ -172,18 +180,18 @@ void	OkdFileTranslator::beginExport(const MFileObject &	file)
 	strLogFileName.replace( ".okd", ".log" );
 
 	// Create export file
-	_pExportFile = new OkdFile( strFileName.asChar() );
-	_pExportFile->open( QIODevice::WriteOnly );
+	//_pExportFile = new OkdFile( strFileName.asChar() );
+	//_pExportFile->open( QIODevice::WriteOnly );
 
 	// Create export stream
-	_pExportStream = new OkdBinaryStream( _pExportFile );
+	//_pExportStream = new OkdBinaryStream( _pExportFile );
 
 	// Create export log file
-	_pExportLogFile = new OkdFile( strLogFileName );
-	_pExportLogFile->open( QIODevice::WriteOnly );
+	//_pExportLogFile = new OkdFile( strLogFileName );
+	//_pExportLogFile->open( QIODevice::WriteOnly );
 
 	// Create export log stream
-	_pExportLogStream = new OkdTextStream( _pExportLogFile );
+	//_pExportLogStream = new OkdTextStream( _pExportLogFile );
 }
 
 //-----------------------------------------------------------------------------
@@ -193,8 +201,8 @@ void	OkdFileTranslator::beginExport(const MFileObject &	file)
 //-----------------------------------------------------------------------------
 void	OkdFileTranslator::endExport()
 {
-	_pExportFile->close();
-	_pExportLogFile->close();
+	//_pExportFile->close();
+	//_pExportLogFile->close();
 }
 
 //-----------------------------------------------------------------------------

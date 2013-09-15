@@ -10,7 +10,10 @@
 #define __OrkidCore_OkdFile_h__
 
 #include	"Root.h"
-#include	<QtCore/QFile>
+
+#include	<fstream>
+
+//#include	<QtCore/QFile>
 
 //typedef	QFile OkdFile;
 
@@ -37,10 +40,11 @@
 //
 //	inline void		write( const char* pBuffer, const uint uiLength );
 //
-//	inline OkdFile&	operator<<( OkdString& str );
+//	//inline OkdFile&	operator<<( OkdString& str );
 //
 //private:
-//	QFile			_file;
+//	//QFile			_file;
+//	std::fstream	_file;
 //};
 //
 ////*****************************************************************************
@@ -57,7 +61,7 @@
 //{
 //	_file.write( pBuffer, uiLength );
 //}
-//
+
 ////-----------------------------------------------------------------------------
 //// Name:		operator<<
 ////

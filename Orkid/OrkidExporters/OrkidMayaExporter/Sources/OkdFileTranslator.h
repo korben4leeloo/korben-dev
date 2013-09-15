@@ -35,10 +35,12 @@ private:
 
 	void				exportSceneGraph();
 
-	OkdFile*			_pExportFile;
-	OkdFile*			_pExportLogFile;
-	OkdBinaryStream*	_pExportStream;
-	OkdTextStream*		_pExportLogStream;
+	/*OkdFile*			_pExportFile;
+	OkdFile*			_pExportLogFile;*/
+	/*OkdBinaryStream*	_pExportStream;
+	OkdTextStream*		_pExportLogStream;*/
+	OkdFileStream*		_pExportStream;
+	OkdFileStream*		_pExportLogStream;
 };
 
 #endif

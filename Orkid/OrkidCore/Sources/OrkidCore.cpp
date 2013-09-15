@@ -1,58 +1,50 @@
 //*****************************************************************************
 //
-//	File:		OkdString.cpp
+//	File:		OrkidCore.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"OkdString.h"
+#include	"OrkidCore.h"
+
+#include	ORKID_CORE_H(Memory/OkdMemManager)
 
 //-----------------------------------------------------------------------------
-// Name:		OkdString constructor
+// Name:		OrkidCore constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdString::OkdString()
+OrkidCore::OrkidCore()
 {
 
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OkdString constructor
+// Name:		OrkidCore destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdString::OkdString(const char*	pBuffer)
-: _str( pBuffer )
-{
-
-}
-
-//-----------------------------------------------------------------------------
-// Name:		OkdString destructor
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdString::~OkdString()
+OrkidCore::~OrkidCore()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		replace
+// Name:		initialize
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdString::replace( const OkdString& strSourcePattern, const OkdString& strTargetPattern )
+void	OrkidCore::initialize()
 {
-	int uiOffset				= 0;
-	int nPatternPos				= _str.find( strSourcePattern._str, uiOffset );
-	int nSourcePatternLength	= strlen( strSourcePattern._str.data() );
-	int nTargetPatternLength	= strlen( strTargetPattern._str.data() );
+	OkdMemManager::create();
+}
 
-	while	( nPatternPos != std::string::npos )
-	{
-		_str.replace( nPatternPos, nSourcePatternLength, strTargetPattern._str );
-		nPatternPos = _str.find( strSourcePattern._str, nPatternPos + nTargetPatternLength );
-	}
+//-----------------------------------------------------------------------------
+// Name:		clean
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OrkidCore::clean()
+{
+	OkdMemManager::destroy();
 }

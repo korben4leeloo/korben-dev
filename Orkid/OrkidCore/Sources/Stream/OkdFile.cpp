@@ -6,7 +6,7 @@
 //*****************************************************************************
 
 //#include	"OkdFile.h"
-
+//
 //#include	ORKID_CORE_H(String/OkdString)
 //
 ////#include	<io.h>
@@ -43,7 +43,9 @@
 //{
 //	close();
 //
-//	_file.setFileName( strFileName );
+//	_file.open( strFileName, 0 );
+//
+//	//_file.setFileName( strFileName );
 //
 //	/*errno_t result = fopen_s( &_pFile, pcFileName, "" );
 //	ORKID_ASSERT( result == 0 );*/

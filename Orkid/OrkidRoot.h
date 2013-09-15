@@ -33,15 +33,22 @@
 typedef unsigned int uint;
 
 // Qt typedefs
-class QString;
-class QFile;
-class QDataStream;
-class QTextStream;
+//class QString;
+//class QFile;
+//class QDataStream;
+//class QTextStream;
 
-typedef	QString		OkdString;
-typedef QFile		OkdFile;
-typedef	QDataStream	OkdBinaryStream;
-typedef	QTextStream	OkdTextStream;
+//typedef	QString		OkdString;
+//typedef QFile		OkdFile;
+//typedef	QDataStream	OkdBinaryStream;
+//typedef	QTextStream	OkdTextStream;
+
+class fstream;
+
+//typedef fstream			OkdFile;
+//typedef	ostream			OkdBinaryStream;
+//typedef	stringstream	OkdTextStream;
+typedef	fstream	OkdFileStream;
 
 // Enums
 enum OrkidErrorCode

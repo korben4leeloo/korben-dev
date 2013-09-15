@@ -9,8 +9,10 @@
 #ifndef __OrkidCore_OkdStream_h__
 #define __OrkidCore_OkdStream_h__
 
-#include	<QtCore/QDataStream>
-#include	<QtCore/QTextStream>
+//#include	<QtCore/QDataStream>
+//#include	<QtCore/QTextStream>
+
+#include	<fstream>
 
 //typedef QDataStream OkdBinaryStream;
 //typedef QTextStream OkdTextStream;
