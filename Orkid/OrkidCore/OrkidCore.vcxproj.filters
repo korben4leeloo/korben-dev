@@ -70,6 +70,9 @@
     <ClInclude Include="Sources\OrkidCore.h">
       <Filter>Sources</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Memory\OkdSharedPtr.h">
+      <Filter>Sources\Memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Math\OkdVector3f.cpp">
@@ -104,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="Sources\OrkidCore.cpp">
       <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Memory\OkdSharedPtr.cpp">
+      <Filter>Sources\Memory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

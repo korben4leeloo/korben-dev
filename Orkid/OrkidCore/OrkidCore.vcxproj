@@ -19,6 +19,7 @@
     <ClInclude Include="Sources\Math\OkdVector4f.h" />
     <ClInclude Include="Sources\Math\Root.h" />
     <ClInclude Include="Sources\Memory\OkdMemManager.h" />
+    <ClInclude Include="Sources\Memory\OkdSharedPtr.h" />
     <ClInclude Include="Sources\Memory\Root.h" />
     <ClInclude Include="Sources\OrkidCore.h" />
     <ClInclude Include="Sources\OrkidCoreRoot.h" />
@@ -36,6 +37,7 @@
     <ClCompile Include="Sources\Math\OkdVector3f.cpp" />
     <ClCompile Include="Sources\Math\OkdVector4f.cpp" />
     <ClCompile Include="Sources\Memory\OkdMemManager.cpp" />
+    <ClCompile Include="Sources\Memory\OkdSharedPtr.cpp" />
     <ClCompile Include="Sources\OrkidCore.cpp" />
     <ClCompile Include="Sources\Stream\OkdFile.cpp" />
     <ClCompile Include="Sources\Stream\OkdStream.cpp" />

@@ -21,6 +21,8 @@
     <ClInclude Include="Sources\OpenGL\OkdOpenGLContext.h" />
     <ClInclude Include="Sources\OpenGL\Root.h" />
     <ClInclude Include="Sources\OrkidEngineRoot.h" />
+    <ClInclude Include="Sources\ResourceManager\OkdSharedResource.h" />
+    <ClInclude Include="Sources\ResourceManager\Root.h" />
     <ClInclude Include="Sources\SceneGraph\OkdNode.h" />
     <ClInclude Include="Sources\SceneGraph\OkdScene.h" />
     <ClInclude Include="Sources\SceneGraph\Root.h" />
@@ -33,6 +35,7 @@
     <ClCompile Include="Sources\Entities\OkdMeshInfo.cpp" />
     <ClCompile Include="Sources\Entities\OkdMeshInstance.cpp" />
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp" />
+    <ClCompile Include="Sources\ResourceManager\OkdSharedResource.cpp" />
     <ClCompile Include="Sources\SceneGraph\OkdNode.cpp" />
     <ClCompile Include="Sources\SceneGraph\OkdScene.cpp" />
   </ItemGroup>

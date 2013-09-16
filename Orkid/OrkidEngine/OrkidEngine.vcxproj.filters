@@ -70,6 +70,12 @@
     <ClInclude Include="Sources\Entities\OkdMeshInfo.h">
       <Filter>Sources\Entities</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\ResourceManager\OkdSharedResource.h">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ResourceManager\Root.h">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
@@ -98,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="Sources\Entities\OkdMeshInfo.cpp">
       <Filter>Sources\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ResourceManager\OkdSharedResource.cpp">
+      <Filter>Sources\ResourceManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
