@@ -15,11 +15,7 @@
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 OkdMesh::OkdMesh()
-: _uiVertexCount	( 0 )
-, _uiPolygonCount	( 0 )
-, _uiNormalCount	( 0 )
-, _uiUVCount		( 0 )
-, _pVertexArray		( 0 )
+: _pVertexArray		( 0 )
 , _pPolygonArray	( 0 )
 {
 	
@@ -41,20 +37,28 @@ OkdMesh::~OkdMesh()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdMesh::create(const float*	pVertexArray, 
-						const uint		uiVertexCount,
-						const uint		uiPolygonCount)
+void	OkdMesh::create(const OkdMeshInfo&	meshInfo)
 {
+	uint uiVertexCount	= meshInfo.getVertexCount();
+	uint uiPolygonCount	= meshInfo.getVertexCount();
+
 	releaseVertexArray();
 	releasePolygonArray();
 
-	_uiVertexCount	= uiVertexCount;
-	_uiPolygonCount	= uiPolygonCount;
+	_meshInfo = meshInfo;
 
 	_pVertexArray	= new OkdVector3f[uiVertexCount];
 	_pPolygonArray	= new OkdMeshPolygon[uiPolygonCount];
+}
 
-	memcpy( _pVertexArray, pVertexArray, uiVertexCount * sizeof(OkdVector3f) );
+//-----------------------------------------------------------------------------
+// Name:		setVertexArray
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdMesh::setVertexArray(const float*	pVertexArray)
+{
+	memcpy( _pVertexArray, pVertexArray, _meshInfo.getVertexCount() * sizeof(OkdVector3f) );
 }
 
 //-----------------------------------------------------------------------------
@@ -79,8 +83,8 @@ void	OkdMesh::releaseVertexArray()
 	{
 		delete[] _pVertexArray;
 
-		_pVertexArray	= 0;
-		_uiVertexCount	= 0;
+		_pVertexArray = 0;
+		_meshInfo.setVertexCount( 0 );
 	}
 }
 
@@ -95,8 +99,8 @@ void	OkdMesh::releasePolygonArray()
 	{
 		delete[] _pPolygonArray;
 
-		_pPolygonArray	= 0;
-		_uiPolygonCount	= 0;
+		_pPolygonArray = 0;
+		_meshInfo.setPolygonCount( 0 );
 	}
 }
 
@@ -112,11 +116,8 @@ void	OkdMesh::writeToStream(OkdFileStream* pStream)
 
 	OkdFileStream& stream = *pStream;
 
-	stream << _uiVertexCount;
-	stream << _uiPolygonCount;
+	_meshInfo.writeToStream( pStream );
 
-	/*stream.writeRawData( (const char*)_pVertexArray, _uiVertexCount * sizeof(OkdVector3f) );
-	stream.writeRawData( (const char*)_pPolygonArray, _uiPolygonCount * sizeof(OkdMeshPolygon) );*/
-	stream.write( (const char*)_pVertexArray, _uiVertexCount * sizeof(OkdVector3f) );
-	stream.write( (const char*)_pPolygonArray, _uiPolygonCount * sizeof(OkdMeshPolygon) );
+	stream.write( (const char*)_pVertexArray, _meshInfo.getVertexCount() * sizeof(OkdVector3f) );
+	stream.write( (const char*)_pPolygonArray, _meshInfo.getPolygonCount() * sizeof(OkdMeshPolygon) );
 }

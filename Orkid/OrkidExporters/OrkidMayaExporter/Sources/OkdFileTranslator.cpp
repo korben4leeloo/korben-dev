@@ -12,6 +12,7 @@
 //#include	ORKID_CORE_H(Stream/OkdFile)
 #include	ORKID_CORE_H(Stream/OkdStream)
 
+#include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 #include	ORKID_ENGINE_H(Entities/OkdMesh)
 
 // Maya includes
@@ -97,8 +98,9 @@ MStatus	OkdFileTranslator::writer(const MFileObject &	file,
 //-----------------------------------------------------------------------------
 void	OkdFileTranslator::exportSceneGraph()
 {
-	MStatus	status;
-	MItDag	itDag( MItDag::kDepthFirst, MFn::kTransform, &status );
+	MStatus		status;
+	MItDag		itDag( MItDag::kDepthFirst, MFn::kTransform, &status );
+	OkdScene	orkidScene;
 
 	while	( itDag.isDone() == false )
 	{
@@ -127,10 +129,11 @@ void	OkdFileTranslator::exportSceneGraph()
 
 		if	( dagPath.hasFn( MFn::kMesh ) )
 		{
-			MFnMesh fnMesh( dagPath, &status );
-			uint	uiVertexCount	= fnMesh.numVertices( &status );
-			uint	uiPolygonCount	= fnMesh.numPolygons( &status );
-			OkdMesh	orkidMesh;
+			MFnMesh		fnMesh( dagPath, &status );
+			uint		uiVertexCount	= fnMesh.numVertices( &status );
+			uint		uiPolygonCount	= fnMesh.numPolygons( &status );
+			OkdMeshInfo	meshInfo( uiVertexCount, uiPolygonCount );
+			OkdMesh*	pOrkidMesh		= orkidScene.createMesh();
 
 			WRITE_LOG_INFOS( dagPath.length() + 1, "Polygons count: " << uiPolygonCount << "\n" );
 			WRITE_LOG_INFOS( dagPath.length() + 1, "Vertices count: " << fnMesh.numVertices( &status ) << "\n" );
@@ -139,7 +142,7 @@ void	OkdFileTranslator::exportSceneGraph()
 
 			const float* pLocalPoints = fnMesh.getRawPoints( &status );
 
-			orkidMesh.create( pLocalPoints, uiVertexCount, uiPolygonCount );
+			pOrkidMesh->create( pLocalPoints, uiVertexCount, uiPolygonCount );
 
 			//_pExportStream->writeRawData( (char*)pLocalPoints, uiVertexCount * 3 * sizeof(pLocalPoints[0]) );
 			
@@ -154,13 +157,13 @@ void	OkdFileTranslator::exportSceneGraph()
 				int vertexIdArray[3];
 
 				fnMesh.getPolygonTriangleVertices( i, 0, vertexIdArray );
-				orkidMesh.setPolygon( i, (const uint*)vertexIdArray );
+				pOrkidMesh->setPolygon( i, (const uint*)vertexIdArray );
 
 				//(*_pExportStream) << vertexIdArray[0] << vertexIdArray[1] << vertexIdArray[2];
 				WRITE_LOG_INFOS( dagPath.length() + 1, vertexIdArray[0] << " " << vertexIdArray[1] << " " << vertexIdArray[2] << "\n" );
 			}
 
-			orkidMesh.writeToStream( _pExportStream );
+			pOrkidMesh->writeToStream( _pExportStream );
 		}
 
 		itDag.next();
@@ -175,9 +178,12 @@ void	OkdFileTranslator::exportSceneGraph()
 void	OkdFileTranslator::beginExport(const MFileObject &	file)
 {
 	const MString	strFileName = file.fullName();
-	QString			strLogFileName( strFileName.asChar() );
+	OkdString		strLogFileName( strFileName.asChar() );
 
 	strLogFileName.replace( ".okd", ".log" );
+
+	_pExportStream		= new OkdFileStream( strFileName.asChar(), ios::out | ios::trunc | ios::binary );
+	_pExportLogStream	= new OkdFileStream( strLogFileName, ios::out | ios::trunc );
 
 	// Create export file
 	//_pExportFile = new OkdFile( strFileName.asChar() );
@@ -203,6 +209,9 @@ void	OkdFileTranslator::endExport()
 {
 	//_pExportFile->close();
 	//_pExportLogFile->close();
+
+	_pExportStream->close();
+	_pExportLogStream->close();
 }
 
 //-----------------------------------------------------------------------------

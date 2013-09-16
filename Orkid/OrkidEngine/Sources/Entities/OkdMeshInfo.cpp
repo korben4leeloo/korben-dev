@@ -1,72 +1,58 @@
 //*****************************************************************************
 //
-//	File:		OkdScene.cpp
+//	File:		OkdMeshInfo.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"OkdScene.h"
+#include	"OkdMeshInfo.h"
 
-#include	ORKID_ENGINE_H(SceneGraph/OkdNode)
+#include	ORKID_CORE_H(Stream/OkdStream)
 
 //-----------------------------------------------------------------------------
-// Name:		OkdScene constructor
+// Name:		OkdMeshInfo constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdScene::OkdScene()
-{
-	_pRootNode = new OkdNode();
-}
-
-//-----------------------------------------------------------------------------
-// Name:		OkdScene destructor
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdScene::~OkdScene()
+OkdMeshInfo::OkdMeshInfo()
+: _uiVertexCount	( 0 )
+, _uiPolygonCount	( 0 )
 {
 
 }
 
 //-----------------------------------------------------------------------------
-// Name:		createNode
+// Name:		OkdMeshInfo constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdNode*	OkdScene::createNode( OkdNode* pParentNode )
+OkdMeshInfo::OkdMeshInfo(const uint	uiVertexCount, 
+						 const uint uiPolygonCount)
+: _uiVertexCount	( uiVertexCount )
+, _uiPolygonCount	( uiPolygonCount )
 {
-	OkdNode* pNode = new OkdNode();
 
-	if	( pParentNode )
-	{
-		pParentNode->addChildNode( pNode );
-	}
-	else
-	{
-		_pRootNode->addChildNode( pNode );
-	}
-
-	return	( pNode );
 }
 
 //-----------------------------------------------------------------------------
-// Name:		createMesh
+// Name:		OkdMeshInfo destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdNode*	OkdScene::createMesh( OkdNode* pParentNode )
+OkdMeshInfo::~OkdMeshInfo()
 {
-	OkdNode* pNode = new OkdNode();
+	
+}
 
-	if	( pParentNode )
-	{
-		pParentNode->addChildNode( pNode );
-	}
-	else
-	{
-		_pRootNode->addChildNode( pNode );
-	}
+//-----------------------------------------------------------------------------
+// Name:		writeToStream
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdMeshInfo::writeToStream(OkdFileStream* pStream)
+{
+	OkdFileStream& stream = *pStream;
 
-	return	( pNode );
+	stream << _uiVertexCount;
+	stream << _uiPolygonCount;
 }

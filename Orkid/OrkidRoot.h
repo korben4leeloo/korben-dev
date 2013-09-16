@@ -10,7 +10,7 @@
 #define __OrkidRoot_h__
 
 #include	<assert.h>
-#include	<fstream>
+#include	<iosfwd>
 
 // Defines for inclusions
 #define	ORKID_CORE_H(file)			<OrkidCore/Sources/file.h>
@@ -31,27 +31,7 @@
 #endif
 
 // Typedefs
-typedef unsigned int uint;
-
-// Qt typedefs
-//class QString;
-//class QFile;
-//class QDataStream;
-//class QTextStream;
-
-//typedef	QString		OkdString;
-//typedef QFile		OkdFile;
-//typedef	QDataStream	OkdBinaryStream;
-//typedef	QTextStream	OkdTextStream;
-
-//namespace std
-//{
-//	class fstream;
-//}
-
-//typedef fstream			OkdFile;
-//typedef	ostream			OkdBinaryStream;
-//typedef	stringstream	OkdTextStream;
+typedef unsigned int	uint;
 typedef	std::fstream	OkdFileStream;
 
 // Enums

@@ -61,6 +61,15 @@
     <ClInclude Include="Sources\SceneGraph\Root.h">
       <Filter>Sources\SceneGraph</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Entities\OkdEntity.h">
+      <Filter>Sources\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Entities\OkdMeshInstance.h">
+      <Filter>Sources\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Entities\OkdMeshInfo.h">
+      <Filter>Sources\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
@@ -80,6 +89,15 @@
     </ClCompile>
     <ClCompile Include="Sources\SceneGraph\OkdNode.cpp">
       <Filter>Sources\SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Entities\OkdEntity.cpp">
+      <Filter>Sources\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Entities\OkdMeshInstance.cpp">
+      <Filter>Sources\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Entities\OkdMeshInfo.cpp">
+      <Filter>Sources\Entities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

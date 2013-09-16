@@ -11,15 +11,15 @@
 
 #include	"Root.h"
 
+#include	ORKID_ENGINE_H(Entities/OkdMeshInfo)
 #include	ORKID_CORE_H(Math/OkdVector3f)
 
 class OkdMesh
 {
 public:
-					OkdMesh();
-					~OkdMesh();
+	void			create( const OkdMeshInfo& meshInfo );
 
-	void			create( const float* pVertexArray, const uint uiVertexCount, const uint uiPolygonCount );
+	void			setVertexArray( const float* pVertexArray );
 	void			setPolygon( const uint uiPolygonIndex, const uint* pVertexIdArray );
 
 	void			writeToStream( OkdFileStream* pStream );
@@ -30,13 +30,13 @@ private:
 		uint _vertexIdArray[3];
 	};
 
+					OkdMesh();
+					~OkdMesh();
+
 	void			releaseVertexArray();
 	void			releasePolygonArray();
 
-	uint			_uiVertexCount;
-	uint			_uiPolygonCount;
-	uint			_uiNormalCount;
-	uint			_uiUVCount;
+	OkdMeshInfo		_meshInfo;
 
 	OkdVector3f*	_pVertexArray;
 	OkdMeshPolygon*	_pPolygonArray;

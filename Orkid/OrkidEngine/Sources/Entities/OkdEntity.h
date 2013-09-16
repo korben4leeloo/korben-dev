@@ -1,30 +1,28 @@
 //*****************************************************************************
 //
-//	Class:		OkdScene
+//	Class:		OkdEntity
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __OrkidEngine_OkdScene_h__
-#define __OrkidEngine_OkdScene_h__
+#ifndef __OrkidEngine_OkdEntity_h__
+#define __OrkidEngine_OkdEntity_h__
 
 #include	"Root.h"
 
 class OkdNode;
-class OkdMesh;
 
-class OkdScene
+class OkdEntity
 {
 public:
-				OkdScene();
-				~OkdScene();
 
-	OkdNode*	createNode( OkdNode* pParentNode = 0 );
-	OkdMesh*	createMesh( OkdNode* pNode = 0 );
+protected:
+				OkdEntity();
+				virtual ~OkdEntity();
 
 private:
-	OkdNode*	_pRootNode;
+	OkdNode*	_pNode;
 };
 
 #endif
