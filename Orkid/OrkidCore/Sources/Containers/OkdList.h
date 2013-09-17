@@ -9,12 +9,56 @@
 #ifndef __OrkidCore_OkdList_h__
 #define __OrkidCore_OkdList_h__
 
-#include <QList>
+#include <list>
 
 template<typename T>
-class OkdList: public QList<T>
+class OkdList
+{
+public:
+					OkdList();
+					~OkdList();
+
+	inline void		add( T& t );
+
+private:
+	std::list<T>	_list;
+};
+
+//*****************************************************************************
+//	Inline functions declarations
+//*****************************************************************************
+
+//-----------------------------------------------------------------------------
+// Name:		OkdList constructor
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+OkdList<T>::OkdList()
 {
 
-};
+}
+
+//-----------------------------------------------------------------------------
+// Name:		OkdList destructor
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+OkdList<T>::~OkdList()
+{
+
+}
+
+//-----------------------------------------------------------------------------
+// Name:		add
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+void	OkdList<T>::add( T& t )
+{
+	_list.push_back( t );
+}
 
 #endif

@@ -22,6 +22,7 @@ class OkdString
 {
 public:
 	friend class std::hash<OkdString>;
+	friend class OkdFileStream;
 
 						OkdString();
 						OkdString( const char* pBuffer );

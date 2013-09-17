@@ -74,7 +74,7 @@ const OkdNode*	OkdNode::getParentNode() const
 //-----------------------------------------------------------------------------
 void	OkdNode::addChildNode(OkdNode *	pChildNode)
 {
-	_childrenNodes.push_back( pChildNode );
+	_childrenNodes.add( pChildNode );
 	pChildNode->setParentNode( this );
 }
 

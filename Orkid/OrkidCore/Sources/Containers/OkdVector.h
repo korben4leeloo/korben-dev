@@ -9,12 +9,56 @@
 #ifndef __OrkidCore_OkdVector_h__
 #define __OrkidCore_OkdVector_h__
 
-//#include <QVector>
+#include <vector>
+
+template<typename T>
+class OkdVector
+{
+public:
+					OkdVector();
+					~OkdVector();
+
+	inline void		add( T& t );
+
+private:
+	std::vector<T>	_vec;
+};
+
+//*****************************************************************************
+//	Inline functions declarations
+//*****************************************************************************
+
+//-----------------------------------------------------------------------------
+// Name:		OkdList constructor
 //
-//template<typename T>
-//class OkdVector: public QVector<T>
-//{
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+OkdVector<T>::OkdVector()
+{
+
+}
+
+//-----------------------------------------------------------------------------
+// Name:		OkdList destructor
 //
-//};
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+OkdVector<T>::~OkdVector()
+{
+
+}
+
+//-----------------------------------------------------------------------------
+// Name:		add
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+void	OkdVector<T>::add( T& t )
+{
+	_vec.push_back( t );
+}
 
 #endif
