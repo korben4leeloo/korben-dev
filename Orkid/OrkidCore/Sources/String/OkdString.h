@@ -12,12 +12,15 @@
 #include	"Root.h"
 
 #include	<string>
+#include	<functional>
 //#include	<QtCore/QString>
 //typedef QString OkdString;
 
 class OkdString
 {
 public:
+	friend class std::hash<OkdString>;
+
 						OkdString();
 						OkdString( const char* pBuffer );
 						~OkdString();
@@ -32,6 +35,21 @@ private:
 	//QString				_str;
 	std::string			_str;
 };
+
+// Defines std::hash for OkdString to be used in std hashed containers
+namespace std
+{
+	template<>
+	class hash<OkdString>
+	{
+	public:
+		std::size_t operator()(const OkdString& s) const 
+		{
+			std::size_t h = std::hash<std::string>()(s._str);
+			return	( h );
+		}
+	};
+}
 
 //*****************************************************************************
 //	Inline functions declarations

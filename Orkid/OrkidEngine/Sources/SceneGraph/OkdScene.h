@@ -11,20 +11,26 @@
 
 #include	"Root.h"
 
+#include	ORKID_ENGINE_H(ResourceManager/OkdResourceManager)
+
 class OkdNode;
 class OkdMesh;
+class OkdString;
 
 class OkdScene
 {
 public:
-				OkdScene();
-				~OkdScene();
+						OkdScene();
+						~OkdScene();
 
-	OkdNode*	createNode( OkdNode* pParentNode = 0 );
-	OkdMesh*	createMesh( OkdNode* pNode = 0 );
+	void				initialize( const OkdString& strResourceManager );
+
+	OkdNode*			createNode( OkdNode* pParentNode = 0 );
+	OkdMesh*			createMesh( OkdNode* pNode = 0 );
 
 private:
-	OkdNode*	_pRootNode;
+	OkdResourceManager*	_pResourceManager;
+	OkdNode*			_pRootNode;
 };
 
 #endif

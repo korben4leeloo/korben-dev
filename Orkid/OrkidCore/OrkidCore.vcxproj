@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Containers\OkdList.h" />
+    <ClInclude Include="Sources\Containers\OkdMap.h" />
     <ClInclude Include="Sources\Containers\OkdVector.h" />
     <ClInclude Include="Sources\Math\OkdMatrix4f.h" />
     <ClInclude Include="Sources\Math\OkdQuaternionf.h" />
@@ -24,13 +25,14 @@
     <ClInclude Include="Sources\OrkidCore.h" />
     <ClInclude Include="Sources\OrkidCoreRoot.h" />
     <ClInclude Include="Sources\Stream\OkdFile.h" />
-    <ClInclude Include="Sources\Stream\OkdStream.h" />
+    <ClInclude Include="Sources\Stream\OkdFileStream.h" />
     <ClInclude Include="Sources\Stream\Root.h" />
     <ClInclude Include="Sources\String\OkdString.h" />
     <ClInclude Include="Sources\String\Root.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Containers\OkdList.cpp" />
+    <ClCompile Include="Sources\Containers\OkdMap.cpp" />
     <ClCompile Include="Sources\Containers\OkdVector.cpp" />
     <ClCompile Include="Sources\Math\OkdMatrix4f.cpp" />
     <ClCompile Include="Sources\Math\OkdQuaternionf.cpp" />
@@ -40,7 +42,7 @@
     <ClCompile Include="Sources\Memory\OkdSharedPtr.cpp" />
     <ClCompile Include="Sources\OrkidCore.cpp" />
     <ClCompile Include="Sources\Stream\OkdFile.cpp" />
-    <ClCompile Include="Sources\Stream\OkdStream.cpp" />
+    <ClCompile Include="Sources\Stream\OkdFileStream.cpp" />
     <ClCompile Include="Sources\String\OkdString.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

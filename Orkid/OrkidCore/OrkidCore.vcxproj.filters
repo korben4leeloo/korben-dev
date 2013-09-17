@@ -46,9 +46,6 @@
     <ClInclude Include="Sources\Math\Root.h">
       <Filter>Sources\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Stream\OkdStream.h">
-      <Filter>Sources\Stream</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Stream\Root.h">
       <Filter>Sources\Stream</Filter>
     </ClInclude>
@@ -73,6 +70,12 @@
     <ClInclude Include="Sources\Memory\OkdSharedPtr.h">
       <Filter>Sources\Memory</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Containers\OkdMap.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Stream\OkdFileStream.h">
+      <Filter>Sources\Stream</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Math\OkdVector3f.cpp">
@@ -93,9 +96,6 @@
     <ClCompile Include="Sources\Containers\OkdList.cpp">
       <Filter>Sources\Containers</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Stream\OkdStream.cpp">
-      <Filter>Sources\Stream</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Stream\OkdFile.cpp">
       <Filter>Sources\Stream</Filter>
     </ClCompile>
@@ -110,6 +110,12 @@
     </ClCompile>
     <ClCompile Include="Sources\Memory\OkdSharedPtr.cpp">
       <Filter>Sources\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Containers\OkdMap.cpp">
+      <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Stream\OkdFileStream.cpp">
+      <Filter>Sources\Stream</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

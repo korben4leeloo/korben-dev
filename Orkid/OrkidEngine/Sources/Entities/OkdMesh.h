@@ -13,6 +13,7 @@
 
 #include	ORKID_ENGINE_H(Entities/OkdMeshInfo)
 #include	ORKID_CORE_H(Math/OkdVector3f)
+#include	ORKID_CORE_H(Stream/OkdFileStream)
 
 class OkdMesh
 {

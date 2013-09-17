@@ -7,8 +7,6 @@
 
 #include	"OkdMesh.h"
 
-#include	ORKID_CORE_H(Stream/OkdStream)
-
 //-----------------------------------------------------------------------------
 // Name:		OkdMesh constructor
 //

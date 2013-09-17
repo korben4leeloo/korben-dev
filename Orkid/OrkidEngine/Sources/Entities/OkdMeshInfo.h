@@ -11,6 +11,8 @@
 
 #include	"Root.h"
 
+#include	ORKID_CORE_H(Stream/OkdFileStream)
+
 class OkdMeshInfo
 {
 public:

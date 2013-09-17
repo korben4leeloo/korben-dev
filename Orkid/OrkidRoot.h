@@ -32,7 +32,6 @@
 
 // Typedefs
 typedef unsigned int	uint;
-typedef	std::fstream	OkdFileStream;
 
 // Enums
 enum OrkidErrorCode

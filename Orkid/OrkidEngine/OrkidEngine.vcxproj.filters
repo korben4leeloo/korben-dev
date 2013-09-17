@@ -76,6 +76,12 @@
     <ClInclude Include="Sources\ResourceManager\Root.h">
       <Filter>Sources\ResourceManager</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\ResourceManager\OkdResourceManager.h">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\OrkidEngine.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
@@ -107,6 +113,12 @@
     </ClCompile>
     <ClCompile Include="Sources\ResourceManager\OkdSharedResource.cpp">
       <Filter>Sources\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ResourceManager\OkdResourceManager.cpp">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\OrkidEngine.cpp">
+      <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

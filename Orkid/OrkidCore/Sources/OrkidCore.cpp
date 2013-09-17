@@ -36,6 +36,7 @@ OrkidCore::~OrkidCore()
 //-----------------------------------------------------------------------------
 void	OrkidCore::initialize()
 {
+	OrkidCore::clean();
 	OkdMemManager::create();
 }
 
