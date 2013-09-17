@@ -23,7 +23,7 @@ typedef OkdMap<OkdString, OkdScene*>			OkdSceneMap;
 class OrkidEngine
 {
 public:
-	inline static void			create();
+	inline static OrkidEngine*	create();
 	inline static void			destroy();
 	inline static OrkidEngine*	instance();
 
@@ -32,7 +32,7 @@ public:
 	OkdResourceManager*			getResourceManager( const OkdString& strResourceManagerName );
 
 	// Scenes
-	OkdScene*					addScene( const OkdString& strSceneName );
+	OkdScene*					addScene( const OkdString& strSceneName, const OkdString& strResourceManagerName );
 	OkdScene*					getScene( const OkdString& strSceneName );
 
 	static const char*			_strDefaultResourceManager;
@@ -41,6 +41,9 @@ public:
 private:
 								OrkidEngine();
 								~OrkidEngine();
+
+	void						clear();
+	template<class T> void		clearMap( T* pMap );
 
 	OkdResourceManagerMap		_resourceManagerList;
 	OkdSceneMap					_sceneList;
@@ -53,10 +56,12 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OrkidEngine::create()
+OrkidEngine*	OrkidEngine::create()
 {
 	destroy();
 	_pInstance = new OrkidEngine();
+
+	return	( _pInstance );
 }
 
 //-----------------------------------------------------------------------------

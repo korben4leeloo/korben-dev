@@ -11,6 +11,7 @@
 #include	ORKID_CORE_H(String/OkdString)
 //#include	ORKID_CORE_H(Stream/OkdFile)
 
+#include	ORKID_ENGINE_H(OrkidEngine)
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 #include	ORKID_ENGINE_H(Entities/OkdMesh)
 
@@ -21,21 +22,19 @@
 #include	<maya/MFnTransform.h>
 #include	<maya/MFnMesh.h>
 
-#define	WRITE_LOG_INFOS( uiIndent, logInfos )									\
-	for	( uint uiIndentIndex = 0; uiIndentIndex < uiIndent; uiIndentIndex++ )	\
-	{																			\
-	(*_pExportLogStream) << "\t";											\
-	}																			\
-	\
-	(*_pExportLogStream) << logInfos;
+#define	USE_LOG_INFOS
 
-//#define	WRITE_LOG_INFOS( uiIndent, logInfos )									\
-//	for	( uint uiIndentIndex = 0; uiIndentIndex < uiIndent; uiIndentIndex++ )	\
-//	{																			\
-//		(*_pExportLogFile) << "\t";											\
-//	}																			\
-//																				\
-//	(*_pExportLogFile) << logInfos;
+#ifdef USE_LOG_INFOS
+	#define	WRITE_LOG_INFOS( uiIndent, logInfos )									\
+		for	( uint uiIndentIndex = 0; uiIndentIndex < uiIndent; uiIndentIndex++ )	\
+		{																			\
+			(*_pExportLogStream) << "\t";											\
+		}																			\
+																					\
+		(*_pExportLogStream) << logInfos;
+#else
+	#define	WRITE_LOG_INFOS( uiIndent, logInfos )
+#endif
 
 //-----------------------------------------------------------------------------
 // Name:		OkdFileTranslator constructor
@@ -47,6 +46,7 @@ OkdFileTranslator::OkdFileTranslator()
 : _pExportStream	( 0 )
 //, _pExportLogFile	( 0 )
 , _pExportLogStream	( 0 )
+, _pOrkidEngine		( 0 )
 {
 	
 }
@@ -97,9 +97,19 @@ MStatus	OkdFileTranslator::writer(const MFileObject &	file,
 //-----------------------------------------------------------------------------
 void	OkdFileTranslator::exportSceneGraph()
 {
-	MStatus		status;
-	MItDag		itDag( MItDag::kDepthFirst, MFn::kTransform, &status );
-	OkdScene	orkidScene;
+	MStatus				status;
+	MItDag				itDag( MItDag::kDepthFirst, MFn::kTransform, &status );
+	OkdResourceManager*	pExportResourceManager	= _pOrkidEngine->addResourceManager( "ExportResourceManager" );
+	OkdScene*			pExportScene			= _pOrkidEngine->addScene( "ExportScene", "ExportResourceManager" );
+
+	std::fstream f;
+	OkdFileStream ofs;
+	OkdString str;
+
+	f << "test";
+	ofs << "test" << "test2";
+	ofs << str;
+	ofs << str << "test" << str << "test2";
 
 	while	( itDag.isDone() == false )
 	{
@@ -132,7 +142,7 @@ void	OkdFileTranslator::exportSceneGraph()
 			uint		uiVertexCount	= fnMesh.numVertices( &status );
 			uint		uiPolygonCount	= fnMesh.numPolygons( &status );
 			OkdMeshInfo	meshInfo( uiVertexCount, uiPolygonCount );
-			OkdMesh*	pOrkidMesh		= orkidScene.createMesh();
+			OkdMesh*	pOrkidMesh		= pExportScene->createMesh();
 
 			WRITE_LOG_INFOS( dagPath.length() + 1, "Polygons count: " << uiPolygonCount << "\n" );
 			WRITE_LOG_INFOS( dagPath.length() + 1, "Vertices count: " << fnMesh.numVertices( &status ) << "\n" );
@@ -184,6 +194,8 @@ void	OkdFileTranslator::beginExport(const MFileObject &	file)
 
 	_pExportStream		= new OkdFileStream( strFileName.asChar(), ios::out | ios::trunc | ios::binary );
 	_pExportLogStream	= new OkdFileStream( strLogFileName, ios::out | ios::trunc );
+
+	_pOrkidEngine = OrkidEngine::create();
 
 	// Create export file
 	//_pExportFile = new OkdFile( strFileName.asChar() );

@@ -20,15 +20,15 @@ class OkdString;
 class OkdScene
 {
 public:
-						OkdScene();
-						~OkdScene();
-
-	void				initialize( const OkdString& strResourceManager );
+	friend class OrkidEngine;
 
 	OkdNode*			createNode( OkdNode* pParentNode = 0 );
 	OkdMesh*			createMesh( OkdNode* pNode = 0 );
 
 private:
+						OkdScene( OkdResourceManager* pResourceManager );
+						~OkdScene();
+
 	OkdResourceManager*	_pResourceManager;
 	OkdNode*			_pRootNode;
 };

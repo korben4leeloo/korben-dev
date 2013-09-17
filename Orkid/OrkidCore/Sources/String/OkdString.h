@@ -11,6 +11,8 @@
 
 #include	"Root.h"
 
+#include	ORKID_CORE_H(Stream/OkdFileStream)
+
 #include	<string>
 #include	<functional>
 //#include	<QtCore/QString>
@@ -30,6 +32,9 @@ public:
 	//inline operator		QString() const;
 	//inline operator		std::string() const;
 	inline operator		const char*() const;
+	//inline bool			operator==( const OkdString& left, const OkdString& right ) const;
+	inline bool				operator==( const OkdString& other ) const;
+	//friend inline OkdFileStream&	operator<<( OkdFileStream& stream, const OkdString& str );
 
 private:
 	//QString				_str;
@@ -83,6 +88,50 @@ OkdString::operator const char*() const
 //OkdString::operator QString() const
 //{
 //	return	( _str );
+//}
+
+////-----------------------------------------------------------------------------
+//// Name:		operator==
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//bool OkdString::operator==(const OkdString& left, 
+//						   const OkdString& right) const
+//{
+//	return	( left._str == right._str );
+//}
+
+//-----------------------------------------------------------------------------
+// Name:		operator==
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+bool OkdString::operator==(const OkdString& other) const
+{
+	return	( _str == other._str );
+}
+//
+////-----------------------------------------------------------------------------
+//// Name:		operator==
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdFileStream& OkdString::operator<<(OkdFileStream& stream) const
+//{
+//	stream << _str;
+//}
+
+////-----------------------------------------------------------------------------
+//// Name:		operator<<
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdFileStream& operator<<(OkdFileStream&	stream, 
+//						  const OkdString&	str)
+//{
+//	//stream << str._str.;
+//	stream.write( str._str.data(), str._str.size() );
+//	return	( stream );
 //}
 
 #endif

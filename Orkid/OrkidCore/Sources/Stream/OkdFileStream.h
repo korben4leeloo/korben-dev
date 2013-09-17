@@ -15,6 +15,18 @@
 #include <fstream>
 typedef	std::fstream OkdFileStream;
 
+////-----------------------------------------------------------------------------
+//// Name:		operator<<
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdFileStream& operator<<(OkdFileStream&	stream, 
+//						  const char*		str)
+//{
+//	stream.write( str, strlen(str) );
+//	return	( stream );
+//}
+
 //typedef QDataStream OkdBinaryStream;
 //typedef QTextStream OkdTextStream;
 

@@ -17,6 +17,7 @@
 //class OkdFile;
 //class OkdBinaryStream;
 //class OkdTextStream;
+class OrkidEngine;
 
 class OkdFileTranslator: public MPxFileTranslator
 {
@@ -43,6 +44,7 @@ private:
 	OkdTextStream*		_pExportLogStream;*/
 	OkdFileStream*		_pExportStream;
 	OkdFileStream*		_pExportLogStream;
+	OrkidEngine*		_pOrkidEngine;
 };
 
 #endif
