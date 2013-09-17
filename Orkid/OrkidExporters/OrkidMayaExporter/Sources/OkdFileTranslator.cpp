@@ -142,7 +142,8 @@ void	OkdFileTranslator::exportSceneGraph()
 
 			const float* pLocalPoints = fnMesh.getRawPoints( &status );
 
-			pOrkidMesh->create( pLocalPoints, uiVertexCount, uiPolygonCount );
+			pOrkidMesh->create( meshInfo );
+			pOrkidMesh->setVertexArray( pLocalPoints );
 
 			//_pExportStream->writeRawData( (char*)pLocalPoints, uiVertexCount * 3 * sizeof(pLocalPoints[0]) );
 			

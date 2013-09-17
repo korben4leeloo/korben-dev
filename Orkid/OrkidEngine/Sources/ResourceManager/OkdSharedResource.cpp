@@ -1,29 +1,28 @@
 //*****************************************************************************
 //
-//	File:		OkdMeshInstance.cpp
+//	File:		OkdSharedResource.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"OkdMeshInstance.h"
+#include	"OkdSharedResource.h"
 
 //-----------------------------------------------------------------------------
-// Name:		OkdMeshInstance constructor
+// Name:		OkdSharedResource constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdMeshInstance::OkdMeshInstance()
-: _pMesh( 0 )
+OkdSharedResource::OkdSharedResource()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OkdMeshInstance destructor
+// Name:		OkdSharedResource destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdMeshInstance::~OkdMeshInstance()
+OkdSharedResource::~OkdSharedResource()
 {
 	
 }

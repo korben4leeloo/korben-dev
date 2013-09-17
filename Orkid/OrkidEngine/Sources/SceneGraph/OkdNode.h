@@ -43,4 +43,39 @@ private:
 	OkdMatrix4f				_mLocal;
 };
 
+//*****************************************************************************
+//	Inline functions declarations
+//*****************************************************************************
+
+//-----------------------------------------------------------------------------
+// Name:		setParentNode
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdNode::setParentNode( OkdNode* pParentNode )
+{
+	_pParentNode = pParentNode;
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getParentNode
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const OkdNode*	OkdNode::getParentNode() const
+{
+	return	( _pParentNode );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		addChildNode
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdNode::addChildNode(OkdNode *	pChildNode)
+{
+	_childrenNodes.push_back( pChildNode );
+	pChildNode->setParentNode( this );
+}
+
 #endif

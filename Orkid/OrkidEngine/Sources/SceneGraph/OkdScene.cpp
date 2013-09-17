@@ -55,18 +55,7 @@ OkdNode*	OkdScene::createNode( OkdNode* pParentNode )
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdNode*	OkdScene::createMesh( OkdNode* pParentNode )
+OkdMesh*	OkdScene::createMesh( OkdNode* pParentNode )
 {
-	OkdNode* pNode = new OkdNode();
-
-	if	( pParentNode )
-	{
-		pParentNode->addChildNode( pNode );
-	}
-	else
-	{
-		_pRootNode->addChildNode( pNode );
-	}
-
-	return	( pNode );
+	return	( 0 );
 }
