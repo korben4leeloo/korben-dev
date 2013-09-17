@@ -14,6 +14,23 @@
 template<class T>
 class OkdSharedPtr
 {
+private:
+	template<class T>
+	class OkdSharedPtrRefCount
+	{
+	public:
+				OkdSharedPtrRefCount();
+				~OkdSharedPtrRefCount();
+
+	private:
+		void addRef()
+		{
+			_uiRefCount++;
+		}
+
+		uint			_uiRefCount;
+	};
+
 public:
 					OkdSharedPtr()
 					: _pObject		( 0 )
@@ -35,13 +52,9 @@ public:
 	OkdSharedPtr&	operator=( const OkdSharedPtr& sharedPtr );
 
 private:
-	void AddRefCount()
-	{
-		_uiRefCount++;
-	}
 	
-	T*				_pObject;
-	uint			_uiRefCount;
+	T*						_pObject;
+	OkdSharedPtrRefCount*	_pRefCount;
 };
 
 #endif
