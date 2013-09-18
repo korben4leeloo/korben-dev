@@ -14,11 +14,14 @@
 #include	ORKID_ENGINE_H(Entities/OkdMeshInfo)
 #include	ORKID_CORE_H(Math/OkdVector3f)
 #include	ORKID_CORE_H(Stream/OkdFileStream)
-#include	ORKID_CORE_H(Memory/OkdSharedPtr)
+//#include	ORKID_CORE_H(Memory/OkdSharedPtr)
+#include	ORKID_ENGINE_H(ResourceManager/OkdSharedResource)
 
 class OkdMesh
 {
 public:
+	//friend class OkdSharedPtr<OkdMesh>;
+
 	void			create( const OkdMeshInfo& meshInfo );
 
 	void			setVertexArray( const float* pVertexArray );
@@ -26,14 +29,19 @@ public:
 
 	void			write( OkdFileStream* pStream );
 
+	static void		load( OkdMesh* pMesh );
+
+	friend class OkdSharedResource<OkdMesh, &OkdMesh::load>;
+	friend class OkdSharedPtr<OkdMesh>;
+
 private:
 	struct	OkdMeshPolygon
 	{
 		uint _vertexIdArray[3];
 	};
 
-					OkdMesh();
-					~OkdMesh();
+	OkdMesh();
+	~OkdMesh();
 
 	void			releaseVertexArray();
 	void			releasePolygonArray();
@@ -44,6 +52,6 @@ private:
 	OkdMeshPolygon*	_pPolygonArray;
 };
 
-typedef OkdSharedPtr<OkdMesh> OkdMeshPtr;
+typedef OkdSharedResource<OkdMesh, &OkdMesh::load> OkdMeshResource;
 
 #endif

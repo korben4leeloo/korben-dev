@@ -134,7 +134,7 @@ void	OkdFileTranslator::exportSceneGraph()
 			uint		uiVertexCount	= fnMesh.numVertices( &status );
 			uint		uiPolygonCount	= fnMesh.numPolygons( &status );
 			OkdMeshInfo	meshInfo( uiVertexCount, uiPolygonCount );
-			OkdMesh*	pOrkidMesh		= pExportScene->createMesh();
+			OkdMesh*	pOrkidMesh		= 0;//pExportScene->createMesh();
 
 			WRITE_LOG_INFOS( dagPath.length() + 1, "Polygons count: " << uiPolygonCount << "\n" );
 			WRITE_LOG_INFOS( dagPath.length() + 1, "Vertices count: " << fnMesh.numVertices( &status ) << "\n" );
@@ -165,7 +165,7 @@ void	OkdFileTranslator::exportSceneGraph()
 				WRITE_LOG_INFOS( dagPath.length() + 1, vertexIdArray[0] << " " << vertexIdArray[1] << " " << vertexIdArray[2] << "\n" );
 			}
 
-			pOrkidMesh->writeToStream( _pExportStream );
+			pOrkidMesh->write( _pExportStream );
 		}
 
 		itDag.next();
