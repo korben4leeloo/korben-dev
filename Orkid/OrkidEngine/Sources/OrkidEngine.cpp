@@ -110,7 +110,7 @@ OkdScene*	OrkidEngine::addScene(const OkdString& strSceneName,
 {
 	OkdScene* pScene = getScene( strSceneName );
 
-	if	( pScene == 0 )
+	if	( !pScene )
 	{
 		OkdResourceManager* pResourceManager = getResourceManager( strResourceManagerName );
 

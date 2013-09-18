@@ -25,6 +25,8 @@ class OkdNode
 public:
 	friend class OkdScene;
 
+							ORKID_ALIGNED_NEW( 16 )
+
 	inline const OkdNode*	getParentNode() const;
 	inline void				addChildNode( OkdNode* pChildNode );
 
@@ -34,13 +36,13 @@ private:
 
 	inline void				setParentNode( OkdNode* pParentNode );
 
+	OkdMatrix4f				_mWorld;
+	OkdMatrix4f				_mLocal;
+
 	OkdNode*				_pParentNode;
 	OkdNodeList				_childrenNodes;
 
 	OkdEntity*				_pEntity;
-
-	OkdMatrix4f				_mWorld;
-	OkdMatrix4f				_mLocal;
 };
 
 //*****************************************************************************

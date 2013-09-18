@@ -14,7 +14,7 @@
 #include	ORKID_ENGINE_H(ResourceManager/OkdResourceManager)
 
 class OkdNode;
-class OkdMesh;
+class OkdMeshInstance;
 class OkdString;
 
 class OkdScene
@@ -23,7 +23,7 @@ public:
 	friend class OrkidEngine;
 
 	OkdNode*			createNode( OkdNode* pParentNode = 0 );
-	OkdMesh*			createMesh( OkdNode* pNode = 0 );
+	OkdMeshInstance*	createMeshInstance( const OkdString& strMeshName, OkdNode* pNode = 0 );
 
 private:
 						OkdScene( OkdResourceManager* pResourceManager );

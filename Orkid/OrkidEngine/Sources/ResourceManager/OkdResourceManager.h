@@ -17,7 +17,10 @@ public:
 				OkdResourceManager();
 				~OkdResourceManager();
 
+	//OkdMeshPtr	addMesh( const OkdString& strMeshName, const RESOURCE_LOCATION eResourceLoc, const OkdString& strResourceLocName );
+
 private:
+
 	
 };
 

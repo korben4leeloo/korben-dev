@@ -26,7 +26,7 @@ public:
 	inline void		setPolygonCount( const uint uiPolygonCount );
 	inline uint		getPolygonCount() const;
 
-	void			writeToStream( OkdFileStream* pStream );
+	void			write( OkdFileStream* pStream );
 
 private:
 	uint			_uiVertexCount;

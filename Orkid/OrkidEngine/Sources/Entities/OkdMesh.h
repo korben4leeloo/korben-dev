@@ -14,6 +14,7 @@
 #include	ORKID_ENGINE_H(Entities/OkdMeshInfo)
 #include	ORKID_CORE_H(Math/OkdVector3f)
 #include	ORKID_CORE_H(Stream/OkdFileStream)
+#include	ORKID_CORE_H(Memory/OkdSharedPtr)
 
 class OkdMesh
 {
@@ -23,7 +24,7 @@ public:
 	void			setVertexArray( const float* pVertexArray );
 	void			setPolygon( const uint uiPolygonIndex, const uint* pVertexIdArray );
 
-	void			writeToStream( OkdFileStream* pStream );
+	void			write( OkdFileStream* pStream );
 
 private:
 	struct	OkdMeshPolygon
@@ -42,5 +43,7 @@ private:
 	OkdVector3f*	_pVertexArray;
 	OkdMeshPolygon*	_pPolygonArray;
 };
+
+typedef OkdSharedPtr<OkdMesh> OkdMeshPtr;
 
 #endif

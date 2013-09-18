@@ -11,4 +11,6 @@
 
 #include	"../../OrkidRoot.h"
 
+#include	ORKID_CORE_H(Memory/OkdMemManager)
+
 #endif

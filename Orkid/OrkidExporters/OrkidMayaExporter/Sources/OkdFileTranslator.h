@@ -12,12 +12,11 @@
 #include	"OrkidMayaExporterRoot.h"
 #include	<maya/MPxFileTranslator.h>
 
-#include	ORKID_CORE_H(Stream/OkdFileStream)
-
 //class OkdFile;
 //class OkdBinaryStream;
 //class OkdTextStream;
 class OrkidEngine;
+class OkdFileStream;
 
 class OkdFileTranslator: public MPxFileTranslator
 {

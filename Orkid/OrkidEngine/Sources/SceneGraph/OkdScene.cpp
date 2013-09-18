@@ -37,16 +37,10 @@ OkdScene::~OkdScene()
 //-----------------------------------------------------------------------------
 OkdNode*	OkdScene::createNode( OkdNode* pParentNode )
 {
-	OkdNode* pNode = new OkdNode();
+	OkdNode* pNode				= new OkdNode();
+	OkdNode* pRealParentNode	= pParentNode ? pParentNode : _pRootNode;
 
-	if	( pParentNode )
-	{
-		pParentNode->addChildNode( pNode );
-	}
-	else
-	{
-		_pRootNode->addChildNode( pNode );
-	}
+	pRealParentNode->addChildNode( pNode );
 
 	return	( pNode );
 }
@@ -56,7 +50,8 @@ OkdNode*	OkdScene::createNode( OkdNode* pParentNode )
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdMesh*	OkdScene::createMesh( OkdNode* pParentNode )
+OkdMeshInstance*	OkdScene::createMeshInstance(const OkdString&	strMeshName, 
+												 OkdNode*			pParentNode)
 {
 	return	( 0 );
 }

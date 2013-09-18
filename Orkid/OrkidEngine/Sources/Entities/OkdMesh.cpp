@@ -103,18 +103,18 @@ void	OkdMesh::releasePolygonArray()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		writeToStream
+// Name:		write
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdMesh::writeToStream(OkdFileStream* pStream)
+void	OkdMesh::write(OkdFileStream* pStream)
 {
 	ORKID_ASSERT( _pVertexArray );
 	ORKID_ASSERT( _pPolygonArray );
 
 	OkdFileStream& stream = *pStream;
 
-	_meshInfo.writeToStream( pStream );
+	_meshInfo.write( pStream );
 
 	stream.write( (const char*)_pVertexArray, _meshInfo.getVertexCount() * sizeof(OkdVector3f) );
 	stream.write( (const char*)_pPolygonArray, _meshInfo.getPolygonCount() * sizeof(OkdMeshPolygon) );

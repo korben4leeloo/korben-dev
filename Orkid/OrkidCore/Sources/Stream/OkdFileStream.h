@@ -56,7 +56,7 @@ public:
 	inline OkdFileStream&	operator<<( const unsigned long l );
 	inline OkdFileStream&	operator<<( const float f );
 	inline OkdFileStream&	operator<<( const double d );
-	//inline OkdFileStream&	operator<<( const char* pBuffer );
+	inline OkdFileStream&	operator<<( const char* pBuffer );
 	OkdFileStream&			operator<<( const OkdString& str );
 
 private:
@@ -210,15 +210,15 @@ OkdFileStream& OkdFileStream::operator<<(const double d)
 	return	( *this );
 }
 
-////-----------------------------------------------------------------------------
-//// Name:		operator<<
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//OkdFileStream& OkdFileStream::operator<<(const char* pBuffer)
-//{
-//	_fs << pBuffer;
-//	return	( *this );
-//}
+//-----------------------------------------------------------------------------
+// Name:		operator<<
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdFileStream& OkdFileStream::operator<<(const char* pBuffer)
+{
+	_fs << pBuffer;
+	return	( *this );
+}
 
 #endif

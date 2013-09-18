@@ -21,6 +21,8 @@ public:
 
 	inline void*					alloc( const uint uiAllocSize ) const;
 	inline void*					allocAlign( const uint uiAllocSize, const uint uiAlign ) const;
+	inline void						free( void* ptr ) const;
+	inline void						freeAlign( void* ptr ) const;
 
 private:
 									OkdMemManager();
@@ -76,7 +78,7 @@ OkdMemManager*	OkdMemManager::instance()
 //-----------------------------------------------------------------------------
 void*	OkdMemManager::alloc(const uint		uiAllocSize) const
 {
-	void* pMem = malloc( uiAllocSize );
+	void* pMem = ::malloc( uiAllocSize );
 	return	( pMem );
 }
 
@@ -91,5 +93,46 @@ void*	OkdMemManager::allocAlign(const uint	uiAllocSize,
 	void* pMem = _aligned_malloc( uiAllocSize, uiAlign );
 	return	( pMem );
 }
+
+//-----------------------------------------------------------------------------
+// Name:		free
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdMemManager::free(void*	ptr) const
+{
+	::free( ptr );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		freeAlign
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdMemManager::freeAlign(void*	ptr) const
+{
+	_aligned_free( ptr );
+}
+
+#define	ORKID_ALIGNED_NEW( align )											\
+	void* operator new(size_t size)											\
+	{																		\
+		return OkdMemManager::instance()->allocAlign( (uint)size, align );	\
+	}																		\
+																			\
+	void* operator new[](size_t size)										\
+	{																		\
+		return OkdMemManager::instance()->allocAlign( (uint)size, align );	\
+	}																		\
+																			\
+	void operator delete(void* ptr)											\
+	{																		\
+		return OkdMemManager::instance()->freeAlign(ptr);					\
+	}																		\
+																			\
+	void operator delete[](void* ptr)										\
+	{																		\
+		return OkdMemManager::instance()->freeAlign(ptr);					\
+	}
 
 #endif

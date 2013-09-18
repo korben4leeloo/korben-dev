@@ -43,11 +43,11 @@ OkdMeshInfo::~OkdMeshInfo()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		writeToStream
+// Name:		write
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdMeshInfo::writeToStream(OkdFileStream* pStream)
+void	OkdMeshInfo::write(OkdFileStream* pStream)
 {
 	OkdFileStream& stream = *pStream;
 

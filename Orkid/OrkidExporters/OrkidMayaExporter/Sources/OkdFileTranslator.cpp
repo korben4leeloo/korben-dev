@@ -9,6 +9,7 @@
 
 // Orkid includes
 #include	ORKID_CORE_H(String/OkdString)
+#include	ORKID_CORE_H(Stream/OkdFileStream)
 //#include	ORKID_CORE_H(Stream/OkdFile)
 
 #include	ORKID_ENGINE_H(OrkidEngine)
@@ -101,15 +102,6 @@ void	OkdFileTranslator::exportSceneGraph()
 	MItDag				itDag( MItDag::kDepthFirst, MFn::kTransform, &status );
 	OkdResourceManager*	pExportResourceManager	= _pOrkidEngine->addResourceManager( "ExportResourceManager" );
 	OkdScene*			pExportScene			= _pOrkidEngine->addScene( "ExportScene", "ExportResourceManager" );
-
-	std::fstream f;
-	OkdFileStream ofs;
-	OkdString str;
-
-	f << "test";
-	ofs << "test" << "test2";
-	ofs << str;
-	ofs << str << "test" << str << "test2";
 
 	while	( itDag.isDone() == false )
 	{

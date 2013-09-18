@@ -116,6 +116,13 @@ bool createWindow(LPCSTR title, int width, int height) {
 	return true;
 }
 
+#include	ORKID_ENGINE_H(ResourceManager/OkdSharedResource)
+
+OrkidErrorCode testLoad( void* pData, void* pResult )
+{
+	return	( OKD_OK );
+}
+
 /**
 	WinMain is the main entry point for Windows based applications as opposed to 'main' for console
 	applications. Here we will make the calls to create our window, setup our scene and then
@@ -127,6 +134,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
                      LPSTR    lpCmdLine,
                      int       nCmdShow) {
 	MSG msg;
+
+	OkdSharedResource<testLoad> res( "", "", OkdSharedResource<testLoad>::RES_LOC_MEMORY );
+	res.load( 0, 0 );
 
 	/*HMODULE hLib = LoadLibrary( "D:\\DevJJA\\SVN\\korben-dev\\Orkid\\Debug\\OrkidRuntimeDll.dll" );
 	FARPROC procAddr = GetProcAddress( hLib, "orkidRuntimeDllMainEntry" );*/
