@@ -19,6 +19,8 @@ public:
 					~OkdVector();
 
 	inline void		add( T& t );
+	inline uint		size() const;
+	inline const T&	operator[]( uint index ) const;
 
 private:
 	std::vector<T>	_vec;
@@ -59,6 +61,28 @@ template<typename T>
 void	OkdVector<T>::add( T& t )
 {
 	_vec.push_back( t );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		size
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+uint	OkdVector<T>::size() const
+{
+	return	( _vec.size() );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		size
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+const T&	OkdVector<T>::operator[](uint	index) const
+{
+	return	( _vec[index] );
 }
 
 #endif

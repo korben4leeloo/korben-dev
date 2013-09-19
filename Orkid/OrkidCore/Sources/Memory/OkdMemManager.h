@@ -127,12 +127,12 @@ void	OkdMemManager::freeAlign(void*	ptr) const
 																			\
 	void operator delete(void* ptr)											\
 	{																		\
-		return OkdMemManager::instance()->freeAlign(ptr);					\
+		OkdMemManager::instance()->freeAlign(ptr);							\
 	}																		\
 																			\
 	void operator delete[](void* ptr)										\
 	{																		\
-		return OkdMemManager::instance()->freeAlign(ptr);					\
+		OkdMemManager::instance()->freeAlign(ptr);							\
 	}
 
 #endif

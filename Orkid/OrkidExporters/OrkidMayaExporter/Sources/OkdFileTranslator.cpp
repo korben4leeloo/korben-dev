@@ -216,6 +216,9 @@ void	OkdFileTranslator::endExport()
 
 	_pExportStream->close();
 	_pExportLogStream->close();
+
+	_pOrkidEngine = 0;
+	OrkidEngine::destroy();
 }
 
 //-----------------------------------------------------------------------------

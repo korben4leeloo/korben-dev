@@ -22,6 +22,7 @@
 #define	ORKID_MATH_H(file)			ORKID_CORE_H(Math/file)
 
 #define	ORKID_ASSERT(a)				assert(a)
+#define	ORKID_BREAK()				assert(false)
 
 // DLL import/export defines
 #ifdef ORKID_DLL

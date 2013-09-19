@@ -11,17 +11,23 @@
 
 #include	"Root.h"
 
+#include	ORKID_CORE_H(Containers/OkdVector)
+#include	ORKID_ENGINE_H(Entities/OkdMesh)
+
 class OkdResourceManager
 {
 public:
-				OkdResourceManager();
-				~OkdResourceManager();
+								OkdResourceManager();
+								~OkdResourceManager();
 
-	//OkdMeshPtr	addMesh( const OkdString& strMeshName, const RESOURCE_LOCATION eResourceLoc, const OkdString& strResourceLocName );
+	//OkdMeshResource				addMesh( const OkdString& strMeshName, const OkdString& strMeshLocationName, const ResourceLocation eResourceLocation );
+	OkdMeshResourcePtr				addMesh( const OkdString& strMeshName, const OkdString& strMeshLocationName, const ResourceLocation eResourceLocation );
 
 private:
+	void						clearResources();
 
-	
+	//OkdVector<OkdMeshResource>	_vMeshArray;
+	OkdVector<OkdMeshResourcePtr>	_vMeshArray;
 };
 
 #endif

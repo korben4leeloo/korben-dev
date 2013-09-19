@@ -116,7 +116,10 @@ bool createWindow(LPCSTR title, int width, int height) {
 	return true;
 }
 
-#include	ORKID_ENGINE_H(Entities/OkdMesh)
+//#include	ORKID_ENGINE_H(Entities/OkdMesh)
+
+#include	ORKID_ENGINE_H(OrkidEngine)
+#include	ORKID_ENGINE_H(ResourceManager/OkdResourceManager)
 
 /**
 	WinMain is the main entry point for Windows based applications as opposed to 'main' for console
@@ -130,11 +133,31 @@ int WINAPI WinMain(HINSTANCE hInstance,
                      int       nCmdShow) {
 	MSG msg;
 
-	OkdMeshResource m( "test", "test2", OkdMeshResource::RES_LOC_MEMORY );
+	OrkidEngine* pEngine = OrkidEngine::create();
+
+	/*OkdResourceManager* pResourceManager	= pEngine->addResourceManager( "TestResourceManager" );
+	OkdScene*			pScene				= pEngine->addScene( "TestScene", "TestResourceManager" );
+	OkdMeshResource		meshResource		= pResourceManager->addMesh( "TestMesh", "plouf.okm", RES_LOC_MEMORY );
+	OkdMeshResource		meshResource2 = meshResource;
+	OkdMeshResource		meshResource3 = meshResource2;
+
+	meshResource2.load();*/
+
+	OkdResourceManager* pResourceManager	= pEngine->addResourceManager( "TestResourceManager" );
+	OkdScene*			pScene				= pEngine->addScene( "TestScene", "TestResourceManager" );
+	OkdMeshResourcePtr	meshResource		= pResourceManager->addMesh( "TestMesh", "plouf.okm", RES_LOC_MEMORY );
+	OkdMeshResourcePtr	meshResource2		= meshResource;
+	OkdMeshResourcePtr	meshResource3		= meshResource2;
+
+	meshResource2.ptr()->load();
+
+	OrkidEngine::destroy();
+
+	/*OkdMeshResource m( "test", "test2", OkdMeshResource::RES_LOC_MEMORY );
 	OkdMeshResource m2 = m;
 
 	m2.load();
-	m.load();
+	m.load();*/
 
 	/*HMODULE hLib = LoadLibrary( "D:\\DevJJA\\SVN\\korben-dev\\Orkid\\Debug\\OrkidRuntimeDll.dll" );
 	FARPROC procAddr = GetProcAddress( hLib, "orkidRuntimeDllMainEntry" );*/

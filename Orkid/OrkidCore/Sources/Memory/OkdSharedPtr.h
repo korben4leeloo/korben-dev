@@ -36,11 +36,13 @@ public:
 	inline					OkdSharedPtr( const OkdSharedPtr& sharedPtr );
 	inline					~OkdSharedPtr();
 
-	inline T*				pointer();
+	inline T*				ptr();
+	inline const T*			ptr() const;
+	inline uint				getRefCount() const;
 
 	inline OkdSharedPtr&	operator=( const OkdSharedPtr& sharedPtr );
 
-private:
+protected:
 	inline void				destroy();
 
 	T*						_pObject;
@@ -209,14 +211,36 @@ void	OkdSharedPtr<T>::destroy()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		destroy
+// Name:		ptr
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-T*	OkdSharedPtr<T>::pointer()
+T*	OkdSharedPtr<T>::ptr()
 {
 	return	( _pObject );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		ptr
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+const T*	OkdSharedPtr<T>::ptr() const
+{
+	return	( _pObject );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		increase
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+uint	OkdSharedPtr<T>::getRefCount() const
+{
+	return	( _pRefCount->getRefCount() );
 }
 
 #endif

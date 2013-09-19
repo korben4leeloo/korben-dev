@@ -21,6 +21,7 @@ class OkdMesh
 {
 public:
 	//friend class OkdSharedPtr<OkdMesh>;
+	friend class OkdResourceManager;
 
 	void			create( const OkdMeshInfo& meshInfo );
 
@@ -53,5 +54,6 @@ private:
 };
 
 typedef OkdSharedResource<OkdMesh, &OkdMesh::load> OkdMeshResource;
+typedef OkdSharedPtr<OkdMeshResource> OkdMeshResourcePtr;
 
 #endif
