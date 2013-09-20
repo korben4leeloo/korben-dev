@@ -23,298 +23,264 @@ enum ResourceLocation
 template<class T>
 class OkdSharedResource
 {
-protected:
-	class OkdSharedResourceRef
-	{
-	public:
-		inline		OkdSharedPtrRef();
-		inline 		~OkdSharedPtrRef();
-
-		inline uint increase();
-		inline uint decrease();
-
-		inline uint	getRefCount() const;
-
-	private:
-		uint		_uiRefCount;
-	};
-
 public:
-	inline						OkdSharedResource();
-	inline						OkdSharedResource( T* pObject );
-	inline						OkdSharedResource( const OkdSharedResource& sharedResource );
-	inline						~OkdSharedResource();
+	inline 				OkdSharedResource( const OkdString& strResourceName, const OkdString& strResourceLocName, const ResourceLocation eResourceLoc, T* pResource );
+	inline				~OkdSharedResource();
 
-	inline T*					ptr();
-	inline const T*				ptr() const;
-	inline uint					getRefCount() const;
-
-	inline void					load();
-	inline void					unload();
-
-	inline OkdSharedResource&	operator=( const OkdSharedResource& sharedPtr );
-
-protected:
-	inline void					destroy();
-
-	T*							_pObject;
-	OkdSharedResourceRef*		_pRefCount;
-	OkdSharedResourceRef*		_pLoadRefCount;
+private:
+	OkdString			_strResourceName;
+	OkdString			_strResourceLocName;
+	ResourceLocation	_eResourceLoc;
+	T*					_pResource;
 };
 
-//template<class T, void (*TLoadFunc)( T* pResource )>
-//class OkdSharedResource
-//{
-//public:
-//	friend class OkdResourceManager;
-//	friend class OkdSharedPtr<OkdSharedResource>;
-//
-//	void				load();
-//	void				unload();
-//	uint				getLoadRefCount() const;
-//
-//private:
-//						OkdSharedResource( const OkdString& strResourceName, const OkdString& strResourceLocName, const ResourceLocation eResourceLoc, T* pResource );
-//						~OkdSharedResource();
-//
-//	OkdString			_strResourceName;
-//	OkdString			_strResourceLocName;
-//	ResourceLocation	_eResourceLoc;
-//	T*					_pResource;
-//	uint				_uiLoadRefCount;
-//};
-//
-////*****************************************************************************
-////	Inline functions declarations
-////*****************************************************************************
-//
-////-----------------------------------------------------------------------------
-//// Name:		OkdSharedResource constructor
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//template<class T, void (*TLoadFunc)( T* pResource )>
-//OkdSharedResource<T, TLoadFunc>::OkdSharedResource(const OkdString&			strResourceName, 
-//												   const OkdString&			strResourceLocName,
-//												   const ResourceLocation	eResourceLoc, 
-//												   T*						pResource)
-//: _strResourceName		( strResourceName )
-//, _strResourceLocName	( strResourceLocName )
-//, _eResourceLoc			( eResourceLoc )
-//, _pResource			( pResource )
-//, _uiLoadRefCount		( 0 )
-//{
-//	ORKID_ASSERT( pResource );
-//}
-//
-//////-----------------------------------------------------------------------------
-////// Name:		OkdSharedResource constructor
-//////
-////// Created:		2013-08-26
-//////-----------------------------------------------------------------------------
-////template<class T, void (*TLoadFunc)( T* pResource )>
-////OkdSharedResource<T, TLoadFunc>::OkdSharedResource(const OkdSharedResource& other)
-////: OkdSharedPtr		( other )
-////, _pResourceInfo	( other._pResourceInfo )
-////, _bHasLoadRef		( false )
-////{
-////	
-////}
-//
-////-----------------------------------------------------------------------------
-//// Name:		OkdSharedResource destructor
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//template<class T, void (*TLoadFunc)( T* pResource )>
-//OkdSharedResource<T, TLoadFunc>::~OkdSharedResource()
-//{
-//	if	( _pResource )
-//	{
-//		delete _pResource;
-//	}
-//}
-//
-////-----------------------------------------------------------------------------
-//// Name:		load
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//template<class T, void (*TLoadFunc)( T* pResource )>
-//void	OkdSharedResource<T, TLoadFunc>::load()
-//{
-//	if	( _uiLoadRefCount == 0 )
-//	{
-//		TLoadFunc( _pResource );
-//	}
-//
-//	_uiLoadRefCount++;
-//}
-//
-////-----------------------------------------------------------------------------
-//// Name:		unload
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//template<class T, void (*TLoadFunc)( T* pResource )>
-//void	OkdSharedResource<T, TLoadFunc>::unload()
-//{
-//	ORKID_ASSERT( _uiLoadRefCount > 0 );
-//
-//	if	( _uiLoadRefCount > 0 )
-//	{
-//		_uiLoadRefCount--;
-//
-//		if	( _uiLoadRefCount == 0 )
-//		{
-//			// unload resource
-//		}
-//	}
-//}
-//
-////-----------------------------------------------------------------------------
-//// Name:		getLoadRefCount
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//template<class T, void (*TLoadFunc)( T* pResource )>
-//uint	OkdSharedResource<T, TLoadFunc>::getLoadRefCount() const
-//{
-//	return	( _uiLoadRefCount );
-//}
+template<class T, void (*TLoadFunc)( OkdSharedResource<T>* pResource )>
+class OkdSharedResourcePtr
+{
+public:
+	friend class OkdResourceManager;
 
-//template<class T, void (*TLoadFunc)( T* pResource )>
-//class OkdSharedResource: public OkdSharedPtr<T>
-//{
-//private:
-//	struct OkdSharedResourceInfo
-//	{
-//		OkdString			_strResourceName;
-//		OkdString			_strResourceLocName;
-//		ResourceLocation	_eResourceLoc;
-//		uint				_uiLoadRefCount;
-//	};
+	inline							OkdSharedResourcePtr( const OkdSharedResourcePtr& sharedResource );
+	inline							~OkdSharedResourcePtr();
+
+	inline T*						resource();
+	inline const T*					resource() const;
+	inline uint						getRefCount() const;
+
+	inline void						load();
+	inline void						unload();
+	inline uint						getLoadRefCount() const;
+
+	inline OkdSharedResourcePtr&	operator=( const OkdSharedResourcePtr& sharedPtr );
+
+protected:
+	inline							OkdSharedResourcePtr( OkdSharedResource<T>* pSharedResource );
+
+	inline void						destroy();
+	
+	OkdSharedResource<T>*			_pSharedResource;
+	OkdSharedPtrRef*				_pRefCount;
+	OkdSharedPtrRef*				_pLoadRefCount;
+	bool							_bHasLoadRef;
+};
+
+//*****************************************************************************
+//	Inline functions declarations
+//*****************************************************************************
+
+//-----------------------------------------------------------------------------
+// Name:		OkdSharedResource constructor
 //
-//public:
-//	friend class OkdResourceManager;
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+OkdSharedResource<T>::OkdSharedResource(const OkdString&		strResourceName, 
+										const OkdString&		strResourceLocName, 
+										const ResourceLocation	eResourceLoc, 
+										T*						pResource )
+: _strResourceName		( strResourceName )
+, _strResourceLocName	( strResourceLocName )
+, _eResourceLoc			( eResourceLoc )
+, _pResource			( pResource )
+{
+	
+}
+
+//-----------------------------------------------------------------------------
+// Name:		OkdSharedResource destructor
 //
-//								OkdSharedResource( const OkdSharedResource& other );
-//	virtual						~OkdSharedResource();
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+OkdSharedResource<T>::~OkdSharedResource()
+{
+	delete _pResource;
+}
+
+//-----------------------------------------------------------------------------
+// Name:		OkdSharedResource constructor
 //
-//	void						load();
-//	void						unload();
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, void (*TLoadFunc)( OkdSharedResource<T>* pResource )>
+OkdSharedResourcePtr<T, TLoadFunc>::OkdSharedResourcePtr(OkdSharedResource<T>*	pSharedResource)
+: _pSharedResource	( pSharedResource )
+, _bHasLoadRef		( false )
+{
+	_pRefCount		= new OkdSharedPtrRef();
+	_pLoadRefCount	= new OkdSharedPtrRef();
+
+	_pRefCount->increase();
+}
+
+//-----------------------------------------------------------------------------
+// Name:		OkdSharedResourcePtr copy constructor
 //
-//private:
-//								OkdSharedResource( const OkdString& strResourceName, const OkdString& strResourceLocName, const ResourceLocation eResourceLoc );
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, void (*TLoadFunc)( OkdSharedResource<T>* pResource )>
+OkdSharedResourcePtr<T, TLoadFunc>::OkdSharedResourcePtr(const OkdSharedResourcePtr&	sharedPtr)
+: _pSharedResource	( sharedPtr._pSharedResource )
+, _pRefCount		( sharedPtr._pRefCount )
+, _pLoadRefCount	( sharedPtr._pLoadRefCount )
+, _bHasLoadRef		( false )
+{
+	_pRefCount->increase();
+}
+
+//-----------------------------------------------------------------------------
+// Name:		OkdSharedResourcePtr destructor
 //
-//	OkdSharedResourceInfo*		_pResourceInfo;
-//	bool						_bHasLoadRef;
-//};
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, void (*TLoadFunc)( OkdSharedResource<T>* pResource )>
+OkdSharedResourcePtr<T, TLoadFunc>::~OkdSharedResourcePtr()
+{
+	if	( _bHasLoadRef )
+	{
+		unload();
+	}
+
+	if	( _pRefCount->decrease() == 0 )
+	{
+		destroy();
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		OkdSharedResourcePtr operator=
 //
-////*****************************************************************************
-////	Inline functions declarations
-////*****************************************************************************
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, void (*TLoadFunc)( OkdSharedResource<T>* pResource )>
+OkdSharedResourcePtr<T, TLoadFunc>& OkdSharedResourcePtr<T, TLoadFunc>::operator=( const OkdSharedResourcePtr& sharedPtr )
+{
+	if	( &sharedPtr != this )
+	{
+		if	( _bHasLoadRef )
+		{
+			unload();
+		}
+
+		if	( _pRefCount->decrease() == 0 )
+		{
+			destroy();
+		}
+
+		_pSharedResource	= sharedPtr._pSharedResource;
+		_pRefCount			= sharedPtr._pRefCount;
+		_pLoadRefCount		= sharedPtr._pLoadRefCount;
+
+		_pRefCount->increase();
+	}
+
+	return	( *this );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		destroy
 //
-////-----------------------------------------------------------------------------
-//// Name:		OkdSharedResource constructor
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//template<class T, void (*TLoadFunc)( T* pResource )>
-//OkdSharedResource<T, TLoadFunc>::OkdSharedResource(const OkdString&			strResourceName, 
-//												   const OkdString&			strResourceLocName,
-//												   const ResourceLocation	eResourceLoc)
-//: OkdSharedPtr		( new T() )
-//, _bHasLoadRef		( false )
-//{
-//	_pResourceInfo = new OkdSharedResourceInfo();
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, void (*TLoadFunc)( OkdSharedResource<T>* pResource )>
+void	OkdSharedResourcePtr<T, TLoadFunc>::destroy()
+{
+	ORKID_ASSERT( _pLoadRefCount->getRefCount() == 0 );
+
+	if	( _pSharedResource )
+	{
+		delete _pSharedResource;
+	}
+
+	delete _pLoadRefCount;
+	delete _pRefCount;
+}
+
+//-----------------------------------------------------------------------------
+// Name:		load
 //
-//	_pResourceInfo->_strResourceName	= strResourceName;
-//	_pResourceInfo->_strResourceLocName	= strResourceLocName;
-//	_pResourceInfo->_eResourceLoc		= eResourceLoc;
-//	_pResourceInfo->_uiLoadRefCount		= 0;
-//}
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, void (*TLoadFunc)( OkdSharedResource<T>* pResource )>
+void	OkdSharedResourcePtr<T, TLoadFunc>::load()
+{
+	ORKID_ASSERT( _bHasLoadRef == false );
+
+	if	( _bHasLoadRef == false )
+	{
+		if	( _pLoadRefCount->increase() == 1 )
+		{
+			TLoadFunc( _pSharedResource );
+		}
+
+		_bHasLoadRef = true;
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		unload
 //
-////-----------------------------------------------------------------------------
-//// Name:		OkdSharedResource constructor
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//template<class T, void (*TLoadFunc)( T* pResource )>
-//OkdSharedResource<T, TLoadFunc>::OkdSharedResource(const OkdSharedResource& other)
-//: OkdSharedPtr		( other )
-//, _pResourceInfo	( other._pResourceInfo )
-//, _bHasLoadRef		( false )
-//{
-//	
-//}
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, void (*TLoadFunc)( OkdSharedResource<T>* pResource )>
+void	OkdSharedResourcePtr<T, TLoadFunc>::unload()
+{
+	ORKID_ASSERT( _pLoadRefCount->getRefCount() > 0 );
+	ORKID_ASSERT( _bHasLoadRef );
+
+	if	( _bHasLoadRef )
+	{
+		if	( _pLoadRefCount->decrease() == 0 )
+		{
+			// unload resource
+		}
+	}
+
+	_bHasLoadRef = false;
+}
+
+//-----------------------------------------------------------------------------
+// Name:		resource
 //
-////-----------------------------------------------------------------------------
-//// Name:		OkdSharedResource destructor
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//template<class T, void (*TLoadFunc)( T* pResource )>
-//OkdSharedResource<T, TLoadFunc>::~OkdSharedResource()
-//{
-//	if	( _bHasLoadRef )
-//	{
-//		unload();
-//	}
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, void (*TLoadFunc)( OkdSharedResource<T>* pResource )>
+T*	OkdSharedResourcePtr<T, TLoadFunc>::resource()
+{
+	return	( _pResource );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		resource
 //
-//	if	( getRefCount() == 1 )
-//	{
-//		ORKID_ASSERT( _pResourceInfo->_uiLoadRefCount == 0 );
-//		delete _pResourceInfo;
-//	}
-//}
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, void (*TLoadFunc)( OkdSharedResource<T>* pResource )>
+const T*	OkdSharedResourcePtr<T, TLoadFunc>::resource() const
+{
+	return	( _pResource );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getRefCount
 //
-////-----------------------------------------------------------------------------
-//// Name:		load
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//template<class T, void (*TLoadFunc)( T* pResource )>
-//void	OkdSharedResource<T, TLoadFunc>::load()
-//{
-//	ORKID_ASSERT( _bHasLoadRef == false );
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, void (*TLoadFunc)( OkdSharedResource<T>* pResource )>
+uint	OkdSharedResourcePtr<T, TLoadFunc>::getRefCount() const
+{
+	return	( _pRefCount->getRefCount() );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getLoadRefCount
 //
-//	if	( _bHasLoadRef == false )
-//	{
-//		if	( _pResourceInfo->_uiLoadRefCount == 0 )
-//		{
-//			TLoadFunc( ptr() );
-//		}
-//
-//		_pResourceInfo->_uiLoadRefCount++;
-//		_bHasLoadRef = true;
-//	}
-//}
-//
-////-----------------------------------------------------------------------------
-//// Name:		unload
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//template<class T, void (*TLoadFunc)( T* pResource )>
-//void	OkdSharedResource<T, TLoadFunc>::unload()
-//{
-//	if	( _bHasLoadRef )
-//	{
-//		ORKID_ASSERT( _pResourceInfo->_uiLoadRefCount > 0 );
-//
-//		if	( _pResourceInfo->_uiLoadRefCount > 0 )
-//		{
-//			_pResourceInfo->_uiLoadRefCount--;
-//
-//			if	( _pResourceInfo->_uiLoadRefCount == 0 )
-//			{
-//				// unload resource
-//			}
-//		}
-//
-//		_bHasLoadRef = false;
-//	}
-//}
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, void (*TLoadFunc)( OkdSharedResource<T>* pResource )>
+uint	OkdSharedResourcePtr<T, TLoadFunc>::getLoadRefCount() const
+{
+	return	( _pLoadRefCount->getRefCount() );
+}
 
 #endif

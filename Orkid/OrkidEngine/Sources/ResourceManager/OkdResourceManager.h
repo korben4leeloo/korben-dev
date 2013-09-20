@@ -17,14 +17,14 @@
 class OkdResourceManager
 {
 public:
-								OkdResourceManager();
-								~OkdResourceManager();
+									OkdResourceManager();
+									~OkdResourceManager();
 
-	//OkdMeshResource				addMesh( const OkdString& strMeshName, const OkdString& strMeshLocationName, const ResourceLocation eResourceLocation );
+	//OkdMeshResource					addMesh( const OkdString& strMeshName, const OkdString& strMeshLocationName, const ResourceLocation eResourceLocation );
 	OkdMeshResourcePtr				addMesh( const OkdString& strMeshName, const OkdString& strMeshLocationName, const ResourceLocation eResourceLocation );
 
 private:
-	void						clearResources();
+	void							clearResources();
 
 	//OkdVector<OkdMeshResource>	_vMeshArray;
 	OkdVector<OkdMeshResourcePtr>	_vMeshArray;

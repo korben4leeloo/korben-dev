@@ -11,25 +11,24 @@
 
 #include	"Root.h"
 
+class OkdSharedPtrRef
+{
+public:
+	inline		OkdSharedPtrRef();
+	inline 		~OkdSharedPtrRef();
+
+	inline uint increase();
+	inline uint decrease();
+
+	inline uint	getRefCount() const;
+
+private:
+	uint		_uiRefCount;
+};
+
 template<class T>
 class OkdSharedPtr
 {
-protected:
-	class OkdSharedPtrRef
-	{
-	public:
-		inline		OkdSharedPtrRef();
-		inline 		~OkdSharedPtrRef();
-
-		inline uint increase();
-		inline uint decrease();
-
-		inline uint	getRefCount() const;
-
-	private:
-		uint		_uiRefCount;
-	};
-
 public:
 	inline					OkdSharedPtr();
 	inline					OkdSharedPtr( T* pObject );
@@ -58,8 +57,7 @@ protected:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-OkdSharedPtr<T>::OkdSharedPtrRef::OkdSharedPtrRef()
+OkdSharedPtrRef::OkdSharedPtrRef()
 : _uiRefCount( 0 )
 {
 	
@@ -70,8 +68,7 @@ OkdSharedPtr<T>::OkdSharedPtrRef::OkdSharedPtrRef()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-OkdSharedPtr<T>::OkdSharedPtrRef::~OkdSharedPtrRef()
+OkdSharedPtrRef::~OkdSharedPtrRef()
 {
 
 }
@@ -81,8 +78,7 @@ OkdSharedPtr<T>::OkdSharedPtrRef::~OkdSharedPtrRef()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-uint	OkdSharedPtr<T>::OkdSharedPtrRef::increase()
+uint	OkdSharedPtrRef::increase()
 {
 	_uiRefCount++;
 	return	( _uiRefCount );
@@ -93,8 +89,7 @@ uint	OkdSharedPtr<T>::OkdSharedPtrRef::increase()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-uint	OkdSharedPtr<T>::OkdSharedPtrRef::decrease()
+uint	OkdSharedPtrRef::decrease()
 {
 	ORKID_ASSERT( _uiRefCount > 0 );
 
@@ -107,12 +102,11 @@ uint	OkdSharedPtr<T>::OkdSharedPtrRef::decrease()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		increase
+// Name:		getRefCount
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-uint	OkdSharedPtr<T>::OkdSharedPtrRef::getRefCount() const
+uint	OkdSharedPtrRef::getRefCount() const
 {
 	return	( _uiRefCount );
 }

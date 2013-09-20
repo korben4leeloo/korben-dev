@@ -145,19 +145,26 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	OkdResourceManager* pResourceManager	= pEngine->addResourceManager( "TestResourceManager" );
 	OkdScene*			pScene				= pEngine->addScene( "TestScene", "TestResourceManager" );
-	OkdMeshResourcePtr	meshResource		= pResourceManager->addMesh( "TestMesh", "plouf.okm", RES_LOC_MEMORY );
-	OkdMeshResourcePtr	meshResource2		= meshResource;
-	OkdMeshResourcePtr	meshResource3		= meshResource2;
 
-	meshResource2.ptr()->load();
+	{
+		OkdMeshResourcePtr	meshResource	= pResourceManager->addMesh( "TestMesh", "plouf.okm", RES_LOC_MEMORY );
+		OkdMeshResourcePtr	meshResource4	= pResourceManager->addMesh( "TestMesh2", "plouf2.okm", RES_LOC_FILE );
+		OkdMeshResourcePtr	meshResource2	= meshResource;
+		OkdMeshResourcePtr	meshResource3	= meshResource2;
+
+		meshResource2.load();
+		meshResource.load();
+
+		//meshResource2.load();
+		meshResource2.unload();
+		//meshResource3.unload();
+
+		meshResource4.load();
+
+		meshResource = meshResource4;
+	}
 
 	OrkidEngine::destroy();
-
-	/*OkdMeshResource m( "test", "test2", OkdMeshResource::RES_LOC_MEMORY );
-	OkdMeshResource m2 = m;
-
-	m2.load();
-	m.load();*/
 
 	/*HMODULE hLib = LoadLibrary( "D:\\DevJJA\\SVN\\korben-dev\\Orkid\\Debug\\OrkidRuntimeDll.dll" );
 	FARPROC procAddr = GetProcAddress( hLib, "orkidRuntimeDllMainEntry" );*/

@@ -36,7 +36,8 @@ OkdResourceManager::~OkdResourceManager()
 //											const OkdString&		strMeshLocationName, 
 //											const ResourceLocation	eResourceLocation)
 //{
-//	OkdMeshResource meshResource( strMeshName, strMeshLocationName, eResourceLocation );
+//	OkdMesh*		pMesh = new OkdMesh();
+//	OkdMeshResource	meshResource( strMeshName, strMeshLocationName, eResourceLocation, pMesh );
 //
 //	_vMeshArray.add( meshResource );
 //	return	( meshResource );
@@ -76,6 +77,6 @@ void	OkdResourceManager::clearResources()
 	{
 		const OkdMeshResourcePtr& meshResourcePtr = _vMeshArray[i];
 		ORKID_ASSERT( meshResourcePtr.getRefCount() == 1 );
-		ORKID_ASSERT( meshResourcePtr.ptr()->getLoadRefCount() == 0 );
+		ORKID_ASSERT( meshResourcePtr.getLoadRefCount() == 0 );
 	}
 }
