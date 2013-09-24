@@ -9,13 +9,23 @@
 
 #include	ORKID_ENGINE_H(SceneGraph/OkdNode)
 
+////-----------------------------------------------------------------------------
+//// Name:		OkdScene constructor
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdScene::OkdScene(OkdResourceManager* pResourceManager)
+//: _pResourceManager( pResourceManager )
+//{
+//	_pRootNode = new OkdNode();
+//}
+
 //-----------------------------------------------------------------------------
 // Name:		OkdScene constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdScene::OkdScene(OkdResourceManager* pResourceManager)
-: _pResourceManager( pResourceManager )
+OkdScene::OkdScene()
 {
 	_pRootNode = new OkdNode();
 }

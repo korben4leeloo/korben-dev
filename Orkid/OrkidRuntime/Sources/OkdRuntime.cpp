@@ -143,26 +143,26 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	meshResource2.load();*/
 
-	OkdResourceManager* pResourceManager	= pEngine->addResourceManager( "TestResourceManager" );
-	OkdScene*			pScene				= pEngine->addScene( "TestScene", "TestResourceManager" );
+	//OkdResourceManager* pResourceManager	= pEngine->addResourceManager( "TestResourceManager" );
+	//OkdScene*			pScene				= pEngine->addScene( "TestScene", "TestResourceManager" );
 
-	{
-		OkdMeshResourcePtr	meshResource	= pResourceManager->addMesh( "TestMesh", "plouf.okm", RES_LOC_MEMORY );
-		OkdMeshResourcePtr	meshResource4	= pResourceManager->addMesh( "TestMesh2", "plouf2.okm", RES_LOC_FILE );
-		OkdMeshResourcePtr	meshResource2	= meshResource;
-		OkdMeshResourcePtr	meshResource3	= meshResource2;
+	//{
+	//	OkdMeshResourcePtr	meshResource	= pResourceManager->addMesh( "TestMesh", "plouf.okm", RES_LOC_MEMORY );
+	//	OkdMeshResourcePtr	meshResource4	= pResourceManager->addMesh( "TestMesh2", "plouf2.okm", RES_LOC_FILE );
+	//	OkdMeshResourcePtr	meshResource2	= meshResource;
+	//	OkdMeshResourcePtr	meshResource3	= meshResource2;
 
-		meshResource2.load();
-		meshResource.load();
+	//	meshResource2.load();
+	//	meshResource.load();
 
-		//meshResource2.load();
-		meshResource2.unload();
-		//meshResource3.unload();
+	//	//meshResource2.load();
+	//	meshResource2.unload();
+	//	//meshResource3.unload();
 
-		meshResource4.load();
+	//	meshResource4.load();
 
-		meshResource = meshResource4;
-	}
+	//	meshResource = meshResource4;
+	//}
 
 	OrkidEngine::destroy();
 

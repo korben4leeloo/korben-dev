@@ -28,11 +28,12 @@ public:
 	inline static OrkidEngine*	instance();
 
 	// Resource managers
-	OkdResourceManager*			addResourceManager( const OkdString& strResourceManagerName );
-	OkdResourceManager*			getResourceManager( const OkdString& strResourceManagerName );
+	/*OkdResourceManager*			addResourceManager( const OkdString& strResourceManagerName );
+	OkdResourceManager*			getResourceManager( const OkdString& strResourceManagerName );*/
 
 	// Scenes
-	OkdScene*					addScene( const OkdString& strSceneName, const OkdString& strResourceManagerName );
+	//OkdScene*					addScene( const OkdString& strSceneName, const OkdString& strResourceManagerName );
+	OkdScene*					addScene( const OkdString& strSceneName );
 	OkdScene*					getScene( const OkdString& strSceneName );
 
 	static const char*			_strDefaultResourceManager;
@@ -45,11 +46,16 @@ private:
 	void						clear();
 	template<class T> void		clearMap( T* pMap );
 
-	OkdResourceManagerMap		_resourceManagerList;
+	//OkdResourceManagerMap		_resourceManagerList;
+	OkdResourceManager*			_pResourceManager;
 	OkdSceneMap					_sceneList;
 
 	static OrkidEngine*			_pInstance;
 };
+
+//*****************************************************************************
+//	Inline functions declarations
+//*****************************************************************************
 
 //-----------------------------------------------------------------------------
 // Name:		create
@@ -59,6 +65,7 @@ private:
 OrkidEngine*	OrkidEngine::create()
 {
 	destroy();
+
 	_pInstance = new OrkidEngine();
 
 	return	( _pInstance );

@@ -20,6 +20,9 @@
     <Filter Include="Sources\Memory">
       <UniqueIdentifier>{9600c850-fde7-42f8-a548-3bf7a30c2914}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Xml">
+      <UniqueIdentifier>{7fd42b3e-fcf2-4e08-a711-00f359173c7c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\OrkidCoreRoot.h">
@@ -76,6 +79,12 @@
     <ClInclude Include="Sources\Stream\OkdFileStream.h">
       <Filter>Sources\Stream</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Xml\OkdXmlFile.h">
+      <Filter>Sources\Xml</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Xml\Root.h">
+      <Filter>Sources\Xml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Math\OkdVector3f.cpp">
@@ -116,6 +125,9 @@
     </ClCompile>
     <ClCompile Include="Sources\Stream\OkdFileStream.cpp">
       <Filter>Sources\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Xml\OkdXmlFile.cpp">
+      <Filter>Sources\Xml</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

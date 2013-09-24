@@ -29,6 +29,8 @@
     <ClInclude Include="Sources\Stream\Root.h" />
     <ClInclude Include="Sources\String\OkdString.h" />
     <ClInclude Include="Sources\String\Root.h" />
+    <ClInclude Include="Sources\Xml\OkdXmlFile.h" />
+    <ClInclude Include="Sources\Xml\Root.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Containers\OkdList.cpp" />
@@ -44,6 +46,7 @@
     <ClCompile Include="Sources\Stream\OkdFile.cpp" />
     <ClCompile Include="Sources\Stream\OkdFileStream.cpp" />
     <ClCompile Include="Sources\String\OkdString.cpp" />
+    <ClCompile Include="Sources\Xml\OkdXmlFile.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9564AB07-FBBD-44CB-89B8-116A30492110}</ProjectGuid>
@@ -76,7 +79,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(KORBEN_DEV_QT_PATH)\include;$(KORBEN_DEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KORBEN_DEV_ORKID_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(KORBEN_DEV_QT_PATH)\include;$(KORBEN_DEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KORBEN_DEV_PATH)\Libraries\Xml\Xerces\include;$(KORBEN_DEV_ORKID_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>
       </ForcedIncludeFiles>
     </ClCompile>

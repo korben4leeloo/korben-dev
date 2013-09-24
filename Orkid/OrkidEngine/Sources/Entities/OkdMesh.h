@@ -15,16 +15,16 @@
 #include	ORKID_CORE_H(Math/OkdVector3f)
 #include	ORKID_CORE_H(Stream/OkdFileStream)
 //#include	ORKID_CORE_H(Memory/OkdSharedPtr)
-#include	ORKID_ENGINE_H(ResourceManager/OkdSharedResource)
+//#include	ORKID_ENGINE_H(ResourceManager/OkdSharedResource)
 
-class OkdMesh;
-typedef OkdSharedResource<OkdMesh> OkdMeshResource;
+//class OkdMesh;
+//typedef OkdSharedResource<OkdMesh> OkdMeshResource;
 
 class OkdMesh
 {
 public:
-	friend class OkdSharedResource<OkdMesh>;
-	friend class OkdResourceManager;
+	//friend class OkdSharedResource<OkdMesh>;
+	//friend class OkdResourceManager;
 
 	void			create( const OkdMeshInfo& meshInfo );
 
@@ -34,7 +34,7 @@ public:
 	void			write( OkdFileStream* pStream );
 
 	//static void		load( OkdMesh* pMesh );
-	static void		load( OkdMeshResource* pMeshResource );
+	//static void		load( OkdMeshResource* pMeshResource );
 
 	//friend class OkdSharedResource<OkdMesh, &OkdMesh::load>;
 	//friend class OkdSharedPtr<OkdMesh>;
@@ -59,7 +59,7 @@ private:
 	OkdMeshPolygon*	_pPolygonArray;
 };
 
-typedef OkdSharedResourcePtr<OkdMesh, &OkdMesh::load> OkdMeshResourcePtr;
+//typedef OkdSharedResourcePtr<OkdMesh, &OkdMesh::load> OkdMeshResourcePtr;
 //typedef OkdSharedResource<OkdMesh, &OkdMesh::load> OkdMeshResource;
 //typedef OkdSharedPtr<OkdMeshResource> OkdMeshResourcePtr;
 

@@ -24,8 +24,9 @@ OrkidEngine::OrkidEngine()
 {
 	OrkidCore::initialize();
 
-	addResourceManager( OrkidEngine::_strDefaultResourceManager );
-	addScene( OrkidEngine::_strDefaultScene, OrkidEngine::_strDefaultResourceManager );
+	_pResourceManager = new OkdResourceManager();
+
+	addScene( OrkidEngine::_strDefaultScene );
 }
 
 //-----------------------------------------------------------------------------
@@ -36,6 +37,9 @@ OrkidEngine::OrkidEngine()
 OrkidEngine::~OrkidEngine()
 {
 	clear();
+
+	delete _pResourceManager;
+
 	OrkidCore::clean();
 }
 
@@ -46,7 +50,7 @@ OrkidEngine::~OrkidEngine()
 //-----------------------------------------------------------------------------
 void	OrkidEngine::clear()
 {
-	clearMap<OkdResourceManagerMap>( &_resourceManagerList );
+	//clearMap<OkdResourceManagerMap>( &_resourceManagerList );
 	clearMap<OkdSceneMap>( &_sceneList );
 }
 
@@ -69,57 +73,75 @@ void	OrkidEngine::clearMap( T* pMap )
 	pMap->clear();
 }
 
-//-----------------------------------------------------------------------------
-// Name:		addResourceManager
+////-----------------------------------------------------------------------------
+//// Name:		addResourceManager
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdResourceManager*	OrkidEngine::addResourceManager( const OkdString& strResourceManagerName )
+//{
+//	OkdResourceManager* pResourceManager = getResourceManager( strResourceManagerName );
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdResourceManager*	OrkidEngine::addResourceManager( const OkdString& strResourceManagerName )
-{
-	OkdResourceManager* pResourceManager = getResourceManager( strResourceManagerName );
-
-	if	( !pResourceManager )
-	{
-		pResourceManager = new OkdResourceManager();
-		_resourceManagerList[strResourceManagerName] = pResourceManager;
-	}
-
-	return	( pResourceManager );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		getResourceManager
+//	if	( !pResourceManager )
+//	{
+//		pResourceManager = new OkdResourceManager();
+//		_resourceManagerList[strResourceManagerName] = pResourceManager;
+//	}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdResourceManager*	OrkidEngine::getResourceManager( const OkdString& strResourceManagerName )
-{
-	OkdResourceManagerMap::iterator itResourceManager	= _resourceManagerList.find( strResourceManagerName );
-	OkdResourceManager*				pResourceManager	= ( itResourceManager == _resourceManagerList.end() ) ? 0 : itResourceManager->second;
+//	return	( pResourceManager );
+//}
 
-	return	( pResourceManager );
-}
+////-----------------------------------------------------------------------------
+//// Name:		getResourceManager
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdResourceManager*	OrkidEngine::getResourceManager( const OkdString& strResourceManagerName )
+//{
+//	OkdResourceManagerMap::iterator itResourceManager	= _resourceManagerList.find( strResourceManagerName );
+//	OkdResourceManager*				pResourceManager	= ( itResourceManager == _resourceManagerList.end() ) ? 0 : itResourceManager->second;
+//
+//	return	( pResourceManager );
+//}
+
+////-----------------------------------------------------------------------------
+//// Name:		addScene
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdScene*	OrkidEngine::addScene(const OkdString& strSceneName, 
+//								  const OkdString& strResourceManagerName)
+//{
+//	OkdScene* pScene = getScene( strSceneName );
+//
+//	if	( !pScene )
+//	{
+//		OkdResourceManager* pResourceManager = getResourceManager( strResourceManagerName );
+//
+//		if	( !pResourceManager )
+//		{
+//			return	( 0 );
+//		}
+//
+//		pScene = new OkdScene( pResourceManager );
+//		_sceneList[strSceneName] = pScene;
+//	}
+//
+//	return	( pScene );
+//}
 
 //-----------------------------------------------------------------------------
 // Name:		addScene
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdScene*	OrkidEngine::addScene(const OkdString& strSceneName, 
-								  const OkdString& strResourceManagerName)
+OkdScene*	OrkidEngine::addScene(const OkdString& strSceneName)
 {
 	OkdScene* pScene = getScene( strSceneName );
 
 	if	( !pScene )
 	{
-		OkdResourceManager* pResourceManager = getResourceManager( strResourceManagerName );
-
-		if	( !pResourceManager )
-		{
-			return	( 0 );
-		}
-
-		pScene = new OkdScene( pResourceManager );
+		pScene = new OkdScene();
 		_sceneList[strSceneName] = pScene;
 	}
 
