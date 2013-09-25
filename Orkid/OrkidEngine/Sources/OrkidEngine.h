@@ -30,6 +30,7 @@ public:
 	// Resource managers
 	/*OkdResourceManager*			addResourceManager( const OkdString& strResourceManagerName );
 	OkdResourceManager*			getResourceManager( const OkdString& strResourceManagerName );*/
+	inline OkdResourceManager*	getResourceManager();
 
 	// Scenes
 	//OkdScene*					addScene( const OkdString& strSceneName, const OkdString& strResourceManagerName );
@@ -94,6 +95,16 @@ OrkidEngine*	OrkidEngine::instance()
 {
 	ORKID_ASSERT( _pInstance );
 	return	( _pInstance );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getResourceManager
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdResourceManager*	OrkidEngine::getResourceManager()
+{
+	return	( _pResourceManager );
 }
 
 #endif

@@ -37,6 +37,8 @@ public:
 	inline bool				operator==( const OkdString& other ) const;
 	//friend inline OkdFileStream&	operator<<( OkdFileStream& stream, const OkdString& str );
 
+	inline uint32		size() const;
+
 private:
 	//QString				_str;
 	std::string			_str;
@@ -111,6 +113,17 @@ bool OkdString::operator==(const OkdString& other) const
 {
 	return	( _str == other._str );
 }
+
+//-----------------------------------------------------------------------------
+// Name:		operator==
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+uint32 OkdString::size() const
+{
+	return	( _str.size() );
+}
+
 //
 ////-----------------------------------------------------------------------------
 //// Name:		operator==

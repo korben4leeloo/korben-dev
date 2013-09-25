@@ -14,6 +14,8 @@
 #include	ORKID_CORE_H(Memory/OkdSharedPtr)
 //#include	ORKID_CORE_H(String/OkdString)
 
+class OkdString;
+
 class OkdResourceLocation
 {
 

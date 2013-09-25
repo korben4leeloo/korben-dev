@@ -142,7 +142,7 @@ OkdScene*	OrkidEngine::addScene(const OkdString& strSceneName)
 	if	( !pScene )
 	{
 		pScene = new OkdScene();
-		_sceneList[strSceneName] = pScene;
+		_sceneList.add( strSceneName, pScene );
 	}
 
 	return	( pScene );
@@ -155,8 +155,13 @@ OkdScene*	OrkidEngine::addScene(const OkdString& strSceneName)
 //-----------------------------------------------------------------------------
 OkdScene*	OrkidEngine::getScene( const OkdString& strSceneName )
 {
-	OkdSceneMap::iterator	itScene = _sceneList.find( strSceneName );
+	/*OkdSceneMap::iterator	itScene = _sceneList.find( strSceneName );
 	OkdScene*				pScene	= ( itScene == _sceneList.end() ) ? 0 : itScene->second;
 
+	return	( pScene );*/
+
+	OkdScene* pScene = 0; 
+	
+	_sceneList.find( strSceneName, &pScene );
 	return	( pScene );
 }

@@ -11,6 +11,7 @@
 
 #include	<assert.h>
 #include	<iosfwd>
+#include	<stdint.h>
 
 // Defines for inclusions
 #define	ORKID_CORE_H(file)			<OrkidCore/Sources/file.h>
@@ -33,6 +34,9 @@
 
 // Typedefs
 typedef unsigned int	uint;
+typedef uint8_t			uint8;
+typedef uint16_t		uint16;
+typedef uint32_t		uint32;
 
 // Enums
 enum OrkidErrorCode

@@ -7,6 +7,8 @@
 
 #include	"OkdResourceManager.h"
 
+#include	ORKID_CORE_H(String/OkdCrc32)
+
 //-----------------------------------------------------------------------------
 // Name:		OkdResourceManager constructor
 //
@@ -25,6 +27,44 @@ OkdResourceManager::OkdResourceManager()
 OkdResourceManager::~OkdResourceManager()
 {
 	//clearResources();
+}
+
+//-----------------------------------------------------------------------------
+// Name:		registerType
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdResourceManager::registerType(const OkdString&					strResourceTypeName, 
+										 const OkdAbstractResourceHandler*	pResourceHandler)
+{
+	uint32					uiResourceTypeId	= getResourceTypeId( strResourceTypeName );
+	OkdResourceContainer*	pResourceContainer	= new OkdResourceContainer();
+
+	pResourceContainer->_pResourceHandler		= pResourceHandler;
+	pResourceContainer->_strResourceTypeName	= strResourceTypeName;
+
+	_resourceContainerMap.add( uiResourceTypeId, pResourceContainer );
+}
+
+////-----------------------------------------------------------------------------
+//// Name:		retrieveResource
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdSharedResourcePtr	OkdResourceManager::retrieveResource(const OkdResourceIdentifier&	resourceIdentifier)
+//{
+//	re
+//}
+
+//-----------------------------------------------------------------------------
+// Name:		getResourceTypeId
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+uint32	OkdResourceManager::getResourceTypeId(const OkdString&	strResourceTypeName)
+{
+	uint32 uiCrc32 = OkdCrc32::getCrc32( strResourceTypeName );
+	return	( uiCrc32 );
 }
 
 ////-----------------------------------------------------------------------------

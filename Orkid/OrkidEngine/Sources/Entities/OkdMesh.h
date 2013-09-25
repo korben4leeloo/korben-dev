@@ -16,9 +16,15 @@
 #include	ORKID_CORE_H(Stream/OkdFileStream)
 //#include	ORKID_CORE_H(Memory/OkdSharedPtr)
 //#include	ORKID_ENGINE_H(ResourceManager/OkdSharedResource)
+#include	ORKID_ENGINE_H(ResourceManager/OkdResourceManager)
 
 //class OkdMesh;
 //typedef OkdSharedResource<OkdMesh> OkdMeshResource;
+
+class OkdMeshHandler: public OkdAbstractResourceHandler
+{
+
+};
 
 class OkdMesh
 {

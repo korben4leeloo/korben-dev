@@ -85,6 +85,9 @@
     <ClInclude Include="Sources\Xml\Root.h">
       <Filter>Sources\Xml</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\String\OkdCrc32.h">
+      <Filter>Sources\String</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Math\OkdVector3f.cpp">
@@ -128,6 +131,9 @@
     </ClCompile>
     <ClCompile Include="Sources\Xml\OkdXmlFile.cpp">
       <Filter>Sources\Xml</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\String\OkdCrc32.cpp">
+      <Filter>Sources\String</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
