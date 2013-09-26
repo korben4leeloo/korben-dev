@@ -20,6 +20,9 @@ class OkdScene;
 typedef OkdMap<OkdString, OkdResourceManager*>	OkdResourceManagerMap;
 typedef OkdMap<OkdString, OkdScene*>			OkdSceneMap;
 
+#define	REGISTER_RESOURCE_TYPE( ResourceName, ResourceHandlerPtr )	OrkidEngine::instance()->getResourceManager()->registerResourceType( ResourceName, ResourceHandlerPtr );
+#define	UNREGISTER_RESOURCE_TYPE( ResourceName )					OrkidEngine::instance()->getResourceManager()->unregisterResourceType( ResourceName );
+
 class OrkidEngine
 {
 public:
@@ -28,26 +31,27 @@ public:
 	inline static OrkidEngine*	instance();
 
 	// Resource managers
-	/*OkdResourceManager*			addResourceManager( const OkdString& strResourceManagerName );
-	OkdResourceManager*			getResourceManager( const OkdString& strResourceManagerName );*/
 	inline OkdResourceManager*	getResourceManager();
 
 	// Scenes
-	//OkdScene*					addScene( const OkdString& strSceneName, const OkdString& strResourceManagerName );
 	OkdScene*					addScene( const OkdString& strSceneName );
 	OkdScene*					getScene( const OkdString& strSceneName );
 
-	static const char*			_strDefaultResourceManager;
 	static const char*			_strDefaultScene;
 
 private:
 								OrkidEngine();
 								~OrkidEngine();
 
+	void						initialize();
+	void						uninitialize();
+
+	void						registerResources();
+	void						unregisterResources();
+
 	void						clear();
 	template<class T> void		clearMap( T* pMap );
 
-	//OkdResourceManagerMap		_resourceManagerList;
 	OkdResourceManager*			_pResourceManager;
 	OkdSceneMap					_sceneList;
 
@@ -68,6 +72,7 @@ OrkidEngine*	OrkidEngine::create()
 	destroy();
 
 	_pInstance = new OrkidEngine();
+	_pInstance->initialize();
 
 	return	( _pInstance );
 }

@@ -1,51 +1,51 @@
 //*****************************************************************************
 //
-//	File:		OrkidCore.cpp
+//	File:		OkdSceneHandler.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"OrkidCore.h"
+#include	"OkdSceneHandler.h"
 
-#include	ORKID_CORE_H(Memory/OkdMemManager)
+#include	ORKID_ENGINE_H(OrkidEngine)
+#include	ORKID_ENGINE_H(ResourceManager/OkdResourceManager)
 
 //-----------------------------------------------------------------------------
-// Name:		OrkidCore constructor
+// Name:		OkdSceneHandler constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OrkidCore::OrkidCore()
+OkdSceneHandler::OkdSceneHandler()
 {
-
+	REGISTER_RESOURCE_TYPE( "SCENE", this );
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OrkidCore destructor
+// Name:		OkdSceneHandler destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OrkidCore::~OrkidCore()
+OkdSceneHandler::~OkdSceneHandler()
+{
+	UNREGISTER_RESOURCE_TYPE( "SCENE" );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		load
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdSceneHandler::load(OkdSharedResource*	pResource)
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		initialize
+// Name:		unload
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OrkidCore::initialize()
+void	OkdSceneHandler::unload(OkdSharedResource*	pResource)
 {
-	OrkidCore::uninitialize();
-	OkdMemManager::create();
-}
 
-//-----------------------------------------------------------------------------
-// Name:		uninitialize
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OrkidCore::uninitialize()
-{
-	OkdMemManager::destroy();
 }

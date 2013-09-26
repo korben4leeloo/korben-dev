@@ -23,6 +23,9 @@
     <Filter Include="Sources\Xml">
       <UniqueIdentifier>{7fd42b3e-fcf2-4e08-a711-00f359173c7c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Singleton">
+      <UniqueIdentifier>{a4e443a6-d5ac-43ee-b299-dcef119dc6bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\OrkidCoreRoot.h">
@@ -88,6 +91,12 @@
     <ClInclude Include="Sources\String\OkdCrc32.h">
       <Filter>Sources\String</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Singleton\OkdSingleton.h">
+      <Filter>Sources\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Singleton\Root.h">
+      <Filter>Sources\Singleton</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Math\OkdVector3f.cpp">
@@ -134,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="Sources\String\OkdCrc32.cpp">
       <Filter>Sources\String</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Singleton\OkdSingleton.cpp">
+      <Filter>Sources\Singleton</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

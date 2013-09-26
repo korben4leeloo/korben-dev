@@ -30,12 +30,12 @@ OkdResourceManager::~OkdResourceManager()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		registerType
+// Name:		registerResourceType
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdResourceManager::registerType(const OkdString&					strResourceTypeName, 
-										 const OkdAbstractResourceHandler*	pResourceHandler)
+void	OkdResourceManager::registerResourceType(const OkdString&					strResourceTypeName, 
+												 const OkdAbstractResourceHandler*	pResourceHandler)
 {
 	uint32					uiResourceTypeId	= getResourceTypeId( strResourceTypeName );
 	OkdResourceContainer*	pResourceContainer	= new OkdResourceContainer();
@@ -44,6 +44,17 @@ void	OkdResourceManager::registerType(const OkdString&					strResourceTypeName,
 	pResourceContainer->_strResourceTypeName	= strResourceTypeName;
 
 	_resourceContainerMap.add( uiResourceTypeId, pResourceContainer );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		unregisterResourceType
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdResourceManager::unregisterResourceType(const OkdString&	strResourceTypeName)
+{
+	uint32 uiResourceTypeId	= getResourceTypeId( strResourceTypeName );
+	_resourceContainerMap.remove( uiResourceTypeId );
 }
 
 ////-----------------------------------------------------------------------------

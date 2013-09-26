@@ -15,7 +15,7 @@ class OrkidCore
 {
 public:
 	static void	initialize();
-	static void	clean();
+	static void	uninitialize();
 
 private:
 				OrkidCore();

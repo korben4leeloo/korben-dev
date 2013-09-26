@@ -16,13 +16,14 @@
 #include	ORKID_CORE_H(Containers/OkdMap)
 //#include	ORKID_ENGINE_H(Entities/OkdMesh)
 #include	ORKID_ENGINE_H(ResourceManager/OkdSharedResource)
+#include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdAbstractResourceHandler)
 
 class OkdSharedResource;
 
-class OkdAbstractResourceHandler
-{
-	
-};
+//class OkdAbstractResourceHandler
+//{
+//	
+//};
 
 #include	ORKID_CORE_H(String/OkdString)
 class OkdResourceContainer
@@ -40,7 +41,8 @@ public:
 
 	//OkdMeshResource						addMesh( const OkdString& strMeshName, const OkdString& strMeshLocationName, const ResourceLocation eResourceLocation );
 	//OkdMeshResourcePtr					addMesh( const OkdString& strMeshName, const OkdString& strMeshLocationName, const ResourceLocation eResourceLocation );
-	void									registerType( const OkdString& strResourceTypeName, const OkdAbstractResourceHandler* pResourceHandler );
+	void									registerResourceType( const OkdString& strResourceTypeName, const OkdAbstractResourceHandler* pResourceHandler );
+	void									unregisterResourceType( const OkdString& strResourceTypeName );
 	uint32									getResourceTypeId( const OkdString& strResourceTypeName );
 
 	OkdSharedResourcePtr					retrieveResource( const OkdResourceIdentifier& resourceIdentifier );

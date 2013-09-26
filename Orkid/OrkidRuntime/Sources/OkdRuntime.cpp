@@ -120,6 +120,8 @@ bool createWindow(LPCSTR title, int width, int height) {
 
 #include	ORKID_ENGINE_H(OrkidEngine)
 #include	ORKID_ENGINE_H(ResourceManager/OkdResourceManager)
+//#include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdMeshHandler)
+//#include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdSceneHandler)
 
 /**
 	WinMain is the main entry point for Windows based applications as opposed to 'main' for console
@@ -136,7 +138,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	OrkidEngine*		pEngine				= OrkidEngine::create();
 	OkdResourceManager*	pResourceManager	= pEngine->getResourceManager();
 
-	pResourceManager->registerType( "Mesh", 0 );
+	/*pResourceManager->registerResourceType( "MESH", 0 );
+	pResourceManager->registerResourceType( "SCENE", 0 );*/
+
+	/*OkdMeshHandler*		pMeshHandler	= OkdMeshHandler::create();
+	OkdSceneHandler*	pSceneHandler	= OkdSceneHandler::create();*/
 
 	/*OkdResourceManager* pResourceManager	= pEngine->addResourceManager( "TestResourceManager" );
 	OkdScene*			pScene				= pEngine->addScene( "TestScene", "TestResourceManager" );

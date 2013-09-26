@@ -29,6 +29,9 @@
     <Filter Include="Sources\SceneGraph">
       <UniqueIdentifier>{a0ad9b4d-ebe6-4c22-ae37-346a5e0851ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\ResourceManager\ResourceHandler">
+      <UniqueIdentifier>{ad56a2b8-509d-4a48-bad9-9b7ab3a5862b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\OrkidEngineRoot.h">
@@ -82,6 +85,18 @@
     <ClInclude Include="Sources\OrkidEngine.h">
       <Filter>Sources</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\ResourceManager\ResourceHandler\Root.h">
+      <Filter>Sources\ResourceManager\ResourceHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ResourceManager\ResourceHandler\OkdAbstractResourceHandler.h">
+      <Filter>Sources\ResourceManager\ResourceHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ResourceManager\ResourceHandler\OkdMeshHandler.h">
+      <Filter>Sources\ResourceManager\ResourceHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ResourceManager\ResourceHandler\OkdSceneHandler.h">
+      <Filter>Sources\ResourceManager\ResourceHandler</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
@@ -119,6 +134,15 @@
     </ClCompile>
     <ClCompile Include="Sources\OrkidEngine.cpp">
       <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ResourceManager\ResourceHandler\OkdAbstractResourceHandler.cpp">
+      <Filter>Sources\ResourceManager\ResourceHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ResourceManager\ResourceHandler\OkdMeshHandler.cpp">
+      <Filter>Sources\ResourceManager\ResourceHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ResourceManager\ResourceHandler\OkdSceneHandler.cpp">
+      <Filter>Sources\ResourceManager\ResourceHandler</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
