@@ -17,11 +17,12 @@
 class OkdResourceManager;
 class OkdScene;
 
-typedef OkdMap<OkdString, OkdResourceManager*>	OkdResourceManagerMap;
-typedef OkdMap<OkdString, OkdScene*>			OkdSceneMap;
+typedef OkdMap<OkdString, OkdScene*>	OkdSceneMap;
 
-#define	REGISTER_RESOURCE_TYPE( ResourceName, ResourceHandlerPtr )	OrkidEngine::instance()->getResourceManager()->registerResourceType( ResourceName, ResourceHandlerPtr );
-#define	UNREGISTER_RESOURCE_TYPE( ResourceName )					OrkidEngine::instance()->getResourceManager()->unregisterResourceType( ResourceName );
+//#define	REGISTER_RESOURCE_TYPE( ResourceHandlerPtr )	OrkidEngine::instance()->getResourceManager()->registerResourceType( ResourceHandlerPtr )
+//#define	UNREGISTER_RESOURCE_TYPE( ResourceHandlerPtr )	OrkidEngine::instance()->getResourceManager()->unregisterResourceType( ResourceHandlerPtr )
+//#define	REGISTER_RESOURCE_TYPE( ResourceTypeName, ResourceHandlerType )	OrkidEngine::instance()->getResourceManager()->registerResourceType( ResourceHandlerPtr );
+//#define	UNREGISTER_RESOURCE_TYPE( ResourceHandlerType )	OrkidEngine::instance()->getResourceManager()->unregisterResourceType( ResourceTypeName );
 
 class OrkidEngine
 {
@@ -38,6 +39,7 @@ public:
 	OkdScene*					getScene( const OkdString& strSceneName );
 
 	static const char*			_strDefaultScene;
+	static const char*			_resourceTypeName[OrkidResourceTypeLast];
 
 private:
 								OrkidEngine();

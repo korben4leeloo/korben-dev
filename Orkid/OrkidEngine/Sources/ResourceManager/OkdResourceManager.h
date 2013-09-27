@@ -11,51 +11,30 @@
 
 #include	"Root.h"
 
-//#include	ORKID_CORE_H(Containers/OkdVector)
 #include	ORKID_CORE_H(Containers/OkdList)
 #include	ORKID_CORE_H(Containers/OkdMap)
-//#include	ORKID_ENGINE_H(Entities/OkdMesh)
 #include	ORKID_ENGINE_H(ResourceManager/OkdSharedResource)
 #include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdAbstractResourceHandler)
-
-class OkdSharedResource;
-
-//class OkdAbstractResourceHandler
-//{
-//	
-//};
-
-#include	ORKID_CORE_H(String/OkdString)
-class OkdResourceContainer
-{
-public:
-	OkdList<OkdSharedResource*>			_resourceList;
-	const OkdAbstractResourceHandler*	_pResourceHandler;
-	OkdString							_strResourceTypeName;
-};
 
 class OkdResourceManager
 {
 public:
 	friend class OrkidEngine;
 
-	//OkdMeshResource						addMesh( const OkdString& strMeshName, const OkdString& strMeshLocationName, const ResourceLocation eResourceLocation );
-	//OkdMeshResourcePtr					addMesh( const OkdString& strMeshName, const OkdString& strMeshLocationName, const ResourceLocation eResourceLocation );
-	void									registerResourceType( const OkdString& strResourceTypeName, const OkdAbstractResourceHandler* pResourceHandler );
-	void									unregisterResourceType( const OkdString& strResourceTypeName );
-	uint32									getResourceTypeId( const OkdString& strResourceTypeName );
+	void												registerResourceType( const OkdAbstractResourceHandler* pResourceHandler );
+	void												unregisterResourceType( const OkdAbstractResourceHandler* pResourceHandler );
+	uint32												getResourceTypeId( const OkdString& strResourceTypeName );
 
-	OkdSharedResourcePtr					retrieveResource( const OkdResourceIdentifier& resourceIdentifier );
+	OkdSharedResourcePtr								addResource( const OkdResourceIdentifier& resourceIdentifier );
 
 private:
-											OkdResourceManager();
-											~OkdResourceManager();
+														OkdResourceManager();
+														~OkdResourceManager();
 
-	//void									clearResources();
+	//void												clearResources();
 
-	//OkdVector<OkdMeshResource>			_vMeshArray;
-	//OkdVector<OkdMeshResourcePtr>			_vMeshArray;
-	OkdMap<uint32, OkdResourceContainer*>	_resourceContainerMap;
+	OkdMap<uint32, const OkdAbstractResourceHandler*>	_resourceHandlerMap;
+	const OkdAbstractResourceHandler*					_resourceHandlerArray[OrkidResourceTypeLast];
 };
 
 //*****************************************************************************

@@ -11,6 +11,9 @@
 
 #include	"Root.h"
 
+#include	ORKID_CORE_H(String/OkdString)
+#include	ORKID_CORE_H(Containers/OkdList)
+
 class OkdSharedResource;
 
 #define	FRIEND_RESOURCE_HANDLER_SINGLETON(SingletonClass) \
@@ -20,13 +23,54 @@ class OkdSharedResource;
 class OkdAbstractResourceHandler
 {
 public:
-	virtual void	load( OkdSharedResource* pResource )	= 0;
-	virtual void	unload( OkdSharedResource* pResource )	= 0;
+	virtual void					load( OkdSharedResource* pResource )	= 0;
+	virtual void					unload( OkdSharedResource* pResource )	= 0;
+
+	inline const char*				getResourceTypeName() const;
+	inline const OrkidResourceType	getResourceType() const;
 
 protected:
-					OkdAbstractResourceHandler();
-					~OkdAbstractResourceHandler();
+									OkdAbstractResourceHandler(const OrkidResourceType eResourceType);
+									~OkdAbstractResourceHandler();
+
+private:
+	OkdList<OkdSharedResource*>		_resourceList;
+	const char*						_strResourceTypeName;
+	OrkidResourceType				_eResourceType;
 };
+
+//*****************************************************************************
+//	Inline functions declarations
+//*****************************************************************************
+
+//-----------------------------------------------------------------------------
+// Name:		getResourceTypeName
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const char*	OkdAbstractResourceHandler::getResourceTypeName() const
+{
+	return	( _strResourceTypeName );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getResourceType
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const OrkidResourceType	OkdAbstractResourceHandler::getResourceType() const
+{
+	return	( _eResourceType );
+}
+
+
+//*****************************************************************************
+//
+//	Class:		OkdAbstractResourceHandlerSingleton
+//
+//	Created:	2013-08-26
+//
+//*****************************************************************************
 
 template<class T>
 class OkdAbstractResourceHandlerSingleton: public OkdAbstractResourceHandler
@@ -37,7 +81,7 @@ public:
 	inline static T*	instance();
 
 protected:
-						OkdAbstractResourceHandlerSingleton();
+						OkdAbstractResourceHandlerSingleton(const OrkidResourceType eResourceType);
 						~OkdAbstractResourceHandlerSingleton();
 
 	static T*			_pInstance;
@@ -55,7 +99,8 @@ template<class T> T* OkdAbstractResourceHandlerSingleton<T>::_pInstance = 0;
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-OkdAbstractResourceHandlerSingleton<T>::OkdAbstractResourceHandlerSingleton()
+OkdAbstractResourceHandlerSingleton<T>::OkdAbstractResourceHandlerSingleton(const OrkidResourceType eResourceType)
+: OkdAbstractResourceHandler( eResourceType )
 {
 	
 }
@@ -82,7 +127,6 @@ T*	OkdAbstractResourceHandlerSingleton<T>::create()
 	destroy();
 
 	_pInstance = new T();
-
 	return	( _pInstance );
 }
 

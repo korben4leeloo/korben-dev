@@ -135,8 +135,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
                      int       nCmdShow) {
 	MSG msg;
 
-	OrkidEngine*		pEngine				= OrkidEngine::create();
-	OkdResourceManager*	pResourceManager	= pEngine->getResourceManager();
+	OrkidEngine*			pEngine				= OrkidEngine::create();
+	OkdResourceManager*		pResourceManager	= pEngine->getResourceManager();
+	OkdResourceIdentifier	defaultSceneIdentifier( OrkidScene, 0 );
+
+	pResourceManager->addResource( defaultSceneIdentifier );
 
 	/*pResourceManager->registerResourceType( "MESH", 0 );
 	pResourceManager->registerResourceType( "SCENE", 0 );*/

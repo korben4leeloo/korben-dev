@@ -16,6 +16,13 @@
 OrkidEngine*	OrkidEngine::_pInstance			= 0;
 const char*		OrkidEngine::_strDefaultScene	= "Default";
 
+const char*		OrkidEngine::_resourceTypeName[OrkidResourceTypeLast] =
+{
+	"UNKNOWN",
+	"MESH", 
+	"SCENE",
+};
+
 //-----------------------------------------------------------------------------
 // Name:		OrkidEngine constructor
 //

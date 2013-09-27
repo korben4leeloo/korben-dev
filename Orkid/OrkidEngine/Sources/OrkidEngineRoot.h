@@ -11,4 +11,14 @@
 
 #include	"../../OrkidRoot.h"
 
+enum OrkidResourceType
+{
+	OrkidUnknown,
+
+	OrkidMesh,
+	OrkidScene,
+
+	OrkidResourceTypeLast
+};
+
 #endif

@@ -1,49 +1,43 @@
 //*****************************************************************************
 //
-//	File:		OkdMeshHandler.cpp
+//	File:		OkdResourceIdentifier.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"OkdMeshHandler.h"
+#include	"OkdResourceIdentifier.h"
+
+#include	ORKID_CORE_H(String/OkdCrc32)
 
 //-----------------------------------------------------------------------------
-// Name:		OkdMeshHandler constructor
+// Name:		OkdResourceIdentifier constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdMeshHandler::OkdMeshHandler()
-: OkdAbstractResourceHandlerSingleton( OrkidMesh )
+OkdResourceIdentifier::OkdResourceIdentifier(const OrkidResourceType	eResourceType, 
+											 const int32				nResourceId)
+: _eResourceType	( eResourceType )
+, _nResourceId		( nResourceId )
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OkdMeshHandler destructor
+// Name:		OkdResourceIdentifier constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdMeshHandler::~OkdMeshHandler()
+OkdResourceIdentifier::OkdResourceIdentifier(const OrkidResourceType	uiResourceType)
 {
-	
+
 }
 
 //-----------------------------------------------------------------------------
-// Name:		load
+// Name:		OkdResourceIdentifier destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdMeshHandler::load(OkdSharedResource*	pResource)
+OkdResourceIdentifier::~OkdResourceIdentifier()
 {
-	
-}
-
-//-----------------------------------------------------------------------------
-// Name:		unload
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OkdMeshHandler::unload(OkdSharedResource*	pResource)
-{
-
+	//clearResources();
 }

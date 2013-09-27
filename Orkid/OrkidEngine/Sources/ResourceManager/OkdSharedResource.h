@@ -13,6 +13,7 @@
 
 #include	ORKID_CORE_H(Memory/OkdSharedPtr)
 //#include	ORKID_CORE_H(String/OkdString)
+#include	ORKID_ENGINE_H(ResourceManager/OkdResourceIdentifier)
 
 class OkdString;
 
@@ -21,11 +22,11 @@ class OkdResourceLocation
 
 };
 
-class OkdResourceIdentifier
-{
-	uint	_uiResourceTypeId;
-	int		_nResourceId;
-};
+//class OkdResourceIdentifier
+//{
+//	uint	_uiResourceTypeId;
+//	int		_nResourceId;
+//};
 
 class OkdSharedResource
 {
@@ -43,7 +44,7 @@ private:
 class OkdSharedResourcePtr
 {
 public:
-	//friend class OkdResourceManager;
+	friend class OkdResourceManager;
 
 	inline							OkdSharedResourcePtr( const OkdSharedResourcePtr& sharedResource );
 	inline							~OkdSharedResourcePtr();

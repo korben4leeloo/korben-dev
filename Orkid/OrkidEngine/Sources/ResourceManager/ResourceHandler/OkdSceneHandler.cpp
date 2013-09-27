@@ -7,17 +7,15 @@
 
 #include	"OkdSceneHandler.h"
 
-#include	ORKID_ENGINE_H(OrkidEngine)
-#include	ORKID_ENGINE_H(ResourceManager/OkdResourceManager)
-
 //-----------------------------------------------------------------------------
 // Name:		OkdSceneHandler constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 OkdSceneHandler::OkdSceneHandler()
+: OkdAbstractResourceHandlerSingleton( OrkidScene )
 {
-	REGISTER_RESOURCE_TYPE( "SCENE", this );
+	
 }
 
 //-----------------------------------------------------------------------------
@@ -27,7 +25,7 @@ OkdSceneHandler::OkdSceneHandler()
 //-----------------------------------------------------------------------------
 OkdSceneHandler::~OkdSceneHandler()
 {
-	UNREGISTER_RESOURCE_TYPE( "SCENE" );
+	
 }
 
 //-----------------------------------------------------------------------------

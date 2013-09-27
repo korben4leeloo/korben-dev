@@ -97,6 +97,9 @@
     <ClInclude Include="Sources\ResourceManager\ResourceHandler\OkdSceneHandler.h">
       <Filter>Sources\ResourceManager\ResourceHandler</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\ResourceManager\OkdResourceIdentifier.h">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
@@ -143,6 +146,9 @@
     </ClCompile>
     <ClCompile Include="Sources\ResourceManager\ResourceHandler\OkdSceneHandler.cpp">
       <Filter>Sources\ResourceManager\ResourceHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ResourceManager\OkdResourceIdentifier.cpp">
+      <Filter>Sources\ResourceManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
