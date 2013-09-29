@@ -66,18 +66,18 @@ void	OkdResourceManager::unregisterResourceType(const OkdAbstractResourceHandler
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdSharedResourcePtr	OkdResourceManager::addResource(const OkdResourceIdentifier&	resourceIdentifier)
+OkdResourcePtr	OkdResourceManager::addResource(const OkdResourceId&	resourceId)
 {
-	OkdSharedResource*		pSharedResource = new OkdSharedResource( resourceIdentifier );
-	OkdSharedResourcePtr	resourcePtr( pSharedResource );
+	OkdResourceHandle*	pSharedResource = new OkdResourceHandle( resourceId );
+	OkdResourcePtr	resourcePtr( pSharedResource );
 
-	ORKID_ASSERT( ( resourceIdentifier.getResourceType() >= (OrkidResourceType)0 ) && ( resourceIdentifier.getResourceType() < OrkidResourceTypeLast ) );
+	ORKID_ASSERT( ( resourceId.getResourceType() >= (OrkidResourceType)0 ) && ( resourceId.getResourceType() < OrkidResourceTypeLast ) );
 
-	if	( resourceIdentifier.getResourceId() == 0 )
+	if	( resourceId.getResourceId() == 0 )
 	{
 
 	}
-	else if	( resourceIdentifier.getResourceId() > 0 )
+	else if	( resourceId.getResourceId() > 0 )
 	{
 
 	}

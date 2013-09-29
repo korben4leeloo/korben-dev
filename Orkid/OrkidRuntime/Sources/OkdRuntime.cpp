@@ -137,7 +137,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	OrkidEngine*			pEngine				= OrkidEngine::create();
 	OkdResourceManager*		pResourceManager	= pEngine->getResourceManager();
-	OkdResourceIdentifier	defaultSceneIdentifier( OrkidScene, 0 );
+	OkdResourceId	defaultSceneIdentifier( OrkidScene, 0 );
 
 	pResourceManager->addResource( defaultSceneIdentifier );
 

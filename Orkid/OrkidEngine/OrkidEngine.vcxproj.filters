@@ -73,9 +73,6 @@
     <ClInclude Include="Sources\Entities\OkdMeshInfo.h">
       <Filter>Sources\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ResourceManager\OkdSharedResource.h">
-      <Filter>Sources\ResourceManager</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\ResourceManager\Root.h">
       <Filter>Sources\ResourceManager</Filter>
     </ClInclude>
@@ -97,7 +94,10 @@
     <ClInclude Include="Sources\ResourceManager\ResourceHandler\OkdSceneHandler.h">
       <Filter>Sources\ResourceManager\ResourceHandler</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ResourceManager\OkdResourceIdentifier.h">
+    <ClInclude Include="Sources\ResourceManager\OkdResourceId.h">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ResourceManager\OkdResourceHandle.h">
       <Filter>Sources\ResourceManager</Filter>
     </ClInclude>
   </ItemGroup>
@@ -129,9 +129,6 @@
     <ClCompile Include="Sources\Entities\OkdMeshInfo.cpp">
       <Filter>Sources\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ResourceManager\OkdSharedResource.cpp">
-      <Filter>Sources\ResourceManager</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\ResourceManager\OkdResourceManager.cpp">
       <Filter>Sources\ResourceManager</Filter>
     </ClCompile>
@@ -147,7 +144,10 @@
     <ClCompile Include="Sources\ResourceManager\ResourceHandler\OkdSceneHandler.cpp">
       <Filter>Sources\ResourceManager\ResourceHandler</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ResourceManager\OkdResourceIdentifier.cpp">
+    <ClCompile Include="Sources\ResourceManager\OkdResourceId.cpp">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ResourceManager\OkdResourceHandle.cpp">
       <Filter>Sources\ResourceManager</Filter>
     </ClCompile>
   </ItemGroup>

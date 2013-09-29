@@ -22,9 +22,9 @@
     <ClInclude Include="Sources\OpenGL\OkdOpenGLContext.h" />
     <ClInclude Include="Sources\OpenGL\Root.h" />
     <ClInclude Include="Sources\OrkidEngineRoot.h" />
-    <ClInclude Include="Sources\ResourceManager\OkdResourceIdentifier.h" />
+    <ClInclude Include="Sources\ResourceManager\OkdResourceHandle.h" />
+    <ClInclude Include="Sources\ResourceManager\OkdResourceId.h" />
     <ClInclude Include="Sources\ResourceManager\OkdResourceManager.h" />
-    <ClInclude Include="Sources\ResourceManager\OkdSharedResource.h" />
     <ClInclude Include="Sources\ResourceManager\ResourceHandler\OkdAbstractResourceHandler.h" />
     <ClInclude Include="Sources\ResourceManager\ResourceHandler\OkdMeshHandler.h" />
     <ClInclude Include="Sources\ResourceManager\ResourceHandler\OkdSceneHandler.h" />
@@ -43,9 +43,9 @@
     <ClCompile Include="Sources\Entities\OkdMeshInstance.cpp" />
     <ClCompile Include="Sources\OrkidEngine.cpp" />
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp" />
-    <ClCompile Include="Sources\ResourceManager\OkdResourceIdentifier.cpp" />
+    <ClCompile Include="Sources\ResourceManager\OkdResourceHandle.cpp" />
+    <ClCompile Include="Sources\ResourceManager\OkdResourceId.cpp" />
     <ClCompile Include="Sources\ResourceManager\OkdResourceManager.cpp" />
-    <ClCompile Include="Sources\ResourceManager\OkdSharedResource.cpp" />
     <ClCompile Include="Sources\ResourceManager\ResourceHandler\OkdAbstractResourceHandler.cpp" />
     <ClCompile Include="Sources\ResourceManager\ResourceHandler\OkdMeshHandler.cpp" />
     <ClCompile Include="Sources\ResourceManager\ResourceHandler\OkdSceneHandler.cpp" />

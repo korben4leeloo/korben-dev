@@ -13,7 +13,7 @@
 
 #include	ORKID_CORE_H(Containers/OkdList)
 #include	ORKID_CORE_H(Containers/OkdMap)
-#include	ORKID_ENGINE_H(ResourceManager/OkdSharedResource)
+#include	ORKID_ENGINE_H(ResourceManager/OkdResourceHandle)
 #include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdAbstractResourceHandler)
 
 class OkdResourceManager
@@ -25,7 +25,7 @@ public:
 	void												unregisterResourceType( const OkdAbstractResourceHandler* pResourceHandler );
 	uint32												getResourceTypeId( const OkdString& strResourceTypeName );
 
-	OkdSharedResourcePtr								addResource( const OkdResourceIdentifier& resourceIdentifier );
+	OkdResourcePtr										addResource( const OkdResourceId& resourceId );
 
 private:
 														OkdResourceManager();

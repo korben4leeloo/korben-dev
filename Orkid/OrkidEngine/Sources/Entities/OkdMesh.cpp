@@ -119,23 +119,3 @@ void	OkdMesh::write(OkdFileStream* pStream)
 	stream.write( (const char*)_pVertexArray, _meshInfo.getVertexCount() * sizeof(OkdVector3f) );
 	stream.write( (const char*)_pPolygonArray, _meshInfo.getPolygonCount() * sizeof(OkdMeshPolygon) );
 }
-
-////-----------------------------------------------------------------------------
-//// Name:		load
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//void	OkdMesh::load(OkdMesh* pMesh)
-//{
-//	
-//}
-
-////-----------------------------------------------------------------------------
-//// Name:		load
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//void	OkdMesh::load(OkdMeshResource* pMeshResource)
-//{
-//
-//}
