@@ -9,11 +9,13 @@
 
 #include	ORKID_CORE_H(String/OkdString)
 
-#include	<xercesc/util/PlatformUtils.hpp>
-#include	<xercesc/sax/HandlerBase.hpp>
-#include	<xercesc/parsers/XercesDOMParser.hpp>
-
-XERCES_CPP_NAMESPACE_USE
+//#include	<xercesc/util/PlatformUtils.hpp>
+//#include	<xercesc/sax/HandlerBase.hpp>
+//#include	<xercesc/parsers/XercesDOMParser.hpp>
+//#include	<xercesc/dom/DOMImplementation.hpp>
+//#include	<xercesc/dom/DOMDocument.hpp>
+//
+//XERCES_CPP_NAMESPACE_USE
 
 //-----------------------------------------------------------------------------
 // Name:		OkdXmlFile constructor
@@ -22,13 +24,16 @@ XERCES_CPP_NAMESPACE_USE
 //-----------------------------------------------------------------------------
 OkdXmlFile::OkdXmlFile(const OkdString&	strFileName)
 {
-	XMLPlatformUtils::Initialize();
+	/*XMLPlatformUtils::Initialize();
 
 	_pXmlErrorHandler	= new HandlerBase();
 	_pXmlParser			= new XercesDOMParser();
 
 	_pXmlParser->setErrorHandler( _pXmlErrorHandler );
 	_pXmlParser->parse( strFileName );
+
+	DOMImplementation* i = DOMImplementation::getImplementation();
+	DOMDocument* doc = i->createDocument();*/
 }
 
 //-----------------------------------------------------------------------------
@@ -38,8 +43,8 @@ OkdXmlFile::OkdXmlFile(const OkdString&	strFileName)
 //-----------------------------------------------------------------------------
 OkdXmlFile::~OkdXmlFile()
 {
-	delete _pXmlParser;
+	/*delete _pXmlParser;
 	delete _pXmlErrorHandler;
 
-	XMLPlatformUtils::Terminate();
+	XMLPlatformUtils::Terminate();*/
 }

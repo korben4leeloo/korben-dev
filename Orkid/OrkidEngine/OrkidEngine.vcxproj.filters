@@ -100,6 +100,9 @@
     <ClInclude Include="Sources\ResourceManager\OkdResourceHandle.h">
       <Filter>Sources\ResourceManager</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\ResourceManager\OkdResourceDatabase.h">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
@@ -148,6 +151,9 @@
       <Filter>Sources\ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="Sources\ResourceManager\OkdResourceHandle.cpp">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ResourceManager\OkdResourceDatabase.cpp">
       <Filter>Sources\ResourceManager</Filter>
     </ClCompile>
   </ItemGroup>

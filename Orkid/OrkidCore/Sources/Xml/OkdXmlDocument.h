@@ -1,33 +1,31 @@
 //*****************************************************************************
 //
-//	Class:		OkdXmlFile
+//	Class:		OkdXmlDocument
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __OrkidCore_OkdXmlFile_h__
-#define __OrkidCore_OkdXmlFile_h__
+#ifndef __OrkidCore_OkdXmlDocument_h__
+#define __OrkidCore_OkdXmlDocument_h__
 
 #include	"Root.h"
-//#include	<xercesc/util/XercesDefs.hpp>
-//
-//XERCES_CPP_NAMESPACE_BEGIN
-//	class XercesDOMParser;
-//	class ErrorHandler;
-//XERCES_CPP_NAMESPACE_END
+#include	<rapidxml/rapidxml.hpp>
 
 class OkdString;
 
-class OkdXmlFile
+class OkdXmlDocument
 {
 public:
-											OkdXmlFile( const OkdString& strFileName );
-											~OkdXmlFile();
+								OkdXmlDocument();
+								~OkdXmlDocument();
+
+	bool						load( const OkdString& strFileName );
+	bool						save( const OkdString& strFileName );
 
 private:
-	/*XERCES_CPP_NAMESPACE::XercesDOMParser*	_pXmlParser;
-	XERCES_CPP_NAMESPACE::ErrorHandler*		_pXmlErrorHandler;*/
+	char*						_pXmlBuffer;
+	rapidxml::xml_document<>*	_pXmlDocument;
 };
 
 //*****************************************************************************

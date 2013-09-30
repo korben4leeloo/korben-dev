@@ -37,12 +37,26 @@ class OkdString;
 class OkdFileStream
 {
 public:
+	enum OrkidFileOpenMode
+	{
+		OpenModeIn		= 1 << 0,
+		OpenModeOut	= 1 << 1,
+		OpenModeAtEnd	= 1 << 2,
+		OpenModeAppend	= 1 << 3,
+		OpenModeTrunc	= 1 << 4,
+		OpenModeBinary	= 1 << 5,
+	
+		OpenModeInOut	= OpenModeIn | OpenModeOut
+	};
+
 							OkdFileStream();
-							OkdFileStream( const OkdString& strFileName, const int openMode );
+							OkdFileStream( const OkdString& strFileName, const int nOpenMode );
 							~OkdFileStream();
 
 	inline void				close();
-		
+	inline uint64			length() const;
+
+	inline void				read( char* pcBuffer, const uint uiBufferSize );
 	inline void				write( const char* pcBuffer, const uint uiBufferSize );
 
 	inline OkdFileStream&	operator<<( const bool b );
@@ -58,6 +72,8 @@ public:
 	inline OkdFileStream&	operator<<( const double d );
 	inline OkdFileStream&	operator<<( const char* pBuffer );
 	OkdFileStream&			operator<<( const OkdString& str );
+
+	static bool				exist( const OkdString& strFileName );
 
 private:
 	std::fstream			_fs;
@@ -88,6 +104,37 @@ void	OkdFileStream::write(const char*	pcBuffer,
 	_fs.write( pcBuffer, uiBufferSize );
 	
 }
+
+//-----------------------------------------------------------------------------
+// Name:		read
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdFileStream::read(char*		pcBuffer, 
+							const uint	uiBufferSize)
+{
+	_fs.read( pcBuffer, uiBufferSize );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		length
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+uint64	OkdFileStream::length() const
+{
+	return	( (uint32)_fs.gcount() );
+}
+
+////-----------------------------------------------------------------------------
+//// Name:		buffer
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//const char*	OkdFileStream::buffer() const
+//{
+//	return	( _fs.rdbuf()-> );
+//}
 
 //-----------------------------------------------------------------------------
 // Name:		operator<<
@@ -220,5 +267,15 @@ OkdFileStream& OkdFileStream::operator<<(const char* pBuffer)
 	_fs << pBuffer;
 	return	( *this );
 }
+
+////-----------------------------------------------------------------------------
+//// Name:		exist
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//bool	OkdFileStream::exist()
+//{
+//	_fs.
+//}
 
 #endif

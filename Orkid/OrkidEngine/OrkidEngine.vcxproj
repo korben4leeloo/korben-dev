@@ -22,6 +22,7 @@
     <ClInclude Include="Sources\OpenGL\OkdOpenGLContext.h" />
     <ClInclude Include="Sources\OpenGL\Root.h" />
     <ClInclude Include="Sources\OrkidEngineRoot.h" />
+    <ClInclude Include="Sources\ResourceManager\OkdResourceDatabase.h" />
     <ClInclude Include="Sources\ResourceManager\OkdResourceHandle.h" />
     <ClInclude Include="Sources\ResourceManager\OkdResourceId.h" />
     <ClInclude Include="Sources\ResourceManager\OkdResourceManager.h" />
@@ -43,6 +44,7 @@
     <ClCompile Include="Sources\Entities\OkdMeshInstance.cpp" />
     <ClCompile Include="Sources\OrkidEngine.cpp" />
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp" />
+    <ClCompile Include="Sources\ResourceManager\OkdResourceDatabase.cpp" />
     <ClCompile Include="Sources\ResourceManager\OkdResourceHandle.cpp" />
     <ClCompile Include="Sources\ResourceManager\OkdResourceId.cpp" />
     <ClCompile Include="Sources\ResourceManager\OkdResourceManager.cpp" />
@@ -83,7 +85,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(KORBEN_DEV_QT_PATH)\include;$(KORBEN_DEV_QT_PATH)\include\QtCore;$(KORBEN_DEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KORBEN_DEV_PATH)\Libraries\OpenGL\glew\include;$(KORBEN_DEV_ORKID_PATH)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(KORBEN_DEV_QT_PATH)\include;$(KORBEN_DEV_QT_PATH)\include\QtCore;$(KORBEN_DEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KORBEN_DEV_PATH)\Libraries\OpenGL\glew\include;$(KORBEN_DEV_ORKID_PATH);$(KORBEN_DEV_PATH)\Libraries\Xml\Xerces\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

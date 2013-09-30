@@ -185,8 +185,8 @@ void	OkdFileTranslator::beginExport(const MFileObject &	file)
 
 	strLogFileName.replace( ".okd", ".log" );
 
-	_pExportStream		= new OkdFileStream( strFileName.asChar(), ios::out | ios::trunc | ios::binary );
-	_pExportLogStream	= new OkdFileStream( strLogFileName, ios::out | ios::trunc );
+	_pExportStream		= new OkdFileStream( strFileName.asChar(), OkdFileStream::OpenModeOut | OkdFileStream::OpenModeTrunc | OkdFileStream::OpenModeBinary );
+	_pExportLogStream	= new OkdFileStream( strLogFileName, OkdFileStream::OpenModeOut | OkdFileStream::OpenModeTrunc );
 
 	_pOrkidEngine = OrkidEngine::create();
 

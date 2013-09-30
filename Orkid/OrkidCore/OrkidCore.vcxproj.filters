@@ -97,6 +97,9 @@
     <ClInclude Include="Sources\Singleton\Root.h">
       <Filter>Sources\Singleton</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Xml\OkdXmlDocument.h">
+      <Filter>Sources\Xml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Math\OkdVector3f.cpp">
@@ -146,6 +149,9 @@
     </ClCompile>
     <ClCompile Include="Sources\Singleton\OkdSingleton.cpp">
       <Filter>Sources\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Xml\OkdXmlDocument.cpp">
+      <Filter>Sources\Xml</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

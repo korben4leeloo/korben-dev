@@ -15,8 +15,6 @@
 
 #include	<string>
 #include	<functional>
-//#include	<QtCore/QString>
-//typedef QString OkdString;
 
 class OkdString
 {
@@ -30,17 +28,13 @@ public:
 
 	void				replace( const OkdString& strSource, const OkdString& strTarget );
 
-	//inline operator		QString() const;
-	//inline operator		std::string() const;
 	inline operator		const char*() const;
-	//inline bool			operator==( const OkdString& left, const OkdString& right ) const;
-	inline bool				operator==( const OkdString& other ) const;
-	//friend inline OkdFileStream&	operator<<( OkdFileStream& stream, const OkdString& str );
+	inline bool			operator==( const OkdString& other ) const;
+	inline OkdString&	operator+=( const OkdString& other );
 
 	inline uint32		size() const;
 
 private:
-	//QString				_str;
 	std::string			_str;
 };
 
@@ -63,16 +57,6 @@ namespace std
 //	Inline functions declarations
 //*****************************************************************************
 
-////-----------------------------------------------------------------------------
-//// Name:		operator std::string()
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//OkdString::operator std::string() const
-//{
-//	return	( _str );
-//}
-
 //-----------------------------------------------------------------------------
 // Name:		operator const char*()
 //
@@ -82,27 +66,6 @@ OkdString::operator const char*() const
 {
 	return	( _str.data() );
 }
-
-////-----------------------------------------------------------------------------
-//// Name:		operator QString()
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//OkdString::operator QString() const
-//{
-//	return	( _str );
-//}
-
-////-----------------------------------------------------------------------------
-//// Name:		operator==
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//bool OkdString::operator==(const OkdString& left, 
-//						   const OkdString& right) const
-//{
-//	return	( left._str == right._str );
-//}
 
 //-----------------------------------------------------------------------------
 // Name:		operator==
@@ -115,7 +78,18 @@ bool OkdString::operator==(const OkdString& other) const
 }
 
 //-----------------------------------------------------------------------------
-// Name:		operator==
+// Name:		operator+=
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdString& OkdString::operator+=(const OkdString& other)
+{
+	_str += other._str;
+	return	( *this );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		size
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
@@ -123,29 +97,5 @@ uint32 OkdString::size() const
 {
 	return	( _str.size() );
 }
-
-//
-////-----------------------------------------------------------------------------
-//// Name:		operator==
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//OkdFileStream& OkdString::operator<<(OkdFileStream& stream) const
-//{
-//	stream << _str;
-//}
-
-////-----------------------------------------------------------------------------
-//// Name:		operator<<
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//OkdFileStream& operator<<(OkdFileStream&	stream, 
-//						  const OkdString&	str)
-//{
-//	//stream << str._str.;
-//	stream.write( str._str.data(), str._str.size() );
-//	return	( stream );
-//}
 
 #endif
