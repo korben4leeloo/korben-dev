@@ -123,6 +123,7 @@ bool createWindow(LPCSTR title, int width, int height) {
 #include	ORKID_ENGINE_H(ResourceManager/OkdResourceDatabase)
 //#include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdMeshHandler)
 //#include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdSceneHandler)
+#include	ORKID_CORE_H(Xml/OkdXmlDocument)
 
 /**
 	WinMain is the main entry point for Windows based applications as opposed to 'main' for console
@@ -144,7 +145,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	OkdResourceDatabase db;
 
-	db.open();
+	OkdXmlDocument xmlDoc;
+
+	xmlDoc.save( "c:\\test.xml" );
+
+	//db.open();
 
 	/*pResourceManager->registerResourceType( "MESH", 0 );
 	pResourceManager->registerResourceType( "SCENE", 0 );*/

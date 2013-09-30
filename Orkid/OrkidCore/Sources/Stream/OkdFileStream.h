@@ -33,6 +33,7 @@
 //typedef QTextStream OkdTextStream;
 
 class OkdString;
+class OkdXmlDocument;
 
 class OkdFileStream
 {
@@ -72,6 +73,7 @@ public:
 	inline OkdFileStream&	operator<<( const double d );
 	inline OkdFileStream&	operator<<( const char* pBuffer );
 	OkdFileStream&			operator<<( const OkdString& str );
+	OkdFileStream&			operator<<( const OkdXmlDocument& xmlDoc );
 
 	static bool				exist( const OkdString& strFileName );
 

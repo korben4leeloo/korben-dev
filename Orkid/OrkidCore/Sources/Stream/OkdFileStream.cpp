@@ -9,7 +9,9 @@
 
 #include	<ios>
 #include	<sys/stat.h>
+#include	<rapidxml/rapidxml_print.hpp>
 #include	ORKID_CORE_H(String/OkdString)
+#include	ORKID_CORE_H(Xml/OkdXmlDocument)
 
 //-----------------------------------------------------------------------------
 // Name:		OkdFileStream constructor
@@ -31,12 +33,12 @@ OkdFileStream::OkdFileStream(const OkdString&	strFileName,
 {
 	int nIosOpenMode = 0;
 
-	if	( nOpenMode & OpenModeIn )		nIosOpenMode &= std::ios::in;
-	if	( nOpenMode & OpenModeOut )		nIosOpenMode &= std::ios::out;
-	if	( nOpenMode & OpenModeAtEnd )	nIosOpenMode &= std::ios::ate;
-	if	( nOpenMode & OpenModeAppend )	nIosOpenMode &= std::ios::app;
-	if	( nOpenMode & OpenModeTrunc )	nIosOpenMode &= std::ios::trunc;
-	if	( nOpenMode & OpenModeBinary )	nIosOpenMode &= std::ios::binary;
+	if	( nOpenMode & OpenModeIn )		nIosOpenMode |= std::ios::in;
+	if	( nOpenMode & OpenModeOut )		nIosOpenMode |= std::ios::out;
+	if	( nOpenMode & OpenModeAtEnd )	nIosOpenMode |= std::ios::ate;
+	if	( nOpenMode & OpenModeAppend )	nIosOpenMode |= std::ios::app;
+	if	( nOpenMode & OpenModeTrunc )	nIosOpenMode |= std::ios::trunc;
+	if	( nOpenMode & OpenModeBinary )	nIosOpenMode |= std::ios::binary;
 
 	_fs.open( strFileName, nIosOpenMode );
 }
@@ -59,6 +61,17 @@ OkdFileStream::~OkdFileStream()
 OkdFileStream& OkdFileStream::operator<<(const OkdString& str)
 {
 	_fs << str._str;
+	return	( *this );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator<<
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdFileStream& OkdFileStream::operator<<(const OkdXmlDocument& xmlDoc)
+{
+	_fs << xmlDoc;
 	return	( *this );
 }
 

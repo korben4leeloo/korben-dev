@@ -41,7 +41,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(KORBEN_DEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KORBEN_DEV_ORKID_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(KORBEN_DEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KORBEN_DEV_ORKID_PATH);$(KORBEN_DEV_PATH)\Libraries\Xml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

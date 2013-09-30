@@ -14,7 +14,10 @@
 
 class OkdString;
 
-class OkdXmlDocument
+typedef rapidxml::xml_node<char>		OkdXmlNode;
+typedef rapidxml::xml_attribute<char>	OkdXmlAttribute;
+
+class OkdXmlDocument: public rapidxml::xml_document<char>
 {
 public:
 								OkdXmlDocument();
@@ -25,7 +28,7 @@ public:
 
 private:
 	char*						_pXmlBuffer;
-	rapidxml::xml_document<>*	_pXmlDocument;
+	//rapidxml::xml_document<>*	_pXmlDocument;
 };
 
 //*****************************************************************************
