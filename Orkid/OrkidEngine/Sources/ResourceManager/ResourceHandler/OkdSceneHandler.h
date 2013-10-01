@@ -19,8 +19,8 @@ class OkdSceneHandler: public OkdAbstractResourceHandlerSingleton<OkdSceneHandle
 	FRIEND_RESOURCE_HANDLER_SINGLETON(OkdSceneHandler)
 
 public:
-	virtual void	load( OkdSharedResource* pResource );
-	virtual void	unload( OkdSharedResource* pResource );
+	virtual void	load( OkdResourceHandle* pResource );
+	virtual void	unload( OkdResourceHandle* pResource );
 
 protected:
 					OkdSceneHandler();

@@ -14,7 +14,7 @@
 #include	ORKID_CORE_H(String/OkdString)
 #include	ORKID_CORE_H(Containers/OkdList)
 
-class OkdSharedResource;
+class OkdResourceHandle;
 
 #define	FRIEND_RESOURCE_HANDLER_SINGLETON(SingletonClass) \
 	friend SingletonClass*	OkdAbstractResourceHandlerSingleton<SingletonClass>::create(); \
@@ -23,8 +23,8 @@ class OkdSharedResource;
 class OkdAbstractResourceHandler
 {
 public:
-	virtual void					load( OkdSharedResource* pResource )	= 0;
-	virtual void					unload( OkdSharedResource* pResource )	= 0;
+	virtual void					load( OkdResourceHandle* pResource )	= 0;
+	virtual void					unload( OkdResourceHandle* pResource )	= 0;
 
 	inline const char*				getResourceTypeName() const;
 	inline const OrkidResourceType	getResourceType() const;
@@ -34,7 +34,7 @@ protected:
 									~OkdAbstractResourceHandler();
 
 private:
-	OkdList<OkdSharedResource*>		_resourceList;
+	OkdList<OkdResourceHandle*>		_resourceList;
 	const char*						_strResourceTypeName;
 	OrkidResourceType				_eResourceType;
 };

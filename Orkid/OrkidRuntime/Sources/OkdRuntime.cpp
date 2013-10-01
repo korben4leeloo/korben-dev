@@ -124,6 +124,8 @@ bool createWindow(LPCSTR title, int width, int height) {
 //#include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdMeshHandler)
 //#include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdSceneHandler)
 #include	ORKID_CORE_H(Xml/OkdXmlDocument)
+#include	<rapidxml/rapidxml_print.hpp>
+#include	<iostream>
 
 /**
 	WinMain is the main entry point for Windows based applications as opposed to 'main' for console
@@ -143,11 +145,27 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	pResourceManager->addResource( defaultSceneIdentifier );*/
 
-	OkdResourceDatabase db;
-
+	/*OkdResourceDatabase db;
 	OkdXmlDocument xmlDoc;
 
-	xmlDoc.save( "c:\\test.xml" );
+	OkdXmlNode* pDeclarationNode = xmlDoc.allocate_node( rapidxml::node_declaration );
+
+	pDeclarationNode->append_attribute( xmlDoc.allocate_attribute( "version", "1.0" ) );
+	xmlDoc.append_node( pDeclarationNode );
+
+	OkdXmlNode* pRootNode = xmlDoc.allocate_node( rapidxml::node_element, "Resources" );
+
+	pRootNode->append_attribute( xmlDoc.allocate_attribute( "version", "1.0" ) );
+	xmlDoc.append_node( pRootNode );
+
+	OkdXmlNode* pMeshNode = xmlDoc.allocate_node( rapidxml::node_element, "Mesh" );
+	pMeshNode->append_attribute( xmlDoc.allocate_attribute( "id", "2145265235" ) );
+	pRootNode->append_node( pMeshNode );*/
+
+	//rapidxml::xml_document<> doc;
+	//std::cout << doc;
+
+	//xmlDoc.save( "c:\\test.xml" );
 
 	//db.open();
 
@@ -187,6 +205,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	//}
 
 	OrkidEngine::destroy();
+	return (0);
 
 	/*HMODULE hLib = LoadLibrary( "D:\\DevJJA\\SVN\\korben-dev\\Orkid\\Debug\\OrkidRuntimeDll.dll" );
 	FARPROC procAddr = GetProcAddress( hLib, "orkidRuntimeDllMainEntry" );*/

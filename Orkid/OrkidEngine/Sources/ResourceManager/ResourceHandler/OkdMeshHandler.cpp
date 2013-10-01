@@ -33,7 +33,7 @@ OkdMeshHandler::~OkdMeshHandler()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdMeshHandler::load(OkdSharedResource*	pResource)
+void	OkdMeshHandler::load(OkdResourceHandle*	pResource)
 {
 	
 }
@@ -43,7 +43,7 @@ void	OkdMeshHandler::load(OkdSharedResource*	pResource)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdMeshHandler::unload(OkdSharedResource*	pResource)
+void	OkdMeshHandler::unload(OkdResourceHandle*	pResource)
 {
 
 }

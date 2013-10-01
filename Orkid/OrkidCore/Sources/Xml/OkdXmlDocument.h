@@ -27,7 +27,7 @@ public:
 	bool						save( const OkdString& strFileName );
 
 private:
-	char*						_pXmlBuffer;
+	//char*						_pXmlBuffer;
 	//rapidxml::xml_document<>*	_pXmlDocument;
 };
 

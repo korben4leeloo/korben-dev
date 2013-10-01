@@ -87,3 +87,17 @@ bool	OkdFileStream::exist(const OkdString&	strFileName)
 	int nResult = stat( strFileName, &statBuf );
 	return	( nResult != -1 );
 }
+
+//-----------------------------------------------------------------------------
+// Name:		length
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+uint32	OkdFileStream::length()
+{
+	_fs.seekg( 0, std::ios::end );
+	uint32 uiSize = _fs.tellg();
+	_fs.seekg( 0, std::ios::beg );
+
+	return	( uiSize );
+}

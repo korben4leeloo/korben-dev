@@ -33,7 +33,7 @@ OkdSceneHandler::~OkdSceneHandler()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdSceneHandler::load(OkdSharedResource*	pResource)
+void	OkdSceneHandler::load(OkdResourceHandle*	pResource)
 {
 	
 }
@@ -43,7 +43,7 @@ void	OkdSceneHandler::load(OkdSharedResource*	pResource)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdSceneHandler::unload(OkdSharedResource*	pResource)
+void	OkdSceneHandler::unload(OkdResourceHandle*	pResource)
 {
 
 }

@@ -19,8 +19,8 @@ class OkdMeshHandler: public OkdAbstractResourceHandlerSingleton<OkdMeshHandler>
 	FRIEND_RESOURCE_HANDLER_SINGLETON(OkdMeshHandler)
 
 public:
-	virtual void	load( OkdSharedResource* pResource );
-	virtual void	unload( OkdSharedResource* pResource );
+	virtual void	load( OkdResourceHandle* pResource );
+	virtual void	unload( OkdResourceHandle* pResource );
 
 protected:
 					OkdMeshHandler();

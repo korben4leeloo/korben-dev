@@ -9,7 +9,7 @@
 #include	<stdlib.h>
 
 #include	ORKID_CORE_H(String/OkdString)
-#include	ORKID_CORE_H(Xml/OkdXmlFile)
+#include	ORKID_CORE_H(Xml/OkdXmlDocument)
 
 #define	RESOURCE_DATABASE_PATH_ENV	"KORBEN_DEV_RESOURCE_DB_PATH"
 
@@ -19,7 +19,7 @@
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 OkdResourceDatabase::OkdResourceDatabase()
-: _pDatabaseXmlFile	( 0 )
+: _pDatabaseXmlDoc	( 0 )
 , _bOpen			( false )
 {
 
@@ -42,27 +42,10 @@ OkdResourceDatabase::~OkdResourceDatabase()
 //-----------------------------------------------------------------------------
 void	OkdResourceDatabase::open()
 {
-	const char* pResourceDBPath = getResourceDatabasePath();
-
-	if	( pResourceDBPath == 0 )
+	if	( !loadResourceDatabaseXmlFile() )
 	{
-		ORKID_BREAK();
 		return;
 	}
-
-	OkdString strResourceDBFilePath( pResourceDBPath );
-	strResourceDBFilePath += "\\resources.xml";
-
-	if	( !OkdFileStream::exist( strResourceDBFilePath ) )
-	{
-		createResourceDatabaseXmlFile( strResourceDBFilePath );
-	}
-	else
-	{
-		_pResourceDBXmlFile = new OkdFileStream( strResourceDBFilePath, OkdFileStream::OpenModeIn );
-	}
-
-	//_pDatabaseXmlFile = new OkdXmlFile( pResourceDBPath );
 
 	_bOpen = true;
 }
@@ -75,6 +58,12 @@ void	OkdResourceDatabase::open()
 void	OkdResourceDatabase::close()
 {
 	_bOpen = false;
+
+	if	( _pDatabaseXmlDoc )
+	{
+		delete _pDatabaseXmlDoc;
+		_pDatabaseXmlDoc = 0;
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -102,11 +91,49 @@ const char*	OkdResourceDatabase::getResourceDatabasePath() const
 }
 
 //-----------------------------------------------------------------------------
-// Name:		createResourceDatabaseXmlFile
+// Name:		loadResourceDatabaseXmlFile
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdResourceDatabase::createResourceDatabaseXmlFile(const OkdString&	strFileName)
+bool	OkdResourceDatabase::loadResourceDatabaseXmlFile()
 {
-	_pResourceDBXmlFile = new OkdFileStream( strFileName, OkdFileStream::OpenModeOut );
+	const char* pResourceDBPath = getResourceDatabasePath();
+
+	if	( pResourceDBPath == 0 )
+	{
+		ORKID_BREAK();
+		return	( false );
+	}
+
+	OkdString strResourceDBFilePath( pResourceDBPath );
+	strResourceDBFilePath += "\\resources.xml";
+
+	if	( !OkdFileStream::exist( strResourceDBFilePath ) )
+	{
+		ORKID_BREAK();
+		return	( false );
+	}
+
+	_pDatabaseXmlDoc = new OkdXmlDocument();
+	_pDatabaseXmlDoc->load( strResourceDBFilePath );
+
+	return	( true );
 }
+
+////-----------------------------------------------------------------------------
+//// Name:		createResourceDatabaseXmlFile
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//void	OkdResourceDatabase::createResourceDatabaseXmlFile(const OkdString&	strFileName)
+//{
+//	/*_pDatabaseXmlDoc = new OkdXmlDocument();
+//
+//	OkdXmlNode* pDeclarationNode = _pDatabaseXmlDoc->allocate_node( rapidxml::node_declaration );
+//	pDeclarationNode->append_attribute( _pDatabaseXmlDoc->allocate_attribute( "version", "1.0" ) );
+//	pDeclarationNode->append_attribute( _pDatabaseXmlDoc->allocate_attribute("encoding", "utf-8") );
+//	_pDatabaseXmlDoc->append_node( pDeclarationNode );
+//
+//	OkdXmlNode* pRootNode = _pDatabaseXmlDoc->allocate_node( rapidxml::node_element, "Resources" );
+//	_pDatabaseXmlDoc->append_node( pRootNode );*/
+//}

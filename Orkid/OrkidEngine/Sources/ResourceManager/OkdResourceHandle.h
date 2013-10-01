@@ -70,8 +70,8 @@ public:
 	inline							OkdResourcePtr( const OkdResourcePtr& sharedResource );
 	inline							~OkdResourcePtr();
 
-	inline OkdResourceHandle*				resource();
-	inline const OkdResourceHandle*		resource() const;
+	inline OkdResourceHandle*		resource();
+	inline const OkdResourceHandle*	resource() const;
 	inline uint						getRefCount() const;
 
 	inline void						load();
@@ -85,7 +85,7 @@ protected:
 
 	inline void						destroy();
 	
-	OkdResourceHandle*					_pSharedResource;
+	OkdResourceHandle*				_pSharedResource;
 	OkdSharedPtrRef*				_pRefCount;
 	OkdSharedPtrRef*				_pLoadRefCount;
 	bool							_bHasLoadRef;

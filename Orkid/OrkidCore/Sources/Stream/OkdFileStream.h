@@ -55,7 +55,8 @@ public:
 							~OkdFileStream();
 
 	inline void				close();
-	inline uint64			length() const;
+	uint32					length();
+	inline bool				isOpen() const;
 
 	inline void				read( char* pcBuffer, const uint uiBufferSize );
 	inline void				write( const char* pcBuffer, const uint uiBufferSize );
@@ -119,13 +120,13 @@ void	OkdFileStream::read(char*		pcBuffer,
 }
 
 //-----------------------------------------------------------------------------
-// Name:		length
+// Name:		isOpen
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-uint64	OkdFileStream::length() const
+bool	OkdFileStream::isOpen() const
 {
-	return	( (uint32)_fs.gcount() );
+	return	( _fs.is_open() );
 }
 
 ////-----------------------------------------------------------------------------

@@ -15,14 +15,10 @@
 #include	ORKID_CORE_H(String/OkdString)
 
 class OkdResourceManager;
+class OkdResourceDatabase;
 class OkdScene;
 
 typedef OkdMap<OkdString, OkdScene*>	OkdSceneMap;
-
-//#define	REGISTER_RESOURCE_TYPE( ResourceHandlerPtr )	OrkidEngine::instance()->getResourceManager()->registerResourceType( ResourceHandlerPtr )
-//#define	UNREGISTER_RESOURCE_TYPE( ResourceHandlerPtr )	OrkidEngine::instance()->getResourceManager()->unregisterResourceType( ResourceHandlerPtr )
-//#define	REGISTER_RESOURCE_TYPE( ResourceTypeName, ResourceHandlerType )	OrkidEngine::instance()->getResourceManager()->registerResourceType( ResourceHandlerPtr );
-//#define	UNREGISTER_RESOURCE_TYPE( ResourceHandlerType )	OrkidEngine::instance()->getResourceManager()->unregisterResourceType( ResourceTypeName );
 
 class OrkidEngine
 {
@@ -55,6 +51,7 @@ private:
 	template<class T> void		clearMap( T* pMap );
 
 	OkdResourceManager*			_pResourceManager;
+	OkdResourceDatabase*		_pResourceDatabase;
 	OkdSceneMap					_sceneList;
 
 	static OrkidEngine*			_pInstance;

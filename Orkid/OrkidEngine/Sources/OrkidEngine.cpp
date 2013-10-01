@@ -9,6 +9,7 @@
 
 #include	ORKID_CORE_H(OrkidCore)
 #include	ORKID_ENGINE_H(ResourceManager/OkdResourceManager)
+#include	ORKID_ENGINE_H(ResourceManager/OkdResourceDatabase)
 #include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdMeshHandler)
 #include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdSceneHandler)
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
@@ -83,7 +84,10 @@ void	OrkidEngine::initialize()
 {
 	OrkidCore::initialize();
 
-	_pResourceManager = new OkdResourceManager();
+	_pResourceDatabase	= new OkdResourceDatabase();
+	_pResourceManager	= new OkdResourceManager();
+
+	_pResourceDatabase->open();
 
 	registerResources();
 	addScene( OrkidEngine::_strDefaultScene );
@@ -97,9 +101,12 @@ void	OrkidEngine::initialize()
 void	OrkidEngine::uninitialize()
 {
 	clear();
-
 	unregisterResources();
+
+	_pResourceDatabase->close();
+
 	delete _pResourceManager;
+	delete _pResourceDatabase;
 
 	OrkidCore::uninitialize();
 }
