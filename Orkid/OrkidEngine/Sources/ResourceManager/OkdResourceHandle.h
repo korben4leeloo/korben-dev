@@ -81,11 +81,11 @@ public:
 	inline OkdResourcePtr&	operator=( const OkdResourcePtr& sharedPtr );
 
 protected:
-	inline							OkdResourcePtr( OkdResourceHandle* pSharedResource );
+	inline							OkdResourcePtr( OkdResourceHandle* pResourceHandle );
 
 	inline void						destroy();
 	
-	OkdResourceHandle*				_pSharedResource;
+	OkdResourceHandle*				_pResourceHandle;
 	OkdSharedPtrRef*				_pRefCount;
 	OkdSharedPtrRef*				_pLoadRefCount;
 	bool							_bHasLoadRef;
@@ -100,8 +100,8 @@ protected:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdResourcePtr::OkdResourcePtr(OkdResourceHandle*	pSharedResource)
-: _pSharedResource	( pSharedResource )
+OkdResourcePtr::OkdResourcePtr(OkdResourceHandle*	pResourceHandle)
+: _pResourceHandle	( pResourceHandle )
 , _bHasLoadRef		( false )
 {
 	_pRefCount		= new OkdSharedPtrRef();
@@ -116,7 +116,7 @@ OkdResourcePtr::OkdResourcePtr(OkdResourceHandle*	pSharedResource)
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 OkdResourcePtr::OkdResourcePtr(const OkdResourcePtr&	sharedPtr)
-: _pSharedResource	( sharedPtr._pSharedResource )
+: _pResourceHandle	( sharedPtr._pResourceHandle )
 , _pRefCount		( sharedPtr._pRefCount )
 , _pLoadRefCount	( sharedPtr._pLoadRefCount )
 , _bHasLoadRef		( false )
@@ -161,7 +161,7 @@ OkdResourcePtr& OkdResourcePtr::operator=( const OkdResourcePtr& sharedPtr )
 			destroy();
 		}
 
-		_pSharedResource	= sharedPtr._pSharedResource;
+		_pResourceHandle	= sharedPtr._pResourceHandle;
 		_pRefCount			= sharedPtr._pRefCount;
 		_pLoadRefCount		= sharedPtr._pLoadRefCount;
 
@@ -180,9 +180,9 @@ void	OkdResourcePtr::destroy()
 {
 	ORKID_ASSERT( _pLoadRefCount->getRefCount() == 0 );
 
-	if	( _pSharedResource )
+	if	( _pResourceHandle )
 	{
-		delete _pSharedResource;
+		delete _pResourceHandle;
 	}
 
 	delete _pLoadRefCount;
@@ -238,7 +238,7 @@ void	OkdResourcePtr::unload()
 //-----------------------------------------------------------------------------
 OkdResourceHandle*	OkdResourcePtr::resource()
 {
-	return	( _pSharedResource );
+	return	( _pResourceHandle );
 }
 
 //-----------------------------------------------------------------------------
@@ -248,7 +248,7 @@ OkdResourceHandle*	OkdResourcePtr::resource()
 //-----------------------------------------------------------------------------
 const OkdResourceHandle*	OkdResourcePtr::resource() const
 {
-	return	( _pSharedResource );
+	return	( _pResourceHandle );
 }
 
 //-----------------------------------------------------------------------------

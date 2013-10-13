@@ -7,15 +7,25 @@
 
 #include	"OkdSceneHandler.h"
 
+////-----------------------------------------------------------------------------
+//// Name:		OkdSceneHandler constructor
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdSceneHandler::OkdSceneHandler()
+//: OkdAbstractResourceHandlerSingleton( OrkidScene )
+//{
+//	
+//}
+
 //-----------------------------------------------------------------------------
 // Name:		OkdSceneHandler constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 OkdSceneHandler::OkdSceneHandler()
-: OkdAbstractResourceHandlerSingleton( OrkidScene )
 {
-	
+
 }
 
 //-----------------------------------------------------------------------------

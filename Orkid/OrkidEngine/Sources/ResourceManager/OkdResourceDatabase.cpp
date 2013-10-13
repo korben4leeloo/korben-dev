@@ -105,7 +105,7 @@ bool	OkdResourceDatabase::loadResourceDatabaseXmlFile()
 		return	( false );
 	}
 
-	OkdString strResourceDBFilePath( pResourceDBPath );
+	/*OkdString strResourceDBFilePath( pResourceDBPath );
 	strResourceDBFilePath += "\\resources.xml";
 
 	if	( !OkdFileStream::exist( strResourceDBFilePath ) )
@@ -115,7 +115,7 @@ bool	OkdResourceDatabase::loadResourceDatabaseXmlFile()
 	}
 
 	_pDatabaseXmlDoc = new OkdXmlDocument();
-	_pDatabaseXmlDoc->load( strResourceDBFilePath );
+	_pDatabaseXmlDoc->load( strResourceDBFilePath );*/
 
 	return	( true );
 }

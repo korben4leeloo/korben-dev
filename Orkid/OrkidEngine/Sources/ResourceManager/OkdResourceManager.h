@@ -21,20 +21,24 @@ class OkdResourceManager
 public:
 	friend class OrkidEngine;
 
-	void												registerResourceType( const OkdAbstractResourceHandler* pResourceHandler );
-	void												unregisterResourceType( const OkdAbstractResourceHandler* pResourceHandler );
-	uint32												getResourceTypeId( const OkdString& strResourceTypeName );
+	//uint32												getResourceTypeId( const OkdString& strResourceTypeName );
 
-	OkdResourcePtr										addResource( const OkdResourceId& resourceId );
+	//OkdResourcePtr										createResource( const OkdResourceId& resourceId );
+	OkdResourcePtr										createResource( const OrkidResourceType eResourceType, const OkdString& strResourceName );
 
 private:
 														OkdResourceManager();
 														~OkdResourceManager();
 
+	void												initialize();
+
+														/*void												registerResourceType( const OrkidResourceType eResourceType, const OkdAbstractResourceHandler* pResourceHandler );
+														void												unregisterResourceType( const OrkidResourceType eResourceType, const OkdAbstractResourceHandler* pResourceHandler );*/
+
 	//void												clearResources();
 
-	OkdMap<uint32, const OkdAbstractResourceHandler*>	_resourceHandlerMap;
-	const OkdAbstractResourceHandler*					_resourceHandlerArray[OrkidResourceTypeLast];
+	//OkdMap<uint32, const OkdAbstractResourceHandler*>	_resourceHandlerMap;
+	const OkdAbstractResourceHandler*					_resourceHandlerArray[OrkidResourceTypeCount];
 };
 
 //*****************************************************************************

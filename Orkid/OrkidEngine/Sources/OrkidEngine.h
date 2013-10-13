@@ -29,13 +29,14 @@ public:
 
 	// Resource managers
 	inline OkdResourceManager*	getResourceManager();
+	inline OkdResourceDatabase*	getResourceDatabase();
 
 	// Scenes
-	OkdScene*					addScene( const OkdString& strSceneName );
-	OkdScene*					getScene( const OkdString& strSceneName );
+	/*OkdScene*					addScene( const OkdString& strSceneName );
+	OkdScene*					getScene( const OkdString& strSceneName );*/
 
-	static const char*			_strDefaultScene;
-	static const char*			_resourceTypeName[OrkidResourceTypeLast];
+	//static const char*			_strDefaultScene;
+	static const char*			_resourceTypeName[OrkidResourceTypeCount];
 
 private:
 								OrkidEngine();
@@ -44,15 +45,15 @@ private:
 	void						initialize();
 	void						uninitialize();
 
-	void						registerResources();
-	void						unregisterResources();
+	/*void						registerResources();
+	void						unregisterResources();*/
 
 	void						clear();
 	template<class T> void		clearMap( T* pMap );
 
 	OkdResourceManager*			_pResourceManager;
 	OkdResourceDatabase*		_pResourceDatabase;
-	OkdSceneMap					_sceneList;
+	//OkdSceneMap					_sceneList;
 
 	static OrkidEngine*			_pInstance;
 };
@@ -109,6 +110,16 @@ OrkidEngine*	OrkidEngine::instance()
 OkdResourceManager*	OrkidEngine::getResourceManager()
 {
 	return	( _pResourceManager );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getResourceDatabase
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdResourceDatabase*	OrkidEngine::getResourceDatabase()
+{
+	return	( _pResourceDatabase );
 }
 
 #endif

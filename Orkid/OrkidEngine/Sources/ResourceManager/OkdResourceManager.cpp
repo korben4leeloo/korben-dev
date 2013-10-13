@@ -7,7 +7,9 @@
 
 #include	"OkdResourceManager.h"
 
-#include	ORKID_CORE_H(String/OkdCrc32)
+//#include	ORKID_CORE_H(String/OkdCrc32)
+#include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdMeshHandler)
+#include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdSceneHandler)
 
 //-----------------------------------------------------------------------------
 // Name:		OkdResourceManager constructor
@@ -16,7 +18,7 @@
 //-----------------------------------------------------------------------------
 OkdResourceManager::OkdResourceManager()
 {
-	memset( _resourceHandlerArray, 0, sizeof(_resourceHandlerArray) );
+	
 }
 
 //-----------------------------------------------------------------------------
@@ -30,75 +32,118 @@ OkdResourceManager::~OkdResourceManager()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		registerResourceType
+// Name:		initialize
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdResourceManager::registerResourceType(const OkdAbstractResourceHandler*	pResourceHandler)
+void	OkdResourceManager::initialize()
 {
-	const OkdString&	strResourceTypeName	= pResourceHandler->getResourceTypeName();
-	uint32				uiResourceTypeId	= getResourceTypeId( strResourceTypeName );
+	// Register resource handlers
+	memset( _resourceHandlerArray, 0, sizeof(_resourceHandlerArray) );
 
-	ORKID_ASSERT( _resourceHandlerArray[pResourceHandler->getResourceType()] == 0 );
-
-	_resourceHandlerMap.add( uiResourceTypeId, pResourceHandler );
-	_resourceHandlerArray[pResourceHandler->getResourceType()] = pResourceHandler;
+	_resourceHandlerArray[OrkidMesh]	= new OkdMeshHandler();
+	_resourceHandlerArray[OrkidScene]	= new OkdSceneHandler();
 }
 
-//-----------------------------------------------------------------------------
-// Name:		unregisterResourceType
+////-----------------------------------------------------------------------------
+//// Name:		registerResourceType
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//void	OkdResourceManager::registerResourceType(const OkdAbstractResourceHandler*	pResourceHandler)
+//{
+//	const OkdString&	strResourceTypeName	= pResourceHandler->getResourceTypeName();
+//	uint32				uiResourceTypeId	= getResourceTypeId( strResourceTypeName );
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OkdResourceManager::unregisterResourceType(const OkdAbstractResourceHandler*	pResourceHandler)
-{
-	const OkdString&	strResourceTypeName	= pResourceHandler->getResourceTypeName();
-	uint32				uiResourceTypeId	= getResourceTypeId( strResourceTypeName );
-
-	ORKID_ASSERT( _resourceHandlerArray[pResourceHandler->getResourceType()] != 0 );
-
-	_resourceHandlerMap.remove( uiResourceTypeId );
-	_resourceHandlerArray[pResourceHandler->getResourceType()] = 0;
-}
-
-//-----------------------------------------------------------------------------
-// Name:		addResource
+//	ORKID_ASSERT( _resourceHandlerArray[pResourceHandler->getResourceType()] == 0 );
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdResourcePtr	OkdResourceManager::addResource(const OkdResourceId&	resourceId)
-{
-	OkdResourceHandle*	pSharedResource = new OkdResourceHandle( resourceId );
-	OkdResourcePtr	resourcePtr( pSharedResource );
-
-	ORKID_ASSERT( ( resourceId.getResourceType() >= (OrkidResourceType)0 ) && ( resourceId.getResourceType() < OrkidResourceTypeLast ) );
-
-	if	( resourceId.getResourceId() == 0 )
-	{
-
-	}
-	else if	( resourceId.getResourceId() > 0 )
-	{
-
-	}
-	else
-	{
-
-	}
-
-	return	( resourcePtr );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		getResourceTypeId
+//	_resourceHandlerMap.add( uiResourceTypeId, pResourceHandler );
+//	_resourceHandlerArray[pResourceHandler->getResourceType()] = pResourceHandler;
+//}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-uint32	OkdResourceManager::getResourceTypeId(const OkdString&	strResourceTypeName)
-{
-	uint32 uiCrc32 = OkdCrc32::getCrc32( strResourceTypeName );
-	return	( uiCrc32 );
-}
+////-----------------------------------------------------------------------------
+//// Name:		unregisterResourceType
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//void	OkdResourceManager::unregisterResourceType(const OkdAbstractResourceHandler*	pResourceHandler)
+//{
+//	const OkdString&	strResourceTypeName	= pResourceHandler->getResourceTypeName();
+//	uint32				uiResourceTypeId	= getResourceTypeId( strResourceTypeName );
+//
+//	ORKID_ASSERT( _resourceHandlerArray[pResourceHandler->getResourceType()] != 0 );
+//
+//	_resourceHandlerMap.remove( uiResourceTypeId );
+//	_resourceHandlerArray[pResourceHandler->getResourceType()] = 0;
+//}
+
+////-----------------------------------------------------------------------------
+//// Name:		addResource
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdResourcePtr	OkdResourceManager::addResource(const OkdResourceId&	resourceId)
+//{
+//	OkdResourceHandle*	pResourceHandle = new OkdResourceHandle( resourceId );
+//	OkdResourcePtr	resourcePtr( pResourceHandle );
+//
+//	ORKID_ASSERT( ( resourceId.getResourceType() >= (OrkidResourceType)0 ) && ( resourceId.getResourceType() < OrkidResourceTypeLast ) );
+//
+//	if	( resourceId.getResourceId() == 0 )
+//	{
+//
+//	}
+//	else if	( resourceId.getResourceId() > 0 )
+//	{
+//
+//	}
+//	else
+//	{
+//
+//	}
+//
+//	return	( resourcePtr );
+//}
+
+////-----------------------------------------------------------------------------
+//// Name:		createResource
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdResourcePtr	OkdResourceManager::createResource(const OrkidResourceType	eResourceType, 
+//												   const OkdString&			strResourceName)
+//{
+//	OkdResourceHandle*	pResourceHandle = new OkdResourceHandle( resourceId );
+//	OkdResourcePtr	resourcePtr( pResourceHandle );
+//
+//	ORKID_ASSERT( ( resourceId.getResourceType() >= (OrkidResourceType)0 ) && ( resourceId.getResourceType() < OrkidResourceTypeLast ) );
+//
+//	if	( resourceId.getResourceId() == 0 )
+//	{
+//
+//	}
+//	else if	( resourceId.getResourceId() > 0 )
+//	{
+//
+//	}
+//	else
+//	{
+//
+//	}
+//
+//	return	( resourcePtr );
+//}
+
+////-----------------------------------------------------------------------------
+//// Name:		getResourceTypeId
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//uint32	OkdResourceManager::getResourceTypeId(const OkdString&	strResourceTypeName)
+//{
+//	uint32 uiCrc32 = OkdCrc32::getCrc32( strResourceTypeName );
+//	return	( uiCrc32 );
+//}
 
 ////-----------------------------------------------------------------------------
 //// Name:		addMesh

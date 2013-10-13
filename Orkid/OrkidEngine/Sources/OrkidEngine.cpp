@@ -15,13 +15,12 @@
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 
 OrkidEngine*	OrkidEngine::_pInstance			= 0;
-const char*		OrkidEngine::_strDefaultScene	= "Default";
+//const char*		OrkidEngine::_strDefaultScene	= "Default";
 
-const char*		OrkidEngine::_resourceTypeName[OrkidResourceTypeLast] =
+const char*		OrkidEngine::_resourceTypeName[OrkidResourceTypeCount] =
 {
-	"UNKNOWN",
-	"MESH", 
-	"SCENE",
+	"OrkidMesh", 
+	"OrkidScene",
 };
 
 //-----------------------------------------------------------------------------
@@ -30,6 +29,8 @@ const char*		OrkidEngine::_resourceTypeName[OrkidResourceTypeLast] =
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 OrkidEngine::OrkidEngine()
+: _pResourceManager		( 0 )
+, _pResourceDatabase	( 0 )
 {
 	
 }
@@ -52,7 +53,7 @@ OrkidEngine::~OrkidEngine()
 void	OrkidEngine::clear()
 {
 	//clearMap<OkdResourceManagerMap>( &_resourceManagerList );
-	clearMap<OkdSceneMap>( &_sceneList );
+	//clearMap<OkdSceneMap>( &_sceneList );
 }
 
 //-----------------------------------------------------------------------------
@@ -84,13 +85,16 @@ void	OrkidEngine::initialize()
 {
 	OrkidCore::initialize();
 
-	_pResourceDatabase	= new OkdResourceDatabase();
-	_pResourceManager	= new OkdResourceManager();
-
+	// Resource database
+	_pResourceDatabase = new OkdResourceDatabase();
 	_pResourceDatabase->open();
 
-	registerResources();
-	addScene( OrkidEngine::_strDefaultScene );
+	// Resource manager
+	_pResourceManager = new OkdResourceManager();
+	_pResourceManager->initialize();
+
+	//registerResources();
+	//addScene( OrkidEngine::_strDefaultScene );
 }
 
 //-----------------------------------------------------------------------------
@@ -101,7 +105,7 @@ void	OrkidEngine::initialize()
 void	OrkidEngine::uninitialize()
 {
 	clear();
-	unregisterResources();
+	//unregisterResources();
 
 	_pResourceDatabase->close();
 
@@ -111,55 +115,55 @@ void	OrkidEngine::uninitialize()
 	OrkidCore::uninitialize();
 }
 
-//-----------------------------------------------------------------------------
-// Name:		registerResources
+////-----------------------------------------------------------------------------
+//// Name:		registerResources
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//void	OrkidEngine::registerResources()
+//{
+//	OkdMeshHandler::create();
+//	OkdSceneHandler::create();
+//}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OrkidEngine::registerResources()
-{
-	OkdMeshHandler::create();
-	OkdSceneHandler::create();
-}
+////-----------------------------------------------------------------------------
+//// Name:		unregisterResources
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//void	OrkidEngine::unregisterResources()
+//{
+//	OkdMeshHandler::destroy();
+//	OkdSceneHandler::destroy();
+//}
 
-//-----------------------------------------------------------------------------
-// Name:		unregisterResources
+////-----------------------------------------------------------------------------
+//// Name:		addScene
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdScene*	OrkidEngine::addScene(const OkdString& strSceneName)
+//{
+//	OkdScene* pScene = getScene( strSceneName );
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OrkidEngine::unregisterResources()
-{
-	OkdMeshHandler::destroy();
-	OkdSceneHandler::destroy();
-}
-
-//-----------------------------------------------------------------------------
-// Name:		addScene
+//	if	( !pScene )
+//	{
+//		pScene = new OkdScene();
+//		_sceneList.add( strSceneName, pScene );
+//	}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdScene*	OrkidEngine::addScene(const OkdString& strSceneName)
-{
-	OkdScene* pScene = getScene( strSceneName );
+//	return	( pScene );
+//}
 
-	if	( !pScene )
-	{
-		pScene = new OkdScene();
-		_sceneList.add( strSceneName, pScene );
-	}
-
-	return	( pScene );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		getScene
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdScene*	OrkidEngine::getScene( const OkdString& strSceneName )
-{
-	OkdScene* pScene = 0; 
-	
-	_sceneList.find( strSceneName, &pScene );
-	return	( pScene );
-}
+////-----------------------------------------------------------------------------
+//// Name:		getScene
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdScene*	OrkidEngine::getScene( const OkdString& strSceneName )
+//{
+//	OkdScene* pScene = 0; 
+//	
+//	_sceneList.find( strSceneName, &pScene );
+//	return	( pScene );
+//}

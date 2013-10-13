@@ -7,15 +7,25 @@
 
 #include	"OkdMeshHandler.h"
 
+////-----------------------------------------------------------------------------
+//// Name:		OkdMeshHandler constructor
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdMeshHandler::OkdMeshHandler()
+//: OkdAbstractResourceHandlerSingleton( OrkidMesh )
+//{
+//	
+//}
+
 //-----------------------------------------------------------------------------
 // Name:		OkdMeshHandler constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 OkdMeshHandler::OkdMeshHandler()
-: OkdAbstractResourceHandlerSingleton( OrkidMesh )
 {
-	
+
 }
 
 //-----------------------------------------------------------------------------

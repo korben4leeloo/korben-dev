@@ -7,21 +7,46 @@
 
 #include	"OkdAbstractResourceHandler.h"
 
-#include	ORKID_ENGINE_H(OrkidEngine)
-#include	ORKID_ENGINE_H(ResourceManager/OkdResourceManager)
+//#include	ORKID_ENGINE_H(OrkidEngine)
+//#include	ORKID_ENGINE_H(ResourceManager/OkdResourceManager)
+
+////-----------------------------------------------------------------------------
+//// Name:		OkdAbstractResourceHandler constructor
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdAbstractResourceHandler::OkdAbstractResourceHandler(const OrkidResourceType	eResourceType)
+//: _strResourceTypeName	( OrkidEngine::_resourceTypeName[eResourceType] )
+//, _eResourceType		( eResourceType )
+//{
+//	OrkidEngine* pOrkidEngineInstance = OrkidEngine::instance();
+//	ORKID_ASSERT( pOrkidEngineInstance );
+//	
+//	if	( pOrkidEngineInstance )
+//	{
+//		OkdResourceManager* pResourceManager = pOrkidEngineInstance->getResourceManager();
+//
+//		ORKID_ASSERT( pResourceManager );
+//
+//		if	( pResourceManager )
+//		{
+//			pResourceManager->registerResourceType( this );
+//		}
+//	}
+//}
 
 //-----------------------------------------------------------------------------
 // Name:		OkdAbstractResourceHandler constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdAbstractResourceHandler::OkdAbstractResourceHandler(const OrkidResourceType	eResourceType)
-: _strResourceTypeName	( OrkidEngine::_resourceTypeName[eResourceType] )
-, _eResourceType		( eResourceType )
+OkdAbstractResourceHandler::OkdAbstractResourceHandler()
+//: _strResourceTypeName	( OrkidEngine::_resourceTypeName[eResourceType] )
+//, _eResourceType		( eResourceType )
 {
-	OrkidEngine* pOrkidEngineInstance = OrkidEngine::instance();
+	/*OrkidEngine* pOrkidEngineInstance = OrkidEngine::instance();
 	ORKID_ASSERT( pOrkidEngineInstance );
-	
+
 	if	( pOrkidEngineInstance )
 	{
 		OkdResourceManager* pResourceManager = pOrkidEngineInstance->getResourceManager();
@@ -32,7 +57,7 @@ OkdAbstractResourceHandler::OkdAbstractResourceHandler(const OrkidResourceType	e
 		{
 			pResourceManager->registerResourceType( this );
 		}
-	}
+	}*/
 }
 
 //-----------------------------------------------------------------------------
@@ -42,7 +67,7 @@ OkdAbstractResourceHandler::OkdAbstractResourceHandler(const OrkidResourceType	e
 //-----------------------------------------------------------------------------
 OkdAbstractResourceHandler::~OkdAbstractResourceHandler()
 {
-	OrkidEngine* pOrkidEngineInstance = OrkidEngine::instance();
+	/*OrkidEngine* pOrkidEngineInstance = OrkidEngine::instance();
 	ORKID_ASSERT( pOrkidEngineInstance );
 
 	if	( pOrkidEngineInstance )
@@ -55,5 +80,5 @@ OkdAbstractResourceHandler::~OkdAbstractResourceHandler()
 		{
 			pResourceManager->unregisterResourceType( this );
 		}
-	}
+	}*/
 }

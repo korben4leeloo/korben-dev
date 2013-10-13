@@ -19,7 +19,7 @@ class OkdResourceHandle;
 //class OkdFileStream;
 class OkdXmlDocument;
 
-class OkdResourceDatabase: public OkdSingleton<OkdResourceDatabase>
+class OkdResourceDatabase//: public OkdSingleton<OkdResourceDatabase>
 {
 	friend class OrkidEngine;
 
@@ -27,7 +27,7 @@ public:
 	void				open();
 	void				close();
 
-	//void				createResourceFile( 
+	//void				createResourceStorage( 
 	const char*			getResourceData( const OkdResourceHandle* pResourceHandle ) const;
 
 private:

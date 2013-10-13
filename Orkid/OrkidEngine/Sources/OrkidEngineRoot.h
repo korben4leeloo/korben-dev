@@ -13,12 +13,12 @@
 
 enum OrkidResourceType
 {
-	OrkidUnknown,
-
 	OrkidMesh,
 	OrkidScene,
 
-	OrkidResourceTypeLast
+	OrkidResourceTypeCount,
+
+	OrkidResourceTypeUnknown = 0xFFFFFFFF
 };
 
 #endif

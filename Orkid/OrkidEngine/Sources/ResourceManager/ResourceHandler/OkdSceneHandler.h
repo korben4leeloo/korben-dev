@@ -14,15 +14,28 @@
 #include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdAbstractResourceHandler)
 
 
-class OkdSceneHandler: public OkdAbstractResourceHandlerSingleton<OkdSceneHandler>
+//class OkdSceneHandler: public OkdAbstractResourceHandlerSingleton<OkdSceneHandler>
+//{
+//	FRIEND_RESOURCE_HANDLER_SINGLETON(OkdSceneHandler)
+//
+//public:
+//	virtual void	load( OkdResourceHandle* pResource );
+//	virtual void	unload( OkdResourceHandle* pResource );
+//
+//protected:
+//					OkdSceneHandler();
+//					~OkdSceneHandler();
+//};
+
+class OkdSceneHandler: public OkdAbstractResourceHandler
 {
-	FRIEND_RESOURCE_HANDLER_SINGLETON(OkdSceneHandler)
+	friend class OkdResourceManager;
 
 public:
 	virtual void	load( OkdResourceHandle* pResource );
 	virtual void	unload( OkdResourceHandle* pResource );
 
-protected:
+private:
 					OkdSceneHandler();
 					~OkdSceneHandler();
 };

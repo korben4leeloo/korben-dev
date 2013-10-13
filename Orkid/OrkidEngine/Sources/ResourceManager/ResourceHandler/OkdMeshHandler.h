@@ -14,15 +14,28 @@
 #include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdAbstractResourceHandler)
 
 
-class OkdMeshHandler: public OkdAbstractResourceHandlerSingleton<OkdMeshHandler>
+//class OkdMeshHandler: public OkdAbstractResourceHandlerSingleton<OkdMeshHandler>
+//{
+//	FRIEND_RESOURCE_HANDLER_SINGLETON(OkdMeshHandler)
+//
+//public:
+//	virtual void	load( OkdResourceHandle* pResource );
+//	virtual void	unload( OkdResourceHandle* pResource );
+//
+//protected:
+//					OkdMeshHandler();
+//					~OkdMeshHandler();
+//};
+
+class OkdMeshHandler: public OkdAbstractResourceHandler
 {
-	FRIEND_RESOURCE_HANDLER_SINGLETON(OkdMeshHandler)
+	friend class OkdResourceManager;
 
 public:
 	virtual void	load( OkdResourceHandle* pResource );
 	virtual void	unload( OkdResourceHandle* pResource );
 
-protected:
+private:
 					OkdMeshHandler();
 					~OkdMeshHandler();
 };
