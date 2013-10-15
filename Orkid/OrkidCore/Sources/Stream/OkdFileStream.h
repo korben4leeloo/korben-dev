@@ -55,7 +55,6 @@ public:
 							~OkdFileStream();
 
 	inline void				close();
-	uint32					length();
 	inline bool				isOpen() const;
 
 	inline void				read( char* pcBuffer, const uint uiBufferSize );
@@ -77,6 +76,7 @@ public:
 	OkdFileStream&			operator<<( const OkdXmlDocument& xmlDoc );
 
 	static bool				exist( const OkdString& strFileName );
+	static uint32			length( const OkdString& strFileName );
 
 private:
 	std::fstream			_fs;
@@ -270,15 +270,5 @@ OkdFileStream& OkdFileStream::operator<<(const char* pBuffer)
 	_fs << pBuffer;
 	return	( *this );
 }
-
-////-----------------------------------------------------------------------------
-//// Name:		exist
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//bool	OkdFileStream::exist()
-//{
-//	_fs.
-//}
 
 #endif

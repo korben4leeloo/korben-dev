@@ -43,7 +43,7 @@ OkdXmlDocument::~OkdXmlDocument()
 //-----------------------------------------------------------------------------
 bool	OkdXmlDocument::load(const OkdString&	strFileName)
 {
-	OkdFileStream xmlFile( strFileName, OkdFileStream::OpenModeIn );
+	OkdFileStream xmlFile( strFileName, OkdFileStream::OpenModeIn | OkdFileStream::OpenModeBinary );
 
 	if	( xmlFile.isOpen() == false )
 	{
@@ -51,8 +51,13 @@ bool	OkdXmlDocument::load(const OkdString&	strFileName)
 		return	( false );
 	}
 
-	char* pXmlBuffer = new char[(uint32)xmlFile.length()];
-	xmlFile.read( pXmlBuffer, xmlFile.length() );
+	uint32 uiFileLength = OkdFileStream::length( strFileName );
+
+	char* pXmlBuffer = new char[uiFileLength+1];
+	
+	xmlFile.read( pXmlBuffer, uiFileLength );
+	pXmlBuffer[uiFileLength] = '\0';
+
 	parse<0>( pXmlBuffer );
 
 	return	( true );

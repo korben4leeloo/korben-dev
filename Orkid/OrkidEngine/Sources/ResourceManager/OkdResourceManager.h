@@ -25,6 +25,7 @@ public:
 
 	//OkdResourcePtr										createResource( const OkdResourceId& resourceId );
 	OkdResourcePtr										createResource( const OrkidResourceType eResourceType, const OkdString& strResourceName );
+	//OkdResourcePtr										createResource( const OrkidResourceType& eResourceType, const OkdString& strResourceName );
 
 private:
 														OkdResourceManager();

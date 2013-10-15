@@ -32,8 +32,9 @@ class OkdMeshHandler: public OkdAbstractResourceHandler
 	friend class OkdResourceManager;
 
 public:
-	virtual void	load( OkdResourceHandle* pResource );
-	virtual void	unload( OkdResourceHandle* pResource );
+	virtual void	create( const OkdResourcePtr& resourcePtr );
+	virtual void	load( const OkdResourcePtr& resourcePtr );
+	virtual void	unload( const OkdResourcePtr& resourcePtr );
 
 private:
 					OkdMeshHandler();

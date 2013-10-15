@@ -32,6 +32,7 @@ class OkdSceneHandler: public OkdAbstractResourceHandler
 	friend class OkdResourceManager;
 
 public:
+	virtual void	create( const OkdResourcePtr& resourcePtr );
 	virtual void	load( OkdResourceHandle* pResource );
 	virtual void	unload( OkdResourceHandle* pResource );
 

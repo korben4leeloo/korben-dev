@@ -16,10 +16,10 @@
 
 class OkdString;
 
-class OkdResourceLocation
-{
-
-};
+//class OkdResourceLocation
+//{
+//
+//};
 
 class OkdResourceHandle
 {
@@ -28,9 +28,9 @@ public:
 	inline					~OkdResourceHandle();
 
 private:
-	OkdResourceId			_resourceIdentifier;
-	OkdResourceLocation*	_pLocation;
-	OkdString*				_pName;
+	OkdResourceId			_resourceId;
+	//OkdResourceLocation*	_pLocation;
+	//OkdString*				_pName;
 	void*					_pData;
 };
 
@@ -44,10 +44,10 @@ private:
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 OkdResourceHandle::OkdResourceHandle(const OkdResourceId&	resourceId)
-: _resourceIdentifier	( resourceId )
-, _pLocation			( 0 )
-, _pName				( 0 )
-, _pData				( 0 )
+: _resourceId	( resourceId )
+//, _pLocation	( 0 )
+//, _pName		( 0 )
+, _pData		( 0 )
 {
 	
 }
@@ -70,8 +70,8 @@ public:
 	inline							OkdResourcePtr( const OkdResourcePtr& sharedResource );
 	inline							~OkdResourcePtr();
 
-	inline OkdResourceHandle*		resource();
-	inline const OkdResourceHandle*	resource() const;
+	inline OkdResourceHandle*		getResourceHandle();
+	inline const OkdResourceHandle*	getResourceHandle() const;
 	inline uint						getRefCount() const;
 
 	inline void						load();
@@ -232,21 +232,21 @@ void	OkdResourcePtr::unload()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		resource
+// Name:		getResourceHandle
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdResourceHandle*	OkdResourcePtr::resource()
+OkdResourceHandle*	OkdResourcePtr::getResourceHandle()
 {
 	return	( _pResourceHandle );
 }
 
 //-----------------------------------------------------------------------------
-// Name:		resource
+// Name:		getResourceHandle
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-const OkdResourceHandle*	OkdResourcePtr::resource() const
+const OkdResourceHandle*	OkdResourcePtr::getResourceHandle() const
 {
 	return	( _pResourceHandle );
 }

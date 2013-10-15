@@ -23,6 +23,7 @@ class OkdResourcePtr;
 class OkdAbstractResourceHandler
 {
 public:
+	virtual void					create( const OkdResourcePtr& resourcePtr )	= 0;
 	virtual void					load( const OkdResourcePtr& resourcePtr )	= 0;
 	virtual void					unload( const OkdResourcePtr& resourcePtr )	= 0;
 
