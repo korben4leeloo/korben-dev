@@ -14,7 +14,7 @@
 #include	ORKID_CORE_H(String/OkdString)
 #include	ORKID_CORE_H(Containers/OkdMap)
 
-class OkdResourcePtr;
+class OkdResourceHandle;
 class OkdResourceId;
 
 //#define	FRIEND_RESOURCE_HANDLER_SINGLETON(SingletonClass) \
@@ -24,10 +24,12 @@ class OkdResourceId;
 class OkdAbstractResourceHandler
 {
 public:
-	virtual void					createResource( const OkdResourceId& resourceId )	= 0;
-	virtual void					loadResource( const OkdResourcePtr& resourcePtr )	= 0;
-	virtual void					unloadResource( const OkdResourcePtr& resourcePtr )	= 0;
-	virtual void					saveResource( const OkdResourcePtr& resourcePtr )	= 0;
+	virtual void*					allocateResource()											= 0;
+	virtual void					freeResource( void* pResource )								= 0;
+
+	virtual void					loadResource( void* pResource, const void* pResourceData )	= 0;
+	virtual void					unloadResource( void* pResource )							= 0;
+	virtual void					saveResource( const void* pResource, void* pResourceData )	= 0;
 
 	//inline const char*				getResourceTypeName() const;
 	//inline const OrkidResourceType	getResourceType() const;
@@ -36,12 +38,6 @@ protected:
 									//OkdAbstractResourceHandler(const OrkidResourceType eResourceType);
 									OkdAbstractResourceHandler();
 	virtual							~OkdAbstractResourceHandler();
-
-private:
-	typedef OkdMap<OkdString, OkdResourcePtr>	_resourceMap;
-	//OkdList<OkdResourceHandle*>		_resourceList;
-	//const char*						_strResourceTypeName;
-	//OrkidResourceType				_eResourceType;
 };
 
 //*****************************************************************************

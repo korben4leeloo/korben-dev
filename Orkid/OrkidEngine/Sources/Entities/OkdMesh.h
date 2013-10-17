@@ -16,13 +16,10 @@
 #include	ORKID_CORE_H(Stream/OkdFileStream)
 #include	ORKID_ENGINE_H(ResourceManager/OkdResourceManager)
 
-class OkdMeshHandler: public OkdAbstractResourceHandler
-{
-
-};
-
 class OkdMesh
 {
+	friend class OkdMeshHandler;
+
 public:
 	void			create( const OkdMeshInfo& meshInfo );
 

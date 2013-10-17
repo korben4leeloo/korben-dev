@@ -7,16 +7,7 @@
 
 #include	"OkdSceneHandler.h"
 
-////-----------------------------------------------------------------------------
-//// Name:		OkdSceneHandler constructor
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//OkdSceneHandler::OkdSceneHandler()
-//: OkdAbstractResourceHandlerSingleton( OrkidScene )
-//{
-//	
-//}
+#include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 
 //-----------------------------------------------------------------------------
 // Name:		OkdSceneHandler constructor
@@ -39,21 +30,54 @@ OkdSceneHandler::~OkdSceneHandler()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		load
+// Name:		allocateResource
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdSceneHandler::load(OkdResourceHandle*	pResource)
+void*	OkdSceneHandler::allocateResource()
 {
-	
+	OkdScene* pScene = new OkdScene();
+	return	( pScene );
 }
 
 //-----------------------------------------------------------------------------
-// Name:		unload
+// Name:		freeResource
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdSceneHandler::unload(OkdResourceHandle*	pResource)
+void	OkdSceneHandler::freeResource(void*	pResource)
+{
+
+}
+
+//-----------------------------------------------------------------------------
+// Name:		loadResource
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdSceneHandler::loadResource(void*			pResource, 
+									  const void*	pResourceData)
+{
+
+}
+
+//-----------------------------------------------------------------------------
+// Name:		unloadResource
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdSceneHandler::unloadResource(void*	pResource)
+{
+
+}
+
+//-----------------------------------------------------------------------------
+// Name:		saveResource
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdSceneHandler::saveResource(const void*	pResource, 
+									  void*			pResourceData)
 {
 
 }

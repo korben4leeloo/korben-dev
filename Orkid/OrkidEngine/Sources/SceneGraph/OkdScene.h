@@ -20,7 +20,7 @@ class OkdString;
 class OkdScene
 {
 public:
-	friend class OrkidEngine;
+	friend class OkdSceneHandler;
 
 	OkdNode*			createNode( OkdNode* pParentNode = 0 );
 	OkdMeshInstance*	createMeshInstance( const OkdString& strMeshName, OkdNode* pNode = 0 );

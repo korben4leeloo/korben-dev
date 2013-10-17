@@ -7,16 +7,7 @@
 
 #include	"OkdMeshHandler.h"
 
-////-----------------------------------------------------------------------------
-//// Name:		OkdMeshHandler constructor
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//OkdMeshHandler::OkdMeshHandler()
-//: OkdAbstractResourceHandlerSingleton( OrkidMesh )
-//{
-//	
-//}
+#include	ORKID_ENGINE_H(Entities/OkdMesh)
 
 //-----------------------------------------------------------------------------
 // Name:		OkdMeshHandler constructor
@@ -39,31 +30,54 @@ OkdMeshHandler::~OkdMeshHandler()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		createResource
+// Name:		allocateResource
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdMeshHandler::createResource(const OkdResourceId &	resourceId)
+void*	OkdMeshHandler::allocateResource()
+{
+	OkdMesh* pMesh = new OkdMesh();
+	return	( pMesh );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		freeResource
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdMeshHandler::freeResource(void*	pResource)
 {
 
 }
 
 //-----------------------------------------------------------------------------
-// Name:		load
+// Name:		loadResource
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdMeshHandler::load(OkdResourceHandle*	pResource)
+void	OkdMeshHandler::loadResource(void*			pResource, 
+									 const void*	pResourceData)
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		unload
+// Name:		unloadResource
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdMeshHandler::unload(OkdResourceHandle*	pResource)
+void	OkdMeshHandler::unloadResource(void*	pResource)
+{
+
+}
+
+//-----------------------------------------------------------------------------
+// Name:		saveResource
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdMeshHandler::saveResource(const void*	pResource, 
+									 void*			pResourceData)
 {
 
 }
