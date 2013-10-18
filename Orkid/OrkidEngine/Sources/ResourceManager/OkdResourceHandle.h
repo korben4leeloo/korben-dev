@@ -16,22 +16,15 @@
 
 class OkdString;
 
-//class OkdResourceLocation
-//{
-//
-//};
-
 class OkdResourceHandle
 {
 public:
-	inline 					OkdResourceHandle( const OkdResourceId& resourceId );
-	inline					~OkdResourceHandle();
+	inline 			OkdResourceHandle( const OkdResourceId& resourceId, void* pData );
+	inline			~OkdResourceHandle();
 
 private:
-	OkdResourceId			_resourceId;
-	//OkdResourceLocation*	_pLocation;
-	//OkdString*				_pName;
-	void*					_pData;
+	OkdResourceId	_resourceId;
+	void*			_pData;
 };
 
 //*****************************************************************************
@@ -43,11 +36,10 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdResourceHandle::OkdResourceHandle(const OkdResourceId&	resourceId)
+OkdResourceHandle::OkdResourceHandle(const OkdResourceId&	resourceId, 
+									 void*					pData)
 : _resourceId	( resourceId )
-//, _pLocation	( 0 )
-//, _pName		( 0 )
-, _pData		( 0 )
+, _pData		( pData )
 {
 	
 }

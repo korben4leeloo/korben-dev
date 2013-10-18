@@ -102,7 +102,7 @@ void	OkdFileTranslator::exportSceneGraph()
 	MItDag				itDag( MItDag::kDepthFirst, MFn::kTransform, &status );
 	/*OkdResourceManager*	pExportResourceManager	= _pOrkidEngine->addResourceManager( "ExportResourceManager" );
 	OkdScene*			pExportScene			= _pOrkidEngine->addScene( "ExportScene", "ExportResourceManager" );*/
-	OkdScene*			pExportScene			= _pOrkidEngine->addScene( "ExportScene" );
+	//OkdScene*			pExportScene			= _pOrkidEngine->addScene( "ExportScene" );
 
 	while	( itDag.isDone() == false )
 	{

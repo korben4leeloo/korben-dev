@@ -39,10 +39,8 @@ OkdResourceManager::~OkdResourceManager()
 void	OkdResourceManager::initialize()
 {
 	// Register resource handlers
-	memset( _resourceHandlerArray, 0, sizeof(_resourceHandlerArray) );
-
-	_resourceHandlerArray[OrkidMesh]	= new OkdMeshHandler();
-	_resourceHandlerArray[OrkidScene]	= new OkdSceneHandler();
+	_resourceMapArray[OrkidMesh]._pResourceHandler	= new OkdMeshHandler();
+	_resourceMapArray[OrkidScene]._pResourceHandler	= new OkdSceneHandler();
 }
 
 ////-----------------------------------------------------------------------------
@@ -77,33 +75,23 @@ void	OkdResourceManager::initialize()
 //	_resourceHandlerArray[pResourceHandler->getResourceType()] = 0;
 //}
 
-////-----------------------------------------------------------------------------
-//// Name:		addResource
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//OkdResourcePtr	OkdResourceManager::addResource(const OkdResourceId&	resourceId)
-//{
-//	OkdResourceHandle*	pResourceHandle = new OkdResourceHandle( resourceId );
-//	OkdResourcePtr	resourcePtr( pResourceHandle );
+//-----------------------------------------------------------------------------
+// Name:		createResource
 //
-//	ORKID_ASSERT( ( resourceId.getResourceType() >= (OrkidResourceType)0 ) && ( resourceId.getResourceType() < OrkidResourceTypeLast ) );
-//
-//	if	( resourceId.getResourceId() == 0 )
-//	{
-//
-//	}
-//	else if	( resourceId.getResourceId() > 0 )
-//	{
-//
-//	}
-//	else
-//	{
-//
-//	}
-//
-//	return	( resourcePtr );
-//}
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdResourcePtr	OkdResourceManager::createResource(const OkdResourceId&	resourceId)
+{
+	OkdResourceMap*				pResourceMap		= getResourceMap( resourceId.getResourceType() );
+	OkdAbstractResourceHandler*	pResourceHandler	= pResourceMap->_pResourceHandler;
+	void*						pResourceData		= pResourceHandler->allocateResource();
+	OkdResourceHandle*			pResourceHandle		= new OkdResourceHandle( resourceId, pResourceData );
+	OkdResourcePtr				resourcePtr( pResourceHandle );
+
+	pResourceMap->_resourceHandleMap.add( resourceId.getResourceName(), pResourceHandle );
+
+	return	( resourcePtr );
+}
 
 ////-----------------------------------------------------------------------------
 //// Name:		createResource

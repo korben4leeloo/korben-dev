@@ -23,15 +23,25 @@ public:
 
 	//uint32												getResourceTypeId( const OkdString& strResourceTypeName );
 
-	//OkdResourcePtr										createResource( const OkdResourceId& resourceId );
-	OkdResourcePtr										createResource( const OrkidResourceType eResourceType, const OkdString& strResourceName );
+	OkdResourcePtr										createResource( const OkdResourceId& resourceId );
+	//OkdResourcePtr										createResource( const OrkidResourceType eResourceType, const OkdString& strResourceName );
 	//OkdResourcePtr										createResource( const OrkidResourceType& eResourceType, const OkdString& strResourceName );
 
 private:
+	struct OkdResourceMap
+	{
+												OkdResourceMap(): _pResourceHandler( 0 ) {}
+
+		OkdAbstractResourceHandler*				_pResourceHandler;
+		OkdMap<OkdString, OkdResourceHandle*>	_resourceHandleMap;
+	};
+
 														OkdResourceManager();
 														~OkdResourceManager();
 
 	void												initialize();
+	inline OkdResourceMap*								getResourceMap( const OrkidResourceType eResourceType );
+
 
 														/*void												registerResourceType( const OrkidResourceType eResourceType, const OkdAbstractResourceHandler* pResourceHandler );
 														void												unregisterResourceType( const OrkidResourceType eResourceType, const OkdAbstractResourceHandler* pResourceHandler );*/
@@ -39,11 +49,23 @@ private:
 	//void												clearResources();
 
 	//OkdMap<uint32, const OkdAbstractResourceHandler*>	_resourceHandlerMap;
-	const OkdAbstractResourceHandler*					_resourceHandlerArray[OrkidResourceTypeCount];
+	//const OkdAbstractResourceHandler*					_resourceHandlerArray[OrkidResourceTypeCount];
+	OkdResourceMap					_resourceMapArray[OrkidResourceTypeCount];
 };
 
 //*****************************************************************************
 //	Inline functions declarations
 //*****************************************************************************
+
+//-----------------------------------------------------------------------------
+// Name:		getResourceMap
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdResourceManager::OkdResourceMap*	OkdResourceManager::getResourceMap(const OrkidResourceType	eResourceType)
+{
+	ORKID_ASSERT( eResourceType < OrkidResourceTypeCount );
+	return	( &_resourceMapArray[eResourceType] );
+}
 
 #endif
