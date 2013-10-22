@@ -86,7 +86,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(KORBEN_DEV_QT_PATH)\include;$(KORBEN_DEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KORBEN_DEV_PATH)\Libraries\Xml\Xerces\include;$(KORBEN_DEV_ORKID_PATH);$(KORBEN_DEV_PATH)\Libraries\Xml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(KORBEN_DEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KORBEN_DEV_PATH)\Libraries\Xml\Xerces\include;$(KORBEN_DEV_ORKID_PATH);$(KORBEN_DEV_PATH)\Libraries\Xml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>
       </ForcedIncludeFiles>
     </ClCompile>
