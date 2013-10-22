@@ -145,6 +145,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	OkdResourceId		sceneResId( OrkidScene, "TestScene" );
 
 	pResourceManager->createResource( sceneResId );
+	pResourceManager->createResource( OkdResourceId( OrkidScene, "TestScene2" ) );
+	pResourceManager->createResource( OkdResourceId( OrkidScene, "TestScene3" ) );
 
 	/*OkdResourceId	defaultSceneIdentifier( OrkidScene, 0 );
 

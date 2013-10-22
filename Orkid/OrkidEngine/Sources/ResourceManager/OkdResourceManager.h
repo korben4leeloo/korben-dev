@@ -42,6 +42,8 @@ private:
 	void												initialize();
 	inline OkdResourceMap*								getResourceMap( const OrkidResourceType eResourceType );
 
+	void												deleteResource( const OkdResourceId& resourceId );
+
 
 														/*void												registerResourceType( const OrkidResourceType eResourceType, const OkdAbstractResourceHandler* pResourceHandler );
 														void												unregisterResourceType( const OrkidResourceType eResourceType, const OkdAbstractResourceHandler* pResourceHandler );*/

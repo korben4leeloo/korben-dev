@@ -1,59 +1,48 @@
 //*****************************************************************************
 //
-//	File:		OkdSharedResource.cpp
+//	File:		OkdResourceHandle.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-//#include	"OkdSharedResource.h"
+#include	"OkdResourceHandle.h"
 
 ////-----------------------------------------------------------------------------
-//// Name:		OkdSharedResource constructor
+//// Name:		OkdResourceHandle constructor
 ////
 //// Created:		2013-08-26
 ////-----------------------------------------------------------------------------
-//OkdSharedResource::OkdSharedResource(const OkdString&			strResourceName, 
-//									 const OkdString&			strResourceLocName,
-//									 const RESOURCE_LOCATION	eResourceLoc)
-//: _strResourceName		( strResourceName )
-//, _strResourceLocName	( strResourceLocName )
-//, _eResourceLoc			( eResourceLoc )
-//, _uiLoadRefCount		( 0 )
+//OkdResourceHandle::OkdResourceHandle(const OkdResourceId&	resourceId, 
+//									 void*					pData)
+//: _resourceId		( resourceId )
+//, _uiRefCount		( 0 )
+//, _uiLoadRefCount	( 0 )
+//, _pData			( pData )
 //{
 //
 //}
+
+//-----------------------------------------------------------------------------
+// Name:		OkdResourceHandle constructor
 //
-////-----------------------------------------------------------------------------
-//// Name:		OkdSharedResource destructor
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//OkdSharedResource::~OkdSharedResource()
-//{
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdResourceHandle::OkdResourceHandle(void*				pData, 
+									 const OkdString&	strResourceName)
+: _uiRefCount		( 0 )
+, _uiLoadRefCount	( 0 )
+, _pData			( pData )
+, _strResourceName	( strResourceName )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+// Name:		OkdResourceHandle destructor
 //
-//}
-//
-////-----------------------------------------------------------------------------
-//// Name:		load
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//void	OkdSharedResource::load()
-//{
-//	_uiLoadRefCount++;
-//}
-//
-////-----------------------------------------------------------------------------
-//// Name:		unload
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//void	OkdSharedResource::unload()
-//{
-//	ORKID_ASSERT( _uiLoadRefCount > 0 );
-//
-//	if	( _uiLoadRefCount > 0 )
-//	{
-//		_uiLoadRefCount--;
-//	}
-//}
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdResourceHandle::~OkdResourceHandle()
+{
+
+}

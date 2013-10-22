@@ -26,6 +26,7 @@
     <ClInclude Include="Sources\ResourceManager\OkdResourceHandle.h" />
     <ClInclude Include="Sources\ResourceManager\OkdResourceId.h" />
     <ClInclude Include="Sources\ResourceManager\OkdResourceManager.h" />
+    <ClInclude Include="Sources\ResourceManager\OkdResourcePtr.h" />
     <ClInclude Include="Sources\ResourceManager\ResourceHandler\OkdAbstractResourceHandler.h" />
     <ClInclude Include="Sources\ResourceManager\ResourceHandler\OkdMeshHandler.h" />
     <ClInclude Include="Sources\ResourceManager\ResourceHandler\OkdSceneHandler.h" />
@@ -48,6 +49,7 @@
     <ClCompile Include="Sources\ResourceManager\OkdResourceHandle.cpp" />
     <ClCompile Include="Sources\ResourceManager\OkdResourceId.cpp" />
     <ClCompile Include="Sources\ResourceManager\OkdResourceManager.cpp" />
+    <ClCompile Include="Sources\ResourceManager\OkdResourcePtr.cpp" />
     <ClCompile Include="Sources\ResourceManager\ResourceHandler\OkdAbstractResourceHandler.cpp" />
     <ClCompile Include="Sources\ResourceManager\ResourceHandler\OkdMeshHandler.cpp" />
     <ClCompile Include="Sources\ResourceManager\ResourceHandler\OkdSceneHandler.cpp" />

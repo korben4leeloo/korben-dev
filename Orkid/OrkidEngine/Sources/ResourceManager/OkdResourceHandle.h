@@ -6,25 +6,42 @@
 //
 //*****************************************************************************
 
-#ifndef __OrkidEngine_OkdResource_h__
-#define __OrkidEngine_OkdResource_h__
+#ifndef __OrkidEngine_OkdResourceHandle_h__
+#define __OrkidEngine_OkdResourceHandle_h__
 
 #include	"Root.h"
 
-#include	ORKID_CORE_H(Memory/OkdSharedPtr)
-#include	ORKID_ENGINE_H(ResourceManager/OkdResourceId)
+//#include	ORKID_CORE_H(Memory/OkdSharedPtr)
+//#include	ORKID_ENGINE_H(ResourceManager/OkdResourceManager)
+//#include	ORKID_ENGINE_H(ResourceManager/OkdResourceId)
+//#include	ORKID_ENGINE_H(OrkidEngine)
 
-class OkdString;
+#include	ORKID_CORE_H(String/OkdString)
 
 class OkdResourceHandle
 {
-public:
-	inline 			OkdResourceHandle( const OkdResourceId& resourceId, void* pData );
-	inline			~OkdResourceHandle();
+friend class OkdResourceManager;
+friend class OkdResourcePtr;
 
+public:
+	//inline const OkdResourceId&	getResourceId() const;
+	
 private:
-	OkdResourceId	_resourceId;
+		 			//OkdResourceHandle( const OkdResourceId& resourceId, void* pData );
+					OkdResourceHandle( void* pData, const OkdString& strResourceName );
+					~OkdResourceHandle();
+
+	inline void		addRef();
+	inline uint32	removeRef();
+
+	inline void		addLoadRef();
+	inline uint32	removeLoadRef();
+
+	//OkdResourceId	_resourceId;
+	uint32			_uiRefCount;
+	uint32			_uiLoadRefCount;
 	void*			_pData;
+	OkdString		_strResourceName;
 };
 
 //*****************************************************************************
@@ -32,235 +49,59 @@ private:
 //*****************************************************************************
 
 //-----------------------------------------------------------------------------
-// Name:		OkdResourceHandle constructor
+// Name:		addRef
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdResourceHandle::OkdResourceHandle(const OkdResourceId&	resourceId, 
-									 void*					pData)
-: _resourceId	( resourceId )
-, _pData		( pData )
+void OkdResourceHandle::addRef()
 {
-	
+	_uiRefCount++;
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OkdResourceHandle destructor
+// Name:		removeRef
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdResourceHandle::~OkdResourceHandle()
+uint32 OkdResourceHandle::removeRef()
 {
-	
+	ORKID_ASSERT( _uiRefCount > 0 );
+
+	_uiRefCount--;
+	return	( _uiRefCount );
 }
 
-class OkdResourcePtr
-{
-public:
-	friend class OkdResourceManager;
-
-	inline							OkdResourcePtr( const OkdResourcePtr& sharedResource );
-	inline							~OkdResourcePtr();
-
-	inline OkdResourceHandle*		getResourceHandle();
-	inline const OkdResourceHandle*	getResourceHandle() const;
-	inline uint						getRefCount() const;
-
-	inline void						load();
-	inline void						unload();
-	inline uint						getLoadRefCount() const;
-
-	inline OkdResourcePtr&	operator=( const OkdResourcePtr& sharedPtr );
-
-protected:
-	inline							OkdResourcePtr( OkdResourceHandle* pResourceHandle );
-
-	inline void						destroy();
-	
-	OkdResourceHandle*				_pResourceHandle;
-	OkdSharedPtrRef*				_pRefCount;
-	OkdSharedPtrRef*				_pLoadRefCount;
-	bool							_bHasLoadRef;
-};
-
-//*****************************************************************************
-//	Inline functions declarations
-//*****************************************************************************
-
 //-----------------------------------------------------------------------------
-// Name:		OkdResourceHandle constructor
+// Name:		addLoadRef
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdResourcePtr::OkdResourcePtr(OkdResourceHandle*	pResourceHandle)
-: _pResourceHandle	( pResourceHandle )
-, _bHasLoadRef		( false )
+void OkdResourceHandle::addLoadRef()
 {
-	_pRefCount		= new OkdSharedPtrRef();
-	_pLoadRefCount	= new OkdSharedPtrRef();
-
-	_pRefCount->increase();
+	_uiLoadRefCount++;
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OkdResourcePtr copy constructor
+// Name:		removeLoadRef
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdResourcePtr::OkdResourcePtr(const OkdResourcePtr&	sharedPtr)
-: _pResourceHandle	( sharedPtr._pResourceHandle )
-, _pRefCount		( sharedPtr._pRefCount )
-, _pLoadRefCount	( sharedPtr._pLoadRefCount )
-, _bHasLoadRef		( false )
+uint32 OkdResourceHandle::removeLoadRef()
 {
-	_pRefCount->increase();
+	ORKID_ASSERT( _uiLoadRefCount > 0 );
+
+	_uiLoadRefCount--;
+	return	( _uiLoadRefCount );
 }
 
-//-----------------------------------------------------------------------------
-// Name:		OkdResourcePtr destructor
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdResourcePtr::~OkdResourcePtr()
-{
-	if	( _bHasLoadRef )
-	{
-		unload();
-	}
-
-	if	( _pRefCount->decrease() == 0 )
-	{
-		destroy();
-	}
-}
-
-//-----------------------------------------------------------------------------
-// Name:		OkdResourcePtr operator=
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdResourcePtr& OkdResourcePtr::operator=( const OkdResourcePtr& sharedPtr )
-{
-	if	( &sharedPtr != this )
-	{
-		if	( _bHasLoadRef )
-		{
-			unload();
-		}
-
-		if	( _pRefCount->decrease() == 0 )
-		{
-			destroy();
-		}
-
-		_pResourceHandle	= sharedPtr._pResourceHandle;
-		_pRefCount			= sharedPtr._pRefCount;
-		_pLoadRefCount		= sharedPtr._pLoadRefCount;
-
-		_pRefCount->increase();
-	}
-
-	return	( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		destroy
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OkdResourcePtr::destroy()
-{
-	ORKID_ASSERT( _pLoadRefCount->getRefCount() == 0 );
-
-	if	( _pResourceHandle )
-	{
-		delete _pResourceHandle;
-	}
-
-	delete _pLoadRefCount;
-	delete _pRefCount;
-}
-
-//-----------------------------------------------------------------------------
-// Name:		load
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OkdResourcePtr::load()
-{
-	ORKID_ASSERT( _bHasLoadRef == false );
-
-	if	( _bHasLoadRef == false )
-	{
-		//
-		// Load resource
-		//
-
-		_bHasLoadRef = true;
-	}
-}
-
-//-----------------------------------------------------------------------------
-// Name:		unload
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OkdResourcePtr::unload()
-{
-	ORKID_ASSERT( _pLoadRefCount->getRefCount() > 0 );
-	ORKID_ASSERT( _bHasLoadRef );
-
-	if	( _bHasLoadRef )
-	{
-		if	( _pLoadRefCount->decrease() == 0 )
-		{
-			//
-			// unload resource
-			//
-		}
-	}
-
-	_bHasLoadRef = false;
-}
-
-//-----------------------------------------------------------------------------
-// Name:		getResourceHandle
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdResourceHandle*	OkdResourcePtr::getResourceHandle()
-{
-	return	( _pResourceHandle );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		getResourceHandle
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-const OkdResourceHandle*	OkdResourcePtr::getResourceHandle() const
-{
-	return	( _pResourceHandle );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		getRefCount
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-uint	OkdResourcePtr::getRefCount() const
-{
-	return	( _pRefCount->getRefCount() );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		getLoadRefCount
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-uint	OkdResourcePtr::getLoadRefCount() const
-{
-	return	( _pLoadRefCount->getRefCount() );
-}
+////-----------------------------------------------------------------------------
+//// Name:		getResourceId
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//const OkdResourceId& OkdResourceHandle::getResourceId() const
+//{
+//	return	( _resourceId );
+//}
 
 #endif

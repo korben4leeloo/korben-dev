@@ -93,6 +93,24 @@ OkdResourcePtr	OkdResourceManager::createResource(const OkdResourceId&	resourceI
 	return	( resourcePtr );
 }
 
+//-----------------------------------------------------------------------------
+// Name:		deleteResource
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdResourceManager::deleteResource(const OkdResourceId&	resourceId)
+{
+	OkdResourceMap*				pResourceMap		= getResourceMap( resourceId.getResourceType() );
+	OkdAbstractResourceHandler*	pResourceHandler	= pResourceMap->_pResourceHandler;
+	OkdResourceHandle*			pResourceHandle		= pResourceMap->_resourceHandleMap.find( resourceId.getResourceName() );
+
+	pResourceHandler->freeResource( pResourceHandle->_pData );
+
+	delete pResourceHandle;
+
+	return	( resourcePtr );
+}
+
 ////-----------------------------------------------------------------------------
 //// Name:		createResource
 ////
