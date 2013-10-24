@@ -14,9 +14,6 @@
     <Filter Include="Sources\Network">
       <UniqueIdentifier>{3c06edac-f394-4414-8e65-f4884055450d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\ResourceManager">
-      <UniqueIdentifier>{58e29c86-ff69-4885-8a4c-04eaad51e34f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sources\OpenGL">
       <UniqueIdentifier>{3fa7df17-15cc-403d-b096-4c2cd6c18374}</UniqueIdentifier>
     </Filter>
@@ -29,8 +26,11 @@
     <Filter Include="Sources\SceneGraph">
       <UniqueIdentifier>{a0ad9b4d-ebe6-4c22-ae37-346a5e0851ce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\ResourceManager\ResourceHandler">
-      <UniqueIdentifier>{ad56a2b8-509d-4a48-bad9-9b7ab3a5862b}</UniqueIdentifier>
+    <Filter Include="Sources\Resources">
+      <UniqueIdentifier>{3520c5f2-9b28-4fef-83e2-feb978cc3c84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Resources\Handlers">
+      <UniqueIdentifier>{045c0502-d97d-4834-91cf-b01c443ba32c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -70,53 +70,41 @@
     <ClInclude Include="Sources\Entities\OkdMeshInfo.h">
       <Filter>Sources\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ResourceManager\Root.h">
-      <Filter>Sources\ResourceManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\ResourceManager\OkdResourceManager.h">
-      <Filter>Sources\ResourceManager</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\OrkidEngine.h">
       <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\ResourceManager\ResourceHandler\Root.h">
-      <Filter>Sources\ResourceManager\ResourceHandler</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\ResourceManager\ResourceHandler\OkdAbstractResourceHandler.h">
-      <Filter>Sources\ResourceManager\ResourceHandler</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\ResourceManager\ResourceHandler\OkdMeshHandler.h">
-      <Filter>Sources\ResourceManager\ResourceHandler</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\ResourceManager\ResourceHandler\OkdSceneHandler.h">
-      <Filter>Sources\ResourceManager\ResourceHandler</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\ResourceManager\OkdResourceId.h">
-      <Filter>Sources\ResourceManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\ResourceManager\OkdResourceHandle.h">
-      <Filter>Sources\ResourceManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\ResourceManager\OkdResourceDatabase.h">
-      <Filter>Sources\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="Sources\SceneGraph\OkdScene.h">
       <Filter>Sources\SceneGraph</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ResourceManager\OkdResourcePtr.h">
-      <Filter>Sources\ResourceManager</Filter>
+    <ClInclude Include="Sources\Resources\Handlers\OkdMeshResourceHandler.h">
+      <Filter>Sources\Resources\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ResourceManager\OkdResourceMap.h">
-      <Filter>Sources\ResourceManager</Filter>
+    <ClInclude Include="Sources\Resources\Handlers\OkdSceneResourceHandler.h">
+      <Filter>Sources\Resources\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ResourceManager\OkdResourceRef.h">
-      <Filter>Sources\ResourceManager</Filter>
+    <ClInclude Include="Sources\Resources\Handlers\Root.h">
+      <Filter>Sources\Resources\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ResourceManager\OkdTypeResourceManager.h">
-      <Filter>Sources\ResourceManager</Filter>
+    <ClInclude Include="Sources\Resources\Handlers\OkdAbstractResourceHandler.h">
+      <Filter>Sources\Resources\Handlers</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ResourceManager\OkdAbstractTypeResourceManager.h">
-      <Filter>Sources\ResourceManager</Filter>
+    <ClInclude Include="Sources\Resources\OkdResourcePtr.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Resources\OkdResourceRef.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Resources\Root.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Resources\OkdResourceManager.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Resources\Handlers\OkdResourceHandler.h">
+      <Filter>Sources\Resources\Handlers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Resources\OkdResourceDatabase.h">
+      <Filter>Sources\Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -147,44 +135,32 @@
     <ClCompile Include="Sources\Entities\OkdMeshInfo.cpp">
       <Filter>Sources\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ResourceManager\OkdResourceManager.cpp">
-      <Filter>Sources\ResourceManager</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\OrkidEngine.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ResourceManager\ResourceHandler\OkdAbstractResourceHandler.cpp">
-      <Filter>Sources\ResourceManager\ResourceHandler</Filter>
+    <ClCompile Include="Sources\Resources\Handlers\OkdSceneResourceHandler.cpp">
+      <Filter>Sources\Resources\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ResourceManager\ResourceHandler\OkdMeshHandler.cpp">
-      <Filter>Sources\ResourceManager\ResourceHandler</Filter>
+    <ClCompile Include="Sources\Resources\Handlers\OkdAbstractResourceHandler.cpp">
+      <Filter>Sources\Resources\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ResourceManager\ResourceHandler\OkdSceneHandler.cpp">
-      <Filter>Sources\ResourceManager\ResourceHandler</Filter>
+    <ClCompile Include="Sources\Resources\Handlers\OkdMeshResourceHandler.cpp">
+      <Filter>Sources\Resources\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ResourceManager\OkdResourceId.cpp">
-      <Filter>Sources\ResourceManager</Filter>
+    <ClCompile Include="Sources\Resources\OkdResourceRef.cpp">
+      <Filter>Sources\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ResourceManager\OkdResourceHandle.cpp">
-      <Filter>Sources\ResourceManager</Filter>
+    <ClCompile Include="Sources\Resources\OkdResourceManager.cpp">
+      <Filter>Sources\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ResourceManager\OkdResourceDatabase.cpp">
-      <Filter>Sources\ResourceManager</Filter>
+    <ClCompile Include="Sources\Resources\OkdResourcePtr.cpp">
+      <Filter>Sources\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ResourceManager\OkdResourcePtr.cpp">
-      <Filter>Sources\ResourceManager</Filter>
+    <ClCompile Include="Sources\Resources\Handlers\OkdResourceHandler.cpp">
+      <Filter>Sources\Resources\Handlers</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ResourceManager\OkdResourceMap.cpp">
-      <Filter>Sources\ResourceManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\ResourceManager\OkdResourceRef.cpp">
-      <Filter>Sources\ResourceManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\ResourceManager\OkdAbstractTypeResourceManager.cpp">
-      <Filter>Sources\ResourceManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\ResourceManager\OkdTypeResourceManager.cpp">
-      <Filter>Sources\ResourceManager</Filter>
+    <ClCompile Include="Sources\Resources\OkdResourceDatabase.cpp">
+      <Filter>Sources\Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
