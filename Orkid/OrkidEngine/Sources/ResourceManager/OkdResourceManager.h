@@ -29,10 +29,10 @@ public:
 };
 
 template<class T, OrkidResourceType resourceType>
-class OkdResourceTypeManager: public OkdAbstractResourceManager
+class OkdResourceTypeManager: public OkdAbstractResourceTypeManager
 {
 public:
-	OkdResourceTypeManager(): OkdAbstractResourceManager( resourceType ) {}
+	OkdResourceTypeManager(): OkdAbstractResourceTypeManager( resourceType ) {}
 
 	virtual OkdResourcePtr<T>	createResource( const OkdString& strResourceName )
 	{
