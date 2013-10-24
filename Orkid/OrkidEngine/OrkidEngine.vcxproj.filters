@@ -106,6 +106,18 @@
     <ClInclude Include="Sources\ResourceManager\OkdResourcePtr.h">
       <Filter>Sources\ResourceManager</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\ResourceManager\OkdResourceMap.h">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ResourceManager\OkdResourceRef.h">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ResourceManager\OkdTypeResourceManager.h">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\ResourceManager\OkdAbstractTypeResourceManager.h">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
@@ -160,6 +172,18 @@
       <Filter>Sources\ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="Sources\ResourceManager\OkdResourcePtr.cpp">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ResourceManager\OkdResourceMap.cpp">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ResourceManager\OkdResourceRef.cpp">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ResourceManager\OkdAbstractTypeResourceManager.cpp">
+      <Filter>Sources\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ResourceManager\OkdTypeResourceManager.cpp">
       <Filter>Sources\ResourceManager</Filter>
     </ClCompile>
   </ItemGroup>

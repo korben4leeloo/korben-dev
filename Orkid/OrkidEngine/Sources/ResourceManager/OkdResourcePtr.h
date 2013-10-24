@@ -11,84 +11,65 @@
 
 #include	"Root.h"
 
-//#include	ORKID_CORE_H(Memory/OkdSharedPtr)
-//#include	ORKID_ENGINE_H(ResourceManager/OkdResourceManager)
-//#include	ORKID_ENGINE_H(ResourceManager/OkdResourceId)
-//#include	ORKID_ENGINE_H(OrkidEngine)
+#include	ORKID_ENGINE_H(ResourceManager/OkdResourceRef)
 
-class OkdResourceHandle;
-
+template<class T>
 class OkdResourcePtr
 {
+	template<class T, OrkidResourceType ResourceType> friend class OkdBaseResourceManager;
+
 public:
-	friend class OkdResourceManager;
+						OkdResourcePtr( const OkdResourcePtr<T>& resourcePtr );
+						~OkdResourcePtr();
 
-									OkdResourcePtr( const OkdResourcePtr& resourcePtr );
-									~OkdResourcePtr();
+	OkdResourcePtr&		operator=( const OkdResourcePtr& resourcePtr );
 
-	/*inline OkdResourceHandle*		getResourceHandle();
-	inline const OkdResourceHandle*	getResourceHandle() const;
-	inline uint						getRefCount() const;
-
-	inline void						load();
-	inline void						unload();
-	inline uint						getLoadRefCount() const;*/
-
-	OkdResourcePtr&					operator=( const OkdResourcePtr& resourcePtr );
-
-protected:
-									OkdResourcePtr( OkdResourceHandle* pResourceHandle );
-
-		void						destroy();
+private:
+						OkdResourcePtr( OkdResourceRef<T>* pResourceRef );
 	
-	OkdResourceHandle*				_pResourceHandle;
-	/*OkdSharedPtrRef*				_pRefCount;
-	OkdSharedPtrRef*				_pLoadRefCount;
-	bool							_bHasLoadRef;*/
+	OkdResourceRef<T>*	_pResourceRef;
 };
+
+//-----------------------------------------------------------------------------
+// Name:		OkdResourcePtr constructor
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+OkdResourcePtr<T>::OkdResourcePtr(OkdResourceRef<T>* pResourceRef)
+: _pResourceRef( pResourceRef )
+{
+	_pResourceRef->addRef();
+}
+
+//-----------------------------------------------------------------------------
+// Name:		OkdResourcePtr copy constructor
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+OkdResourcePtr<T>::OkdResourcePtr(const OkdResourcePtr<T>&	resourcePtr)
+: _pResourceRef( resourcePtr._pResourceRef )
+{
+	pResourceRef->addRef();
+}
+
+//-----------------------------------------------------------------------------
+// Name:		OkdResourcePtr destructor
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+OkdResourcePtr<T>::~OkdResourcePtr()
+{
+	if	( _pResourceRef->removeRef() == 0 )
+	{
+		delete _pResourceRef;
+	}
+}
 
 //*****************************************************************************
 //	Inline functions declarations
 //*****************************************************************************
-
-////-----------------------------------------------------------------------------
-//// Name:		getResourceHandle
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//OkdResourceHandle*	OkdResourcePtr::getResourceHandle()
-//{
-//	return	( _pResourceHandle );
-//}
-//
-////-----------------------------------------------------------------------------
-//// Name:		getResourceHandle
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//const OkdResourceHandle*	OkdResourcePtr::getResourceHandle() const
-//{
-//	return	( _pResourceHandle );
-//}
-//
-////-----------------------------------------------------------------------------
-//// Name:		getRefCount
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//uint	OkdResourcePtr::getRefCount() const
-//{
-//	return	( _pRefCount->getRefCount() );
-//}
-//
-////-----------------------------------------------------------------------------
-//// Name:		getLoadRefCount
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//uint	OkdResourcePtr::getLoadRefCount() const
-//{
-//	return	( _pLoadRefCount->getRefCount() );
-//}
 
 #endif

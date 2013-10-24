@@ -142,11 +142,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	OrkidEngine*		pEngine				= OrkidEngine::create();
 	OkdResourceManager*	pResourceManager	= pEngine->getResourceManager();
-	OkdResourceId		sceneResId( OrkidScene, "TestScene" );
+	/*OkdResourceId		sceneResId( OrkidScene, "TestScene" );
 
 	pResourceManager->createResource( sceneResId );
 	pResourceManager->createResource( OkdResourceId( OrkidScene, "TestScene2" ) );
-	pResourceManager->createResource( OkdResourceId( OrkidScene, "TestScene3" ) );
+	pResourceManager->createResource( OkdResourceId( OrkidScene, "TestScene3" ) );*/
 
 	/*OkdResourceId	defaultSceneIdentifier( OrkidScene, 0 );
 

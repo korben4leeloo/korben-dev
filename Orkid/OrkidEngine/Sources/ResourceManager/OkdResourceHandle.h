@@ -21,7 +21,7 @@
 class OkdResourceHandle
 {
 friend class OkdResourceManager;
-friend class OkdResourcePtr;
+//friend class OkdResourcePtr;
 
 public:
 	//inline const OkdResourceId&	getResourceId() const;
