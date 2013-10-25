@@ -7,3 +7,5 @@
 //*****************************************************************************
 
 #include	"../OrkidEngineRoot.h"
+
+typedef uint32 OkdResourceKey;

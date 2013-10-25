@@ -119,12 +119,14 @@ bool createWindow(LPCSTR title, int width, int height) {
 //#include	ORKID_ENGINE_H(Entities/OkdMesh)
 
 #include	ORKID_ENGINE_H(OrkidEngine)
-#include	ORKID_ENGINE_H(Resources/OkdResourceManager)
-#include	ORKID_ENGINE_H(Resources/OkdResourceDatabase)
+//#include	ORKID_ENGINE_H(Resources/OkdResourceManager)
+//#include	ORKID_ENGINE_H(Resources/OkdResourceDatabase)
 //#include	ORKID_ENGINE_H(Resources/ResourceHandler/OkdMeshHandler)
 //#include	ORKID_ENGINE_H(Resources/ResourceHandler/OkdSceneHandler)
 //#include	ORKID_ENGINE_H(Resources/OkdResourceId)
-#include	ORKID_CORE_H(Xml/OkdXmlDocument)
+//#include	ORKID_CORE_H(Xml/OkdXmlDocument)
+#include	ORKID_ENGINE_H(Entities/OkdMesh)
+#include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
 #include	<rapidxml/rapidxml_print.hpp>
 #include	<iostream>
 
@@ -141,7 +143,13 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	MSG msg;
 
 	OrkidEngine*		pEngine				= OrkidEngine::create();
-	OkdResourceManager*	pResourceManager	= pEngine->getResourceManager();
+	//OkdResourceManager*	pResourceManager	= pEngine->getResourceManager();
+
+	{
+		OkdMeshPtr meshPtr;
+		meshPtr.create( "test" );
+	}
+
 	/*OkdResourceId		sceneResId( OrkidScene, "TestScene" );
 
 	pResourceManager->createResource( sceneResId );

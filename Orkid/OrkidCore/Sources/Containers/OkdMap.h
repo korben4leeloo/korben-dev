@@ -23,7 +23,7 @@ public:
 	inline void						clear();
 
 	inline void						add( const Key& key, const Value& value );
-	inline void						remove( const Key& key );
+	inline uint32					remove( const Key& key );
 
 	inline bool						find( const Key& key, Value* pReturnValue );
 	inline void						clearPointers();
@@ -92,10 +92,10 @@ void	OkdMap<Key, Value>::add(const Key&		key,
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<typename Key, typename Value>
-void	OkdMap<Key, Value>::remove(const Key&	key)
+uint32	OkdMap<Key, Value>::remove(const Key&	key)
 {
 	uint32 uiCount = _map.erase( key );
-	ORKID_ASSERT( uiCount == 1 );
+	return	( uiCount );
 }
 
 //-----------------------------------------------------------------------------

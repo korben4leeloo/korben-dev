@@ -18,7 +18,7 @@
 
 class OkdMesh
 {
-	friend class OkdMeshHandler;
+	template<class T> friend class OkdResourceRef;
 
 public:
 	void			create( const OkdMeshInfo& meshInfo );
