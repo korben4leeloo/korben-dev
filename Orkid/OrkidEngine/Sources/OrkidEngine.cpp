@@ -8,10 +8,8 @@
 #include	"OrkidEngine.h"
 
 #include	ORKID_CORE_H(OrkidCore)
-#include	ORKID_ENGINE_H(ResourceManager/OkdResourceManager)
-#include	ORKID_ENGINE_H(ResourceManager/OkdResourceDatabase)
-#include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdMeshHandler)
-#include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdSceneHandler)
+#include	ORKID_ENGINE_H(Resources/OkdResourceManager)
+#include	ORKID_ENGINE_H(Resources/OkdResourceDatabase)
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 
 OrkidEngine*	OrkidEngine::_pInstance			= 0;

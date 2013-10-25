@@ -11,12 +11,6 @@
 
 #include	"Root.h"
 
-//#include	ORKID_ENGINE_H(ResourceManager/OkdResourceHandle)
-//#include	ORKID_ENGINE_H(ResourceManager/ResourceHandler/OkdAbstractResourceHandler)
-//
-//#include	ORKID_ENGINE_H(ResourceManager/OkdResourcePtr)
-//#include	ORKID_CORE_H(Containers/OkdVector)
-
 class OkdAbstractResourceHandler;
 
 class OkdResourceManager

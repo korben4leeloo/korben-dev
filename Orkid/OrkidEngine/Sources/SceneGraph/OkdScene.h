@@ -11,7 +11,7 @@
 
 #include	"Root.h"
 
-#include	ORKID_ENGINE_H(ResourceManager/OkdResourceManager)
+#include	ORKID_ENGINE_H(Resources/OkdResourceManager)
 
 class OkdNode;
 class OkdMeshInstance;

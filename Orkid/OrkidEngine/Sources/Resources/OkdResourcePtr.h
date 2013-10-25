@@ -11,7 +11,7 @@
 
 #include	"Root.h"
 
-#include	ORKID_ENGINE_H(ResourceManager/OkdResourceRef)
+#include	ORKID_ENGINE_H(Resources/OkdResourceRef)
 
 template<class T>
 class OkdResourcePtr
