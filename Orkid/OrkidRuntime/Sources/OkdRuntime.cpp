@@ -146,8 +146,16 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	//OkdResourceManager*	pResourceManager	= pEngine->getResourceManager();
 
 	{
-		OkdMeshPtr meshPtr;
+		OkdMeshPtr meshPtr, meshPtr2;
+
 		meshPtr.create( "test" );
+		meshPtr2.create( "test2" );
+
+		OkdMeshPtr meshPtr3( meshPtr );
+
+		meshPtr = meshPtr2;
+
+		OkdMeshPtr meshPtr4 = meshPtr;
 	}
 
 	/*OkdResourceId		sceneResId( OrkidScene, "TestScene" );

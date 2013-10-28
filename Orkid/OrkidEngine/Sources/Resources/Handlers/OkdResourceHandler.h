@@ -33,8 +33,10 @@ public:
 private:
 	typedef OkdResourceRef<T> OkdResourceRefImpl;
 
-	OkdResourceRefImpl*							createResourceRef( const OkdString& strResourceName );
-	bool										deleteResourceRef( OkdResourceRefImpl* pResourceRef );
+	OkdResourceRefImpl*							createResource( const OkdString& strResourceName );
+	OkdResourceRefImpl*							bindResource( const OkdString& strResourceName );
+	OkdResourceRefImpl*							bindResource( OkdResourceRefImpl* pResourceRef );
+	OkdResourceRefImpl*							unbindResource( OkdResourceRefImpl* pResourceRef );
 
 	OkdMap<OkdResourceKey, OkdResourceRefImpl*>	_resourceRefMap;
 };
@@ -77,12 +79,12 @@ OrkidResourceType	OkdResourceHandler<T, resourceType>::getResourceType() const
 }
 
 //-----------------------------------------------------------------------------
-// Name:		createResourceRef
+// Name:		createResource
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T, OrkidResourceType resourceType>
-OkdResourceRef<T>*	OkdResourceHandler<T, resourceType>::createResourceRef(const OkdString&	strResourceName)
+OkdResourceRef<T>*	OkdResourceHandler<T, resourceType>::createResource(const OkdString&	strResourceName)
 {
 	OkdResourceKey		resourceKey		= OkdCrc32::getCrc32( strResourceName );
 	OkdResourceRefImpl*	pResourceRef	= 0;
@@ -93,26 +95,60 @@ OkdResourceRef<T>*	OkdResourceHandler<T, resourceType>::createResourceRef(const 
 	}
 
 	pResourceRef = new OkdResourceRefImpl( resourceKey, strResourceName );
+	pResourceRef->addRef();
+
 	_resourceRefMap.add( resourceKey, pResourceRef );
 
 	return	( pResourceRef );
 }
 
 //-----------------------------------------------------------------------------
-// Name:		deleteResourceRef
+// Name:		bindResource
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T, OrkidResourceType resourceType>
-bool	OkdResourceHandler<T, resourceType>::deleteResourceRef(OkdResourceRefImpl*	pResourceRef)
+OkdResourceRef<T>*	OkdResourceHandler<T, resourceType>::bindResource(const OkdString&	strResourceName)
 {
-	const OkdResourceKey&	resourceKey	= pResourceRef->getResourceKey();
-	uint32					uiCount		= _resourceRefMap.remove( resourceKey );
+	OkdResourceKey		resourceKey		= OkdCrc32::getCrc32( strResourceName );
+	OkdResourceRefImpl*	pResourceRef	= 0;
 
-	ORKID_ASSERT( uiCount == 1 );
-	delete pResourceRef;
+	if	( _resourceRefMap.find( resourceKey, &pResourceRef ) )
+	{
+		pResourceRef->addRef();
+	}
+	
+	return	( pResourceRef );
+}
 
-	return	( uiCount > 0 );
+//-----------------------------------------------------------------------------
+// Name:		bindResource
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, OrkidResourceType resourceType>
+OkdResourceRef<T>*	OkdResourceHandler<T, resourceType>::bindResource(OkdResourceRef<T>*	pResourceRef)
+{
+	pResourceRef->addRef();
+	return	( pResourceRef );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		unbindResource
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, OrkidResourceType resourceType>
+OkdResourceRef<T>*	OkdResourceHandler<T, resourceType>::unbindResource(OkdResourceRef<T>*	pResourceRef)
+{
+	if	( pResourceRef->removeRef() == 0 )
+	{
+		_resourceRefMap.remove( pResourceRef->getResourceKey() );
+		delete pResourceRef;
+		return	( 0 );
+	}
+	
+	return	( pResourceRef );
 }
 
 #endif
