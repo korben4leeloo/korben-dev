@@ -15,10 +15,6 @@
 #include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
 #include	ORKID_ENGINE_H(Resources/OkdResourceManager)
 
-//template<class T, OrkidResourceType resourceType> class OkdResourceHandler;
-
-#define	DECLARE_RESOURCE_PTR( ClassType, ResourceTypeEnum ) class ClassType; typedef OkdResourcePtr<ClassType, ResourceTypeEnum> ClassType##Ptr;
-
 template<class T, OrkidResourceType resourceType>
 class OkdResourcePtr
 {
@@ -121,7 +117,10 @@ void OkdResourcePtr<T, resourceType>::create(const OkdString&	strResourceName)
 //	Inline functions declarations
 //*****************************************************************************
 
-DECLARE_RESOURCE_PTR( OkdMesh, OrkidMesh )
-DECLARE_RESOURCE_PTR( OkdScene, OrkidScene )
+class OkdMesh;
+class OkdScene;
+
+typedef OkdResourcePtr<OkdMesh, OrkidMesh> OkdMeshPtr;
+typedef OkdResourcePtr<OkdScene, OrkidScene> OkdScenePtr;
 
 #endif
