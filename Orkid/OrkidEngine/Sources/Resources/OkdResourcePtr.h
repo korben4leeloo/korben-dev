@@ -14,6 +14,7 @@
 #include	ORKID_ENGINE_H(Resources/OkdResourceRef)
 #include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
 #include	ORKID_ENGINE_H(Resources/OkdResourceManager)
+#include	ORKID_CORE_H(String/OkdCrc32)
 
 template<class T, OrkidResourceType resourceType>
 class OkdResourcePtr
@@ -34,7 +35,7 @@ public:
 private:
 	typedef OkdResourceHandler<T, resourceType>	OkdTypeResourceHandler;
 
-	void				bind( const OkdResourceKey& resourceKey );
+	//void				bind( const OkdResourceKey& resourceKey );
 	
 	OkdResourceRef<T>*	_pResourceRef;
 };
@@ -59,10 +60,12 @@ OkdResourcePtr<T, resourceType>::OkdResourcePtr()
 template<class T, OrkidResourceType resourceType>
 OkdResourcePtr<T, resourceType>::OkdResourcePtr(const OkdResourcePtr&	resourcePtr)
 {
-	OkdResourceManager*		pResourceManager	= OrkidEngine::instance()->getResourceManager();
-	OkdTypeResourceHandler*	pResourceHandler	= (OkdTypeResourceHandler*)pResourceManager->getResourceHandler( resourceType );
+	_pResourceRef = resourcePtr._pResourceRef;
 
-	_pResourceRef = pResourceHandler->bindResource( resourcePtr._pResourceRef );
+	if	( _pResourceRef )
+	{
+		_pResourceRef->addRef();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -86,10 +89,12 @@ OkdResourcePtr<T, resourceType>& OkdResourcePtr<T, resourceType>::operator=(cons
 {
 	unbind();
 
-	OkdResourceManager*		pResourceManager	= OrkidEngine::instance()->getResourceManager();
-	OkdTypeResourceHandler*	pResourceHandler	= (OkdTypeResourceHandler*)pResourceManager->getResourceHandler( resourceType );
+	_pResourceRef = resourcePtr._pResourceRef;
 
-	_pResourceRef = pResourceHandler->bindResource( resourcePtr._pResourceRef );
+	if	( _pResourceRef )
+	{
+		_pResourceRef->addRef();
+	}
 
 	return	( *this );
 }
@@ -106,8 +111,18 @@ void OkdResourcePtr<T, resourceType>::create(const OkdString&	strResourceName)
 
 	OkdResourceManager*		pResourceManager	= OrkidEngine::instance()->getResourceManager();
 	OkdTypeResourceHandler*	pResourceHandler	= (OkdTypeResourceHandler*)pResourceManager->getResourceHandler( resourceType );
+	OkdResourceKey			resourceKey			= OkdCrc32::getCrc32( strResourceName );
+	OkdResourceRef<T>*		pResourceRef		= new OkdResourceRef<T>( resourceKey, strResourceName );
+	
+	if	( pResourceHandler->addResource( resourceKey, pResourceRef ) )
+	{
+		delete pResourceRef;
+		ORKID_BREAK();
+		return;
+	}
 
-	_pResourceRef = pResourceHandler->createResource( strResourceName );
+	_pResourceRef = pResourceRef;
+	_pResourceRef->addRef();
 }
 
 //-----------------------------------------------------------------------------
@@ -118,29 +133,34 @@ void OkdResourcePtr<T, resourceType>::create(const OkdString&	strResourceName)
 template<class T, OrkidResourceType resourceType>
 void OkdResourcePtr<T, resourceType>::bind(const OkdString&	strResourceName)
 {
-	unbind();
-
 	OkdResourceManager*		pResourceManager	= OrkidEngine::instance()->getResourceManager();
 	OkdTypeResourceHandler*	pResourceHandler	= (OkdTypeResourceHandler*)pResourceManager->getResourceHandler( resourceType );
+	OkdResourceKey			resourceKey			= OkdCrc32::getCrc32( strResourceName );
+	OkdResourceRef<T>*		pResourceRef		= pResourceHandler->getResource( resourceKey );
 
-	_pResourceRef = pResourceHandler->bindResource( strResourceName );
+	if	( pResourceRef )
+	{
+		unbind();
+		_pResourceRef = pResourceRef;
+		_pResourceRef->addRef();
+	}
 }
 
-//-----------------------------------------------------------------------------
-// Name:		bind
+////-----------------------------------------------------------------------------
+//// Name:		bind
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//template<class T, OrkidResourceType resourceType>
+//void OkdResourcePtr<T, resourceType>::bind(const OkdResourceKey&	resourceKey)
+//{
+//	unbind();
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
-void OkdResourcePtr<T, resourceType>::bind(const OkdResourceKey&	resourceKey)
-{
-	unbind();
-
-	OkdResourceManager*		pResourceManager	= OrkidEngine::instance()->getResourceManager();
-	OkdTypeResourceHandler*	pResourceHandler	= (OkdTypeResourceHandler*)pResourceManager->getResourceHandler( resourceType );
-
-	_pResourceRef = pResourceHandler->bindResource( strResourceName );
-}
+//	OkdResourceManager*		pResourceManager	= OrkidEngine::instance()->getResourceManager();
+//	OkdTypeResourceHandler*	pResourceHandler	= (OkdTypeResourceHandler*)pResourceManager->getResourceHandler( resourceType );
+//
+//	_pResourceRef = pResourceHandler->bindResource( strResourceName );
+//}
 
 //-----------------------------------------------------------------------------
 // Name:		unbind
@@ -155,7 +175,13 @@ void OkdResourcePtr<T, resourceType>::unbind()
 		OkdResourceManager*		pResourceManager	= OrkidEngine::instance()->getResourceManager();
 		OkdTypeResourceHandler*	pResourceHandler	= (OkdTypeResourceHandler*)pResourceManager->getResourceHandler( resourceType );
 		
-		_pResourceRef = pResourceHandler->unbindResource( _pResourceRef );
+		if	( _pResourceRef->removeRef() == 0 )
+		{
+			pResourceHandler->removeResource( _pResourceRef->getResourceKey() );
+			delete _pResourceRef;
+		}
+		
+		_pResourceRef = 0;
 	}
 }
 

@@ -44,6 +44,7 @@ private:
 	OkdFileStream*		_pExportStream;
 	OkdFileStream*		_pExportLogStream;
 	OrkidEngine*		_pOrkidEngine;
+	OkdString			_strSceneName;
 };
 
 #endif

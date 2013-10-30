@@ -77,9 +77,9 @@ bool	OkdFileTranslator::haveWriteMethod() const
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-MStatus	OkdFileTranslator::writer(const MFileObject &	file, 
-									const MString &		optionsString, 
-									FileAccessMode		mode )
+MStatus	OkdFileTranslator::writer(const MFileObject&	file, 
+								  const MString&		optionsString, 
+								  FileAccessMode		mode )
 {
 	beginExport( file );
 
@@ -103,6 +103,9 @@ void	OkdFileTranslator::exportSceneGraph()
 	/*OkdResourceManager*	pExportResourceManager	= _pOrkidEngine->addResourceManager( "ExportResourceManager" );
 	OkdScene*			pExportScene			= _pOrkidEngine->addScene( "ExportScene", "ExportResourceManager" );*/
 	//OkdScene*			pExportScene			= _pOrkidEngine->addScene( "ExportScene" );
+	OkdScenePtr	scenePtr;
+
+	scenePtr.create( 
 
 	while	( itDag.isDone() == false )
 	{
@@ -182,6 +185,8 @@ void	OkdFileTranslator::beginExport(const MFileObject &	file)
 {
 	const MString	strFileName = file.fullName();
 	OkdString		strLogFileName( strFileName.asChar() );
+
+	_strSceneName = strFileName;
 
 	strLogFileName.replace( ".okd", ".log" );
 
