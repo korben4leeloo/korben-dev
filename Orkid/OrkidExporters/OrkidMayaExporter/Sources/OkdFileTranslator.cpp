@@ -105,7 +105,7 @@ void	OkdFileTranslator::exportSceneGraph()
 	//OkdScene*			pExportScene			= _pOrkidEngine->addScene( "ExportScene" );
 	OkdScenePtr	scenePtr;
 
-	scenePtr.create( 
+	//scenePtr.create( 
 
 	while	( itDag.isDone() == false )
 	{
@@ -186,7 +186,7 @@ void	OkdFileTranslator::beginExport(const MFileObject &	file)
 	const MString	strFileName = file.fullName();
 	OkdString		strLogFileName( strFileName.asChar() );
 
-	_strSceneName = strFileName;
+	_strSceneName = strLogFileName;
 
 	strLogFileName.replace( ".okd", ".log" );
 

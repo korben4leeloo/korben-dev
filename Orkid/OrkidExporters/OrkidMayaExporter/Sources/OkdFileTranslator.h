@@ -12,9 +12,8 @@
 #include	"OrkidMayaExporterRoot.h"
 #include	<maya/MPxFileTranslator.h>
 
-//class OkdFile;
-//class OkdBinaryStream;
-//class OkdTextStream;
+#include	ORKID_CORE_H(String/OkdString)
+
 class OrkidEngine;
 class OkdFileStream;
 
@@ -37,10 +36,6 @@ private:
 
 	void				exportSceneGraph();
 
-	/*OkdFile*			_pExportFile;
-	OkdFile*			_pExportLogFile;*/
-	/*OkdBinaryStream*	_pExportStream;
-	OkdTextStream*		_pExportLogStream;*/
 	OkdFileStream*		_pExportStream;
 	OkdFileStream*		_pExportLogStream;
 	OrkidEngine*		_pOrkidEngine;
