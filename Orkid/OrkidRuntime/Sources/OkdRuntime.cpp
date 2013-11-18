@@ -148,8 +148,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	{
 		OkdMeshPtr meshPtr, meshPtr2;
 
-		meshPtr.create( "test" );
-		meshPtr2.create( "test2" );
+		meshPtr.bind( "test" );
+		meshPtr2.bind( "test2" );
 
 		OkdMeshPtr meshPtr3( meshPtr );
 

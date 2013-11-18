@@ -15,6 +15,7 @@
 #include	ORKID_ENGINE_H(OrkidEngine)
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 #include	ORKID_ENGINE_H(Entities/OkdMesh)
+#include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
 
 // Maya includes
 #include	<maya/MItDag.h>
