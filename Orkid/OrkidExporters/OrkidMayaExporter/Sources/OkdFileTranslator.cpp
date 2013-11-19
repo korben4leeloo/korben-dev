@@ -106,7 +106,7 @@ void	OkdFileTranslator::exportSceneGraph()
 	//OkdScene*			pExportScene			= _pOrkidEngine->addScene( "ExportScene" );
 	OkdScenePtr	scenePtr;
 
-	//scenePtr.create( 
+	scenePtr.bind( _strSceneName );
 
 	while	( itDag.isDone() == false )
 	{
@@ -139,7 +139,12 @@ void	OkdFileTranslator::exportSceneGraph()
 			uint		uiVertexCount	= fnMesh.numVertices( &status );
 			uint		uiPolygonCount	= fnMesh.numPolygons( &status );
 			OkdMeshInfo	meshInfo( uiVertexCount, uiPolygonCount );
-			OkdMesh*	pOrkidMesh		= 0;//pExportScene->createMesh();
+			OkdMeshPtr	meshPtr;
+
+			meshPtr.bind( strShapeNodeName );
+
+			//OkdMesh*	pOrkidMesh		= 0;//pExportScene->createMesh();
+			OkdMesh*	pOrkidMesh		= meshPtr.getResource();
 
 			WRITE_LOG_INFOS( dagPath.length() + 1, "Polygons count: " << uiPolygonCount << "\n" );
 			WRITE_LOG_INFOS( dagPath.length() + 1, "Vertices count: " << fnMesh.numVertices( &status ) << "\n" );

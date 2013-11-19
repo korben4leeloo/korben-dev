@@ -17,10 +17,11 @@ template<class T>
 class OkdResourceRef
 {
 	template<class T, OrkidResourceType resourceType> friend class OkdResourcePtr;
-	//template<class T, OrkidResourceType resourceType> friend class OkdResourceHandler;
+	template<class T, OrkidResourceType resourceType> friend class OkdResourceHandler;
 
 public:
 	inline const OkdResourceKey&	getResourceKey() const;
+	inline T*						getResource();
 
 private:
 									OkdResourceRef( const OkdResourceKey& resourceKey );
@@ -94,6 +95,17 @@ template<class T>
 const OkdResourceKey&	OkdResourceRef<T>::getResourceKey() const
 {
 	return( _resourceKey );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getResourceKey
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+T*	OkdResourceRef<T>::getResource()
+{
+	return( _pResource );
 }
 
 //-----------------------------------------------------------------------------

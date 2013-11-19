@@ -156,6 +156,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		meshPtr = meshPtr2;
 
 		OkdMeshPtr meshPtr4 = meshPtr;
+		meshPtr4.bind( "test2" );
 	}
 
 	/*OkdResourceId		sceneResId( OrkidScene, "TestScene" );

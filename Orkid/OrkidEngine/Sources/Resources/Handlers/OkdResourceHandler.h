@@ -15,7 +15,8 @@
 //#include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
 //#include	ORKID_ENGINE_H(Resources/OkdResourceRef)
 #include	ORKID_CORE_H(Containers/OkdMap)
-//#include	ORKID_CORE_H(String/OkdCrc32)
+#include	ORKID_CORE_H(String/OkdCrc32)
+#include	ORKID_CORE_H(String/OkdString)
 
 template<class T> class OkdResourceRef;
 
@@ -31,7 +32,8 @@ public:
 	virtual OrkidResourceType					getResourceType() const;
 
 private:
-	typedef OkdResourceRef<T> OkdResourceRefImpl;
+	typedef OkdResourceRef<T>							OkdResourceRefImpl;
+	typedef OkdMap<OkdResourceKey, OkdResourceRefImpl*> OkdResourceMap;
 
 	/*OkdResourceRefImpl*							createResource( const OkdString& strResourceName );
 	OkdResourceRefImpl*							bindResource( const OkdString& strResourceName );
@@ -39,7 +41,7 @@ private:
 	OkdResourceRefImpl*							unbindResource( OkdResourceRefImpl* pResourceRef );*/
 
 	//bool										addResource( const OkdResourceKey& resourceKey, OkdResourceRefImpl* pResourceRef );
-	bool										addResource( const OkdResourceKey& resourceKey, const OkdString& strResourceName );
+	OkdResourceRefImpl*							addResource( const OkdString& strResourceName );
 	bool										removeResource( const OkdResourceKey& resourceKey );
 	//OkdResourceRefImpl*							getResource( const OkdResourceKey& resourceKey );
 
@@ -101,10 +103,24 @@ OrkidResourceType	OkdResourceHandler<T, resourceType>::getResourceType() const
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T, OrkidResourceType resourceType>
-bool	OkdResourceHandler<T, resourceType>::addResource(const OkdResourceKey&	resourceKey, 
-														 const OkdString&		strResourceName)
+OkdResourceRef<T>*	OkdResourceHandler<T, resourceType>::addResource(const OkdString&	strResourceName)
 {
-	return	( _resourceRefMap.add( resourceKey, pResourceRef ) );
+	/*OkdResourceKey		resourceKey		= OkdCrc32::getCrc32( strResourceName );
+	OkdResourceRef<T>*	pResourceRef	= new OkdResourceRef<T>( resourceKey, strResourceName );
+
+	_resourceRefMap.add( resourceKey, pResourceRef );
+
+	return	( pResourceRef );*/
+
+	OkdResourceKey				resourceKey	= OkdCrc32::getCrc32( strResourceName );
+	OkdResourceMap::iterator	itResource	= _resourceRefMap.add( resourceKey, 0 );
+
+	if	( itResource->second == 0 )
+	{
+		itResource->second = new OkdResourceRef<T>( resourceKey, strResourceName );
+	}
+
+	return	( itResource->second );
 }
 
 //-----------------------------------------------------------------------------
