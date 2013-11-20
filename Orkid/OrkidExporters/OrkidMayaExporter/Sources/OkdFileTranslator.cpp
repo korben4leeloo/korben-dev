@@ -175,7 +175,10 @@ void	OkdFileTranslator::exportSceneGraph()
 				WRITE_LOG_INFOS( dagPath.length() + 1, vertexIdArray[0] << " " << vertexIdArray[1] << " " << vertexIdArray[2] << "\n" );
 			}
 
-			pOrkidMesh->write( _pExportStream );
+			OkdFileStream meshFileStream( strShapeNodeName + ".okd", OkdFileStream::OpenModeOut | OkdFileStream::OpenModeTrunc | OkdFileStream::OpenModeBinary );
+			pOrkidMesh->write( &meshFileStream );
+
+			//pOrkidMesh->write( _pExportStream );
 		}
 
 		itDag.next();
@@ -192,7 +195,8 @@ void	OkdFileTranslator::beginExport(const MFileObject &	file)
 	const MString	strFileName = file.fullName();
 	OkdString		strLogFileName( strFileName.asChar() );
 
-	_strSceneName = strLogFileName;
+	_strSceneName = file.resolvedName().asChar();
+	_strSceneName.replace( ".okd", "" );
 
 	strLogFileName.replace( ".okd", ".log" );
 

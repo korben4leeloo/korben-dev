@@ -24,6 +24,7 @@ public:
 
 						OkdString();
 						OkdString( const char* pBuffer );
+						OkdString( const std::string& s );
 						~OkdString();
 
 	void				replace( const OkdString& strSource, const OkdString& strTarget );
@@ -31,6 +32,7 @@ public:
 	inline operator		const char*() const;
 	inline bool			operator==( const OkdString& other ) const;
 	inline OkdString&	operator+=( const OkdString& other );
+	inline OkdString	operator+( const OkdString& other );
 
 	inline uint32		size() const;
 
@@ -86,6 +88,17 @@ OkdString& OkdString::operator+=(const OkdString& other)
 {
 	_str += other._str;
 	return	( *this );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator+
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdString OkdString::operator+(const OkdString& other)
+{
+	OkdString strTemp( _str + other._str );
+	return	( strTemp );
 }
 
 //-----------------------------------------------------------------------------

@@ -38,7 +38,7 @@ OkdMesh::~OkdMesh()
 void	OkdMesh::create(const OkdMeshInfo&	meshInfo)
 {
 	uint uiVertexCount	= meshInfo.getVertexCount();
-	uint uiPolygonCount	= meshInfo.getVertexCount();
+	uint uiPolygonCount	= meshInfo.getPolygonCount();
 
 	releaseVertexArray();
 	releasePolygonArray();

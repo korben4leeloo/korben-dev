@@ -157,6 +157,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 		OkdMeshPtr meshPtr4 = meshPtr;
 		meshPtr4.bind( "test2" );
+
+		OkdMesh* pMesh = meshPtr.getResource();
+		OkdMeshInfo	meshInfo( 8, 12 );
+		pMesh->create( meshInfo );
 	}
 
 	/*OkdResourceId		sceneResId( OrkidScene, "TestScene" );
