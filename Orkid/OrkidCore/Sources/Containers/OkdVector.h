@@ -19,6 +19,7 @@ public:
 					~OkdVector();
 
 	inline void		add( T& t );
+	inline void		clear();
 	inline uint		size() const;
 	inline const T&	operator[]( uint index ) const;
 
@@ -61,6 +62,17 @@ template<typename T>
 void	OkdVector<T>::add( T& t )
 {
 	_vec.push_back( t );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		clear
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+void	OkdVector<T>::clear()
+{
+	_vec.clear();
 }
 
 //-----------------------------------------------------------------------------

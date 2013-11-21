@@ -18,7 +18,7 @@
 
 const char* OkdResourceDatabase::_strResourceRelativePath[OrkidResourceTypeCount] = 
 {
-	"Meshes\\dhghgsd",
+	"Meshes",
 	"Scenes"
 };
 
@@ -160,28 +160,53 @@ OkdFileStream*	OkdResourceDatabase::openResourceFileStream(const OrkidResourceTy
 {
 	ORKID_ASSERT( _bOpen );
 
-	int nFileOpenMode;
+	OkdString	strRelativeSourcePath	= _strResourceRelativePath[eResourceType];
+	OkdString	strResourcePath			= _strResourceDatabasePath + "\\" + strRelativeSourcePath;
+	bool		bResourcePathExist		= OkdFileStream::dirExist( strResourcePath );
+	int			nFileOpenMode;
 
 	switch	( eOpenStreamMode )
 	{
 	case OpenStreamLoad:
+		if	( !bResourcePathExist )
+		{
+			return	( 0 );
+		}
+
 		nFileOpenMode = OkdFileStream::OpenModeIn | OkdFileStream::OpenModeBinary;
 		break;
 
 	case OpenStreamSave:
+		if	( !bResourcePathExist )
+		{
+			OkdString				strTempPath = _strResourceDatabasePath;
+			OkdVector<OkdString>	tokens;
+		
+			strRelativeSourcePath.split( "\\", tokens );
+
+			uint32 uiTokensCount = tokens.size();
+
+			for	( uint32 uiTokenIndex = 0; uiTokenIndex < uiTokensCount; uiTokenIndex++ )
+			{
+				strTempPath += "\\";
+				strTempPath += tokens[uiTokenIndex];
+
+				if	( !OkdFileStream::dirExist( strTempPath ) )
+				{
+					if	( _mkdir( strTempPath ) == -1 )
+					{
+						return	( 0 );
+					}
+				}
+			}
+		}
+
 		nFileOpenMode = OkdFileStream::OpenModeOut | OkdFileStream::OpenModeTrunc | OkdFileStream::OpenModeBinary;
 		break;
 
 	default:
 		ORKID_BREAK();
 		return	( 0 );
-	}
-
-	OkdString strResourcePath = _strResourceDatabasePath + "\\" + _strResourceRelativePath[eResourceType];
-
-	if	( !OkdFileStream::dirExist( strResourcePath ) )
-	{
-		_mkdir( strResourcePath );
 	}
 
 	OkdString		strResourceFile		= strResourcePath + "\\" + strResourceName + ".okd";

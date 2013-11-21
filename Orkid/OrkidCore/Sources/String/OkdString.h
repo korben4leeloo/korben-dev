@@ -23,24 +23,24 @@ public:
 	friend class std::hash<OkdString>;
 	friend class OkdFileStream;
 
-							OkdString();
-							OkdString( const char* pBuffer );
-							OkdString( const std::string& s );
-							~OkdString();
+						OkdString();
+						OkdString( const char* pBuffer );
+						OkdString( const std::string& s );
+						~OkdString();
 
-	void					replace( const OkdString& strSource, const OkdString& strTarget );
-	OkdVector<OkdString>	split( const OkdString& strDelimiter );
+	void				replace( const OkdString& strSource, const OkdString& strTarget );
+	void				split( const OkdString& strDelimiter, OkdVector<OkdString>& outTokens );
 
-	inline operator			const char*() const;
-	inline bool				operator==( const OkdString& other ) const;
-	inline OkdString&		operator+=( const OkdString& other );
-	inline OkdString		operator+( const OkdString& other );
+	inline operator		const char*() const;
+	inline bool			operator==( const OkdString& other ) const;
+	inline OkdString&	operator+=( const OkdString& other );
+	inline OkdString	operator+( const OkdString& other );
 
-	inline uint32			size() const;
-	inline bool				isEmpty() const;
+	inline uint32		size() const;
+	inline bool			isEmpty() const;
 
 private:
-	std::string				_str;
+	std::string			_str;
 };
 
 // Defines std::hash for OkdString to be used in std hashed containers
