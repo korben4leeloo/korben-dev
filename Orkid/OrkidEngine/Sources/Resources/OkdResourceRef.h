@@ -22,6 +22,7 @@ class OkdResourceRef
 public:
 	inline const OkdResourceKey&	getResourceKey() const;
 	inline T*						getResource();
+	inline const OkdString&			getResourceName() const;
 
 private:
 									OkdResourceRef( const OkdResourceKey& resourceKey );
@@ -106,6 +107,17 @@ template<class T>
 T*	OkdResourceRef<T>::getResource()
 {
 	return( _pResource );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getResourceName
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+const OkdString&	OkdResourceRef<T>::getResourceName() const
+{
+	return( _strResourceName );
 }
 
 //-----------------------------------------------------------------------------

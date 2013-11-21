@@ -45,6 +45,8 @@ private:
 	bool										removeResource( const OkdResourceKey& resourceKey );
 	//OkdResourceRefImpl*							getResource( const OkdResourceKey& resourceKey );
 
+	void										loadResource( OkdResourceRefImpl* pResourceRef );
+
 	OkdMap<OkdResourceKey, OkdResourceRefImpl*>	_resourceRefMap;
 };
 

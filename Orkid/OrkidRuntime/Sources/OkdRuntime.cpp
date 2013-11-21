@@ -151,16 +151,21 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		meshPtr.bind( "test" );
 		meshPtr2.bind( "test2" );
 
-		OkdMeshPtr meshPtr3( meshPtr );
+		//OkdMeshPtr meshPtr3( meshPtr );
+		OkdMeshPtr meshPtr3;
 
+		meshPtr3.bind( "test2" );
 		meshPtr = meshPtr2;
+
+		meshPtr2.unbind();
 
 		OkdMeshPtr meshPtr4 = meshPtr;
 		meshPtr4.bind( "test2" );
+		meshPtr4.load();
 
-		OkdMesh* pMesh = meshPtr.getResource();
+		/*OkdMesh* pMesh = meshPtr.getResource();
 		OkdMeshInfo	meshInfo( 8, 12 );
-		pMesh->create( meshInfo );
+		pMesh->create( meshInfo );*/
 	}
 
 	/*OkdResourceId		sceneResId( OrkidScene, "TestScene" );

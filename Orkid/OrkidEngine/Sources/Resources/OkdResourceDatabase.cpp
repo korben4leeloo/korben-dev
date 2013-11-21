@@ -13,6 +13,12 @@
 
 #define	RESOURCE_DATABASE_PATH_ENV	"KORBEN_DEV_RESOURCE_DB_PATH"
 
+const char* OkdResourceDatabase::_strResourceRelativePath[OrkidResourceTypeCount] = 
+{
+	"Meshes",
+	"Scenes"
+};
+
 //-----------------------------------------------------------------------------
 // Name:		OkdResourceDatabase constructor
 //
@@ -42,6 +48,8 @@ OkdResourceDatabase::~OkdResourceDatabase()
 //-----------------------------------------------------------------------------
 void	OkdResourceDatabase::open()
 {
+	_strResourceDatabasePath = getResourceDatabasePath();
+
 	if	( !loadResourceDatabaseXmlFile() )
 	{
 		return;
@@ -64,6 +72,8 @@ void	OkdResourceDatabase::close()
 		delete _pDatabaseXmlDoc;
 		_pDatabaseXmlDoc = 0;
 	}
+
+	_strResourceDatabasePath = "";
 }
 
 //-----------------------------------------------------------------------------
@@ -119,6 +129,16 @@ bool	OkdResourceDatabase::loadResourceDatabaseXmlFile()
 
 	return	( true );
 }
+
+////-----------------------------------------------------------------------------
+//// Name:		getResourceTypePath
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdString	OkdResourceDatabase::getResourceTypePath( const OrkidResourceType eResourceType ) const
+//{
+//	//OkdString strResourceTypePath = _str
+//}
 
 ////-----------------------------------------------------------------------------
 //// Name:		createResourceDatabaseXmlFile

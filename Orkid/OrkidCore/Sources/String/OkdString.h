@@ -35,6 +35,7 @@ public:
 	inline OkdString	operator+( const OkdString& other );
 
 	inline uint32		size() const;
+	inline bool			isEmpty() const;
 
 private:
 	std::string			_str;
@@ -109,6 +110,16 @@ OkdString OkdString::operator+(const OkdString& other)
 uint32 OkdString::size() const
 {
 	return	( _str.size() );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		isEmpty
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+bool OkdString::isEmpty() const
+{
+	return	( size() > 0 );
 }
 
 #endif

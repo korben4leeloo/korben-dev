@@ -155,6 +155,32 @@ T* OkdResourcePtr<T, resourceType>::getResource()
 	return	( _pResourceRef->getResource() );
 }
 
+//-----------------------------------------------------------------------------
+// Name:		load
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, OrkidResourceType resourceType>
+void OkdResourcePtr<T, resourceType>::load()
+{
+	ORKID_ASSERT( _pResourceRef );
+
+	if	( _pResourceRef )
+	{
+		const OkdString& strResourceName = _pResourceRef->getResourceName();
+
+		if	( strResourceName.isEmpty() )
+		{
+			ORKID_BREAK();
+			return;
+		}
+
+		OkdResourceDatabase* pResourceDatabase = OrkidEngine::instance()->getResourceDatabase();
+
+		pResourceDatabase->
+	}
+}
+
 //*****************************************************************************
 //	Inline functions declarations
 //*****************************************************************************

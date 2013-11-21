@@ -13,8 +13,8 @@
 
 #include	ORKID_CORE_H(Singleton/OkdSingleton)
 #include	ORKID_CORE_H(Containers/OkdMap)
+#include	ORKID_CORE_H(String/OkdString)
 
-class OkdString;
 class OkdResourceHandle;
 //class OkdFileStream;
 class OkdXmlDocument;
@@ -27,8 +27,7 @@ public:
 	void				open();
 	void				close();
 
-	//void				createResourceStorage( 
-	const char*			getResourceData( const OkdResourceHandle* pResourceHandle ) const;
+	//OkdString			getResourceTypePath( const OrkidResourceType eResourceType ) const;
 
 private:
 	typedef OkdMap<uint32, OkdString> OkdResourceFileMap;
@@ -41,9 +40,12 @@ private:
 	bool				loadResourceDatabaseXmlFile();
 
 	//OkdFileStream*		_pResourceDBXmlFile;
+	OkdString			_strResourceDatabasePath;
 	OkdXmlDocument*		_pDatabaseXmlDoc;
 	bool				_bOpen;
 	OkdResourceFileMap	_resourceFileArray;
+
+	static const char*	_strResourceRelativePath[OrkidResourceTypeCount];
 };
 
 //*****************************************************************************
