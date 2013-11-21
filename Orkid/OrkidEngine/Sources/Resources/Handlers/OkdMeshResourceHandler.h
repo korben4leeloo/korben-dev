@@ -20,10 +20,12 @@ class OkdMeshResourceHandler: public OkdResourceHandler<OkdMesh, OrkidMesh>
 	friend class OkdResourceManager;
 
 public:
+	virtual void	readResource( OkdMesh* pResource, OkdFileStream* pResourceFileStream );
+	virtual void	writeResource( OkdMesh* pResource, OkdFileStream* pResourceFileStream );
 
 private:
-			OkdMeshResourceHandler();
-	virtual	~OkdMeshResourceHandler();
+					OkdMeshResourceHandler();
+	virtual			~OkdMeshResourceHandler();
 };
 
 //*****************************************************************************

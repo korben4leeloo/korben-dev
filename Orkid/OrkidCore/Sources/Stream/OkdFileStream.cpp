@@ -10,6 +10,7 @@
 #include	<ios>
 #include	<sys/stat.h>
 #include	<rapidxml/rapidxml_print.hpp>
+
 #include	ORKID_CORE_H(String/OkdString)
 #include	ORKID_CORE_H(Xml/OkdXmlDocument)
 
@@ -41,6 +42,14 @@ OkdFileStream::OkdFileStream(const OkdString&	strFileName,
 	if	( nOpenMode & OpenModeBinary )	nIosOpenMode |= std::ios::binary;
 
 	_fs.open( strFileName, nIosOpenMode );
+
+	if	( _fs.fail() )
+	{
+		char err[1024];
+		
+		strerror_s( err, errno );
+		ORKID_BREAK();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -85,6 +94,37 @@ bool	OkdFileStream::exist(const OkdString&	strFileName)
 	struct stat statBuf;
 
 	int nResult = stat( strFileName, &statBuf );
+
+	if	( nResult != -1 )
+	{
+		if	( ( statBuf.st_mode & S_IFREG ) == 0 )
+		{
+			nResult = -1;
+		}
+	}
+
+	return	( nResult != -1 );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		dirExist
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+bool	OkdFileStream::dirExist(const OkdString&	strDirName)
+{
+	struct stat statBuf;
+
+	int nResult = stat( strDirName, &statBuf );
+
+	if	( nResult != -1 )
+	{
+		if	( ( statBuf.st_mode & S_IFDIR ) == 0 )
+		{
+			nResult = -1;
+		}
+	}
+
 	return	( nResult != -1 );
 }
 

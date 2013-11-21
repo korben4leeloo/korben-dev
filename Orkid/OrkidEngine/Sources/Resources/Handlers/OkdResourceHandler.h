@@ -12,6 +12,7 @@
 #include	"Root.h"
 
 #include	ORKID_ENGINE_H(Resources/Handlers/OkdAbstractResourceHandler)
+#include	ORKID_ENGINE_H(Resources/OkdResourceDatabase)
 //#include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
 //#include	ORKID_ENGINE_H(Resources/OkdResourceRef)
 #include	ORKID_CORE_H(Containers/OkdMap)
@@ -19,6 +20,8 @@
 #include	ORKID_CORE_H(String/OkdString)
 
 template<class T> class OkdResourceRef;
+
+
 
 template<class T, OrkidResourceType resourceType>
 class OkdResourceHandler: public OkdAbstractResourceHandler
@@ -46,6 +49,10 @@ private:
 	//OkdResourceRefImpl*							getResource( const OkdResourceKey& resourceKey );
 
 	void										loadResource( OkdResourceRefImpl* pResourceRef );
+	void										saveResource( OkdResourceRefImpl* pResourceRef );
+
+	virtual void								readResource( T* pResource, OkdFileStream* pResourceFileStream )	= 0;
+	virtual void								writeResource( T* pResource, OkdFileStream* pResourceFileStream )	= 0;
 
 	OkdMap<OkdResourceKey, OkdResourceRefImpl*>	_resourceRefMap;
 };
@@ -123,6 +130,40 @@ OkdResourceRef<T>*	OkdResourceHandler<T, resourceType>::addResource(const OkdStr
 	}
 
 	return	( itResource->second );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		loadResource
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, OrkidResourceType resourceType>
+void	OkdResourceHandler<T, resourceType>::loadResource(OkdResourceRef<T>*	pResourceRef)
+{
+	OkdResourceDatabase*	pResourceDatabase	= OrkidEngine::instance()->getResourceDatabase();
+	OkdFileStream*			pResourceFileStream	= pResourceDatabase->openResourceFileStream( resourceType, pResourceRef->getResourceName(), OkdResourceDatabase::OpenStreamLoad );
+	OkdAbstractResource*	pResource			= static_cast<OkdAbstractResource*>(pResourceRef->getResource());
+
+	//readResource( pResourceRef->getResource(), pResourceFileStream );
+	pResource->read( pResourceFileStream );
+	pResourceDatabase->closeResourceFileStream( &pResourceFileStream );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		saveResource
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, OrkidResourceType resourceType>
+void	OkdResourceHandler<T, resourceType>::saveResource(OkdResourceRef<T>*	pResourceRef)
+{
+	OkdResourceDatabase*	pResourceDatabase	= OrkidEngine::instance()->getResourceDatabase();
+	OkdFileStream*			pResourceFileStream	= pResourceDatabase->openResourceFileStream( resourceType, pResourceRef->getResourceName(), OkdResourceDatabase::OpenStreamSave );
+	OkdAbstractResource*	pResource			= static_cast<OkdAbstractResource*>(pResourceRef->getResource());
+
+	//writeResource( pResourceRef->getResource(), pResourceFileStream );
+	pResource->write( pResourceFileStream );
+	pResourceDatabase->closeResourceFileStream( &pResourceFileStream );
 }
 
 //-----------------------------------------------------------------------------

@@ -17,7 +17,6 @@ enum OrkidResourceType
 	OrkidScene,
 
 	OrkidResourceTypeCount,
-
 	OrkidResourceTypeUnknown = 0xFFFFFFFF
 };
 

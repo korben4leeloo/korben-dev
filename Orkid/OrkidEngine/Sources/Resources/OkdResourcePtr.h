@@ -175,9 +175,37 @@ void OkdResourcePtr<T, resourceType>::load()
 			return;
 		}
 
-		OkdResourceDatabase* pResourceDatabase = OrkidEngine::instance()->getResourceDatabase();
+		OkdResourceManager*		pResourceManager	= OrkidEngine::instance()->getResourceManager();
+		OkdTypeResourceHandler*	pResourceHandler	= (OkdTypeResourceHandler*)pResourceManager->getResourceHandler( resourceType );
 
-		pResourceDatabase->
+		pResourceHandler->loadResource( _pResourceRef );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		save
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, OrkidResourceType resourceType>
+void OkdResourcePtr<T, resourceType>::save()
+{
+	ORKID_ASSERT( _pResourceRef );
+
+	if	( _pResourceRef )
+	{
+		const OkdString& strResourceName = _pResourceRef->getResourceName();
+
+		if	( strResourceName.isEmpty() )
+		{
+			ORKID_BREAK();
+			return;
+		}
+
+		OkdResourceManager*		pResourceManager	= OrkidEngine::instance()->getResourceManager();
+		OkdTypeResourceHandler*	pResourceHandler	= (OkdTypeResourceHandler*)pResourceManager->getResourceHandler( resourceType );
+
+		pResourceHandler->saveResource( _pResourceRef );
 	}
 }
 

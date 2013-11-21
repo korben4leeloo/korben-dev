@@ -7,15 +7,18 @@
 
 #include	"OkdResourceDatabase.h"
 #include	<stdlib.h>
+#include	<direct.h>
+#include	<Windows.h>
 
 #include	ORKID_CORE_H(String/OkdString)
+#include	ORKID_CORE_H(Stream/OkdFileStream)
 #include	ORKID_CORE_H(Xml/OkdXmlDocument)
 
 #define	RESOURCE_DATABASE_PATH_ENV	"KORBEN_DEV_RESOURCE_DB_PATH"
 
 const char* OkdResourceDatabase::_strResourceRelativePath[OrkidResourceTypeCount] = 
 {
-	"Meshes",
+	"Meshes\\dhghgsd",
 	"Scenes"
 };
 
@@ -131,14 +134,74 @@ bool	OkdResourceDatabase::loadResourceDatabaseXmlFile()
 }
 
 ////-----------------------------------------------------------------------------
-//// Name:		getResourceTypePath
+//// Name:		getResourcePath
 ////
 //// Created:		2013-08-26
 ////-----------------------------------------------------------------------------
-//OkdString	OkdResourceDatabase::getResourceTypePath( const OrkidResourceType eResourceType ) const
+//OkdString	OkdResourceDatabase::getResourcePath(const OrkidResourceType	eResourceType, 
+//												 const OkdString&			strResourceName)
 //{
-//	//OkdString strResourceTypePath = _str
+//	ORKID_ASSERT( _bOpen );
+//
+//	OkdString strResourceRelativePath	= _strResourceRelativePath[eResourceType];
+//	OkdString strResourcePath			= _strResourceDatabasePath + _strResourceRelativePath[eResourceType] + "\\" + strResourceName + ".okd";
+//
+//	return	( strResourcePath );
 //}
+
+//-----------------------------------------------------------------------------
+// Name:		openResourceFileStream
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdFileStream*	OkdResourceDatabase::openResourceFileStream(const OrkidResourceType	eResourceType, 
+															const OkdString&		strResourceName, 
+															const OpenStreamMode	eOpenStreamMode)
+{
+	ORKID_ASSERT( _bOpen );
+
+	int nFileOpenMode;
+
+	switch	( eOpenStreamMode )
+	{
+	case OpenStreamLoad:
+		nFileOpenMode = OkdFileStream::OpenModeIn | OkdFileStream::OpenModeBinary;
+		break;
+
+	case OpenStreamSave:
+		nFileOpenMode = OkdFileStream::OpenModeOut | OkdFileStream::OpenModeTrunc | OkdFileStream::OpenModeBinary;
+		break;
+
+	default:
+		ORKID_BREAK();
+		return	( 0 );
+	}
+
+	OkdString strResourcePath = _strResourceDatabasePath + "\\" + _strResourceRelativePath[eResourceType];
+
+	if	( !OkdFileStream::dirExist( strResourcePath ) )
+	{
+		_mkdir( strResourcePath );
+	}
+
+	OkdString		strResourceFile		= strResourcePath + "\\" + strResourceName + ".okd";
+	OkdFileStream*	pResourceFileStream	= new OkdFileStream( strResourceFile, nFileOpenMode );
+
+	return	( pResourceFileStream );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		closeResourceFileStream
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdResourceDatabase::closeResourceFileStream(OkdFileStream** ppResourceFileStream)
+{
+	OkdFileStream* pStream = *ppResourceFileStream;
+
+	pStream->close();
+	pStream = 0;
+}
 
 ////-----------------------------------------------------------------------------
 //// Name:		createResourceDatabaseXmlFile

@@ -41,7 +41,7 @@ public:
 	enum OrkidFileOpenMode
 	{
 		OpenModeIn		= 1 << 0,
-		OpenModeOut	= 1 << 1,
+		OpenModeOut		= 1 << 1,
 		OpenModeAtEnd	= 1 << 2,
 		OpenModeAppend	= 1 << 3,
 		OpenModeTrunc	= 1 << 4,
@@ -76,6 +76,7 @@ public:
 	OkdFileStream&			operator<<( const OkdXmlDocument& xmlDoc );
 
 	static bool				exist( const OkdString& strFileName );
+	static bool				dirExist( const OkdString& strDirName );
 	static uint32			length( const OkdString& strFileName );
 
 private:

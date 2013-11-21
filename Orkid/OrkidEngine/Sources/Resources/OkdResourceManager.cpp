@@ -43,13 +43,6 @@ void	OkdResourceManager::initialize()
 	//OkdBaseResourceManager<OkdMesh>* pMeshMng = new OkdBaseResourceManager<OkdMesh>();
 	_resourceHandlers[OrkidMesh] = new OkdMeshResourceHandler();
 	_resourceHandlers[OrkidScene] = new OkdSceneResourceHandler();
-
-	/*OkdBaseResourceManager<OkdMesh>* pMeshMng = dynamic_cast<OkdBaseResourceManager<OkdMesh>*>(resMng._resourceManagers[OrkidScene]);
-	OkdResourcePtr<OkdMesh> meshPtr = pMeshMng->createResource( "test" );*/
-
-	/*OkdMeshResourceManager* pMeshMng = (OkdMeshResourceManager*)resMng._resourceManagers[OrkidScene];*/
-	OkdMeshResourceHandler* pMeshMng = (OkdMeshResourceHandler*)_resourceHandlers[OrkidMesh];
-	ORKID_ASSERT( pMeshMng->getResourceType() == OrkidMesh );
 }
 
 ////-----------------------------------------------------------------------------

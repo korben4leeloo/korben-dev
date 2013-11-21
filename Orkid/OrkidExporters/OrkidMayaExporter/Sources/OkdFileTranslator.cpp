@@ -175,8 +175,9 @@ void	OkdFileTranslator::exportSceneGraph()
 				WRITE_LOG_INFOS( dagPath.length() + 1, vertexIdArray[0] << " " << vertexIdArray[1] << " " << vertexIdArray[2] << "\n" );
 			}
 
-			OkdFileStream meshFileStream( strShapeNodeName + ".okd", OkdFileStream::OpenModeOut | OkdFileStream::OpenModeTrunc | OkdFileStream::OpenModeBinary );
-			pOrkidMesh->write( &meshFileStream );
+			/*OkdFileStream meshFileStream( strShapeNodeName + ".okd", OkdFileStream::OpenModeOut | OkdFileStream::OpenModeTrunc | OkdFileStream::OpenModeBinary );
+			pOrkidMesh->write( &meshFileStream );*/
+			meshPtr.save();
 
 			//pOrkidMesh->write( _pExportStream );
 		}

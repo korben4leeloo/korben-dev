@@ -67,3 +67,28 @@ void	OkdString::replace( const OkdString& strSourcePattern, const OkdString& str
 		nPatternPos = _str.find( strSourcePattern._str, nPatternPos + nTargetPatternLength );
 	}
 }
+
+//-----------------------------------------------------------------------------
+// Name:		split
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdVector<OkdString>	OkdString::split(const OkdString&	strDelimiter)
+{
+	int						uiOffset		= 0;
+	uint32					nPatternLength	= strDelimiter.size();
+	int						nPatternPos		= _str.find( strDelimiter._str, uiOffset );
+	OkdVector<OkdString>	vTokens;
+
+	while	( nPatternPos != std::string::npos )
+	{
+		OkdString strToken = _str.substr( uiOffset, nPatternPos - uiOffset );
+
+		vTokens.add( strToken );
+
+		uiOffset	= nPatternPos + nPatternLength;
+		nPatternPos = _str.find( strDelimiter._str, uiOffset );
+	}
+
+	return	( vTokens );
+}

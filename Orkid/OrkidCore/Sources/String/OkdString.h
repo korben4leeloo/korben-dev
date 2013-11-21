@@ -12,6 +12,7 @@
 #include	"Root.h"
 
 #include	ORKID_CORE_H(Stream/OkdFileStream)
+#include	ORKID_CORE_H(Containers/OkdVector)
 
 #include	<string>
 #include	<functional>
@@ -22,23 +23,24 @@ public:
 	friend class std::hash<OkdString>;
 	friend class OkdFileStream;
 
-						OkdString();
-						OkdString( const char* pBuffer );
-						OkdString( const std::string& s );
-						~OkdString();
+							OkdString();
+							OkdString( const char* pBuffer );
+							OkdString( const std::string& s );
+							~OkdString();
 
-	void				replace( const OkdString& strSource, const OkdString& strTarget );
+	void					replace( const OkdString& strSource, const OkdString& strTarget );
+	OkdVector<OkdString>	split( const OkdString& strDelimiter );
 
-	inline operator		const char*() const;
-	inline bool			operator==( const OkdString& other ) const;
-	inline OkdString&	operator+=( const OkdString& other );
-	inline OkdString	operator+( const OkdString& other );
+	inline operator			const char*() const;
+	inline bool				operator==( const OkdString& other ) const;
+	inline OkdString&		operator+=( const OkdString& other );
+	inline OkdString		operator+( const OkdString& other );
 
-	inline uint32		size() const;
-	inline bool			isEmpty() const;
+	inline uint32			size() const;
+	inline bool				isEmpty() const;
 
 private:
-	std::string			_str;
+	std::string				_str;
 };
 
 // Defines std::hash for OkdString to be used in std hashed containers
@@ -119,7 +121,7 @@ uint32 OkdString::size() const
 //-----------------------------------------------------------------------------
 bool OkdString::isEmpty() const
 {
-	return	( size() > 0 );
+	return	( size() == 0 );
 }
 
 #endif

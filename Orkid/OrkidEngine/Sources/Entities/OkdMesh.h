@@ -11,12 +11,13 @@
 
 #include	"Root.h"
 
+#include	ORKID_ENGINE_H(Resources/OkdAbstractResource)
 #include	ORKID_ENGINE_H(Entities/OkdMeshInfo)
 #include	ORKID_CORE_H(Math/OkdVector3f)
 #include	ORKID_CORE_H(Stream/OkdFileStream)
 #include	ORKID_ENGINE_H(Resources/OkdResourceManager)
 
-class OkdMesh
+class OkdMesh: public OkdAbstractResource
 {
 	template<class T> friend class OkdResourceRef;
 
@@ -26,7 +27,8 @@ public:
 	void			setVertexArray( const float* pVertexArray );
 	void			setPolygon( const uint uiPolygonIndex, const uint* pVertexIdArray );
 
-	void			write( OkdFileStream* pStream );
+	virtual void	read( OkdFileStream* pStream );
+	virtual void	write( OkdFileStream* pStream );
 
 private:
 	struct	OkdMeshPolygon

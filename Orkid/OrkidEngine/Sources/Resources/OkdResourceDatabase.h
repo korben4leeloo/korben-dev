@@ -24,14 +24,20 @@ class OkdResourceDatabase//: public OkdSingleton<OkdResourceDatabase>
 	friend class OrkidEngine;
 
 public:
+	enum OpenStreamMode
+	{
+		OpenStreamLoad,
+		OpenStreamSave
+	};
+
 	void				open();
 	void				close();
 
-	//OkdString			getResourceTypePath( const OrkidResourceType eResourceType ) const;
+	//OkdString			getResourcePath( const OrkidResourceType eResourceType, const OkdString& strResourceName );
+	OkdFileStream*		openResourceFileStream( const OrkidResourceType eResourceType, const OkdString& strResourceName, const OpenStreamMode eOpenStreamMode );
+	void				closeResourceFileStream( OkdFileStream** ppResourceFileStream );
 
 private:
-	typedef OkdMap<uint32, OkdString> OkdResourceFileMap;
-
 						OkdResourceDatabase();
 						~OkdResourceDatabase();
 
@@ -43,7 +49,6 @@ private:
 	OkdString			_strResourceDatabasePath;
 	OkdXmlDocument*		_pDatabaseXmlDoc;
 	bool				_bOpen;
-	OkdResourceFileMap	_resourceFileArray;
 
 	static const char*	_strResourceRelativePath[OrkidResourceTypeCount];
 };

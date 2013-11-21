@@ -161,7 +161,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 		OkdMeshPtr meshPtr4 = meshPtr;
 		meshPtr4.bind( "test2" );
-		meshPtr4.load();
+		meshPtr4.save();
+
+		OkdString str( "C:\\Users\\jja\\Downloads" );
+		const OkdVector<OkdString>& tokens = str.split( "\\" );
 
 		/*OkdMesh* pMesh = meshPtr.getResource();
 		OkdMeshInfo	meshInfo( 8, 12 );
