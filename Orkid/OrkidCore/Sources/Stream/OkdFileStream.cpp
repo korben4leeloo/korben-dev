@@ -34,19 +34,20 @@ OkdFileStream::OkdFileStream(const OkdString&	strFileName,
 {
 	int nIosOpenMode = 0;
 
+	_bBinary = ( nOpenMode & OpenModeBinary ) != 0;
+
 	if	( nOpenMode & OpenModeIn )		nIosOpenMode |= std::ios::in;
 	if	( nOpenMode & OpenModeOut )		nIosOpenMode |= std::ios::out;
 	if	( nOpenMode & OpenModeAtEnd )	nIosOpenMode |= std::ios::ate;
 	if	( nOpenMode & OpenModeAppend )	nIosOpenMode |= std::ios::app;
 	if	( nOpenMode & OpenModeTrunc )	nIosOpenMode |= std::ios::trunc;
-	if	( nOpenMode & OpenModeBinary )	nIosOpenMode |= std::ios::binary;
+	if	( _bBinary)						nIosOpenMode |= std::ios::binary;
 
 	_fs.open( strFileName, nIosOpenMode );
 
-	if	( _fs.fail() )
+	if	( !_fs.is_open() )
 	{
 		char err[1024];
-		
 		strerror_s( err, errno );
 		ORKID_BREAK();
 	}

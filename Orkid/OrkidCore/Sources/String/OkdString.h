@@ -29,7 +29,7 @@ public:
 						~OkdString();
 
 	void				replace( const OkdString& strSource, const OkdString& strTarget );
-	void				split( const OkdString& strDelimiter, OkdVector<OkdString>& outTokens );
+	uint32				split( const OkdString& strDelimiter, OkdVector<OkdString>& outTokens );
 
 	inline operator		const char*() const;
 	inline bool			operator==( const OkdString& other ) const;

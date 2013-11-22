@@ -22,7 +22,6 @@ public:
 	inline iterator					end();
 	inline void						clear();
 
-	/*inline bool						add( const Key& key, const Value& value );*/
 	inline iterator					add( const Key& key, const Value& value );
 	inline uint32					remove( const Key& key );
 
@@ -69,26 +68,6 @@ void	OkdMap<Key, Value>::clear()
 {
 	_map.clear();
 }
-
-////-----------------------------------------------------------------------------
-//// Name:		add
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//template<typename Key, typename Value>
-//bool	OkdMap<Key, Value>::add(const Key&		key, 
-//								const Value&	value)
-//{
-//	const_iterator	itExist = _map.find( key );
-//	bool			bExist	= ( itExist != _map.end() );
-//
-//	if	( !bExist )
-//	{
-//		_map[key] = value;
-//	}
-//
-//	return	( bExist );
-//}
 
 //-----------------------------------------------------------------------------
 // Name:		add

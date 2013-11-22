@@ -73,10 +73,10 @@ void	OkdString::replace( const OkdString& strSourcePattern, const OkdString& str
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdString::split(const OkdString&		strDelimiter, 
+uint32	OkdString::split(const OkdString&		strDelimiter, 
 						 OkdVector<OkdString>&	outTokens)
 {
-	int		uiOffset		= 0;
+	uint32	uiOffset		= 0;
 	uint32	nPatternLength	= strDelimiter.size();
 	int		nPatternPos		= _str.find( strDelimiter._str, uiOffset );
 
@@ -97,4 +97,6 @@ void	OkdString::split(const OkdString&		strDelimiter,
 		OkdString strToken = _str.substr( uiOffset, _str.size() );
 		outTokens.add( strToken );
 	}
+
+	return	( outTokens.size() );
 }

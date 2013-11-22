@@ -52,6 +52,7 @@ OkdResourceDatabase::~OkdResourceDatabase()
 void	OkdResourceDatabase::open()
 {
 	_strResourceDatabasePath = getResourceDatabasePath();
+	createResourceDirectories();
 
 	if	( !loadResourceDatabaseXmlFile() )
 	{
@@ -133,22 +134,6 @@ bool	OkdResourceDatabase::loadResourceDatabaseXmlFile()
 	return	( true );
 }
 
-////-----------------------------------------------------------------------------
-//// Name:		getResourcePath
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//OkdString	OkdResourceDatabase::getResourcePath(const OrkidResourceType	eResourceType, 
-//												 const OkdString&			strResourceName)
-//{
-//	ORKID_ASSERT( _bOpen );
-//
-//	OkdString strResourceRelativePath	= _strResourceRelativePath[eResourceType];
-//	OkdString strResourcePath			= _strResourceDatabasePath + _strResourceRelativePath[eResourceType] + "\\" + strResourceName + ".okd";
-//
-//	return	( strResourcePath );
-//}
-
 //-----------------------------------------------------------------------------
 // Name:		openResourceFileStream
 //
@@ -162,13 +147,14 @@ OkdFileStream*	OkdResourceDatabase::openResourceFileStream(const OrkidResourceTy
 
 	OkdString	strRelativeSourcePath	= _strResourceRelativePath[eResourceType];
 	OkdString	strResourcePath			= _strResourceDatabasePath + "\\" + strRelativeSourcePath;
+	OkdString	strResourceFile			= strResourcePath + "\\" + strResourceName + ".okd";
 	bool		bResourcePathExist		= OkdFileStream::dirExist( strResourcePath );
 	int			nFileOpenMode;
 
 	switch	( eOpenStreamMode )
 	{
 	case OpenStreamLoad:
-		if	( !bResourcePathExist )
+		if	( !OkdFileStream::exist( strResourceFile ) )
 		{
 			return	( 0 );
 		}
@@ -177,30 +163,6 @@ OkdFileStream*	OkdResourceDatabase::openResourceFileStream(const OrkidResourceTy
 		break;
 
 	case OpenStreamSave:
-		if	( !bResourcePathExist )
-		{
-			OkdString				strTempPath = _strResourceDatabasePath;
-			OkdVector<OkdString>	tokens;
-		
-			strRelativeSourcePath.split( "\\", tokens );
-
-			uint32 uiTokensCount = tokens.size();
-
-			for	( uint32 uiTokenIndex = 0; uiTokenIndex < uiTokensCount; uiTokenIndex++ )
-			{
-				strTempPath += "\\";
-				strTempPath += tokens[uiTokenIndex];
-
-				if	( !OkdFileStream::dirExist( strTempPath ) )
-				{
-					if	( _mkdir( strTempPath ) == -1 )
-					{
-						return	( 0 );
-					}
-				}
-			}
-		}
-
 		nFileOpenMode = OkdFileStream::OpenModeOut | OkdFileStream::OpenModeTrunc | OkdFileStream::OpenModeBinary;
 		break;
 
@@ -209,8 +171,7 @@ OkdFileStream*	OkdResourceDatabase::openResourceFileStream(const OrkidResourceTy
 		return	( 0 );
 	}
 
-	OkdString		strResourceFile		= strResourcePath + "\\" + strResourceName + ".okd";
-	OkdFileStream*	pResourceFileStream	= new OkdFileStream( strResourceFile, nFileOpenMode );
+	OkdFileStream* pResourceFileStream = new OkdFileStream( strResourceFile, nFileOpenMode );
 
 	return	( pResourceFileStream );
 }
@@ -226,6 +187,36 @@ void	OkdResourceDatabase::closeResourceFileStream(OkdFileStream** ppResourceFile
 
 	pStream->close();
 	pStream = 0;
+}
+
+//-----------------------------------------------------------------------------
+// Name:		createResourceDirectories
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdResourceDatabase::createResourceDirectories()
+{
+	for	( uint32 i = 0; i < OrkidResourceTypeCount; i++ )
+	{
+		OkdVector<OkdString>	tokens;
+		OkdString				strRelativeSourcePath	= _strResourceRelativePath[i];
+		OkdString				strTempPath				= _strResourceDatabasePath;
+		uint32					uiTokensCount			= strRelativeSourcePath.split( "\\", tokens );
+
+		for	( uint32 uiTokenIndex = 0; uiTokenIndex < uiTokensCount; uiTokenIndex++ )
+		{
+			strTempPath += "\\";
+			strTempPath += tokens[uiTokenIndex];
+
+			if	( !OkdFileStream::dirExist( strTempPath ) )
+			{
+				if	( _mkdir( strTempPath ) == -1 )
+				{
+					continue;
+				}
+			}
+		}
+	}
 }
 
 ////-----------------------------------------------------------------------------

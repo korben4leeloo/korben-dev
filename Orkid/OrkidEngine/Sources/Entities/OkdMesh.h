@@ -43,7 +43,6 @@ private:
 	void			releasePolygonArray();
 
 	OkdMeshInfo		_meshInfo;
-
 	OkdVector3f*	_pVertexArray;
 	OkdMeshPolygon*	_pPolygonArray;
 };

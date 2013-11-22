@@ -19,13 +19,9 @@ class OkdSceneResourceHandler: public OkdResourceHandler<OkdScene, OrkidScene>
 {
 	friend class OkdResourceManager;
 
-public:
-	virtual void	readResource( OkdScene* pResource, OkdFileStream* pResourceFileStream );
-	virtual void	writeResource( OkdScene* pResource, OkdFileStream* pResourceFileStream );
-
 private:
-					OkdSceneResourceHandler();
-	virtual			~OkdSceneResourceHandler();
+			OkdSceneResourceHandler();
+	virtual	~OkdSceneResourceHandler();
 };
 
 //*****************************************************************************

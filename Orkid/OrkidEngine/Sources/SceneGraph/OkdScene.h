@@ -26,11 +26,9 @@ public:
 	OkdMeshInstance*	createMeshInstance( const OkdString& strMeshName, OkdNode* pNode = 0 );
 
 private:
-						//OkdScene( OkdResourceManager* pResourceManager );
 						OkdScene();
 						~OkdScene();
 
-	//OkdResourceManager*	_pResourceManager;
 	OkdNode*			_pRootNode;
 };
 

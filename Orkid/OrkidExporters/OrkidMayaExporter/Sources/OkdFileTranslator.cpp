@@ -135,34 +135,38 @@ void	OkdFileTranslator::exportSceneGraph()
 
 		if	( dagPath.hasFn( MFn::kMesh ) )
 		{
-			MFnMesh		fnMesh( dagPath, &status );
-			uint		uiVertexCount	= fnMesh.numVertices( &status );
-			uint		uiPolygonCount	= fnMesh.numPolygons( &status );
-			OkdMeshInfo	meshInfo( uiVertexCount, uiPolygonCount );
-			OkdMeshPtr	meshPtr;
+			MFnMesh			fnMesh( dagPath, &status );
+			uint			uiVertexCount	= fnMesh.numVertices( &status );
+			uint			uiPolygonCount	= fnMesh.numPolygons( &status );
+			const float*	pLocalPoints	= fnMesh.getRawPoints( &status );
+			OkdMeshInfo		meshInfo( uiVertexCount, uiPolygonCount );
+			OkdMeshPtr		meshPtr;
 
 			meshPtr.bind( strShapeNodeName );
 
-			//OkdMesh*	pOrkidMesh		= 0;//pExportScene->createMesh();
-			OkdMesh*	pOrkidMesh		= meshPtr.getResource();
+			OkdMesh* pOrkidMesh = meshPtr.getResource();
 
-			WRITE_LOG_INFOS( dagPath.length() + 1, "Polygons count: " << uiPolygonCount << "\n" );
-			WRITE_LOG_INFOS( dagPath.length() + 1, "Vertices count: " << fnMesh.numVertices( &status ) << "\n" );
 			WRITE_LOG_INFOS( dagPath.length() + 1, "Normals count: " << fnMesh.numNormals( &status ) << "\n" );
 			WRITE_LOG_INFOS( dagPath.length() + 1, "UVs count: " << fnMesh.numUVs( &status ) << "\n" );
+			WRITE_LOG_INFOS( dagPath.length() + 1, "Vertices count: " << fnMesh.numVertices( &status ) << "\n" );
 
-			const float* pLocalPoints = fnMesh.getRawPoints( &status );
+			for	( uint i = 0; i < uiVertexCount; i++ )
+			{
+				WRITE_LOG_INFOS( dagPath.length() + 2, pLocalPoints[3*i] << ", " << pLocalPoints[3*i+1] << ", " << pLocalPoints[3*i+2] << "\n" );
+			}
 
 			pOrkidMesh->create( meshInfo );
 			pOrkidMesh->setVertexArray( pLocalPoints );
 
 			//_pExportStream->writeRawData( (char*)pLocalPoints, uiVertexCount * 3 * sizeof(pLocalPoints[0]) );
+
+			WRITE_LOG_INFOS( dagPath.length() + 1, "Polygons count: " << uiPolygonCount << "\n" );
 			
 			for	( uint i = 0; i < uiPolygonCount; i++ )
 			{
 				if	( fnMesh.polygonVertexCount( i, &status ) != 3 )
 				{
-					WRITE_LOG_INFOS( dagPath.length() + 1, "Polygon " << i << " is not a triangle" );
+					WRITE_LOG_INFOS( dagPath.length() + 2, "Polygon " << i << " is not a triangle" );
 					return;
 				}
 
@@ -172,7 +176,7 @@ void	OkdFileTranslator::exportSceneGraph()
 				pOrkidMesh->setPolygon( i, (const uint*)vertexIdArray );
 
 				//(*_pExportStream) << vertexIdArray[0] << vertexIdArray[1] << vertexIdArray[2];
-				WRITE_LOG_INFOS( dagPath.length() + 1, vertexIdArray[0] << " " << vertexIdArray[1] << " " << vertexIdArray[2] << "\n" );
+				WRITE_LOG_INFOS( dagPath.length() + 2, vertexIdArray[0] << ", " << vertexIdArray[1] << ", " << vertexIdArray[2] << "\n" );
 			}
 
 			/*OkdFileStream meshFileStream( strShapeNodeName + ".okd", OkdFileStream::OpenModeOut | OkdFileStream::OpenModeTrunc | OkdFileStream::OpenModeBinary );

@@ -43,6 +43,19 @@ OkdMeshInfo::~OkdMeshInfo()
 }
 
 //-----------------------------------------------------------------------------
+// Name:		read
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdMeshInfo::read(OkdFileStream* pStream)
+{
+	OkdFileStream& stream = *pStream;
+
+	stream >> _uiVertexCount;
+	stream >> _uiPolygonCount;
+}
+
+//-----------------------------------------------------------------------------
 // Name:		write
 //
 // Created:		2013-08-26

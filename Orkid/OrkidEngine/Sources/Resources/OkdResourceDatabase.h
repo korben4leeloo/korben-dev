@@ -33,7 +33,6 @@ public:
 	void				open();
 	void				close();
 
-	//OkdString			getResourcePath( const OrkidResourceType eResourceType, const OkdString& strResourceName );
 	OkdFileStream*		openResourceFileStream( const OrkidResourceType eResourceType, const OkdString& strResourceName, const OpenStreamMode eOpenStreamMode );
 	void				closeResourceFileStream( OkdFileStream** ppResourceFileStream );
 
@@ -42,6 +41,7 @@ private:
 						~OkdResourceDatabase();
 
 	const char*			getResourceDatabasePath() const;
+	void				createResourceDirectories();
 	//void				createResourceDatabaseXmlFile( const OkdString& strFileName );
 	bool				loadResourceDatabaseXmlFile();
 

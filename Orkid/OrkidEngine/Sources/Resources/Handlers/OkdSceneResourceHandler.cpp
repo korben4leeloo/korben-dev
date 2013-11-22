@@ -28,25 +28,3 @@ OkdSceneResourceHandler::~OkdSceneResourceHandler()
 {
 	
 }
-
-//-----------------------------------------------------------------------------
-// Name:		readResource
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OkdSceneResourceHandler::readResource(OkdScene*			pResource, 
-											  OkdFileStream*	pResourceFileStream)
-{
-
-}
-
-//-----------------------------------------------------------------------------
-// Name:		writeResource
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OkdSceneResourceHandler::writeResource(OkdScene*		pResource, 
-											   OkdFileStream*	pResourceFileStream)
-{
-
-}

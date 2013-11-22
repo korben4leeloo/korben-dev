@@ -109,15 +109,13 @@ void	OkdMesh::releasePolygonArray()
 //-----------------------------------------------------------------------------
 void	OkdMesh::read(OkdFileStream* pStream)
 {
-	/*ORKID_ASSERT( _pVertexArray );
-	ORKID_ASSERT( _pPolygonArray );
+	OkdMeshInfo meshInfo;
+	meshInfo.read( pStream );
 
-	OkdFileStream& stream = *pStream;
+	create( meshInfo );
 
-	_meshInfo.write( pStream );
-
-	stream.write( (const char*)_pVertexArray, _meshInfo.getVertexCount() * sizeof(OkdVector3f) );
-	stream.write( (const char*)_pPolygonArray, _meshInfo.getPolygonCount() * sizeof(OkdMeshPolygon) );*/
+	pStream->read( (char*)_pVertexArray, _meshInfo.getVertexCount() * sizeof(OkdVector3f) );
+	pStream->read( (char*)_pPolygonArray, _meshInfo.getPolygonCount() * sizeof(OkdMeshPolygon) );
 }
 
 //-----------------------------------------------------------------------------
