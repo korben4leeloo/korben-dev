@@ -232,11 +232,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	//	pMesh->create( meshInfo );*/
 	//}
 
-	//testSaveMesh();
-	testLoadMesh();
+	testSaveMesh();
+	//testLoadMesh();
 
 	//std::fstream fs( "c:\\test.txt", std::ios::out | std::ios::trunc | std::ios::binary );
-	OkdFileStream fs( "c:\\test.txt", std::ios::out | std::ios::trunc | std::ios::binary );
+	//OkdFileStream fs( "c:\\test.txt", std::ios::out | std::ios::trunc | std::ios::binary );
 
 	/*uint n = 10;
 	fs << n;

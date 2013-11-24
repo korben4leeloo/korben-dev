@@ -33,6 +33,7 @@ public:
 
 	inline operator		const char*() const;
 	inline bool			operator==( const OkdString& other ) const;
+	inline bool			operator==( const char* other ) const;
 	inline OkdString&	operator+=( const OkdString& other );
 	inline OkdString	operator+( const OkdString& other );
 
@@ -80,6 +81,16 @@ OkdString::operator const char*() const
 bool OkdString::operator==(const OkdString& other) const
 {
 	return	( _str == other._str );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator==
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+bool OkdString::operator==(const char* other) const
+{
+	return	( _str == other );
 }
 
 //-----------------------------------------------------------------------------

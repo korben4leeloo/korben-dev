@@ -120,75 +120,178 @@ void	OkdFileTranslator::exportSceneGraph()
 		OkdString		strNodeTypeName( dagNode.typeName().asChar() );
 		MFnTransform	fnTransform( dagPath, &status );
 		MVector			vLocal = fnTransform.getTranslation( MSpace::kTransform, &status );
+		uint			uiDagLength = dagPath.length();
+		bool			bHasMesh	= dagPath.hasFn( MFn::kMesh );
 
-		WRITE_LOG_INFOS( dagPath.length(), strNodeName << ": " << strNodeTypeName << " - Path: " << strFullPathName << " - Local transform: " << vLocal.x << " " << vLocal.y << " " << vLocal.z << "\n" );
-
-		// Get mesh infos
-		status = dagPath.extendToShape();
-
-		MFnDagNode	shapeDagNode( dagPath, &status );
-		OkdString	strShapeNodeName( shapeDagNode.name().asChar() );
-		OkdString	strShapeFullPathName( dagPath.fullPathName().asChar() );
-		OkdString	strShapeNodeTypeName( shapeDagNode.typeName().asChar() );
-
-		WRITE_LOG_INFOS( dagPath.length(), strShapeNodeName << ": " << strShapeNodeTypeName << " - Path: " << strShapeFullPathName << "\n" );
-
-		if	( dagPath.hasFn( MFn::kMesh ) )
+		if	( dagNode.childCount() > 0 )
 		{
-			MFnMesh			fnMesh( dagPath, &status );
-			uint			uiVertexCount	= fnMesh.numVertices( &status );
-			uint			uiPolygonCount	= fnMesh.numPolygons( &status );
-			const float*	pLocalPoints	= fnMesh.getRawPoints( &status );
-			OkdMeshInfo		meshInfo( uiVertexCount, uiPolygonCount );
-			OkdMeshPtr		meshPtr;
+			WRITE_LOG_INFOS( dagPath.length(), strNodeName << ": " << strNodeTypeName << " - Path: " << strFullPathName << " - Local transform: " << vLocal.x << " " << vLocal.y << " " << vLocal.z << "\n" );
 
-			meshPtr.bind( strShapeNodeName );
+			// Get mesh infos
+			//status = dagPath.extendToShape();
 
-			OkdMesh* pOrkidMesh = meshPtr.getResource();
+			//MFnDagNode	shapeDagNode( dagPath, &status );
+			//OkdString	strShapeNodeName( shapeDagNode.name().asChar() );
+			//OkdString	strShapeFullPathName( dagPath.fullPathName().asChar() );
+			//OkdString	strShapeNodeTypeName( shapeDagNode.typeName().asChar() );
 
-			WRITE_LOG_INFOS( dagPath.length() + 1, "Normals count: " << fnMesh.numNormals( &status ) << "\n" );
-			WRITE_LOG_INFOS( dagPath.length() + 1, "UVs count: " << fnMesh.numUVs( &status ) << "\n" );
-			WRITE_LOG_INFOS( dagPath.length() + 1, "Vertices count: " << fnMesh.numVertices( &status ) << "\n" );
+			//WRITE_LOG_INFOS( dagPath.length(), strShapeNodeName << ": " << strShapeNodeTypeName << " - Path: " << strShapeFullPathName << "\n" );
 
-			for	( uint i = 0; i < uiVertexCount; i++ )
+			if	( bHasMesh )
 			{
-				WRITE_LOG_INFOS( dagPath.length() + 2, pLocalPoints[3*i] << ", " << pLocalPoints[3*i+1] << ", " << pLocalPoints[3*i+2] << "\n" );
+				MFnMesh			fnMesh( dagPath, &status );
+			//	uint			uiVertexCount	= fnMesh.numVertices( &status );
+			//	uint			uiPolygonCount	= fnMesh.numPolygons( &status );
+			//	const float*	pLocalPoints	= fnMesh.getRawPoints( &status );
+			//	OkdMeshInfo		meshInfo( uiVertexCount, uiPolygonCount );
+			//	OkdMeshPtr		meshPtr;
+
+			//	meshPtr.bind( strShapeNodeName );
+
+			//	OkdMesh* pOrkidMesh = meshPtr.getResource();
+
+			//	WRITE_LOG_INFOS( dagPath.length() + 1, "Normals count: " << fnMesh.numNormals( &status ) << "\n" );
+			//	WRITE_LOG_INFOS( dagPath.length() + 1, "UVs count: " << fnMesh.numUVs( &status ) << "\n" );
+			//	WRITE_LOG_INFOS( dagPath.length() + 1, "Vertices count: " << fnMesh.numVertices( &status ) << "\n" );
+
+			//	for	( uint i = 0; i < uiVertexCount; i++ )
+			//	{
+			//		WRITE_LOG_INFOS( dagPath.length() + 2, pLocalPoints[3*i] << ", " << pLocalPoints[3*i+1] << ", " << pLocalPoints[3*i+2] << "\n" );
+			//	}
+
+			//	pOrkidMesh->create( meshInfo );
+			//	pOrkidMesh->setVertexArray( pLocalPoints );
+
+			//	//_pExportStream->writeRawData( (char*)pLocalPoints, uiVertexCount * 3 * sizeof(pLocalPoints[0]) );
+
+			//	WRITE_LOG_INFOS( dagPath.length() + 1, "Polygons count: " << uiPolygonCount << "\n" );
+			//	
+			//	for	( uint i = 0; i < uiPolygonCount; i++ )
+			//	{
+			//		if	( fnMesh.polygonVertexCount( i, &status ) != 3 )
+			//		{
+			//			WRITE_LOG_INFOS( dagPath.length() + 2, "Polygon " << i << " is not a triangle" );
+			//			return;
+			//		}
+
+			//		int vertexIdArray[3];
+
+			//		fnMesh.getPolygonTriangleVertices( i, 0, vertexIdArray );
+			//		pOrkidMesh->setPolygon( i, (const uint*)vertexIdArray );
+
+			//		//(*_pExportStream) << vertexIdArray[0] << vertexIdArray[1] << vertexIdArray[2];
+			//		WRITE_LOG_INFOS( dagPath.length() + 2, vertexIdArray[0] << ", " << vertexIdArray[1] << ", " << vertexIdArray[2] << "\n" );
+			//	}
+
+			//	/*OkdFileStream meshFileStream( strShapeNodeName + ".okd", OkdFileStream::OpenModeOut | OkdFileStream::OpenModeTrunc | OkdFileStream::OpenModeBinary );
+			//	pOrkidMesh->write( &meshFileStream );*/
+			//	meshPtr.save();
+
+			//	//pOrkidMesh->write( _pExportStream );
 			}
-
-			pOrkidMesh->create( meshInfo );
-			pOrkidMesh->setVertexArray( pLocalPoints );
-
-			//_pExportStream->writeRawData( (char*)pLocalPoints, uiVertexCount * 3 * sizeof(pLocalPoints[0]) );
-
-			WRITE_LOG_INFOS( dagPath.length() + 1, "Polygons count: " << uiPolygonCount << "\n" );
-			
-			for	( uint i = 0; i < uiPolygonCount; i++ )
-			{
-				if	( fnMesh.polygonVertexCount( i, &status ) != 3 )
-				{
-					WRITE_LOG_INFOS( dagPath.length() + 2, "Polygon " << i << " is not a triangle" );
-					return;
-				}
-
-				int vertexIdArray[3];
-
-				fnMesh.getPolygonTriangleVertices( i, 0, vertexIdArray );
-				pOrkidMesh->setPolygon( i, (const uint*)vertexIdArray );
-
-				//(*_pExportStream) << vertexIdArray[0] << vertexIdArray[1] << vertexIdArray[2];
-				WRITE_LOG_INFOS( dagPath.length() + 2, vertexIdArray[0] << ", " << vertexIdArray[1] << ", " << vertexIdArray[2] << "\n" );
-			}
-
-			/*OkdFileStream meshFileStream( strShapeNodeName + ".okd", OkdFileStream::OpenModeOut | OkdFileStream::OpenModeTrunc | OkdFileStream::OpenModeBinary );
-			pOrkidMesh->write( &meshFileStream );*/
-			meshPtr.save();
-
-			//pOrkidMesh->write( _pExportStream );
 		}
 
 		itDag.next();
 	}
 }
+
+////-----------------------------------------------------------------------------
+//// Name:		exportSceneGraph
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//void	OkdFileTranslator::exportSceneGraph()
+//{
+//	MStatus				status;
+//	MItDag				itDag( MItDag::kDepthFirst, MFn::kTransform, &status );
+//	/*OkdResourceManager*	pExportResourceManager	= _pOrkidEngine->addResourceManager( "ExportResourceManager" );
+//	OkdScene*			pExportScene			= _pOrkidEngine->addScene( "ExportScene", "ExportResourceManager" );*/
+//	//OkdScene*			pExportScene			= _pOrkidEngine->addScene( "ExportScene" );
+//	OkdScenePtr	scenePtr;
+//
+//	scenePtr.bind( _strSceneName );
+//
+//	while	( itDag.isDone() == false )
+//	{
+//		MDagPath dagPath;
+//		status = itDag.getPath( dagPath );
+//
+//		// Get transform infos
+//		MFnDagNode		dagNode( dagPath, &status );
+//		OkdString		strNodeName( dagNode.name().asChar() );
+//		OkdString		strFullPathName( dagPath.fullPathName().asChar() );
+//		OkdString		strNodeTypeName( dagNode.typeName().asChar() );
+//		MFnTransform	fnTransform( dagPath, &status );
+//		MVector			vLocal = fnTransform.getTranslation( MSpace::kTransform, &status );
+//
+//		WRITE_LOG_INFOS( dagPath.length(), strNodeName << ": " << strNodeTypeName << " - Path: " << strFullPathName << " - Local transform: " << vLocal.x << " " << vLocal.y << " " << vLocal.z << "\n" );
+//
+//		// Get mesh infos
+//		status = dagPath.extendToShape();
+//
+//		MFnDagNode	shapeDagNode( dagPath, &status );
+//		OkdString	strShapeNodeName( shapeDagNode.name().asChar() );
+//		OkdString	strShapeFullPathName( dagPath.fullPathName().asChar() );
+//		OkdString	strShapeNodeTypeName( shapeDagNode.typeName().asChar() );
+//
+//		WRITE_LOG_INFOS( dagPath.length(), strShapeNodeName << ": " << strShapeNodeTypeName << " - Path: " << strShapeFullPathName << "\n" );
+//
+//		if	( dagPath.hasFn( MFn::kTransform ) )
+//		{
+//			MFnMesh			fnMesh( dagPath, &status );
+//			uint			uiVertexCount	= fnMesh.numVertices( &status );
+//			uint			uiPolygonCount	= fnMesh.numPolygons( &status );
+//			const float*	pLocalPoints	= fnMesh.getRawPoints( &status );
+//			OkdMeshInfo		meshInfo( uiVertexCount, uiPolygonCount );
+//			OkdMeshPtr		meshPtr;
+//
+//			meshPtr.bind( strShapeNodeName );
+//
+//			OkdMesh* pOrkidMesh = meshPtr.getResource();
+//
+//			WRITE_LOG_INFOS( dagPath.length() + 1, "Normals count: " << fnMesh.numNormals( &status ) << "\n" );
+//			WRITE_LOG_INFOS( dagPath.length() + 1, "UVs count: " << fnMesh.numUVs( &status ) << "\n" );
+//			WRITE_LOG_INFOS( dagPath.length() + 1, "Vertices count: " << fnMesh.numVertices( &status ) << "\n" );
+//
+//			for	( uint i = 0; i < uiVertexCount; i++ )
+//			{
+//				WRITE_LOG_INFOS( dagPath.length() + 2, pLocalPoints[3*i] << ", " << pLocalPoints[3*i+1] << ", " << pLocalPoints[3*i+2] << "\n" );
+//			}
+//
+//			pOrkidMesh->create( meshInfo );
+//			pOrkidMesh->setVertexArray( pLocalPoints );
+//
+//			//_pExportStream->writeRawData( (char*)pLocalPoints, uiVertexCount * 3 * sizeof(pLocalPoints[0]) );
+//
+//			WRITE_LOG_INFOS( dagPath.length() + 1, "Polygons count: " << uiPolygonCount << "\n" );
+//			
+//			for	( uint i = 0; i < uiPolygonCount; i++ )
+//			{
+//				if	( fnMesh.polygonVertexCount( i, &status ) != 3 )
+//				{
+//					WRITE_LOG_INFOS( dagPath.length() + 2, "Polygon " << i << " is not a triangle" );
+//					return;
+//				}
+//
+//				int vertexIdArray[3];
+//
+//				fnMesh.getPolygonTriangleVertices( i, 0, vertexIdArray );
+//				pOrkidMesh->setPolygon( i, (const uint*)vertexIdArray );
+//
+//				//(*_pExportStream) << vertexIdArray[0] << vertexIdArray[1] << vertexIdArray[2];
+//				WRITE_LOG_INFOS( dagPath.length() + 2, vertexIdArray[0] << ", " << vertexIdArray[1] << ", " << vertexIdArray[2] << "\n" );
+//			}
+//
+//			/*OkdFileStream meshFileStream( strShapeNodeName + ".okd", OkdFileStream::OpenModeOut | OkdFileStream::OpenModeTrunc | OkdFileStream::OpenModeBinary );
+//			pOrkidMesh->write( &meshFileStream );*/
+//			meshPtr.save();
+//
+//			//pOrkidMesh->write( _pExportStream );
+//		}
+//
+//		itDag.next();
+//	}
+//}
 
 //-----------------------------------------------------------------------------
 // Name:		beginExport
