@@ -220,6 +220,8 @@ void	OkdFileTranslator::exportDagNode(const MFnDagNode&	fnDagNode,
 	MStatus		status;
 	MDagPath	nodePath;
 
+	status = fnDagNode.getPath( nodePath );
+
 	if	( pParentNode )
 	{
 		if	( fnDagNode.isDefaultNode() || !nodePath.hasFn( MFn::kTransform ) )
