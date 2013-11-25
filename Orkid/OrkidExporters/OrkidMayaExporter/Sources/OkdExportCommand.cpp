@@ -1,11 +1,11 @@
 //*****************************************************************************
 //
-//	File:		OkdFileTranslator.cpp
+//	File:		OkdExportCommand.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"OkdFileTranslator.h"
+#include	"OkdExportCommand.h"
 
 // Orkid includes
 #include	ORKID_CORE_H(String/OkdString)
@@ -23,6 +23,7 @@
 #include	<maya/MFnDagNode.h>
 #include	<maya/MFnTransform.h>
 #include	<maya/MFnMesh.h>
+#include	<maya/MFileIO.h>
 
 #define	USE_LOG_INFOS
 
@@ -39,11 +40,11 @@
 #endif
 
 //-----------------------------------------------------------------------------
-// Name:		OkdFileTranslator constructor
+// Name:		OkdExportCommand constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdFileTranslator::OkdFileTranslator()
+OkdExportCommand::OkdExportCommand()
 //: _pExportFile		( 0 )
 : _pExportStream	( 0 )
 //, _pExportLogFile	( 0 )
@@ -55,39 +56,24 @@ OkdFileTranslator::OkdFileTranslator()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OkdFileTranslator destructor
+// Name:		OkdExportCommand destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdFileTranslator::~OkdFileTranslator()
+OkdExportCommand::~OkdExportCommand()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-//	Name:		haveWriteMethod
-//
-//	Created:	2013-08-26
-//-----------------------------------------------------------------------------
-bool	OkdFileTranslator::haveWriteMethod() const
-{
-	return	( true );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		writer
+// Name:		doIt
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-MStatus	OkdFileTranslator::writer(const MFileObject&	file, 
-								  const MString&		optionsString, 
-								  FileAccessMode		mode )
+MStatus	OkdExportCommand::doIt(const MArgList&	args)
 {
-	beginExport( file );
-
+	beginExport();
 	exportSceneGraph();
-	//exportDependencyNodes( &exportStream );
-
 	endExport();
 
 	return	( MStatus::kSuccess );
@@ -98,7 +84,7 @@ MStatus	OkdFileTranslator::writer(const MFileObject&	file,
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdFileTranslator::exportSceneGraph()
+void	OkdExportCommand::exportSceneGraph()
 {
 	MStatus				status;
 	MItDag				itDag( MItDag::kDepthFirst, MFn::kInvalid, &status );
@@ -117,93 +103,6 @@ void	OkdFileTranslator::exportSceneGraph()
 
 	MFnDagNode rootDagNode( rootPath, &status );
 	exportDagNode( rootDagNode, 0 );
-
-
-	//while	( itDag.isDone() == false )
-	//{
-	//	MDagPath dagPath;
-	//	status = itDag.getPath( dagPath );
-
-	//	// Get transform infos
-	//	MFnDagNode		dagNode( dagPath, &status );
-	//	OkdString		strNodeName( dagNode.name().asChar() );
-	//	OkdString		strFullPathName( dagPath.fullPathName().asChar() );
-	//	OkdString		strNodeTypeName( dagNode.typeName().asChar() );
-	//	MFnTransform	fnTransform( dagPath, &status );
-	//	MVector			vLocal = fnTransform.getTranslation( MSpace::kTransform, &status );
-	//	uint			uiDagLength = dagPath.length();
-	//	bool			bHasMesh	= dagPath.hasFn( MFn::kMesh );
-
-	//	if	( dagNode.childCount() > 0 )
-	//	{
-	//		WRITE_LOG_INFOS( dagPath.length(), strNodeName << ": " << strNodeTypeName << " - Path: " << strFullPathName << " - Local transform: " << vLocal.x << " " << vLocal.y << " " << vLocal.z << "\n" );
-
-	//		// Get mesh infos
-	//		//status = dagPath.extendToShape();
-
-	//		//MFnDagNode	shapeDagNode( dagPath, &status );
-	//		//OkdString	strShapeNodeName( shapeDagNode.name().asChar() );
-	//		//OkdString	strShapeFullPathName( dagPath.fullPathName().asChar() );
-	//		//OkdString	strShapeNodeTypeName( shapeDagNode.typeName().asChar() );
-
-	//		//WRITE_LOG_INFOS( dagPath.length(), strShapeNodeName << ": " << strShapeNodeTypeName << " - Path: " << strShapeFullPathName << "\n" );
-
-	//		if	( bHasMesh )
-	//		{
-	//			MFnMesh			fnMesh( dagPath, &status );
-	//		//	uint			uiVertexCount	= fnMesh.numVertices( &status );
-	//		//	uint			uiPolygonCount	= fnMesh.numPolygons( &status );
-	//		//	const float*	pLocalPoints	= fnMesh.getRawPoints( &status );
-	//		//	OkdMeshInfo		meshInfo( uiVertexCount, uiPolygonCount );
-	//		//	OkdMeshPtr		meshPtr;
-
-	//		//	meshPtr.bind( strShapeNodeName );
-
-	//		//	OkdMesh* pOrkidMesh = meshPtr.getResource();
-
-	//		//	WRITE_LOG_INFOS( dagPath.length() + 1, "Normals count: " << fnMesh.numNormals( &status ) << "\n" );
-	//		//	WRITE_LOG_INFOS( dagPath.length() + 1, "UVs count: " << fnMesh.numUVs( &status ) << "\n" );
-	//		//	WRITE_LOG_INFOS( dagPath.length() + 1, "Vertices count: " << fnMesh.numVertices( &status ) << "\n" );
-
-	//		//	for	( uint i = 0; i < uiVertexCount; i++ )
-	//		//	{
-	//		//		WRITE_LOG_INFOS( dagPath.length() + 2, pLocalPoints[3*i] << ", " << pLocalPoints[3*i+1] << ", " << pLocalPoints[3*i+2] << "\n" );
-	//		//	}
-
-	//		//	pOrkidMesh->create( meshInfo );
-	//		//	pOrkidMesh->setVertexArray( pLocalPoints );
-
-	//		//	//_pExportStream->writeRawData( (char*)pLocalPoints, uiVertexCount * 3 * sizeof(pLocalPoints[0]) );
-
-	//		//	WRITE_LOG_INFOS( dagPath.length() + 1, "Polygons count: " << uiPolygonCount << "\n" );
-	//		//	
-	//		//	for	( uint i = 0; i < uiPolygonCount; i++ )
-	//		//	{
-	//		//		if	( fnMesh.polygonVertexCount( i, &status ) != 3 )
-	//		//		{
-	//		//			WRITE_LOG_INFOS( dagPath.length() + 2, "Polygon " << i << " is not a triangle" );
-	//		//			return;
-	//		//		}
-
-	//		//		int vertexIdArray[3];
-
-	//		//		fnMesh.getPolygonTriangleVertices( i, 0, vertexIdArray );
-	//		//		pOrkidMesh->setPolygon( i, (const uint*)vertexIdArray );
-
-	//		//		//(*_pExportStream) << vertexIdArray[0] << vertexIdArray[1] << vertexIdArray[2];
-	//		//		WRITE_LOG_INFOS( dagPath.length() + 2, vertexIdArray[0] << ", " << vertexIdArray[1] << ", " << vertexIdArray[2] << "\n" );
-	//		//	}
-
-	//		//	/*OkdFileStream meshFileStream( strShapeNodeName + ".okd", OkdFileStream::OpenModeOut | OkdFileStream::OpenModeTrunc | OkdFileStream::OpenModeBinary );
-	//		//	pOrkidMesh->write( &meshFileStream );*/
-	//		//	meshPtr.save();
-
-	//		//	//pOrkidMesh->write( _pExportStream );
-	//		}
-	//	}
-
-	//	itDag.next();
-	//}
 }
 
 //-----------------------------------------------------------------------------
@@ -211,7 +110,7 @@ void	OkdFileTranslator::exportSceneGraph()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdFileTranslator::exportDagNode(const MFnDagNode&	fnDagNode, 
+void	OkdExportCommand::exportDagNode(const MFnDagNode&	fnDagNode, 
 										 OkdNode*			pParentNode)
 {
 	OkdString	strNodeName( fnDagNode.name().asChar() );
@@ -256,7 +155,7 @@ void	OkdFileTranslator::exportDagNode(const MFnDagNode&	fnDagNode,
 ////
 //// Created:		2013-08-26
 ////-----------------------------------------------------------------------------
-//void	OkdFileTranslator::exportSceneGraph()
+//void	OkdExportCommand::exportSceneGraph()
 //{
 //	MStatus				status;
 //	MItDag				itDag( MItDag::kDepthFirst, MFn::kTransform, &status );
@@ -354,34 +253,32 @@ void	OkdFileTranslator::exportDagNode(const MFnDagNode&	fnDagNode,
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdFileTranslator::beginExport(const MFileObject &	file)
+void	OkdExportCommand::beginExport()
 {
-	const MString	strFileName = file.fullName();
+	//MString		strFileName = file.fullName();
+	MString			strFileName = MFileIO::currentFile();
 	OkdString		strLogFileName( strFileName.asChar() );
+	MStringArray	pathTokens, filenameTokens;
 
-	_strSceneName = file.resolvedName().asChar();
-	_strSceneName.replace( ".okd", "" );
+	strFileName.split( '/', pathTokens );
+	//pathTokens[pathTokens.length()-1].split( ".", filenameTokens );
 
-	strLogFileName.replace( ".okd", ".log" );
+	MString strFile = pathTokens[pathTokens.length()-1];
+	uint uiDotPosition = strFile.rindex( '.' );
 
-	_pExportStream		= new OkdFileStream( strFileName.asChar(), OkdFileStream::OpenModeOut | OkdFileStream::OpenModeTrunc | OkdFileStream::OpenModeBinary );
+	_strSceneName = strFile.substring( 0, uiDotPosition - 1 ).asChar();
+
+	//_strSceneName = strFileName.asChar();
+	//_strSceneName = filenameTokens[0].asChar();
+	//_strSceneName.replace( ".okd", "" );
+
+	//strLogFileName.replace( ".okd", ".log" );
+	strLogFileName += ".log"; 
+
+	//_pExportStream		= new OkdFileStream( strFileName.asChar(), OkdFileStream::OpenModeOut | OkdFileStream::OpenModeTrunc | OkdFileStream::OpenModeBinary );
 	_pExportLogStream	= new OkdFileStream( strLogFileName, OkdFileStream::OpenModeOut | OkdFileStream::OpenModeTrunc );
 
 	_pOrkidEngine = OrkidEngine::create();
-
-	// Create export file
-	//_pExportFile = new OkdFile( strFileName.asChar() );
-	//_pExportFile->open( QIODevice::WriteOnly );
-
-	// Create export stream
-	//_pExportStream = new OkdBinaryStream( _pExportFile );
-
-	// Create export log file
-	//_pExportLogFile = new OkdFile( strLogFileName );
-	//_pExportLogFile->open( QIODevice::WriteOnly );
-
-	// Create export log stream
-	//_pExportLogStream = new OkdTextStream( _pExportLogFile );
 }
 
 //-----------------------------------------------------------------------------
@@ -389,12 +286,9 @@ void	OkdFileTranslator::beginExport(const MFileObject &	file)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdFileTranslator::endExport()
+void	OkdExportCommand::endExport()
 {
-	//_pExportFile->close();
-	//_pExportLogFile->close();
-
-	_pExportStream->close();
+	//_pExportStream->close();
 	_pExportLogStream->close();
 
 	_pOrkidEngine = 0;
@@ -406,7 +300,7 @@ void	OkdFileTranslator::endExport()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void*	OkdFileTranslator::creator()
+void*	OkdExportCommand::creator()
 {
-	return	( (void*)(new OkdFileTranslator()) );
+	return	( (void*)(new OkdExportCommand()) );
 }

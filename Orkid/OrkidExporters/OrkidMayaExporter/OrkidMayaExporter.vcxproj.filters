@@ -13,12 +13,18 @@
     <ClCompile Include="Sources\OkdMayaExporterPlugin.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\OkdExportCommand.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\OkdFileTranslator.h">
       <Filter>Sources</Filter>
     </ClInclude>
     <ClInclude Include="Sources\OrkidMayaExporterRoot.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\OkdExportCommand.h">
       <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>

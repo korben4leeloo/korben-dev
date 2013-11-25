@@ -11,10 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\OkdExportCommand.cpp" />
     <ClCompile Include="Sources\OkdFileTranslator.cpp" />
     <ClCompile Include="Sources\OkdMayaExporterPlugin.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\OkdExportCommand.h" />
     <ClInclude Include="Sources\OkdFileTranslator.h" />
     <ClInclude Include="Sources\OrkidMayaExporterRoot.h" />
   </ItemGroup>

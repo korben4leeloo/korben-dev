@@ -9,6 +9,7 @@
 #include	"OrkidMayaExporterRoot.h"
 
 #include	ORKID_MAYA_EXPORTER_H(OkdFileTranslator)
+#include	ORKID_MAYA_EXPORTER_H(OkdExportCommand)
 
 #include	<maya/MFnPlugin.h>
 #include	<maya/MPxFileTranslator.h>
@@ -27,6 +28,8 @@ MStatus ORKID_EXPORT initializePlugin(MObject obj)
 	status = plugin.registerFileTranslator( "OrkidExporter", "", OkdFileTranslator::creator );
 	strStatus = status.errorString();
 
+	status = plugin.registerCommand( "orkidExport", OkdExportCommand::creator );
+
 	return	( MStatus::kSuccess );
 }
 
@@ -37,5 +40,8 @@ MStatus ORKID_EXPORT initializePlugin(MObject obj)
 //-----------------------------------------------------------------------------
 MStatus ORKID_EXPORT uninitializePlugin(MObject obj)
 {
+	MFnPlugin	plugin( obj );
+	MStatus		status = plugin.deregisterCommand( "orkidExport" );
+
 	return	( MStatus::kSuccess );
 }
