@@ -22,6 +22,8 @@ class OkdScene
 public:
 	template<class T> friend class OkdResourceRef;
 
+	inline OkdNode*		getRootNode();
+
 	OkdNode*			createNode( OkdNode* pParentNode = 0 );
 	OkdMeshInstance*	createMeshInstance( const OkdString& strMeshName, OkdNode* pNode = 0 );
 
@@ -31,5 +33,19 @@ private:
 
 	OkdNode*			_pRootNode;
 };
+
+//*****************************************************************************
+//	Inline functions declarations
+//*****************************************************************************
+
+//-----------------------------------------------------------------------------
+// Name:		getRootNode
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdNode*	OkdScene::getRootNode()
+{
+	return	( _pRootNode );
+}
 
 #endif

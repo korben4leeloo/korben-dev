@@ -16,6 +16,9 @@
 
 class OrkidEngine;
 class OkdFileStream;
+class OkdScene;
+class OkdNode;
+class MFnDagNode;
 
 class OkdFileTranslator: public MPxFileTranslator
 {
@@ -35,11 +38,13 @@ private:
 	void				endExport();
 
 	void				exportSceneGraph();
+	void				exportDagNode( const MFnDagNode& fnDagNode, OkdNode* pParentNode );
 
 	OkdFileStream*		_pExportStream;
 	OkdFileStream*		_pExportLogStream;
 	OrkidEngine*		_pOrkidEngine;
 	OkdString			_strSceneName;
+	OkdScene*			_pOrkidScene;
 };
 
 #endif
