@@ -37,6 +37,7 @@ private:
 	void				exportSceneGraph();
 	void				exportDagNode( const MFnDagNode& fnDagNode, OkdNode* pParentNode );
 
+	MStatus				_status;
 	OkdFileStream*		_pExportStream;
 	OkdFileStream*		_pExportLogStream;
 	OrkidEngine*		_pOrkidEngine;
