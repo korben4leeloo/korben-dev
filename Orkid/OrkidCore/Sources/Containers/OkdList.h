@@ -19,6 +19,7 @@ public:
 					~OkdList();
 
 	inline void		add( T& t );
+	inline uint32	size() const;
 
 private:
 	std::list<T>	_list;
@@ -59,6 +60,17 @@ template<typename T>
 void	OkdList<T>::add( T& t )
 {
 	_list.push_back( t );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		size
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+uint32	OkdList<T>::size() const
+{
+	return	( _list.size() );
 }
 
 #endif

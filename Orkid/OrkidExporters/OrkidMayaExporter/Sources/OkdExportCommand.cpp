@@ -13,6 +13,7 @@
 
 #include	ORKID_ENGINE_H(OrkidEngine)
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
+#include	ORKID_ENGINE_H(SceneGraph/OkdNode)
 #include	ORKID_ENGINE_H(Entities/OkdMesh)
 #include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
 
@@ -129,12 +130,7 @@ void	OkdExportCommand::exportDagNode(const MFnDagNode&	fnDagNode,
 	case MFn::kTransform:
 		if	( !bIsDefaultNode )
 		{
-			MFnTransform	fnTransform( nodePath, &_status );
-			MVector			vLocal = fnTransform.getTranslation( MSpace::kTransform, &_status );
-
-			WRITE_LOG_INFOS( nodePath.length(), "Local transform: " << vLocal.x << " " << vLocal.y << " " << vLocal.z << "\n" );
-
-			pOrkidNode	= _pOrkidScene->createNode( pParentNode );
+			pOrkidNode	= exportTransform( nodePath, pParentNode );
 			bRecurse	= true;
 		}
 		break;
@@ -156,7 +152,30 @@ void	OkdExportCommand::exportDagNode(const MFnDagNode&	fnDagNode,
 			MFnDagNode childNode( fnDagNode.child( i ), &_status );
 			exportDagNode( childNode, pOrkidNode );
 		}
+
+		if	( pOrkidNode )
+		{
+			uint32 uiOrkidNodeChildCount = pOrkidNode->getChildCount();
+
+		}
 	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		exportTransform
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdNode*	OkdExportCommand::exportTransform(const MDagPath&	transformPath, 
+											  OkdNode*			pParentNode)
+{
+	MFnTransform	fnTransform( transformPath, &_status );
+	MVector			vLocal		= fnTransform.getTranslation( MSpace::kTransform, &_status );
+	OkdNode*		pOrkidNode	= _pOrkidScene->createNode( pParentNode );
+
+	WRITE_LOG_INFOS( transformPath.length(), "Local transform: " << vLocal.x << " " << vLocal.y << " " << vLocal.z << "\n" );
+
+	return	( pOrkidNode );
 }
 
 //-----------------------------------------------------------------------------

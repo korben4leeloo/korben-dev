@@ -29,6 +29,7 @@ public:
 
 	inline const OkdNode*	getParentNode() const;
 	inline void				addChildNode( OkdNode* pChildNode );
+	inline uint32			getChildCount() const;
 
 private:
 							OkdNode();
@@ -78,6 +79,16 @@ void	OkdNode::addChildNode(OkdNode *	pChildNode)
 {
 	_childrenNodes.add( pChildNode );
 	pChildNode->setParentNode( this );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getChildCount
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+uint32	OkdNode::getChildCount() const
+{
+	return	( _childrenNodes.size() );
 }
 
 #endif
