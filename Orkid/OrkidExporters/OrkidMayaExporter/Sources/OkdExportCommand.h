@@ -19,6 +19,7 @@ class OkdFileStream;
 class OkdScene;
 class OkdNode;
 class MFnDagNode;
+class MDagPath;
 
 class OkdExportCommand: public MPxCommand
 {
@@ -36,6 +37,7 @@ private:
 
 	void				exportSceneGraph();
 	void				exportDagNode( const MFnDagNode& fnDagNode, OkdNode* pParentNode );
+	void				exportMesh( const MDagPath& meshPath );
 
 	MStatus				_status;
 	OkdFileStream*		_pExportStream;

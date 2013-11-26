@@ -111,9 +111,14 @@ void	OkdExportCommand::exportDagNode(const MFnDagNode&	fnDagNode,
 	OkdString	strNodeTypeName( fnDagNode.typeName().asChar() );
 	MFn::Type	eNodeType		= fnDagNode.object().apiType();
 	bool		bIsDefaultNode	= fnDagNode.isDefaultNode();
-	OkdNode*	pOrkidNode		= 0;
 	bool		bRecurse		= false;
+	OkdNode*	pOrkidNode		= 0;
 	MDagPath	nodePath;
+
+	fnDagNode.getPath( nodePath );
+
+	OkdString strNodePathName( nodePath.fullPathName().asChar() );
+	WRITE_LOG_INFOS( nodePath.length(), strNodeName << ": " << strNodeTypeName << " - Path: " << strNodePathName << "\n" );
 
 	switch	( eNodeType )
 	{
@@ -124,37 +129,23 @@ void	OkdExportCommand::exportDagNode(const MFnDagNode&	fnDagNode,
 	case MFn::kTransform:
 		if	( !bIsDefaultNode )
 		{
+			MFnTransform	fnTransform( nodePath, &_status );
+			MVector			vLocal = fnTransform.getTranslation( MSpace::kTransform, &_status );
+
+			WRITE_LOG_INFOS( nodePath.length(), "Local transform: " << vLocal.x << " " << vLocal.y << " " << vLocal.z << "\n" );
+
 			pOrkidNode	= _pOrkidScene->createNode( pParentNode );
 			bRecurse	= true;
 		}
 		break;
 
 	case MFn::kMesh:
+		exportMesh( nodePath );
 		break;
 
 	default:
 		break;
 	}
-
-	/*_status = fnDagNode.getPath( nodePath );
-
-	if	( pParentNode )
-	{
-		bool bIsDefaultNode = fnDagNode.isDefaultNode();
-		bool bHasTransform	= nodePath.hasFn( MFn::kTransform );
-
-		if	( bIsDefaultNode || !bHasTransform )
-		{
-			return;
-		}
-
-		MFnTransform fnTransform( nodePath );
-		pOrkidNode = _pOrkidScene->createNode( pParentNode );
-	}
-	else
-	{
-		pOrkidNode = _pOrkidScene->getRootNode();
-	}*/
 
 	if	( bRecurse )
 	{
@@ -166,6 +157,57 @@ void	OkdExportCommand::exportDagNode(const MFnDagNode&	fnDagNode,
 			exportDagNode( childNode, pOrkidNode );
 		}
 	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		exportMesh
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdExportCommand::exportMesh(const MDagPath&	meshPath)
+{
+	MFnMesh			fnMesh( meshPath, &_status );
+	uint			uiVertexCount	= fnMesh.numVertices( &_status );
+	uint			uiPolygonCount	= fnMesh.numPolygons( &_status );
+	const float*	pLocalPoints	= fnMesh.getRawPoints( &_status );
+	OkdMeshInfo		meshInfo( uiVertexCount, uiPolygonCount );
+	OkdMeshPtr		meshPtr;
+	
+	meshPtr.bind( fnMesh.name().asChar() );
+	
+	OkdMesh* pOrkidMesh = meshPtr.getResource();
+	
+	WRITE_LOG_INFOS( meshPath.length() + 1, "Normals count: " << fnMesh.numNormals( &_status ) << "\n" );
+	WRITE_LOG_INFOS( meshPath.length() + 1, "UVs count: " << fnMesh.numUVs( &_status ) << "\n" );
+	WRITE_LOG_INFOS( meshPath.length() + 1, "Vertices count: " << fnMesh.numVertices( &_status ) << "\n" );
+	
+	for	( uint i = 0; i < uiVertexCount; i++ )
+	{
+		WRITE_LOG_INFOS( meshPath.length() + 2, pLocalPoints[3*i] << ", " << pLocalPoints[3*i+1] << ", " << pLocalPoints[3*i+2] << "\n" );
+	}
+	
+	pOrkidMesh->create( meshInfo );
+	pOrkidMesh->setVertexArray( pLocalPoints );
+	
+	WRITE_LOG_INFOS( meshPath.length() + 1, "Polygons count: " << uiPolygonCount << "\n" );
+				
+	for	( uint i = 0; i < uiPolygonCount; i++ )
+	{
+		if	( fnMesh.polygonVertexCount( i, &_status ) != 3 )
+		{
+			WRITE_LOG_INFOS( meshPath.length() + 2, "Polygon " << i << " is not a triangle" );
+			return;
+		}
+	
+		int vertexIdArray[3];
+	
+		fnMesh.getPolygonTriangleVertices( i, 0, vertexIdArray );
+		pOrkidMesh->setPolygon( i, (const uint*)vertexIdArray );
+	
+		WRITE_LOG_INFOS( meshPath.length() + 2, vertexIdArray[0] << ", " << vertexIdArray[1] << ", " << vertexIdArray[2] << "\n" );
+	}
+
+	//meshPtr.save();
 }
 
 //-----------------------------------------------------------------------------
