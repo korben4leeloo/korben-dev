@@ -11,18 +11,11 @@
 
 #include	"Root.h"
 
-class OkdNode;
-
 class OkdEntity
 {
-public:
-
 protected:
-				OkdEntity();
-				virtual ~OkdEntity();
-
-private:
-	OkdNode*	_pNode;
+	OkdEntity();
+	virtual ~OkdEntity();
 };
 
 #endif

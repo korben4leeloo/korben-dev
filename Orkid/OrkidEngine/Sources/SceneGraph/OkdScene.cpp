@@ -45,12 +45,21 @@ OkdNode*	OkdScene::createNode( OkdNode* pParentNode )
 }
 
 //-----------------------------------------------------------------------------
-// Name:		createMesh
+// Name:		read
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdMeshInstance*	OkdScene::createMeshInstance(const OkdString&	strMeshName, 
-												 OkdNode*			pParentNode)
+void	OkdScene::read(OkdFileStream* pStream)
 {
-	return	( 0 );
+	
+}
+
+//-----------------------------------------------------------------------------
+// Name:		write
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdScene::write(OkdFileStream* pStream)
+{
+	
 }

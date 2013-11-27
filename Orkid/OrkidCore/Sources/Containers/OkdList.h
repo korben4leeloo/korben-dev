@@ -19,6 +19,7 @@ public:
 					~OkdList();
 
 	inline void		add( T& t );
+	inline void		remove( T& t );
 	inline uint32	size() const;
 
 private:
@@ -60,6 +61,17 @@ template<typename T>
 void	OkdList<T>::add( T& t )
 {
 	_list.push_back( t );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		remove
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+void	OkdList<T>::remove( T& t )
+{
+	_list.remove( t );
 }
 
 //-----------------------------------------------------------------------------

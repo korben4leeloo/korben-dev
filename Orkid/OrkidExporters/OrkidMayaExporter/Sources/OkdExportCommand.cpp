@@ -15,6 +15,7 @@
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 #include	ORKID_ENGINE_H(SceneGraph/OkdNode)
 #include	ORKID_ENGINE_H(Entities/OkdMesh)
+#include	ORKID_ENGINE_H(Entities/OkdMeshInstance)
 #include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
 
 // Maya includes
@@ -98,6 +99,9 @@ void	OkdExportCommand::exportSceneGraph()
 
 	MFnDagNode rootDagNode( rootPath, &_status );
 	exportDagNode( rootDagNode, 0 );
+
+	_pOrkidScene = 0;
+	scenePtr.save();
 }
 
 //-----------------------------------------------------------------------------
@@ -112,7 +116,6 @@ void	OkdExportCommand::exportDagNode(const MFnDagNode&	fnDagNode,
 	OkdString	strNodeTypeName( fnDagNode.typeName().asChar() );
 	MFn::Type	eNodeType		= fnDagNode.object().apiType();
 	bool		bIsDefaultNode	= fnDagNode.isDefaultNode();
-	bool		bRecurse		= false;
 	OkdNode*	pOrkidNode		= 0;
 	MDagPath	nodePath;
 
@@ -124,26 +127,25 @@ void	OkdExportCommand::exportDagNode(const MFnDagNode&	fnDagNode,
 	switch	( eNodeType )
 	{
 	case MFn::kWorld:
-		bRecurse = true;
+		pOrkidNode = _pOrkidScene->getRootNode();
 		break;
 
 	case MFn::kTransform:
 		if	( !bIsDefaultNode )
 		{
-			pOrkidNode	= exportTransform( nodePath, pParentNode );
-			bRecurse	= true;
+			pOrkidNode = exportTransform( nodePath, pParentNode );
 		}
 		break;
 
 	case MFn::kMesh:
-		exportMesh( nodePath );
+		exportMesh( nodePath, pParentNode );
 		break;
 
 	default:
 		break;
 	}
 
-	if	( bRecurse )
+	if	( pOrkidNode )
 	{
 		uint uiChildCount = fnDagNode.childCount();
 
@@ -153,10 +155,12 @@ void	OkdExportCommand::exportDagNode(const MFnDagNode&	fnDagNode,
 			exportDagNode( childNode, pOrkidNode );
 		}
 
-		if	( pOrkidNode )
-		{
-			uint32 uiOrkidNodeChildCount = pOrkidNode->getChildCount();
+		uint32 uiChildNodeCount = pOrkidNode->getChildCount();
+		uint32 uiEntityCount	= pOrkidNode->getEntityCount();
 
+		if	( ( uiChildNodeCount == 0 ) && ( uiEntityCount == 0 ) )
+		{
+			pParentNode->removeChildNode( pOrkidNode );
 		}
 	}
 }
@@ -183,7 +187,8 @@ OkdNode*	OkdExportCommand::exportTransform(const MDagPath&	transformPath,
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdExportCommand::exportMesh(const MDagPath&	meshPath)
+void	OkdExportCommand::exportMesh(const MDagPath&	meshPath, 
+									 OkdNode*			pNode)
 {
 	MFnMesh			fnMesh( meshPath, &_status );
 	uint			uiVertexCount	= fnMesh.numVertices( &_status );
@@ -225,6 +230,11 @@ void	OkdExportCommand::exportMesh(const MDagPath&	meshPath)
 	
 		WRITE_LOG_INFOS( meshPath.length() + 2, vertexIdArray[0] << ", " << vertexIdArray[1] << ", " << vertexIdArray[2] << "\n" );
 	}
+
+	OkdMeshInstance* pMeshInstance = new OkdMeshInstance();
+
+	pMeshInstance->setMeshPtr( meshPtr );
+	pNode->addEntity( pMeshInstance );
 
 	//meshPtr.save();
 }

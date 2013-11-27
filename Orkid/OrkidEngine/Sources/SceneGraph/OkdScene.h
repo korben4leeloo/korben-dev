@@ -11,13 +11,13 @@
 
 #include	"Root.h"
 
-#include	ORKID_ENGINE_H(Resources/OkdResourceManager)
+#include	ORKID_ENGINE_H(Resources/OkdAbstractResource)
 
 class OkdNode;
 class OkdMeshInstance;
 class OkdString;
 
-class OkdScene
+class OkdScene: public OkdAbstractResource
 {
 public:
 	template<class T> friend class OkdResourceRef;
@@ -25,7 +25,10 @@ public:
 	inline OkdNode*		getRootNode();
 
 	OkdNode*			createNode( OkdNode* pParentNode = 0 );
-	OkdMeshInstance*	createMeshInstance( const OkdString& strMeshName, OkdNode* pNode = 0 );
+
+	// OkdAbstractResource implementation
+	virtual void		read( OkdFileStream* pStream );
+	virtual void		write( OkdFileStream* pStream );
 
 private:
 						OkdScene();

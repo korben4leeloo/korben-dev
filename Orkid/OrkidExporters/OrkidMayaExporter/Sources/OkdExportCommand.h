@@ -38,7 +38,7 @@ private:
 	void				exportSceneGraph();
 	void				exportDagNode( const MFnDagNode& fnDagNode, OkdNode* pParentNode );
 	OkdNode*			exportTransform( const MDagPath& transformPath, OkdNode* pParentNode );
-	void				exportMesh( const MDagPath& meshPath );
+	void				exportMesh( const MDagPath& meshPath, OkdNode* pNode );
 
 	MStatus				_status;
 	OkdFileStream*		_pExportStream;

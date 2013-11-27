@@ -14,7 +14,6 @@
 #include	ORKID_CORE_H(Containers/OkdList)
 #include	ORKID_CORE_H(Math/OkdMatrix4f)
 
-
 class OkdEntity;
 
 class OkdNode;
@@ -29,7 +28,11 @@ public:
 
 	inline const OkdNode*	getParentNode() const;
 	inline void				addChildNode( OkdNode* pChildNode );
+	inline void				removeChildNode( OkdNode* pChildNode );
 	inline uint32			getChildCount() const;
+
+	inline void				addEntity( OkdEntity* pEntity );
+	inline uint32			getEntityCount() const;
 
 private:
 							OkdNode();
@@ -43,7 +46,7 @@ private:
 	OkdNode*				_pParentNode;
 	OkdNodeList				_childrenNodes;
 
-	OkdEntity*				_pEntity;
+	OkdList<OkdEntity*>		_entities;
 };
 
 //*****************************************************************************
@@ -55,7 +58,7 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdNode::setParentNode( OkdNode* pParentNode )
+void	OkdNode::setParentNode(OkdNode*	pParentNode)
 {
 	_pParentNode = pParentNode;
 }
@@ -75,10 +78,21 @@ const OkdNode*	OkdNode::getParentNode() const
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdNode::addChildNode(OkdNode *	pChildNode)
+void	OkdNode::addChildNode(OkdNode*	pChildNode)
 {
 	_childrenNodes.add( pChildNode );
 	pChildNode->setParentNode( this );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		removeChildNode
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdNode::removeChildNode(OkdNode*	pChildNode)
+{
+	_childrenNodes.remove( pChildNode );
+	pChildNode->setParentNode( 0 );
 }
 
 //-----------------------------------------------------------------------------
@@ -89,6 +103,26 @@ void	OkdNode::addChildNode(OkdNode *	pChildNode)
 uint32	OkdNode::getChildCount() const
 {
 	return	( _childrenNodes.size() );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		addEntity
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdNode::addEntity(OkdEntity*	pEntity)
+{
+	_entities.add( pEntity );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getEntityCount
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+uint32	OkdNode::getEntityCount() const
+{
+	return	( _entities.size() );
 }
 
 #endif

@@ -154,7 +154,9 @@ bool createWindow(LPCSTR title, int width, int height) {
 //#include	ORKID_ENGINE_H(Resources/OkdResourceId)
 //#include	ORKID_CORE_H(Xml/OkdXmlDocument)
 #include	ORKID_ENGINE_H(Entities/OkdMesh)
+#include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 #include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
+#include	ORKID_CORE_H(Containers/OkdList)
 #include	<rapidxml/rapidxml_print.hpp>
 #include	<iostream>
 
@@ -232,7 +234,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	//	pMesh->create( meshInfo );*/
 	//}
 
-	testSaveMesh();
+	//testSaveMesh();
 	//testLoadMesh();
 
 	//std::fstream fs( "c:\\test.txt", std::ios::out | std::ios::trunc | std::ios::binary );

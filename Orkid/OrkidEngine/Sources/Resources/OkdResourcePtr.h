@@ -11,6 +11,7 @@
 
 #include	"Root.h"
 
+#include	ORKID_ENGINE_H(OrkidEngine)
 #include	ORKID_ENGINE_H(Resources/OkdResourceRef)
 #include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
 #include	ORKID_ENGINE_H(Resources/OkdResourceManager)
