@@ -14,6 +14,7 @@
 
 class OkdString;
 class OkdXmlDocument;
+class OkdMatrix4f;
 
 class OkdFileStream
 {
@@ -54,6 +55,7 @@ public:
 	inline OkdFileStream&	operator<<( const char* pBuffer );
 	OkdFileStream&			operator<<( const OkdString& str );
 	OkdFileStream&			operator<<( const OkdXmlDocument& xmlDoc );
+	OkdFileStream&			operator<<( const OkdMatrix4f& m );
 
 	inline OkdFileStream&	operator>>( bool& b );
 	inline OkdFileStream&	operator>>( char& c );

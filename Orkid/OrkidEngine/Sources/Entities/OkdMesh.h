@@ -13,9 +13,8 @@
 
 #include	ORKID_ENGINE_H(Resources/OkdAbstractResource)
 #include	ORKID_ENGINE_H(Entities/OkdMeshInfo)
-#include	ORKID_CORE_H(Math/OkdVector3f)
-#include	ORKID_CORE_H(Stream/OkdFileStream)
-#include	ORKID_ENGINE_H(Resources/OkdResourceManager)
+
+class OkdVector3f;
 
 class OkdMesh: public OkdAbstractResource
 {

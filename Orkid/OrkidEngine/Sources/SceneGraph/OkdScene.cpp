@@ -8,6 +8,7 @@
 #include	"OkdScene.h"
 
 #include	ORKID_ENGINE_H(SceneGraph/OkdNode)
+#include	ORKID_CORE_H(Stream/OkdFileStream)
 
 //-----------------------------------------------------------------------------
 // Name:		OkdScene constructor
@@ -61,5 +62,20 @@ void	OkdScene::read(OkdFileStream* pStream)
 //-----------------------------------------------------------------------------
 void	OkdScene::write(OkdFileStream* pStream)
 {
-	
+	writeNode( pStream, _pRootNode );
 }
+
+//-----------------------------------------------------------------------------
+// Name:		write
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdScene::writeNode(OkdFileStream*	pStream, 
+							OkdNode*		pNode)
+{
+	OkdFileStream&		stream	= *pStream;
+	const OkdMatrix4f&	mLocal	= pNode->getLocalTransform();
+
+	stream << mLocal;
+}
+

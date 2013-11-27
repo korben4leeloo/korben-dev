@@ -7,6 +7,8 @@
 
 #include	"OkdMeshInfo.h"
 
+#include	ORKID_CORE_H(Stream/OkdFileStream)
+
 //-----------------------------------------------------------------------------
 // Name:		OkdMeshInfo constructor
 //

@@ -34,6 +34,8 @@ private:
 						OkdScene();
 						~OkdScene();
 
+	void				writeNode( OkdFileStream* pStream, OkdNode* pNode );
+
 	OkdNode*			_pRootNode;
 };
 

@@ -32,7 +32,10 @@ public:
 
 	inline OkdQuaternionf	getQuaternion() const;
 
+	inline const float*		data() const;
+
 	inline OkdMatrix4f		operator*( const OkdMatrix4f& mOther );
+	inline float			operator()( const uint32 uiRow, const uint32 uiCol ) const;
 
 private:
 	EigenTransform4f		_m;
@@ -99,6 +102,16 @@ inline OkdQuaternionf	OkdMatrix4f::getQuaternion() const
 }
 
 //-----------------------------------------------------------------------------
+// Name:		data
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const float*	OkdMatrix4f::data() const
+{
+	return	( _m.data() );
+}
+
+//-----------------------------------------------------------------------------
 // Name:		operator*
 //
 // Created:		2013-08-26
@@ -109,6 +122,17 @@ inline OkdMatrix4f	OkdMatrix4f::operator*( const OkdMatrix4f& mOther )
 
 	mResult._m = _m * mOther._m;
 	return	( mResult );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator()
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+inline float	OkdMatrix4f::operator()(const uint32	uiRow, 
+										const uint32	uiCol) const
+{
+	return	( _m( uiRow, uiCol ) );
 }
 
 #endif

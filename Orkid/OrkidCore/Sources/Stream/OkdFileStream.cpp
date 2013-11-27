@@ -13,6 +13,7 @@
 
 #include	ORKID_CORE_H(String/OkdString)
 #include	ORKID_CORE_H(Xml/OkdXmlDocument)
+#include	ORKID_CORE_H(Math/OkdMatrix4f)
 
 //-----------------------------------------------------------------------------
 // Name:		OkdFileStream constructor
@@ -82,6 +83,19 @@ OkdFileStream& OkdFileStream::operator<<(const OkdString& str)
 OkdFileStream& OkdFileStream::operator<<(const OkdXmlDocument& xmlDoc)
 {
 	_fs << xmlDoc;
+	return	( *this );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator<<
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdFileStream& OkdFileStream::operator<<(const OkdMatrix4f& m)
+{
+	const float* pMatrixData = m.data();
+	write( (const char*)pMatrixData, sizeof(m) );
+
 	return	( *this );
 }
 

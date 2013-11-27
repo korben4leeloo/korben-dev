@@ -24,29 +24,32 @@ class OkdNode
 public:
 	friend class OkdScene;
 
-							ORKID_ALIGNED_NEW( 16 )
+								ORKID_ALIGNED_NEW( 16 )
 
-	inline const OkdNode*	getParentNode() const;
-	inline void				addChildNode( OkdNode* pChildNode );
-	inline void				removeChildNode( OkdNode* pChildNode );
-	inline uint32			getChildCount() const;
+	inline const OkdNode*		getParentNode() const;
+	inline void					addChildNode( OkdNode* pChildNode );
+	inline void					removeChildNode( OkdNode* pChildNode );
+	inline uint32				getChildCount() const;
 
-	inline void				addEntity( OkdEntity* pEntity );
-	inline uint32			getEntityCount() const;
+	inline void					addEntity( OkdEntity* pEntity );
+	inline uint32				getEntityCount() const;
+
+	inline const OkdMatrix4f&	getWorldTransform() const;
+	inline const OkdMatrix4f&	getLocalTransform() const;
 
 private:
-							OkdNode();
-							~OkdNode();
+								OkdNode();
+								~OkdNode();
 
-	inline void				setParentNode( OkdNode* pParentNode );
+	inline void					setParentNode( OkdNode* pParentNode );
 
-	OkdMatrix4f				_mWorld;
-	OkdMatrix4f				_mLocal;
+	OkdMatrix4f					_mWorld;
+	OkdMatrix4f					_mLocal;
 
-	OkdNode*				_pParentNode;
-	OkdNodeList				_childrenNodes;
+	OkdNode*					_pParentNode;
+	OkdNodeList					_childrenNodes;
 
-	OkdList<OkdEntity*>		_entities;
+	OkdList<OkdEntity*>			_entities;
 };
 
 //*****************************************************************************
@@ -123,6 +126,26 @@ void	OkdNode::addEntity(OkdEntity*	pEntity)
 uint32	OkdNode::getEntityCount() const
 {
 	return	( _entities.size() );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getWorldTransform
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const OkdMatrix4f&	OkdNode::getWorldTransform() const
+{
+	return	( _mWorld );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getLocalTransform
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const OkdMatrix4f&	OkdNode::getLocalTransform() const
+{
+	return	( _mLocal );
 }
 
 #endif
