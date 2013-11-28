@@ -86,7 +86,10 @@ void	OkdScene::writeNode(OkdFileStream*	pStream,
 
 	while	( itEntity != itEntityEnd )
 	{
-		(*itEntity)->write( pStream );
+		OkdEntity* pEntity = *itEntity;
+
+		stream << pEntity->getEntityType();
+		pEntity->write( pStream );
 		itEntity++;
 	}
 

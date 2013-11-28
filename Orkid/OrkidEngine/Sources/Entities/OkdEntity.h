@@ -16,12 +16,30 @@ class OkdFileStream;
 class OkdEntity
 {
 public:
-	virtual void	read( OkdFileStream* pStream )	= 0;
-	virtual void	write( OkdFileStream* pStream )	= 0;
+	inline OkdEntityType	getEntityType() const;
+
+	virtual void			read( OkdFileStream* pStream )	= 0;
+	virtual void			write( OkdFileStream* pStream )	= 0;
 
 protected:
-					OkdEntity();
-	virtual			~OkdEntity();
+							OkdEntity( const OkdEntityType eEntityType );
+	virtual					~OkdEntity();
+
+	OkdEntityType			_eOkdEntityType;
 };
+
+//*****************************************************************************
+//	Inline functions declarations
+//*****************************************************************************
+
+//-----------------------------------------------------------------------------
+// Name:		getEntityType
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdEntityType	OkdEntity::getEntityType() const
+{
+	return	( _eOkdEntityType );
+}
 
 #endif

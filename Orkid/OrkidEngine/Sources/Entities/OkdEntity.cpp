@@ -12,7 +12,8 @@
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdEntity::OkdEntity()
+OkdEntity::OkdEntity(const OkdEntityType	eEntityType)
+: _eOkdEntityType( _eOkdEntityType )
 {
 	
 }

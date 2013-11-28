@@ -25,7 +25,7 @@ enum OkdEntityType
 	OrkidCamera,
 	OrkidLight,
 	OrkidShape,
-	OrkidCharacter,
+	OrkidCreature,
 
 	OrkidEntityTypeCount,
 	OrkidEntityTypeUnknown = 0xFFFFFFFF
