@@ -68,6 +68,8 @@ public:
 	inline OkdFileStream&	operator>>( unsigned long& l );
 	inline OkdFileStream&	operator>>( float& f );
 	inline OkdFileStream&	operator>>( double& d );
+	OkdFileStream&			operator>>( OkdString& str );
+	OkdFileStream&			operator>>( OkdMatrix4f& m );
 
 	static bool				exist( const OkdString& strFileName );
 	static bool				dirExist( const OkdString& strDirName );

@@ -9,6 +9,7 @@
 
 #include	ORKID_ENGINE_H(SceneGraph/OkdNode)
 #include	ORKID_CORE_H(Stream/OkdFileStream)
+#include	ORKID_ENGINE_H(Entities/OkdEntity)
 
 //-----------------------------------------------------------------------------
 // Name:		OkdScene constructor
@@ -66,7 +67,7 @@ void	OkdScene::write(OkdFileStream* pStream)
 }
 
 //-----------------------------------------------------------------------------
-// Name:		write
+// Name:		writeNode
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
@@ -77,5 +78,62 @@ void	OkdScene::writeNode(OkdFileStream*	pStream,
 	const OkdMatrix4f&	mLocal	= pNode->getLocalTransform();
 
 	stream << mLocal;
+
+	// Write entities
+	const OkdEntityList&			entityList	= pNode->getEntityList();
+	OkdEntityList::const_iterator	itEntity	= entityList.begin();
+	OkdEntityList::const_iterator	itEntityEnd	= entityList.end();
+
+	while	( itEntity != itEntityEnd )
+	{
+		(*itEntity)->write( pStream );
+		itEntity++;
+	}
+
+	// Write child nodes
+	const OkdNodeList&			nodeList	= pNode->getNodeList();
+	OkdNodeList::const_iterator	itNode		= nodeList.begin();
+	OkdNodeList::const_iterator	itNodeEnd	= nodeList.end();
+
+	while	( itNode != itNodeEnd )
+	{
+		writeNode( pStream, *itNode );
+		itNode++;
+	}
 }
 
+//-----------------------------------------------------------------------------
+// Name:		readNode
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdScene::readNode(OkdFileStream*	pStream, 
+						   OkdNode*			pNode)
+{
+	OkdFileStream&	stream = *pStream;
+	OkdMatrix4f		mLocal;
+
+	stream >> mLocal;
+
+	//// Write entities
+	//const OkdEntityList&			entityList	= pNode->getEntityList();
+	//OkdEntityList::const_iterator	itEntity	= entityList.begin();
+	//OkdEntityList::const_iterator	itEntityEnd	= entityList.end();
+
+	//while	( itEntity != itEntityEnd )
+	//{
+	//	(*itEntity)->write( pStream );
+	//	itEntity++;
+	//}
+
+	//// Write child nodes
+	//const OkdNodeList&			nodeList	= pNode->getNodeList();
+	//OkdNodeList::const_iterator	itNode		= nodeList.begin();
+	//OkdNodeList::const_iterator	itNodeEnd	= nodeList.end();
+
+	//while	( itNode != itNodeEnd )
+	//{
+	//	writeNode( pStream, *itNode );
+	//	itNode++;
+	//}
+}

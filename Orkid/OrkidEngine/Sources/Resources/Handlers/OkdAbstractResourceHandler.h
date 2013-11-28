@@ -17,7 +17,7 @@ public:
 								OkdAbstractResourceHandler();
 	virtual						~OkdAbstractResourceHandler();
 
-	virtual OrkidResourceType	getResourceType() const = 0;
+	virtual OkdResourceType	getResourceType() const = 0;
 };
 
 //*****************************************************************************

@@ -15,9 +15,10 @@
 #include	ORKID_CORE_H(Math/OkdMatrix4f)
 
 class OkdEntity;
-
 class OkdNode;
-typedef OkdList<OkdNode*> OkdNodeList;
+
+typedef OkdList<OkdNode*>	OkdNodeList;
+typedef OkdList<OkdEntity*>	OkdEntityList;
 
 class OkdNode
 {
@@ -30,11 +31,15 @@ public:
 	inline void					addChildNode( OkdNode* pChildNode );
 	inline void					removeChildNode( OkdNode* pChildNode );
 	inline uint32				getChildCount() const;
+	inline const OkdNodeList&	getNodeList() const;
 
 	inline void					addEntity( OkdEntity* pEntity );
 	inline uint32				getEntityCount() const;
+	inline const OkdEntityList&	getEntityList() const;
 
 	inline const OkdMatrix4f&	getWorldTransform() const;
+
+	inline void					setLocalTransform( const OkdMatrix4f& mTransform);
 	inline const OkdMatrix4f&	getLocalTransform() const;
 
 private:
@@ -48,8 +53,7 @@ private:
 
 	OkdNode*					_pParentNode;
 	OkdNodeList					_childrenNodes;
-
-	OkdList<OkdEntity*>			_entities;
+	OkdEntityList				_entities;
 };
 
 //*****************************************************************************
@@ -109,6 +113,16 @@ uint32	OkdNode::getChildCount() const
 }
 
 //-----------------------------------------------------------------------------
+// Name:		getNodeList
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const OkdNodeList&	OkdNode::getNodeList() const
+{
+	return	( _childrenNodes );
+}
+
+//-----------------------------------------------------------------------------
 // Name:		addEntity
 //
 // Created:		2013-08-26
@@ -128,6 +142,17 @@ uint32	OkdNode::getEntityCount() const
 	return	( _entities.size() );
 }
 
+
+//-----------------------------------------------------------------------------
+// Name:		getEntityList
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const OkdEntityList&	OkdNode::getEntityList() const
+{
+	return	( _entities );
+}
+
 //-----------------------------------------------------------------------------
 // Name:		getWorldTransform
 //
@@ -136,6 +161,16 @@ uint32	OkdNode::getEntityCount() const
 const OkdMatrix4f&	OkdNode::getWorldTransform() const
 {
 	return	( _mWorld );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		setLocalTransform
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdNode::setLocalTransform(const OkdMatrix4f&	mTransform)
+{
+	_mLocal = mTransform;
 }
 
 //-----------------------------------------------------------------------------

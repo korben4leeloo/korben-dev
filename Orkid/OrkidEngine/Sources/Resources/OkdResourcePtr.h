@@ -17,7 +17,7 @@
 #include	ORKID_ENGINE_H(Resources/OkdResourceManager)
 #include	ORKID_CORE_H(String/OkdCrc32)
 
-template<class T, OrkidResourceType resourceType>
+template<class T, OkdResourceType resourceType>
 class OkdResourcePtr
 {
 public:
@@ -34,6 +34,7 @@ public:
 	void				save();
 
 	T*					getResource();
+	const OkdString&	getResourceName() const;
 
 private:
 	typedef OkdResourceHandler<T, resourceType>	OkdTypeResourceHandler;
@@ -46,7 +47,7 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
+template<class T, OkdResourceType resourceType>
 OkdResourcePtr<T, resourceType>::OkdResourcePtr()
 : _pResourceRef( 0 )
 {
@@ -58,7 +59,7 @@ OkdResourcePtr<T, resourceType>::OkdResourcePtr()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
+template<class T, OkdResourceType resourceType>
 OkdResourcePtr<T, resourceType>::OkdResourcePtr(const OkdResourcePtr&	resourcePtr)
 {
 	_pResourceRef = resourcePtr._pResourceRef;
@@ -74,7 +75,7 @@ OkdResourcePtr<T, resourceType>::OkdResourcePtr(const OkdResourcePtr&	resourcePt
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
+template<class T, OkdResourceType resourceType>
 OkdResourcePtr<T, resourceType>::~OkdResourcePtr()
 {
 	unbind();
@@ -85,7 +86,7 @@ OkdResourcePtr<T, resourceType>::~OkdResourcePtr()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
+template<class T, OkdResourceType resourceType>
 OkdResourcePtr<T, resourceType>& OkdResourcePtr<T, resourceType>::operator=(const OkdResourcePtr&	resourcePtr)
 {
 	unbind();
@@ -105,7 +106,7 @@ OkdResourcePtr<T, resourceType>& OkdResourcePtr<T, resourceType>::operator=(cons
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
+template<class T, OkdResourceType resourceType>
 void OkdResourcePtr<T, resourceType>::bind(const OkdString&	strResourceName)
 {
 	OkdResourceManager*		pResourceManager	= OrkidEngine::instance()->getResourceManager();
@@ -127,7 +128,7 @@ void OkdResourcePtr<T, resourceType>::bind(const OkdString&	strResourceName)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
+template<class T, OkdResourceType resourceType>
 void OkdResourcePtr<T, resourceType>::unbind()
 {
 	if	( _pResourceRef )
@@ -150,10 +151,21 @@ void OkdResourcePtr<T, resourceType>::unbind()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
-T* OkdResourcePtr<T, resourceType>::getResource()
+template<class T, OkdResourceType resourceType>
+T*	OkdResourcePtr<T, resourceType>::getResource()
 {
 	return	( _pResourceRef->getResource() );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getResourceName
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, OkdResourceType resourceType>
+const OkdString&	OkdResourcePtr<T, resourceType>::getResourceName() const
+{
+	return	( _pResourceRef->getResourceName() );
 }
 
 //-----------------------------------------------------------------------------
@@ -161,7 +173,7 @@ T* OkdResourcePtr<T, resourceType>::getResource()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
+template<class T, OkdResourceType resourceType>
 void OkdResourcePtr<T, resourceType>::load()
 {
 	ORKID_ASSERT( _pResourceRef );
@@ -188,7 +200,7 @@ void OkdResourcePtr<T, resourceType>::load()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
+template<class T, OkdResourceType resourceType>
 void OkdResourcePtr<T, resourceType>::save()
 {
 	ORKID_ASSERT( _pResourceRef );

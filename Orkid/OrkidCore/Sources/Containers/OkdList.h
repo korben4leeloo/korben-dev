@@ -15,15 +15,24 @@ template<typename T>
 class OkdList
 {
 public:
-					OkdList();
-					~OkdList();
+	typedef typename std::list<T>::iterator			iterator;
+	typedef typename std::list<T>::const_iterator	const_iterator;
 
-	inline void		add( T& t );
-	inline void		remove( T& t );
-	inline uint32	size() const;
+							OkdList();
+							~OkdList();
+
+	inline void				add( T& t );
+	inline void				remove( T& t );
+	inline uint32			size() const;
+
+	inline iterator			begin();
+	inline const_iterator	begin() const;
+
+	inline iterator			end();
+	inline const_iterator	end() const;
 
 private:
-	std::list<T>	_list;
+	std::list<T>			_list;
 };
 
 //*****************************************************************************
@@ -83,6 +92,50 @@ template<typename T>
 uint32	OkdList<T>::size() const
 {
 	return	( _list.size() );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		begin
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+typename OkdList<T>::iterator	OkdList<T>::begin()
+{
+	return	( _list.begin() );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		begin
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+typename OkdList<T>::const_iterator	OkdList<T>::begin() const
+{
+	return	( _list.begin() );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		end
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+typename OkdList<T>::iterator	OkdList<T>::end()
+{
+	return	( _list.end() );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		end
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+typename OkdList<T>::const_iterator	OkdList<T>::end() const
+{
+	return	( _list.end() );
 }
 
 #endif

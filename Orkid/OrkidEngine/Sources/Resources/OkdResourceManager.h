@@ -18,7 +18,7 @@ class OkdResourceManager
 public:
 	friend class OrkidEngine;
 
-	inline OkdAbstractResourceHandler*	getResourceHandler( const OrkidResourceType eResourceType );
+	inline OkdAbstractResourceHandler*	getResourceHandler( const OkdResourceType eResourceType );
 
 private:
 										OkdResourceManager();
@@ -38,7 +38,7 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdAbstractResourceHandler*	OkdResourceManager::getResourceHandler(const OrkidResourceType	eResourceType)
+OkdAbstractResourceHandler*	OkdResourceManager::getResourceHandler(const OkdResourceType	eResourceType)
 {
 	return	( _resourceHandlers[eResourceType] );
 }

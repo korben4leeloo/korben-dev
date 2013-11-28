@@ -11,13 +11,24 @@
 
 #include	"../../OrkidRoot.h"
 
-enum OrkidResourceType
+enum OkdResourceType
 {
 	OrkidMesh,
 	OrkidScene,
 
 	OrkidResourceTypeCount,
 	OrkidResourceTypeUnknown = 0xFFFFFFFF
+};
+
+enum OkdEntityType
+{
+	OrkidCamera,
+	OrkidLight,
+	OrkidShape,
+	OrkidCharacter,
+
+	OrkidEntityTypeCount,
+	OrkidEntityTypeUnknown = 0xFFFFFFFF
 };
 
 #endif

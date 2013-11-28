@@ -100,6 +100,30 @@ OkdFileStream& OkdFileStream::operator<<(const OkdMatrix4f& m)
 }
 
 //-----------------------------------------------------------------------------
+// Name:		operator<<
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdFileStream& OkdFileStream::operator>>(OkdString& str)
+{
+	_fs >> str._str;
+	return	( *this );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator<<
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdFileStream& OkdFileStream::operator>>(OkdMatrix4f& m)
+{
+	float* pMatrixData = m.data();
+	read( (char*)pMatrixData, sizeof(m) );
+
+	return	( *this );
+}
+
+//-----------------------------------------------------------------------------
 // Name:		exist
 //
 // Created:		2013-08-26

@@ -15,7 +15,7 @@
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 #include	ORKID_ENGINE_H(SceneGraph/OkdNode)
 #include	ORKID_ENGINE_H(Entities/OkdMesh)
-#include	ORKID_ENGINE_H(Entities/OkdMeshInstance)
+#include	ORKID_ENGINE_H(Entities/OkdShape)
 #include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
 
 // Maya includes
@@ -231,10 +231,10 @@ void	OkdExportCommand::exportMesh(const MDagPath&	meshPath,
 		WRITE_LOG_INFOS( meshPath.length() + 2, vertexIdArray[0] << ", " << vertexIdArray[1] << ", " << vertexIdArray[2] << "\n" );
 	}
 
-	OkdMeshInstance* pMeshInstance = new OkdMeshInstance();
+	OkdShape* pShape = new OkdShape();
 
-	pMeshInstance->setMeshPtr( meshPtr );
-	pNode->addEntity( pMeshInstance );
+	pShape->setMeshPtr( meshPtr );
+	pNode->addEntity( pShape );
 
 	//meshPtr.save();
 }

@@ -33,7 +33,7 @@ public:
 	void				open();
 	void				close();
 
-	OkdFileStream*		openResourceFileStream( const OrkidResourceType eResourceType, const OkdString& strResourceName, const OpenStreamMode eOpenStreamMode );
+	OkdFileStream*		openResourceFileStream( const OkdResourceType eResourceType, const OkdString& strResourceName, const OpenStreamMode eOpenStreamMode );
 	void				closeResourceFileStream( OkdFileStream** ppResourceFileStream );
 
 private:

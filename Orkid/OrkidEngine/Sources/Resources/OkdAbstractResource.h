@@ -12,18 +12,20 @@
 #include	"Root.h"
 
 class OkdFileStream;
+class OkdString;
 
 class OkdAbstractResource
 {
 public:
-	virtual void	read( OkdFileStream* pStream )	= 0;
-	virtual void	write( OkdFileStream* pStream )	= 0;
+	virtual void				read( OkdFileStream* pStream )	= 0;
+	virtual void				write( OkdFileStream* pStream )	= 0;
 
-	//virtual OrkidResourceType	getResourceType() const = 0;
+	/*virtual OkdResourceType	getResourceType() const = 0;
+	virtual const OkdString&	getResourceName() const = 0;*/
 
 protected:
-					OkdAbstractResource();
-	virtual			~OkdAbstractResource();
+								OkdAbstractResource();
+	virtual						~OkdAbstractResource();
 };
 
 //*****************************************************************************

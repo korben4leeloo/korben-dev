@@ -16,8 +16,8 @@
 template<class T>
 class OkdResourceRef
 {
-	template<class T, OrkidResourceType resourceType> friend class OkdResourcePtr;
-	template<class T, OrkidResourceType resourceType> friend class OkdResourceHandler;
+	template<class T, OkdResourceType resourceType> friend class OkdResourcePtr;
+	template<class T, OkdResourceType resourceType> friend class OkdResourceHandler;
 
 public:
 	inline const OkdResourceKey&	getResourceKey() const;

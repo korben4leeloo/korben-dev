@@ -19,16 +19,16 @@
 
 template<class T> class OkdResourceRef;
 
-template<class T, OrkidResourceType resourceType>
+template<class T, OkdResourceType resourceType>
 class OkdResourceHandler: public OkdAbstractResourceHandler
 {
-	template<class T, OrkidResourceType resourceType> friend class OkdResourcePtr;
+	template<class T, OkdResourceType resourceType> friend class OkdResourcePtr;
 
 public:
 												OkdResourceHandler();
 	virtual 									~OkdResourceHandler();
 
-	virtual OrkidResourceType					getResourceType() const;
+	virtual OkdResourceType					getResourceType() const;
 
 private:
 	typedef OkdResourceRef<T>							OkdResourceRefImpl;
@@ -52,7 +52,7 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
+template<class T, OkdResourceType resourceType>
 OkdResourceHandler<T, resourceType>::OkdResourceHandler()
 {
 	
@@ -63,7 +63,7 @@ OkdResourceHandler<T, resourceType>::OkdResourceHandler()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
+template<class T, OkdResourceType resourceType>
 OkdResourceHandler<T, resourceType>::~OkdResourceHandler()
 {
 	
@@ -74,8 +74,8 @@ OkdResourceHandler<T, resourceType>::~OkdResourceHandler()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
-OrkidResourceType	OkdResourceHandler<T, resourceType>::getResourceType() const
+template<class T, OkdResourceType resourceType>
+OkdResourceType	OkdResourceHandler<T, resourceType>::getResourceType() const
 {
 	return	( resourceType );
 }
@@ -85,7 +85,7 @@ OrkidResourceType	OkdResourceHandler<T, resourceType>::getResourceType() const
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
+template<class T, OkdResourceType resourceType>
 OkdResourceRef<T>*	OkdResourceHandler<T, resourceType>::addResource(const OkdString&	strResourceName)
 {
 	OkdResourceKey				resourceKey	= OkdCrc32::getCrc32( strResourceName );
@@ -104,7 +104,7 @@ OkdResourceRef<T>*	OkdResourceHandler<T, resourceType>::addResource(const OkdStr
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
+template<class T, OkdResourceType resourceType>
 void	OkdResourceHandler<T, resourceType>::loadResource(OkdResourceRef<T>*	pResourceRef)
 {
 	OkdResourceDatabase*	pResourceDatabase	= OrkidEngine::instance()->getResourceDatabase();
@@ -123,7 +123,7 @@ void	OkdResourceHandler<T, resourceType>::loadResource(OkdResourceRef<T>*	pResou
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
+template<class T, OkdResourceType resourceType>
 void	OkdResourceHandler<T, resourceType>::saveResource(OkdResourceRef<T>*	pResourceRef)
 {
 	OkdResourceDatabase*	pResourceDatabase	= OrkidEngine::instance()->getResourceDatabase();
@@ -142,7 +142,7 @@ void	OkdResourceHandler<T, resourceType>::saveResource(OkdResourceRef<T>*	pResou
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OrkidResourceType resourceType>
+template<class T, OkdResourceType resourceType>
 bool	OkdResourceHandler<T, resourceType>::removeResource(const OkdResourceKey&	resourceKey)
 {
 	uint32 uiCount = _resourceRefMap.remove( resourceKey );

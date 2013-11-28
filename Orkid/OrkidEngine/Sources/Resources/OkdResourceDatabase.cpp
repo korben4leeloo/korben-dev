@@ -139,7 +139,7 @@ bool	OkdResourceDatabase::loadResourceDatabaseXmlFile()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdFileStream*	OkdResourceDatabase::openResourceFileStream(const OrkidResourceType	eResourceType, 
+OkdFileStream*	OkdResourceDatabase::openResourceFileStream(const OkdResourceType	eResourceType, 
 															const OkdString&		strResourceName, 
 															const OpenStreamMode	eOpenStreamMode)
 {

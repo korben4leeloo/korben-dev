@@ -154,11 +154,37 @@ bool createWindow(LPCSTR title, int width, int height) {
 //#include	ORKID_ENGINE_H(Resources/OkdResourceId)
 //#include	ORKID_CORE_H(Xml/OkdXmlDocument)
 #include	ORKID_ENGINE_H(Entities/OkdMesh)
+#include	ORKID_ENGINE_H(Entities/OkdShape)
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
+#include	ORKID_ENGINE_H(SceneGraph/OkdNode)
 #include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
 #include	ORKID_CORE_H(Containers/OkdList)
 #include	<rapidxml/rapidxml_print.hpp>
 #include	<iostream>
+
+void	testSaveScene()
+{
+	OkdScenePtr scenePtr;
+	scenePtr.bind( "TestScene" );
+
+	OkdScene*	pScene	= scenePtr.getResource();
+	OkdNode*	pNode1	= pScene->createNode();
+	OkdNode*	pNode2	= pScene->createNode();
+	OkdNode*	pNode3	= pScene->createNode( pNode1 );
+	OkdShape*	pShape1	= new OkdShape();
+	OkdShape*	pShape2	= new OkdShape();
+	OkdMeshPtr	meshPtr;
+
+	meshPtr.bind( "TestMesh" );
+
+	pShape1->setMeshPtr( meshPtr );
+	pShape2->setMeshPtr( meshPtr );
+
+	pNode2->addEntity( pShape1 );
+	pNode3->addEntity( pShape2 );
+
+	scenePtr.save();
+}
 
 void	testSaveMesh()
 {
@@ -236,6 +262,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	//testSaveMesh();
 	//testLoadMesh();
+	testSaveScene();
 
 	//std::fstream fs( "c:\\test.txt", std::ios::out | std::ios::trunc | std::ios::binary );
 	//OkdFileStream fs( "c:\\test.txt", std::ios::out | std::ios::trunc | std::ios::binary );

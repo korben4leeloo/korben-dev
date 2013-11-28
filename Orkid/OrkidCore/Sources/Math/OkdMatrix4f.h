@@ -33,6 +33,7 @@ public:
 	inline OkdQuaternionf	getQuaternion() const;
 
 	inline const float*		data() const;
+	inline float*			data();
 
 	inline OkdMatrix4f		operator*( const OkdMatrix4f& mOther );
 	inline float			operator()( const uint32 uiRow, const uint32 uiCol ) const;
@@ -107,6 +108,16 @@ inline OkdQuaternionf	OkdMatrix4f::getQuaternion() const
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 const float*	OkdMatrix4f::data() const
+{
+	return	( _m.data() );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		data
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+float*	OkdMatrix4f::data()
 {
 	return	( _m.data() );
 }

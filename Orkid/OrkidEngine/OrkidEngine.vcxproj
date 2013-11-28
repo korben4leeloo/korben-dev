@@ -12,11 +12,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Entities\OkdCamera.h" />
+    <ClInclude Include="Sources\Entities\OkdCreature.h" />
     <ClInclude Include="Sources\Entities\OkdEntity.h" />
     <ClInclude Include="Sources\Entities\OkdLight.h" />
     <ClInclude Include="Sources\Entities\OkdMesh.h" />
     <ClInclude Include="Sources\Entities\OkdMeshInfo.h" />
     <ClInclude Include="Sources\Entities\OkdMeshInstance.h" />
+    <ClInclude Include="Sources\Entities\OkdShape.h" />
     <ClInclude Include="Sources\Entities\Root.h" />
     <ClInclude Include="Sources\OrkidEngine.h" />
     <ClInclude Include="Sources\OpenGL\OkdOpenGLContext.h" />
@@ -39,11 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Entities\OkdCamera.cpp" />
+    <ClCompile Include="Sources\Entities\OkdCreature.cpp" />
     <ClCompile Include="Sources\Entities\OkdEntity.cpp" />
     <ClCompile Include="Sources\Entities\OkdLight.cpp" />
     <ClCompile Include="Sources\Entities\OkdMesh.cpp" />
     <ClCompile Include="Sources\Entities\OkdMeshInfo.cpp" />
     <ClCompile Include="Sources\Entities\OkdMeshInstance.cpp" />
+    <ClCompile Include="Sources\Entities\OkdShape.cpp" />
     <ClCompile Include="Sources\OrkidEngine.cpp" />
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp" />
     <ClCompile Include="Sources\Resources\Handlers\OkdAbstractResourceHandler.cpp" />

@@ -11,11 +11,17 @@
 
 #include	"Root.h"
 
+class OkdFileStream;
+
 class OkdEntity
 {
+public:
+	virtual void	read( OkdFileStream* pStream )	= 0;
+	virtual void	write( OkdFileStream* pStream )	= 0;
+
 protected:
-	OkdEntity();
-	virtual ~OkdEntity();
+					OkdEntity();
+	virtual			~OkdEntity();
 };
 
 #endif
