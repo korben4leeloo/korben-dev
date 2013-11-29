@@ -201,7 +201,7 @@ void	OkdScene::readNode(OkdFileStream*	pStream,
 		pEntity->read( pStream );
 	}
 
-	// Write child nodes
+	// Read child nodes
 	uint32 uiNodeCount;
 
 	stream >> uiNodeCount;
