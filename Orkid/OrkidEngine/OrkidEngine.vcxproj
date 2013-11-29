@@ -18,7 +18,6 @@
     <ClInclude Include="Sources\Entities\OkdLight.h" />
     <ClInclude Include="Sources\Entities\OkdMesh.h" />
     <ClInclude Include="Sources\Entities\OkdMeshInfo.h" />
-    <ClInclude Include="Sources\Entities\OkdMeshInstance.h" />
     <ClInclude Include="Sources\Entities\OkdShape.h" />
     <ClInclude Include="Sources\Entities\Root.h" />
     <ClInclude Include="Sources\OrkidEngine.h" />
@@ -48,7 +47,6 @@
     <ClCompile Include="Sources\Entities\OkdLight.cpp" />
     <ClCompile Include="Sources\Entities\OkdMesh.cpp" />
     <ClCompile Include="Sources\Entities\OkdMeshInfo.cpp" />
-    <ClCompile Include="Sources\Entities\OkdMeshInstance.cpp" />
     <ClCompile Include="Sources\Entities\OkdShape.cpp" />
     <ClCompile Include="Sources\OrkidEngine.cpp" />
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp" />
