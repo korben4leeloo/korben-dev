@@ -159,7 +159,7 @@ void	OkdScene::writeNode(OkdFileStream*	pStream,
 		itEntity++;
 	}
 
-	// Write child nodes
+	// Write children nodes
 	const OkdNodeList&			nodeList	= pNode->getNodeList();
 	OkdNodeList::const_iterator	itNode		= nodeList.begin();
 	OkdNodeList::const_iterator	itNodeEnd	= nodeList.end();
@@ -201,7 +201,7 @@ void	OkdScene::readNode(OkdFileStream*	pStream,
 		pEntity->read( pStream );
 	}
 
-	// Read child nodes
+	// Read children nodes
 	uint32 uiNodeCount;
 
 	stream >> uiNodeCount;
