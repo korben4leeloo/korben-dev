@@ -10,6 +10,7 @@
 #include	ORKID_CORE_H(OrkidCore)
 #include	ORKID_ENGINE_H(Resources/OkdResourceManager)
 #include	ORKID_ENGINE_H(Resources/OkdResourceDatabase)
+#include	ORKID_ENGINE_H(Entities/OkdEntityFactory)
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 
 OrkidEngine*	OrkidEngine::_pInstance			= 0;
@@ -91,6 +92,9 @@ void	OrkidEngine::initialize()
 	_pResourceManager = new OkdResourceManager();
 	_pResourceManager->initialize();
 
+	// Entities
+	_pEntityFactory = new OkdEntityFactory();
+
 	//registerResources();
 	//addScene( OrkidEngine::_strDefaultScene );
 }
@@ -107,6 +111,7 @@ void	OrkidEngine::uninitialize()
 
 	_pResourceDatabase->close();
 
+	delete _pEntityFactory;
 	delete _pResourceManager;
 	delete _pResourceDatabase;
 

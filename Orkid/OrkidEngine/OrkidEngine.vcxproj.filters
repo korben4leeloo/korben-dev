@@ -115,6 +115,9 @@
     <ClInclude Include="Sources\Entities\OkdCreature.h">
       <Filter>Sources\Entities</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Entities\OkdEntityFactory.h">
+      <Filter>Sources\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
@@ -178,6 +181,9 @@
       <Filter>Sources\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Entities\OkdCreature.cpp">
+      <Filter>Sources\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Entities\OkdEntityFactory.cpp">
       <Filter>Sources\Entities</Filter>
     </ClCompile>
   </ItemGroup>

@@ -71,7 +71,8 @@ OkdFileStream::~OkdFileStream()
 //-----------------------------------------------------------------------------
 OkdFileStream& OkdFileStream::operator<<(const OkdString& str)
 {
-	_fs << str._str;
+	_fs << str.size();
+	write( str._str.c_str(), str.size() );
 	return	( *this );
 }
 
@@ -106,7 +107,16 @@ OkdFileStream& OkdFileStream::operator<<(const OkdMatrix4f& m)
 //-----------------------------------------------------------------------------
 OkdFileStream& OkdFileStream::operator>>(OkdString& str)
 {
-	_fs >> str._str;
+	uint32	uiSize;
+	char*	pBuffer;
+
+	_fs >> uiSize;
+	pBuffer = new char[uiSize+1];
+	read( pBuffer, uiSize );
+	pBuffer[uiSize] = '\0';
+
+	str = pBuffer;
+
 	return	( *this );
 }
 

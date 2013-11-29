@@ -1,31 +1,35 @@
 //*****************************************************************************
 //
-//	Class:		OkdEntity
+//	Class:		OkdEntityFactory
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __OrkidEngine_OkdEntity_h__
-#define __OrkidEngine_OkdEntity_h__
+#ifndef __OrkidEngine_OkdEntityFactory_h__
+#define __OrkidEngine_OkdEntityFactory_h__
 
 #include	"Root.h"
 
-class OkdFileStream;
+class OkdEntity;
 
-class OkdEntity
+class OkdEntityFactory
 {
+	friend class OrkidEngine;
+
 public:
-	inline OkdEntityType	getEntityType() const;
+	OkdEntity*					createEntity( const OkdEntityType eEntityType );
 
-	virtual void			read( OkdFileStream* pStream )	= 0;
-	virtual void			write( OkdFileStream* pStream )	= 0;
+private:
+	typedef OkdEntity* (*pfnEntityCreator)();
 
-protected:
-							OkdEntity( const OkdEntityType eEntityType );
-	virtual					~OkdEntity();
+								OkdEntityFactory();
+								~OkdEntityFactory();
 
-	OkdEntityType			_eEntityType;
+	template<class T>
+	static inline OkdEntity*	entityCreator();
+
+	static pfnEntityCreator		_pfnEntityCreators[OrkidEntityTypeCount];
 };
 
 //*****************************************************************************
@@ -33,13 +37,14 @@ protected:
 //*****************************************************************************
 
 //-----------------------------------------------------------------------------
-// Name:		getEntityType
+// Name:		entityCreator
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdEntityType	OkdEntity::getEntityType() const
+template<class T>
+OkdEntity*	OkdEntityFactory::entityCreator()
 {
-	return	( _eEntityType );
+	return	( new T() );
 }
 
 #endif

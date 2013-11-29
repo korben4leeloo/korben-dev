@@ -16,28 +16,40 @@
 class OkdNode;
 class OkdMeshInstance;
 class OkdString;
+class OkdEntity;
+class OkdCamera;
+class OkdLight;
+class OkdShape;
+class OkdCreature;
 
 class OkdScene: public OkdAbstractResource
 {
 public:
 	template<class T> friend class OkdResourceRef;
 
-	inline OkdNode*		getRootNode();
+	inline OkdNode*	getRootNode();
 
-	OkdNode*			createNode( OkdNode* pParentNode = 0 );
+	OkdNode*		createNode( OkdNode* pParentNode = 0 );
+
+	OkdCamera*		createCamera( OkdNode* pNode = 0 );
+	OkdLight*		createLight( OkdNode* pNode = 0 );
+	OkdShape*		createShape( OkdNode* pNode = 0 );
+	OkdCreature*	createCreature( OkdNode* pNode = 0 );
 
 	// OkdAbstractResource implementation
-	virtual void		read( OkdFileStream* pStream );
-	virtual void		write( OkdFileStream* pStream );
+	virtual void	read( OkdFileStream* pStream );
+	virtual void	write( OkdFileStream* pStream );
 
 private:
-						OkdScene();
-						~OkdScene();
+					OkdScene();
+					~OkdScene();
 
-	void				writeNode( OkdFileStream* pStream, OkdNode* pNode );
-	void				readNode( OkdFileStream* pStream, OkdNode* pNode );
+	OkdEntity*		createEntity( const OkdEntityType eEntityType, OkdNode* pNode = 0 );
 
-	OkdNode*			_pRootNode;
+	void			writeNode( OkdFileStream* pStream, OkdNode* pNode );
+	void			readNode( OkdFileStream* pStream, OkdNode* pNode );
+
+	OkdNode*		_pRootNode;
 };
 
 //*****************************************************************************

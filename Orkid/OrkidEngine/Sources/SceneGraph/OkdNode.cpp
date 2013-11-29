@@ -15,7 +15,8 @@
 OkdNode::OkdNode()
 : _pParentNode( 0 )
 {
-	
+	_mLocal.setIdentity();
+	_mWorld.setIdentity();
 }
 
 //-----------------------------------------------------------------------------

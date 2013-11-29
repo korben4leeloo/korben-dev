@@ -155,6 +155,7 @@ bool createWindow(LPCSTR title, int width, int height) {
 //#include	ORKID_CORE_H(Xml/OkdXmlDocument)
 #include	ORKID_ENGINE_H(Entities/OkdMesh)
 #include	ORKID_ENGINE_H(Entities/OkdShape)
+#include	ORKID_ENGINE_H(Entities/OkdLight)
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 #include	ORKID_ENGINE_H(SceneGraph/OkdNode)
 #include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
@@ -171,8 +172,10 @@ void	testSaveScene()
 	OkdNode*	pNode1	= pScene->createNode();
 	OkdNode*	pNode2	= pScene->createNode();
 	OkdNode*	pNode3	= pScene->createNode( pNode1 );
-	OkdShape*	pShape1	= new OkdShape();
-	OkdShape*	pShape2	= new OkdShape();
+	OkdLight*	pLight	= pScene->createLight();
+	OkdShape*	pShape1	= pScene->createShape( pNode2 );
+	OkdShape*	pShape2	= pScene->createShape( pNode3 );
+	OkdCamera*	pCamera	= pScene->createCamera( pNode2 );
 	OkdMeshPtr	meshPtr;
 
 	meshPtr.bind( "TestMesh" );
@@ -180,10 +183,14 @@ void	testSaveScene()
 	pShape1->setMeshPtr( meshPtr );
 	pShape2->setMeshPtr( meshPtr );
 
-	pNode2->addEntity( pShape1 );
-	pNode3->addEntity( pShape2 );
-
 	scenePtr.save();
+}
+
+void	testLoadScene()
+{
+	OkdScenePtr scenePtr;
+	scenePtr.bind( "TestScene" );
+	scenePtr.load();
 }
 
 void	testSaveMesh()
@@ -262,97 +269,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	//testSaveMesh();
 	//testLoadMesh();
+
 	testSaveScene();
-
-	//std::fstream fs( "c:\\test.txt", std::ios::out | std::ios::trunc | std::ios::binary );
-	//OkdFileStream fs( "c:\\test.txt", std::ios::out | std::ios::trunc | std::ios::binary );
-
-	/*uint n = 10;
-	fs << n;
-	fs << 123;
-	fs << 1.0f;
-	fs << 2.0;
-
-	fs.close();
-
-	OkdFileStream fs2( "c:\\test.txt", std::ios::in | std::ios::binary );
-
-	float f;
-	double d;
-
-	fs2 >> n;
-	fs2 >> n;
-	fs2 >> f;
-	fs2 >> d;*/
-
-	/*OkdResourceId		sceneResId( OrkidScene, "TestScene" );
-
-	pResourceManager->createResource( sceneResId );
-	pResourceManager->createResource( OkdResourceId( OrkidScene, "TestScene2" ) );
-	pResourceManager->createResource( OkdResourceId( OrkidScene, "TestScene3" ) );*/
-
-	/*OkdResourceId	defaultSceneIdentifier( OrkidScene, 0 );
-
-	pResourceManager->addResource( defaultSceneIdentifier );*/
-
-	/*OkdResourceDatabase db;
-	OkdXmlDocument xmlDoc;
-
-	OkdXmlNode* pDeclarationNode = xmlDoc.allocate_node( rapidxml::node_declaration );
-
-	pDeclarationNode->append_attribute( xmlDoc.allocate_attribute( "version", "1.0" ) );
-	xmlDoc.append_node( pDeclarationNode );
-
-	OkdXmlNode* pRootNode = xmlDoc.allocate_node( rapidxml::node_element, "Resources" );
-
-	pRootNode->append_attribute( xmlDoc.allocate_attribute( "version", "1.0" ) );
-	xmlDoc.append_node( pRootNode );
-
-	OkdXmlNode* pMeshNode = xmlDoc.allocate_node( rapidxml::node_element, "Mesh" );
-	pMeshNode->append_attribute( xmlDoc.allocate_attribute( "id", "2145265235" ) );
-	pRootNode->append_node( pMeshNode );*/
-
-	//rapidxml::xml_document<> doc;
-	//std::cout << doc;
-
-	//xmlDoc.save( "c:\\test.xml" );
-
-	//db.open();
-
-	/*pResourceManager->registerResourceType( "MESH", 0 );
-	pResourceManager->registerResourceType( "SCENE", 0 );*/
-
-	/*OkdMeshHandler*		pMeshHandler	= OkdMeshHandler::create();
-	OkdSceneHandler*	pSceneHandler	= OkdSceneHandler::create();*/
-
-	/*OkdResourceManager* pResourceManager	= pEngine->addResourceManager( "TestResourceManager" );
-	OkdScene*			pScene				= pEngine->addScene( "TestScene", "TestResourceManager" );
-	OkdMeshResource		meshResource		= pResourceManager->addMesh( "TestMesh", "plouf.okm", RES_LOC_MEMORY );
-	OkdMeshResource		meshResource2 = meshResource;
-	OkdMeshResource		meshResource3 = meshResource2;
-
-	meshResource2.load();*/
-
-	//OkdResourceManager* pResourceManager	= pEngine->addResourceManager( "TestResourceManager" );
-	//OkdScene*			pScene				= pEngine->addScene( "TestScene", "TestResourceManager" );
-
-	//{
-	//	OkdMeshResourcePtr	meshResource	= pResourceManager->addMesh( "TestMesh", "plouf.okm", RES_LOC_MEMORY );
-	//	OkdMeshResourcePtr	meshResource4	= pResourceManager->addMesh( "TestMesh2", "plouf2.okm", RES_LOC_FILE );
-	//	OkdMeshResourcePtr	meshResource2	= meshResource;
-	//	OkdMeshResourcePtr	meshResource3	= meshResource2;
-
-	//	meshResource2.load();
-	//	meshResource.load();
-
-	//	//meshResource2.load();
-	//	meshResource2.unload();
-	//	//meshResource3.unload();
-
-	//	meshResource4.load();
-
-	//	meshResource = meshResource4;
-	//}
+	testLoadScene();
 
 	OrkidEngine::destroy();
 	return (0);

@@ -14,6 +14,7 @@
     <ClInclude Include="Sources\Entities\OkdCamera.h" />
     <ClInclude Include="Sources\Entities\OkdCreature.h" />
     <ClInclude Include="Sources\Entities\OkdEntity.h" />
+    <ClInclude Include="Sources\Entities\OkdEntityFactory.h" />
     <ClInclude Include="Sources\Entities\OkdLight.h" />
     <ClInclude Include="Sources\Entities\OkdMesh.h" />
     <ClInclude Include="Sources\Entities\OkdMeshInfo.h" />
@@ -43,6 +44,7 @@
     <ClCompile Include="Sources\Entities\OkdCamera.cpp" />
     <ClCompile Include="Sources\Entities\OkdCreature.cpp" />
     <ClCompile Include="Sources\Entities\OkdEntity.cpp" />
+    <ClCompile Include="Sources\Entities\OkdEntityFactory.cpp" />
     <ClCompile Include="Sources\Entities\OkdLight.cpp" />
     <ClCompile Include="Sources\Entities\OkdMesh.cpp" />
     <ClCompile Include="Sources\Entities\OkdMeshInfo.cpp" />

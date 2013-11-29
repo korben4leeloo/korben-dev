@@ -231,10 +231,8 @@ void	OkdExportCommand::exportMesh(const MDagPath&	meshPath,
 		WRITE_LOG_INFOS( meshPath.length() + 2, vertexIdArray[0] << ", " << vertexIdArray[1] << ", " << vertexIdArray[2] << "\n" );
 	}
 
-	OkdShape* pShape = new OkdShape();
-
+	OkdShape* pShape = _pOrkidScene->createShape( pNode );
 	pShape->setMeshPtr( meshPtr );
-	pNode->addEntity( pShape );
 
 	//meshPtr.save();
 }

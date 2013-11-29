@@ -16,9 +16,7 @@
 
 class OkdResourceManager;
 class OkdResourceDatabase;
-class OkdScene;
-
-typedef OkdMap<OkdString, OkdScene*>	OkdSceneMap;
+class OkdEntityFactory;
 
 class OrkidEngine
 {
@@ -27,15 +25,13 @@ public:
 	inline static void			destroy();
 	inline static OrkidEngine*	instance();
 
-	// Resource managers
+	// Resources
 	inline OkdResourceManager*	getResourceManager();
 	inline OkdResourceDatabase*	getResourceDatabase();
 
-	// Scenes
-	/*OkdScene*					addScene( const OkdString& strSceneName );
-	OkdScene*					getScene( const OkdString& strSceneName );*/
+	// Entities
+	inline OkdEntityFactory*	getEntityFactory();
 
-	//static const char*			_strDefaultScene;
 	static const char*			_resourceTypeName[OrkidResourceTypeCount];
 
 private:
@@ -45,15 +41,12 @@ private:
 	void						initialize();
 	void						uninitialize();
 
-	/*void						registerResources();
-	void						unregisterResources();*/
-
 	void						clear();
 	template<class T> void		clearMap( T* pMap );
 
 	OkdResourceManager*			_pResourceManager;
 	OkdResourceDatabase*		_pResourceDatabase;
-	//OkdSceneMap					_sceneList;
+	OkdEntityFactory*			_pEntityFactory;
 
 	static OrkidEngine*			_pInstance;
 };
@@ -120,6 +113,16 @@ OkdResourceManager*	OrkidEngine::getResourceManager()
 OkdResourceDatabase*	OrkidEngine::getResourceDatabase()
 {
 	return	( _pResourceDatabase );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getEntityFactory
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdEntityFactory*	OrkidEngine::getEntityFactory()
+{
+	return	( _pEntityFactory );
 }
 
 #endif

@@ -13,7 +13,7 @@
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 OkdEntity::OkdEntity(const OkdEntityType	eEntityType)
-: _eOkdEntityType( _eOkdEntityType )
+: _eEntityType( eEntityType )
 {
 	
 }

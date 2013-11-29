@@ -19,10 +19,9 @@ class OkdMesh;
 
 class OkdCreature: public OkdEntity
 {
-public:
-					OkdCreature();
-					~OkdCreature();
+	friend class OkdEntityFactory;
 
+public:
 	inline void		setMeshPtr( const OkdMeshPtr& meshPtr );
 
 	// OkdEntity implementation
@@ -30,6 +29,9 @@ public:
 	virtual void	write( OkdFileStream* pStream );
 
 private:
+					OkdCreature();
+	virtual			~OkdCreature();
+
 	OkdMeshPtr		_meshPtr;
 };
 
