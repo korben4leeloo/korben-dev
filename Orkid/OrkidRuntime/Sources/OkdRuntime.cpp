@@ -270,8 +270,14 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	//testSaveMesh();
 	//testLoadMesh();
 
-	testSaveScene();
-	testLoadScene();
+	/*testSaveScene();
+	testLoadScene();*/
+
+	OkdScenePtr scenePtr;
+
+	scenePtr.bind( "TestDAG" );
+	scenePtr.load();
+	scenePtr.unbind();
 
 	OrkidEngine::destroy();
 	return (0);

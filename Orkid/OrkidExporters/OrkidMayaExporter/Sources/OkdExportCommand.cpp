@@ -234,7 +234,7 @@ void	OkdExportCommand::exportMesh(const MDagPath&	meshPath,
 	OkdShape* pShape = _pOrkidScene->createShape( pNode );
 	pShape->setMeshPtr( meshPtr );
 
-	//meshPtr.save();
+	meshPtr.save();
 }
 
 //-----------------------------------------------------------------------------
