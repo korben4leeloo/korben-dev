@@ -280,7 +280,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	scenePtr.unbind();
 
 	OrkidEngine::destroy();
-	return (0);
+	//return (0);
 
 	/*HMODULE hLib = LoadLibrary( "D:\\DevJJA\\SVN\\korben-dev\\Orkid\\Debug\\OrkidRuntimeDll.dll" );
 	FARPROC procAddr = GetProcAddress( hLib, "orkidRuntimeDllMainEntry" );*/

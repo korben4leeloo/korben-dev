@@ -74,7 +74,6 @@ void	OrkidEngine::clearMap( T* pMap )
 	pMap->clear();
 }
 
-
 //-----------------------------------------------------------------------------
 // Name:		initialize
 //

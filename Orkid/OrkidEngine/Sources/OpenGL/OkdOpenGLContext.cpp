@@ -8,9 +8,7 @@
 #include	"OkdOpenGLContext.h"
 
 // OpenGL includes
-#include	<GL/glew.h>
-#include	<GL/wglew.h>
-#include	<GL/GL.h>
+#include	ORKID_ENGINE_H(OpenGL/OkdOpenGL_API)
 
 #define		ORKID_OPENGL_MAJOR_VERSION		3
 #define		ORKID_OPENGL_MINOR_VERSION		2
@@ -78,22 +76,24 @@ OrkidErrorCode	OkdOpenGLContext::create(const HWND	hWnd)
 	HGLRC tempOpenGLContext = wglCreateContext(_hDeviceContext); // Create an OpenGL 2.1 context for our device context
 	wglMakeCurrent(_hDeviceContext, tempOpenGLContext); // Make the OpenGL 2.1 context current and active
 
-	// Initialize GLEW
-	GLenum eGlewError = glewInit();
+	//// Initialize GLEW
+	//GLenum eGlewError = glewInit();
 
-	if	( eGlewError != GLEW_OK )
-	{
-		OutputDebugString( (char*)glewGetErrorString( eGlewError ) );
-		return	( OKD_FAIL );
-	}
+	//if	( eGlewError != GLEW_OK )
+	//{
+	//	OutputDebugString( (char*)glewGetErrorString( eGlewError ) );
+	//	return	( OKD_FAIL );
+	//}
 
-	// Ask GLEW to check if the requested OpenGL version is supported, then create and apply the OpenGL context
-	GLboolean glbResult = wglewIsSupported( "WGL_ARB_create_context" );
+	//// Ask GLEW to check if the requested OpenGL version is supported, then create and apply the OpenGL context
+	//GLboolean glbResult = wglewIsSupported( "WGL_ARB_create_context" );
 
-	if	( glbResult != 1 )
-	{
-		return	( OKD_FAIL );
-	}
+	//if	( glbResult != 1 )
+	//{
+	//	return	( OKD_FAIL );
+	//}
+
+	OkdOpenGL_API::initialize();
 
 	// Build context attributes list
 	int contextAttributesARB[] = 
