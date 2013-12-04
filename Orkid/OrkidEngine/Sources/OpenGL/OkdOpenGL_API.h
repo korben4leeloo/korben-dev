@@ -15,11 +15,19 @@
 	#include	<Windows.h>
 #endif
 
-#include	<GL/GL.h>
+//#include	<GL/GL.h>
+#include	<glcorearb.h>
 #include	<wglext.h>
 
 // Declare extern OpenGL functions
-extern PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB;
+extern PFNGLCLEARPROC						glClear;
+extern PFNGLCLEARCOLORPROC					glClearColor;
+extern PFNGLVIEWPORTPROC					glViewport;
+extern PFNGLGETINTEGERVPROC					glGetIntegerv;
+extern PFNGLGETSTRINGIPROC					glGetStringi;
+
+extern PFNWGLCREATECONTEXTATTRIBSARBPROC	wglCreateContextAttribsARB;
+extern PFNWGLCHOOSEPIXELFORMATARBPROC		wglChoosePixelFormatARB;
 
 class OkdOpenGL_API
 {

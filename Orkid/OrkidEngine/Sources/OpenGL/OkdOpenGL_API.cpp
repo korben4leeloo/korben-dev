@@ -9,7 +9,14 @@
 
 #define	OKD_OPENGL_API_GET_FUNC( FuncPtr, FuncName ) FuncName = (FuncPtr)wglGetProcAddress( #FuncName )
 
-PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = 0;
+PFNGLCLEARPROC						glClear						= 0;
+PFNGLCLEARCOLORPROC					glClearColor				= 0;
+PFNGLVIEWPORTPROC					glViewport					= 0;
+PFNGLGETINTEGERVPROC				glGetIntegerv				= 0;
+PFNGLGETSTRINGIPROC					glGetStringi				= 0;
+
+PFNWGLCREATECONTEXTATTRIBSARBPROC	wglCreateContextAttribsARB	= 0;
+PFNWGLCHOOSEPIXELFORMATARBPROC		wglChoosePixelFormatARB		= 0;
 
 bool OkdOpenGL_API::_bIsInitialized = false;
 
@@ -45,7 +52,25 @@ void	OkdOpenGL_API::initialize()
 		return;
 	}
 
+	OKD_OPENGL_API_GET_FUNC( PFNGLCLEARPROC, glClear );
+	OKD_OPENGL_API_GET_FUNC( PFNGLCLEARCOLORPROC, glClearColor );
+	OKD_OPENGL_API_GET_FUNC( PFNGLVIEWPORTPROC, glViewport );
+	OKD_OPENGL_API_GET_FUNC( PFNGLGETINTEGERVPROC, glGetIntegerv );
+	OKD_OPENGL_API_GET_FUNC( PFNGLGETSTRINGIPROC, glGetStringi );
+
+	GLint nExtensionCount;
+	
+	glGetIntegerv( GL_NUM_EXTENSIONS, &nExtensionCount );
+
+	for	( int i = 0; i < nExtensionCount; i++ )
+	{
+		const GLubyte* pExtensionName = glGetStringi( GL_EXTENSIONS, i );
+		OutputDebugString( (LPCSTR)pExtensionName );
+		OutputDebugString( "\n" );
+	}
+
 	OKD_OPENGL_API_GET_FUNC( PFNWGLCREATECONTEXTATTRIBSARBPROC, wglCreateContextAttribsARB );
+	OKD_OPENGL_API_GET_FUNC( PFNWGLCHOOSEPIXELFORMATARBPROC, wglChoosePixelFormatARB );
 
 	_bIsInitialized = true;
 }
