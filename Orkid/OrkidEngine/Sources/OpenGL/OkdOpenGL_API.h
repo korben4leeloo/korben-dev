@@ -32,13 +32,13 @@ extern PFNWGLCHOOSEPIXELFORMATARBPROC		wglChoosePixelFormatARB;
 class OkdOpenGL_API
 {
 public:
-	static void	initialize();
+	static OrkidErrorCode	initialize( const HDC hDeviceContext, const PIXELFORMATDESCRIPTOR* pPixelformatDesc );
 
 private:
-				OkdOpenGL_API();
-				~OkdOpenGL_API();
+							OkdOpenGL_API();
+							~OkdOpenGL_API();
 
-	static bool	_bIsInitialized;
+	static bool				_bIsInitialized;
 };
 
 #endif

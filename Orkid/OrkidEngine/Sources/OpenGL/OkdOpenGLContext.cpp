@@ -46,54 +46,39 @@ OrkidErrorCode	OkdOpenGLContext::create(const HWND	hWnd)
 	_hWindow		= hWnd;
 	_hDeviceContext = GetDC( _hWindow );
 
-	 // Create a pixel format descriptor
+	// Build pixel format descriptor
 	PIXELFORMATDESCRIPTOR pixelFormatDesc;
 
 	memset( &pixelFormatDesc, 0, sizeof(PIXELFORMATDESCRIPTOR) );
 
-	pixelFormatDesc.nSize		= sizeof(PIXELFORMATDESCRIPTOR);
-	pixelFormatDesc.dwFlags		= PFD_DOUBLEBUFFER | PFD_SUPPORT_OPENGL | PFD_DRAW_TO_WINDOW;
-	pixelFormatDesc.iPixelType	= PFD_TYPE_RGBA;
-	pixelFormatDesc.cColorBits	= 32;
-	pixelFormatDesc.cDepthBits	= 32;
-	pixelFormatDesc.iLayerType	= PFD_MAIN_PLANE;
+	pixelFormatDesc.nSize			= sizeof(PIXELFORMATDESCRIPTOR);
+	pixelFormatDesc.dwFlags			= PFD_DOUBLEBUFFER | PFD_SUPPORT_OPENGL | PFD_DRAW_TO_WINDOW;
+	pixelFormatDesc.iPixelType		= PFD_TYPE_RGBA;
+	pixelFormatDesc.cColorBits		= 32;
+	pixelFormatDesc.cDepthBits		= 24;
+	pixelFormatDesc.cStencilBits	= 8;
+	pixelFormatDesc.iLayerType		= PFD_MAIN_PLANE;
 
-	// Ask for a matching pixel format descriptor and use it
-	int nPixelFormat = ChoosePixelFormat( _hDeviceContext, &pixelFormatDesc );
+	OkdOpenGL_API::initialize( _hDeviceContext, &pixelFormatDesc );
 
-	if	( nPixelFormat == 0 )
-	{
-		return	( OKD_FAIL );
-	}
+	// Pixel format attributes
+	const int pixelFormatAttribList[] = 
+	{ 
+		WGL_DRAW_TO_WINDOW_ARB, GL_TRUE, 
+		WGL_SUPPORT_OPENGL_ARB, GL_TRUE, 
+		WGL_DOUBLE_BUFFER_ARB,	GL_TRUE, 
+		WGL_PIXEL_TYPE_ARB,		WGL_TYPE_RGBA_ARB, 
+		WGL_COLOR_BITS_ARB,		32, 
+		WGL_DEPTH_BITS_ARB,		24, 
+		WGL_STENCIL_BITS_ARB,	8, 
+		0
+	};
 
-	BOOL result = SetPixelFormat( _hDeviceContext, nPixelFormat, &pixelFormatDesc );
+	int		nPixelFormat;
+	UINT	uiFormatCount;
 
-	if	( !result )
-	{
-		return	( OKD_FAIL );
-	}
-
-	HGLRC tempOpenGLContext = wglCreateContext(_hDeviceContext); // Create an OpenGL 2.1 context for our device context
-	wglMakeCurrent(_hDeviceContext, tempOpenGLContext); // Make the OpenGL 2.1 context current and active
-
-	//// Initialize GLEW
-	//GLenum eGlewError = glewInit();
-
-	//if	( eGlewError != GLEW_OK )
-	//{
-	//	OutputDebugString( (char*)glewGetErrorString( eGlewError ) );
-	//	return	( OKD_FAIL );
-	//}
-
-	//// Ask GLEW to check if the requested OpenGL version is supported, then create and apply the OpenGL context
-	//GLboolean glbResult = wglewIsSupported( "WGL_ARB_create_context" );
-
-	//if	( glbResult != 1 )
-	//{
-	//	return	( OKD_FAIL );
-	//}
-
-	OkdOpenGL_API::initialize();
+	wglChoosePixelFormatARB( _hDeviceContext, pixelFormatAttribList, 0, 1, &nPixelFormat, &uiFormatCount );
+	SetPixelFormat( _hDeviceContext, nPixelFormat, &pixelFormatDesc );
 
 	// Build context attributes list
 	int contextAttributesARB[] = 
