@@ -98,6 +98,22 @@ OrkidErrorCode	OkdOpenGLContext::create(const HWND	hWnd)
 
 static int nFrame = 0;
 
+float trianglePoints[9] = 
+{
+	-1.0f, 0.0f, -5.0f,
+	0.0f, 1.0f, -5.0f,
+	1.0f, 0.0f, -5.0f
+};
+
+GLuint uiVBO, uiVAO;
+
+//float trianglePoints[9] = 
+//{
+//	-1.0f, 0.0f, -5.0f,
+//	1.0f, 0.0f, -5.0f,
+//	0.0f, 1.0f, -5.0f
+//};
+
 //-----------------------------------------------------------------------------
 // Name:		render
 //
@@ -105,13 +121,49 @@ static int nFrame = 0;
 //-----------------------------------------------------------------------------
 void	OkdOpenGLContext::render()
 {
+	GLenum result;
+
+	if	( nFrame == 0 )
+	{
+		glGenBuffers( 1, &uiVBO );
+		result = glGetError();
+
+		glBindBuffer( GL_ARRAY_BUFFER, uiVBO );
+		result = glGetError();
+
+		glBufferData( GL_ARRAY_BUFFER, sizeof(trianglePoints), trianglePoints, GL_STATIC_DRAW );
+		result = glGetError();
+
+		glBindBuffer( GL_ARRAY_BUFFER, 0 );
+		result = glGetError();
+	}
+
 	nFrame++;
 
 	float fColor = (float)(nFrame%50) / 50.0f;
 
-	//glClearColor(0.4f, 0.6f, 0.9f, 0.0f);
-	glClearColor( fColor * 0.4f, fColor - 0.6f, fColor * 0.9f, 0.0f );
+	glClearColor(0.4f, 0.4f, 0.4f, 0.0f);
+	//glClearColor( fColor * 0.4f, fColor - 0.6f, fColor * 0.9f, 0.0f );
 	glViewport(0, 0, 500, 500); // Set the viewport size to fill the window
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT); // Clear required buffers
+
+	glBindBuffer( GL_ARRAY_BUFFER, uiVBO );
+	result = glGetError();
+
+	glEnableVertexAttribArray( 0 );
+	result = glGetError();
+
+	glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 0, 0 );
+	result = glGetError();
+
+	glDrawArrays( GL_TRIANGLES, 0, 3 );
+	result = glGetError();
+
+	glDisableVertexAttribArray( 0 );
+	result = glGetError();
+
+	glBindBuffer( GL_ARRAY_BUFFER, 0 );
+	result = glGetError();
+
 	SwapBuffers( _hDeviceContext ); // Swap buffers so we can see our rendering
 }
