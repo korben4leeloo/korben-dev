@@ -11,7 +11,7 @@
 #include	ORKID_ENGINE_H(OpenGL/OkdOpenGL_API)
 
 #define		ORKID_OPENGL_MAJOR_VERSION		3
-#define		ORKID_OPENGL_MINOR_VERSION		2
+#define		ORKID_OPENGL_MINOR_VERSION		3
 #define		ORKID_OPENGL_CONTEXT_FLAGS_ARB	WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB
 
 //-----------------------------------------------------------------------------

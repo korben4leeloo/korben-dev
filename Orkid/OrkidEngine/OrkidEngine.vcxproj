@@ -39,8 +39,6 @@
     <ClInclude Include="Sources\SceneGraph\OkdNode.h" />
     <ClInclude Include="Sources\SceneGraph\OkdScene.h" />
     <ClInclude Include="Sources\SceneGraph\Root.h" />
-    <ClInclude Include="Sources\Shaders\OkdAbstractShader.h" />
-    <ClInclude Include="Sources\Shaders\Root.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Entities\OkdCamera.cpp" />
@@ -65,7 +63,6 @@
     <ClCompile Include="Sources\Resources\OkdResourceRef.cpp" />
     <ClCompile Include="Sources\SceneGraph\OkdNode.cpp" />
     <ClCompile Include="Sources\SceneGraph\OkdScene.cpp" />
-    <ClCompile Include="Sources\Shaders\OkdAbstractShader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6DBBF689-0136-4205-9458-6A61C8FCC42A}</ProjectGuid>

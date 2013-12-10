@@ -7,24 +7,26 @@
 
 #include	"OkdOpenGL_API.h"
 
+#pragma comment(lib, "C:/Users/jja/Downloads/glew-1.10.0/glew-1.10.0/lib/Debug/Win32/glew32d.lib")
+
 #define	OKD_OPENGL_API_GET_FUNC( FuncPtr, FuncName )	\
 	FuncName = (FuncPtr)wglGetProcAddress( #FuncName );	\
 	ORKID_ASSERT( FuncName );
 
-PFNGLGETERRORPROC					glGetError					= 0;
-PFNGLCLEARPROC						glClear						= 0;
-PFNGLCLEARCOLORPROC					glClearColor				= 0;
-PFNGLVIEWPORTPROC					glViewport					= 0;
-PFNGLGETINTEGERVPROC				glGetIntegerv				= 0;
+//PFNGLGETERRORPROC					glGetError					= 0;
+//PFNGLCLEARPROC						glClear						= 0;
+//PFNGLCLEARCOLORPROC					glClearColor				= 0;
+//PFNGLVIEWPORTPROC					glViewport					= 0;
+//PFNGLGETINTEGERVPROC				glGetIntegerv				= 0;
 PFNGLGETSTRINGIPROC					glGetStringi				= 0;
 PFNGLVERTEXATTRIBPOINTERPROC		glVertexAttribPointer		= 0;
 PFNGLENABLEVERTEXATTRIBARRAYPROC	glEnableVertexAttribArray	= 0;
 PFNGLDISABLEVERTEXATTRIBARRAYPROC	glDisableVertexAttribArray	= 0;
-PFNGLDRAWARRAYSPROC					glDrawArrays				= 0;
+//PFNGLDRAWARRAYSPROC					glDrawArrays				= 0;
 PFNGLGENBUFFERSPROC					glGenBuffers				= 0;
 PFNGLBINDBUFFERPROC					glBindBuffer				= 0;
 PFNGLBUFFERDATAPROC					glBufferData				= 0;
-
+//
 PFNWGLCREATECONTEXTATTRIBSARBPROC	wglCreateContextAttribsARB	= 0;
 PFNWGLCHOOSEPIXELFORMATARBPROC		wglChoosePixelFormatARB		= 0;
 
@@ -81,9 +83,12 @@ OrkidErrorCode	OkdOpenGL_API::initialize(const HDC						hDeviceContext,
 	HGLRC hDummyGLContext = wglCreateContext( hDeviceContext ); // Create an OpenGL 2.1 context for our device context
 	wglMakeCurrent( hDeviceContext, hDummyGLContext ); // Make the OpenGL 2.1 context current and active
 
-	// Get function pointers
-	OKD_OPENGL_API_GET_FUNC( PFNGLGETERRORPROC, glGetError )
-	OKD_OPENGL_API_GET_FUNC( PFNGLGETINTEGERVPROC, glGetIntegerv )
+	//glGetError = (PFNGLGETERRORPROC)wglGetProcAddress( "glGetError" );
+	//DWORD dw = GetLastError();
+
+	//// Get function pointers
+	//OKD_OPENGL_API_GET_FUNC( PFNGLGETERRORPROC, glGetError )
+	//OKD_OPENGL_API_GET_FUNC( PFNGLGETINTEGERVPROC, glGetIntegerv )
 	OKD_OPENGL_API_GET_FUNC( PFNGLGETSTRINGIPROC, glGetStringi )
 
 	GLint nExtensionCount;
@@ -97,19 +102,21 @@ OrkidErrorCode	OkdOpenGL_API::initialize(const HDC						hDeviceContext,
 		OutputDebugString( "\n" );
 	}
 
-	OKD_OPENGL_API_GET_FUNC( PFNGLCLEARPROC, glClear )
-	OKD_OPENGL_API_GET_FUNC( PFNGLCLEARCOLORPROC, glClearColor )
-	OKD_OPENGL_API_GET_FUNC( PFNGLVIEWPORTPROC, glViewport )
+	//OKD_OPENGL_API_GET_FUNC( PFNGLCLEARPROC, glClear )
+	//OKD_OPENGL_API_GET_FUNC( PFNGLCLEARCOLORPROC, glClearColor )
+	//OKD_OPENGL_API_GET_FUNC( PFNGLVIEWPORTPROC, glViewport )
 	OKD_OPENGL_API_GET_FUNC( PFNGLVERTEXATTRIBPOINTERPROC, glVertexAttribPointer )
-	OKD_OPENGL_API_GET_FUNC( PFNGLENABLEVERTEXATTRIBARRAYPROC, glEnableVertexAttribArray )
-	OKD_OPENGL_API_GET_FUNC( PFNGLDISABLEVERTEXATTRIBARRAYPROC, glDisableVertexAttribArray )
-	OKD_OPENGL_API_GET_FUNC( PFNGLDRAWARRAYSPROC, glDrawArrays )
+		OKD_OPENGL_API_GET_FUNC( PFNGLENABLEVERTEXATTRIBARRAYPROC, glEnableVertexAttribArray )
+		OKD_OPENGL_API_GET_FUNC( PFNGLDISABLEVERTEXATTRIBARRAYPROC, glDisableVertexAttribArray )
+	//OKD_OPENGL_API_GET_FUNC( PFNGLDRAWARRAYSPROC, glDrawArrays )
 	OKD_OPENGL_API_GET_FUNC( PFNGLGENBUFFERSPROC, glGenBuffers )
 	OKD_OPENGL_API_GET_FUNC( PFNGLBINDBUFFERPROC, glBindBuffer );
 	OKD_OPENGL_API_GET_FUNC( PFNGLBUFFERDATAPROC, glBufferData );
 
 	OKD_OPENGL_API_GET_FUNC( PFNWGLCREATECONTEXTATTRIBSARBPROC, wglCreateContextAttribsARB )
 	OKD_OPENGL_API_GET_FUNC( PFNWGLCHOOSEPIXELFORMATARBPROC, wglChoosePixelFormatARB )
+
+	//glewInit();
 
 	// Destroy dummy context
 	wglMakeCurrent( 0, 0 );

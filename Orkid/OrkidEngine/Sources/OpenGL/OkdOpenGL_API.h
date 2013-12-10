@@ -15,25 +15,32 @@
 	#include	<Windows.h>
 #endif
 
-//#include	<GL/GL.h>
-#include	<glcorearb.h>
-#include	<wglext.h>
+//#include	"D:/DevJJA/SVN/korben-dev/Libraries/OpenGL/glew/include/GL/glew.h"
+//#include	"D:/DevJJA/SVN/korben-dev/Libraries/OpenGL/glew/include/GL/wglew.h"
 
-// Declare extern OpenGL functions
-extern PFNGLGETERRORPROC					glGetError;
-extern PFNGLCLEARPROC						glClear;
-extern PFNGLCLEARCOLORPROC					glClearColor;
-extern PFNGLVIEWPORTPROC					glViewport;
-extern PFNGLGETINTEGERVPROC					glGetIntegerv;
+//#define GL_GLEXT_PROTOTYPES
+//#define WGL_WGLEXT_PROTOTYPES
+
+#include	<GL/GL.h>
+//#include	<glcorearb.h>
+#include	<glext.h>
+#include	<wglext.h>
+//
+//// Declare extern OpenGL functions
+//extern PFNGLGETERRORPROC					glGetError;
+//extern PFNGLCLEARPROC						glClear;
+//extern PFNGLCLEARCOLORPROC					glClearColor;
+//extern PFNGLVIEWPORTPROC					glViewport;
+//extern PFNGLGETINTEGERVPROC					glGetIntegerv;
 extern PFNGLGETSTRINGIPROC					glGetStringi;
 extern PFNGLVERTEXATTRIBPOINTERPROC			glVertexAttribPointer;
 extern PFNGLENABLEVERTEXATTRIBARRAYPROC		glEnableVertexAttribArray;
 extern PFNGLDISABLEVERTEXATTRIBARRAYPROC	glDisableVertexAttribArray;
-extern PFNGLDRAWARRAYSPROC					glDrawArrays;
+//extern PFNGLDRAWARRAYSPROC					glDrawArrays;
 extern PFNGLGENBUFFERSPROC					glGenBuffers;
 extern PFNGLBINDBUFFERPROC					glBindBuffer;
 extern PFNGLBUFFERDATAPROC					glBufferData;
-
+//
 extern PFNWGLCREATECONTEXTATTRIBSARBPROC	wglCreateContextAttribsARB;
 extern PFNWGLCHOOSEPIXELFORMATARBPROC		wglChoosePixelFormatARB;
 
