@@ -51,7 +51,7 @@ OkdResourceDatabase::~OkdResourceDatabase()
 //-----------------------------------------------------------------------------
 void	OkdResourceDatabase::open()
 {
-	_strResourceDatabasePath = getResourceDatabasePath();
+	_strResourceDatabasePath = retrieveResourceDatabasePath();
 	createResourceDirectories();
 
 	if	( !loadResourceDatabaseXmlFile() )
@@ -81,11 +81,11 @@ void	OkdResourceDatabase::close()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		getResourceDatabasePath
+// Name:		retrieveResourceDatabasePath
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-const char*	OkdResourceDatabase::getResourceDatabasePath() const
+const char*	OkdResourceDatabase::retrieveResourceDatabasePath() const
 {
 	char*	pBuffer = 0;
 	uint32	uiRequiredSize;
@@ -111,9 +111,7 @@ const char*	OkdResourceDatabase::getResourceDatabasePath() const
 //-----------------------------------------------------------------------------
 bool	OkdResourceDatabase::loadResourceDatabaseXmlFile()
 {
-	const char* pResourceDBPath = getResourceDatabasePath();
-
-	if	( pResourceDBPath == 0 )
+	if	( _strResourceDatabasePath.size() == 0 )
 	{
 		ORKID_BREAK();
 		return	( false );

@@ -30,31 +30,43 @@ public:
 		OpenStreamSave
 	};
 
-	void				open();
-	void				close();
+	void					open();
+	void					close();
 
-	OkdFileStream*		openResourceFileStream( const OkdResourceType eResourceType, const OkdString& strResourceName, const OpenStreamMode eOpenStreamMode );
-	void				closeResourceFileStream( OkdFileStream** ppResourceFileStream );
+	OkdFileStream*			openResourceFileStream( const OkdResourceType eResourceType, const OkdString& strResourceName, const OpenStreamMode eOpenStreamMode );
+	void					closeResourceFileStream( OkdFileStream** ppResourceFileStream );
+
+	inline const OkdString&	getResourceDatabasePath() const;
 
 private:
-						OkdResourceDatabase();
-						~OkdResourceDatabase();
+							OkdResourceDatabase();
+							~OkdResourceDatabase();
 
-	const char*			getResourceDatabasePath() const;
-	void				createResourceDirectories();
-	//void				createResourceDatabaseXmlFile( const OkdString& strFileName );
-	bool				loadResourceDatabaseXmlFile();
+	const char*				retrieveResourceDatabasePath() const;
+	void					createResourceDirectories();
+	//void					createResourceDatabaseXmlFile( const OkdString& strFileName );
+	bool					loadResourceDatabaseXmlFile();
 
-	//OkdFileStream*		_pResourceDBXmlFile;
-	OkdString			_strResourceDatabasePath;
-	OkdXmlDocument*		_pDatabaseXmlDoc;
-	bool				_bOpen;
+	//OkdFileStream*			_pResourceDBXmlFile;
+	OkdString				_strResourceDatabasePath;
+	OkdXmlDocument*			_pDatabaseXmlDoc;
+	bool					_bOpen;
 
-	static const char*	_strResourceRelativePath[OrkidResourceTypeCount];
+	static const char*		_strResourceRelativePath[OrkidResourceTypeCount];
 };
 
 //*****************************************************************************
 //	Inline functions declarations
 //*****************************************************************************
+
+//-----------------------------------------------------------------------------
+// Name:		getResourceDatabasePath
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const OkdString&	OkdResourceDatabase::getResourceDatabasePath() const
+{
+	return	( _strResourceDatabasePath );
+}
 
 #endif

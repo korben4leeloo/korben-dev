@@ -279,7 +279,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	scenePtr.load();
 	scenePtr.unbind();
 
-	OrkidEngine::destroy();
 	//return (0);
 
 	/*HMODULE hLib = LoadLibrary( "D:\\DevJJA\\SVN\\korben-dev\\Orkid\\Debug\\OrkidRuntimeDll.dll" );
@@ -322,6 +321,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 			openGLContext.render();
 		}
 	}
+
+	OrkidEngine::destroy();
 
 	return (int) msg.wParam;
 }

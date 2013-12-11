@@ -36,12 +36,15 @@ public:
 	inline bool			operator==( const char* other ) const;
 	inline OkdString&	operator+=( const OkdString& other );
 	inline OkdString	operator+( const OkdString& other );
+	inline OkdString	operator+( const char* pcOther );
 
 	inline uint32		size() const;
 	inline bool			isEmpty() const;
 
 private:
 	std::string			_str;
+
+	friend OkdString operator+( const OkdString& lhs, const char* rhs );
 };
 
 // Defines std::hash for OkdString to be used in std hashed containers
@@ -116,6 +119,19 @@ OkdString OkdString::operator+(const OkdString& other)
 }
 
 //-----------------------------------------------------------------------------
+// Name:		operator+
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdString OkdString::operator+(const char* pcOther)
+{
+	OkdString strOther( pcOther );
+	OkdString strTemp( _str + strOther._str );
+
+	return	( strTemp );
+}
+
+//-----------------------------------------------------------------------------
 // Name:		size
 //
 // Created:		2013-08-26
@@ -133,6 +149,17 @@ uint32 OkdString::size() const
 bool OkdString::isEmpty() const
 {
 	return	( size() == 0 );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator+
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+inline OkdString	operator+( const OkdString& lhs, const char* rhs )
+{
+	OkdString s( lhs._str + rhs );
+	return s;
 }
 
 #endif
