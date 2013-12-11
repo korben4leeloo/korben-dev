@@ -9,6 +9,8 @@
 
 // OpenGL includes
 #include	ORKID_ENGINE_H(OpenGL/OkdOpenGL_API)
+#include	ORKID_CORE_H(Stream/OkdFileStream)
+#include	ORKID_CORE_H(String/OkdString)
 
 #define		ORKID_OPENGL_MAJOR_VERSION		3
 #define		ORKID_OPENGL_MINOR_VERSION		3
@@ -98,21 +100,21 @@ OrkidErrorCode	OkdOpenGLContext::create(const HWND	hWnd)
 
 static int nFrame = 0;
 
-float trianglePoints[9] = 
-{
-	-1.0f, 0.0f, -5.0f,
-	0.0f, 1.0f, -5.0f,
-	1.0f, 0.0f, -5.0f
-};
-
-GLuint uiVBO, uiVAO;
-
 //float trianglePoints[9] = 
 //{
-//	-1.0f, 0.0f, -5.0f,
-//	1.0f, 0.0f, -5.0f,
-//	0.0f, 1.0f, -5.0f
+//	-0.5f, 0.0f, 5.0f,
+//	0.0f, 0.5f, 5.0f,
+//	0.5f, 0.0f, 5.0f
 //};
+
+GLuint uiVBO, uiVAO, uiVertexShader, uiPixelShader, uiShaderProgram;
+
+float trianglePoints[9] = 
+{
+	-0.5f, 0.0f, 5.0f,
+	0.5f, 0.0f, 5.0f,
+	0.0f, 0.5f, 5.0f
+};
 
 //-----------------------------------------------------------------------------
 // Name:		render
@@ -126,16 +128,67 @@ void	OkdOpenGLContext::render()
 	if	( nFrame == 0 )
 	{
 		glGenBuffers( 1, &uiVBO );
-		result = glGetError();
+		glGenVertexArrays( 1, &uiVAO );
+		ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
 
 		glBindBuffer( GL_ARRAY_BUFFER, uiVBO );
-		result = glGetError();
+		glBindVertexArray( uiVAO );
+		ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
 
 		glBufferData( GL_ARRAY_BUFFER, sizeof(trianglePoints), trianglePoints, GL_STATIC_DRAW );
-		result = glGetError();
+		ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
 
 		glBindBuffer( GL_ARRAY_BUFFER, 0 );
-		result = glGetError();
+		ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
+
+		OkdFileStream vertexShaderFileStream( "C:\\Dev\\svn\\korben-dev\\ResourceDatabase\\Shaders\\GLSL\\color.vs", OkdFileStream::OpenModeIn | OkdFileStream::OpenModeBinary );
+		OkdFileStream pixelShaderFileStream( "C:\\Dev\\svn\\korben-dev\\ResourceDatabase\\Shaders\\GLSL\\color.ps", OkdFileStream::OpenModeIn | OkdFileStream::OpenModeBinary );
+
+		uiVertexShader = glCreateShader( GL_VERTEX_SHADER );
+		uiPixelShader = glCreateShader( GL_FRAGMENT_SHADER );
+
+		GLint uiShaderLength = OkdFileStream::length( "C:\\Dev\\svn\\korben-dev\\ResourceDatabase\\Shaders\\GLSL\\color.vs" );
+		GLchar* pcShaderText = new GLchar[uiShaderLength+1];
+		GLint nResult;
+
+		vertexShaderFileStream.read( pcShaderText, uiShaderLength );
+		pcShaderText[uiShaderLength] = '\0';
+
+		glShaderSource( uiVertexShader, 1, (const GLchar**)&pcShaderText, &uiShaderLength );
+		glCompileShader( uiVertexShader );
+		
+		glGetShaderiv( uiVertexShader, GL_COMPILE_STATUS, &nResult );
+		ORKID_ASSERT( nResult == GL_TRUE );
+
+		if	( nResult == GL_FALSE )
+		{
+			GLint maxLength = 0;
+			glGetShaderiv( uiVertexShader, GL_INFO_LOG_LENGTH, &maxLength );
+ 
+			//The maxLength includes the NULL character
+			GLchar* pcShaderLog = new GLchar[uiShaderLength];
+			glGetShaderInfoLog( uiVertexShader, maxLength, &maxLength, &pcShaderLog[0] );
+
+			OutputDebugString( pcShaderLog );
+		}
+
+		uiShaderLength = OkdFileStream::length( "C:\\Dev\\svn\\korben-dev\\ResourceDatabase\\Shaders\\GLSL\\color.ps" );
+
+		pixelShaderFileStream.read( pcShaderText, uiShaderLength );
+		pcShaderText[uiShaderLength] = '\0';
+
+		glShaderSource( uiPixelShader, 1, (const GLchar**)&pcShaderText, &uiShaderLength );
+		glCompileShader( uiPixelShader );
+		glGetShaderiv( uiPixelShader, GL_COMPILE_STATUS, &nResult );
+		ORKID_ASSERT( nResult == GL_TRUE );
+
+		uiShaderProgram = glCreateProgram();
+		glAttachShader( uiShaderProgram, uiVertexShader );
+		glAttachShader( uiShaderProgram, uiPixelShader );
+		glLinkProgram( uiShaderProgram );
+
+		glGetProgramiv( uiShaderProgram, GL_LINK_STATUS, &nResult );
+		ORKID_ASSERT( nResult == GL_TRUE );
 	}
 
 	nFrame++;
@@ -147,23 +200,29 @@ void	OkdOpenGLContext::render()
 	glViewport(0, 0, 500, 500); // Set the viewport size to fill the window
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT); // Clear required buffers
 
+	glUseProgram( uiShaderProgram );
+	ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
+
 	glBindBuffer( GL_ARRAY_BUFFER, uiVBO );
-	result = glGetError();
+	ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
 
 	glEnableVertexAttribArray( 0 );
-	result = glGetError();
+	ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
 
 	glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 0, 0 );
-	result = glGetError();
+	ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
 
 	glDrawArrays( GL_TRIANGLES, 0, 3 );
-	result = glGetError();
+	ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
 
 	glDisableVertexAttribArray( 0 );
-	result = glGetError();
+	ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
 
 	glBindBuffer( GL_ARRAY_BUFFER, 0 );
-	result = glGetError();
+	ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
+
+	glUseProgram( 0 );
+	ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
 
 	SwapBuffers( _hDeviceContext ); // Swap buffers so we can see our rendering
 }

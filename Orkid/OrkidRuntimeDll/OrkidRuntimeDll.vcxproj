@@ -78,6 +78,9 @@
     <ClCompile Include="Sources\OrkidRuntimeDllMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OrkidCore\OrkidCore.vcxproj">
+      <Project>{9564ab07-fbbd-44cb-89b8-116a30492110}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\OrkidEngine\OrkidEngine.vcxproj">
       <Project>{6dbbf689-0136-4205-9458-6a61c8fcc42a}</Project>
     </ProjectReference>
