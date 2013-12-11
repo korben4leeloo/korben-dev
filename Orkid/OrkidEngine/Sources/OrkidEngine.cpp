@@ -13,10 +13,9 @@
 #include	ORKID_ENGINE_H(Entities/OkdEntityFactory)
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 
-OrkidEngine*	OrkidEngine::_pInstance			= 0;
-//const char*		OrkidEngine::_strDefaultScene	= "Default";
+OrkidEngine* OrkidEngine::_pInstance = 0;
 
-const char*		OrkidEngine::_resourceTypeName[OrkidResourceTypeCount] =
+const char* OrkidEngine::_resourceTypeName[OrkidResourceTypeCount] =
 {
 	"OrkidMesh", 
 	"OrkidScene",
@@ -93,9 +92,6 @@ void	OrkidEngine::initialize()
 
 	// Entities
 	_pEntityFactory = new OkdEntityFactory();
-
-	//registerResources();
-	//addScene( OrkidEngine::_strDefaultScene );
 }
 
 //-----------------------------------------------------------------------------
@@ -116,56 +112,3 @@ void	OrkidEngine::uninitialize()
 
 	OrkidCore::uninitialize();
 }
-
-////-----------------------------------------------------------------------------
-//// Name:		registerResources
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//void	OrkidEngine::registerResources()
-//{
-//	OkdMeshHandler::create();
-//	OkdSceneHandler::create();
-//}
-//
-////-----------------------------------------------------------------------------
-//// Name:		unregisterResources
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//void	OrkidEngine::unregisterResources()
-//{
-//	OkdMeshHandler::destroy();
-//	OkdSceneHandler::destroy();
-//}
-
-////-----------------------------------------------------------------------------
-//// Name:		addScene
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//OkdScene*	OrkidEngine::addScene(const OkdString& strSceneName)
-//{
-//	OkdScene* pScene = getScene( strSceneName );
-//
-//	if	( !pScene )
-//	{
-//		pScene = new OkdScene();
-//		_sceneList.add( strSceneName, pScene );
-//	}
-//
-//	return	( pScene );
-//}
-
-////-----------------------------------------------------------------------------
-//// Name:		getScene
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//OkdScene*	OrkidEngine::getScene( const OkdString& strSceneName )
-//{
-//	OkdScene* pScene = 0; 
-//	
-//	_sceneList.find( strSceneName, &pScene );
-//	return	( pScene );
-//}

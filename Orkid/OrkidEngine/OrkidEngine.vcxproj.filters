@@ -32,6 +32,9 @@
     <Filter Include="Sources\Resources\Handlers">
       <UniqueIdentifier>{045c0502-d97d-4834-91cf-b01c443ba32c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Shaders">
+      <UniqueIdentifier>{f783e91a-2399-40b3-93c5-d66eaf58261e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\OrkidEngineRoot.h">
@@ -118,6 +121,12 @@
     <ClInclude Include="Sources\OpenGL\OkdOpenGL_API.h">
       <Filter>Sources\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Shaders\OkdAbstractShader.h">
+      <Filter>Sources\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Shaders\Root.h">
+      <Filter>Sources\Shaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
@@ -185,6 +194,9 @@
     </ClCompile>
     <ClCompile Include="Sources\OpenGL\OkdOpenGL_API.cpp">
       <Filter>Sources\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Shaders\OkdAbstractShader.cpp">
+      <Filter>Sources\Shaders</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
