@@ -100,21 +100,21 @@ OrkidErrorCode	OkdOpenGLContext::create(const HWND	hWnd)
 
 static int nFrame = 0;
 
-//float trianglePoints[9] = 
-//{
-//	-0.5f, 0.0f, 5.0f,
-//	0.0f, 0.5f, 5.0f,
-//	0.5f, 0.0f, 5.0f
-//};
+float trianglePoints[9] = 
+{
+	-0.5f, 0.0f, -5.0f,
+	0.0f, 0.5f, -5.0f,
+	0.5f, 0.0f, -5.0f
+};
 
 GLuint uiVBO, uiVAO, uiVertexShader, uiPixelShader, uiShaderProgram;
 
-float trianglePoints[9] = 
-{
-	-0.5f, 0.0f, 5.0f,
-	0.5f, 0.0f, 5.0f,
-	0.0f, 0.5f, 5.0f
-};
+//float trianglePoints[9] = 
+//{
+//	-0.5f, 0.0f, 5.0f,
+//	0.5f, 0.0f, 5.0f,
+//	0.0f, 0.5f, 5.0f
+//};
 
 //-----------------------------------------------------------------------------
 // Name:		render
@@ -138,6 +138,13 @@ void	OkdOpenGLContext::render()
 		glBufferData( GL_ARRAY_BUFFER, sizeof(trianglePoints), trianglePoints, GL_STATIC_DRAW );
 		ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
 
+		glEnableVertexAttribArray( 0 );
+		ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
+
+		glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 0, 0 );
+		ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
+
+		glBindVertexArray( 0 );
 		glBindBuffer( GL_ARRAY_BUFFER, 0 );
 		ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
 
@@ -204,12 +211,7 @@ void	OkdOpenGLContext::render()
 	ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
 
 	glBindBuffer( GL_ARRAY_BUFFER, uiVBO );
-	ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
-
-	glEnableVertexAttribArray( 0 );
-	ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
-
-	glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 0, 0 );
+	glBindVertexArray( uiVAO );
 	ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
 
 	glDrawArrays( GL_TRIANGLES, 0, 3 );
@@ -218,6 +220,7 @@ void	OkdOpenGLContext::render()
 	glDisableVertexAttribArray( 0 );
 	ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
 
+	glBindVertexArray( 0 );
 	glBindBuffer( GL_ARRAY_BUFFER, 0 );
 	ORKID_ASSERT( ( result = glGetError() ) == GL_NO_ERROR );
 
