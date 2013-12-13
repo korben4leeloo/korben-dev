@@ -19,6 +19,8 @@ const char* OrkidEngine::_resourceTypeName[OrkidResourceTypeCount] =
 {
 	"OrkidMesh", 
 	"OrkidScene",
+	"OrkidShader",
+	"OrkidShaderProgram",
 };
 
 //-----------------------------------------------------------------------------

@@ -11,14 +11,30 @@
 
 #include	"Root.h"
 
-class OkdAbstractShader
+#include	ORKID_ENGINE_H(Resources/OkdAbstractResource)
+#include	ORKID_CORE_H(String/OkdString)
+
+enum OrkidShaderType
 {
+	OrkidVertexShader,
+	OrkidFragmentShader
+};
+
+class OkdAbstractShader: public OkdAbstractResource
+{
+	template<class T> friend class OkdResourceRef;
+
 public:
-	
+	virtual void			compile() = 0;
+
+	inline OrkidShaderType	getShadertType() const;
 
 private:
-					OkdAbstractShader();
-					~OkdAbstractShader();
+							OkdAbstractShader();
+							virtual ~OkdAbstractShader();
+
+	OrkidShaderType			_eShaderType;
+	OkdString				_strShaderCode;
 };
 
 //*****************************************************************************

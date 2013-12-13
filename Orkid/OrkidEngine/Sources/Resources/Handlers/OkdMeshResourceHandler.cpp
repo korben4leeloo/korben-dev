@@ -7,6 +7,8 @@
 
 #include	"OkdMeshResourceHandler.h"
 
+#include	ORKID_ENGINE_H(Entities/OkdMesh)
+
 //-----------------------------------------------------------------------------
 // Name:		OkdMeshResourceHandler constructor
 //
@@ -25,4 +27,14 @@ OkdMeshResourceHandler::OkdMeshResourceHandler()
 OkdMeshResourceHandler::~OkdMeshResourceHandler()
 {
 	
+}
+
+//-----------------------------------------------------------------------------
+// Name:		allocateResource
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdMesh*	OkdMeshResourceHandler::allocateResource()
+{
+	return	( new OkdMesh() );
 }

@@ -19,6 +19,7 @@ class OkdVector3f;
 class OkdMesh: public OkdAbstractResource
 {
 	template<class T> friend class OkdResourceRef;
+	friend class OkdMeshResourceHandler;
 
 public:
 	void			create( const OkdMeshInfo& meshInfo );
@@ -35,8 +36,8 @@ private:
 		uint _vertexIdArray[3];
 	};
 
-	OkdMesh();
-	~OkdMesh();
+					OkdMesh();
+					~OkdMesh();
 
 	void			releaseVertexArray();
 	void			releasePolygonArray();

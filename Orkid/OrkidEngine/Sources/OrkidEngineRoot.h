@@ -15,6 +15,8 @@ enum OkdResourceType
 {
 	OrkidMesh,
 	OrkidScene,
+	OrkidShader,
+	OrkidShaderProgram,
 
 	OrkidResourceTypeCount,
 	OrkidResourceTypeUnknown = 0xFFFFFFFF

@@ -159,6 +159,7 @@ bool createWindow(LPCSTR title, int width, int height) {
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 #include	ORKID_ENGINE_H(SceneGraph/OkdNode)
 #include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
+#include	ORKID_ENGINE_H(Shaders/OkdAbstractShader)
 #include	ORKID_CORE_H(Containers/OkdList)
 #include	<rapidxml/rapidxml_print.hpp>
 #include	<iostream>
@@ -267,17 +268,28 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	//	pMesh->create( meshInfo );*/
 	//}
 
+	{
+		class OkdShaderPtr: public OkdResourcePtr<OkdAbstractShader, OrkidShader>
+		{
+		public:
+			OkdShaderPtr( const OrkidShaderType eShaderType ) {}
+		};
+
+		OkdShaderPtr shaderPtr( OrkidVertexShader );
+		shaderPtr.bind( "test" );
+	}
+
 	//testSaveMesh();
 	//testLoadMesh();
 
 	/*testSaveScene();
 	testLoadScene();*/
 
-	OkdScenePtr scenePtr;
+	/*OkdScenePtr scenePtr;
 
-	scenePtr.bind( "TestDAG" );
+	scenePtr.bind( "TestDAG.okd" );
 	scenePtr.load();
-	scenePtr.unbind();
+	scenePtr.unbind();*/
 
 	//return (0);
 

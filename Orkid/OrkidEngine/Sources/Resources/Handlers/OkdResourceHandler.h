@@ -28,7 +28,10 @@ public:
 												OkdResourceHandler();
 	virtual 									~OkdResourceHandler();
 
-	virtual OkdResourceType					getResourceType() const;
+	virtual OkdResourceType						getResourceType() const;
+
+protected:
+	virtual T*									allocateResource() = 0;
 
 private:
 	typedef OkdResourceRef<T>							OkdResourceRefImpl;
@@ -93,7 +96,8 @@ OkdResourceRef<T>*	OkdResourceHandler<T, resourceType>::addResource(const OkdStr
 
 	if	( itResource->second == 0 )
 	{
-		itResource->second = new OkdResourceRef<T>( resourceKey, strResourceName );
+		T* pResource = allocateResource();
+		itResource->second = new OkdResourceRef<T>( resourceKey, pResource, strResourceName );
 	}
 
 	return	( itResource->second );

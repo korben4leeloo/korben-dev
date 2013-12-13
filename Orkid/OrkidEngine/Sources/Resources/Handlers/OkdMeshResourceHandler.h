@@ -19,9 +19,12 @@ class OkdMeshResourceHandler: public OkdResourceHandler<OkdMesh, OrkidMesh>
 {
 	friend class OkdResourceManager;
 
+protected:
+	virtual OkdMesh*	allocateResource();
+
 private:
-			OkdMeshResourceHandler();
-	virtual	~OkdMeshResourceHandler();
+						OkdMeshResourceHandler();
+	virtual				~OkdMeshResourceHandler();
 };
 
 //*****************************************************************************

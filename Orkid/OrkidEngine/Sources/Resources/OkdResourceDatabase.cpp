@@ -19,7 +19,9 @@
 const char* OkdResourceDatabase::_strResourceRelativePath[OrkidResourceTypeCount] = 
 {
 	"Meshes",
-	"Scenes"
+	"Scenes",
+	"Shaders",
+	"Shaders"
 };
 
 //-----------------------------------------------------------------------------
@@ -145,7 +147,7 @@ OkdFileStream*	OkdResourceDatabase::openResourceFileStream(const OkdResourceType
 
 	OkdString	strRelativeSourcePath	= _strResourceRelativePath[eResourceType];
 	OkdString	strResourcePath			= _strResourceDatabasePath + "\\" + strRelativeSourcePath;
-	OkdString	strResourceFile			= strResourcePath + "\\" + strResourceName + ".okd";
+	OkdString	strResourceFile			= strResourcePath + "\\" + strResourceName/* + ".okd"*/;
 	bool		bResourcePathExist		= OkdFileStream::dirExist( strResourcePath );
 	int			nFileOpenMode;
 
@@ -154,6 +156,7 @@ OkdFileStream*	OkdResourceDatabase::openResourceFileStream(const OkdResourceType
 	case OpenStreamLoad:
 		if	( !OkdFileStream::exist( strResourceFile ) )
 		{
+			ORKID_BREAK();
 			return	( 0 );
 		}
 

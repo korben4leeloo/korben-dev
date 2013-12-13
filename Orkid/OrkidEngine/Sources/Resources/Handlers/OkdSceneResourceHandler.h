@@ -19,9 +19,12 @@ class OkdSceneResourceHandler: public OkdResourceHandler<OkdScene, OrkidScene>
 {
 	friend class OkdResourceManager;
 
+protected:
+	virtual OkdScene*	allocateResource();
+
 private:
-			OkdSceneResourceHandler();
-	virtual	~OkdSceneResourceHandler();
+						OkdSceneResourceHandler();
+	virtual				~OkdSceneResourceHandler();
 };
 
 //*****************************************************************************

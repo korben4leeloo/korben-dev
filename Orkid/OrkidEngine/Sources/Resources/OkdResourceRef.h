@@ -25,8 +25,7 @@ public:
 	inline const OkdString&			getResourceName() const;
 
 private:
-									OkdResourceRef( const OkdResourceKey& resourceKey );
-									OkdResourceRef( const OkdResourceKey& resourceKey, const OkdString& strResourceName );
+									OkdResourceRef( const OkdResourceKey& resourceKey, T* pResource, const OkdString& strResourceName );
 									~OkdResourceRef();
 
 	inline void						addRef();
@@ -49,28 +48,16 @@ private:
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-OkdResourceRef<T>::OkdResourceRef(const OkdResourceKey&	resourceKey)
-: _resourceKey		( resourceKey )
-, _uiRefCount		( 0 )
-, _uiLoadRefCount	( 0 )
-{
-	_pResource = new T();
-}
-
-//-----------------------------------------------------------------------------
-// Name:		OkdResourceRef constructor
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-OkdResourceRef<T>::OkdResourceRef(const OkdResourceKey&	resourceKey, 
+OkdResourceRef<T>::OkdResourceRef(const OkdResourceKey&	resourceKey,
+								  T*					pResource,
 								  const OkdString&		strResourceName)
 : _resourceKey		( resourceKey )
+, _pResource		( pResource )
 , _uiRefCount		( 0 )
 , _uiLoadRefCount	( 0 )
 , _strResourceName	( strResourceName )
 {
-	_pResource = new T();
+	//_pResource = new T();
 }
 
 //-----------------------------------------------------------------------------
