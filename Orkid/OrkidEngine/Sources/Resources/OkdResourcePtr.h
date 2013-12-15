@@ -226,10 +226,4 @@ void OkdResourcePtr<T, resourceType>::save()
 //	Inline functions declarations
 //*****************************************************************************
 
-class OkdMesh;
-class OkdScene;
-
-typedef OkdResourcePtr<OkdMesh, OrkidMesh> OkdMeshPtr;
-typedef OkdResourcePtr<OkdScene, OrkidScene> OkdScenePtr;
-
 #endif

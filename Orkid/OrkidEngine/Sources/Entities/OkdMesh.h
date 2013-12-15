@@ -12,6 +12,7 @@
 #include	"Root.h"
 
 #include	ORKID_ENGINE_H(Resources/OkdAbstractResource)
+#include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
 #include	ORKID_ENGINE_H(Entities/OkdMeshInfo)
 
 class OkdVector3f;
@@ -46,5 +47,7 @@ private:
 	OkdVector3f*	_pVertexArray;
 	OkdMeshPolygon*	_pPolygonArray;
 };
+
+typedef OkdResourcePtr<OkdMesh, OrkidMesh> OkdMeshPtr;
 
 #endif

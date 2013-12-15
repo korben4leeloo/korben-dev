@@ -12,12 +12,14 @@
 #include	"Root.h"
 
 #include	ORKID_ENGINE_H(Resources/OkdAbstractResource)
+#include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
 #include	ORKID_CORE_H(String/OkdString)
 
 enum OrkidShaderType
 {
 	OrkidVertexShader,
-	OrkidFragmentShader
+	OrkidFragmentShader,
+	OrkidGeometryShader
 };
 
 class OkdAbstractShader: public OkdAbstractResource
@@ -36,6 +38,8 @@ private:
 	OrkidShaderType			_eShaderType;
 	OkdString				_strShaderCode;
 };
+
+typedef OkdResourcePtr<OkdAbstractShader, OrkidShader> OkdShaderPtr;
 
 //*****************************************************************************
 //	Inline functions declarations

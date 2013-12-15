@@ -12,17 +12,20 @@
 #include	"Root.h"
 
 #include	ORKID_ENGINE_H(Resources/OkdAbstractResource)
+#include	ORKID_ENGINE_H(Shaders/OkdAbstractShader)
 
 class OkdAbstractShaderProgram: public OkdAbstractResource
 {
 public:
-	virtual void	build() = 0;
+	inline void				addShader( const OkdShaderPtr& shaderPtr );
+
+	virtual void			build() = 0;
 
 private:
-					OkdAbstractShaderProgram();
-					virtual ~OkdAbstractShaderProgram();
+							OkdAbstractShaderProgram();
+							virtual ~OkdAbstractShaderProgram();
 
-	//OkdVector<
+	OkdVector<OkdShaderPtr>	_shaderArray;
 };
 
 //*****************************************************************************

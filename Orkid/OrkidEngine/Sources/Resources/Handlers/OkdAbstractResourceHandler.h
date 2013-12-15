@@ -14,8 +14,8 @@
 class OkdAbstractResourceHandler
 {
 public:
-								OkdAbstractResourceHandler();
-	virtual						~OkdAbstractResourceHandler();
+							OkdAbstractResourceHandler();
+	virtual					~OkdAbstractResourceHandler();
 
 	virtual OkdResourceType	getResourceType() const = 0;
 };

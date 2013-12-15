@@ -12,6 +12,7 @@
 #include	"Root.h"
 
 #include	ORKID_ENGINE_H(Resources/OkdAbstractResource)
+#include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
 
 class OkdNode;
 class OkdMeshInstance;
@@ -52,6 +53,8 @@ private:
 
 	OkdNode*		_pRootNode;
 };
+
+typedef OkdResourcePtr<OkdScene, OrkidScene> OkdScenePtr;
 
 //*****************************************************************************
 //	Inline functions declarations
