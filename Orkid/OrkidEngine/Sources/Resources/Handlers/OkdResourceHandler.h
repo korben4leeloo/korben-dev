@@ -17,33 +17,27 @@
 #include	ORKID_CORE_H(String/OkdCrc32)
 #include	ORKID_CORE_H(String/OkdString)
 
-template<class T> class OkdResourceRef;
-
 template<class T, OkdResourceType resourceType>
 class OkdResourceHandler: public OkdAbstractResourceHandler
 {
 	template<class T, OkdResourceType resourceType> friend class OkdResourcePtr;
 
 public:
-												OkdResourceHandler();
-	virtual 									~OkdResourceHandler();
+								OkdResourceHandler();
+	virtual 					~OkdResourceHandler();
 
-	virtual OkdResourceType						getResourceType() const;
+	virtual OkdResourceType		getResourceType() const;
 
 protected:
-	virtual T*									allocateResource() = 0;
+	virtual T*					allocateResource() = 0;
 
 private:
-	typedef OkdResourceRef<T>							OkdResourceRefImpl;
-	typedef OkdMap<OkdResourceKey, OkdResourceRefImpl*> OkdResourceMap;
+	typedef OkdMap<OkdResourceKey, T*> OkdResourceMap;
 
-	OkdResourceRefImpl*							addResource( const OkdString& strResourceName );
-	bool										removeResource( const OkdResourceKey& resourceKey );
+	T*							addResource( const OkdString& strResourceName );
+	bool						removeResource( const OkdResourceKey& resourceKey );
 
-	void										loadResource( OkdResourceRefImpl* pResourceRef );
-	void										saveResource( OkdResourceRefImpl* pResourceRef );
-
-	OkdMap<OkdResourceKey, OkdResourceRefImpl*>	_resourceRefMap;
+	OkdMap<OkdResourceKey, T*>	_resourceRefMap;
 };
 
 //*****************************************************************************
@@ -89,7 +83,7 @@ OkdResourceType	OkdResourceHandler<T, resourceType>::getResourceType() const
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T, OkdResourceType resourceType>
-OkdResourceRef<T>*	OkdResourceHandler<T, resourceType>::addResource(const OkdString&	strResourceName)
+T*	OkdResourceHandler<T, resourceType>::addResource(const OkdString&	strResourceName)
 {
 	OkdResourceKey				resourceKey	= OkdCrc32::getCrc32( strResourceName );
 	OkdResourceMap::iterator	itResource	= _resourceRefMap.add( resourceKey, 0 );
@@ -97,48 +91,10 @@ OkdResourceRef<T>*	OkdResourceHandler<T, resourceType>::addResource(const OkdStr
 	if	( itResource->second == 0 )
 	{
 		T* pResource = allocateResource();
-		itResource->second = new OkdResourceRef<T>( resourceKey, pResource, strResourceName );
+		itResource->second = pResource;
 	}
 
 	return	( itResource->second );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		loadResource
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-void	OkdResourceHandler<T, resourceType>::loadResource(OkdResourceRef<T>*	pResourceRef)
-{
-	OkdResourceDatabase*	pResourceDatabase	= OrkidEngine::instance()->getResourceDatabase();
-	OkdFileStream*			pResourceFileStream	= pResourceDatabase->openResourceFileStream( resourceType, pResourceRef->getResourceName(), OkdResourceDatabase::OpenStreamLoad );
-	OkdAbstractResource*	pResource			= static_cast<OkdAbstractResource*>(pResourceRef->getResource());
-
-	if	( pResourceFileStream )
-	{
-		pResource->read( pResourceFileStream );
-		pResourceDatabase->closeResourceFileStream( &pResourceFileStream );
-	}
-}
-
-//-----------------------------------------------------------------------------
-// Name:		saveResource
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-void	OkdResourceHandler<T, resourceType>::saveResource(OkdResourceRef<T>*	pResourceRef)
-{
-	OkdResourceDatabase*	pResourceDatabase	= OrkidEngine::instance()->getResourceDatabase();
-	OkdFileStream*			pResourceFileStream	= pResourceDatabase->openResourceFileStream( resourceType, pResourceRef->getResourceName(), OkdResourceDatabase::OpenStreamSave );
-	OkdAbstractResource*	pResource			= static_cast<OkdAbstractResource*>(pResourceRef->getResource());
-
-	if	( pResourceFileStream )
-	{
-		pResource->write( pResourceFileStream );
-		pResourceDatabase->closeResourceFileStream( &pResourceFileStream );
-	}
 }
 
 //-----------------------------------------------------------------------------

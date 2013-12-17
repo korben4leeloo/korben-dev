@@ -22,9 +22,13 @@ enum OrkidShaderType
 	OrkidGeometryShader
 };
 
+class OkdAbstractShader;
+typedef OkdResourcePtr<OkdAbstractShader, OrkidShader> OkdShaderPtr;
+
 class OkdAbstractShader: public OkdAbstractResource
 {
-	template<class T> friend class OkdResourceRef;
+	//template<class T> friend class OkdResourceRef;
+	//friend class OkdShaderPtr::OkdResourceRef<OkdAbstractShader>;
 
 public:
 	virtual void			compile() = 0;
@@ -38,8 +42,6 @@ private:
 	OrkidShaderType			_eShaderType;
 	OkdString				_strShaderCode;
 };
-
-typedef OkdResourcePtr<OkdAbstractShader, OrkidShader> OkdShaderPtr;
 
 //*****************************************************************************
 //	Inline functions declarations
