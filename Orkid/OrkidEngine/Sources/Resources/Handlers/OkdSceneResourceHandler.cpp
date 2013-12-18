@@ -7,34 +7,34 @@
 
 #include	"OkdSceneResourceHandler.h"
 
-#include	ORKID_ENGINE_H(SceneGraph/OkdScene)
-
-//-----------------------------------------------------------------------------
-// Name:		OkdSceneResourceHandler constructor
+//#include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdSceneResourceHandler::OkdSceneResourceHandler()
-{
-
-}
-
-//-----------------------------------------------------------------------------
-// Name:		OkdSceneResourceHandler destructor
+////-----------------------------------------------------------------------------
+//// Name:		OkdSceneResourceHandler constructor
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdSceneResourceHandler::OkdSceneResourceHandler()
+//{
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdSceneResourceHandler::~OkdSceneResourceHandler()
-{
-	
-}
-
-//-----------------------------------------------------------------------------
-// Name:		allocateResource
+//}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdScene*	OkdSceneResourceHandler::allocateResource()
-{
-	return	( new OkdScene() );
-}
+////-----------------------------------------------------------------------------
+//// Name:		OkdSceneResourceHandler destructor
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdSceneResourceHandler::~OkdSceneResourceHandler()
+//{
+//	
+//}
+//
+////-----------------------------------------------------------------------------
+//// Name:		allocateResource
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdScene*	OkdSceneResourceHandler::allocateResource()
+//{
+//	return	( new OkdScene() );
+//}

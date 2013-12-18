@@ -12,15 +12,16 @@
 #include	"Root.h"
 
 #include	ORKID_ENGINE_H(Resources/OkdAbstractResource)
-#include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
+//#include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
 #include	ORKID_ENGINE_H(Entities/OkdMeshInfo)
 
 class OkdVector3f;
 
 class OkdMesh: public OkdAbstractResource
 {
-	template<class T> friend class OkdResourceRef;
-	friend class OkdMeshResourceHandler;
+	//template<class T> friend class OkdResourceRef;
+	//friend class OkdMeshResourceHandler;
+	friend class OkdResourceHandler<OkdMesh, OrkidMesh>;
 
 public:
 	void			create( const OkdMeshInfo& meshInfo );

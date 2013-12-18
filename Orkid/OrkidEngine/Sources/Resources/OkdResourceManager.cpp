@@ -9,9 +9,7 @@
 
 #include	ORKID_ENGINE_H(Resources/Handlers/OkdMeshResourceHandler)
 #include	ORKID_ENGINE_H(Resources/Handlers/OkdSceneResourceHandler)
-
-class OkdMesh;
-class OkdScene;
+#include	ORKID_ENGINE_H(Shaders/OkdShaderResourceHandler)
 
 //-----------------------------------------------------------------------------
 // Name:		OkdResourceManager constructor
@@ -40,8 +38,9 @@ OkdResourceManager::~OkdResourceManager()
 //-----------------------------------------------------------------------------
 void	OkdResourceManager::initialize()
 {
-	_resourceHandlers[OrkidMesh] = new OkdMeshResourceHandler();
-	_resourceHandlers[OrkidScene] = new OkdSceneResourceHandler();
+	_resourceHandlers[OrkidMesh]	= new OkdMeshResourceHandler();
+	_resourceHandlers[OrkidScene]	= new OkdSceneResourceHandler();
+	_resourceHandlers[OrkidShader]	= new OkdShaderResourceHandler();
 }
 
 ////-----------------------------------------------------------------------------

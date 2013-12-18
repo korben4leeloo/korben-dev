@@ -36,35 +36,33 @@ public:
 	T*					getResource();
 	const OkdString&	getResourceName() const;
 
-private:
-	template<class U>
-	class OkdResourceRef
-	{
-		friend class OkdResourcePtr<T, resourceType>;
-		//template<class T, OkdResourceType resourceType> friend class OkdResourceHandler;
+protected:
+	//template<class U>
+	//class OkdResourceRef
+	//{
+	//	friend class OkdResourcePtr<T, resourceType>;
+	//	//template<class T, OkdResourceType resourceType> friend class OkdResourceHandler;
 
-	public:
-		inline const OkdResourceKey&	getResourceKey() const;
-		inline U*						getResource();
-		inline const OkdString&			getResourceName() const;
+	//public:
+	//	inline const OkdResourceKey&	getResourceKey() const;
+	//	inline U*						getResource();
+	//	inline const OkdString&			getResourceName() const;
 
-	private:
-										OkdResourceRef( const OkdResourceKey& resourceKey, U* pResource, const OkdString& strResourceName );
-										~OkdResourceRef();
+	//private:
+	//									OkdResourceRef( const OkdResourceKey& resourceKey, U* pResource, const OkdString& strResourceName );
+	//									~OkdResourceRef();
 
-		inline void						addRef();
-		inline uint32					removeRef();
+	//	inline void						addRef();
+	//	inline uint32					removeRef();
 
-		OkdResourceKey					_resourceKey;
-		uint32							_uiRefCount;
-		uint32							_uiLoadRefCount;
-		U*								_pResource;
-		OkdString						_strResourceName;
-	};
-
-	typedef OkdResourceHandler<T, resourceType>	OkdTypeResourceHandler;
+	//	OkdResourceKey					_resourceKey;
+	//	uint32							_uiRefCount;
+	//	uint32							_uiLoadRefCount;
+	//	U*								_pResource;
+	//	OkdString						_strResourceName;
+	//};
 	
-	OkdResourceRef<T>*	_pResourceRef;
+	T*					_pResourceRef;
 };
 
 //-----------------------------------------------------------------------------
@@ -134,11 +132,11 @@ OkdResourcePtr<T, resourceType>& OkdResourcePtr<T, resourceType>::operator=(cons
 template<class T, OkdResourceType resourceType>
 void OkdResourcePtr<T, resourceType>::bind(const OkdString&	strResourceName)
 {
-	OkdResourceManager*		pResourceManager	= OrkidEngine::instance()->getResourceManager();
-	OkdTypeResourceHandler*	pResourceHandler	= (OkdTypeResourceHandler*)pResourceManager->getResourceHandler( resourceType );
-	T*						pResource			= pResourceHandler->addResource( strResourceName );
+	OkdResourceManager*			pResourceManager	= OrkidEngine::instance()->getResourceManager();
+	OkdAbstractResourceHandler*	pResourceHandler	= pResourceManager->getResourceHandler( resourceType );
+	T*							pResourceRef		= static_cast<T*>(pResourceHandler->addResource( strResourceName ));
 
-	if	( pResource && ( pResource != getResource() ) )
+	if	( pResourceRef && ( pResourceRef != _pResourceRef ) )
 	{
 		unbind();
 
@@ -157,13 +155,12 @@ void OkdResourcePtr<T, resourceType>::unbind()
 {
 	if	( _pResourceRef )
 	{
-		OkdResourceManager*		pResourceManager	= OrkidEngine::instance()->getResourceManager();
-		OkdTypeResourceHandler*	pResourceHandler	= (OkdTypeResourceHandler*)pResourceManager->getResourceHandler( resourceType );
+		OkdResourceManager*			pResourceManager	= OrkidEngine::instance()->getResourceManager();
+		OkdAbstractResourceHandler*	pResourceHandler	= pResourceManager->getResourceHandler( resourceType );
 		
 		if	( _pResourceRef->removeRef() == 0 )
 		{
-			pResourceHandler->removeResource( _pResourceRef->getResourceKey() );
-			delete _pResourceRef;
+			pResourceHandler->removeResource( _pResourceRef );
 		}
 		
 		_pResourceRef = 0;
@@ -178,7 +175,7 @@ void OkdResourcePtr<T, resourceType>::unbind()
 template<class T, OkdResourceType resourceType>
 T*	OkdResourcePtr<T, resourceType>::getResource()
 {
-	return	( _pResourceRef->getResource() );
+	return	( _pResourceRef );
 }
 
 //-----------------------------------------------------------------------------
@@ -213,12 +210,11 @@ void OkdResourcePtr<T, resourceType>::load()
 		}
 
 		OkdResourceDatabase*	pResourceDatabase	= OrkidEngine::instance()->getResourceDatabase();
-		OkdFileStream*			pResourceFileStream	= pResourceDatabase->openResourceFileStream( resourceType, pResourceRef->getResourceName(), OkdResourceDatabase::OpenStreamLoad );
-		T*						pResource			= getResource();
+		OkdFileStream*			pResourceFileStream	= pResourceDatabase->openResourceFileStream( resourceType, _pResourceRef->getResourceName(), OkdResourceDatabase::OpenStreamLoad );
 
 		if	( pResourceFileStream )
 		{
-			pResource->read( pResourceFileStream );
+			_pResourceRef->read( pResourceFileStream );
 			pResourceDatabase->closeResourceFileStream( &pResourceFileStream );
 		}
 	}
@@ -244,114 +240,113 @@ void OkdResourcePtr<T, resourceType>::save()
 			return;
 		}
 
-		OkdResourceManager*		pResourceManager	= OrkidEngine::instance()->getResourceManager();
-		OkdTypeResourceHandler*	pResourceHandler	= (OkdTypeResourceHandler*)pResourceManager->getResourceHandler( resourceType );
-		T*						pResource			= getResource();
+		OkdResourceDatabase*	pResourceDatabase	= OrkidEngine::instance()->getResourceDatabase();
+		OkdFileStream*			pResourceFileStream	= pResourceDatabase->openResourceFileStream( resourceType, _pResourceRef->getResourceName(), OkdResourceDatabase::OpenStreamSave );
 
 		if	( pResourceFileStream )
 		{
-			pResource->write( pResourceFileStream );
+			_pResourceRef->write( pResourceFileStream );
 			pResourceDatabase->closeResourceFileStream( &pResourceFileStream );
 		}
 	}
 }
 
-//-----------------------------------------------------------------------------
-// Name:		OkdResourceRef constructor
+////-----------------------------------------------------------------------------
+//// Name:		OkdResourceRef constructor
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//template<class T, OkdResourceType resourceType>
+//template<class U>
+//OkdResourcePtr<T, resourceType>::OkdResourceRef<U>::OkdResourceRef(const OkdResourceKey&	resourceKey,
+//																   U*						pResource,
+//																   const OkdString&			strResourceName)
+//: _resourceKey		( resourceKey )
+//, _pResource		( pResource )
+//, _uiRefCount		( 0 )
+//, _uiLoadRefCount	( 0 )
+//, _strResourceName	( strResourceName )
+//{
+//	//_pResource = new T();
+//}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-template<class U>
-OkdResourcePtr<T, resourceType>::OkdResourceRef<U>::OkdResourceRef(const OkdResourceKey&	resourceKey,
-																   U*						pResource,
-																   const OkdString&			strResourceName)
-: _resourceKey		( resourceKey )
-, _pResource		( pResource )
-, _uiRefCount		( 0 )
-, _uiLoadRefCount	( 0 )
-, _strResourceName	( strResourceName )
-{
-	//_pResource = new T();
-}
-
-//-----------------------------------------------------------------------------
-// Name:		OkdResourceRef destructor
+////-----------------------------------------------------------------------------
+//// Name:		OkdResourceRef destructor
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//template<class T, OkdResourceType resourceType>
+//template<class U>
+//OkdResourcePtr<T, resourceType>::OkdResourceRef<U>::~OkdResourceRef()
+//{
+//	/*if	( _pResource )
+//	{
+//		delete _pResource;
+//	}*/
+//}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-template<class U>
-OkdResourcePtr<T, resourceType>::OkdResourceRef<U>::~OkdResourceRef()
-{
-	/*if	( _pResource )
-	{
-		delete _pResource;
-	}*/
-}
-
-//-----------------------------------------------------------------------------
-// Name:		getResourceKey
+////-----------------------------------------------------------------------------
+//// Name:		getResourceKey
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//template<class T, OkdResourceType resourceType>
+//template<class U>
+//const OkdResourceKey&	OkdResourcePtr<T, resourceType>::OkdResourceRef<U>::getResourceKey() const
+//{
+//	return( _resourceKey );
+//}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-template<class U>
-const OkdResourceKey&	OkdResourcePtr<T, resourceType>::OkdResourceRef<U>::getResourceKey() const
-{
-	return( _resourceKey );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		getResourceKey
+////-----------------------------------------------------------------------------
+//// Name:		getResourceKey
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//template<class T, OkdResourceType resourceType>
+//template<class U>
+//U*	OkdResourcePtr<T, resourceType>::OkdResourceRef<U>::getResource()
+//{
+//	return( _pResource );
+//}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-template<class U>
-U*	OkdResourcePtr<T, resourceType>::OkdResourceRef<U>::getResource()
-{
-	return( _pResource );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		getResourceName
+////-----------------------------------------------------------------------------
+//// Name:		getResourceName
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//template<class T, OkdResourceType resourceType>
+//template<class U>
+//const OkdString&	OkdResourcePtr<T, resourceType>::OkdResourceRef<U>::getResourceName() const
+//{
+//	return( _strResourceName );
+//}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-template<class U>
-const OkdString&	OkdResourcePtr<T, resourceType>::OkdResourceRef<U>::getResourceName() const
-{
-	return( _strResourceName );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		addRef
+////-----------------------------------------------------------------------------
+//// Name:		addRef
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//template<class T, OkdResourceType resourceType>
+//template<class U>
+//void	OkdResourcePtr<T, resourceType>::OkdResourceRef<U>::addRef()
+//{
+//	_uiRefCount++;
+//}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-template<class U>
-void	OkdResourcePtr<T, resourceType>::OkdResourceRef<U>::addRef()
-{
-	_uiRefCount++;
-}
-
-//-----------------------------------------------------------------------------
-// Name:		removeRef
+////-----------------------------------------------------------------------------
+//// Name:		removeRef
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//template<class T, OkdResourceType resourceType>
+//template<class U>
+//uint32	OkdResourcePtr<T, resourceType>::OkdResourceRef<U>::removeRef()
+//{
+//	ORKID_ASSERT( _uiRefCount > 0 );
+//	_uiRefCount--;
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-template<class U>
-uint32	OkdResourcePtr<T, resourceType>::OkdResourceRef<U>::removeRef()
-{
-	ORKID_ASSERT( _uiRefCount > 0 );
-	_uiRefCount--;
-
-	return( _uiRefCount );
-}
+//	return( _uiRefCount );
+//}
 
 //*****************************************************************************
 //	Inline functions declarations

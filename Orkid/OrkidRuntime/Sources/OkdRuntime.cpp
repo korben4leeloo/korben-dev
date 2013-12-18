@@ -159,7 +159,7 @@ bool createWindow(LPCSTR title, int width, int height) {
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 #include	ORKID_ENGINE_H(SceneGraph/OkdNode)
 #include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
-#include	ORKID_ENGINE_H(Shaders/OkdAbstractShader)
+#include	ORKID_ENGINE_H(Shaders/OkdShader)
 #include	ORKID_CORE_H(Containers/OkdList)
 #include	<rapidxml/rapidxml_print.hpp>
 #include	<iostream>
@@ -225,6 +225,30 @@ void	testLoadMesh()
 	OkdMesh* pMesh = meshPtr.getResource();
 }
 
+//class OkdShaderPtr: public OkdResourcePtr<OkdShader, OrkidShader>
+//{
+//public:
+//	/*OkdShaderPtr(const OkdString &		strShaderName, 
+//				 const OrkidShaderType	eShaderType)
+//	{
+//		bind( strShaderName );
+//		_pResourceRef->_eShaderType = eShaderType;
+//	}*/
+//
+//	void bind( const OkdString& strResourceName, const OrkidShaderType	eShaderType )
+//	{
+//		bind( strResourceName );
+//		_pResourceRef->_eShaderType = eShaderType;
+//	}
+//
+//private:
+//	void bind( const OkdString& strResourceName )
+//	{
+//		OkdResourcePtr::bind( strResourceName );
+//	}
+//};
+
+
 /**
 	WinMain is the main entry point for Windows based applications as opposed to 'main' for console
 	applications. Here we will make the calls to create our window, setup our scene and then
@@ -240,44 +264,39 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	OrkidEngine*		pEngine				= OrkidEngine::create();
 	//OkdResourceManager*	pResourceManager	= pEngine->getResourceManager();
 
-	//{
-	//	OkdMeshPtr meshPtr, meshPtr2;
-
-	//	meshPtr.bind( "test" );
-	//	meshPtr2.bind( "test2" );
-
-	//	//OkdMeshPtr meshPtr3( meshPtr );
-	//	OkdMeshPtr meshPtr3;
-
-	//	meshPtr3.bind( "test2" );
-	//	meshPtr = meshPtr2;
-
-	//	meshPtr2.unbind();
-
-	//	OkdMeshPtr meshPtr4 = meshPtr;
-	//	meshPtr4.bind( "test2" );
-	//	
-	//	meshPtr4.load();
-	//	meshPtr4.save();
-
-	//	/*OkdString str( "C:\\Users\\jja\\Downloads" );
-	//	const OkdVector<OkdString>& tokens = str.split( "\\" );*/
-
-	//	/*OkdMesh* pMesh = meshPtr.getResource();
-	//	OkdMeshInfo	meshInfo( 8, 12 );
-	//	pMesh->create( meshInfo );*/
-	//}
-
 	{
-		class OkdShaderPtr: public OkdResourcePtr<OkdAbstractShader, OrkidShader>
-		{
-		public:
-			OkdShaderPtr( const OrkidShaderType eShaderType ) {}
-		};
+		OkdMeshPtr meshPtr, meshPtr2;
 
-		OkdShaderPtr shaderPtr( OrkidVertexShader );
-		shaderPtr.bind( "test" );
+		meshPtr.bind( "test" );
+		meshPtr2.bind( "test2" );
+
+		//OkdMeshPtr meshPtr3( meshPtr );
+		OkdMeshPtr meshPtr3;
+
+		meshPtr3.bind( "test2" );
+		meshPtr = meshPtr2;
+
+		meshPtr2.unbind();
+
+		OkdMeshPtr meshPtr4 = meshPtr;
+		meshPtr4.bind( "test2" );
+		
+		meshPtr4.save();
+		meshPtr4.load();
+
+		/*OkdString str( "C:\\Users\\jja\\Downloads" );
+		const OkdVector<OkdString>& tokens = str.split( "\\" );*/
+
+		/*OkdMesh* pMesh = meshPtr.getResource();
+		OkdMeshInfo	meshInfo( 8, 12 );
+		pMesh->create( meshInfo );*/
 	}
+
+	//{
+	//	OkdShaderPtr shaderPtr;//( "test", OrkidVertexShader );
+	//	//shaderPtr.bind( "test" );
+	//	shaderPtr.bind( "test", OrkidVertexShader );
+	//}
 
 	//testSaveMesh();
 	//testLoadMesh();
@@ -291,7 +310,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	scenePtr.load();
 	scenePtr.unbind();*/
 
-	//return (0);
+	return (0);
 
 	/*HMODULE hLib = LoadLibrary( "D:\\DevJJA\\SVN\\korben-dev\\Orkid\\Debug\\OrkidRuntimeDll.dll" );
 	FARPROC procAddr = GetProcAddress( hLib, "orkidRuntimeDllMainEntry" );*/

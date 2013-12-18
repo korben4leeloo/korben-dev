@@ -12,20 +12,25 @@
 #include	"Root.h"
 
 #include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
+#include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 
-class OkdScene;
+typedef OkdResourceHandler<OkdScene, OrkidScene> OkdSceneResourceHandler;
 
-class OkdSceneResourceHandler: public OkdResourceHandler<OkdScene, OrkidScene>
-{
-	friend class OkdResourceManager;
-
-protected:
-	virtual OkdScene*	allocateResource();
-
-private:
-						OkdSceneResourceHandler();
-	virtual				~OkdSceneResourceHandler();
-};
+//#include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
+//
+//class OkdScene;
+//
+//class OkdSceneResourceHandler: public OkdResourceHandler<OkdScene, OrkidScene>
+//{
+//	friend class OkdResourceManager;
+//
+//protected:
+//	virtual OkdScene*	allocateResource();
+//
+//private:
+//						OkdSceneResourceHandler();
+//	virtual				~OkdSceneResourceHandler();
+//};
 
 //*****************************************************************************
 //	Inline functions declarations

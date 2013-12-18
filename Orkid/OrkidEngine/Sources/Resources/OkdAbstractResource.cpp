@@ -13,6 +13,9 @@
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 OkdAbstractResource::OkdAbstractResource()
+: _resourceKey		( 0xFFFFFFFF )
+, _uiRefCount		( 0 )
+, _uiLoadRefCount	( 0 )
 {
 	
 }

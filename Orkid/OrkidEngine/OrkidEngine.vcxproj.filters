@@ -139,6 +139,12 @@
     <ClInclude Include="Sources\Shaders\OkdAbstractShaderProgram.h">
       <Filter>Sources\Shaders</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Shaders\OkdShaderResourceHandler.h">
+      <Filter>Sources\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Shaders\OkdShader.h">
+      <Filter>Sources\Shaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
@@ -211,6 +217,12 @@
       <Filter>Sources\Shaders</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Shaders\OkdAbstractShaderProgram.cpp">
+      <Filter>Sources\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Shaders\OkdShaderResourceHandler.cpp">
+      <Filter>Sources\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Shaders\OkdShader.cpp">
       <Filter>Sources\Shaders</Filter>
     </ClCompile>
   </ItemGroup>

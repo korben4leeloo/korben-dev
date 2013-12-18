@@ -20,24 +20,26 @@
 template<class T, OkdResourceType resourceType>
 class OkdResourceHandler: public OkdAbstractResourceHandler
 {
-	template<class T, OkdResourceType resourceType> friend class OkdResourcePtr;
+	//template<class T, OkdResourceType resourceType> friend class OkdResourcePtr;
 
 public:
-								OkdResourceHandler();
-	virtual 					~OkdResourceHandler();
+									OkdResourceHandler();
+	virtual 						~OkdResourceHandler();
 
-	virtual OkdResourceType		getResourceType() const;
+	virtual OkdResourceType			getResourceType() const;
 
 protected:
-	virtual T*					allocateResource() = 0;
+	//virtual T*					allocateResource() = 0;
 
 private:
 	typedef OkdMap<OkdResourceKey, T*> OkdResourceMap;
 
-	T*							addResource( const OkdString& strResourceName );
-	bool						removeResource( const OkdResourceKey& resourceKey );
+	/*T*							addResource( const OkdString& strResourceName );
+	bool						removeResource( const T* pResource );*/
+	virtual OkdAbstractResource*	addResource( const OkdString& strResourceName );
+	virtual bool					removeResource( const OkdAbstractResource* pResource );
 
-	OkdMap<OkdResourceKey, T*>	_resourceRefMap;
+	OkdMap<OkdResourceKey, T*>		_resourceRefMap;
 };
 
 //*****************************************************************************
@@ -83,14 +85,19 @@ OkdResourceType	OkdResourceHandler<T, resourceType>::getResourceType() const
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T, OkdResourceType resourceType>
-T*	OkdResourceHandler<T, resourceType>::addResource(const OkdString&	strResourceName)
+OkdAbstractResource*	OkdResourceHandler<T, resourceType>::addResource(const OkdString&	strResourceName)
 {
 	OkdResourceKey				resourceKey	= OkdCrc32::getCrc32( strResourceName );
 	OkdResourceMap::iterator	itResource	= _resourceRefMap.add( resourceKey, 0 );
 
 	if	( itResource->second == 0 )
 	{
-		T* pResource = allocateResource();
+		//T* pResource = allocateResource();
+		T* pResource = new T();
+
+		pResource->_resourceKey		= resourceKey;
+		pResource->_strResourceName	= strResourceName;
+
 		itResource->second = pResource;
 	}
 
@@ -103,12 +110,50 @@ T*	OkdResourceHandler<T, resourceType>::addResource(const OkdString&	strResource
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T, OkdResourceType resourceType>
-bool	OkdResourceHandler<T, resourceType>::removeResource(const OkdResourceKey&	resourceKey)
+bool	OkdResourceHandler<T, resourceType>::removeResource(const OkdAbstractResource*	pResource)
 {
-	uint32 uiCount = _resourceRefMap.remove( resourceKey );
+	uint32 uiCount = _resourceRefMap.remove( pResource->getResourceKey() );
 	ORKID_ASSERT( uiCount == 1 );
+
+	delete pResource;
 
 	return	( uiCount > 0 );
 }
+
+////-----------------------------------------------------------------------------
+//// Name:		addResource
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//template<class T, OkdResourceType resourceType>
+//T*	OkdResourceHandler<T, resourceType>::addResource(const OkdString&	strResourceName)
+//{
+//	OkdResourceKey				resourceKey	= OkdCrc32::getCrc32( strResourceName );
+//	OkdResourceMap::iterator	itResource	= _resourceRefMap.add( resourceKey, 0 );
+//
+//	if	( itResource->second == 0 )
+//	{
+//		T* pResource = allocateResource();
+//		itResource->second = pResource;
+//	}
+//
+//	return	( itResource->second );
+//}
+//
+////-----------------------------------------------------------------------------
+//// Name:		removeResource
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//template<class T, OkdResourceType resourceType>
+//bool	OkdResourceHandler<T, resourceType>::removeResource(const T*	pResource)
+//{
+//	uint32 uiCount = _resourceRefMap.remove( pResource->getResourceKey() );
+//	ORKID_ASSERT( uiCount == 1 );
+//
+//	delete pResource;
+//
+//	return	( uiCount > 0 );
+//}
 
 #endif

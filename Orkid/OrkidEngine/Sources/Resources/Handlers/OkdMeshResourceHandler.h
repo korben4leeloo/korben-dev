@@ -12,20 +12,25 @@
 #include	"Root.h"
 
 #include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
+#include	ORKID_ENGINE_H(Entities/OkdMesh)
 
-class OkdMesh;
+typedef OkdResourceHandler<OkdMesh, OrkidMesh> OkdMeshResourceHandler;
 
-class OkdMeshResourceHandler: public OkdResourceHandler<OkdMesh, OrkidMesh>
-{
-	friend class OkdResourceManager;
-
-protected:
-	virtual OkdMesh*	allocateResource();
-
-private:
-						OkdMeshResourceHandler();
-	virtual				~OkdMeshResourceHandler();
-};
+//#include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
+//
+//class OkdMesh;
+//
+//class OkdMeshResourceHandler: public OkdResourceHandler<OkdMesh, OrkidMesh>
+//{
+//	friend class OkdResourceManager;
+//
+//protected:
+//	//virtual OkdMesh*	allocateResource();
+//
+//private:
+//						OkdMeshResourceHandler();
+//	virtual				~OkdMeshResourceHandler();
+//};
 
 //*****************************************************************************
 //	Inline functions declarations

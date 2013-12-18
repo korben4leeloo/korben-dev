@@ -11,13 +11,22 @@
 
 #include	"Root.h"
 
+class OkdAbstractResource;
+class OkdString;
+
 class OkdAbstractResourceHandler
 {
-public:
-							OkdAbstractResourceHandler();
-	virtual					~OkdAbstractResourceHandler();
+	template<class T, OkdResourceType resourceType> friend class OkdResourcePtr;
 
-	virtual OkdResourceType	getResourceType() const = 0;
+public:
+									OkdAbstractResourceHandler();
+	virtual							~OkdAbstractResourceHandler();
+
+	virtual OkdResourceType			getResourceType() const									= 0;
+
+protected:
+	virtual OkdAbstractResource*	addResource( const OkdString& strResourceName )			= 0;
+	virtual bool					removeResource( const OkdAbstractResource* pResource )	= 0;
 };
 
 //*****************************************************************************

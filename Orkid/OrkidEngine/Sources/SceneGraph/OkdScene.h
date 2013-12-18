@@ -26,8 +26,9 @@ class OkdCreature;
 class OkdScene: public OkdAbstractResource
 {
 public:
-	template<class T> friend class OkdResourceRef;
-	friend class OkdSceneResourceHandler;
+	//template<class T> friend class OkdResourceRef;
+	//friend class OkdSceneResourceHandler;
+	friend class OkdResourceHandler<OkdScene, OrkidScene>;
 
 	inline OkdNode*	getRootNode();
 

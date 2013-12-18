@@ -41,6 +41,8 @@
     <ClInclude Include="Sources\SceneGraph\Root.h" />
     <ClInclude Include="Sources\Shaders\OkdAbstractShader.h" />
     <ClInclude Include="Sources\Shaders\OkdAbstractShaderProgram.h" />
+    <ClInclude Include="Sources\Shaders\OkdShader.h" />
+    <ClInclude Include="Sources\Shaders\OkdShaderResourceHandler.h" />
     <ClInclude Include="Sources\Shaders\Root.h" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +70,8 @@
     <ClCompile Include="Sources\SceneGraph\OkdScene.cpp" />
     <ClCompile Include="Sources\Shaders\OkdAbstractShader.cpp" />
     <ClCompile Include="Sources\Shaders\OkdAbstractShaderProgram.cpp" />
+    <ClCompile Include="Sources\Shaders\OkdShader.cpp" />
+    <ClCompile Include="Sources\Shaders\OkdShaderResourceHandler.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6DBBF689-0136-4205-9458-6A61C8FCC42A}</ProjectGuid>
