@@ -14,7 +14,7 @@
 #include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
 #include	ORKID_ENGINE_H(Entities/OkdMesh)
 
-typedef OkdResourceHandler<OkdMesh, OrkidMesh> OkdMeshResourceHandler;
+typedef OkdResourceHandler<OkdMesh> OkdMeshResourceHandler;
 
 //#include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
 //

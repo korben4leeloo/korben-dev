@@ -17,16 +17,14 @@
 #include	ORKID_CORE_H(String/OkdCrc32)
 #include	ORKID_CORE_H(String/OkdString)
 
-template<class T, OkdResourceType resourceType>
+template<class T>
 class OkdResourceHandler: public OkdAbstractResourceHandler
 {
-	//template<class T, OkdResourceType resourceType> friend class OkdResourcePtr;
+	//template<class T> friend class OkdResourcePtr;
 
 public:
 									OkdResourceHandler();
 	virtual 						~OkdResourceHandler();
-
-	virtual OkdResourceType			getResourceType() const;
 
 protected:
 	//virtual T*					allocateResource() = 0;
@@ -51,8 +49,8 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-OkdResourceHandler<T, resourceType>::OkdResourceHandler()
+template<class T>
+OkdResourceHandler<T>::OkdResourceHandler()
 {
 	
 }
@@ -62,21 +60,10 @@ OkdResourceHandler<T, resourceType>::OkdResourceHandler()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-OkdResourceHandler<T, resourceType>::~OkdResourceHandler()
+template<class T>
+OkdResourceHandler<T>::~OkdResourceHandler()
 {
 	
-}
-
-//-----------------------------------------------------------------------------
-// Name:		getResourceType
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-OkdResourceType	OkdResourceHandler<T, resourceType>::getResourceType() const
-{
-	return	( resourceType );
 }
 
 //-----------------------------------------------------------------------------
@@ -84,8 +71,8 @@ OkdResourceType	OkdResourceHandler<T, resourceType>::getResourceType() const
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-OkdAbstractResource*	OkdResourceHandler<T, resourceType>::addResource(const OkdString&	strResourceName)
+template<class T>
+OkdAbstractResource*	OkdResourceHandler<T>::addResource(const OkdString&	strResourceName)
 {
 	OkdResourceKey				resourceKey	= OkdCrc32::getCrc32( strResourceName );
 	OkdResourceMap::iterator	itResource	= _resourceRefMap.add( resourceKey, 0 );
@@ -109,14 +96,13 @@ OkdAbstractResource*	OkdResourceHandler<T, resourceType>::addResource(const OkdS
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-bool	OkdResourceHandler<T, resourceType>::removeResource(const OkdAbstractResource*	pResource)
+template<class T>
+bool	OkdResourceHandler<T>::removeResource(const OkdAbstractResource*	pResource)
 {
 	uint32 uiCount = _resourceRefMap.remove( pResource->getResourceKey() );
 	ORKID_ASSERT( uiCount == 1 );
 
 	delete pResource;
-
 	return	( uiCount > 0 );
 }
 
@@ -125,8 +111,8 @@ bool	OkdResourceHandler<T, resourceType>::removeResource(const OkdAbstractResour
 ////
 //// Created:		2013-08-26
 ////-----------------------------------------------------------------------------
-//template<class T, OkdResourceType resourceType>
-//T*	OkdResourceHandler<T, resourceType>::addResource(const OkdString&	strResourceName)
+//template<class T>
+//T*	OkdResourceHandler<T>::addResource(const OkdString&	strResourceName)
 //{
 //	OkdResourceKey				resourceKey	= OkdCrc32::getCrc32( strResourceName );
 //	OkdResourceMap::iterator	itResource	= _resourceRefMap.add( resourceKey, 0 );
@@ -145,8 +131,8 @@ bool	OkdResourceHandler<T, resourceType>::removeResource(const OkdAbstractResour
 ////
 //// Created:		2013-08-26
 ////-----------------------------------------------------------------------------
-//template<class T, OkdResourceType resourceType>
-//bool	OkdResourceHandler<T, resourceType>::removeResource(const T*	pResource)
+//template<class T>
+//bool	OkdResourceHandler<T>::removeResource(const T*	pResource)
 //{
 //	uint32 uiCount = _resourceRefMap.remove( pResource->getResourceKey() );
 //	ORKID_ASSERT( uiCount == 1 );

@@ -14,7 +14,7 @@
 #include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 
-typedef OkdResourceHandler<OkdScene, OrkidScene> OkdSceneResourceHandler;
+typedef OkdResourceHandler<OkdScene> OkdSceneResourceHandler;
 
 //#include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
 //

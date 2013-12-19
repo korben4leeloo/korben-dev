@@ -17,12 +17,15 @@ class OkdResourceManager
 {
 public:
 	friend class OrkidEngine;
+	friend class OkdOpenGL_API;
 
 	inline OkdAbstractResourceHandler*	getResourceHandler( const OkdResourceType eResourceType );
 
 private:
 										OkdResourceManager();
 										~OkdResourceManager();
+
+	inline void							setResourceHandler( const OkdResourceType eResourceType, OkdAbstractResourceHandler* pResourceHandler );
 
 	void								initialize();
 
@@ -32,6 +35,17 @@ private:
 //*****************************************************************************
 //	Inline functions declarations
 //*****************************************************************************
+
+//-----------------------------------------------------------------------------
+// Name:		setResourceHandler
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdResourceManager::setResourceHandler(const OkdResourceType		eResourceType, 
+											   OkdAbstractResourceHandler*	pResourceHandler)
+{
+	_resourceHandlers[eResourceType] = pResourceHandler;
+}
 
 //-----------------------------------------------------------------------------
 // Name:		getResourceHandler

@@ -21,7 +21,7 @@ class OkdMesh: public OkdAbstractResource
 {
 	//template<class T> friend class OkdResourceRef;
 	//friend class OkdMeshResourceHandler;
-	friend class OkdResourceHandler<OkdMesh, OrkidMesh>;
+	friend class OkdResourceHandler<OkdMesh>;
 
 public:
 	void			create( const OkdMeshInfo& meshInfo );

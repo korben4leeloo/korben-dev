@@ -1,44 +1,44 @@
-//*****************************************************************************
+////*****************************************************************************
+////
+////	Class:		OkdShaderResourceHandler
+////
+////	Created:	2013-08-26
+////
+////*****************************************************************************
 //
-//	Class:		OkdShaderResourceHandler
+//#ifndef __OrkidEngine_OkdShaderResourceHandler_h__
+//#define __OrkidEngine_OkdShaderResourceHandler_h__
 //
-//	Created:	2013-08-26
+//#include	"Root.h"
 //
-//*****************************************************************************
-
-#ifndef __OrkidEngine_OkdShaderResourceHandler_h__
-#define __OrkidEngine_OkdShaderResourceHandler_h__
-
-#include	"Root.h"
-
-#include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
-#include	ORKID_ENGINE_H(Shaders/OkdShader)
-
-typedef OkdResourceHandler<OkdShader, OrkidShader> OkdShaderResourceHandler;
-
 //#include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
-//#include	ORKID_ENGINE_H(Shaders/OkdAbstractShader)
+//#include	ORKID_ENGINE_H(Shaders/OkdShader)
 //
-//typedef OkdResourceHandler<OkdAbstractShader, OrkidShader> OkdShaderResourceHandler;
-
-//#include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
+//typedef OkdResourceHandler<OkdShader, OrkidShader> OkdShaderResourceHandler;
 //
-//class OkdAbstractShader;
+////#include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
+////#include	ORKID_ENGINE_H(Shaders/OkdAbstractShader)
+////
+////typedef OkdResourceHandler<OkdAbstractShader, OrkidShader> OkdShaderResourceHandler;
 //
-//class OkdShaderResourceHandler: public OkdResourceHandler<OkdAbstractShader, OrkidShader>
-//{
-//	friend class OkdResourceManager;
+////#include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
+////
+////class OkdAbstractShader;
+////
+////class OkdShaderResourceHandler: public OkdResourceHandler<OkdAbstractShader, OrkidShader>
+////{
+////	friend class OkdResourceManager;
+////
+////protected:
+////	virtual OkdAbstractResource*	addResource( const OkdString& strResourceName );
+////
+////private:
+////						OkdShaderResourceHandler();
+////	virtual				~OkdShaderResourceHandler();
+////};
 //
-//protected:
-//	virtual OkdAbstractResource*	addResource( const OkdString& strResourceName );
+////*****************************************************************************
+////	Inline functions declarations
+////*****************************************************************************
 //
-//private:
-//						OkdShaderResourceHandler();
-//	virtual				~OkdShaderResourceHandler();
-//};
-
-//*****************************************************************************
-//	Inline functions declarations
-//*****************************************************************************
-
-#endif
+//#endif

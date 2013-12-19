@@ -1,48 +1,38 @@
 //*****************************************************************************
 //
-//	File:		OkdAbstractShader.cpp
+//	File:		OkdOpenGLShader.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"OkdAbstractShader.h"
+#include	"OkdOpenGLShader.h"
 
 //-----------------------------------------------------------------------------
-// Name:		OkdAbstractShader constructor
+// Name:		OkdOpenGLShader constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdAbstractShader::OkdAbstractShader()
+OkdOpenGLShader::OkdOpenGLShader()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OkdAbstractShader destructor
+// Name:		OkdOpenGLShader destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdAbstractShader::~OkdAbstractShader()
+OkdOpenGLShader::~OkdOpenGLShader()
 {
 
 }
 
 //-----------------------------------------------------------------------------
-// Name:		read
+// Name:		compile
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdAbstractShader::read(OkdFileStream* pStream)
+void	OkdOpenGLShader::compile()
 {
-	
-}
 
-//-----------------------------------------------------------------------------
-// Name:		write
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OkdAbstractShader::write(OkdFileStream* pStream)
-{
-	
 }

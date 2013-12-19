@@ -40,7 +40,10 @@ void	OkdResourceManager::initialize()
 {
 	_resourceHandlers[OrkidMesh]	= new OkdMeshResourceHandler();
 	_resourceHandlers[OrkidScene]	= new OkdSceneResourceHandler();
-	_resourceHandlers[OrkidShader]	= new OkdShaderResourceHandler();
+
+	// Must be set by the rendering API
+	_resourceHandlers[OrkidShader]			= 0;
+	_resourceHandlers[OrkidShaderProgram]	= 0;
 }
 
 ////-----------------------------------------------------------------------------

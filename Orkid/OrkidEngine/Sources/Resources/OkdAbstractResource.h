@@ -18,7 +18,7 @@ class OkdFileStream;
 class OkdAbstractResource
 {
 	template<class T, OkdResourceType resourceType> friend class OkdResourcePtr;
-	template<class T, OkdResourceType resourceType> friend class OkdResourceHandler;
+	template<class T> friend class OkdResourceHandler;
 
 public:
 	inline const OkdResourceKey&	getResourceKey() const;

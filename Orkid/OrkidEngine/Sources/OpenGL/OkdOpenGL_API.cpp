@@ -7,6 +7,10 @@
 
 #include	"OkdOpenGL_API.h"
 
+#include	ORKID_ENGINE_H(OrkidEngine)
+#include	ORKID_ENGINE_H(Resources/OkdResourceManager)
+#include	ORKID_ENGINE_H(Shaders/OpenGL/OkdOpenGLShader)
+
 //#pragma comment(lib, "C:/Users/jja/Downloads/glew-1.10.0/glew-1.10.0/lib/Debug/Win32/glew32d.lib")
 
 #define	OKD_OPENGL_API_DEFINE_FUNC( FuncPtr, FuncName ) FuncPtr FuncName = 0;
@@ -137,6 +141,11 @@ OrkidErrorCode	OkdOpenGL_API::initialize(const HDC						hDeviceContext,
 	// Destroy dummy context
 	wglMakeCurrent( 0, 0 );
 	wglDeleteContext( hDummyGLContext );
+
+	// Register the rendering API dependent resource handlers
+	OkdResourceManager* pResourceManager = OrkidEngine::instance()->getResourceManager();
+
+	pResourceManager->setResourceHandler( OrkidShader, new OkdOpenGLShaderResourceHandler() );
 
 	_bIsInitialized = true;
 

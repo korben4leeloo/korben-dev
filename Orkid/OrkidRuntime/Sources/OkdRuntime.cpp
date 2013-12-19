@@ -159,7 +159,8 @@ bool createWindow(LPCSTR title, int width, int height) {
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 #include	ORKID_ENGINE_H(SceneGraph/OkdNode)
 #include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
-#include	ORKID_ENGINE_H(Shaders/OkdShader)
+//#include	ORKID_ENGINE_H(Shaders/OkdShader)
+#include	ORKID_ENGINE_H(Shaders/OkdAbstractShader)
 #include	ORKID_CORE_H(Containers/OkdList)
 #include	<rapidxml/rapidxml_print.hpp>
 #include	<iostream>
@@ -232,13 +233,13 @@ void	testLoadMesh()
 //				 const OrkidShaderType	eShaderType)
 //	{
 //		bind( strShaderName );
-//		_pResourceRef->_eShaderType = eShaderType;
+//		_pResource->_eShaderType = eShaderType;
 //	}*/
 //
 //	void bind( const OkdString& strResourceName, const OrkidShaderType	eShaderType )
 //	{
 //		bind( strResourceName );
-//		_pResourceRef->_eShaderType = eShaderType;
+//		_pResource->_eShaderType = eShaderType;
 //	}
 //
 //private:
@@ -292,12 +293,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		pMesh->create( meshInfo );*/
 	}
 
-	//{
-	//	OkdShaderPtr shaderPtr;//( "test", OrkidVertexShader );
-	//	//shaderPtr.bind( "test" );
-	//	shaderPtr.bind( "test", OrkidVertexShader );
-	//}
-
 	//testSaveMesh();
 	//testLoadMesh();
 
@@ -310,7 +305,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	scenePtr.load();
 	scenePtr.unbind();*/
 
-	return (0);
+	//return (0);
 
 	/*HMODULE hLib = LoadLibrary( "D:\\DevJJA\\SVN\\korben-dev\\Orkid\\Debug\\OrkidRuntimeDll.dll" );
 	FARPROC procAddr = GetProcAddress( hLib, "orkidRuntimeDllMainEntry" );*/
@@ -330,6 +325,13 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	//createWindow(wcstring, 500, 500); // Create our OpenGL window
 	createWindow(orig, 500, 500); // Create our OpenGL window
+
+	{
+		OkdShaderPtr shaderPtr;//( "test", OrkidVertexShader );
+		//shaderPtr.bind( "test" );
+		//shaderPtr.getResource()->setShadertType( OrkidVertexShader );
+		shaderPtr.bind( "test", OrkidVertexShader );
+	}
 
 	//openglContext.setupScene(); // Setup our OpenGL scene
 

@@ -22,8 +22,6 @@ public:
 									OkdAbstractResourceHandler();
 	virtual							~OkdAbstractResourceHandler();
 
-	virtual OkdResourceType			getResourceType() const									= 0;
-
 protected:
 	virtual OkdAbstractResource*	addResource( const OkdString& strResourceName )			= 0;
 	virtual bool					removeResource( const OkdAbstractResource* pResource )	= 0;
