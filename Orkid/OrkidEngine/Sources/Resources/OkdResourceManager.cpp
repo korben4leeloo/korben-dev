@@ -73,9 +73,9 @@ void	OkdResourceManager::initialize()
 //-----------------------------------------------------------------------------
 OkdMeshPtr	OkdResourceManager::addMesh(const OkdString&	strResourceName)
 {
-	OkdResourceManager*			pResourceManager	= OrkidEngine::instance()->getResourceManager();
+	/*OkdResourceManager*			pResourceManager	= OrkidEngine::instance()->getResourceManager();
 	OkdResourceKey				resourceKey			= OkdCrc32::getCrc32( strResourceName );
-	OkdResourceMap::iterator	itResource			= pResourceManager->_resourceMapArray[(uint32)OrkidMesh].add( resourceKey, 0 );
+	OkdResourceMap::iterator	itResource			= pResourceManager->_resourceMapArray[OrkidMesh].add( resourceKey, 0 );
 	OkdMeshPtr					meshPtr;
 
 	if	( itResource->second == 0 )
@@ -90,5 +90,7 @@ OkdMeshPtr	OkdResourceManager::addMesh(const OkdString&	strResourceName)
 
 	meshPtr._pResource = static_cast<OkdMesh*>(itResource->second);
 
-	return	( meshPtr );
+	return	( meshPtr );*/
+
+	return	( addResource<OkdMesh>( OrkidMesh, strResourceName ) );
 }

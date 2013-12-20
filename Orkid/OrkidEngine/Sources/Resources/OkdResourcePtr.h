@@ -38,6 +38,8 @@ public:
 	const OkdString&	getResourceName() const;
 
 protected:
+						OkdResourcePtr( T* pResource );
+
 	T*					_pResource;
 };
 
@@ -62,6 +64,22 @@ template<class T>
 OkdResourcePtr<T>::OkdResourcePtr(const OkdResourcePtr&	resourcePtr)
 {
 	_pResource = resourcePtr._pResource;
+
+	if	( _pResource )
+	{
+		_pResource->addRef();
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		OkdResourcePtr constructor
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+OkdResourcePtr<T>::OkdResourcePtr(T*	pResource)
+{
+	_pResource = pResource;
 
 	if	( _pResource )
 	{

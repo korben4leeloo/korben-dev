@@ -66,7 +66,7 @@ private:
 	void								initialize();
 
 	template<class T>
-	static OkdResourcePtr<T>			addResource( const OkdString& strResourceName );
+	static OkdResourcePtr<T>			addResource( const OkdResourceType eResourceType, const OkdString& strResourceName );
 
 	OkdAbstractResourceHandler*			_resourceHandlers[OrkidResourceTypeCount];
 	OkdResourceMap						_resourceMapArray[OrkidResourceTypeCount];
@@ -103,10 +103,26 @@ OkdAbstractResourceHandler*	OkdResourceManager::getResourceHandler(const OkdReso
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-static OkdResourcePtr<T>	OkdResourceManager::addResource( const OkdString& strResourceName )
+static OkdResourcePtr<T>	OkdResourceManager::addResource(const OkdResourceType	eResourceType, 
+															const OkdString&		strResourceName)
 {
-	OkdResourcePtr<T> resPtr;
-	return	( resPtr );
+	OkdResourceManager*			pResourceManager	= OrkidEngine::instance()->getResourceManager();
+	OkdResourceKey				resourceKey			= OkdCrc32::getCrc32( strResourceName );
+	OkdResourceMap::iterator	itResource			= pResourceManager->_resourceMapArray[eResourceType].add( resourceKey, 0 );
+
+	if	( itResource->second == 0 )
+	{
+		OkdMesh* pResource = new OkdMesh();
+
+		pResource->_resourceKey		= resourceKey;
+		pResource->_strResourceName	= strResourceName;
+
+		itResource->second = pResource;
+	}
+
+	OkdResourcePtr<T> resourcePtr( static_cast<T*>(itResource->second) );
+
+	return	( resourcePtr );
 }
 
 #endif

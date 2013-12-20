@@ -286,6 +286,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		meshPtr4.load();
 
 		OkdMeshPtr meshPtr5 = OkdResourceManager::addMesh( "test" );
+		OkdMeshPtr meshPtr6 = OkdResourceManager::addMesh( "test" );
 		//OkdMeshPtr meshResPtr = OkdMeshResourceHandler::addMesh( "test" );
 
 		/*OkdString str( "C:\\Users\\jja\\Downloads" );
