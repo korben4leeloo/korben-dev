@@ -16,7 +16,7 @@ class OkdString;
 
 class OkdAbstractResourceHandler
 {
-	template<class T, OkdResourceType resourceType> friend class OkdResourcePtr;
+	template<class T> friend class OkdResourcePtr;
 
 public:
 									OkdAbstractResourceHandler();

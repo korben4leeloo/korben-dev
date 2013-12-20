@@ -34,15 +34,12 @@
     <ClInclude Include="Sources\Resources\OkdResourceDatabase.h" />
     <ClInclude Include="Sources\Resources\OkdResourceManager.h" />
     <ClInclude Include="Sources\Resources\OkdResourcePtr.h" />
-    <ClInclude Include="Sources\Resources\OkdResourceRef.h" />
     <ClInclude Include="Sources\Resources\Root.h" />
     <ClInclude Include="Sources\SceneGraph\OkdNode.h" />
     <ClInclude Include="Sources\SceneGraph\OkdScene.h" />
     <ClInclude Include="Sources\SceneGraph\Root.h" />
     <ClInclude Include="Sources\Shaders\OkdAbstractShader.h" />
     <ClInclude Include="Sources\Shaders\OkdAbstractShaderProgram.h" />
-    <ClInclude Include="Sources\Shaders\OkdShader.h" />
-    <ClInclude Include="Sources\Shaders\OkdShaderResourceHandler.h" />
     <ClInclude Include="Sources\Shaders\OpenGL\OkdOpenGLShader.h" />
     <ClInclude Include="Sources\Shaders\OpenGL\Root.h" />
     <ClInclude Include="Sources\Shaders\Root.h" />
@@ -67,13 +64,10 @@
     <ClCompile Include="Sources\Resources\OkdResourceDatabase.cpp" />
     <ClCompile Include="Sources\Resources\OkdResourceManager.cpp" />
     <ClCompile Include="Sources\Resources\OkdResourcePtr.cpp" />
-    <ClCompile Include="Sources\Resources\OkdResourceRef.cpp" />
     <ClCompile Include="Sources\SceneGraph\OkdNode.cpp" />
     <ClCompile Include="Sources\SceneGraph\OkdScene.cpp" />
     <ClCompile Include="Sources\Shaders\OkdAbstractShader.cpp" />
     <ClCompile Include="Sources\Shaders\OkdAbstractShaderProgram.cpp" />
-    <ClCompile Include="Sources\Shaders\OkdShader.cpp" />
-    <ClCompile Include="Sources\Shaders\OkdShaderResourceHandler.cpp" />
     <ClCompile Include="Sources\Shaders\OpenGL\OkdOpenGLShader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -16,9 +16,11 @@
 #include	ORKID_ENGINE_H(Resources/OkdResourceManager)
 #include	ORKID_CORE_H(String/OkdCrc32)
 
-template<class T, OkdResourceType resourceType>
+template<class T>
 class OkdResourcePtr
 {
+	friend class OkdResourceManager;
+
 public:
 						OkdResourcePtr();
 						OkdResourcePtr( const OkdResourcePtr& resourcePtr );
@@ -35,7 +37,7 @@ public:
 	T*					getResource();
 	const OkdString&	getResourceName() const;
 
-protected:	
+protected:
 	T*					_pResource;
 };
 
@@ -44,8 +46,8 @@ protected:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-OkdResourcePtr<T, resourceType>::OkdResourcePtr()
+template<class T>
+OkdResourcePtr<T>::OkdResourcePtr()
 : _pResource( 0 )
 {
 	
@@ -56,8 +58,8 @@ OkdResourcePtr<T, resourceType>::OkdResourcePtr()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-OkdResourcePtr<T, resourceType>::OkdResourcePtr(const OkdResourcePtr&	resourcePtr)
+template<class T>
+OkdResourcePtr<T>::OkdResourcePtr(const OkdResourcePtr&	resourcePtr)
 {
 	_pResource = resourcePtr._pResource;
 
@@ -72,19 +74,19 @@ OkdResourcePtr<T, resourceType>::OkdResourcePtr(const OkdResourcePtr&	resourcePt
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-OkdResourcePtr<T, resourceType>::~OkdResourcePtr()
+template<class T>
+OkdResourcePtr<T>::~OkdResourcePtr()
 {
 	unbind();
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OkdResourcePtr copy constructor
+// Name:		operator=
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-OkdResourcePtr<T, resourceType>& OkdResourcePtr<T, resourceType>::operator=(const OkdResourcePtr&	resourcePtr)
+template<class T>
+OkdResourcePtr<T>& OkdResourcePtr<T>::operator=(const OkdResourcePtr&	resourcePtr)
 {
 	unbind();
 
@@ -103,11 +105,11 @@ OkdResourcePtr<T, resourceType>& OkdResourcePtr<T, resourceType>::operator=(cons
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-void OkdResourcePtr<T, resourceType>::bind(const OkdString&	strResourceName)
+template<class T>
+void OkdResourcePtr<T>::bind(const OkdString&	strResourceName)
 {
 	OkdResourceManager*			pResourceManager = OrkidEngine::instance()->getResourceManager();
-	OkdAbstractResourceHandler*	pResourceHandler = pResourceManager->getResourceHandler( resourceType );
+	OkdAbstractResourceHandler*	pResourceHandler = pResourceManager->getResourceHandler( T::getResourceType() );
 
 	ORKID_ASSERT( pResourceHandler );
 
@@ -130,13 +132,13 @@ void OkdResourcePtr<T, resourceType>::bind(const OkdString&	strResourceName)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-void OkdResourcePtr<T, resourceType>::unbind()
+template<class T>
+void OkdResourcePtr<T>::unbind()
 {
 	if	( _pResource )
 	{
 		OkdResourceManager*			pResourceManager	= OrkidEngine::instance()->getResourceManager();
-		OkdAbstractResourceHandler*	pResourceHandler	= pResourceManager->getResourceHandler( resourceType );
+		OkdAbstractResourceHandler*	pResourceHandler	= pResourceManager->getResourceHandler( T::getResourceType() );
 		
 		if	( _pResource->removeRef() == 0 )
 		{
@@ -152,8 +154,8 @@ void OkdResourcePtr<T, resourceType>::unbind()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-T*	OkdResourcePtr<T, resourceType>::getResource()
+template<class T>
+T*	OkdResourcePtr<T>::getResource()
 {
 	return	( _pResource );
 }
@@ -163,8 +165,8 @@ T*	OkdResourcePtr<T, resourceType>::getResource()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-const OkdString&	OkdResourcePtr<T, resourceType>::getResourceName() const
+template<class T>
+const OkdString&	OkdResourcePtr<T>::getResourceName() const
 {
 	return	( _pResource->getResourceName() );
 }
@@ -174,8 +176,8 @@ const OkdString&	OkdResourcePtr<T, resourceType>::getResourceName() const
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-void OkdResourcePtr<T, resourceType>::load()
+template<class T>
+void OkdResourcePtr<T>::load()
 {
 	ORKID_ASSERT( _pResource );
 
@@ -190,7 +192,7 @@ void OkdResourcePtr<T, resourceType>::load()
 		}
 
 		OkdResourceDatabase*	pResourceDatabase	= OrkidEngine::instance()->getResourceDatabase();
-		OkdFileStream*			pResourceFileStream	= pResourceDatabase->openResourceFileStream( resourceType, _pResource->getResourceName(), OkdResourceDatabase::OpenStreamLoad );
+		OkdFileStream*			pResourceFileStream	= pResourceDatabase->openResourceFileStream( T::getResourceType(), _pResource->getResourceName(), OkdResourceDatabase::OpenStreamLoad );
 
 		if	( pResourceFileStream )
 		{
@@ -205,8 +207,8 @@ void OkdResourcePtr<T, resourceType>::load()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, OkdResourceType resourceType>
-void OkdResourcePtr<T, resourceType>::save()
+template<class T>
+void OkdResourcePtr<T>::save()
 {
 	ORKID_ASSERT( _pResource );
 
@@ -221,7 +223,7 @@ void OkdResourcePtr<T, resourceType>::save()
 		}
 
 		OkdResourceDatabase*	pResourceDatabase	= OrkidEngine::instance()->getResourceDatabase();
-		OkdFileStream*			pResourceFileStream	= pResourceDatabase->openResourceFileStream( resourceType, _pResource->getResourceName(), OkdResourceDatabase::OpenStreamSave );
+		OkdFileStream*			pResourceFileStream	= pResourceDatabase->openResourceFileStream( T::getResourceType(), _pResource->getResourceName(), OkdResourceDatabase::OpenStreamSave );
 
 		if	( pResourceFileStream )
 		{

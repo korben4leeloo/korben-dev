@@ -13,6 +13,35 @@
 
 class OkdAbstractResourceHandler;
 
+#include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
+#include	ORKID_CORE_H(Containers/OkdMap)
+
+class OkdAbstractResource;
+
+typedef OkdMap<OkdResourceKey, OkdAbstractResource*> OkdResourceMap;
+
+//template <class T>
+//class ResourceHandle
+//{
+//
+//};
+//
+//class OkdMesh;
+//typedef ResourceHandle<OkdMesh> MeshHandle;
+//typedef OkdResourcePtr<OkdMesh> OkdMeshResPtr;
+//
+//class OkdAbstractShader;
+//typedef ResourceHandle<OkdAbstractShader> ShaderHandle;
+//typedef OkdResourcePtr<OkdAbstractShader> OkdShaderResPtr;
+
+class OkdMesh;
+class OkdScene;
+class OkdAbstractShader;
+
+typedef OkdResourcePtr<OkdMesh>				OkdMeshPtr;
+typedef OkdResourcePtr<OkdScene>			OkdScenePtr;
+typedef OkdResourcePtr<OkdAbstractShader>	OkdShaderPtr;
+
 class OkdResourceManager
 {
 public:
@@ -20,6 +49,13 @@ public:
 	friend class OkdOpenGL_API;
 
 	inline OkdAbstractResourceHandler*	getResourceHandler( const OkdResourceType eResourceType );
+
+	static OkdMeshPtr					addMesh( const OkdString& strResourceName );
+	static OkdScenePtr					addScene( const OkdString& strResourceName );
+
+	static OkdShaderPtr					addVertexShader( const OkdString& strResourceName );
+	static OkdShaderPtr					addFragmentShader( const OkdString& strResourceName );
+	static OkdShaderPtr					addGeometryShader( const OkdString& strResourceName );
 
 private:
 										OkdResourceManager();
@@ -29,7 +65,11 @@ private:
 
 	void								initialize();
 
+	template<class T>
+	static OkdResourcePtr<T>			addResource( const OkdString& strResourceName );
+
 	OkdAbstractResourceHandler*			_resourceHandlers[OrkidResourceTypeCount];
+	OkdResourceMap						_resourceMapArray[OrkidResourceTypeCount];
 };
 
 //*****************************************************************************
@@ -55,6 +95,18 @@ void	OkdResourceManager::setResourceHandler(const OkdResourceType		eResourceType
 OkdAbstractResourceHandler*	OkdResourceManager::getResourceHandler(const OkdResourceType	eResourceType)
 {
 	return	( _resourceHandlers[eResourceType] );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		addResource
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+static OkdResourcePtr<T>	OkdResourceManager::addResource( const OkdString& strResourceName )
+{
+	OkdResourcePtr<T> resPtr;
+	return	( resPtr );
 }
 
 #endif

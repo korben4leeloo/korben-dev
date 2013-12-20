@@ -22,16 +22,11 @@ enum OrkidShaderType
 	OrkidGeometryShader
 };
 
-//class OkdAbstractShader;
-//typedef OkdResourcePtr<OkdAbstractShader, OrkidShader> OkdShaderPtr;
-
 class OkdAbstractShader: public OkdAbstractResource
 {
-	//template<class T> friend class OkdResourceRef;
-	//friend class OkdShaderPtr::OkdResourceRef<OkdAbstractShader>;
-	//template<class T, OkdResourceType resourceType> friend class OkdResourceHandler;
-
 public:
+							ORKID_RESOURCE( OrkidShader )
+
 	virtual void			compile() = 0;
 
 	inline void				setShadertType( const OrkidShaderType eShaderType );
@@ -48,30 +43,28 @@ protected:
 	OkdString				_strShaderCode;
 };
 
-//typedef OkdResourcePtr<OkdAbstractShader, OrkidShader> OkdShaderPtr;
-
-class OkdShaderPtr: public OkdResourcePtr<OkdAbstractShader, OrkidShader>
-{
-public:
-	/*OkdShaderPtr(const OkdString &		strShaderName, 
-				 const OrkidShaderType	eShaderType)
-	{
-		bind( strShaderName );
-		_pResource->_eShaderType = eShaderType;
-	}*/
-
-	void bind( const OkdString& strResourceName, const OrkidShaderType	eShaderType )
-	{
-		bind( strResourceName );
-		_pResource->setShadertType( eShaderType );
-	}
-
-private:
-	void bind( const OkdString& strResourceName )
-	{
-		OkdResourcePtr::bind( strResourceName );
-	}
-};
+//class OkdShaderPtr: public OkdResourcePtr<OkdAbstractShader>
+//{
+//public:
+//	/*OkdShaderPtr(const OkdString &		strShaderName, 
+//				 const OrkidShaderType	eShaderType)
+//	{
+//		bind( strShaderName );
+//		_pResource->_eShaderType = eShaderType;
+//	}*/
+//
+//	void bind( const OkdString& strResourceName, const OrkidShaderType	eShaderType )
+//	{
+//		bind( strResourceName );
+//		_pResource->setShadertType( eShaderType );
+//	}
+//
+//private:
+//	void bind( const OkdString& strResourceName )
+//	{
+//		OkdResourcePtr::bind( strResourceName );
+//	}
+//};
 
 //*****************************************************************************
 //	Inline functions declarations

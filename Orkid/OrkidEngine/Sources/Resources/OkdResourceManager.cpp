@@ -9,7 +9,6 @@
 
 #include	ORKID_ENGINE_H(Resources/Handlers/OkdMeshResourceHandler)
 #include	ORKID_ENGINE_H(Resources/Handlers/OkdSceneResourceHandler)
-#include	ORKID_ENGINE_H(Shaders/OkdShaderResourceHandler)
 
 //-----------------------------------------------------------------------------
 // Name:		OkdResourceManager constructor
@@ -66,3 +65,30 @@ void	OkdResourceManager::initialize()
 //		ORKID_ASSERT( meshResourcePtr.getLoadRefCount() == 0 );
 //	}
 //}
+
+//-----------------------------------------------------------------------------
+// Name:		addMesh
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdMeshPtr	OkdResourceManager::addMesh(const OkdString&	strResourceName)
+{
+	OkdResourceManager*			pResourceManager	= OrkidEngine::instance()->getResourceManager();
+	OkdResourceKey				resourceKey			= OkdCrc32::getCrc32( strResourceName );
+	OkdResourceMap::iterator	itResource			= pResourceManager->_resourceMapArray[(uint32)OrkidMesh].add( resourceKey, 0 );
+	OkdMeshPtr					meshPtr;
+
+	if	( itResource->second == 0 )
+	{
+		OkdMesh* pResource = new OkdMesh();
+
+		pResource->_resourceKey		= resourceKey;
+		pResource->_strResourceName	= strResourceName;
+
+		itResource->second = pResource;
+	}
+
+	meshPtr._pResource = static_cast<OkdMesh*>(itResource->second);
+
+	return	( meshPtr );
+}

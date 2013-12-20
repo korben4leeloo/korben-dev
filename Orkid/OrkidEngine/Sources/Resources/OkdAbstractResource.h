@@ -15,9 +15,11 @@
 
 class OkdFileStream;
 
+#define	ORKID_RESOURCE( ResourceType ) inline static OkdResourceType getResourceType() { return ResourceType; }
+
 class OkdAbstractResource
 {
-	template<class T, OkdResourceType resourceType> friend class OkdResourcePtr;
+	template<class T> friend class OkdResourcePtr;
 	template<class T> friend class OkdResourceHandler;
 
 public:
@@ -26,8 +28,6 @@ public:
 
 	virtual void					read( OkdFileStream* pStream )	= 0;
 	virtual void					write( OkdFileStream* pStream )	= 0;
-
-	//virtual OkdResourceType			getResourceType() const = 0;
 
 protected:
 									OkdAbstractResource();

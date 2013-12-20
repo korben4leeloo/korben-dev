@@ -14,23 +14,27 @@
 #include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
 #include	ORKID_ENGINE_H(Entities/OkdMesh)
 
-typedef OkdResourceHandler<OkdMesh> OkdMeshResourceHandler;
+//typedef OkdResourceHandler<OkdMesh> OkdMeshResourceHandler;
 
-//#include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
-//
 //class OkdMesh;
-//
-//class OkdMeshResourceHandler: public OkdResourceHandler<OkdMesh, OrkidMesh>
-//{
-//	friend class OkdResourceManager;
-//
-//protected:
-//	//virtual OkdMesh*	allocateResource();
-//
-//private:
-//						OkdMeshResourceHandler();
-//	virtual				~OkdMeshResourceHandler();
-//};
+
+#include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
+
+class OkdMeshResourceHandler: public OkdResourceHandler<OkdMesh>
+{
+	friend class OkdResourceManager;
+
+public:
+	/*inline static OkdMeshPtr	addMesh( const OkdString& strMeshName )
+	{
+		OkdMeshPtr meshPtr = OkdResourceManager::addResource<OkdMesh>( strMeshName );
+		return	( meshPtr );
+	}*/
+
+private:
+								OkdMeshResourceHandler();
+	virtual						~OkdMeshResourceHandler();
+};
 
 //*****************************************************************************
 //	Inline functions declarations

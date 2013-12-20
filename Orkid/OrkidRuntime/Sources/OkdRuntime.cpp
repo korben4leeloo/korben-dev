@@ -149,7 +149,7 @@ bool createWindow(LPCSTR title, int width, int height) {
 #include	ORKID_ENGINE_H(OrkidEngine)
 //#include	ORKID_ENGINE_H(Resources/OkdResourceManager)
 //#include	ORKID_ENGINE_H(Resources/OkdResourceDatabase)
-//#include	ORKID_ENGINE_H(Resources/ResourceHandler/OkdMeshHandler)
+#include	ORKID_ENGINE_H(Resources/Handlers/OkdMeshResourceHandler)
 //#include	ORKID_ENGINE_H(Resources/ResourceHandler/OkdSceneHandler)
 //#include	ORKID_ENGINE_H(Resources/OkdResourceId)
 //#include	ORKID_CORE_H(Xml/OkdXmlDocument)
@@ -285,6 +285,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		meshPtr4.save();
 		meshPtr4.load();
 
+		OkdMeshPtr meshPtr5 = OkdResourceManager::addMesh( "test" );
+		//OkdMeshPtr meshResPtr = OkdMeshResourceHandler::addMesh( "test" );
+
 		/*OkdString str( "C:\\Users\\jja\\Downloads" );
 		const OkdVector<OkdString>& tokens = str.split( "\\" );*/
 
@@ -330,7 +333,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		OkdShaderPtr shaderPtr;//( "test", OrkidVertexShader );
 		//shaderPtr.bind( "test" );
 		//shaderPtr.getResource()->setShadertType( OrkidVertexShader );
-		shaderPtr.bind( "test", OrkidVertexShader );
+		//shaderPtr.bind( "test", OrkidVertexShader );
 	}
 
 	//openglContext.setupScene(); // Setup our OpenGL scene
