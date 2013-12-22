@@ -13,9 +13,10 @@
 
 #include	ORKID_ENGINE_H(Entities/OkdEntity)
 #include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
-#include	ORKID_ENGINE_H(Entities/OkdMesh)
+//#include	ORKID_ENGINE_H(Entities/OkdMesh)
 
 class OkdMesh;
+typedef OkdResourcePtr<OkdMesh> OkdMeshPtr;
 
 class OkdShape: public OkdEntity
 {

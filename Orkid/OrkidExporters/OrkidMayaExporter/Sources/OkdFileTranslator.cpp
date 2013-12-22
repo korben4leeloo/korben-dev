@@ -107,7 +107,8 @@ void	OkdFileTranslator::exportSceneGraph()
 	//OkdScene*			pExportScene			= _pOrkidEngine->addScene( "ExportScene" );
 	OkdScenePtr	scenePtr;
 
-	scenePtr.bind( _strSceneName );
+	//scenePtr = OkdResourceManager::addMesh( _strSceneName );
+	scenePtr = OkdResourceManager::addScene( _strSceneName );
 	_pOrkidScene = scenePtr.getResource();
 
 	/*MObject objRoot = itDag.root( &status );
@@ -157,7 +158,7 @@ void	OkdFileTranslator::exportSceneGraph()
 	//		//	OkdMeshInfo		meshInfo( uiVertexCount, uiPolygonCount );
 	//		//	OkdMeshPtr		meshPtr;
 
-	//		//	meshPtr.bind( strShapeNodeName );
+	//		//	meshPtr = OkdResourceManager::addMesh( strShapeNodeName );
 
 	//		//	OkdMesh* pOrkidMesh = meshPtr.getResource();
 
@@ -265,7 +266,7 @@ void	OkdFileTranslator::exportDagNode(const MFnDagNode&	fnDagNode,
 //	//OkdScene*			pExportScene			= _pOrkidEngine->addScene( "ExportScene" );
 //	OkdScenePtr	scenePtr;
 //
-//	scenePtr.bind( _strSceneName );
+//	scenePtr = OkdResourceManager::addMesh( _strSceneName );
 //
 //	while	( itDag.isDone() == false )
 //	{
@@ -301,7 +302,7 @@ void	OkdFileTranslator::exportDagNode(const MFnDagNode&	fnDagNode,
 //			OkdMeshInfo		meshInfo( uiVertexCount, uiPolygonCount );
 //			OkdMeshPtr		meshPtr;
 //
-//			meshPtr.bind( strShapeNodeName );
+//			meshPtr = OkdResourceManager::addMesh( strShapeNodeName );
 //
 //			OkdMesh* pOrkidMesh = meshPtr.getResource();
 //

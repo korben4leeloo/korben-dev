@@ -12,7 +12,7 @@
 #include	"Root.h"
 
 #include	ORKID_ENGINE_H(Resources/OkdAbstractResource)
-#include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
+//#include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
 
 class OkdNode;
 class OkdMeshInstance;
@@ -26,7 +26,8 @@ class OkdCreature;
 class OkdScene: public OkdAbstractResource
 {
 public:
-	friend class OkdResourceHandler<OkdScene>;
+	//friend class OkdResourceHandler<OkdScene>;
+	friend class OkdResourceManager;
 
 					ORKID_RESOURCE( OrkidScene )
 

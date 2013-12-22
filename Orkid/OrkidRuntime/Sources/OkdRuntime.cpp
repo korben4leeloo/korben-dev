@@ -168,7 +168,8 @@ bool createWindow(LPCSTR title, int width, int height) {
 void	testSaveScene()
 {
 	OkdScenePtr scenePtr;
-	scenePtr.bind( "TestScene" );
+	//scenePtr = OkdResourceManager::addMesh( "TestScene" );
+	scenePtr = OkdResourceManager::addScene( "TestScene" );
 
 	OkdScene*	pScene	= scenePtr.getResource();
 	OkdNode*	pNode1	= pScene->createNode();
@@ -180,7 +181,7 @@ void	testSaveScene()
 	OkdCamera*	pCamera	= pScene->createCamera( pNode2 );
 	OkdMeshPtr	meshPtr;
 
-	meshPtr.bind( "TestMesh" );
+	meshPtr = OkdResourceManager::addMesh( "TestMesh" );
 
 	pShape1->setMeshPtr( meshPtr );
 	pShape2->setMeshPtr( meshPtr );
@@ -191,14 +192,14 @@ void	testSaveScene()
 void	testLoadScene()
 {
 	OkdScenePtr scenePtr;
-	scenePtr.bind( "TestScene" );
+	scenePtr = OkdResourceManager::addScene( "TestScene" );
 	scenePtr.load();
 }
 
 void	testSaveMesh()
 {
 	OkdMeshPtr meshPtr;
-	meshPtr.bind( "TestMesh" );
+	meshPtr = OkdResourceManager::addMesh( "TestMesh" );
 
 	OkdMesh*	pMesh = meshPtr.getResource();
 	uint32		uiVertexCount	= sizeof(testMeshPoints) / ( 3 * sizeof(float) );
@@ -219,7 +220,7 @@ void	testSaveMesh()
 void	testLoadMesh()
 {
 	OkdMeshPtr meshPtr;
-	meshPtr.bind( "TestMesh" );
+	meshPtr = OkdResourceManager::addMesh( "TestMesh" );
 
 	meshPtr.load();
 
@@ -268,19 +269,20 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	{
 		OkdMeshPtr meshPtr, meshPtr2;
 
-		meshPtr.bind( "test" );
-		meshPtr2.bind( "test2" );
+		meshPtr = OkdResourceManager::addMesh( "test" );
+		meshPtr2 = OkdResourceManager::addMesh( "test2" );
 
 		//OkdMeshPtr meshPtr3( meshPtr );
 		OkdMeshPtr meshPtr3;
 
-		meshPtr3.bind( "test2" );
+		meshPtr3 = OkdResourceManager::addMesh( "test2" );
 		meshPtr = meshPtr2;
 
-		meshPtr2.unbind();
+		//meshPtr2.unbind();
+		meshPtr2.release();
 
 		OkdMeshPtr meshPtr4 = meshPtr;
-		meshPtr4.bind( "test2" );
+		meshPtr4 = OkdResourceManager::addMesh( "test2" );
 		
 		meshPtr4.save();
 		meshPtr4.load();
@@ -305,7 +307,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	/*OkdScenePtr scenePtr;
 
-	scenePtr.bind( "TestDAG.okd" );
+	scenePtr = OkdResourceManager::addMesh( "TestDAG.okd" );
 	scenePtr.load();
 	scenePtr.unbind();*/
 
@@ -332,9 +334,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	{
 		OkdShaderPtr shaderPtr;//( "test", OrkidVertexShader );
-		//shaderPtr.bind( "test" );
+		//shaderPtr = OkdResourceManager::addMesh( "test" );
 		//shaderPtr.getResource()->setShadertType( OrkidVertexShader );
-		//shaderPtr.bind( "test", OrkidVertexShader );
+		//shaderPtr = OkdResourceManager::addMesh( "test", OrkidVertexShader );
 	}
 
 	//openglContext.setupScene(); // Setup our OpenGL scene

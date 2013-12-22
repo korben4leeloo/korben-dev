@@ -91,7 +91,7 @@ void	OkdExportCommand::exportSceneGraph()
 	OkdScenePtr	scenePtr;
 
 	// Create the scene
-	scenePtr.bind( _strSceneName );
+	scenePtr = OkdResourceManager::addScene( _strSceneName );
 	_pOrkidScene = scenePtr.getResource();
 
 	// Iterate through all the nodes starting at the world node
@@ -197,7 +197,7 @@ void	OkdExportCommand::exportMesh(const MDagPath&	meshPath,
 	OkdMeshInfo		meshInfo( uiVertexCount, uiPolygonCount );
 	OkdMeshPtr		meshPtr;
 	
-	meshPtr.bind( fnMesh.name().asChar() );
+	meshPtr = OkdResourceManager::addMesh( fnMesh.name().asChar() );
 	
 	OkdMesh* pOrkidMesh = meshPtr.getResource();
 	

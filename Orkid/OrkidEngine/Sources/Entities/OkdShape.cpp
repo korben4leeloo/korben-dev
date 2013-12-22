@@ -7,6 +7,9 @@
 
 #include	"OkdShape.h"
 
+#include	ORKID_ENGINE_H(Resources/OkdResourceManager)
+#include	ORKID_ENGINE_H(Entities/OkdMesh)
+
 //-----------------------------------------------------------------------------
 // Name:		OkdShape constructor
 //
@@ -38,7 +41,8 @@ void	OkdShape::read(OkdFileStream* pStream)
 	OkdString strMeshResourceName;
 
 	(*pStream) >> strMeshResourceName;
-	_meshPtr.bind( strMeshResourceName );
+	//_meshPtr = OkdResourceManager::addMesh( strMeshResourceName );
+	_meshPtr = OkdResourceManager::addMesh( strMeshResourceName );
 }
 
 //-----------------------------------------------------------------------------

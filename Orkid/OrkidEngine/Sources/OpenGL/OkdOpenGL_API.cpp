@@ -143,9 +143,9 @@ OrkidErrorCode	OkdOpenGL_API::initialize(const HDC						hDeviceContext,
 	wglDeleteContext( hDummyGLContext );
 
 	// Register the rendering API dependent resource handlers
-	OkdResourceManager* pResourceManager = OrkidEngine::instance()->getResourceManager();
+	//OkdResourceManager* pResourceManager = OrkidEngine::instance()->getResourceManager();
 
-	pResourceManager->setResourceHandler( OrkidShader, new OkdOpenGLShaderResourceHandler() );
+	//pResourceManager->setResourceHandler( OrkidShader, new OkdOpenGLShaderResourceHandler() );
 
 	_bIsInitialized = true;
 

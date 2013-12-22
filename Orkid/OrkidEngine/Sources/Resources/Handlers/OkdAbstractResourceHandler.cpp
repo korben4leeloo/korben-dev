@@ -1,28 +1,28 @@
-//*****************************************************************************
+////*****************************************************************************
+////
+////	File:		OkdAbstractResourceHandler.cpp
+////	Created:	2013-08-26
+////
+////*****************************************************************************
 //
-//	File:		OkdAbstractResourceHandler.cpp
-//	Created:	2013-08-26
+//#include	"OkdAbstractResourceHandler.h"
 //
-//*****************************************************************************
-
-#include	"OkdAbstractResourceHandler.h"
-
-//-----------------------------------------------------------------------------
-// Name:		OkdAbstractResourceHandler constructor
+////-----------------------------------------------------------------------------
+//// Name:		OkdAbstractResourceHandler constructor
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdAbstractResourceHandler::OkdAbstractResourceHandler()
+//{
+//	
+//}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdAbstractResourceHandler::OkdAbstractResourceHandler()
-{
-	
-}
-
-//-----------------------------------------------------------------------------
-// Name:		OkdAbstractResourceHandler destructor
+////-----------------------------------------------------------------------------
+//// Name:		OkdAbstractResourceHandler destructor
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdAbstractResourceHandler::~OkdAbstractResourceHandler()
+//{
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdAbstractResourceHandler::~OkdAbstractResourceHandler()
-{
-
-}
+//}

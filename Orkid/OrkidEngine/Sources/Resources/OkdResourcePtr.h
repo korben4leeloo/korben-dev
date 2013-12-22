@@ -12,9 +12,10 @@
 #include	"Root.h"
 
 #include	ORKID_ENGINE_H(OrkidEngine)
-#include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
+//#include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
 #include	ORKID_ENGINE_H(Resources/OkdResourceManager)
-#include	ORKID_CORE_H(String/OkdCrc32)
+#include	ORKID_ENGINE_H(Resources/OkdResourceDatabase)
+//#include	ORKID_CORE_H(String/OkdCrc32)
 
 template<class T>
 class OkdResourcePtr
@@ -28,8 +29,9 @@ public:
 
 	OkdResourcePtr&		operator=( const OkdResourcePtr& resourcePtr );
 
-	void				bind( const OkdString& strResourceName );
-	void				unbind();
+	//void				bind( const OkdString& strResourceName );
+	//void				unbind();
+	void				release();
 
 	void				load();
 	void				save();
@@ -95,7 +97,8 @@ OkdResourcePtr<T>::OkdResourcePtr(T*	pResource)
 template<class T>
 OkdResourcePtr<T>::~OkdResourcePtr()
 {
-	unbind();
+	//unbind();
+	release();
 }
 
 //-----------------------------------------------------------------------------
@@ -106,7 +109,8 @@ OkdResourcePtr<T>::~OkdResourcePtr()
 template<class T>
 OkdResourcePtr<T>& OkdResourcePtr<T>::operator=(const OkdResourcePtr&	resourcePtr)
 {
-	unbind();
+	//unbind();
+	release();
 
 	_pResource = resourcePtr._pResource;
 
@@ -118,51 +122,66 @@ OkdResourcePtr<T>& OkdResourcePtr<T>::operator=(const OkdResourcePtr&	resourcePt
 	return	( *this );
 }
 
+////-----------------------------------------------------------------------------
+//// Name:		bind
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//template<class T>
+//void OkdResourcePtr<T>::bind(const OkdString&	strResourceName)
+//{
+//	OkdResourceManager*			pResourceManager = OrkidEngine::instance()->getResourceManager();
+//	OkdAbstractResourceHandler*	pResourceHandler = pResourceManager->getResourceHandler( T::getResourceType() );
+//
+//	ORKID_ASSERT( pResourceHandler );
+//
+//	if	( pResourceHandler )
+//	{
+//		T* pResource = static_cast<T*>(pResourceHandler->addResource( strResourceName ));
+//
+//		if	( pResource && ( pResource != _pResource ) )
+//		{
+//			unbind();
+//
+//			_pResource = pResource;
+//			_pResource->addRef();
+//		}
+//	}
+//}
+//
+////-----------------------------------------------------------------------------
+//// Name:		unbind
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//template<class T>
+//void OkdResourcePtr<T>::unbind()
+//{
+//	if	( _pResource )
+//	{
+//		OkdResourceManager*			pResourceManager	= OrkidEngine::instance()->getResourceManager();
+//		OkdAbstractResourceHandler*	pResourceHandler	= pResourceManager->getResourceHandler( T::getResourceType() );
+//		
+//		if	( _pResource->removeRef() == 0 )
+//		{
+//			pResourceHandler->removeResource( _pResource );
+//		}
+//		
+//		_pResource = 0;
+//	}
+//}
+
 //-----------------------------------------------------------------------------
-// Name:		bind
+// Name:		release
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-void OkdResourcePtr<T>::bind(const OkdString&	strResourceName)
+void OkdResourcePtr<T>::release()
 {
-	OkdResourceManager*			pResourceManager = OrkidEngine::instance()->getResourceManager();
-	OkdAbstractResourceHandler*	pResourceHandler = pResourceManager->getResourceHandler( T::getResourceType() );
-
-	ORKID_ASSERT( pResourceHandler );
-
-	if	( pResourceHandler )
+	if	( _pResource && ( _pResource->removeRef() == 0 ) )
 	{
-		T* pResource = static_cast<T*>(pResourceHandler->addResource( strResourceName ));
-
-		if	( pResource && ( pResource != _pResource ) )
-		{
-			unbind();
-
-			_pResource = pResource;
-			_pResource->addRef();
-		}
-	}
-}
-
-//-----------------------------------------------------------------------------
-// Name:		unbind
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-void OkdResourcePtr<T>::unbind()
-{
-	if	( _pResource )
-	{
-		OkdResourceManager*			pResourceManager	= OrkidEngine::instance()->getResourceManager();
-		OkdAbstractResourceHandler*	pResourceHandler	= pResourceManager->getResourceHandler( T::getResourceType() );
-		
-		if	( _pResource->removeRef() == 0 )
-		{
-			pResourceHandler->removeResource( _pResource );
-		}
-		
+		OkdResourceManager::removeResource<T>( _pResource );
 		_pResource = 0;
 	}
 }

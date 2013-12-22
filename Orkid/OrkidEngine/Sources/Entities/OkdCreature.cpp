@@ -38,7 +38,8 @@ void	OkdCreature::read(OkdFileStream* pStream)
 	OkdString strMeshResourceName;
 
 	(*pStream) >> strMeshResourceName;
-	_meshPtr.bind( strMeshResourceName );
+	//_meshPtr = OkdResourceManager::addMesh( strMeshResourceName );
+	_meshPtr = OkdResourceManager::addMesh( strMeshResourceName );
 }
 
 //-----------------------------------------------------------------------------

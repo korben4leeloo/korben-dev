@@ -12,7 +12,7 @@
 #include	"Root.h"
 
 #include	ORKID_ENGINE_H(Resources/OkdAbstractResource)
-#include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
+//#include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
 #include	ORKID_CORE_H(String/OkdString)
 
 enum OrkidShaderType
