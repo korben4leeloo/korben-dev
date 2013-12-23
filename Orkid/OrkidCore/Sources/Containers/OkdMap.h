@@ -24,8 +24,10 @@ public:
 
 	inline iterator					add( const Key& key, const Value& value );
 	inline uint32					remove( const Key& key );
+	inline void						remove( const_iterator& it );
 
 	inline bool						find( const Key& key, Value* pReturnValue );
+	inline const_iterator			find( const Key& key );
 	inline void						clearPointers();
 
 private:
@@ -95,6 +97,17 @@ uint32	OkdMap<Key, Value>::remove(const Key&	key)
 }
 
 //-----------------------------------------------------------------------------
+// Name:		remove
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename Key, typename Value>
+void	OkdMap<Key, Value>::remove(const_iterator&	it)
+{
+	_map.erase( it );
+}
+
+//-----------------------------------------------------------------------------
 // Name:		find
 //
 // Created:		2013-08-26
@@ -112,6 +125,18 @@ bool	OkdMap<Key, Value>::find(const Key&	key,
 	}
 
 	return	( false );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		find
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename Key, typename Value>
+typename OkdMap<Key, Value>::const_iterator	OkdMap<Key, Value>::find(const Key&	key)
+{
+	const_iterator itExist = _map.find( key );
+	return	( itExist );
 }
 
 //-----------------------------------------------------------------------------

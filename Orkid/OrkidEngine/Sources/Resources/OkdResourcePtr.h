@@ -12,10 +12,8 @@
 #include	"Root.h"
 
 #include	ORKID_ENGINE_H(OrkidEngine)
-//#include	ORKID_ENGINE_H(Resources/Handlers/OkdResourceHandler)
 #include	ORKID_ENGINE_H(Resources/OkdResourceManager)
 #include	ORKID_ENGINE_H(Resources/OkdResourceDatabase)
-//#include	ORKID_CORE_H(String/OkdCrc32)
 
 template<class T>
 class OkdResourcePtr
@@ -179,9 +177,13 @@ OkdResourcePtr<T>& OkdResourcePtr<T>::operator=(const OkdResourcePtr&	resourcePt
 template<class T>
 void OkdResourcePtr<T>::release()
 {
-	if	( _pResource && ( _pResource->removeRef() == 0 ) )
+	if	( _pResource )
 	{
-		OkdResourceManager::removeResource<T>( _pResource );
+		if	( _pResource->removeRef() == 0 )
+		{
+			OkdResourceManager::removeResource<T>( _pResource->getResourceKey() );
+		}
+
 		_pResource = 0;
 	}
 }

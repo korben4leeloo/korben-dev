@@ -16,10 +16,6 @@
 
 class OkdOpenGLShader: public OkdAbstractShader
 {
-	//template<class T> friend class OkdResourceRef;
-	//friend class OkdShaderPtr::OkdResourceRef<OkdOpenGLShader>;
-	friend class OkdResourceHandler<OkdOpenGLShader>;
-
 public:
 	virtual void	compile();
 
@@ -29,8 +25,6 @@ private:
 
 	GLuint			_uiShaderId;
 };
-
-typedef OkdResourceHandler<OkdOpenGLShader> OkdOpenGLShaderResourceHandler;
 
 //*****************************************************************************
 //	Inline functions declarations

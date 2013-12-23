@@ -227,30 +227,6 @@ void	testLoadMesh()
 	OkdMesh* pMesh = meshPtr.getResource();
 }
 
-//class OkdShaderPtr: public OkdResourcePtr<OkdShader, OrkidShader>
-//{
-//public:
-//	/*OkdShaderPtr(const OkdString &		strShaderName, 
-//				 const OrkidShaderType	eShaderType)
-//	{
-//		bind( strShaderName );
-//		_pResource->_eShaderType = eShaderType;
-//	}*/
-//
-//	void bind( const OkdString& strResourceName, const OrkidShaderType	eShaderType )
-//	{
-//		bind( strResourceName );
-//		_pResource->_eShaderType = eShaderType;
-//	}
-//
-//private:
-//	void bind( const OkdString& strResourceName )
-//	{
-//		OkdResourcePtr::bind( strResourceName );
-//	}
-//};
-
-
 /**
 	WinMain is the main entry point for Windows based applications as opposed to 'main' for console
 	applications. Here we will make the calls to create our window, setup our scene and then
@@ -333,7 +309,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	createWindow(orig, 500, 500); // Create our OpenGL window
 
 	{
-		OkdShaderPtr shaderPtr;//( "test", OrkidVertexShader );
+		//OkdShaderPtr shaderPtr;//( "test", OrkidVertexShader );
 		//shaderPtr = OkdResourceManager::addMesh( "test" );
 		//shaderPtr.getResource()->setShadertType( OrkidVertexShader );
 		//shaderPtr = OkdResourceManager::addMesh( "test", OrkidVertexShader );

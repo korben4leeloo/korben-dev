@@ -26,7 +26,6 @@ class OkdCreature;
 class OkdScene: public OkdAbstractResource
 {
 public:
-	//friend class OkdResourceHandler<OkdScene>;
 	friend class OkdResourceManager;
 
 					ORKID_RESOURCE( OrkidScene )

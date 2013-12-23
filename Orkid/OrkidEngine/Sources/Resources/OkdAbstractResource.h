@@ -20,7 +20,7 @@ class OkdFileStream;
 class OkdAbstractResource
 {
 	template<class T> friend class OkdResourcePtr;
-	template<class T> friend class OkdResourceHandler;
+	friend class OkdResourceManager;
 
 public:
 	inline const OkdResourceKey&	getResourceKey() const;
