@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrkidMayaExporter", "OrkidExporters\OrkidMayaExporter\OrkidMayaExporter.vcxproj", "{4F30ECE7-2E05-42E0-8C8D-9292A904A12D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrkidEngine", "OrkidEngine\OrkidEngine.vcxproj", "{6DBBF689-0136-4205-9458-6A61C8FCC42A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrkidRuntime", "OrkidRuntime\OrkidRuntime.vcxproj", "{1811292D-EA80-4EEB-BA08-B0591CD05197}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrkidCore", "OrkidCore\OrkidCore.vcxproj", "{9564AB07-FBBD-44CB-89B8-116A30492110}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrkidEditor", "OrkidEditor\OrkidEditor.vcxproj", "{B56C51FB-83DD-4392-9CD5-93ED6C8DE58B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrkidRuntimeDll", "OrkidRuntimeDll\OrkidRuntimeDll.vcxproj", "{25C5F3E0-BB1E-420F-B8ED-E64B96BBC3A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1598302B-5F3A-46B4-81C9-DE6F228D585A}"
+	ProjectSection(SolutionItems) = preProject
+		OrkidRoot.h = OrkidRoot.h
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F30ECE7-2E05-42E0-8C8D-9292A904A12D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4F30ECE7-2E05-42E0-8C8D-9292A904A12D}.Debug|Win32.Build.0 = Debug|Win32
+		{4F30ECE7-2E05-42E0-8C8D-9292A904A12D}.Release|Win32.ActiveCfg = Release|Win32
+		{4F30ECE7-2E05-42E0-8C8D-9292A904A12D}.Release|Win32.Build.0 = Release|Win32
+		{6DBBF689-0136-4205-9458-6A61C8FCC42A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6DBBF689-0136-4205-9458-6A61C8FCC42A}.Debug|Win32.Build.0 = Debug|Win32
+		{6DBBF689-0136-4205-9458-6A61C8FCC42A}.Release|Win32.ActiveCfg = Release|Win32
+		{6DBBF689-0136-4205-9458-6A61C8FCC42A}.Release|Win32.Build.0 = Release|Win32
+		{1811292D-EA80-4EEB-BA08-B0591CD05197}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1811292D-EA80-4EEB-BA08-B0591CD05197}.Debug|Win32.Build.0 = Debug|Win32
+		{1811292D-EA80-4EEB-BA08-B0591CD05197}.Release|Win32.ActiveCfg = Release|Win32
+		{1811292D-EA80-4EEB-BA08-B0591CD05197}.Release|Win32.Build.0 = Release|Win32
+		{9564AB07-FBBD-44CB-89B8-116A30492110}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9564AB07-FBBD-44CB-89B8-116A30492110}.Debug|Win32.Build.0 = Debug|Win32
+		{9564AB07-FBBD-44CB-89B8-116A30492110}.Release|Win32.ActiveCfg = Release|Win32
+		{9564AB07-FBBD-44CB-89B8-116A30492110}.Release|Win32.Build.0 = Release|Win32
+		{B56C51FB-83DD-4392-9CD5-93ED6C8DE58B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B56C51FB-83DD-4392-9CD5-93ED6C8DE58B}.Release|Win32.ActiveCfg = Release|Win32
+		{B56C51FB-83DD-4392-9CD5-93ED6C8DE58B}.Release|Win32.Build.0 = Release|Win32
+		{25C5F3E0-BB1E-420F-B8ED-E64B96BBC3A0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{25C5F3E0-BB1E-420F-B8ED-E64B96BBC3A0}.Debug|Win32.Build.0 = Debug|Win32
+		{25C5F3E0-BB1E-420F-B8ED-E64B96BBC3A0}.Release|Win32.ActiveCfg = Release|Win32
+		{25C5F3E0-BB1E-420F-B8ED-E64B96BBC3A0}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

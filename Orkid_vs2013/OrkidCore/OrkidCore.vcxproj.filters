@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Sources\Math">
+      <UniqueIdentifier>{6400d922-2e3c-468f-a221-4b72f4beca30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Containers">
+      <UniqueIdentifier>{eb04447d-80a2-407c-b351-d7ea275c18f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Stream">
+      <UniqueIdentifier>{3770236e-cc95-461d-98aa-13186287db67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\String">
+      <UniqueIdentifier>{5700471f-29f0-4ec2-bb16-1b2e51d4fa07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Memory">
+      <UniqueIdentifier>{9600c850-fde7-42f8-a548-3bf7a30c2914}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Xml">
+      <UniqueIdentifier>{7fd42b3e-fcf2-4e08-a711-00f359173c7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Singleton">
+      <UniqueIdentifier>{a4e443a6-d5ac-43ee-b299-dcef119dc6bf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\OrkidCoreRoot.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\OkdVector3f.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\OkdVector4f.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\OkdMatrix4f.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\OkdQuaternionf.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Containers\OkdList.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Containers\OkdVector.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Root.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Stream\Root.h">
+      <Filter>Sources\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Stream\OkdFile.h">
+      <Filter>Sources\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\String\OkdString.h">
+      <Filter>Sources\String</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\String\Root.h">
+      <Filter>Sources\String</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Memory\OkdMemManager.h">
+      <Filter>Sources\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Memory\Root.h">
+      <Filter>Sources\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\OrkidCore.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Memory\OkdSharedPtr.h">
+      <Filter>Sources\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Containers\OkdMap.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Stream\OkdFileStream.h">
+      <Filter>Sources\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Xml\OkdXmlFile.h">
+      <Filter>Sources\Xml</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Xml\Root.h">
+      <Filter>Sources\Xml</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\String\OkdCrc32.h">
+      <Filter>Sources\String</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Singleton\OkdSingleton.h">
+      <Filter>Sources\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Singleton\Root.h">
+      <Filter>Sources\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Xml\OkdXmlDocument.h">
+      <Filter>Sources\Xml</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\Math\OkdVector3f.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\OkdVector4f.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\OkdMatrix4f.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\OkdQuaternionf.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Containers\OkdVector.cpp">
+      <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Containers\OkdList.cpp">
+      <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Stream\OkdFile.cpp">
+      <Filter>Sources\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\String\OkdString.cpp">
+      <Filter>Sources\String</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Memory\OkdMemManager.cpp">
+      <Filter>Sources\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\OrkidCore.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Memory\OkdSharedPtr.cpp">
+      <Filter>Sources\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Containers\OkdMap.cpp">
+      <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Stream\OkdFileStream.cpp">
+      <Filter>Sources\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Xml\OkdXmlFile.cpp">
+      <Filter>Sources\Xml</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\String\OkdCrc32.cpp">
+      <Filter>Sources\String</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Singleton\OkdSingleton.cpp">
+      <Filter>Sources\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Xml\OkdXmlDocument.cpp">
+      <Filter>Sources\Xml</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

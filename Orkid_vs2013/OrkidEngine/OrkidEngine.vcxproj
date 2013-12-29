@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\Entities\OkdCamera.h" />
+    <ClInclude Include="Sources\Entities\OkdCreature.h" />
+    <ClInclude Include="Sources\Entities\OkdEntity.h" />
+    <ClInclude Include="Sources\Entities\OkdEntityFactory.h" />
+    <ClInclude Include="Sources\Entities\OkdLight.h" />
+    <ClInclude Include="Sources\Entities\OkdMesh.h" />
+    <ClInclude Include="Sources\Entities\OkdMeshInfo.h" />
+    <ClInclude Include="Sources\Entities\OkdShape.h" />
+    <ClInclude Include="Sources\Entities\Root.h" />
+    <ClInclude Include="Sources\OpenGL\OkdOpenGL_API.h" />
+    <ClInclude Include="Sources\OrkidEngine.h" />
+    <ClInclude Include="Sources\OpenGL\OkdOpenGLContext.h" />
+    <ClInclude Include="Sources\OpenGL\Root.h" />
+    <ClInclude Include="Sources\OrkidEngineRoot.h" />
+    <ClInclude Include="Sources\Resources\OkdAbstractResource.h" />
+    <ClInclude Include="Sources\Resources\OkdResourceDatabase.h" />
+    <ClInclude Include="Sources\Resources\OkdResourceManager.h" />
+    <ClInclude Include="Sources\Resources\OkdResourcePtr.h" />
+    <ClInclude Include="Sources\Resources\Root.h" />
+    <ClInclude Include="Sources\SceneGraph\OkdNode.h" />
+    <ClInclude Include="Sources\SceneGraph\OkdScene.h" />
+    <ClInclude Include="Sources\SceneGraph\Root.h" />
+    <ClInclude Include="Sources\Shaders\OkdAbstractShader.h" />
+    <ClInclude Include="Sources\Shaders\OkdAbstractShaderProgram.h" />
+    <ClInclude Include="Sources\Shaders\OpenGL\OkdOpenGLShader.h" />
+    <ClInclude Include="Sources\Shaders\OpenGL\Root.h" />
+    <ClInclude Include="Sources\Shaders\Root.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\Entities\OkdCamera.cpp" />
+    <ClCompile Include="Sources\Entities\OkdCreature.cpp" />
+    <ClCompile Include="Sources\Entities\OkdEntity.cpp" />
+    <ClCompile Include="Sources\Entities\OkdEntityFactory.cpp" />
+    <ClCompile Include="Sources\Entities\OkdLight.cpp" />
+    <ClCompile Include="Sources\Entities\OkdMesh.cpp" />
+    <ClCompile Include="Sources\Entities\OkdMeshInfo.cpp" />
+    <ClCompile Include="Sources\Entities\OkdShape.cpp" />
+    <ClCompile Include="Sources\OpenGL\OkdOpenGL_API.cpp" />
+    <ClCompile Include="Sources\OrkidEngine.cpp" />
+    <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp" />
+    <ClCompile Include="Sources\Resources\OkdAbstractResource.cpp" />
+    <ClCompile Include="Sources\Resources\OkdResourceDatabase.cpp" />
+    <ClCompile Include="Sources\Resources\OkdResourceManager.cpp" />
+    <ClCompile Include="Sources\Resources\OkdResourcePtr.cpp" />
+    <ClCompile Include="Sources\SceneGraph\OkdNode.cpp" />
+    <ClCompile Include="Sources\SceneGraph\OkdScene.cpp" />
+    <ClCompile Include="Sources\Shaders\OkdAbstractShader.cpp" />
+    <ClCompile Include="Sources\Shaders\OkdAbstractShaderProgram.cpp" />
+    <ClCompile Include="Sources\Shaders\OpenGL\OkdOpenGLShader.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6DBBF689-0136-4205-9458-6A61C8FCC42A}</ProjectGuid>
+    <RootNamespace>OrkidEngine</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(KORBEN_DEV_QT_PATH)\include;$(KORBEN_DEV_QT_PATH)\include\QtCore;$(KORBEN_DEV_PATH)\Libraries\Math\Eigen_3_2_0;$(KORBEN_DEV_PATH)\Libraries\OpenGL;$(KORBEN_DEV_ORKID_VS2013_PATH);$(KORBEN_DEV_PATH)\Libraries\Xml\Xerces\include;$(KORBEN_DEV_PATH)\Libraries\Xml</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
