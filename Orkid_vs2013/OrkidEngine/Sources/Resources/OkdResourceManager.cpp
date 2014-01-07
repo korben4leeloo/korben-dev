@@ -12,33 +12,88 @@
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 #include	ORKID_ENGINE_H(Shaders/OkdAbstractShader)
 
-template<class T, typename...AllocatorArgs>
-using pfnResourceAllocator = T* (*)(AllocatorArgs...allocArgs);
+//template<class T, typename...AllocatorArgs>
+//using pfnResourceAllocator = T* (*)(AllocatorArgs...allocArgs);
 
 class OkdMeshResource
 {
+public:
+	OkdMeshResource()
+	{
 
+	}
 };
 
-template<class T, typename...AllocatorArgs> 
+//template<class T>
+//T* defaultAllocator()
+//{
+//	return( new T() );
+//}
+
+template<class T>
+class OkdResourceAllocatorFn
+{
+public:
+	template<class...AllocArgs>
+	inline T* operator()( AllocArgs...allocArgs )
+	{
+		return	( new T( allocArgs... ) );
+	}
+};
+
+class OkdShaderAllocatorFn
+{
+public:
+	inline OkdAbstractShader* operator()( const OrkidShaderType eShaderType )
+	{
+		return	( 0 );
+	}
+};
+
+template<class T, class AllocatorType = OkdResourceAllocatorFn<T> >
+//template<class T>
+//template<class T, template<class ReturnType, typename...AllocatorArgs> class> 
+//template<class T, pfnResourceAllocator allocator> 
+//template<class T, T* (*fnAllocator)() = defaultAllocator<T> >
+//template<class T, class...Allocargs, T* (*fnAllocator)(Allocargs...)>
 class OkdResourceMap: public OkdMap<OkdResourceKey, T*>
 {
 public:
-	OkdResourceMap(): _pfnResourceAllocator( 0 ) {}
+	OkdResourceMap()//: _pfnResourceAllocator( 0 )
+	{
+		
+	}
 
-	void setAllocator( pfnResourceAllocator<T, AllocatorArgs...> pfnResourceAllocator ) { _pfnResourceAllocator = pfnResourceAllocator; }
+	//void setAllocator( pfnResourceAllocator<T, AllocatorArgs...> pfnResourceAllocator ) { _pfnResourceAllocator = pfnResourceAllocator; }
+
+	T* allocate()
+	{
+		AllocatorType fn;
+		return fn();
+		//return 0;
+	}
 
 private:
-	pfnResourceAllocator<T, AllocatorArgs...> _pfnResourceAllocator;
+	//pfnResourceAllocator<T, AllocatorArgs...> _pfnResourceAllocator;
 };
 
-OkdResourceMap<OkdMeshResource> meshResourceMap;
-OkdResourceMap<OkdAbstractShader, OrkidShaderType> shaderResourceMap;
+//OkdMeshResource* meshAllocator()
+//{
+//	return	( new OkdMeshResource() );
+//}
 
-OkdMeshResource* meshAllocator()
-{
-	return	( new OkdMeshResource() );
-}
+//typedef defaultAllocator<OkdMeshResource> fnMeshAllocator;
+
+OkdResourceMap<OkdMeshResource> meshResourceMap;
+//OkdResourceMap<OkdMeshResource, OkdResourceAllocatorFn<OkdMeshResource>> meshResourceMap;
+//OkdResourceMap<OkdMeshResource, decltype(defaultAllocator<OkdMeshResource>) > meshResourceMap;
+//OkdResourceMap<OkdMeshResource, pfnResourceAllocator<OkdMeshResource>> meshResourceMap;
+//OkdResourceMap<OkdMeshResource, decltype(meshAllocator)> meshResourceMap;
+//OkdResourceMap<OkdMeshResource, meshAllocator> meshResourceMap;
+//OkdResourceMap<OkdAbstractShader> shaderResourceMap;
+//OkdResourceMap<OkdAbstractShader, OrkidShaderType> shaderResourceMap;
+//OkdResourceMap<OkdMeshResource, defaultAllocator<OkdMeshResource>> meshResourceMap;
+//OkdResourceMap<OkdAbstractShader, defaultAllocator<OkdAbstractShader>> shaderResourceMap;
 
 class OkdShaderResource: public OkdAbstractShader
 {
@@ -52,6 +107,20 @@ OkdAbstractShader* shaderAllocator( OrkidShaderType eShaderType )
 	return	( new OkdShaderResource( eShaderType ) );
 }
 
+template<class T, class...BindArgs>
+class OkdResManager
+{
+public:
+	class OkdResPtr
+	{
+	public:
+		T* create( BindArgs...bindArgs )
+		{
+			return new T();
+		}
+	};
+};
+
 //-----------------------------------------------------------------------------
 // Name:		OkdResourceManager constructor
 //
@@ -59,8 +128,37 @@ OkdAbstractShader* shaderAllocator( OrkidShaderType eShaderType )
 //-----------------------------------------------------------------------------
 OkdResourceManager::OkdResourceManager()
 {
-	meshResourceMap.setAllocator( meshAllocator );
-	shaderResourceMap.setAllocator( shaderAllocator );
+	/*meshResourceMap.setAllocator( meshAllocator );
+	shaderResourceMap.setAllocator( shaderAllocator );*/
+
+	//pfnResourceAllocator<OkdMeshResource> f = meshAllocator;
+
+	//ff<defaultAllocator<OkdMeshResource>>();
+
+	/*OkdResourceAllocatorFn<OkdMeshResource> fnAllocMesh;
+	OkdMeshResource* p = fnAllocMesh();
+
+	OkdResourceAllocatorFn<OkdShaderResource> fnAllocShader;
+	OkdAbstractShader* p2 = fnAllocShader( OrkidVertexShader );*/
+	
+	//OkdMeshResource* pMesh = meshResourceMap.allocate();
+	//OkdAbstractShader* pShader = shaderResourceMap.allocate();
+	//shaderResourceMap.allocate( OrkidVertexShader );*/
+
+	/*OkdResPtr<int> int_ptr;
+	OkdResPtr<float, float, float> float_ptr;
+	
+	int_ptr.create();
+	float_ptr.create( -1.0f, 1.0f );*/
+
+	typedef OkdResManager<int>::OkdResPtr OkdIntPtr;
+	typedef OkdResManager<float, float>::OkdResPtr OkdFloatPtr;
+
+	OkdIntPtr int_ptr;
+	OkdFloatPtr float_ptr;
+
+	int* pn = int_ptr.create();
+	float* pf = float_ptr.create( 1.0f );
 }
 
 //-----------------------------------------------------------------------------

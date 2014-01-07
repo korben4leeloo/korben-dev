@@ -301,12 +301,12 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	//createWindow(wcstring, 500, 500); // Create our OpenGL window
 	createWindow(orig, 500, 500); // Create our OpenGL window
 
-	{
-		OkdShaderPtr shaderPtr;//( "test", OrkidVertexShader );
-		shaderPtr.bind( "test" );
-		//shaderPtr.getResource()->setShadertType( OrkidVertexShader );
-		shaderPtr.bind( "test", OrkidVertexShader );
-	}
+	//{
+	//	OkdShaderPtr shaderPtr;//( "test", OrkidVertexShader );
+	//	shaderPtr.bind( "test" );
+	//	//shaderPtr.getResource()->setShadertType( OrkidVertexShader );
+	//	shaderPtr.bind( "test", OrkidVertexShader );
+	//}
 
 	//openglContext.setupScene(); // Setup our OpenGL scene
 
