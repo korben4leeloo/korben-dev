@@ -50,31 +50,54 @@ public:
 	}
 };
 
-template<class T, class AllocatorType = OkdResourceAllocatorFn<T> >
-//template<class T>
-//template<class T, template<class ReturnType, typename...AllocatorArgs> class> 
-//template<class T, pfnResourceAllocator allocator> 
-//template<class T, T* (*fnAllocator)() = defaultAllocator<T> >
-//template<class T, class...Allocargs, T* (*fnAllocator)(Allocargs...)>
-class OkdResourceMap: public OkdMap<OkdResourceKey, T*>
+//template<class T, class AllocatorType = OkdResourceAllocatorFn<T> >
+////template<class T>
+////template<class T, template<class ReturnType, typename...AllocatorArgs> class> 
+////template<class T, pfnResourceAllocator allocator> 
+////template<class T, T* (*fnAllocator)() = defaultAllocator<T> >
+////template<class T, class...Allocargs, T* (*fnAllocator)(Allocargs...)>
+//class OkdResourceMap: public OkdMap<OkdResourceKey, T*>
+//{
+//public:
+//	OkdResourceMap()//: _pfnResourceAllocator( 0 )
+//	{
+//		
+//	}
+//
+//	//void setAllocator( pfnResourceAllocator<T, AllocatorArgs...> pfnResourceAllocator ) { _pfnResourceAllocator = pfnResourceAllocator; }
+//
+//	T* allocate()
+//	{
+//		AllocatorType fn;
+//		return fn();
+//		//return 0;
+//	}
+//
+//private:
+//	//pfnResourceAllocator<T, AllocatorArgs...> _pfnResourceAllocator;
+//};
+
+template<class T, class...BindArgs>
+class OkdResourceMap
 {
 public:
-	OkdResourceMap()//: _pfnResourceAllocator( 0 )
-	{
-		
-	}
+	typedef T* (*pfnResourceAllocator)( BindArgs...bindArgs );
 
-	//void setAllocator( pfnResourceAllocator<T, AllocatorArgs...> pfnResourceAllocator ) { _pfnResourceAllocator = pfnResourceAllocator; }
-
-	T* allocate()
+	class OkdResPtr
 	{
-		AllocatorType fn;
-		return fn();
-		//return 0;
-	}
+	public:
+		void create( BindArgs...bindArgs )
+		{
+			//return new T();
+			_ptr = OkdResourceMap::_pfnAllocator( bindArgs... );
+		}
+
+	private:
+		T* _ptr;
+	};
 
 private:
-	//pfnResourceAllocator<T, AllocatorArgs...> _pfnResourceAllocator;
+	static pfnResourceAllocator _pfnAllocator;
 };
 
 //OkdMeshResource* meshAllocator()
@@ -82,7 +105,19 @@ private:
 //	return	( new OkdMeshResource() );
 //}
 
+OkdMesh* meshAllocator()
+{
+	return	( new OkdMesh() );
+}
+
 //typedef defaultAllocator<OkdMeshResource> fnMeshAllocator;
+
+typedef OkdResourceMap<OkdMesh>	OkdMeshResMap;
+
+typedef OkdMeshResMap::OkdResPtr				OkdMeshResPtr;
+typedef OkdResourceMap<OkdAbstractShader>::OkdResPtr	OkdShaderResPtr;
+
+OkdMeshResMap::pfnResourceAllocator OkdMeshResMap::_pfnAllocator = meshAllocator;
 
 OkdResourceMap<OkdMeshResource> meshResourceMap;
 //OkdResourceMap<OkdMeshResource, OkdResourceAllocatorFn<OkdMeshResource>> meshResourceMap;
@@ -90,7 +125,7 @@ OkdResourceMap<OkdMeshResource> meshResourceMap;
 //OkdResourceMap<OkdMeshResource, pfnResourceAllocator<OkdMeshResource>> meshResourceMap;
 //OkdResourceMap<OkdMeshResource, decltype(meshAllocator)> meshResourceMap;
 //OkdResourceMap<OkdMeshResource, meshAllocator> meshResourceMap;
-//OkdResourceMap<OkdAbstractShader> shaderResourceMap;
+OkdResourceMap<OkdAbstractShader> shaderResourceMap;
 //OkdResourceMap<OkdAbstractShader, OrkidShaderType> shaderResourceMap;
 //OkdResourceMap<OkdMeshResource, defaultAllocator<OkdMeshResource>> meshResourceMap;
 //OkdResourceMap<OkdAbstractShader, defaultAllocator<OkdAbstractShader>> shaderResourceMap;
@@ -106,20 +141,6 @@ OkdAbstractShader* shaderAllocator( OrkidShaderType eShaderType )
 {
 	return	( new OkdShaderResource( eShaderType ) );
 }
-
-template<class T, class...BindArgs>
-class OkdResManager
-{
-public:
-	class OkdResPtr
-	{
-	public:
-		T* create( BindArgs...bindArgs )
-		{
-			return new T();
-		}
-	};
-};
 
 //-----------------------------------------------------------------------------
 // Name:		OkdResourceManager constructor
@@ -151,14 +172,18 @@ OkdResourceManager::OkdResourceManager()
 	int_ptr.create();
 	float_ptr.create( -1.0f, 1.0f );*/
 
-	typedef OkdResManager<int>::OkdResPtr OkdIntPtr;
-	typedef OkdResManager<float, float>::OkdResPtr OkdFloatPtr;
+	/*typedef OkdResourceMap<int>::OkdResPtr OkdIntPtr;
+	typedef OkdResourceMap<float, float>::OkdResPtr OkdFloatPtr;
 
 	OkdIntPtr int_ptr;
 	OkdFloatPtr float_ptr;
 
 	int* pn = int_ptr.create();
-	float* pf = float_ptr.create( 1.0f );
+	float* pf = float_ptr.create( 1.0f );*/
+
+	OkdMeshResPtr ptr;
+
+	ptr.create();
 }
 
 //-----------------------------------------------------------------------------
