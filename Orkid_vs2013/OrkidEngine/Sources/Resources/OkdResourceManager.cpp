@@ -12,9 +12,6 @@
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 #include	ORKID_ENGINE_H(Shaders/OkdAbstractShader)
 
-//template<class T, typename...AllocatorArgs>
-//using pfnResourceAllocator = T* (*)(AllocatorArgs...allocArgs);
-
 class OkdMeshResource
 {
 public:
@@ -24,11 +21,20 @@ public:
 	}
 };
 
-template<class T, class...AllocArgs>
-T* defaultAllocator( AllocArgs...allocArgs )
+//template<class T, typename...AllocArgs>
+//T* defaultAllocator( AllocArgs...allocArgs )
+//{
+//	return( new T( allocArgs...) );
+//}
+
+template<class T>
+T* defaultAllocator()
 {
-	return( new T( allocArgs...) );
+	return(new T());
 }
+
+//template<class T, typename...AllocatorArgs>
+//using pfnResourceAllocator = T* (*)(AllocatorArgs...allocArgs);
 
 //template<class T>
 //class OkdResourceAllocatorFn
@@ -41,14 +47,14 @@ T* defaultAllocator( AllocArgs...allocArgs )
 //	}
 //};
 
-class OkdShaderAllocatorFn
-{
-public:
-	inline OkdAbstractShader* operator()( const OrkidShaderType eShaderType )
-	{
-		return	( 0 );
-	}
-};
+//class OkdShaderAllocatorFn
+//{
+//public:
+//	inline OkdAbstractShader* operator()( const OrkidShaderType eShaderType )
+//	{
+//		return	( 0 );
+//	}
+//};
 
 //template<class T, class AllocatorType = OkdResourceAllocatorFn<T> >
 ////template<class T>
@@ -87,18 +93,119 @@ public:
 	}
 };
 
-template<class T, class...AllocArgs>
+//template<class T, class...AllocArgs>
+//class OkdResourceMap
+//{
+//public:
+//	typedef T* (*pfnResourceAllocator)( AllocArgs...allocArgs );
+//
+//	OkdResourceMap( pfnResourceAllocator allocator = defaultAllocator<T, AllocArgs...> ): _pfnAllocator( allocator ) {}
+//
+//	class OkdResPtr
+//	{
+//	public:
+//		void create( AllocArgs...allocArgs )
+//		{
+//			//return new T();
+//			//_ptr = OkdResourceMap::_pfnAllocator( allocArgs... );
+//			//_ptr = OkdResourceAllocatorFn<T, 
+//		}
+//
+//	private:
+//		T* _ptr;
+//	};
+//
+//private:
+//	pfnResourceAllocator _pfnAllocator;
+//};
+
+//template<class T>
+//class OkdResourceMap
+//{
+//public:
+//	typedef T* (*pfnResourceAllocator)();
+//
+//	OkdResourceMap( pfnResourceAllocator allocator = std::conditional<std::is_abstract<T>::value, 0, defaultAllocator<T>> ): _pfnAllocator( allocator ) {}
+//
+//	class OkdResPtr
+//	{
+//	public:
+//		void create()
+//		{
+//			//return new T();
+//			//_ptr = OkdResourceMap::_pfnAllocator( allocArgs... );
+//			//_ptr = OkdResourceAllocatorFn<T, 
+//		}
+//
+//	private:
+//		T* _ptr;
+//	};
+//
+//private:
+//	pfnResourceAllocator _pfnAllocator;
+//};
+
+//template<class T>
+//struct OkdDefAllocator
+//{
+//	using fnResAllocType = T* (*)();
+//	static const fnResAllocType fnValue;
+//};
+//
+//const OkdDefAllocator<OkdMeshResource>::fnResAllocType OkdDefAllocator<OkdMeshResource>::fnValue = defaultAllocator<OkdMeshResource>;
+
+//template<class T>
+//using pfnResourceAllocator = T* (*)();
+
+//template<class T>
+//struct OkdDefAllocator
+//{
+//	using fnResAllocType = T* (*)();
+//	static const fnResAllocType fnValue;
+//};
+
+//template<class T>
+//struct OkdFunctionPtrConstant: public std::integral_constant<pfnResourceAllocator<T>, defaultAllocator<T>>
+//{
+//	
+//};
+//
+//template<class T>
+//struct OkdNullFunctionPtrConstant: public std::integral_constant<pfnResourceAllocator<T>, 0>
+//{
+//
+//};
+
+//template<class T>
+//struct OkdFunctionPtrConstant: public std::integral_constant<pfnResourceAllocator<T>, defaultAllocator<T>>
+//{
+//
+//};
+//
+//template<class T>
+//struct OkdNullFunctionPtrConstant: public std::integral_constant<pfnResourceAllocator<T>, 0>
+//{
+//
+//};
+
+//OkdFunctionPtrConstant<int>::type n;
+//OkdFunctionPtrconstant<OkdMeshResource>::
+
+//std::integral_constant<int*, 0> f;
+
+template<class T, T* (*pfnResourceAllocator)() = 0>
+//template<class T, T* pfnResourceAllocator() = defaultAllocator<T>>
+//template<class T, T* (*pfnResourceAllocator)() = std::conditional<std::is_abstract<T>::value, OkdFunctionPtrConstant<T>, OkdNullFunctionPtrConstant<T>>::type::value>
+//template<class T, typename OkdFunctionPtrConstant<T>::type U>
 class OkdResourceMap
 {
 public:
-	typedef T* (*pfnResourceAllocator)( AllocArgs...allocArgs );
-
-	OkdResourceMap( pfnResourceAllocator allocator = defaultAllocator<T, AllocArgs...> ): _pfnAllocator( allocator ) {}
+	OkdResourceMap(): _pfnAllocator( pfnResourceAllocator ) {}
 
 	class OkdResPtr
 	{
 	public:
-		void create( AllocArgs...allocArgs )
+		void create()
 		{
 			//return new T();
 			//_ptr = OkdResourceMap::_pfnAllocator( allocArgs... );
@@ -110,7 +217,8 @@ public:
 	};
 
 private:
-	pfnResourceAllocator _pfnAllocator;
+	decltype(pfnResourceAllocator) _pfnAllocator;
+	//pfnResourceAllocator _pfnAllocator;
 };
 
 //OkdMeshResource* meshAllocator()
@@ -139,13 +247,30 @@ public:
 	virtual void compile() {}
 };
 
-OkdAbstractShader* shaderAllocator( OrkidShaderType eShaderType )
+class OkdVertexShaderResource: public OkdAbstractShader
 {
-	return	( new OkdShaderResource( eShaderType ) );
+public:
+	OkdVertexShaderResource(): OkdAbstractShader( OrkidShaderTypeVertex ) {}
+	virtual void compile() {}
+};
+
+//OkdAbstractShader* shaderAllocator( OrkidShaderType eShaderType )
+//{
+//	return	( new OkdShaderResource( eShaderType ) );
+//}
+
+OkdAbstractShader* vertexShaderAllocator()
+{
+	return	( new OkdVertexShaderResource() );
 }
 
-typedef OkdResourceMap<OkdMeshResource>						OkdMeshResMap;
-typedef OkdResourceMap<OkdAbstractShader, OrkidShaderType>	OkdShaderResMap;
+template<class T>
+using OkdDefaultResourceMap = OkdResourceMap<T, defaultAllocator<T>>;
+
+//typedef OkdResourceMap<OkdMeshResource>		OkdMeshResMap;
+typedef OkdDefaultResourceMap<OkdMeshResource>		OkdMeshResMap;
+//typedef OkdResourceMap<OkdAbstractShader, OrkidShaderType>	OkdShaderResMap;
+typedef OkdResourceMap<OkdAbstractShader>	OkdShaderResMap;
 
 typedef OkdMeshResMap::OkdResPtr	OkdMeshResPtr;
 typedef OkdShaderResMap::OkdResPtr	OkdShaderResPtr;
@@ -161,6 +286,26 @@ typedef OkdShaderResMap::OkdResPtr	OkdShaderResPtr;
 //OkdResourceMap<OkdMeshResource, defaultAllocator<OkdMeshResource>> meshResourceMap;
 //OkdResourceMap<OkdAbstractShader, defaultAllocator<OkdAbstractShader>> shaderResourceMap;
 
+template<class T, template<class ReturnType, class...AllocArgs> class AllocFn, class...AllocArgs>
+class OkdResourceMap2
+{
+public:
+	AllocFn<T, AllocArgs...> _fn;
+};
+
+template<class ReturnType, class...AllocArgs>
+class OkdShaderAllocatorFn
+{
+public:
+	inline OkdAbstractShader* operator()( const OrkidShaderType eShaderType )
+	{
+		return	( 0 );
+	}
+};
+
+OkdResourceMap2<OkdMeshResource, OkdResourceAllocatorFn> meshMap2;
+OkdResourceMap2<OkdAbstractShader, OkdShaderAllocatorFn, OrkidShaderType> shaderMap2;
+
 //-----------------------------------------------------------------------------
 // Name:		OkdResourceManager constructor
 //
@@ -169,12 +314,17 @@ typedef OkdShaderResMap::OkdResPtr	OkdShaderResPtr;
 OkdResourceManager::OkdResourceManager()
 {
 	OkdMeshResMap meshResourceMap;
-	OkdShaderResMap shaderResourceMap( shaderAllocator );
+	/*OkdShaderResMap shaderResourceMap( shaderAllocator );*/
+	OkdShaderResMap shaderResourceMap;
+	//OkdShaderResMap shaderResourceMap;
 
 	std::tuple<OkdMeshResMap, OkdShaderResMap> resourceTuple = std::make_tuple{ meshResourceMap, shaderResourceMap };
 
 	OkdMeshResPtr ptr;
 	ptr.create();
+
+	meshMap2._fn();
+	//shaderMap2._fn( OrkidVertexShader );
 }
 
 //-----------------------------------------------------------------------------

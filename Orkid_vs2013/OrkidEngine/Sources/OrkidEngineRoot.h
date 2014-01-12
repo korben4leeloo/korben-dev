@@ -15,7 +15,10 @@ enum OkdResourceType
 {
 	OrkidMesh,
 	OrkidScene,
-	OrkidShader,
+
+	OrkidVertexShader,
+	OrkidFragmentShader,
+	OrkidGeometryShader,
 	OrkidShaderProgram,
 
 	OrkidResourceTypeCount,
