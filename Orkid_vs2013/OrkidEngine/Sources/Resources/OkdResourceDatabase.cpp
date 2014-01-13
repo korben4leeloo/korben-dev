@@ -21,6 +21,8 @@ const char* OkdResourceDatabase::_strResourceRelativePath[OrkidResourceTypeCount
 	"Meshes",
 	"Scenes",
 	"Shaders",
+	"Shaders",
+	"Shaders",
 	"Shaders"
 };
 
