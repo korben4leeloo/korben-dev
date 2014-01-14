@@ -18,7 +18,8 @@ class OkdVector3f;
 
 class OkdMesh: public OkdAbstractResource
 {
-	friend class OkdResourceManager;
+	//friend class OkdResourceManager;
+	friend class OkdResourceMap<OkdMesh>;
 
 public:
 					ORKID_RESOURCE( OrkidMesh )

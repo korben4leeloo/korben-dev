@@ -14,29 +14,60 @@
 #include	ORKID_CORE_H(Containers/OkdMap)
 #include	ORKID_CORE_H(String/OkdString)
 #include	ORKID_CORE_H(String/OkdCrc32)
+#include	ORKID_ENGINE_H(Resources/OkdResourceMap)
 
 //class OkdAbstractResource;
 
 //typedef OkdMap<OkdResourceKey, OkdAbstractResource*> OkdResourceMap;
 
-template<class T> class OkdResourcePtr;
+//template<class T> class OkdResourcePtr;
+//
+//class OkdMesh;
+//class OkdScene;
+//class OkdAbstractShader;
+//
+////typedef OkdResourcePtr<OkdMesh>				OkdMeshPtr;
+////typedef OkdResourcePtr<OkdScene>			OkdScenePtr;
+////typedef OkdResourcePtr<OkdAbstractShader>	OkdShaderPtr;
+//
+//typedef OkdMap<OkdResourceKey, OkdMesh*> OkdMeshResourceMap;
+//typedef OkdMap<OkdResourceKey, OkdScene*> OkdSceneResourceMap;
+//typedef OkdMap<OkdResourceKey, OkdAbstractShader*> OkdShaderResourceMap;
+//
+//typedef std::tuple<
+//	OkdMeshResourceMap,
+//	OkdSceneResourceMap,
+//	OkdShaderResourceMap
+//> OkdResourceMapArray;
+
 
 class OkdMesh;
 class OkdScene;
 class OkdAbstractShader;
+class OkdAbstractShaderProgram;
 
-typedef OkdResourcePtr<OkdMesh>				OkdMeshPtr;
-typedef OkdResourcePtr<OkdScene>			OkdScenePtr;
-typedef OkdResourcePtr<OkdAbstractShader>	OkdShaderPtr;
+template<class T, class AllocatorType>	class OkdResourceMap;
+template<OkdResourceType ResourceType>	class OkdShader;
 
-typedef OkdMap<OkdResourceKey, OkdMesh*> OkdMeshResourceMap;
-typedef OkdMap<OkdResourceKey, OkdScene*> OkdSceneResourceMap;
-typedef OkdMap<OkdResourceKey, OkdAbstractShader*> OkdShaderResourceMap;
+typedef OkdShader<OrkidVertexShader>	OkdAbstractVertexShader;
+typedef OkdShader<OrkidFragmentShader>	OkdAbstractFragmentShader;
+typedef OkdShader<OrkidGeometryShader>	OkdAbstractGeometryShader;
+
+typedef OkdResourceMap<OkdMesh>						OkdMeshResourceMap;
+typedef OkdResourceMap<OkdScene>					OkdSceneResourceMap;
+typedef OkdResourceMap<OkdAbstractVertexShader>		OkdVertexShaderResourceMap;
+typedef OkdResourceMap<OkdAbstractFragmentShader>	OkdFragmentShaderResourceMap;
+typedef OkdResourceMap<OkdAbstractGeometryShader>	OkdGeometryShaderResourceMap;
+typedef OkdResourceMap<OkdAbstractShaderProgram>	OkdShaderProgramResourceMap;
 
 typedef std::tuple<
-	OkdMeshResourceMap, 
-	OkdSceneResourceMap, 
-	OkdShaderResourceMap> OkdResourceMapArray;
+	OkdMeshResourceMap,
+	OkdSceneResourceMap,
+	OkdVertexShaderResourceMap,
+	OkdFragmentShaderResourceMap,
+	OkdGeometryShaderResourceMap,
+	OkdShaderProgramResourceMap
+> OkdResourceMapArray;
 
 class OkdResourceManager
 {
@@ -63,7 +94,7 @@ private:
 
 	//OkdResourceMap					_resourceMapArray[OrkidResourceTypeCount];
 	OkdResourceMapArray				_resourceMapArray;
-	//std::tuple<>					_test;
+	//std::tuple<OkdMeshResMap>		_test;
 };
 
 //*****************************************************************************
@@ -107,8 +138,10 @@ bool	OkdResourceManager::removeResource(const OkdResourceKey& resourceKey)
 {
 	OkdResourceManager*							pResourceManager	= OrkidEngine::instance()->getResourceManager();
 	//OkdResourceMap&							resourceMap			= pResourceManager->_resourceMapArray[eResourceType];
-	OkdMap<OkdResourceKey, T*>&					resourceMap			= std::get<T::_eResourceType>(pResourceManager->_resourceMapArray);
-	OkdMap<OkdResourceKey, T*>::const_iterator	itResource			= resourceMap.find( resourceKey );
+	/*OkdMap<OkdResourceKey, T*>&					resourceMap			= std::get<T::_eResourceType>(pResourceManager->_resourceMapArray);
+	OkdMap<OkdResourceKey, T*>::const_iterator	itResource			= resourceMap.find( resourceKey );*/
+	OkdResourceMap<T>&					resourceMap = std::get<T::_eResourceType>( pResourceManager->_resourceMapArray );
+	OkdResourceMap<T>::const_iterator	itResource = resourceMap.find( resourceKey );
 	T*											pResource			= (*itResource).second;
 	bool										bValid				= ( itResource != resourceMap.end() );
 

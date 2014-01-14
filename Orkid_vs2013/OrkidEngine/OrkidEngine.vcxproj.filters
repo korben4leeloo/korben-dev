@@ -124,6 +124,9 @@
     <ClInclude Include="Sources\Shaders\OpenGL\Root.h">
       <Filter>Sources\Shaders\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Resources\OkdResourceMap.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
@@ -185,6 +188,9 @@
     </ClCompile>
     <ClCompile Include="Sources\Shaders\OpenGL\OkdOpenGLShader.cpp">
       <Filter>Sources\Shaders\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Resources\OkdResourceMap.cpp">
+      <Filter>Sources\Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
