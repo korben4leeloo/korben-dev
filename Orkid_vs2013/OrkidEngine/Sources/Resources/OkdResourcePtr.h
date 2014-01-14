@@ -21,26 +21,26 @@ class OkdResourcePtr
 	friend class OkdResourceManager;
 
 public:
-											OkdResourcePtr();
-											OkdResourcePtr( const OkdResourcePtr& resourcePtr );
-											~OkdResourcePtr();
+						OkdResourcePtr();
+						OkdResourcePtr( const OkdResourcePtr& resourcePtr );
+						~OkdResourcePtr();
 
-	OkdResourcePtr&							operator=( const OkdResourcePtr& resourcePtr );
+	OkdResourcePtr&		operator=( const OkdResourcePtr& resourcePtr );
 
-	template<typename...ConstructArgs> void	bind( const OkdString& strResourceName, ConstructArgs...constructArgs );
-	void									unbind();
-	void									release();
+	void				bind( const OkdString& strResourceName );
+	void				unbind();
+	void				release();
 
-	void									load();
-	void									save();
+	void				load();
+	void				save();
 
-	T*										getResource();
-	const OkdString&						getResourceName() const;
+	T*					getResource();
+	const OkdString&	getResourceName() const;
 
 protected:
-											OkdResourcePtr( T* pResource );
+						OkdResourcePtr( T* pResource );
 
-	T*										_pResource;
+	T*					_pResource;
 };
 
 //-----------------------------------------------------------------------------
@@ -126,9 +126,7 @@ OkdResourcePtr<T>& OkdResourcePtr<T>::operator=(const OkdResourcePtr&	resourcePt
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-template<typename...ConstructArgs>
-void OkdResourcePtr<T>::bind(const OkdString&	strResourceName, 
-							 ConstructArgs...	constructArgs)
+void OkdResourcePtr<T>::bind(const OkdString&	strResourceName)
 {
 	OkdResourceManager*	pResourceManager	= OrkidEngine::instance()->getResourceManager();
 	T*					pResource			= pResourceManager->addResource<T>( strResourceName );

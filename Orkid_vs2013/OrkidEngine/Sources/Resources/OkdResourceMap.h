@@ -14,6 +14,7 @@
 template<class T>
 class OkdResourceAllocator
 {
+public:
 	T* operator()();
 };
 
@@ -22,6 +23,7 @@ class OkdResourceMap: public OkdMap<OkdResourceKey, T*>
 {
 public:
 					OkdResourceMap();
+	T*				allocate();
 
 private:
 	AllocatorType	_allocator;
@@ -51,6 +53,17 @@ template<class T, class AllocatorType>
 OkdResourceMap<T, AllocatorType>::OkdResourceMap()
 {
 
+}
+
+//-----------------------------------------------------------------------------
+// Name:		allocate
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, class AllocatorType>
+T*	OkdResourceMap<T, AllocatorType>::allocate()
+{
+	return	( _allocator() );
 }
 
 #endif

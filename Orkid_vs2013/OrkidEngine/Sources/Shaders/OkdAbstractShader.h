@@ -51,6 +51,8 @@ protected:
 template<OkdResourceType ResourceType>
 class OkdShader: public OkdAbstractShader
 {
+	friend class OkdResourceManager;
+
 public:
 			ORKID_RESOURCE( ResourceType )
 
@@ -62,6 +64,8 @@ protected:
 typedef OkdShader<OrkidVertexShader>	OkdAbstractVertexShader;
 typedef OkdShader<OrkidFragmentShader>	OkdAbstractFragmentShader;
 typedef OkdShader<OrkidGeometryShader>	OkdAbstractGeometryShader;
+
+typedef OkdResourcePtr<OkdAbstractVertexShader> OkdVertexShaderPtr;
 
 //*****************************************************************************
 //	Inline functions declarations

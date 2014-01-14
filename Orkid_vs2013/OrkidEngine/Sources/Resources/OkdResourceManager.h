@@ -89,7 +89,7 @@ private:
 
 	void							initialize();
 
-	template<class T, typename...ConstructArgs> static T*		addResource( const OkdString& strResourceName, ConstructArgs...constructArgs );
+	template<class T> static T*		addResource( const OkdString& strResourceName );
 	template<class T> static bool	removeResource( const OkdResourceKey& resourceKey );
 
 	//OkdResourceMap					_resourceMapArray[OrkidResourceTypeCount];
@@ -106,18 +106,19 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T, typename...ConstructArgs>
-static T*	OkdResourceManager::addResource(const OkdString&	strResourceName, ConstructArgs...constructArgs)
+template<class T>
+static T*	OkdResourceManager::addResource(const OkdString&	strResourceName)
 {
-	OkdResourceManager*						pResourceManager	= OrkidEngine::instance()->getResourceManager();
-	OkdResourceKey							resourceKey			= OkdCrc32::getCrc32( strResourceName );
-	//OkdResourceType						eResourceType		= T::_eResourceType;
-	OkdMap<OkdResourceKey, T*>&				resourceMap			= std::get<T::_eResourceType>(pResourceManager->_resourceMapArray);
-	OkdMap<OkdResourceKey, T*>::iterator	itResource			= resourceMap.add( resourceKey, 0 );
+	OkdResourceManager*			pResourceManager	= OrkidEngine::instance()->getResourceManager();
+	OkdResourceKey				resourceKey			= OkdCrc32::getCrc32( strResourceName );
+	//OkdResourceType			eResourceType		= T::_eResourceType;
+	OkdResourceMap<T>&			resourceMap			= std::get<T::_eResourceType>(pResourceManager->_resourceMapArray);
+	OkdResourceMap<T>::iterator	itResource			= resourceMap.add( resourceKey, 0 );
 
 	if	( itResource->second == 0 )
 	{
-		T* pResource = new T();
+		//T* pResource = new T();
+		T* pResource = resourceMap.allocate();
 
 		pResource->_resourceKey		= resourceKey;
 		pResource->_strResourceName	= strResourceName;
@@ -140,8 +141,8 @@ bool	OkdResourceManager::removeResource(const OkdResourceKey& resourceKey)
 	//OkdResourceMap&							resourceMap			= pResourceManager->_resourceMapArray[eResourceType];
 	/*OkdMap<OkdResourceKey, T*>&					resourceMap			= std::get<T::_eResourceType>(pResourceManager->_resourceMapArray);
 	OkdMap<OkdResourceKey, T*>::const_iterator	itResource			= resourceMap.find( resourceKey );*/
-	OkdResourceMap<T>&					resourceMap = std::get<T::_eResourceType>( pResourceManager->_resourceMapArray );
-	OkdResourceMap<T>::const_iterator	itResource = resourceMap.find( resourceKey );
+	OkdResourceMap<T>&							resourceMap = std::get<T::_eResourceType>( pResourceManager->_resourceMapArray );
+	OkdResourceMap<T>::const_iterator			itResource = resourceMap.find( resourceKey );
 	T*											pResource			= (*itResource).second;
 	bool										bValid				= ( itResource != resourceMap.end() );
 

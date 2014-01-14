@@ -16,10 +16,14 @@
 
 class OkdVector3f;
 
+template<class T> class OkdResourceAllocator;
+template<class T, class AllocatorType> class OkdResourceMap;
+
 class OkdMesh: public OkdAbstractResource
 {
-	//friend class OkdResourceManager;
-	friend class OkdResourceMap<OkdMesh>;
+	friend class OkdResourceManager;
+	friend class OkdResourceAllocator<OkdMesh>;
+	friend class OkdResourceMap<OkdMesh, OkdResourceAllocator<OkdMesh>>;
 
 public:
 					ORKID_RESOURCE( OrkidMesh )
@@ -49,6 +53,6 @@ private:
 	OkdMeshPolygon*	_pPolygonArray;
 };
 
-//typedef OkdResourcePtr<OkdMesh> OkdMeshPtr;
+typedef OkdResourcePtr<OkdMesh> OkdMeshPtr;
 
 #endif

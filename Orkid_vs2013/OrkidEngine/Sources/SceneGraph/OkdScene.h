@@ -23,10 +23,13 @@ class OkdLight;
 class OkdShape;
 class OkdCreature;
 
+template<class T> class OkdResourceAllocator;
+
 class OkdScene: public OkdAbstractResource
 {
 public:
 	friend class OkdResourceManager;
+	friend class OkdResourceAllocator<OkdScene>;
 
 					ORKID_RESOURCE( OrkidScene )
 
@@ -55,7 +58,7 @@ private:
 	OkdNode*		_pRootNode;
 };
 
-//typedef OkdResourcePtr<OkdScene> OkdScenePtr;
+typedef OkdResourcePtr<OkdScene> OkdScenePtr;
 
 //*****************************************************************************
 //	Inline functions declarations
