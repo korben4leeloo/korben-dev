@@ -40,7 +40,6 @@
 //	OkdShaderResourceMap
 //> OkdResourceMapArray;
 
-
 class OkdMesh;
 class OkdScene;
 class OkdAbstractShader;

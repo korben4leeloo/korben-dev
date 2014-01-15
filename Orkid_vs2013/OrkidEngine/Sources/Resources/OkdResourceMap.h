@@ -11,14 +11,21 @@
 
 #include	"Root.h"
 
-template<class T>
+template<class T, bool UseDefaultAllocator = true>
 class OkdResourceAllocator
 {
 public:
 	T* operator()();
 };
 
-template<class T, class AllocatorType = OkdResourceAllocator<T>>
+template<class T>
+class OkdResourceAllocator<T, false>
+{
+public:
+	T* operator()();
+};
+
+template<class T, class AllocatorType = OkdResourceAllocator<T, std::is_abstract<T>::value>>
 class OkdResourceMap: public OkdMap<OkdResourceKey, T*>
 {
 public:
@@ -38,10 +45,21 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-T* OkdResourceAllocator<T>::operator()()
+template<class T, bool UseDefaultAllocator>
+T* OkdResourceAllocator<T, UseDefaultAllocator>::operator()()
 {
 	return	( new T() );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator()
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+T* OkdResourceAllocator<T, false>::operator()()
+{
+	return	( 0 );
 }
 
 //-----------------------------------------------------------------------------
