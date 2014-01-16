@@ -11,21 +11,9 @@
 
 #include	"Root.h"
 
-template<class T, bool UseDefaultAllocator = true>
-class OkdResourceAllocator
-{
-public:
-	T* operator()();
-};
+#include	ORKID_ENGINE_H(Resources/Allocators/OkdResourceAllocator)
 
-template<class T>
-class OkdResourceAllocator<T, false>
-{
-public:
-	T* operator()();
-};
-
-template<class T, class AllocatorType = OkdResourceAllocator<T, std::is_abstract<T>::value>>
+template<class T, class AllocatorType = OkdResourceAllocator<T>>
 class OkdResourceMap: public OkdMap<OkdResourceKey, T*>
 {
 public:
@@ -39,28 +27,6 @@ private:
 //*****************************************************************************
 //	Inline functions declarations
 //*****************************************************************************
-
-//-----------------------------------------------------------------------------
-// Name:		operator()
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T, bool UseDefaultAllocator>
-T* OkdResourceAllocator<T, UseDefaultAllocator>::operator()()
-{
-	return	( new T() );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator()
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-T* OkdResourceAllocator<T, false>::operator()()
-{
-	return	( 0 );
-}
 
 //-----------------------------------------------------------------------------
 // Name:		OkdResourceMap constructor

@@ -41,6 +41,9 @@
     <Filter Include="Sources\Shaders\Cg">
       <UniqueIdentifier>{5ae73344-c0dc-4951-9123-6bf163756377}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Resources\Allocators">
+      <UniqueIdentifier>{e4f2f24c-0e1a-4a9a-b84b-40a266bdcdd5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\OrkidEngineRoot.h">
@@ -127,6 +130,12 @@
     <ClInclude Include="Sources\Resources\OkdResourceMap.h">
       <Filter>Sources\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Resources\Allocators\OkdResourceAllocator.h">
+      <Filter>Sources\Resources\Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Resources\Allocators\OkdShaderResourceAllocator.h">
+      <Filter>Sources\Resources\Allocators</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
@@ -191,6 +200,12 @@
     </ClCompile>
     <ClCompile Include="Sources\Resources\OkdResourceMap.cpp">
       <Filter>Sources\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Resources\Allocators\OkdResourceAllocator.cpp">
+      <Filter>Sources\Resources\Allocators</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Resources\Allocators\OkdShaderResourceAllocator.cpp">
+      <Filter>Sources\Resources\Allocators</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

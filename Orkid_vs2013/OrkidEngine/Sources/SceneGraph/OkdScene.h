@@ -23,13 +23,13 @@ class OkdLight;
 class OkdShape;
 class OkdCreature;
 
-template<class T, bool UseDefaultAllocator> class OkdResourceAllocator;
+template<class T> class OkdResourceAllocator;
 
 class OkdScene: public OkdAbstractResource
 {
 public:
 	friend class OkdResourceManager;
-	friend class OkdResourceAllocator<OkdScene, true>;
+	friend class OkdResourceAllocator<OkdScene>;
 
 					ORKID_RESOURCE( OrkidScene )
 

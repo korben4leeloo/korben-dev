@@ -42,15 +42,14 @@
 
 class OkdMesh;
 class OkdScene;
-class OkdAbstractShader;
 class OkdAbstractShaderProgram;
 
-template<class T, class AllocatorType>	class OkdResourceMap;
-template<OkdResourceType ResourceType>	class OkdShader;
+template<class T, class AllocatorType> class OkdResourceMap;
+template<OkdResourceType ResourceType> class OkdAbstractShader;
 
-typedef OkdShader<OrkidVertexShader>	OkdAbstractVertexShader;
-typedef OkdShader<OrkidFragmentShader>	OkdAbstractFragmentShader;
-typedef OkdShader<OrkidGeometryShader>	OkdAbstractGeometryShader;
+typedef OkdAbstractShader<OrkidVertexShader>	OkdAbstractVertexShader;
+typedef OkdAbstractShader<OrkidFragmentShader>	OkdAbstractFragmentShader;
+typedef OkdAbstractShader<OrkidGeometryShader>	OkdAbstractGeometryShader;
 
 typedef OkdResourceMap<OkdMesh>						OkdMeshResourceMap;
 typedef OkdResourceMap<OkdScene>					OkdSceneResourceMap;
