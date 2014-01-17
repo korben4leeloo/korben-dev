@@ -136,6 +136,9 @@
     <ClInclude Include="Sources\Resources\Allocators\OkdShaderResourceAllocator.h">
       <Filter>Sources\Resources\Allocators</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Resources\Allocators\OkdDefaultResourceAllocator.h">
+      <Filter>Sources\Resources\Allocators</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
@@ -205,6 +208,9 @@
       <Filter>Sources\Resources\Allocators</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Resources\Allocators\OkdShaderResourceAllocator.cpp">
+      <Filter>Sources\Resources\Allocators</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Resources\Allocators\OkdDefaultResourceAllocator.cpp">
       <Filter>Sources\Resources\Allocators</Filter>
     </ClCompile>
   </ItemGroup>

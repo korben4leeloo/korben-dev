@@ -25,6 +25,7 @@
     <ClInclude Include="Sources\OpenGL\OkdOpenGLContext.h" />
     <ClInclude Include="Sources\OpenGL\Root.h" />
     <ClInclude Include="Sources\OrkidEngineRoot.h" />
+    <ClInclude Include="Sources\Resources\Allocators\OkdDefaultResourceAllocator.h" />
     <ClInclude Include="Sources\Resources\Allocators\OkdResourceAllocator.h" />
     <ClInclude Include="Sources\Resources\Allocators\OkdShaderResourceAllocator.h" />
     <ClInclude Include="Sources\Resources\OkdAbstractResource.h" />
@@ -54,6 +55,7 @@
     <ClCompile Include="Sources\OpenGL\OkdOpenGL_API.cpp" />
     <ClCompile Include="Sources\OrkidEngine.cpp" />
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp" />
+    <ClCompile Include="Sources\Resources\Allocators\OkdDefaultResourceAllocator.cpp" />
     <ClCompile Include="Sources\Resources\Allocators\OkdResourceAllocator.cpp" />
     <ClCompile Include="Sources\Resources\Allocators\OkdShaderResourceAllocator.cpp" />
     <ClCompile Include="Sources\Resources\OkdAbstractResource.cpp" />

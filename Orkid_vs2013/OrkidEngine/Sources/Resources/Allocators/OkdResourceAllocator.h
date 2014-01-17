@@ -23,7 +23,7 @@ public:
 	void					setAllocatorFunc( pfnResourceAllocFunc pfnAllocateRessource );
 	T*						operator()();
 
-private:
+protected:
 	pfnResourceAllocFunc	_pfnAllocateResource;
 };
 
@@ -62,12 +62,7 @@ void OkdResourceAllocator<T>::setAllocatorFunc(pfnResourceAllocFunc	pfnAllocateR
 template<class T>
 T* OkdResourceAllocator<T>::operator()()
 {
-	if	( _pfnAllocateResource )
-	{
-		return	( _pfnAllocateResource() );
-	}
-
-	return	( 0 );
+	return	( _pfnAllocateResource() );
 }
 
 #endif

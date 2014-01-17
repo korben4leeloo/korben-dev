@@ -18,7 +18,6 @@
 //typedef OkdResourceMap<OkdAbstractShaderProgram>	OkdShaderProgramResourceMap;
 
 //typedef OkdResourceMap<OkdAbstractShaderProgram> OkdMeshResourceMap;
-typedef OkdResourceMap<OkdMesh> OkdMeshResMap;
 
 //-----------------------------------------------------------------------------
 // Name:		OkdResourceManager constructor

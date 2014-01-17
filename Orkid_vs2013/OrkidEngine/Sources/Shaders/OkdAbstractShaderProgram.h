@@ -20,6 +20,7 @@ public:
 	//inline void				addShader( const OkdShaderPtr& shaderPtr );
 
 	virtual void			build() = 0;
+	static OkdAbstractShaderProgram* allocate();
 
 private:
 							OkdAbstractShaderProgram();

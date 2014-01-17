@@ -303,9 +303,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	{
 		OkdVertexShaderPtr vertexShaderPtr;//( "test", OrkidVertexShader );
-		vertexShaderPtr.bind( "test" );
-		//shaderPtr.getResource()->setShadertType( OrkidVertexShader );
-		//shaderPtr.bind( "test", OrkidVertexShader );
+		//vertexShaderPtr.bind( "test" );;
 	}
 
 	//openglContext.setupScene(); // Setup our OpenGL scene
