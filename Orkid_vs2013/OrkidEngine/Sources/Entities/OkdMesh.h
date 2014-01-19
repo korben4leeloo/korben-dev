@@ -18,17 +18,19 @@ class OkdVector3f;
 
 //template<class T> class OkdResourceAllocator;
 template<class T> class OkdDefaultResourceAllocator;
-template<class T, class AllocatorType> class OkdResourceMap;
+//template<class T, class AllocatorType> class OkdResourceMap;
 //template<class T> class OkdResourceMap;
+template<class T> class OkdDefaultResourceMap;
 
 class OkdMesh: public OkdAbstractResource
 {
 	friend class OkdResourceManager;
 	//friend class OkdResourceAllocator<OkdMesh>;
-	friend class OkdDefaultResourceAllocator<OkdMesh>;
+	//friend class OkdDefaultResourceAllocator<OkdMesh>;
 	//friend class OkdResourceMap<OkdMesh, OkdResourceAllocator<OkdMesh>>;
-	friend class OkdResourceMap<OkdMesh, OkdDefaultResourceAllocator<OkdMesh>>;
-	//friend class OkdResourceMap<OkdMesh>;
+	//friend class OkdResourceMap<OkdMesh, OkdDefaultResourceAllocator<OkdMesh>>;
+	/*friend class OkdResourceMap<OkdMesh>;*/
+	friend class OkdDefaultResourceMap<OkdMesh>;
 
 public:
 					ORKID_RESOURCE( OrkidMesh )

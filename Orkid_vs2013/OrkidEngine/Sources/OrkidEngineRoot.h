@@ -36,4 +36,7 @@ enum OkdEntityType
 	OrkidEntityTypeUnknown = 0xFFFFFFFF
 };
 
+template<class T>
+using pfnOkdResourceAllocator = T* (*)();
+
 #endif

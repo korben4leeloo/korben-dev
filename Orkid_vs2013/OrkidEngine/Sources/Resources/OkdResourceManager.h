@@ -45,28 +45,43 @@ class OkdMesh;
 class OkdScene;
 class OkdAbstractShaderProgram;
 
-template<class T, class AllocatorType> class OkdResourceMap;
-//template<class T> class OkdResourceMap;
+//template<class T, class AllocatorType> class OkdResourceMap;
+////template<class T> class OkdResourceMap;
+//template<OkdResourceType ResourceType> class OkdAbstractShader;
+//template<class T> class OkdDefaultResourceAllocator;
+//
+////typedef OkdAbstractShader<OrkidVertexShader>	OkdAbstractVertexShader;
+//class OkdAbstractVertexShader;
+//typedef OkdAbstractShader<OrkidFragmentShader>	OkdAbstractFragmentShader;
+//typedef OkdAbstractShader<OrkidGeometryShader>	OkdAbstractGeometryShader;
+//
+//typedef OkdDefaultResourceAllocator<OkdMesh>			OkdMeshAllocator;
+//typedef OkdDefaultResourceAllocator<OkdScene>			OkdSceneAllocator;
+//typedef OkdResourceAllocator<OkdAbstractVertexShader>	OkdVertexShaderAllocator;
+//typedef OkdResourceAllocator<OkdAbstractFragmentShader>	OkdFragmentShaderAllocator;
+//typedef OkdResourceAllocator<OkdAbstractGeometryShader>	OkdGeometryShaderAllocator;
+//typedef OkdResourceAllocator<OkdAbstractShaderProgram>	OkdShaderProgramAllocator;
+//
+//typedef OkdResourceMap<OkdMesh, OkdMeshAllocator>								OkdMeshResourceMap;
+//typedef OkdResourceMap<OkdScene, OkdSceneAllocator>								OkdSceneResourceMap;
+//typedef OkdResourceMap<OkdAbstractVertexShader, OkdVertexShaderAllocator>		OkdVertexShaderResourceMap;
+//typedef OkdResourceMap<OkdAbstractFragmentShader, OkdFragmentShaderAllocator>	OkdFragmentShaderResourceMap;
+//typedef OkdResourceMap<OkdAbstractGeometryShader, OkdGeometryShaderAllocator>	OkdGeometryShaderResourceMap;
+//typedef OkdResourceMap<OkdAbstractShaderProgram, OkdShaderProgramAllocator>		OkdShaderProgramResourceMap;
+
+template<class T> class OkdResourceMap;
 template<OkdResourceType ResourceType> class OkdAbstractShader;
-template<class T> class OkdDefaultResourceAllocator;
 
 typedef OkdAbstractShader<OrkidVertexShader>	OkdAbstractVertexShader;
 typedef OkdAbstractShader<OrkidFragmentShader>	OkdAbstractFragmentShader;
 typedef OkdAbstractShader<OrkidGeometryShader>	OkdAbstractGeometryShader;
 
-typedef OkdDefaultResourceAllocator<OkdMesh>			OkdMeshAllocator;
-typedef OkdDefaultResourceAllocator<OkdScene>			OkdSceneAllocator;
-typedef OkdResourceAllocator<OkdAbstractVertexShader>	OkdVertexShaderAllocator;
-typedef OkdResourceAllocator<OkdAbstractFragmentShader>	OkdFragmentShaderAllocator;
-typedef OkdResourceAllocator<OkdAbstractGeometryShader>	OkdGeometryShaderAllocator;
-typedef OkdResourceAllocator<OkdAbstractShaderProgram>	OkdShaderProgramAllocator;
-
-typedef OkdResourceMap<OkdMesh, OkdMeshAllocator>								OkdMeshResourceMap;
-typedef OkdResourceMap<OkdScene, OkdSceneAllocator>								OkdSceneResourceMap;
-typedef OkdResourceMap<OkdAbstractVertexShader, OkdVertexShaderAllocator>		OkdVertexShaderResourceMap;
-typedef OkdResourceMap<OkdAbstractFragmentShader, OkdFragmentShaderAllocator>	OkdFragmentShaderResourceMap;
-typedef OkdResourceMap<OkdAbstractGeometryShader, OkdGeometryShaderAllocator>	OkdGeometryShaderResourceMap;
-typedef OkdResourceMap<OkdAbstractShaderProgram, OkdShaderProgramAllocator>		OkdShaderProgramResourceMap;
+typedef OkdDefaultResourceMap<OkdMesh>				OkdMeshResourceMap;
+typedef OkdResourceMap<OkdScene>					OkdSceneResourceMap;
+typedef OkdResourceMap<OkdAbstractVertexShader>		OkdVertexShaderResourceMap;
+typedef OkdResourceMap<OkdAbstractFragmentShader>	OkdFragmentShaderResourceMap;
+typedef OkdResourceMap<OkdAbstractGeometryShader>	OkdGeometryShaderResourceMap;
+typedef OkdResourceMap<OkdAbstractShaderProgram>	OkdShaderProgramResourceMap;
 
 typedef std::tuple<
 	OkdMeshResourceMap,
@@ -96,6 +111,9 @@ private:
 									~OkdResourceManager();
 
 	void							initialize();
+	
+	template<class T>
+	void							setAllocator( pfnOkdResourceAllocator<T> pfnResourceAllocator );
 
 	template<class T> static T*		addResource( const OkdString& strResourceName );
 	template<class T> static bool	removeResource( const OkdResourceKey& resourceKey );
@@ -109,6 +127,17 @@ private:
 //	Inline functions declarations
 //*****************************************************************************
 
+//-----------------------------------------------------------------------------
+// Name:		setAllocator
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+void	OkdResourceManager::setAllocator(pfnOkdResourceAllocator<T>	pfnResourceAllocator)
+{
+	std::get<T::_eResourceType>.setAllocator( pfnResourceAllocator );
+}
+ 
 //-----------------------------------------------------------------------------
 // Name:		addResource
 //

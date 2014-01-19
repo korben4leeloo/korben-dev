@@ -25,9 +25,8 @@
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 OkdResourceManager::OkdResourceManager()
-//: _resourceMapArray( std::make_tuple{ OkdShaderProgramResourceMap( 0 ) } )
 {
-	//std::tuple<OkdMeshResMap, OkdShaderResMap> resourceTuple = std::make_tuple{ meshResourceMap, shaderResourceMap };
+	std::get<OrkidVertexShader>( _resourceMapArray ).setAllocator( 0 );
 }
 
 //-----------------------------------------------------------------------------

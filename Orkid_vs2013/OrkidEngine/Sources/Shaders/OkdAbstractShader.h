@@ -87,7 +87,8 @@ protected:
 	OkdString		_strShaderCode;
 };
 
-typedef OkdAbstractShader<OrkidVertexShader>	OkdAbstractVertexShader;
+//typedef OkdAbstractShader<OrkidVertexShader>	OkdAbstractVertexShader;
+using OkdAbstractVertexShader = OkdAbstractShader<OrkidVertexShader>;
 typedef OkdAbstractShader<OrkidFragmentShader>	OkdAbstractFragmentShader;
 typedef OkdAbstractShader<OrkidGeometryShader>	OkdAbstractGeometryShader;
 
