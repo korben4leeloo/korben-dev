@@ -249,8 +249,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		meshPtr3.bind( "test2" );
 		meshPtr = meshPtr2;
 
-		//meshPtr2.unbind();
-		meshPtr2.release();
+		meshPtr2.unbind();
+		//meshPtr2.release();
 
 		OkdMeshPtr meshPtr4 = meshPtr;
 		meshPtr4.bind( "test2" );

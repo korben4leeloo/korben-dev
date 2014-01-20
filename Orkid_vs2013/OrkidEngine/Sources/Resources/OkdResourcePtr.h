@@ -95,8 +95,8 @@ OkdResourcePtr<T>::OkdResourcePtr(T*	pResource)
 template<class T>
 OkdResourcePtr<T>::~OkdResourcePtr()
 {
-	//unbind();
-	release();
+	unbind();
+	//release();
 }
 
 //-----------------------------------------------------------------------------
@@ -107,8 +107,8 @@ OkdResourcePtr<T>::~OkdResourcePtr()
 template<class T>
 OkdResourcePtr<T>& OkdResourcePtr<T>::operator=(const OkdResourcePtr&	resourcePtr)
 {
-	//unbind();
-	release();
+	unbind();
+	//release();
 
 	_pResource = resourcePtr._pResource;
 
@@ -161,24 +161,24 @@ void OkdResourcePtr<T>::unbind()
 	}
 }
 
-//-----------------------------------------------------------------------------
-// Name:		release
+////-----------------------------------------------------------------------------
+//// Name:		release
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//template<class T>
+//void OkdResourcePtr<T>::release()
+//{
+//	if	( _pResource )
+//	{
+//		if	( _pResource->removeRef() == 0 )
+//		{
+//			OkdResourceManager::removeResource<T>( _pResource->getResourceKey() );
+//		}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-void OkdResourcePtr<T>::release()
-{
-	if	( _pResource )
-	{
-		if	( _pResource->removeRef() == 0 )
-		{
-			OkdResourceManager::removeResource<T>( _pResource->getResourceKey() );
-		}
-
-		_pResource = 0;
-	}
-}
+//		_pResource = 0;
+//	}
+//}
 
 //-----------------------------------------------------------------------------
 // Name:		getResource
