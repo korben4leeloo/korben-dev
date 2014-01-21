@@ -25,6 +25,10 @@
 #define	ORKID_ASSERT(a)				assert(a)
 #define	ORKID_BREAK()				assert(false)
 
+// Math defines
+#define OKD_PI				3.14159265358979323846
+#define DEG_TO_RAD( angle )	( angle / 180.0f * (float)OKD_PI )
+
 // DLL import/export defines
 #ifdef ORKID_DLL
 	#define ORKID_EXPORT __declspec(dllexport)
