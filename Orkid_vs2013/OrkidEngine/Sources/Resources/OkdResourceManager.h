@@ -86,21 +86,10 @@ void	OkdResourceManager::setAllocator(pfnOkdResourceAllocator<T>	pfnResourceAllo
 template<class T>
 T*	OkdResourceManager::addResource(const OkdString&	strResourceName)
 {
-	OkdResourceKey				resourceKey = OkdCrc32::getCrc32( strResourceName );
-	OkdResourceMap<T>&			resourceMap = std::get<T::_eResourceType>( _resourceMapArray );
-	OkdResourceMap<T>::iterator	itResource = resourceMap.add( resourceKey, 0 );
+	OkdResourceMap<T>&	resourceMap = std::get<T::_eResourceType>( _resourceMapArray );
+	T*					pResource	= resourceMap.addResource( strResourceName );
 
-	if	( itResource->second == 0 )
-	{
-		T* pResource = resourceMap.allocate();
-
-		pResource->_resourceKey		= resourceKey;
-		pResource->_strResourceName	= strResourceName;
-
-		itResource->second = pResource;
-	}
-
-	return	( itResource->second );
+	return	( pResource );
 }
 
 //-----------------------------------------------------------------------------
@@ -111,15 +100,8 @@ T*	OkdResourceManager::addResource(const OkdString&	strResourceName)
 template<class T>
 bool	OkdResourceManager::removeResource(const OkdResourceKey& resourceKey)
 {
-	OkdResourceMap<T>&					resourceMap	= std::get<T::_eResourceType>( _resourceMapArray );
-	OkdResourceMap<T>::const_iterator	itResource	= resourceMap.find( resourceKey );
-	T*									pResource	= (*itResource).second;
-	bool								bValid		= ( itResource != resourceMap.end() );
-
-	ORKID_ASSERT( bValid );
-
-	delete pResource;
-	resourceMap.remove( resourceKey );
+	OkdResourceMap<T>&	resourceMap	= std::get<T::_eResourceType>( _resourceMapArray );
+	bool				bValid		= resourceMap.removeResource( resourceKey );
 
 	return	( bValid );
 }

@@ -12,7 +12,6 @@
 #include	"Root.h"
 
 #include	ORKID_ENGINE_H(Resources/OkdAbstractResource)
-//#include	ORKID_ENGINE_H(Resources/OkdResourcePtr)
 
 class OkdNode;
 class OkdMeshInstance;
@@ -23,15 +22,10 @@ class OkdLight;
 class OkdShape;
 class OkdCreature;
 
-//template<class T> class OkdResourceAllocator;
-template<class T> class OkdDefaultResourceAllocator;
-
 class OkdScene: public OkdAbstractResource
 {
 public:
-	friend class OkdResourceManager;
-	//friend class OkdResourceAllocator<OkdScene>;
-	friend class OkdDefaultResourceAllocator<OkdScene>;
+	friend class OkdResourceMap<OkdScene>;
 
 					ORKID_RESOURCE( OrkidScene )
 
