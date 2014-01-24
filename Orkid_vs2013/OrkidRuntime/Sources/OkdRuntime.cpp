@@ -88,10 +88,23 @@ LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM); // Standard window callbac
 	handle our window resizing and tell our OpenGLContext the new window size.
 */
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
+	//ORKID_ASSERT( message != 0x0100 );
 	switch (message) {
 		case WM_SIZE: // If our window is resizing
 		{
 			//openglContext.reshapeWindow(LOWORD(lParam), HIWORD(lParam)); // Send the new window size to our OpenGLContext
+			break;
+		}
+
+		case WM_KEYDOWN:
+		{
+			int n = 0;
+			break;
+		}
+
+		case WM_CHAR:
+		{
+			int n = 0;
 			break;
 		}
 
@@ -100,6 +113,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 			PostQuitMessage(0);
 			break;
 		}
+
+		default:
+			break;
 	}
 
 	return DefWindowProc(hWnd, message, wParam, lParam);
@@ -140,6 +156,7 @@ bool createWindow(LPCSTR title, int width, int height) {
 
 	ShowWindow(hWnd, SW_SHOW);
     UpdateWindow(hWnd);
+	//SetFocus( hWnd );
 
 	return true;
 }

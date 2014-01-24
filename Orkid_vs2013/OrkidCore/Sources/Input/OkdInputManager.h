@@ -11,6 +11,9 @@
 
 #include	"Root.h"
 
+#include	ORKID_CORE_H(Containers/OkdList)
+#include	ORKID_CORE_H(Input/OkdInputEvent)
+
 enum OkdKeyCode
 {
 	OkdKey_A,
@@ -110,10 +113,11 @@ public:
 private:
 	struct OkdInputState
 	{
-
+		bool					_bPressed;
+		OkdList<OkdInputEvent>	_inputEvents;
 	};
 
-	OkdInputState	_inputStates[OkdKeyCount];
+	OkdInputState	_keyStates[OkdKeyCount];
 };
 
 //*****************************************************************************
