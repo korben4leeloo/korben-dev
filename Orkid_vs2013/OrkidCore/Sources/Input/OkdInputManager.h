@@ -96,12 +96,10 @@ enum OkdKeyCode
 	OkdKeyCount
 };
 
-enum OkdInputFlag
+enum OkdInputKeyEventFlag
 {
-	OkdInputPressed,
-	OkdInputReleased,
-	OkdInputClick,
-	OkdInputDoubleClick,
+	OkdInputKeyPressed,
+	OkdInputKeyReleased,
 };
 
 class OkdInputManager
