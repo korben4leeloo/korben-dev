@@ -44,6 +44,9 @@
     <Filter Include="Sources\Resources\Allocators">
       <UniqueIdentifier>{e4f2f24c-0e1a-4a9a-b84b-40a266bdcdd5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Gameplay">
+      <UniqueIdentifier>{1ae24500-c74e-4b7f-875c-4be928dee4f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\OrkidEngineRoot.h">
@@ -139,6 +142,15 @@
     <ClInclude Include="Sources\Resources\Allocators\OkdDefaultResourceAllocator.h">
       <Filter>Sources\Resources\Allocators</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Gameplay\OkdFreeCameraGameplay.h">
+      <Filter>Sources\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Gameplay\Root.h">
+      <Filter>Sources\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Gameplay\OkdGameplayManager.h">
+      <Filter>Sources\Gameplay</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
@@ -212,6 +224,12 @@
     </ClCompile>
     <ClCompile Include="Sources\Resources\Allocators\OkdDefaultResourceAllocator.cpp">
       <Filter>Sources\Resources\Allocators</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Gameplay\OkdFreeCameraGameplay.cpp">
+      <Filter>Sources\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Gameplay\OkdGameplayManager.cpp">
+      <Filter>Sources\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

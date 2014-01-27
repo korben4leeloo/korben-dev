@@ -13,7 +13,7 @@
 
 #include	ORKID_CORE_H(Containers/OkdList)
 #include	ORKID_CORE_H(Input/OkdInputEvent)
-#include	ORKID_CORE_H(SIngleton/OkdSingleton)
+#include	ORKID_CORE_H(Singleton/OkdSingleton)
 
 enum OkdKeyCode: uint8
 {
