@@ -104,6 +104,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 			break;
 		}
 
+		case WM_KEYUP:
+		{
+			int n = 0;
+			break;
+		}
+
 		case WM_CHAR:
 		{
 			int n = 0;
@@ -112,18 +118,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 
 		case WM_INPUT:
 		{
-			OkdInputManager::instance()->getWindowsRawInputHandler()->process( (HRAWINPUT)lParam );
-			/*UINT		dwSize;
-			RAWINPUT*	pRawInputData;
-
-			GetRawInputData( (HRAWINPUT)lParam, RID_INPUT, 0, &dwSize, sizeof(RAWINPUTHEADER) );
-			pRawInputData = (RAWINPUT*)(new BYTE[dwSize]);
-
-			GetRawInputData( (HRAWINPUT)lParam, RID_INPUT, pRawInputData, &dwSize, sizeof(RAWINPUTHEADER) );
-
-			DefRawInputProc( &pRawInputData, 1, sizeof(RAWINPUTHEADER) );*/
-			//return 0;
-			break;
+			OkdInputManager::instance()->getWindowsRawInputHandler()->processInput( (HRAWINPUT)lParam );
+			return	( 0 );
 		}
 
 		case WM_DESTROY:
@@ -374,7 +370,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		
 		{ // If we don't have a message to process
 			//openglContext.renderScene(); // Render our scene (which also handles swapping of buffers)
-			openGLContext.render();
+			//openGLContext.render();
 		}
 	}
 
@@ -418,7 +414,7 @@ int __declspec(dllexport) launch( HMODULE hRuntimeModule )
 		CW_USEDEFAULT, 0, 500, 500, NULL, NULL, hInstance, NULL);
 
 	//openglContext.create30Context(hWnd); // Create our OpenGL context on the given window we just created
-	openGLContext.create( hWnd );
+	//openGLContext.create( hWnd );
 
 	ShowWindow(hWnd, SW_SHOW);
 	UpdateWindow(hWnd);
@@ -438,7 +434,7 @@ int __declspec(dllexport) launch( HMODULE hRuntimeModule )
 		}
 		else { // If we don't have a message to process
 			//openglContext.renderScene(); // Render our scene (which also handles swapping of buffers)
-			openGLContext.render();
+			//openGLContext.render();
 		}
 	}
 

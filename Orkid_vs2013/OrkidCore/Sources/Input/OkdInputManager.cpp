@@ -60,3 +60,14 @@ OkdWindowsRawInputHandler*	OkdInputManager::getWindowsRawInputHandler()
 {
 	return	( _pWindowsRawInputHandler );
 }
+
+//-----------------------------------------------------------------------------
+// Name:		updateKeyState
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdInputManager::updateKeyState(const OkdKeyCode	keyCode, 
+										const bool			bPressed)
+{
+	_keyStates[keyCode]._bPressed = bPressed;
+}

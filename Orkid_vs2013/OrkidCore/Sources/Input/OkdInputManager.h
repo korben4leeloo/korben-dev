@@ -117,17 +117,19 @@ public:
 
 	OkdWindowsRawInputHandler*	getWindowsRawInputHandler();
 
+	void						updateKeyState( const OkdKeyCode keyCode, const bool bPressed );
+
 private:
 								OkdInputManager();
 								~OkdInputManager();
 
-	/*struct OkdInputState
+	struct OkdInputState
 	{
 		bool					_bPressed;
 		OkdList<OkdInputEvent>	_inputEvents;
 	};
 
-	OkdInputState	_keyStates[OkdKeyCount];*/
+	OkdInputState				_keyStates[OkdKeyCount];
 
 	OkdWindowsRawInputHandler*	_pWindowsRawInputHandler;
 };

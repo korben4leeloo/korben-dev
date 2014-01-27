@@ -19,14 +19,17 @@ class OkdWindowsRawInputHandler
 	friend class OkdInputManager;
 
 public:
-	void		process( HRAWINPUT hRawInput );
+	void		processInput( HRAWINPUT hRawInput );
 
 private:
 				OkdWindowsRawInputHandler();
 				~OkdWindowsRawInputHandler();
 
 	void		initializeKeyMapping();
-	void		initializeDevices();
+	void		enumDevices();
+
+	void		processMouseInput( const RAWMOUSE& rawMouseInput );
+	void		processKeyboardInput( const RAWKEYBOARD& rawKeyboardInput );
 
 	OkdKeyCode	_keyMapping[256];
 };

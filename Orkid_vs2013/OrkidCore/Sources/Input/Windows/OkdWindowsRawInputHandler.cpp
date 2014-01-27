@@ -21,7 +21,7 @@
 //-----------------------------------------------------------------------------
 OkdWindowsRawInputHandler::OkdWindowsRawInputHandler()
 {
-	initializeDevices();
+	enumDevices();
 	initializeKeyMapping();
 }
 
@@ -36,11 +36,11 @@ OkdWindowsRawInputHandler::~OkdWindowsRawInputHandler()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		initializeDevices
+// Name:		enumDevices
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdWindowsRawInputHandler::initializeDevices()
+void	OkdWindowsRawInputHandler::enumDevices()
 {
 	PRAWINPUTDEVICELIST pInputDeviceList = 0;
 	UINT				uiDevicesCount;
@@ -108,8 +108,8 @@ void	OkdWindowsRawInputHandler::initializeDevices()
 
 		if	( uiRegisterDevicesCount > 0 )
 		{
-			BOOL bResult = RegisterRawInputDevices( pRegisterInputDevices, uiRegisterDevicesCount, sizeof(RAWINPUTDEVICE) );
-			ORKID_ASSERT( bResult == TRUE );
+			/*BOOL bResult = RegisterRawInputDevices( pRegisterInputDevices, uiRegisterDevicesCount, sizeof(RAWINPUTDEVICE) );
+			ORKID_ASSERT( bResult == TRUE );*/
 		}
 
 		delete[] pRegisterInputDevices;
@@ -206,11 +206,11 @@ void	OkdWindowsRawInputHandler::initializeKeyMapping()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		process
+// Name:		processInput
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdWindowsRawInputHandler::process(HRAWINPUT	hRawInput)
+void	OkdWindowsRawInputHandler::processInput(HRAWINPUT	hRawInput)
 {
 	UINT		dwSize;
 	RAWINPUT*	pRawInputData;
@@ -220,5 +220,58 @@ void	OkdWindowsRawInputHandler::process(HRAWINPUT	hRawInput)
 
 	GetRawInputData( hRawInput, RID_INPUT, pRawInputData, &dwSize, sizeof(RAWINPUTHEADER) );
 
+	switch	( pRawInputData->header.dwType )
+	{
+	case RIM_TYPEMOUSE:
+		processMouseInput( pRawInputData->data.mouse );
+		break;
 
+	case RIM_TYPEKEYBOARD:
+		processKeyboardInput( pRawInputData->data.keyboard );
+		break;
+
+	case RIM_TYPEHID:
+		break;
+
+	default:
+		ORKID_BREAK();
+		break;
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		processMouseInput
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdWindowsRawInputHandler::processMouseInput(const RAWMOUSE&	rawMouseInput)
+{
+	
+}
+
+//-----------------------------------------------------------------------------
+// Name:		processKeyboardInput
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdWindowsRawInputHandler::processKeyboardInput(const RAWKEYBOARD&	rawKeyboardInput)
+{
+	OkdKeyCode keyCode = _keyMapping[rawKeyboardInput.VKey];
+
+	if	( keyCode != OkdKey_Unknown )
+	{
+		switch	( rawKeyboardInput.Message )
+		{
+		case WM_KEYDOWN:
+			OkdInputManager::instance()->updateKeyState( keyCode, true );
+			break;
+
+		case WM_KEYUP:
+			OkdInputManager::instance()->updateKeyState( keyCode, false );
+			break;
+
+		default:
+			break;
+		}
+	}
 }
