@@ -13,8 +13,9 @@
 
 #include	ORKID_CORE_H(Containers/OkdList)
 #include	ORKID_CORE_H(Input/OkdInputEvent)
+#include	ORKID_CORE_H(SIngleton/OkdSingleton)
 
-enum OkdKeyCode
+enum OkdKeyCode: uint8
 {
 	OkdKey_A,
 	OkdKey_B,
@@ -54,16 +55,16 @@ enum OkdKeyCode
 	OkdKey_8,
 	OkdKey_9,
 
-	OkdKey_Num0,
-	OkdKey_Num1,
-	OkdKey_Num2,
-	OkdKey_Num3,
-	OkdKey_Num4,
-	OkdKey_Num5,
-	OkdKey_Num6,
-	OkdKey_Num7,
-	OkdKey_Num8,
-	OkdKey_Num9,
+	OkdKey_NumPad0,
+	OkdKey_NumPad1,
+	OkdKey_NumPad2,
+	OkdKey_NumPad3,
+	OkdKey_NumPad4,
+	OkdKey_NumPad5,
+	OkdKey_NumPad6,
+	OkdKey_NumPad7,
+	OkdKey_NumPad8,	
+	OkdKey_NumPad9,
 
 	OkdKey_LeftShift,
 	OkdKey_LeftControl,
@@ -86,14 +87,16 @@ enum OkdKeyCode
 	OkdKey_F11,
 	OkdKey_F12,
 
-	OkdKey_Enter,
+	OkdKey_Return,
 	OkdKey_Space,
 	OkdKey_Delete,
 	OkdKey_Backspace,
 	OkdKey_Tab,
 	OkdKey_Escape,
 
-	OkdKeyCount
+	OkdKeyCount,
+
+	OkdKey_Unknown = 0xFF
 };
 
 enum OkdInputKeyEventFlag
@@ -102,34 +105,35 @@ enum OkdInputKeyEventFlag
 	OkdInputKeyReleased,
 };
 
-class OkdInputManager
+class OkdWindowsRawInputHandler;
+
+class OkdInputManager: public OkdSingleton<OkdInputManager>
 {
+	friend class OkdSingleton<OkdInputManager>;
+
 public:
-					OkdInputManager();
-					~OkdInputManager();
+	void						initialize();
+	void						uninitialize();
+
+	OkdWindowsRawInputHandler*	getWindowsRawInputHandler();
 
 private:
-	struct OkdInputState
+								OkdInputManager();
+								~OkdInputManager();
+
+	/*struct OkdInputState
 	{
 		bool					_bPressed;
 		OkdList<OkdInputEvent>	_inputEvents;
 	};
 
-	OkdInputState	_keyStates[OkdKeyCount];
+	OkdInputState	_keyStates[OkdKeyCount];*/
+
+	OkdWindowsRawInputHandler*	_pWindowsRawInputHandler;
 };
 
 //*****************************************************************************
 //	Inline functions declarations
 //*****************************************************************************
-
-////-----------------------------------------------------------------------------
-//// Name:		size
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//uint32 OkdInputManager::size() const
-//{
-//	return	( _str.size() );
-//}
 
 #endif

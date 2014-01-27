@@ -8,6 +8,7 @@
 #include	"OrkidCore.h"
 
 #include	ORKID_CORE_H(Memory/OkdMemManager)
+#include	ORKID_CORE_H(Input/OkdInputManager)
 
 //-----------------------------------------------------------------------------
 // Name:		OrkidCore constructor
@@ -38,6 +39,9 @@ void	OrkidCore::initialize()
 {
 	OrkidCore::uninitialize();
 	OkdMemManager::create();
+
+	OkdInputManager::create();
+	OkdInputManager::instance()->initialize();
 }
 
 //-----------------------------------------------------------------------------
@@ -47,5 +51,6 @@ void	OrkidCore::initialize()
 //-----------------------------------------------------------------------------
 void	OrkidCore::uninitialize()
 {
+	OkdInputManager::destroy();
 	OkdMemManager::destroy();
 }

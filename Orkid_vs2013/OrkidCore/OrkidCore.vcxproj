@@ -14,9 +14,12 @@
     <ClInclude Include="Sources\Containers\OkdList.h" />
     <ClInclude Include="Sources\Containers\OkdMap.h" />
     <ClInclude Include="Sources\Containers\OkdVector.h" />
+    <ClInclude Include="Sources\Input\OkdInputDevice.h" />
     <ClInclude Include="Sources\Input\OkdInputEvent.h" />
     <ClInclude Include="Sources\Input\OkdInputManager.h" />
     <ClInclude Include="Sources\Input\Root.h" />
+    <ClInclude Include="Sources\Input\Windows\OkdWindowsRawInputHandler.h" />
+    <ClInclude Include="Sources\Input\Windows\Root.h" />
     <ClInclude Include="Sources\Math\OkdMatrix4f.h" />
     <ClInclude Include="Sources\Math\OkdQuaternionf.h" />
     <ClInclude Include="Sources\Math\OkdVector3f.h" />
@@ -43,8 +46,10 @@
     <ClCompile Include="Sources\Containers\OkdList.cpp" />
     <ClCompile Include="Sources\Containers\OkdMap.cpp" />
     <ClCompile Include="Sources\Containers\OkdVector.cpp" />
+    <ClCompile Include="Sources\Input\OkdInputDevice.cpp" />
     <ClCompile Include="Sources\Input\OkdInputEvent.cpp" />
     <ClCompile Include="Sources\Input\OkdInputManager.cpp" />
+    <ClCompile Include="Sources\Input\Windows\OkdWindowsRawInputHandler.cpp" />
     <ClCompile Include="Sources\Math\OkdMatrix4f.cpp" />
     <ClCompile Include="Sources\Math\OkdQuaternionf.cpp" />
     <ClCompile Include="Sources\Math\OkdVector3f.cpp" />

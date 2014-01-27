@@ -29,6 +29,9 @@
     <Filter Include="Sources\Input">
       <UniqueIdentifier>{9b4de7d5-1838-46d0-844e-80baaff81529}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Input\Windows">
+      <UniqueIdentifier>{b3a93b4a-8c0d-424b-8f7c-bcbcc252c0b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\OrkidCoreRoot.h">
@@ -112,6 +115,15 @@
     <ClInclude Include="Sources\Input\OkdInputEvent.h">
       <Filter>Sources\Input</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Input\OkdInputDevice.h">
+      <Filter>Sources\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Input\Windows\Root.h">
+      <Filter>Sources\Input\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Input\Windows\OkdWindowsRawInputHandler.h">
+      <Filter>Sources\Input\Windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Math\OkdVector3f.cpp">
@@ -170,6 +182,12 @@
     </ClCompile>
     <ClCompile Include="Sources\Input\OkdInputEvent.cpp">
       <Filter>Sources\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Input\OkdInputDevice.cpp">
+      <Filter>Sources\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Input\Windows\OkdWindowsRawInputHandler.cpp">
+      <Filter>Sources\Input\Windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

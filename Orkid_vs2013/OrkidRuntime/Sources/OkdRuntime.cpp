@@ -74,6 +74,8 @@ uint32 testMeshPolygons[36] =
 
 #include	<Windows.h>
 #include	ORKID_ENGINE_H(OpenGL/OkdOpenGLContext)
+#include	ORKID_CORE_H(Input/OkdInputManager)
+#include	ORKID_CORE_H(Input/Windows/OkdWindowsRawInputHandler)
 
 //OpenGLContext openglContext; // Our OpenGL Context class
 OkdOpenGLContext openGLContext;
@@ -105,6 +107,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		case WM_CHAR:
 		{
 			int n = 0;
+			break;
+		}
+
+		case WM_INPUT:
+		{
+			OkdInputManager::instance()->getWindowsRawInputHandler()->process( (HRAWINPUT)lParam );
+			/*UINT		dwSize;
+			RAWINPUT*	pRawInputData;
+
+			GetRawInputData( (HRAWINPUT)lParam, RID_INPUT, 0, &dwSize, sizeof(RAWINPUTHEADER) );
+			pRawInputData = (RAWINPUT*)(new BYTE[dwSize]);
+
+			GetRawInputData( (HRAWINPUT)lParam, RID_INPUT, pRawInputData, &dwSize, sizeof(RAWINPUTHEADER) );
+
+			DefRawInputProc( &pRawInputData, 1, sizeof(RAWINPUTHEADER) );*/
+			//return 0;
 			break;
 		}
 
@@ -330,7 +348,21 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	*/
 	while (running)
 	{
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) { // If we have a message to process, process it
+		//if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) { // If we have a message to process, process it
+		//	if (msg.message == WM_QUIT) {
+		//		running = false; // Set running to false if we have a message to quit
+		//	}
+		//	else {
+		//		TranslateMessage(&msg);
+		//		DispatchMessage(&msg);
+		//	}
+		//}
+		//else { // If we don't have a message to process
+		//	//openglContext.renderScene(); // Render our scene (which also handles swapping of buffers)
+		//	openGLContext.render();
+		//}
+
+		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) { // If we have a message to process, process it
 			if (msg.message == WM_QUIT) {
 				running = false; // Set running to false if we have a message to quit
 			}
@@ -339,7 +371,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 				DispatchMessage(&msg);
 			}
 		}
-		else { // If we don't have a message to process
+		
+		{ // If we don't have a message to process
 			//openglContext.renderScene(); // Render our scene (which also handles swapping of buffers)
 			openGLContext.render();
 		}
