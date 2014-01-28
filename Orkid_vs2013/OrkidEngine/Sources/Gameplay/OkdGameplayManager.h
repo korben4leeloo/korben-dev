@@ -15,6 +15,7 @@
 #include	ORKID_CORE_H(Singleton/OkdSingleton)
 #include	ORKID_CORE_H(Containers/OkdList)
 
+class OkdAbstractGameplay;
 class OkdFreeCameraGameplay;
 
 enum OkdGameplayType
@@ -23,7 +24,7 @@ enum OkdGameplayType
 };
 
 template<class T>
-struct OkdGameplayHandler
+struct OkdGameplayHandler: public OkdAbstractGameplay
 {
 	static T* create()
 	{
@@ -48,10 +49,12 @@ public:
 	}
 
 private:
-							OkdGameplayManager();
-							~OkdGameplayManager();
+	typedef OkdAbstractGameplay* (*pfnGameplayCreator)();
 
-	OkdGameplayHandlerArray	_gameplayHandlerArray;
+									OkdGameplayManager();
+									~OkdGameplayManager();
+
+	OkdList<OkdAbstractGameplay*>	_gameplayList;
 };
 
 //*****************************************************************************
