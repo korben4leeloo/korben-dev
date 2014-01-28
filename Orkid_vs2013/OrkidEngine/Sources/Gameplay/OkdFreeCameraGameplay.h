@@ -10,19 +10,22 @@
 #define __OrkidEngine_OkdFreeCameraGameplay_h__
 
 #include	"Root.h"
+#include	ORKID_ENGINE_H(Gameplay/OkdAbstractGameplay)
 
 class OkdCamera;
 
-class OkdFreeCameraGameplay
+class OkdFreeCameraGameplay: public OkdAbstractGameplay
 {
 public:
-				OkdFreeCameraGameplay();
-				~OkdFreeCameraGameplay();
+					OkdFreeCameraGameplay();
+					~OkdFreeCameraGameplay();
 
-	inline void	setCamera( OkdCamera* pCamera );
+	virtual void	update();
+
+	inline void		setCamera( OkdCamera* pCamera );
 
 private:
-	OkdCamera*	_pCamera;
+	OkdCamera*		_pCamera;
 };
 
 //*****************************************************************************

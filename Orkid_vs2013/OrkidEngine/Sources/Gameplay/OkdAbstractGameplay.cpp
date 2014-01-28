@@ -1,28 +1,28 @@
 //*****************************************************************************
 //
-//	File:		OkdGameplayManager.cpp
+//	File:		OkdAbstractGameplay.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"OkdGameplayManager.h"
+#include	"OkdAbstractGameplay.h"
 
 //-----------------------------------------------------------------------------
-// Name:		OkdGameplayManager constructor
+// Name:		OkdAbstractGameplay constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdGameplayManager::OkdGameplayManager()
+OkdAbstractGameplay::OkdAbstractGameplay()
 {
-	OkdFreeCameraGameplay* pGameplay = createGameplay<OkdFreeCameraGameplay>(OkdGameplayTypeFreeCamera);
+
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OkdGameplayManager destructor
+// Name:		OkdAbstractGameplay destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdGameplayManager::~OkdGameplayManager()
+OkdAbstractGameplay::~OkdAbstractGameplay()
 {
 
 }

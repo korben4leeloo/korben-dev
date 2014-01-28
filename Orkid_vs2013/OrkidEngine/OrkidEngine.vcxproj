@@ -20,6 +20,7 @@
     <ClInclude Include="Sources\Entities\OkdMeshInfo.h" />
     <ClInclude Include="Sources\Entities\OkdShape.h" />
     <ClInclude Include="Sources\Entities\Root.h" />
+    <ClInclude Include="Sources\Gameplay\OkdAbstractGameplay.h" />
     <ClInclude Include="Sources\Gameplay\OkdFreeCameraGameplay.h" />
     <ClInclude Include="Sources\Gameplay\OkdGameplayManager.h" />
     <ClInclude Include="Sources\Gameplay\Root.h" />
@@ -55,6 +56,7 @@
     <ClCompile Include="Sources\Entities\OkdMesh.cpp" />
     <ClCompile Include="Sources\Entities\OkdMeshInfo.cpp" />
     <ClCompile Include="Sources\Entities\OkdShape.cpp" />
+    <ClCompile Include="Sources\Gameplay\OkdAbstractGameplay.cpp" />
     <ClCompile Include="Sources\Gameplay\OkdFreeCameraGameplay.cpp" />
     <ClCompile Include="Sources\Gameplay\OkdGameplayManager.cpp" />
     <ClCompile Include="Sources\OpenGL\OkdOpenGL_API.cpp" />

@@ -151,6 +151,9 @@
     <ClInclude Include="Sources\Gameplay\OkdGameplayManager.h">
       <Filter>Sources\Gameplay</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Gameplay\OkdAbstractGameplay.h">
+      <Filter>Sources\Gameplay</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
@@ -229,6 +232,9 @@
       <Filter>Sources\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Gameplay\OkdGameplayManager.cpp">
+      <Filter>Sources\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Gameplay\OkdAbstractGameplay.cpp">
       <Filter>Sources\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
