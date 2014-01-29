@@ -32,6 +32,9 @@ public:
 	// Entities
 	inline OkdEntityFactory*	getEntityFactory();
 
+	// Update
+	void						update();
+
 	static const char*			_resourceTypeName[OrkidResourceTypeCount];
 
 private:

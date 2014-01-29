@@ -367,6 +367,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 				DispatchMessage(&msg);
 			}
 		}
+
+		OrkidEngine::instance()->update();
 		
 		{ // If we don't have a message to process
 			//openglContext.renderScene(); // Render our scene (which also handles swapping of buffers)

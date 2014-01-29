@@ -108,8 +108,8 @@ void	OkdWindowsRawInputHandler::enumDevices()
 
 		if	( uiRegisterDevicesCount > 0 )
 		{
-			/*BOOL bResult = RegisterRawInputDevices( pRegisterInputDevices, uiRegisterDevicesCount, sizeof(RAWINPUTDEVICE) );
-			ORKID_ASSERT( bResult == TRUE );*/
+			BOOL bResult = RegisterRawInputDevices( pRegisterInputDevices, uiRegisterDevicesCount, sizeof(RAWINPUTDEVICE) );
+			ORKID_ASSERT( bResult == TRUE );
 		}
 
 		delete[] pRegisterInputDevices;

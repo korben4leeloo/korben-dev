@@ -20,33 +20,52 @@ class OkdFreeCameraGameplay;
 
 enum OkdGameplayType
 {
-	OkdGameplayTypeFreeCamera
+	OkdGameplayTypeFreeCamera,
+	OkdGameplayTypeFirstPerson,
+	OkdGameplayTypeThirdPerson,
 };
 
-template<class T>
-struct OkdGameplayHandler: public OkdAbstractGameplay
+
+
+template<class T, class...Args>
+class OkdGameplayHandler: public OkdSingleton<OkdGameplayHandler<T, Args...>>
 {
-	static T* create()
+	friend class OkdSingleton<OkdGameplayHandler>;
+
+public:
+	T* createGameplay( Args...args )
 	{
-		return	( new T() );
+		T* p = new T( args... );
+		return	( p );
 	}
+
+	void update()
+	{
+
+	}
+
+private:
+				OkdGameplayHandler() {}
+				~OkdGameplayHandler() {}
 
 	OkdList<T*>	_gameplayList;
 };
 
-typedef std::tuple<OkdGameplayHandler<OkdFreeCameraGameplay>> OkdGameplayHandlerArray;
+typedef OkdGameplayHandler<OkdFreeCameraGameplay> OkdFreeCameraGameplayHandler;
 
 class OkdGameplayManager: public OkdSingleton<OkdGameplayManager>
 {
 	friend class OkdSingleton<OkdGameplayManager>;
 
 public:
-	template<class T>
-	T* createGameplay( const OkdGameplayType eGameplayType )
+	/*template<class T, OkdGameplayType GameplayType>
+	T* createGameplay( OkdHandle<T, Args...> hCreator )
 	{
-		auto m = std::get<eGameplayType>( _gameplayHandlerArray );
-		return 0;
-	}
+		T* p = hCreator::creator( args );
+		return p;
+	}*/
+
+	void	update();
 
 private:
 	typedef OkdAbstractGameplay* (*pfnGameplayCreator)();
@@ -54,7 +73,8 @@ private:
 									OkdGameplayManager();
 									~OkdGameplayManager();
 
-	OkdList<OkdAbstractGameplay*>	_gameplayList;
+	//OkdList<OkdAbstractGameplay*>	_gameplayList;
+	//std::tuple<OkdFreeCameraGameplayHandler>
 };
 
 //*****************************************************************************

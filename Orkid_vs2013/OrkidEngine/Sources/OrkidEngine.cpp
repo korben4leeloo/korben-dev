@@ -11,6 +11,7 @@
 #include	ORKID_ENGINE_H(Resources/OkdResourceManager)
 #include	ORKID_ENGINE_H(Resources/OkdResourceDatabase)
 #include	ORKID_ENGINE_H(Entities/OkdEntityFactory)
+#include	ORKID_ENGINE_H(Gameplay/OkdGameplayManager)
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 
 OrkidEngine* OrkidEngine::_pInstance = 0;
@@ -94,6 +95,9 @@ void	OrkidEngine::initialize()
 
 	// Entities
 	_pEntityFactory = new OkdEntityFactory();
+
+	// Gameplay manager
+	OkdGameplayManager::create();
 }
 
 //-----------------------------------------------------------------------------
@@ -106,6 +110,9 @@ void	OrkidEngine::uninitialize()
 	clear();
 	//unregisterResources();
 
+	// Gameplay manager
+	OkdGameplayManager::destroy();
+
 	_pResourceDatabase->close();
 
 	delete _pEntityFactory;
@@ -113,4 +120,14 @@ void	OrkidEngine::uninitialize()
 	delete _pResourceDatabase;
 
 	OrkidCore::uninitialize();
+}
+
+//-----------------------------------------------------------------------------
+// Name:		update
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OrkidEngine::update()
+{
+	OkdGameplayManager::instance()->update();
 }

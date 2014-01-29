@@ -7,6 +7,8 @@
 
 #include	"OkdGameplayManager.h"
 
+#include	ORKID_ENGINE_H(Gameplay/OkdFreeCameraGameplay)
+
 //-----------------------------------------------------------------------------
 // Name:		OkdGameplayManager constructor
 //
@@ -14,7 +16,9 @@
 //-----------------------------------------------------------------------------
 OkdGameplayManager::OkdGameplayManager()
 {
-	OkdFreeCameraGameplay* pGameplay = createGameplay<OkdFreeCameraGameplay>(OkdGameplayTypeFreeCamera);
+	OkdFreeCameraGameplayHandler::create();
+
+	OkdFreeCameraGameplay* pGameplay = OkdFreeCameraGameplayHandler::instance()->createGameplay();
 }
 
 //-----------------------------------------------------------------------------
@@ -25,4 +29,14 @@ OkdGameplayManager::OkdGameplayManager()
 OkdGameplayManager::~OkdGameplayManager()
 {
 
+}
+
+//-----------------------------------------------------------------------------
+// Name:		update
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdGameplayManager::update()
+{
+	OkdFreeCameraGameplayHandler::instance()->update();
 }

@@ -17,7 +17,7 @@ public:
 					OkdAbstractGameplay();
 	virtual			~OkdAbstractGameplay();
 
-	virtual void	update();
+	virtual void	update() = 0;
 
 private:
 };
