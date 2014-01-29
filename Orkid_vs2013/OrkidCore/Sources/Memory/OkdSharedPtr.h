@@ -33,7 +33,7 @@ public:
 	inline					OkdSharedPtr();
 	inline					OkdSharedPtr( T* pObject );
 	inline					OkdSharedPtr( const OkdSharedPtr& sharedPtr );
-	inline					~OkdSharedPtr();
+	virtual					~OkdSharedPtr();
 
 	inline T*				ptr();
 	inline const T*			ptr() const;

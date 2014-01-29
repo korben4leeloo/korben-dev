@@ -19,7 +19,7 @@ public:
 	typedef typename std::list<T>::const_iterator	const_iterator;
 
 							OkdList();
-							~OkdList();
+	virtual					~OkdList();
 
 	inline void				add( T& t );
 	inline void				remove( T& t );
