@@ -11,16 +11,21 @@
 
 #include	"Root.h"
 
-#include	ORKID_CORE_H(Containers/OkdList)
+#include	ORKID_CORE_H(Containers/OkdMap)
 #include	ORKID_CORE_H(Components/OkdComponentPtr)
 
-class OkdComponentContainer: public OkdList<OkdComponentPtr>
+typedef	OkdMap<OkdComponentId, OkdComponentPtr> OkdComponentPtrMap;
+
+class OkdComponentContainer
 {
 public:
-			OkdComponentContainer();
-	virtual	~OkdComponentContainer();
+						OkdComponentContainer();
+	virtual				~OkdComponentContainer();
+
+	void				addComponent( const OkdComponentPtr& componentPtr );
 
 private:
+	OkdComponentPtrMap	_components;
 };
 
 //*****************************************************************************
