@@ -17,9 +17,9 @@
 	static const char*				getComponentName() { return ComponentName; }	\
 	static OkdComponentId			getComponentId()								\
 	{																				\
-		static OkdComponentId componentId = 0;										\
+		static OkdComponentId componentId = OKD_INVALID_COMPONENT_ID;				\
 																					\
-		if	( componentId == 0 )													\
+		if	( componentId == OKD_INVALID_COMPONENT_ID )								\
 		{																			\
 			componentId = OkdCrc32::getCrc32( ComponentName );						\
 		}																			\
@@ -28,6 +28,8 @@
 	}
 
 typedef uint32 OkdComponentId;
+
+#define OKD_INVALID_COMPONENT_ID 0
 
 class OkdAbstractComponent
 {
