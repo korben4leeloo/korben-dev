@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\Components\Root.h" />
     <ClInclude Include="Sources\Entities\OkdCamera.h" />
     <ClInclude Include="Sources\Entities\OkdCreature.h" />
     <ClInclude Include="Sources\Entities\OkdEntity.h" />

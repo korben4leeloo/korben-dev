@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="Sources\Components\OkdAbstractComponent.h" />
     <ClInclude Include="Sources\Components\OkdComponentContainer.h" />
+    <ClInclude Include="Sources\Components\OkdComponentFactory.h" />
     <ClInclude Include="Sources\Components\OkdComponentPtr.h" />
     <ClInclude Include="Sources\Components\Root.h" />
     <ClInclude Include="Sources\Containers\OkdList.h" />
@@ -49,6 +50,7 @@
   <ItemGroup>
     <ClCompile Include="Sources\Components\OkdAbstractComponent.cpp" />
     <ClCompile Include="Sources\Components\OkdComponentContainer.cpp" />
+    <ClCompile Include="Sources\Components\OkdComponentFactory.cpp" />
     <ClCompile Include="Sources\Components\OkdComponentPtr.cpp" />
     <ClCompile Include="Sources\Containers\OkdList.cpp" />
     <ClCompile Include="Sources\Containers\OkdMap.cpp" />

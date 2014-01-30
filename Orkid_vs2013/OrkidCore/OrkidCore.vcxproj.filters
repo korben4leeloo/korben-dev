@@ -139,6 +139,9 @@
     <ClInclude Include="Sources\Components\OkdComponentPtr.h">
       <Filter>Sources\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Components\OkdComponentFactory.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Math\OkdVector3f.cpp">
@@ -211,6 +214,9 @@
       <Filter>Sources\Components</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Components\OkdComponentPtr.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Components\OkdComponentFactory.cpp">
       <Filter>Sources\Components</Filter>
     </ClCompile>
   </ItemGroup>

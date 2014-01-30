@@ -11,15 +11,18 @@
 
 #include	"Root.h"
 
+typedef uint32 OkdComponentId;
+
 class OkdAbstractComponent
 {
 public:
-			OkdAbstractComponent();
-	virtual ~OkdAbstractComponent();
+									OkdAbstractComponent();
+	virtual							~OkdAbstractComponent();
 
 protected:
-	
 };
+
+typedef OkdAbstractComponent* (*pfnComponentCreator)();
 
 //*****************************************************************************
 //	Inline functions declarations

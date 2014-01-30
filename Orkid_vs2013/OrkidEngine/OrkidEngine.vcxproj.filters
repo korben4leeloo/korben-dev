@@ -47,6 +47,9 @@
     <Filter Include="Sources\Gameplay">
       <UniqueIdentifier>{1ae24500-c74e-4b7f-875c-4be928dee4f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Components">
+      <UniqueIdentifier>{b0416d8e-0df7-4747-a73a-7b3a8a868a30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\OrkidEngineRoot.h">
@@ -153,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="Sources\Gameplay\OkdAbstractGameplay.h">
       <Filter>Sources\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\Root.h">
+      <Filter>Sources\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
