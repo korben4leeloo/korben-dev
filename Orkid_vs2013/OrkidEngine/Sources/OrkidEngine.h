@@ -17,6 +17,7 @@
 class OkdResourceManager;
 class OkdResourceDatabase;
 class OkdEntityFactory;
+class OkdComponentFactory;
 
 class OrkidEngine
 {
@@ -44,12 +45,12 @@ private:
 	void						initialize();
 	void						uninitialize();
 
-	void						clear();
-	template<class T> void		clearMap( T* pMap );
+	void						registerComponents();
 
 	OkdResourceManager*			_pResourceManager;
 	OkdResourceDatabase*		_pResourceDatabase;
 	OkdEntityFactory*			_pEntityFactory;
+	OkdComponentFactory*		_pComponentFactory;
 
 	static OrkidEngine*			_pInstance;
 };

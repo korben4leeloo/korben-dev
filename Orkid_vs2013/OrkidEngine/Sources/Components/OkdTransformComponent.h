@@ -1,30 +1,26 @@
 //*****************************************************************************
 //
-//	Class:		OkdCrc32
+//	Class:		OkdTransformComponent
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __OrkidCore_OkdCrc32_h__
-#define __OrkidCore_OkdCrc32_h__
+#ifndef __OrkidCore_OkdTransformComponent_h__
+#define __OrkidCore_OkdTransformComponent_h__
 
 #include	"Root.h"
+#include	ORKID_CORE_H(Components/OkdAbstractComponent)
 
-class OkdString;
-
-class OkdCrc32
+class OkdTransformComponent: public OkdAbstractComponent
 {
 public:
-	static uint32	getCrc32( const OkdString& strBuffer );
-	static uint32	getCrc32( const char* pcBuffer );
-	static uint32	getCrc32( const void* pBuffer, const uint32 uiBufferSize );
+			OkdTransformComponent();
+	virtual	~OkdTransformComponent();
+
+	OKD_MAKE_COMPONENT( OkdTransformComponent, "TransformComponent" )
 
 private:
-					OkdCrc32();
-					~OkdCrc32();
-
-	static uint32	computeCrc32( const uint8 uiByte, const uint32 uiInputCrc32 );
 };
 
 //*****************************************************************************

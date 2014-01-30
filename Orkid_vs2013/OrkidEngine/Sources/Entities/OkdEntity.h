@@ -10,10 +10,11 @@
 #define __OrkidEngine_OkdEntity_h__
 
 #include	"Root.h"
+#include	ORKID_CORE_H(Components/OkdComponentContainer)
 
 class OkdFileStream;
 
-class OkdEntity
+class OkdEntity: public OkdComponentContainer
 {
 public:
 	inline OkdEntityType	getEntityType() const;

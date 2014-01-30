@@ -29,6 +29,7 @@ public:
 
 	inline bool						find( const Key& key, Value* pReturnValue );
 	inline const_iterator			find( const Key& key ) const;
+	inline bool						contains( const Key& key ) const;
 	inline void						clearPointers();
 
 private:
@@ -150,6 +151,18 @@ typename OkdMap<Key, Value>::const_iterator	OkdMap<Key, Value>::find(const Key&	
 {
 	const_iterator itExist = _map.find( key );
 	return	( itExist );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		contains
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename Key, typename Value>
+bool	OkdMap<Key, Value>::contains(const Key&	key) const
+{
+	const_iterator itExist = find( key );
+	return	( itExist != _map.end() );
 }
 
 //-----------------------------------------------------------------------------

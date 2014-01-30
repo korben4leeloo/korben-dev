@@ -11,8 +11,21 @@
 #include	ORKID_ENGINE_H(Resources/OkdResourceManager)
 #include	ORKID_ENGINE_H(Resources/OkdResourceDatabase)
 #include	ORKID_ENGINE_H(Entities/OkdEntityFactory)
+#include	ORKID_CORE_H(Components/OkdComponentFactory)
 #include	ORKID_ENGINE_H(Gameplay/OkdGameplayManager)
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
+
+#include	ORKID_ENGINE_H(Components/OkdTransformComponent)
+#include	ORKID_ENGINE_H(Components/OkdMeshComponent)
+#include	ORKID_ENGINE_H(Components/OkdLightComponent)
+#include	ORKID_ENGINE_H(Components/OkdCameraComponent)
+
+#define OKD_CLEAR_POINTER( p )	\
+	if	( p )					\
+	{							\
+		delete p;				\
+		p = 0;					\
+	}
 
 OrkidEngine* OrkidEngine::_pInstance = 0;
 
@@ -32,6 +45,8 @@ const char* OrkidEngine::_resourceTypeName[OrkidResourceTypeCount] =
 OrkidEngine::OrkidEngine()
 : _pResourceManager		( 0 )
 , _pResourceDatabase	( 0 )
+, _pEntityFactory		( 0 )
+, _pComponentFactory	( 0 )
 {
 	
 }
@@ -44,36 +59,6 @@ OrkidEngine::OrkidEngine()
 OrkidEngine::~OrkidEngine()
 {
 	
-}
-
-//-----------------------------------------------------------------------------
-// Name:		clear
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OrkidEngine::clear()
-{
-	//clearMap<OkdResourceManagerMap>( &_resourceManagerList );
-	//clearMap<OkdSceneMap>( &_sceneList );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		clearMap
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-void	OrkidEngine::clearMap( T* pMap )
-{
-	T::iterator it = pMap->begin();
-
-	while	( it != pMap->end() )
-	{
-		delete it->second;
-		it++;
-	}
-
-	pMap->clear();
 }
 
 //-----------------------------------------------------------------------------
@@ -93,6 +78,10 @@ void	OrkidEngine::initialize()
 	_pResourceManager = new OkdResourceManager();
 	_pResourceManager->initialize();
 
+	// Components
+	_pComponentFactory = new OkdComponentFactory();
+	registerComponents();
+
 	// Entities
 	_pEntityFactory = new OkdEntityFactory();
 
@@ -107,19 +96,30 @@ void	OrkidEngine::initialize()
 //-----------------------------------------------------------------------------
 void	OrkidEngine::uninitialize()
 {
-	clear();
-	//unregisterResources();
-
 	// Gameplay manager
 	OkdGameplayManager::destroy();
 
 	_pResourceDatabase->close();
 
-	delete _pEntityFactory;
-	delete _pResourceManager;
-	delete _pResourceDatabase;
+	OKD_CLEAR_POINTER( _pEntityFactory )
+	OKD_CLEAR_POINTER( _pComponentFactory )
+	OKD_CLEAR_POINTER( _pResourceManager )
+	OKD_CLEAR_POINTER( _pResourceDatabase )
 
 	OrkidCore::uninitialize();
+}
+
+//-----------------------------------------------------------------------------
+// Name:		registerComponents
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OrkidEngine::registerComponents()
+{
+	OKD_REGISTER_COMPONENT( OkdTransformComponent, _pComponentFactory )
+	OKD_REGISTER_COMPONENT( OkdMeshComponent, _pComponentFactory )
+	OKD_REGISTER_COMPONENT( OkdLightComponent, _pComponentFactory )
+	OKD_REGISTER_COMPONENT( OkdCameraComponent, _pComponentFactory )
 }
 
 //-----------------------------------------------------------------------------

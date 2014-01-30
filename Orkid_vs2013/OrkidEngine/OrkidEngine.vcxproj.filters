@@ -160,6 +160,18 @@
     <ClInclude Include="Sources\Components\Root.h">
       <Filter>Sources\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Components\OkdTransformComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\OkdLightComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\OkdMeshComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\OkdCameraComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\OpenGL\OkdOpenGLContext.cpp">
@@ -242,6 +254,18 @@
     </ClCompile>
     <ClCompile Include="Sources\Gameplay\OkdAbstractGameplay.cpp">
       <Filter>Sources\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Components\OkdTransformComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Components\OkdMeshComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Components\OkdCameraComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Components\OkdLightComponent.cpp">
+      <Filter>Sources\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

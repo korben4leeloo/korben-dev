@@ -7,9 +7,6 @@
 
 #include	"OkdComponentFactory.h"
 
-#include	ORKID_CORE_H(String/OkdString)
-#include	ORKID_CORE_H(String/OkdCrc32)
-
 //-----------------------------------------------------------------------------
 // Name:		OkdComponentFactory constructor
 //
@@ -35,9 +32,25 @@ OkdComponentFactory::~OkdComponentFactory()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdComponentFactory::registerComponent(const char*			pcComponentName, 
-											   pfnComponentCreator	creatorFunc)
+void	OkdComponentFactory::registerComponent(const OkdComponentId&	componentId, 
+											   pfnComponentCreator		creatorFunc)
 {
-	OkdComponentId componentId = OkdCrc32::getCrc32( OkdString( pcComponentName ) );
+	if	( _componentCreatorMap.contains( componentId ) )
+	{
+		ORKID_BREAK();
+		return;
+	}
+
 	_componentCreatorMap.add( componentId, creatorFunc );
 }
+
+////-----------------------------------------------------------------------------
+//// Name:		createComponent
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//void	OkdComponentFactory::createComponent(const char*			pcComponentName, 
+//											   pfnComponentCreator	creatorFunc)
+//{
+//
+//}

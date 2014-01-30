@@ -11,6 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\Components\OkdCameraComponent.h" />
+    <ClInclude Include="Sources\Components\OkdLightComponent.h" />
+    <ClInclude Include="Sources\Components\OkdMeshComponent.h" />
+    <ClInclude Include="Sources\Components\OkdTransformComponent.h" />
     <ClInclude Include="Sources\Components\Root.h" />
     <ClInclude Include="Sources\Entities\OkdCamera.h" />
     <ClInclude Include="Sources\Entities\OkdCreature.h" />
@@ -49,6 +53,10 @@
     <ClInclude Include="Sources\Shaders\Root.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Components\OkdCameraComponent.cpp" />
+    <ClCompile Include="Sources\Components\OkdLightComponent.cpp" />
+    <ClCompile Include="Sources\Components\OkdMeshComponent.cpp" />
+    <ClCompile Include="Sources\Components\OkdTransformComponent.cpp" />
     <ClCompile Include="Sources\Entities\OkdCamera.cpp" />
     <ClCompile Include="Sources\Entities\OkdCreature.cpp" />
     <ClCompile Include="Sources\Entities\OkdEntity.cpp" />
