@@ -33,6 +33,9 @@ public:
 	// Entities
 	inline OkdEntityFactory*	getEntityFactory();
 
+	// Components
+	inline OkdComponentFactory*	getComponentFactory();
+
 	// Update
 	void						update();
 
@@ -127,6 +130,16 @@ OkdResourceDatabase*	OrkidEngine::getResourceDatabase()
 OkdEntityFactory*	OrkidEngine::getEntityFactory()
 {
 	return	( _pEntityFactory );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getComponentFactory
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdComponentFactory*	OrkidEngine::getComponentFactory()
+{
+	return	( _pComponentFactory );
 }
 
 #endif

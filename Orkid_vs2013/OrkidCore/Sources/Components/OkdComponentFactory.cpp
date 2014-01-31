@@ -32,8 +32,8 @@ OkdComponentFactory::~OkdComponentFactory()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdComponentFactory::registerComponent(const OkdComponentId&	componentId, 
-											   pfnComponentCreator		creatorFunc)
+void	OkdComponentFactory::registerComponent(const OkdComponentId	componentId, 
+											   pfnComponentCreator	creatorFunc)
 {
 	if	( _componentCreatorMap.contains( componentId ) )
 	{
@@ -44,13 +44,15 @@ void	OkdComponentFactory::registerComponent(const OkdComponentId&	componentId,
 	_componentCreatorMap.add( componentId, creatorFunc );
 }
 
-////-----------------------------------------------------------------------------
-//// Name:		createComponent
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//void	OkdComponentFactory::createComponent(const char*			pcComponentName, 
-//											   pfnComponentCreator	creatorFunc)
-//{
+//-----------------------------------------------------------------------------
+// Name:		createComponent
 //
-//}
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdComponentPtr	OkdComponentFactory::createComponent(const OkdComponentId	componentId)
+{
+	pfnComponentCreator	creatorFunc = _componentCreatorMap[componentId];
+	OkdComponentPtr		componentPtr;//( creatorFunc() );
+
+	return	( componentPtr );
+}

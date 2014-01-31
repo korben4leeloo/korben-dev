@@ -27,10 +27,13 @@ public:
 	inline uint32					remove( const Key& key );
 	inline void						remove( const_iterator& it );
 
-	inline bool						find( const Key& key, Value* pReturnValue );
+	//inline bool						find( const Key& key, Value* pReturnValue );
+	//inline Value*					find( const Key& key );
 	inline const_iterator			find( const Key& key ) const;
 	inline bool						contains( const Key& key ) const;
 	inline void						clearPointers();
+
+	inline Value&					operator[]( const Key& key );
 
 private:
 	std::unordered_map<Key, Value>	_map;
@@ -121,25 +124,58 @@ void	OkdMap<Key, Value>::remove(const_iterator&	it)
 	_map.erase( it );
 }
 
+////-----------------------------------------------------------------------------
+//// Name:		find
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//template<typename Key, typename Value>
+//bool	OkdMap<Key, Value>::find(const Key&	key, 
+//								 Value*		pReturnValue)
+//{
+//	iterator itExist = _map.find( key );
+//
+//	if	( itExist != _map.end() )
+//	{
+//		*pReturnValue = itExist->second;
+//		return	( true );
+//	}
+//
+//	return	( false );
+//}
+
 //-----------------------------------------------------------------------------
-// Name:		find
+// Name:		operator[]
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<typename Key, typename Value>
-bool	OkdMap<Key, Value>::find(const Key&	key, 
-								 Value*		pReturnValue)
+Value&	OkdMap<Key, Value>::operator[](const Key&	key)
 {
 	iterator itExist = _map.find( key );
+	ORKID_ASSERT( itExist != _map.end() );
 
-	if	( itExist != _map.end() )
-	{
-		*pReturnValue = itExist->second;
-		return	( true );
-	}
-
-	return	( false );
+	return	( itExist->second );
 }
+
+////-----------------------------------------------------------------------------
+//// Name:		find
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//template<typename Key, typename Value>
+//Value*	OkdMap<Key, Value>::find(const Key&	key)
+//{
+//	iterator itExist = _map.find( key );
+//
+//	if	( itExist != _map.end() )
+//	{
+//		Value* pReturnValue = itExist->second;
+//		return	( pReturnValue );
+//	}
+//
+//	return	( 0 );
+//}
 
 //-----------------------------------------------------------------------------
 // Name:		find

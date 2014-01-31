@@ -14,15 +14,17 @@
 #include	ORKID_CORE_H(Memory/OkdSharedPtr)
 #include	ORKID_CORE_H(Components/OkdAbstractComponent)
 
-class OkdComponentPtr: public OkdSharedPtr<OkdAbstractComponent>
-{
-public:
-			OkdComponentPtr();
-	virtual	~OkdComponentPtr();
+typedef OkdSharedPtr<OkdAbstractComponent> OkdComponentPtr;
 
-private:
-
-};
+//class OkdComponentPtr: public OkdSharedPtr<OkdAbstractComponent>
+//{
+//public:
+//			OkdComponentPtr();
+//	virtual	~OkdComponentPtr();
+//
+//private:
+//
+//};
 
 //*****************************************************************************
 //	Inline functions declarations

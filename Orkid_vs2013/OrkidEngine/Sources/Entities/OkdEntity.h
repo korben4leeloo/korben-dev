@@ -17,15 +17,16 @@ class OkdFileStream;
 class OkdEntity: public OkdComponentContainer
 {
 public:
-	inline OkdEntityType	getEntityType() const;
-
-	virtual void			read( OkdFileStream* pStream )	= 0;
-	virtual void			write( OkdFileStream* pStream )	= 0;
-
-protected:
+							OkdEntity();
 							OkdEntity( const OkdEntityType eEntityType );
 	virtual					~OkdEntity();
 
+	inline OkdEntityType	getEntityType() const;
+
+	virtual void			read( OkdFileStream* pStream );
+	virtual void			write( OkdFileStream* pStream );
+
+protected:
 	OkdEntityType			_eEntityType;
 };
 

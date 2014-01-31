@@ -22,7 +22,9 @@ public:
 						OkdComponentContainer();
 	virtual				~OkdComponentContainer();
 
-	void				addComponent( const OkdComponentPtr& componentPtr );
+	void				addComponent( const OkdComponentId componentId );
+	void				removeComponent( const OkdComponentId componentId );
+	OkdComponentPtr		getComponent( const OkdComponentId componentId );
 
 private:
 	OkdComponentPtrMap	_components;
