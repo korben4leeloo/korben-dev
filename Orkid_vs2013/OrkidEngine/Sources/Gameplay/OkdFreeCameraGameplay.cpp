@@ -28,16 +28,6 @@ OkdFreeCameraGameplay::~OkdFreeCameraGameplay()
 
 }
 
-#include <tuple>
-
-enum TuplePos
-{
-	TuplePos0,
-	TuplePos1,
-	TuplePos2,
-	TuplePos3
-};
-
 //-----------------------------------------------------------------------------
 // Name:		update
 //
@@ -45,7 +35,5 @@ enum TuplePos
 //-----------------------------------------------------------------------------
 void	OkdFreeCameraGameplay::update()
 {
-	std::tuple<float, int, char> t;
-
-	int f = std::get<TuplePos0>(t);
+	
 }

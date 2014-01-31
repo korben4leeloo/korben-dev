@@ -25,19 +25,26 @@
 		}																			\
 																					\
 		return componentId;															\
-	}
+	}																				\
+																					\
+	virtual OkdComponentId OkdAbstractComponent::getTypeId() const					\
+	{																				\
+		return	( ClassName::getComponentId() );									\
+	}																				
 
 typedef uint32 OkdComponentId;
 
-#define OKD_INVALID_COMPONENT_ID 0
+#define OKD_INVALID_COMPONENT_ID (OkdComponentId)0
 
 class OkdAbstractComponent
 {
 public:
-			OkdAbstractComponent();
-	virtual	~OkdAbstractComponent();
+							OkdAbstractComponent();
+	virtual					~OkdAbstractComponent();
 
-protected:
+	virtual OkdComponentId	getTypeId() const = 0;
+
+private:
 };
 
 typedef OkdAbstractComponent* (*pfnComponentCreator)();
