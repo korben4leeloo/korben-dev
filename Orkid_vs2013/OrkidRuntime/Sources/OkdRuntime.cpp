@@ -191,6 +191,7 @@ bool createWindow(LPCSTR title, int width, int height) {
 #include	ORKID_ENGINE_H(Components/OkdTransformComponent)
 #include	ORKID_ENGINE_H(Components/OkdMeshComponent)
 #include	ORKID_CORE_H(Containers/OkdList)
+#include	ORKID_CORE_H(Components/OkdComponentFactory)
 //#include	<rapidxml/rapidxml_print.hpp>
 #include	<iostream>
 
@@ -306,6 +307,15 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	pEntity->addComponent( OkdTransformComponent::getComponentId() );
 	pEntity->addComponent( OkdMeshComponent::getComponentId() );
 	pEntity->removeComponent( OkdMeshComponent::getComponentId() );
+
+	OkdComponentFactory*	pComponentFactory = pEngine->getComponentFactory();
+	OkdComponentPtr			ptr1( pComponentFactory->createComponent( OkdTransformComponent::getComponentId() ) );
+	OkdComponentPtr			ptr2( pComponentFactory->createComponent( OkdMeshComponent::getComponentId() ) );
+	OkdComponentPtr			ptr3;
+
+	ptr3 = ptr1;
+	ptr1 = ptr2;
+	ptr3 = ptr1;
 
 	//testSaveMesh();
 	//testLoadMesh();

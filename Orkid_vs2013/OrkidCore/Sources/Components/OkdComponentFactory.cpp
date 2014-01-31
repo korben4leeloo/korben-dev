@@ -52,7 +52,7 @@ void	OkdComponentFactory::registerComponent(const OkdComponentId	componentId,
 OkdComponentPtr	OkdComponentFactory::createComponent(const OkdComponentId	componentId)
 {
 	pfnComponentCreator	creatorFunc = _componentCreatorMap[componentId];
-	OkdComponentPtr		componentPtr;//( creatorFunc() );
+	OkdComponentPtr		componentPtr( creatorFunc() );
 
 	return	( componentPtr );
 }

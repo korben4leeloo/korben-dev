@@ -20,13 +20,6 @@
 #include	ORKID_ENGINE_H(Components/OkdLightComponent)
 #include	ORKID_ENGINE_H(Components/OkdCameraComponent)
 
-#define OKD_CLEAR_POINTER( p )	\
-	if	( p )					\
-	{							\
-		delete p;				\
-		p = 0;					\
-	}
-
 OrkidEngine* OrkidEngine::_pInstance = 0;
 
 const char* OrkidEngine::_resourceTypeName[OrkidResourceTypeCount] =

@@ -36,6 +36,14 @@
 	#define ORKID_EXPORT __declspec(dllimport)
 #endif
 
+// Helpers macros
+#define OKD_CLEAR_POINTER( p )	\
+	if	( p )					\
+	{							\
+		delete p;				\
+		p = 0;					\
+	}
+
 // Typedefs
 typedef unsigned int	uint;
 

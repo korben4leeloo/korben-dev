@@ -118,10 +118,10 @@ uint	OkdRefCounter::getRefCount() const
 //-----------------------------------------------------------------------------
 template<class T>
 OkdSharedPtr<T>::OkdSharedPtr()
-: _pObject( 0 )
+: _pObject		( 0 )
+, _pRefCount	( 0 )
 {
-	_pRefCount = new OkdRefCounter();
-	_pRefCount->increase();
+	
 }
 
 //-----------------------------------------------------------------------------
@@ -174,7 +174,7 @@ OkdSharedPtr<T>& OkdSharedPtr<T>::operator=( const OkdSharedPtr& sharedPtr )
 {
 	if	( &sharedPtr != this )
 	{
-		if	( _pRefCount->decrease() == 0 )
+		if	( _pRefCount && _pRefCount->decrease() == 0 )
 		{
 			destroy();
 		}
@@ -196,12 +196,8 @@ OkdSharedPtr<T>& OkdSharedPtr<T>::operator=( const OkdSharedPtr& sharedPtr )
 template<class T>
 void	OkdSharedPtr<T>::destroy()
 {
-	if	( _pObject )
-	{
-		delete _pObject;
-	}
-
-	delete _pRefCount;
+	OKD_CLEAR_POINTER( _pObject )
+	OKD_CLEAR_POINTER( _pRefCount )
 }
 
 //-----------------------------------------------------------------------------
