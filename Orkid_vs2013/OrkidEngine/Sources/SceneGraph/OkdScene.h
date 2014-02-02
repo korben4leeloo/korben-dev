@@ -29,14 +29,14 @@ public:
 
 					ORKID_RESOURCE( OrkidScene )
 
-	inline OkdNode*	getRootNode();
+	/*inline OkdNode*	getRootNode();
 
 	OkdNode*		createNode( OkdNode* pParentNode = 0 );
 
 	OkdCamera*		createCamera( OkdNode* pNode = 0 );
 	OkdLight*		createLight( OkdNode* pNode = 0 );
 	OkdShape*		createShape( OkdNode* pNode = 0 );
-	OkdCreature*	createCreature( OkdNode* pNode = 0 );
+	OkdCreature*	createCreature( OkdNode* pNode = 0 );*/
 
 	// OkdAbstractResource implementation
 	virtual void	read( OkdFileStream* pStream );
@@ -46,12 +46,12 @@ private:
 					OkdScene();
 					~OkdScene();
 
-	OkdEntity*		createEntity( const OkdEntityType eEntityType, OkdNode* pNode = 0 );
+	/*OkdEntity*		createEntity( const OkdEntityType eEntityType, OkdNode* pNode = 0 );
 
 	void			writeNode( OkdFileStream* pStream, OkdNode* pNode );
 	void			readNode( OkdFileStream* pStream, OkdNode* pNode );
 
-	OkdNode*		_pRootNode;
+	OkdNode*		_pRootNode;*/
 };
 
 typedef OkdResourcePtr<OkdScene> OkdScenePtr;
@@ -60,14 +60,14 @@ typedef OkdResourcePtr<OkdScene> OkdScenePtr;
 //	Inline functions declarations
 //*****************************************************************************
 
-//-----------------------------------------------------------------------------
-// Name:		getRootNode
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdNode*	OkdScene::getRootNode()
-{
-	return	( _pRootNode );
-}
+////-----------------------------------------------------------------------------
+//// Name:		getRootNode
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdNode*	OkdScene::getRootNode()
+//{
+//	return	( _pRootNode );
+//}
 
 #endif

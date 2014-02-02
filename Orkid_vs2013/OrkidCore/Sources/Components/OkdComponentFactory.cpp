@@ -32,8 +32,8 @@ OkdComponentFactory::~OkdComponentFactory()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdComponentFactory::registerComponent(const OkdComponentId	componentId, 
-											   pfnComponentCreator	creatorFunc)
+void	OkdComponentFactory::registerComponent(const OkdComponentId			componentId, 
+											   const pfnComponentCreator	creatorFunc)
 {
 	if	( _componentCreatorMap.contains( componentId ) )
 	{

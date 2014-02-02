@@ -113,7 +113,7 @@ void	OkdExportCommand::exportSceneGraph()
 void	OkdExportCommand::exportDagNode(const MFnDagNode&	fnDagNode, 
 										OkdNode*			pParentNode)
 {
-	OkdString	strNodeName( fnDagNode.name().asChar() );
+	/*OkdString	strNodeName( fnDagNode.name().asChar() );
 	OkdString	strNodeTypeName( fnDagNode.typeName().asChar() );
 	MFn::Type	eNodeType		= fnDagNode.object().apiType();
 	bool		bIsDefaultNode	= fnDagNode.isDefaultNode();
@@ -163,7 +163,7 @@ void	OkdExportCommand::exportDagNode(const MFnDagNode&	fnDagNode,
 		{
 			pParentNode->removeChildNode( pOrkidNode );
 		}
-	}
+	}*/
 }
 
 //-----------------------------------------------------------------------------
@@ -174,13 +174,15 @@ void	OkdExportCommand::exportDagNode(const MFnDagNode&	fnDagNode,
 OkdNode*	OkdExportCommand::exportTransform(const MDagPath&	transformPath, 
 											  OkdNode*			pParentNode)
 {
-	MFnTransform	fnTransform( transformPath, &_status );
+	/*MFnTransform	fnTransform( transformPath, &_status );
 	MVector			vLocal		= fnTransform.getTranslation( MSpace::kTransform, &_status );
 	OkdNode*		pOrkidNode	= _pOrkidScene->createNode( pParentNode );
 
 	WRITE_LOG_INFOS( transformPath.length(), "Local transform: " << vLocal.x << " " << vLocal.y << " " << vLocal.z << "\n" );
 
-	return	( pOrkidNode );
+	return	( pOrkidNode );*/
+
+	return 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -191,7 +193,7 @@ OkdNode*	OkdExportCommand::exportTransform(const MDagPath&	transformPath,
 void	OkdExportCommand::exportMesh(const MDagPath&	meshPath, 
 									 OkdNode*			pNode)
 {
-	MFnMesh			fnMesh( meshPath, &_status );
+	/*MFnMesh			fnMesh( meshPath, &_status );
 	uint			uiVertexCount	= fnMesh.numVertices( &_status );
 	uint			uiPolygonCount	= fnMesh.numPolygons( &_status );
 	const float*	pLocalPoints	= fnMesh.getRawPoints( &_status );
@@ -235,7 +237,7 @@ void	OkdExportCommand::exportMesh(const MDagPath&	meshPath,
 	OkdShape* pShape = _pOrkidScene->createShape( pNode );
 	pShape->setMeshPtr( meshPtr );
 
-	meshPtr.save();
+	meshPtr.save();*/
 }
 
 //-----------------------------------------------------------------------------

@@ -24,7 +24,7 @@
 //-----------------------------------------------------------------------------
 OkdScene::OkdScene()
 {
-	_pRootNode = new OkdNode();
+	//_pRootNode = new OkdNode();
 }
 
 //-----------------------------------------------------------------------------
@@ -34,83 +34,83 @@ OkdScene::OkdScene()
 //-----------------------------------------------------------------------------
 OkdScene::~OkdScene()
 {
-	if	( _pRootNode )
+	/*if	( _pRootNode )
 	{
 		delete _pRootNode;
-	}
+	}*/
 }
 
-//-----------------------------------------------------------------------------
-// Name:		createNode
+////-----------------------------------------------------------------------------
+//// Name:		createNode
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdNode*	OkdScene::createNode(OkdNode*	pParentNode)
+//{
+//	OkdNode* pNode				= new OkdNode();
+//	OkdNode* pRealParentNode	= pParentNode ? pParentNode : _pRootNode;
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdNode*	OkdScene::createNode(OkdNode*	pParentNode)
-{
-	OkdNode* pNode				= new OkdNode();
-	OkdNode* pRealParentNode	= pParentNode ? pParentNode : _pRootNode;
-
-	pRealParentNode->addChildNode( pNode );
-
-	return	( pNode );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		createEntity
+//	pRealParentNode->addChildNode( pNode );
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdEntity*	OkdScene::createEntity(const OkdEntityType	eEntityType,
-								   OkdNode*				pNode)
-{
-	OkdEntityFactory*	pEntityFactory	= OrkidEngine::instance()->getEntityFactory();
-	OkdEntity*			pEntity			= pEntityFactory->createEntity( eEntityType );
-	OkdNode*			pEntityNode		= pNode ? pNode : _pRootNode;
-
-	pEntityNode->addEntity( pEntity );
-
-	return	( pEntity );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		createCamera
+//	return	( pNode );
+//}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdCamera*	OkdScene::createCamera(OkdNode*	pNode)
-{
-	return	( static_cast<OkdCamera*>(createEntity( OrkidCamera, pNode ) ) );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		createLight
+////-----------------------------------------------------------------------------
+//// Name:		createEntity
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdEntity*	OkdScene::createEntity(const OkdEntityType	eEntityType,
+//								   OkdNode*				pNode)
+//{
+//	OkdEntityFactory*	pEntityFactory	= OrkidEngine::instance()->getEntityFactory();
+//	OkdEntity*			pEntity			= pEntityFactory->createEntity( eEntityType );
+//	OkdNode*			pEntityNode		= pNode ? pNode : _pRootNode;
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdLight*	OkdScene::createLight(OkdNode*	pNode)
-{
-	return	( static_cast<OkdLight*>(createEntity( OrkidLight, pNode ) ) );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		createShape
+//	pEntityNode->addEntity( pEntity );
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdShape*	OkdScene::createShape(OkdNode*	pNode)
-{
-	return	( static_cast<OkdShape*>(createEntity( OrkidShape, pNode ) ) );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		createCreature
+//	return	( pEntity );
+//}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdCreature*	OkdScene::createCreature(OkdNode*	pNode)
-{
-	return	( static_cast<OkdCreature*>(createEntity( OrkidCreature, pNode ) ) );
-}
+////-----------------------------------------------------------------------------
+//// Name:		createCamera
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdCamera*	OkdScene::createCamera(OkdNode*	pNode)
+//{
+//	return	( static_cast<OkdCamera*>(createEntity( OrkidCamera, pNode ) ) );
+//}
+//
+////-----------------------------------------------------------------------------
+//// Name:		createLight
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdLight*	OkdScene::createLight(OkdNode*	pNode)
+//{
+//	return	( static_cast<OkdLight*>(createEntity( OrkidLight, pNode ) ) );
+//}
+//
+////-----------------------------------------------------------------------------
+//// Name:		createShape
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdShape*	OkdScene::createShape(OkdNode*	pNode)
+//{
+//	return	( static_cast<OkdShape*>(createEntity( OrkidShape, pNode ) ) );
+//}
+//
+////-----------------------------------------------------------------------------
+//// Name:		createCreature
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdCreature*	OkdScene::createCreature(OkdNode*	pNode)
+//{
+//	return	( static_cast<OkdCreature*>(createEntity( OrkidCreature, pNode ) ) );
+//}
 
 //-----------------------------------------------------------------------------
 // Name:		read
@@ -119,7 +119,7 @@ OkdCreature*	OkdScene::createCreature(OkdNode*	pNode)
 //-----------------------------------------------------------------------------
 void	OkdScene::read(OkdFileStream* pStream)
 {
-	readNode( pStream, _pRootNode );
+	//readNode( pStream, _pRootNode );
 }
 
 //-----------------------------------------------------------------------------
@@ -129,89 +129,89 @@ void	OkdScene::read(OkdFileStream* pStream)
 //-----------------------------------------------------------------------------
 void	OkdScene::write(OkdFileStream* pStream)
 {
-	writeNode( pStream, _pRootNode );
+	//writeNode( pStream, _pRootNode );
 }
 
-//-----------------------------------------------------------------------------
-// Name:		writeNode
+////-----------------------------------------------------------------------------
+//// Name:		writeNode
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//void	OkdScene::writeNode(OkdFileStream*	pStream, 
+//							OkdNode*		pNode)
+//{
+//	OkdFileStream&		stream	= *pStream;
+//	const OkdMatrix4f&	mLocal	= pNode->getLocalTransform();
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OkdScene::writeNode(OkdFileStream*	pStream, 
-							OkdNode*		pNode)
-{
-	OkdFileStream&		stream	= *pStream;
-	const OkdMatrix4f&	mLocal	= pNode->getLocalTransform();
-
-	stream << mLocal;
-
-	// Write entities
-	const OkdEntityList&			entityList		= pNode->getEntityList();
-	OkdEntityList::const_iterator	itEntity		= entityList.begin();
-	OkdEntityList::const_iterator	itEntityEnd		= entityList.end();
-	uint32							uiEntityCount	= entityList.size();
-
-	stream << uiEntityCount;
-
-	while	( itEntity != itEntityEnd )
-	{
-		OkdEntity* pEntity = *itEntity;
-
-		stream << pEntity->getEntityType();
-		pEntity->write( pStream );
-		itEntity++;
-	}
-
-	// Write children nodes
-	const OkdNodeList&			nodeList	= pNode->getNodeList();
-	OkdNodeList::const_iterator	itNode		= nodeList.begin();
-	OkdNodeList::const_iterator	itNodeEnd	= nodeList.end();
-	uint32						uiNodeCount	= nodeList.size();
-
-	stream << uiNodeCount;
-
-	while	( itNode != itNodeEnd )
-	{
-		writeNode( pStream, *itNode );
-		itNode++;
-	}
-}
-
-//-----------------------------------------------------------------------------
-// Name:		readNode
+//	stream << mLocal;
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OkdScene::readNode(OkdFileStream*	pStream, 
-						   OkdNode*			pNode)
-{
-	OkdFileStream&	stream = *pStream;
-	OkdMatrix4f		mLocal;
-
-	stream >> mLocal;
-
-	// Read entities
-	uint32 uiEntityCount;
-
-	stream >> uiEntityCount;
-
-	for	( uint32 i = 0; i < uiEntityCount; i++ )
-	{
-		OkdEntityType eEntityType;
-		stream >> (unsigned int&)eEntityType;
-
-		OkdEntity* pEntity = createEntity( eEntityType, pNode );
-		pEntity->read( pStream );
-	}
-
-	// Read children nodes
-	uint32 uiNodeCount;
-
-	stream >> uiNodeCount;
-
-	for	( uint32 i = 0; i < uiNodeCount; i++ )
-	{
-		OkdNode* pChildNode = createNode( pNode );
-		readNode( pStream, pChildNode );
-	}
-}
+//	// Write entities
+//	const OkdEntityList&			entityList		= pNode->getEntityList();
+//	OkdEntityList::const_iterator	itEntity		= entityList.begin();
+//	OkdEntityList::const_iterator	itEntityEnd		= entityList.end();
+//	uint32							uiEntityCount	= entityList.size();
+//
+//	stream << uiEntityCount;
+//
+//	while	( itEntity != itEntityEnd )
+//	{
+//		OkdEntity* pEntity = *itEntity;
+//
+//		stream << pEntity->getEntityType();
+//		pEntity->write( pStream );
+//		itEntity++;
+//	}
+//
+//	// Write children nodes
+//	const OkdNodeList&			nodeList	= pNode->getNodeList();
+//	OkdNodeList::const_iterator	itNode		= nodeList.begin();
+//	OkdNodeList::const_iterator	itNodeEnd	= nodeList.end();
+//	uint32						uiNodeCount	= nodeList.size();
+//
+//	stream << uiNodeCount;
+//
+//	while	( itNode != itNodeEnd )
+//	{
+//		writeNode( pStream, *itNode );
+//		itNode++;
+//	}
+//}
+//
+////-----------------------------------------------------------------------------
+//// Name:		readNode
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//void	OkdScene::readNode(OkdFileStream*	pStream, 
+//						   OkdNode*			pNode)
+//{
+//	OkdFileStream&	stream = *pStream;
+//	OkdMatrix4f		mLocal;
+//
+//	stream >> mLocal;
+//
+//	// Read entities
+//	uint32 uiEntityCount;
+//
+//	stream >> uiEntityCount;
+//
+//	for	( uint32 i = 0; i < uiEntityCount; i++ )
+//	{
+//		OkdEntityType eEntityType;
+//		stream >> (unsigned int&)eEntityType;
+//
+//		OkdEntity* pEntity = createEntity( eEntityType, pNode );
+//		pEntity->read( pStream );
+//	}
+//
+//	// Read children nodes
+//	uint32 uiNodeCount;
+//
+//	stream >> uiNodeCount;
+//
+//	for	( uint32 i = 0; i < uiNodeCount; i++ )
+//	{
+//		OkdNode* pChildNode = createNode( pNode );
+//		readNode( pStream, pChildNode );
+//	}
+//}

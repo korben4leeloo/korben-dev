@@ -22,11 +22,11 @@ public:
 												OkdComponentFactory();
 												~OkdComponentFactory();
 
-	void										registerComponent( const OkdComponentId componentId, pfnComponentCreator creatorFn );
+	void										registerComponent( const OkdComponentId componentId, const pfnComponentCreator creatorFn );
 	OkdComponentPtr								createComponent( const OkdComponentId componentId );
 	
 private:
-	OkdMap<OkdComponentId, pfnComponentCreator>	_componentCreatorMap;
+	OkdMap<OkdComponentId, const pfnComponentCreator>	_componentCreatorMap;
 };
 
 //*****************************************************************************

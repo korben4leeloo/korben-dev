@@ -38,7 +38,7 @@ const char* OrkidEngine::_resourceTypeName[OrkidResourceTypeCount] =
 OrkidEngine::OrkidEngine()
 : _pResourceManager		( 0 )
 , _pResourceDatabase	( 0 )
-, _pEntityFactory		( 0 )
+//, _pEntityFactory		( 0 )
 , _pComponentFactory	( 0 )
 {
 	
@@ -76,7 +76,7 @@ void	OrkidEngine::initialize()
 	registerComponents();
 
 	// Entities
-	_pEntityFactory = new OkdEntityFactory();
+	//_pEntityFactory = new OkdEntityFactory();
 
 	// Gameplay manager
 	OkdGameplayManager::create();
@@ -94,7 +94,7 @@ void	OrkidEngine::uninitialize()
 
 	_pResourceDatabase->close();
 
-	OKD_CLEAR_POINTER( _pEntityFactory )
+	//OKD_CLEAR_POINTER( _pEntityFactory )
 	OKD_CLEAR_POINTER( _pComponentFactory )
 	OKD_CLEAR_POINTER( _pResourceManager )
 	OKD_CLEAR_POINTER( _pResourceDatabase )

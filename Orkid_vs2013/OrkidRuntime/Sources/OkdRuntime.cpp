@@ -181,6 +181,7 @@ bool createWindow(LPCSTR title, int width, int height) {
 //#include	ORKID_ENGINE_H(Resources/OkdResourceManager)
 //#include	ORKID_ENGINE_H(Resources/OkdResourceDatabase)
 //#include	ORKID_CORE_H(Xml/OkdXmlDocument)
+#include	ORKID_ENGINE_H(Entities/OkdEntity)
 #include	ORKID_ENGINE_H(Entities/OkdMesh)
 #include	ORKID_ENGINE_H(Entities/OkdShape)
 #include	ORKID_ENGINE_H(Entities/OkdLight)
@@ -197,7 +198,7 @@ bool createWindow(LPCSTR title, int width, int height) {
 
 void	testSaveScene()
 {
-	OkdScenePtr scenePtr;
+	/*OkdScenePtr scenePtr;
 	scenePtr.bind( "TestScene" );
 
 	OkdScene*	pScene	= scenePtr.getResource();
@@ -215,7 +216,7 @@ void	testSaveScene()
 	pShape1->setMeshPtr( meshPtr );
 	pShape2->setMeshPtr( meshPtr );
 
-	scenePtr.save();
+	scenePtr.save();*/
 }
 
 void	testLoadScene()

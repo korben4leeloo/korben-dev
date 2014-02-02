@@ -31,7 +31,7 @@ public:
 	inline OkdResourceDatabase*	getResourceDatabase();
 
 	// Entities
-	inline OkdEntityFactory*	getEntityFactory();
+	//inline OkdEntityFactory*	getEntityFactory();
 
 	// Components
 	inline OkdComponentFactory*	getComponentFactory();
@@ -52,7 +52,7 @@ private:
 
 	OkdResourceManager*			_pResourceManager;
 	OkdResourceDatabase*		_pResourceDatabase;
-	OkdEntityFactory*			_pEntityFactory;
+	//OkdEntityFactory*			_pEntityFactory;
 	OkdComponentFactory*		_pComponentFactory;
 
 	static OrkidEngine*			_pInstance;
@@ -122,15 +122,15 @@ OkdResourceDatabase*	OrkidEngine::getResourceDatabase()
 	return	( _pResourceDatabase );
 }
 
-//-----------------------------------------------------------------------------
-// Name:		getEntityFactory
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdEntityFactory*	OrkidEngine::getEntityFactory()
-{
-	return	( _pEntityFactory );
-}
+////-----------------------------------------------------------------------------
+//// Name:		getEntityFactory
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdEntityFactory*	OrkidEngine::getEntityFactory()
+//{
+//	return	( _pEntityFactory );
+//}
 
 //-----------------------------------------------------------------------------
 // Name:		getComponentFactory

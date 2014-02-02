@@ -25,17 +25,6 @@ enum OkdResourceType
 	OrkidResourceTypeUnknown = 0xFFFFFFFF
 };
 
-enum OkdEntityType
-{
-	OrkidCamera,
-	OrkidLight,
-	OrkidShape,
-	OrkidCreature,
-
-	OrkidEntityTypeCount,
-	OrkidEntityTypeUnknown = 0xFFFFFFFF
-};
-
 template<class T>
 using pfnOkdResourceAllocator = T* (*)();
 

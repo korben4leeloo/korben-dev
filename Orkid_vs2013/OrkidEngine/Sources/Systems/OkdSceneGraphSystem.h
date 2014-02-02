@@ -1,29 +1,23 @@
 //*****************************************************************************
 //
-//	Class:		OkdEntity
+//	Class:		OkdSceneGraphSystem
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __OrkidEngine_OkdEntity_h__
-#define __OrkidEngine_OkdEntity_h__
+#ifndef __OrkidCore_OkdSceneGraphSystem_h__
+#define __OrkidCore_OkdSceneGraphSystem_h__
 
 #include	"Root.h"
-#include	ORKID_CORE_H(Components/OkdComponentContainer)
 
-class OkdFileStream;
-
-class OkdEntity: public OkdComponentContainer
+class OkdSceneGraphSystem
 {
 public:
-					OkdEntity();
-	virtual			~OkdEntity();
+			OkdSceneGraphSystem();
+	virtual	~OkdSceneGraphSystem();
 
-	virtual void	read( OkdFileStream* pStream );
-	virtual void	write( OkdFileStream* pStream );
-
-protected:
+private:
 };
 
 //*****************************************************************************

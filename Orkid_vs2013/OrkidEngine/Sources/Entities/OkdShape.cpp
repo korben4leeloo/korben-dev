@@ -1,56 +1,56 @@
-//*****************************************************************************
+////*****************************************************************************
+////
+////	File:		OkdShape.cpp
+////	Created:	2013-08-26
+////
+////*****************************************************************************
 //
-//	File:		OkdShape.cpp
-//	Created:	2013-08-26
+//#include	"OkdShape.h"
 //
-//*****************************************************************************
-
-#include	"OkdShape.h"
-
-#include	ORKID_ENGINE_H(Resources/OkdResourceManager)
-#include	ORKID_ENGINE_H(Entities/OkdMesh)
-
-//-----------------------------------------------------------------------------
-// Name:		OkdShape constructor
+//#include	ORKID_ENGINE_H(Resources/OkdResourceManager)
+//#include	ORKID_ENGINE_H(Entities/OkdMesh)
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdShape::OkdShape()
-: OkdEntity( OrkidShape )
-{
-	
-}
-
-//-----------------------------------------------------------------------------
-// Name:		OkdShape destructor
+////-----------------------------------------------------------------------------
+//// Name:		OkdShape constructor
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdShape::OkdShape()
+//: OkdEntity( OrkidShape )
+//{
+//	
+//}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdShape::~OkdShape()
-{
-	
-}
-
-//-----------------------------------------------------------------------------
-// Name:		read
+////-----------------------------------------------------------------------------
+//// Name:		OkdShape destructor
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//OkdShape::~OkdShape()
+//{
+//	
+//}
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OkdShape::read(OkdFileStream* pStream)
-{
-	OkdString strMeshResourceName;
-
-	(*pStream) >> strMeshResourceName;
-	_meshPtr.bind( strMeshResourceName );
-	//_meshPtr.bind( strMeshResourceName );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		write
+////-----------------------------------------------------------------------------
+//// Name:		read
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//void	OkdShape::read(OkdFileStream* pStream)
+//{
+//	OkdString strMeshResourceName;
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OkdShape::write(OkdFileStream* pStream)
-{
-	(*pStream) << _meshPtr.getResourceName();
-}
+//	(*pStream) >> strMeshResourceName;
+//	_meshPtr.bind( strMeshResourceName );
+//	//_meshPtr.bind( strMeshResourceName );
+//}
+//
+////-----------------------------------------------------------------------------
+//// Name:		write
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//void	OkdShape::write(OkdFileStream* pStream)
+//{
+//	(*pStream) << _meshPtr.getResourceName();
+//}

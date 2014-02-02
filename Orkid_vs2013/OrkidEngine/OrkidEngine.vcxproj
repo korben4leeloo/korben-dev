@@ -51,6 +51,8 @@
     <ClInclude Include="Sources\Shaders\OpenGL\OkdOpenGLShader.h" />
     <ClInclude Include="Sources\Shaders\OpenGL\Root.h" />
     <ClInclude Include="Sources\Shaders\Root.h" />
+    <ClInclude Include="Sources\Systems\OkdSceneGraphSystem.h" />
+    <ClInclude Include="Sources\Systems\Root.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Components\OkdCameraComponent.cpp" />
@@ -84,6 +86,7 @@
     <ClCompile Include="Sources\Shaders\OkdAbstractShader.cpp" />
     <ClCompile Include="Sources\Shaders\OkdAbstractShaderProgram.cpp" />
     <ClCompile Include="Sources\Shaders\OpenGL\OkdOpenGLShader.cpp" />
+    <ClCompile Include="Sources\Systems\OkdSceneGraphSystem.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6DBBF689-0136-4205-9458-6A61C8FCC42A}</ProjectGuid>

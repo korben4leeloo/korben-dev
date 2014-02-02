@@ -214,7 +214,7 @@ void	OkdFileTranslator::exportSceneGraph()
 void	OkdFileTranslator::exportDagNode(const MFnDagNode&	fnDagNode, 
 										 OkdNode*			pParentNode)
 {
-	OkdString	strNodeName( fnDagNode.name().asChar() );
+	/*OkdString	strNodeName( fnDagNode.name().asChar() );
 	OkdString	strNodeTypeName( fnDagNode.typeName().asChar() );
 	OkdNode*	pOrkidNode = 0;
 	MStatus		status;
@@ -248,7 +248,7 @@ void	OkdFileTranslator::exportDagNode(const MFnDagNode&	fnDagNode,
 	{
 		MFnDagNode childNode( fnDagNode.child( i ), &status );
 		exportDagNode( childNode, pOrkidNode );
-	}
+	}*/
 }
 
 ////-----------------------------------------------------------------------------

@@ -18,17 +18,6 @@ OkdEntity::OkdEntity()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OkdEntity constructor
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdEntity::OkdEntity(const OkdEntityType	eEntityType)
-: _eEntityType( eEntityType )
-{
-	
-}
-
-//-----------------------------------------------------------------------------
 // Name:		OkdEntity destructor
 //
 // Created:		2013-08-26
