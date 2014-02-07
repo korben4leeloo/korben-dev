@@ -35,6 +35,9 @@
     <Filter Include="Sources\Components">
       <UniqueIdentifier>{1e7336e8-1d30-4013-b1c9-ec4ac03896e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Signals">
+      <UniqueIdentifier>{70f68b84-ca34-4423-848b-2ce674981688}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\OrkidCoreRoot.h">
@@ -142,6 +145,15 @@
     <ClInclude Include="Sources\Components\OkdComponentFactory.h">
       <Filter>Sources\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Signals\OkdSignal.h">
+      <Filter>Sources\Signals</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Signals\OkdSlot.h">
+      <Filter>Sources\Signals</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Signals\Root.h">
+      <Filter>Sources\Signals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Math\OkdVector3f.cpp">
@@ -218,6 +230,12 @@
     </ClCompile>
     <ClCompile Include="Sources\Components\OkdComponentFactory.cpp">
       <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Signals\OkdSlot.cpp">
+      <Filter>Sources\Signals</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Signals\OkdSignal.cpp">
+      <Filter>Sources\Signals</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

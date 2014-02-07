@@ -314,6 +314,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	OkdComponentPtr			ptr2( pComponentFactory->createComponent( OkdMeshComponent::getComponentId() ) );
 	OkdComponentPtr			ptr3;
 
+	pComponentFactory->_onCreateComponentSignal.connect( 
+
 	ptr3 = ptr1;
 	ptr1 = ptr2;
 	ptr3 = ptr1;

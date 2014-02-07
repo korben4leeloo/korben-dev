@@ -13,6 +13,7 @@
 
 #include	ORKID_CORE_H(Components/OkdComponentPtr)
 #include	ORKID_CORE_H(Containers/OkdMap)
+#include	ORKID_CORE_H(Signals/OkdSignal)
 
 #define OKD_REGISTER_COMPONENT( ComponentClass, pComponentFactory ) pComponentFactory->registerComponent( ComponentClass::getComponentId(), ComponentClass::create );
 
@@ -27,6 +28,7 @@ public:
 	
 private:
 	OkdMap<OkdComponentId, const pfnComponentCreator>	_componentCreatorMap;
+	OkdSignal<OkdComponentId>							_onCreateComponentSignal;
 };
 
 //*****************************************************************************

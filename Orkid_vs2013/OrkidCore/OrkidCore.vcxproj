@@ -35,6 +35,9 @@
     <ClInclude Include="Sources\Memory\Root.h" />
     <ClInclude Include="Sources\OrkidCore.h" />
     <ClInclude Include="Sources\OrkidCoreRoot.h" />
+    <ClInclude Include="Sources\Signals\OkdSignal.h" />
+    <ClInclude Include="Sources\Signals\OkdSlot.h" />
+    <ClInclude Include="Sources\Signals\Root.h" />
     <ClInclude Include="Sources\Singleton\OkdSingleton.h" />
     <ClInclude Include="Sources\Singleton\Root.h" />
     <ClInclude Include="Sources\Stream\OkdFile.h" />
@@ -66,6 +69,8 @@
     <ClCompile Include="Sources\Memory\OkdMemManager.cpp" />
     <ClCompile Include="Sources\Memory\OkdSharedPtr.cpp" />
     <ClCompile Include="Sources\OrkidCore.cpp" />
+    <ClCompile Include="Sources\Signals\OkdSignal.cpp" />
+    <ClCompile Include="Sources\Signals\OkdSlot.cpp" />
     <ClCompile Include="Sources\Singleton\OkdSingleton.cpp" />
     <ClCompile Include="Sources\Stream\OkdFile.cpp" />
     <ClCompile Include="Sources\Stream\OkdFileStream.cpp" />
