@@ -21,8 +21,8 @@ public:
 							OkdList();
 	virtual					~OkdList();
 
-	inline void				add( T& t );
-	inline void				remove( T& t );
+	inline void				add( const T& t );
+	inline void				remove( const T& t );
 	inline uint32			size() const;
 
 	inline iterator			begin();
@@ -67,7 +67,7 @@ OkdList<T>::~OkdList()
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<typename T>
-void	OkdList<T>::add( T& t )
+void	OkdList<T>::add( const T& t )
 {
 	_list.push_back( t );
 }
@@ -78,7 +78,7 @@ void	OkdList<T>::add( T& t )
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<typename T>
-void	OkdList<T>::remove( T& t )
+void	OkdList<T>::remove( const T& t )
 {
 	_list.remove( t );
 }

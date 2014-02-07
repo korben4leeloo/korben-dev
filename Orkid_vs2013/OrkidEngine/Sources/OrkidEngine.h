@@ -12,12 +12,14 @@
 #include	"OrkidEngineRoot.h"
 
 #include	ORKID_CORE_H(Containers/OkdMap)
+#include	ORKID_CORE_H(Containers/OkdList)
 #include	ORKID_CORE_H(String/OkdString)
 
 class OkdResourceManager;
 class OkdResourceDatabase;
 class OkdEntityFactory;
 class OkdComponentFactory;
+class OkdAbstractSystem;
 
 class OrkidEngine
 {
@@ -49,11 +51,14 @@ private:
 	void						uninitialize();
 
 	void						registerComponents();
+	void						registerSystems();
 
 	OkdResourceManager*			_pResourceManager;
 	OkdResourceDatabase*		_pResourceDatabase;
 	//OkdEntityFactory*			_pEntityFactory;
 	OkdComponentFactory*		_pComponentFactory;
+
+	OkdList<OkdAbstractSystem*>	_systemList;
 
 	static OrkidEngine*			_pInstance;
 };

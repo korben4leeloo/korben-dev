@@ -20,6 +20,8 @@
 #include	ORKID_ENGINE_H(Components/OkdLightComponent)
 #include	ORKID_ENGINE_H(Components/OkdCameraComponent)
 
+#include	ORKID_ENGINE_H(Systems/OkdRenderSystem)
+
 OrkidEngine* OrkidEngine::_pInstance = 0;
 
 const char* OrkidEngine::_resourceTypeName[OrkidResourceTypeCount] =
@@ -71,9 +73,11 @@ void	OrkidEngine::initialize()
 	_pResourceManager = new OkdResourceManager();
 	_pResourceManager->initialize();
 
-	// Components
+	// Systems and Components
 	_pComponentFactory = new OkdComponentFactory();
+
 	registerComponents();
+	registerSystems();
 
 	// Entities
 	//_pEntityFactory = new OkdEntityFactory();
@@ -113,6 +117,19 @@ void	OrkidEngine::registerComponents()
 	OKD_REGISTER_COMPONENT( OkdMeshComponent, _pComponentFactory )
 	OKD_REGISTER_COMPONENT( OkdLightComponent, _pComponentFactory )
 	OKD_REGISTER_COMPONENT( OkdCameraComponent, _pComponentFactory )
+}
+
+//-----------------------------------------------------------------------------
+// Name:		registerSystems
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OrkidEngine::registerSystems()
+{
+	// Render system
+	OkdRenderSystem* pRenderSystem = new OkdRenderSystem();
+
+	_systemList.add( pRenderSystem );
 }
 
 //-----------------------------------------------------------------------------
