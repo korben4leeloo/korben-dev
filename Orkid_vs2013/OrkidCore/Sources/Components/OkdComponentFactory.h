@@ -20,15 +20,16 @@
 class OkdComponentFactory
 {
 public:
-												OkdComponentFactory();
-												~OkdComponentFactory();
+														OkdComponentFactory();
+														~OkdComponentFactory();
 
-	void										registerComponent( const OkdComponentId componentId, const pfnComponentCreator creatorFn );
-	OkdComponentPtr								createComponent( const OkdComponentId componentId );
+	void												registerComponent( const OkdComponentId componentId, const pfnComponentCreator creatorFn );
+	OkdComponentPtr										createComponent( const OkdComponentId componentId );
 	
+	OkdSignal<OkdComponentId>							_onCreateComponentSignal;
+
 private:
 	OkdMap<OkdComponentId, const pfnComponentCreator>	_componentCreatorMap;
-	OkdSignal<OkdComponentId>							_onCreateComponentSignal;
 };
 
 //*****************************************************************************

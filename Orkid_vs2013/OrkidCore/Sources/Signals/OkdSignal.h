@@ -14,32 +14,26 @@
 #include	ORKID_CORE_H(Signals/OkdSlot)
 #include	ORKID_CORE_H(Containers/OkdList)
 
+#define	OKD_SIGNAL_CONNECT( sender, signal, receiver, slot ) sender->signal.connect( receiver->slot )
+
 template<class...SlotArgs>
 class OkdSignal
 {
-public:
-	OkdSignal();
-	~OkdSignal();
+	typedef void (*pfnSlotFunc)(SlotArgs...args);
+	//typedef OkdList<OkdSlot<SlotArgs...>*> OkdSlotList;
+	typedef OkdList<pfnSlotFunc> OkdSlotList;
 
-	void							connect( OkdSlot<SlotArgs...>* pSlot );
-	void							send( SlotArgs...args );
+public:
+				OkdSignal();
+				~OkdSignal();
+
+	//void		connect( OkdSlot<SlotArgs...>* pSlot );
+	void		connect( void* pReceiver, pfnSlotFunc slotFn );
+	void		send( SlotArgs...args );
 
 private:
-	typedef void (*pfnSlotFunc)(SlotArgs...args);
-
-	OkdList<OkdSlot<SlotArgs...>*>	_slots;
+	OkdSlotList	_slots;
 };
-
-//class OkdSignalManager
-//{
-//public:
-//	template<
-//	static void	connect( 
-//
-//private:
-//	OkdSignalManager() {}
-//	~OkdSignalManager() {}
-//};
 
 //*****************************************************************************
 //	Inline functions declarations
@@ -67,13 +61,24 @@ OkdSignal<SlotArgs...>::~OkdSignal()
 	
 }
 
+////-----------------------------------------------------------------------------
+//// Name:		connect
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//template<class...SlotArgs>
+//void OkdSignal<SlotArgs...>::connect(OkdSlot<SlotArgs...>*	pSlot)
+//{
+//	_slots.add( pSlot );
+//}
+
 //-----------------------------------------------------------------------------
 // Name:		connect
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class...SlotArgs>
-void OkdSignal<SlotArgs...>::connect(OkdSlot<SlotArgs...>*	pSlot)
+void OkdSignal<SlotArgs...>::connect(pfnSlotFunc	slotFn)
 {
 	_slots.add( pSlot );
 }
@@ -86,7 +91,14 @@ void OkdSignal<SlotArgs...>::connect(OkdSlot<SlotArgs...>*	pSlot)
 template<class...SlotArgs>
 void OkdSignal<SlotArgs...>::send(SlotArgs...args)
 {
-	
+	OkdSlotList::const_iterator it = _slots.begin();
+
+	while	( it != _slots.end() )
+	{
+		//(*it)->receive( args... );
+		(*it)( args... );
+		it++;
+	}
 }
 
 #endif

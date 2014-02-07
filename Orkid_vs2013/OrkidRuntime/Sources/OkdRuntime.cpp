@@ -257,6 +257,19 @@ void	testLoadMesh()
 	OkdMesh* pMesh = meshPtr.getResource();
 }
 
+class OkdSlotTester
+{
+public:
+	//OkdSlotTester(): _onComponentCreatedSlot( this->OkdSlotTester::onComponentCreated ) {}
+
+	void onComponentCreated( OkdComponentId id )
+	{
+
+	}
+
+	//OkdSlot<OkdComponentId> _onComponentCreatedSlot;
+};
+
 /**
 	WinMain is the main entry point for Windows based applications as opposed to 'main' for console
 	applications. Here we will make the calls to create our window, setup our scene and then
@@ -314,7 +327,12 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	OkdComponentPtr			ptr2( pComponentFactory->createComponent( OkdMeshComponent::getComponentId() ) );
 	OkdComponentPtr			ptr3;
 
-	pComponentFactory->_onCreateComponentSignal.connect( 
+	void (OkdSlotTester::*p)(OkdComponentId) = &OkdSlotTester::onComponentCreated;
+
+	//OkdSlotTester slotTester;
+	//OKD_SIGNAL_CONNECT( pComponentFactory, _onCreateComponentSignal, &slotTester, _onComponentCreatedSlot );
+
+	//pComponentFactory->_onCreateComponentSignal.connect( 
 
 	ptr3 = ptr1;
 	ptr1 = ptr2;
