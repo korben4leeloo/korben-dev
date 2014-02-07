@@ -14,21 +14,18 @@
 #include	ORKID_CORE_H(Signals/OkdSlot)
 #include	ORKID_CORE_H(Containers/OkdList)
 
-#define	OKD_SIGNAL_CONNECT( sender, signal, receiver, slot ) sender->signal.connect( receiver->slot )
+#define	OKD_SIGNAL_CONNECT( sender, signal, receiver, slot ) sender->signal.connect( &receiver->slot )
 
 template<class...SlotArgs>
 class OkdSignal
 {
-	typedef void (*pfnSlotFunc)(SlotArgs...args);
-	//typedef OkdList<OkdSlot<SlotArgs...>*> OkdSlotList;
-	typedef OkdList<pfnSlotFunc> OkdSlotList;
+	typedef OkdList<OkdAbstractSlot<SlotArgs...>*> OkdSlotList;
 
 public:
 				OkdSignal();
 				~OkdSignal();
 
-	//void		connect( OkdSlot<SlotArgs...>* pSlot );
-	void		connect( void* pReceiver, pfnSlotFunc slotFn );
+	void		connect( OkdAbstractSlot<SlotArgs...>* pSlot );
 	void		send( SlotArgs...args );
 
 private:
@@ -61,24 +58,13 @@ OkdSignal<SlotArgs...>::~OkdSignal()
 	
 }
 
-////-----------------------------------------------------------------------------
-//// Name:		connect
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//template<class...SlotArgs>
-//void OkdSignal<SlotArgs...>::connect(OkdSlot<SlotArgs...>*	pSlot)
-//{
-//	_slots.add( pSlot );
-//}
-
 //-----------------------------------------------------------------------------
 // Name:		connect
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class...SlotArgs>
-void OkdSignal<SlotArgs...>::connect(pfnSlotFunc	slotFn)
+void OkdSignal<SlotArgs...>::connect(OkdAbstractSlot<SlotArgs...>*	pSlot)
 {
 	_slots.add( pSlot );
 }
@@ -95,8 +81,7 @@ void OkdSignal<SlotArgs...>::send(SlotArgs...args)
 
 	while	( it != _slots.end() )
 	{
-		//(*it)->receive( args... );
-		(*it)( args... );
+		(*it)->receive( args... );
 		it++;
 	}
 }

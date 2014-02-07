@@ -175,10 +175,10 @@
     <ClInclude Include="Sources\Components\OkdCameraComponent.h">
       <Filter>Sources\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\OkdSceneGraphSystem.h">
+    <ClInclude Include="Sources\Systems\Root.h">
       <Filter>Sources\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Root.h">
+    <ClInclude Include="Sources\Systems\OkdRenderSystem.h">
       <Filter>Sources\Systems</Filter>
     </ClInclude>
   </ItemGroup>
@@ -276,7 +276,7 @@
     <ClCompile Include="Sources\Components\OkdLightComponent.cpp">
       <Filter>Sources\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\OkdSceneGraphSystem.cpp">
+    <ClCompile Include="Sources\Systems\OkdRenderSystem.cpp">
       <Filter>Sources\Systems</Filter>
     </ClCompile>
   </ItemGroup>

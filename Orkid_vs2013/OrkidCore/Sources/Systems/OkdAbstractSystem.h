@@ -1,23 +1,24 @@
 //*****************************************************************************
 //
-//	Class:		OkdSceneGraphSystem
+//	Class:		OkdAbstractSystem
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __OrkidCore_OkdSceneGraphSystem_h__
-#define __OrkidCore_OkdSceneGraphSystem_h__
+#ifndef __OrkidCore_OkdAbstractSystem_h__
+#define __OrkidCore_OkdAbstractSystem_h__
 
 #include	"Root.h"
 
-class OkdSceneGraphSystem
+class OkdAbstractSystem
 {
 public:
-			OkdSceneGraphSystem();
-	virtual	~OkdSceneGraphSystem();
+	virtual void	update() = 0;
 
-private:
+protected:
+					OkdAbstractSystem();
+	virtual			~OkdAbstractSystem();
 };
 
 //*****************************************************************************

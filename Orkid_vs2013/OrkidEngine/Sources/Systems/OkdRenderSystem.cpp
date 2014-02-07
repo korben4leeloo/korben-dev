@@ -1,28 +1,28 @@
 //*****************************************************************************
 //
-//	File:		OkdSceneGraphSystem.cpp
+//	File:		OkdRenderSystem.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"OkdSceneGraphSystem.h"
+#include	"OkdRenderSystem.h"
 
 //-----------------------------------------------------------------------------
-// Name:		OkdSceneGraphSystem constructor
+// Name:		OkdRenderSystem constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdSceneGraphSystem::OkdSceneGraphSystem()
+OkdRenderSystem::OkdRenderSystem()
 {
 
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OkdSceneGraphSystem destructor
+// Name:		OkdRenderSystem destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdSceneGraphSystem::~OkdSceneGraphSystem()
+OkdRenderSystem::~OkdRenderSystem()
 {
 	
 }

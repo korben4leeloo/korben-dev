@@ -260,14 +260,14 @@ void	testLoadMesh()
 class OkdSlotTester
 {
 public:
-	//OkdSlotTester(): _onComponentCreatedSlot( this->OkdSlotTester::onComponentCreated ) {}
+	OkdSlotTester(): _onComponentCreatedSlot( this, &OkdSlotTester::onComponentCreated ) {}
 
 	void onComponentCreated( OkdComponentId id )
 	{
-
+		int n = 4;
 	}
 
-	//OkdSlot<OkdComponentId> _onComponentCreatedSlot;
+	OkdSlot<OkdSlotTester, OkdComponentId> _onComponentCreatedSlot;
 };
 
 /**
@@ -318,21 +318,18 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	OkdEntity* pEntity = new OkdEntity();
 
+	OkdComponentFactory*	pComponentFactory = pEngine->getComponentFactory();
+
+	OkdSlotTester* pSlotTester = new OkdSlotTester();
+	OKD_SIGNAL_CONNECT( pComponentFactory, _onCreateComponentSignal, pSlotTester, _onComponentCreatedSlot );
+
 	pEntity->addComponent( OkdTransformComponent::getComponentId() );
 	pEntity->addComponent( OkdMeshComponent::getComponentId() );
 	pEntity->removeComponent( OkdMeshComponent::getComponentId() );
 
-	OkdComponentFactory*	pComponentFactory = pEngine->getComponentFactory();
-	OkdComponentPtr			ptr1( pComponentFactory->createComponent( OkdTransformComponent::getComponentId() ) );
-	OkdComponentPtr			ptr2( pComponentFactory->createComponent( OkdMeshComponent::getComponentId() ) );
-	OkdComponentPtr			ptr3;
-
-	void (OkdSlotTester::*p)(OkdComponentId) = &OkdSlotTester::onComponentCreated;
-
-	//OkdSlotTester slotTester;
-	//OKD_SIGNAL_CONNECT( pComponentFactory, _onCreateComponentSignal, &slotTester, _onComponentCreatedSlot );
-
-	//pComponentFactory->_onCreateComponentSignal.connect( 
+	OkdComponentPtr ptr1( pComponentFactory->createComponent( OkdTransformComponent::getComponentId() ) );
+	OkdComponentPtr ptr2( pComponentFactory->createComponent( OkdMeshComponent::getComponentId() ) );
+	OkdComponentPtr ptr3;
 
 	ptr3 = ptr1;
 	ptr1 = ptr2;

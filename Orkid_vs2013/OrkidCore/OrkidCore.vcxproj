@@ -46,6 +46,8 @@
     <ClInclude Include="Sources\String\OkdCrc32.h" />
     <ClInclude Include="Sources\String\OkdString.h" />
     <ClInclude Include="Sources\String\Root.h" />
+    <ClInclude Include="Sources\Systems\OkdAbstractSystem.h" />
+    <ClInclude Include="Sources\Systems\Root.h" />
     <ClInclude Include="Sources\Xml\OkdXmlDocument.h" />
     <ClInclude Include="Sources\Xml\OkdXmlFile.h" />
     <ClInclude Include="Sources\Xml\Root.h" />
@@ -76,6 +78,7 @@
     <ClCompile Include="Sources\Stream\OkdFileStream.cpp" />
     <ClCompile Include="Sources\String\OkdCrc32.cpp" />
     <ClCompile Include="Sources\String\OkdString.cpp" />
+    <ClCompile Include="Sources\Systems\OkdAbstractSystem.cpp" />
     <ClCompile Include="Sources\Xml\OkdXmlDocument.cpp" />
     <ClCompile Include="Sources\Xml\OkdXmlFile.cpp" />
   </ItemGroup>
