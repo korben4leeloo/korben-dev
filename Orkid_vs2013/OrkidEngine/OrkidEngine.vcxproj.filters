@@ -53,6 +53,9 @@
     <Filter Include="Sources\Systems">
       <UniqueIdentifier>{b140f1aa-5402-4bab-ab70-e7fb8f4022a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Signals">
+      <UniqueIdentifier>{1b12edd0-f6dc-4b27-99aa-8bc5ea397d0a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\OrkidEngineRoot.h">
@@ -180,6 +183,12 @@
     </ClInclude>
     <ClInclude Include="Sources\Systems\OkdRenderSystem.h">
       <Filter>Sources\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Signals\OkdEngineSignals.h">
+      <Filter>Sources\Signals</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Signals\Root.h">
+      <Filter>Sources\Signals</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

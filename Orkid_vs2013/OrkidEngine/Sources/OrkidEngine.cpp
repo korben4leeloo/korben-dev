@@ -129,6 +129,8 @@ void	OrkidEngine::registerSystems()
 	// Render system
 	OkdRenderSystem* pRenderSystem = new OkdRenderSystem();
 
+	OKD_SIGNAL_CONNECT( _pComponentFactory, _onCreateComponentSignal, pRenderSystem, _onCreateComponentSlot );
+
 	_systemList.add( pRenderSystem );
 }
 
@@ -139,5 +141,13 @@ void	OrkidEngine::registerSystems()
 //-----------------------------------------------------------------------------
 void	OrkidEngine::update()
 {
+	OkdSystemList::const_iterator itSystem = _systemList.begin();
+
+	while	( itSystem != _systemList.end() )
+	{
+		(*itSystem)->update();
+		itSystem++;
+	}
+
 	OkdGameplayManager::instance()->update();
 }

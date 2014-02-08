@@ -257,18 +257,18 @@ void	testLoadMesh()
 	OkdMesh* pMesh = meshPtr.getResource();
 }
 
-class OkdSlotTester
-{
-public:
-	OkdSlotTester(): _onComponentCreatedSlot( this, &OkdSlotTester::onComponentCreated ) {}
-
-	void onComponentCreated( OkdComponentId id )
-	{
-		int n = 4;
-	}
-
-	OkdSlot<OkdSlotTester, OkdComponentId> _onComponentCreatedSlot;
-};
+//class OkdSlotTester
+//{
+//public:
+//	OkdSlotTester()/*: _onComponentCreatedSlot( this, &OkdSlotTester::onComponentCreated )*/ {}
+//
+//	void onComponentCreated( OkdComponentId id )
+//	{
+//		int n = 4;
+//	}
+//
+//	OkdSlot<OkdSlotTester, OkdComponentId> _onComponentCreatedSlot;
+//};
 
 /**
 	WinMain is the main entry point for Windows based applications as opposed to 'main' for console
@@ -316,12 +316,12 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		pMesh->create( meshInfo );*/
 	}
 
-	OkdEntity* pEntity = new OkdEntity();
+	OkdEntity*				pEntity				= new OkdEntity();
+	OkdComponentFactory*	pComponentFactory	= pEngine->getComponentFactory();
 
-	OkdComponentFactory*	pComponentFactory = pEngine->getComponentFactory();
+	//OkdSlotTester* pSlotTester = new OkdSlotTester();
 
-	OkdSlotTester* pSlotTester = new OkdSlotTester();
-	OKD_SIGNAL_CONNECT( pComponentFactory, _onCreateComponentSignal, pSlotTester, _onComponentCreatedSlot );
+	//OKD_SIGNAL_CONNECT( pComponentFactory, _onCreateComponentSignal, pSlotTester, _onComponentCreatedSlot );
 
 	pEntity->addComponent( OkdTransformComponent::getComponentId() );
 	pEntity->addComponent( OkdMeshComponent::getComponentId() );

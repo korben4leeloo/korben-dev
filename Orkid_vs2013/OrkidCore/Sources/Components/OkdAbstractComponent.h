@@ -32,8 +32,6 @@
 		return	( ClassName::getComponentId() );									\
 	}																				
 
-typedef uint32 OkdComponentId;
-
 #define OKD_INVALID_COMPONENT_ID (OkdComponentId)0
 
 class OkdAbstractComponent

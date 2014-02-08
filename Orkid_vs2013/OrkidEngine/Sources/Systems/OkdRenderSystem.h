@@ -12,16 +12,22 @@
 #include	"Root.h"
 
 #include	ORKID_CORE_H(Systems/OkdAbstractSystem)
+#include	ORKID_ENGINE_H(Signals/OkdEngineSignals)
 
 class OkdRenderSystem: public OkdAbstractSystem
 {
 public:
-					OkdRenderSystem();
-	virtual			~OkdRenderSystem();
+											OkdRenderSystem();
+	virtual									~OkdRenderSystem();
 
-	virtual void	update();
+	virtual void							update();
+
+	OkdCreateComponentSlot<OkdRenderSystem>	_onCreateComponentSlot;
+	OkdRemoveComponentSlot<OkdRenderSystem>	_onRemoveComponentSlot;
 
 private:
+	void									onComponentCreated( const OkdComponentId componentId );
+	void									onComponentRemoved( const OkdComponentId componentId );
 };
 
 //*****************************************************************************

@@ -44,6 +44,8 @@ public:
 	static const char*			_resourceTypeName[OrkidResourceTypeCount];
 
 private:
+	typedef OkdList<OkdAbstractSystem*> OkdSystemList;
+
 								OrkidEngine();
 								~OrkidEngine();
 
@@ -58,7 +60,7 @@ private:
 	//OkdEntityFactory*			_pEntityFactory;
 	OkdComponentFactory*		_pComponentFactory;
 
-	OkdList<OkdAbstractSystem*>	_systemList;
+	OkdSystemList				_systemList;
 
 	static OrkidEngine*			_pInstance;
 };

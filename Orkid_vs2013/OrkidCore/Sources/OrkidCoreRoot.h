@@ -13,6 +13,8 @@
 
 #include	ORKID_CORE_H(Memory/OkdMemManager)
 
+typedef uint32 OkdComponentId;
+
 #define OKD_CLEAR_POINTER( p )	\
 	if	( p )					\
 	{							\

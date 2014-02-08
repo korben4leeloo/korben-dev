@@ -71,8 +71,8 @@ OkdAbstractSlot<SlotArgs...>::~OkdAbstractSlot()
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T, class...SlotArgs>
-OkdSlot<T, SlotArgs...>::OkdSlot(T*			pReceiver, 
-							  pfnSlotFunc	slotFn)
+OkdSlot<T, SlotArgs...>::OkdSlot(T*				pReceiver, 
+							     pfnSlotFunc	slotFn)
 : _pReceiver	( pReceiver )
 , _slotFn		( slotFn )
 {
@@ -99,7 +99,12 @@ template<class T, class...SlotArgs>
 void OkdSlot<T, SlotArgs...>::receive(SlotArgs...	args)
 {
 	ORKID_ASSERT( _pReceiver );
-	(_pReceiver->*_slotFn)( args... );
+	ORKID_ASSERT( _slotFn );
+
+	if	( _pReceiver && _slotFn )
+	{
+		(_pReceiver->*_slotFn)( args... );
+	}
 }
 
 #endif
