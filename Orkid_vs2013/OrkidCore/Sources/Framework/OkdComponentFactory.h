@@ -11,11 +11,11 @@
 
 #include	"Root.h"
 
-#include	ORKID_CORE_H(Components/OkdComponentPtr)
+#include	ORKID_CORE_H(Framework/OkdAbstractComponent)
 #include	ORKID_CORE_H(Containers/OkdMap)
-#include	ORKID_ENGINE_H(Signals/OkdEngineSignals)
+#include	ORKID_CORE_H(Signals/OkdCoreSignals)
 
-#define OKD_REGISTER_COMPONENT( ComponentClass, pComponentFactory ) pComponentFactory->registerComponent( ComponentClass::getComponentId(), ComponentClass::create );
+#define OKD_REGISTER_COMPONENT( ComponentClass, pComponentFactory ) pComponentFactory->registerComponentType( ComponentClass::getComponentId(), ComponentClass::create );
 
 class OkdComponentFactory
 {
@@ -25,16 +25,12 @@ public:
 								OkdComponentFactory();
 								~OkdComponentFactory();
 
-	void						registerComponent( const OkdComponentId componentId, const pfnComponentCreator creatorFn );
-
-	OkdComponentPtr				addComponent( const OkdComponentId componentId );
-	OkdComponentPtr				removeComponent( const OkdComponentId componentId );
+	void						registerComponentType( const OkdComponentId componentId, const pfnComponentCreator creatorFn );
+	OkdComponentPtr				createComponent( const OkdComponentId componentId );
 	
 	OkdCreateComponentSignal	_onCreateComponentSignal;
 
 private:
-	OkdComponentPtr				createComponent( const OkdComponentId componentId );
-
 	OkdComponentCreatorMap		_componentCreatorMap;
 };
 

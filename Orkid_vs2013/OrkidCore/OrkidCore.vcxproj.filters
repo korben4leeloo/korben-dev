@@ -32,14 +32,11 @@
     <Filter Include="Sources\Input\Windows">
       <UniqueIdentifier>{b3a93b4a-8c0d-424b-8f7c-bcbcc252c0b5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\Components">
-      <UniqueIdentifier>{1e7336e8-1d30-4013-b1c9-ec4ac03896e2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sources\Signals">
       <UniqueIdentifier>{70f68b84-ca34-4423-848b-2ce674981688}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\Systems">
-      <UniqueIdentifier>{1d76db39-1ba6-421b-8f65-26f9a52f963e}</UniqueIdentifier>
+    <Filter Include="Sources\Framework">
+      <UniqueIdentifier>{68265ed0-0818-4030-8dcc-9283d34f36e4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -133,21 +130,6 @@
     <ClInclude Include="Sources\Input\Windows\OkdWindowsRawInputHandler.h">
       <Filter>Sources\Input\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Components\OkdAbstractComponent.h">
-      <Filter>Sources\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Components\OkdComponentContainer.h">
-      <Filter>Sources\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Components\Root.h">
-      <Filter>Sources\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Components\OkdComponentPtr.h">
-      <Filter>Sources\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Components\OkdComponentFactory.h">
-      <Filter>Sources\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Signals\OkdSignal.h">
       <Filter>Sources\Signals</Filter>
     </ClInclude>
@@ -157,11 +139,26 @@
     <ClInclude Include="Sources\Signals\Root.h">
       <Filter>Sources\Signals</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\OkdAbstractSystem.h">
-      <Filter>Sources\Systems</Filter>
+    <ClInclude Include="Sources\Framework\OkdAbstractComponent.h">
+      <Filter>Sources\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Systems\Root.h">
-      <Filter>Sources\Systems</Filter>
+    <ClInclude Include="Sources\Framework\OkdAbstractSystem.h">
+      <Filter>Sources\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Framework\OkdComponentFactory.h">
+      <Filter>Sources\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Framework\OkdEntity.h">
+      <Filter>Sources\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Framework\Root.h">
+      <Filter>Sources\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Framework\OkdEntityManager.h">
+      <Filter>Sources\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Signals\OkdCoreSignals.h">
+      <Filter>Sources\Signals</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -207,9 +204,6 @@
     <ClCompile Include="Sources\Xml\OkdXmlFile.cpp">
       <Filter>Sources\Xml</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\String\OkdCrc32.cpp">
-      <Filter>Sources\String</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Singleton\OkdSingleton.cpp">
       <Filter>Sources\Singleton</Filter>
     </ClCompile>
@@ -228,26 +222,29 @@
     <ClCompile Include="Sources\Input\Windows\OkdWindowsRawInputHandler.cpp">
       <Filter>Sources\Input\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Components\OkdComponentContainer.cpp">
-      <Filter>Sources\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Components\OkdAbstractComponent.cpp">
-      <Filter>Sources\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Components\OkdComponentPtr.cpp">
-      <Filter>Sources\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Components\OkdComponentFactory.cpp">
-      <Filter>Sources\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Signals\OkdSlot.cpp">
       <Filter>Sources\Signals</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Signals\OkdSignal.cpp">
       <Filter>Sources\Signals</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Systems\OkdAbstractSystem.cpp">
-      <Filter>Sources\Systems</Filter>
+    <ClCompile Include="Sources\Framework\OkdAbstractComponent.cpp">
+      <Filter>Sources\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Framework\OkdAbstractSystem.cpp">
+      <Filter>Sources\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Framework\OkdComponentFactory.cpp">
+      <Filter>Sources\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Framework\OkdEntity.cpp">
+      <Filter>Sources\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Framework\OkdEntityManager.cpp">
+      <Filter>Sources\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\String\OkdCrc32.cpp">
+      <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

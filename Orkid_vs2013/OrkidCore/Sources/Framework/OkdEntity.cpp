@@ -1,57 +1,31 @@
 //*****************************************************************************
 //
-//	File:		OkdComponentContainer.cpp
+//	File:		OkdEntity.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"OkdComponentContainer.h"
-
-#include	ORKID_CORE_H(Components/OkdComponentFactory)
-#include	ORKID_ENGINE_H(OrkidEngine)
+#include	"OkdEntity.h"
 
 //-----------------------------------------------------------------------------
-// Name:		OkdComponentContainer constructor
+// Name:		OkdEntity constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdComponentContainer::OkdComponentContainer()
-{
-
-}
-
-//-----------------------------------------------------------------------------
-// Name:		OkdComponentContainer destructor
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OkdComponentContainer::~OkdComponentContainer()
+OkdEntity::OkdEntity(const OkdString&	entityName)
+: _entityName( entityName )
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		addComponent
+// Name:		OkdEntity destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdComponentContainer::addComponent(const OkdComponentId	componentId)
+OkdEntity::~OkdEntity()
 {
-	OkdComponentFactory*	pComponentFactory	= OrkidEngine::instance()->getComponentFactory();
-	OkdComponentPtr			componentPtr		= pComponentFactory->createComponent( componentId );
-
-	_components.add( componentId, componentPtr );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		removeComponent
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OkdComponentContainer::removeComponent(const OkdComponentId	componentId)
-{
-	uint32 uiCount = _components.remove( componentId );
-	ORKID_ASSERT( uiCount == 1 );
+	
 }
 
 //-----------------------------------------------------------------------------
@@ -59,10 +33,34 @@ void	OkdComponentContainer::removeComponent(const OkdComponentId	componentId)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-OkdComponentPtr	OkdComponentContainer::getComponent(const OkdComponentId	componentId)
+OkdComponentPtr	OkdEntity::getComponent(const OkdComponentId	componentId)
 {
-	ORKID_ASSERT( _components.contains( componentId ) );
+	OkdComponentPtr componentPtr;
+		
+	if	( _components.contains( componentId ) )
+	{
+		componentPtr = _components[componentId];
+	}
 
-	OkdComponentPtr componentPtr = _components[componentId];
 	return	( componentPtr );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		read
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdEntity::read(OkdFileStream* pStream)
+{
+	
+}
+
+//-----------------------------------------------------------------------------
+// Name:		write
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OkdEntity::write(OkdFileStream* pStream)
+{
+	
 }

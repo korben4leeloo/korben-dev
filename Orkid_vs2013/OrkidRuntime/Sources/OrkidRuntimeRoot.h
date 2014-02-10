@@ -10,5 +10,6 @@
 #define __OrkidRuntime_OrkidRuntimeRoot_h__
 
 #include	"../../OrkidRoot.h"
+#include	"../../OrkidEngine/Sources/OrkidEngineRoot.h"
 
 #endif

@@ -11,8 +11,8 @@
 
 #include	"Root.h"
 
-#include	ORKID_CORE_H(Systems/OkdAbstractSystem)
-#include	ORKID_ENGINE_H(Signals/OkdEngineSignals)
+#include	ORKID_CORE_H(Framework/OkdAbstractSystem)
+#include	ORKID_CORE_H(Signals/OkdCoreSignals)
 
 class OkdRenderSystem: public OkdAbstractSystem
 {

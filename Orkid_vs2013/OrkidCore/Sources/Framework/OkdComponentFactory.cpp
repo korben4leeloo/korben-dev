@@ -28,12 +28,12 @@ OkdComponentFactory::~OkdComponentFactory()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		registerComponent
+// Name:		registerComponentType
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdComponentFactory::registerComponent(const OkdComponentId			componentId, 
-											   const pfnComponentCreator	creatorFunc)
+void	OkdComponentFactory::registerComponentType(const OkdComponentId			componentId, 
+												   const pfnComponentCreator	creatorFunc)
 {
 	if	( _componentCreatorMap.contains( componentId ) )
 	{

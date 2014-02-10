@@ -11,6 +11,8 @@
 
 #include	"Root.h"
 
+#define	OKD_DECLARE_SLOT( SignalName, ... ) template<class T> using Okd##SignalName##Slot = OkdSlot<T, __VA_ARGS__>;
+
 template<class...SlotArgs>
 class OkdAbstractSlot
 {

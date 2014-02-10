@@ -51,8 +51,6 @@
     <ClInclude Include="Sources\Shaders\OpenGL\OkdOpenGLShader.h" />
     <ClInclude Include="Sources\Shaders\OpenGL\Root.h" />
     <ClInclude Include="Sources\Shaders\Root.h" />
-    <ClInclude Include="Sources\Signals\OkdEngineSignals.h" />
-    <ClInclude Include="Sources\Signals\Root.h" />
     <ClInclude Include="Sources\Systems\OkdRenderSystem.h" />
     <ClInclude Include="Sources\Systems\Root.h" />
   </ItemGroup>

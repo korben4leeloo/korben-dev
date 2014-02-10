@@ -30,22 +30,25 @@ template<class T>
 class OkdSharedPtr
 {
 public:
-	inline					OkdSharedPtr();
-	inline					OkdSharedPtr( T* pObject );
-	inline					OkdSharedPtr( const OkdSharedPtr& sharedPtr );
-	virtual					~OkdSharedPtr();
+	inline			OkdSharedPtr();
+	inline			OkdSharedPtr( T* pObject );
+	inline			OkdSharedPtr( const OkdSharedPtr& sharedPtr );
+	virtual			~OkdSharedPtr();
 
-	inline T*				ptr();
-	inline const T*			ptr() const;
-	inline uint				getRefCount() const;
+	inline T*		ptr();
+	inline const T*	ptr() const;
+	inline uint		getRefCount() const;
 
-	inline OkdSharedPtr&	operator=( const OkdSharedPtr& sharedPtr );
+	inline bool		isValid() const;
+	void			reset();
+
+	OkdSharedPtr&	operator=( const OkdSharedPtr& sharedPtr );
 
 protected:
-	inline void				destroy();
+	inline void		destroy();
 
-	T*						_pObject;
-	OkdRefCounter*			_pRefCount;
+	T*				_pObject;
+	OkdRefCounter*	_pRefCount;
 };
 
 //*****************************************************************************
@@ -147,7 +150,10 @@ OkdSharedPtr<T>::OkdSharedPtr( const OkdSharedPtr& sharedPtr )
 : _pObject		( sharedPtr._pObject )
 , _pRefCount	( sharedPtr._pRefCount )
 {
-	_pRefCount->increase();
+	if	( _pRefCount )
+	{
+		_pRefCount->increase();
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -158,19 +164,19 @@ OkdSharedPtr<T>::OkdSharedPtr( const OkdSharedPtr& sharedPtr )
 template<class T>
 OkdSharedPtr<T>::~OkdSharedPtr()
 {
-	if	( _pRefCount->decrease() == 0 )
+	if	( _pRefCount && _pRefCount->decrease() == 0 )
 	{
 		destroy();
 	}
 }
 
 //-----------------------------------------------------------------------------
-// Name:		OkdSharedPtr operator=
+// Name:		operator=
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-OkdSharedPtr<T>& OkdSharedPtr<T>::operator=( const OkdSharedPtr& sharedPtr )
+OkdSharedPtr<T>& OkdSharedPtr<T>::operator=(const OkdSharedPtr&	sharedPtr)
 {
 	if	( &sharedPtr != this )
 	{
@@ -231,6 +237,34 @@ template<class T>
 uint	OkdSharedPtr<T>::getRefCount() const
 {
 	return	( _pRefCount->getRefCount() );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		isValid
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+bool	OkdSharedPtr<T>::isValid() const
+{
+	return	( _pObject != 0 );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		reset
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+void OkdSharedPtr<T>::reset()
+{
+	if	( _pRefCount && _pRefCount->decrease() == 0 )
+	{
+		destroy();
+	}
+
+	_pObject	= 0;
+	_pRefCount	= 0;
 }
 
 #endif

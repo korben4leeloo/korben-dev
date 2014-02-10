@@ -10,7 +10,7 @@
 #define __OrkidCore_OkdTransformComponent_h__
 
 #include	"Root.h"
-#include	ORKID_CORE_H(Components/OkdAbstractComponent)
+#include	ORKID_CORE_H(Framework/OkdAbstractComponent)
 
 class OkdTransformComponent: public OkdAbstractComponent
 {

@@ -1,26 +1,24 @@
 //*****************************************************************************
 //
-//	Class:		OkdCameraComponent
+//	Class:		OkdAbstractSystem
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __OrkidCore_OkdCameraComponent_h__
-#define __OrkidCore_OkdCameraComponent_h__
+#ifndef __OrkidCore_OkdAbstractSystem_h__
+#define __OrkidCore_OkdAbstractSystem_h__
 
 #include	"Root.h"
-#include	ORKID_CORE_H(Framework/OkdAbstractComponent)
 
-class OkdCameraComponent: public OkdAbstractComponent
+class OkdAbstractSystem
 {
 public:
-			OkdCameraComponent();
-	virtual	~OkdCameraComponent();
+	virtual void	update() = 0;
 
-	OKD_MAKE_COMPONENT( OkdCameraComponent, "CameraComponent" )
-
-private:
+protected:
+					OkdAbstractSystem();
+	virtual			~OkdAbstractSystem();
 };
 
 //*****************************************************************************

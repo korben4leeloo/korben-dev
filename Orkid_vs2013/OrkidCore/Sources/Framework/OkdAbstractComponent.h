@@ -10,7 +10,10 @@
 #define __OrkidCore_OkdAbstractComponent_h__
 
 #include	"Root.h"
+
 #include	ORKID_CORE_H(String/OkdCrc32)
+#include	ORKID_CORE_H(Memory/OkdSharedPtr)
+#include	ORKID_CORE_H(Framework/OkdAbstractComponent)
 
 #define	OKD_MAKE_COMPONENT( ClassName, ComponentName )								\
 	static OkdAbstractComponent*	create() { return new ClassName(); }			\
@@ -46,6 +49,7 @@ private:
 };
 
 typedef OkdAbstractComponent* (*pfnComponentCreator)();
+typedef OkdSharedPtr<OkdAbstractComponent> OkdComponentPtr;
 
 //*****************************************************************************
 //	Inline functions declarations

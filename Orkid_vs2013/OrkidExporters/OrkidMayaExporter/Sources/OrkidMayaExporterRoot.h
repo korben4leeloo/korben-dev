@@ -10,5 +10,6 @@
 #define __OrkidMayaExporter_OrkidMayaExporterRoot_h__
 
 #include	"../../../OrkidRoot.h"
+#include	"../../../OrkidEngine/Sources/OrkidEngineRoot.h"
 
 #endif

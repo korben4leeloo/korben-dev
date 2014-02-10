@@ -23,6 +23,8 @@ public:
 	inline static void	destroy();
 	inline static T*	instance();
 
+	virtual void		onCreate();
+
 protected:
 						OkdSingleton();
 						~OkdSingleton();
@@ -69,6 +71,7 @@ T*	OkdSingleton<T>::create()
 	destroy();
 
 	_pInstance = new T();
+	_pInstance->onCreate();
 
 	return	( _pInstance );
 }
@@ -98,6 +101,17 @@ T*	OkdSingleton<T>::instance()
 {
 	ORKID_ASSERT( _pInstance );
 	return	( _pInstance );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		onCreate
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+void	OkdSingleton<T>::onCreate()
+{
+	
 }
 
 #endif

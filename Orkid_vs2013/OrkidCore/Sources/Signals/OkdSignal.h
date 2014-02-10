@@ -14,6 +14,7 @@
 #include	ORKID_CORE_H(Signals/OkdSlot)
 #include	ORKID_CORE_H(Containers/OkdList)
 
+#define	OKD_DECLARE_SIGNAL( SignalName, ... ) typedef OkdSignal<__VA_ARGS__> Okd##SignalName##Signal;
 #define	OKD_SIGNAL_CONNECT( sender, signal, receiver, slot ) sender->signal.connect( &receiver->slot )
 
 template<class...SlotArgs>

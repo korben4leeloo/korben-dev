@@ -8,10 +8,11 @@
 #include	"OrkidEngine.h"
 
 #include	ORKID_CORE_H(OrkidCore)
+#include	ORKID_CORE_H(Framework/OkdComponentFactory)
+#include	ORKID_CORE_H(Framework/OkdEntityManager)
+
 #include	ORKID_ENGINE_H(Resources/OkdResourceManager)
 #include	ORKID_ENGINE_H(Resources/OkdResourceDatabase)
-#include	ORKID_ENGINE_H(Entities/OkdEntityFactory)
-#include	ORKID_CORE_H(Components/OkdComponentFactory)
 #include	ORKID_ENGINE_H(Gameplay/OkdGameplayManager)
 #include	ORKID_ENGINE_H(SceneGraph/OkdScene)
 
@@ -38,7 +39,7 @@ const char* OrkidEngine::_resourceTypeName[OrkidResourceTypeCount] =
 OrkidEngine::OrkidEngine()
 : _pResourceManager		( 0 )
 , _pResourceDatabase	( 0 )
-//, _pEntityFactory		( 0 )
+, _pEntityManager		( 0 )
 , _pComponentFactory	( 0 )
 {
 	
@@ -52,6 +53,16 @@ OrkidEngine::OrkidEngine()
 OrkidEngine::~OrkidEngine()
 {
 	
+}
+
+//-----------------------------------------------------------------------------
+// Name:		onCreate
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void	OrkidEngine::onCreate()
+{
+	initialize();
 }
 
 //-----------------------------------------------------------------------------
@@ -78,7 +89,7 @@ void	OrkidEngine::initialize()
 	registerSystems();
 
 	// Entities
-	//_pEntityFactory = new OkdEntityFactory();
+	_pEntityManager = new OkdEntityManager( _pComponentFactory );
 
 	// Gameplay manager
 	OkdGameplayManager::create();
@@ -96,7 +107,7 @@ void	OrkidEngine::uninitialize()
 
 	_pResourceDatabase->close();
 
-	//OKD_CLEAR_POINTER( _pEntityFactory )
+	OKD_CLEAR_POINTER( _pEntityManager )
 	OKD_CLEAR_POINTER( _pComponentFactory )
 	OKD_CLEAR_POINTER( _pResourceManager )
 	OKD_CLEAR_POINTER( _pResourceDatabase )

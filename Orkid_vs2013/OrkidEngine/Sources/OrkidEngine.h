@@ -18,7 +18,7 @@
 
 class OkdResourceManager;
 class OkdResourceDatabase;
-class OkdEntityFactory;
+class OkdEntityManager;
 class OkdComponentFactory;
 class OkdAbstractSystem;
 
@@ -27,12 +27,15 @@ class OrkidEngine: public OkdSingleton<OrkidEngine>
 	friend class OkdSingleton<OrkidEngine>;
 
 public:
+	// OkdSingleton overloading
+	virtual void				onCreate();
+
 	// Resources
 	inline OkdResourceManager*	getResourceManager();
 	inline OkdResourceDatabase*	getResourceDatabase();
 
 	// Entities
-	//inline OkdEntityFactory*	getEntityFactory();
+	inline OkdEntityManager*	getEntityManager();
 
 	// Components
 	inline OkdComponentFactory*	getComponentFactory();
@@ -56,12 +59,10 @@ private:
 
 	OkdResourceManager*			_pResourceManager;
 	OkdResourceDatabase*		_pResourceDatabase;
-	//OkdEntityFactory*			_pEntityFactory;
+	OkdEntityManager*			_pEntityManager;
 	OkdComponentFactory*		_pComponentFactory;
 
 	OkdSystemList				_systemList;
-
-	//static OrkidEngine*			_pInstance;
 };
 
 //*****************************************************************************
@@ -88,15 +89,15 @@ OkdResourceDatabase*	OrkidEngine::getResourceDatabase()
 	return	( _pResourceDatabase );
 }
 
-////-----------------------------------------------------------------------------
-//// Name:		getEntityFactory
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//OkdEntityFactory*	OrkidEngine::getEntityFactory()
-//{
-//	return	( _pEntityFactory );
-//}
+//-----------------------------------------------------------------------------
+// Name:		getEntityManager
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+OkdEntityManager*	OrkidEngine::getEntityManager()
+{
+	return	( _pEntityManager );
+}
 
 //-----------------------------------------------------------------------------
 // Name:		getComponentFactory

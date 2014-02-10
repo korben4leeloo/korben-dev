@@ -7,8 +7,6 @@
 
 #include	"OrkidRuntimeRoot.h"
 
-//#include	<3dEngine/SceneManager/OkdScene.h>
-
 #include	ORKID_MATH_H(OkdMatrix4f)
 #include	ORKID_MATH_H(OkdVector3f)
 #include	ORKID_MATH_H(OkdQuaternionf)
@@ -192,7 +190,7 @@ bool createWindow(LPCSTR title, int width, int height) {
 #include	ORKID_ENGINE_H(Components/OkdTransformComponent)
 #include	ORKID_ENGINE_H(Components/OkdMeshComponent)
 #include	ORKID_CORE_H(Containers/OkdList)
-#include	ORKID_CORE_H(Components/OkdComponentFactory)
+#include	ORKID_CORE_H(Framework/OkdEntityManager)
 //#include	<rapidxml/rapidxml_print.hpp>
 #include	<iostream>
 
@@ -285,6 +283,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	OrkidEngine*		pEngine				= OrkidEngine::create();
 	//OkdResourceManager*	pResourceManager	= pEngine->getResourceManager();
 
+
 	{
 		OkdMeshPtr meshPtr, meshPtr2;
 
@@ -316,14 +315,21 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		pMesh->create( meshInfo );*/
 	}
 
-	OkdEntity*				pEntity				= new OkdEntity();
-	OkdComponentFactory*	pComponentFactory	= pEngine->getComponentFactory();
+	OkdEntityManager*	pEntityManager	= pEngine->getEntityManager();
+	OkdEntity*			pEntity			= pEntityManager->createEntity( "test" );
+
+	pEntityManager->addComponent( pEntity, OkdTransformComponent::getComponentId() );
+	pEntityManager->addComponent( pEntity, OkdMeshComponent::getComponentId() );
+	pEntityManager->removeComponent( pEntity, OkdMeshComponent::getComponentId() );
+	pEntityManager->addComponent( pEntity, OkdTransformComponent::getComponentId() );
+
+	OkdComponentPtr ptr3;
 
 	//OkdSlotTester* pSlotTester = new OkdSlotTester();
 
 	//OKD_SIGNAL_CONNECT( pComponentFactory, _onCreateComponentSignal, pSlotTester, _onComponentCreatedSlot );
 
-	pEntity->addComponent( OkdTransformComponent::getComponentId() );
+	/*pEntity->addComponent( OkdTransformComponent::getComponentId() );
 	pEntity->addComponent( OkdMeshComponent::getComponentId() );
 	pEntity->removeComponent( OkdMeshComponent::getComponentId() );
 
@@ -333,7 +339,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	ptr3 = ptr1;
 	ptr1 = ptr2;
-	ptr3 = ptr1;
+	ptr3 = ptr1;*/
 
 	//testSaveMesh();
 	//testLoadMesh();
