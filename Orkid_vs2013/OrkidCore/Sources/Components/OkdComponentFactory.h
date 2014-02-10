@@ -26,11 +26,15 @@ public:
 								~OkdComponentFactory();
 
 	void						registerComponent( const OkdComponentId componentId, const pfnComponentCreator creatorFn );
-	OkdComponentPtr				createComponent( const OkdComponentId componentId );
+
+	OkdComponentPtr				addComponent( const OkdComponentId componentId );
+	OkdComponentPtr				removeComponent( const OkdComponentId componentId );
 	
 	OkdCreateComponentSignal	_onCreateComponentSignal;
 
 private:
+	OkdComponentPtr				createComponent( const OkdComponentId componentId );
+
 	OkdComponentCreatorMap		_componentCreatorMap;
 };
 

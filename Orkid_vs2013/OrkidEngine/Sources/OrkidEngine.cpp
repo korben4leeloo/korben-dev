@@ -22,8 +22,6 @@
 
 #include	ORKID_ENGINE_H(Systems/OkdRenderSystem)
 
-OrkidEngine* OrkidEngine::_pInstance = 0;
-
 const char* OrkidEngine::_resourceTypeName[OrkidResourceTypeCount] =
 {
 	"OrkidMesh", 

@@ -11,15 +11,12 @@
 
 #include	"../../OrkidRoot.h"
 
+// Defines for inclusions
+#define	ORKID_CORE_H(file)	<OrkidCore/Sources/file.h>
+#define	ORKID_MATH_H(file)	ORKID_CORE_H(Math/file)
+
 #include	ORKID_CORE_H(Memory/OkdMemManager)
 
 typedef uint32 OkdComponentId;
-
-#define OKD_CLEAR_POINTER( p )	\
-	if	( p )					\
-	{							\
-		delete p;				\
-		p = 0;					\
-	}
 
 #endif

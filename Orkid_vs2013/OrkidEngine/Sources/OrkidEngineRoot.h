@@ -10,6 +10,10 @@
 #define __OrkidCore_OrkidEngineRoot_h__
 
 #include	"../../OrkidRoot.h"
+#include	"../../OrkidCore/Sources/OrkidCoreRoot.h"
+
+// Defines for inclusions
+#define	ORKID_ENGINE_H(file) <OrkidEngine/Sources/file.h>
 
 enum OkdResourceType
 {

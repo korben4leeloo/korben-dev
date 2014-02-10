@@ -11,6 +11,7 @@
 
 #include	"OrkidEngineRoot.h"
 
+#include	ORKID_CORE_H(Singleton/OkdSingleton)
 #include	ORKID_CORE_H(Containers/OkdMap)
 #include	ORKID_CORE_H(Containers/OkdList)
 #include	ORKID_CORE_H(String/OkdString)
@@ -21,13 +22,11 @@ class OkdEntityFactory;
 class OkdComponentFactory;
 class OkdAbstractSystem;
 
-class OrkidEngine
+class OrkidEngine: public OkdSingleton<OrkidEngine>
 {
-public:
-	inline static OrkidEngine*	create();
-	inline static void			destroy();
-	inline static OrkidEngine*	instance();
+	friend class OkdSingleton<OrkidEngine>;
 
+public:
 	// Resources
 	inline OkdResourceManager*	getResourceManager();
 	inline OkdResourceDatabase*	getResourceDatabase();
@@ -62,52 +61,12 @@ private:
 
 	OkdSystemList				_systemList;
 
-	static OrkidEngine*			_pInstance;
+	//static OrkidEngine*			_pInstance;
 };
 
 //*****************************************************************************
 //	Inline functions declarations
 //*****************************************************************************
-
-//-----------------------------------------------------------------------------
-// Name:		create
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OrkidEngine*	OrkidEngine::create()
-{
-	destroy();
-
-	_pInstance = new OrkidEngine();
-	_pInstance->initialize();
-
-	return	( _pInstance );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		destroy
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void	OrkidEngine::destroy()
-{
-	if	( _pInstance )
-	{
-		delete _pInstance;
-		_pInstance = 0;
-	}
-}
-
-//-----------------------------------------------------------------------------
-// Name:		instance
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-OrkidEngine*	OrkidEngine::instance()
-{
-	ORKID_ASSERT( _pInstance );
-	return	( _pInstance );
-}
 
 //-----------------------------------------------------------------------------
 // Name:		getResourceManager
