@@ -59,7 +59,9 @@ OkdComponentPtr	OkdEntityManager::addComponent(OkdEntity*			pEntity,
 	else
 	{
 		componentPtr = _pComponentFactory->createComponent( componentId );
+
 		pEntity->addComponent( componentId, componentPtr );
+		_onAddComponentSignal.send( pEntity, componentId );
 	}
 
 	return	( componentPtr );
@@ -76,5 +78,6 @@ void	OkdEntityManager::removeComponent(OkdEntity*			pEntity,
 	if	( pEntity->hasComponent( componentId ) )
 	{
 		pEntity->removeComponent( componentId );
+		_onRemoveComponentSignal.send( pEntity, componentId );
 	}
 }

@@ -54,7 +54,5 @@ OkdComponentPtr	OkdComponentFactory::createComponent(const OkdComponentId	compon
 	pfnComponentCreator	creatorFunc = _componentCreatorMap[componentId];
 	OkdComponentPtr		componentPtr( creatorFunc() );
 
-	_onCreateComponentSignal.send( componentId );
-
 	return	( componentPtr );
 }

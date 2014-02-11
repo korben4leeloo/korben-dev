@@ -12,6 +12,7 @@
 #include	"Root.h"
 
 #include	ORKID_CORE_H(Framework/OkdAbstractComponent)
+#include	ORKID_CORE_H(Signals/OkdCoreSignals)
 
 class OkdString;
 class OkdEntity;
@@ -27,6 +28,9 @@ public:
 
 	OkdComponentPtr			addComponent( OkdEntity* pEntity, const OkdComponentId componentId );
 	void					removeComponent( OkdEntity* pEntity, const OkdComponentId componentId );
+
+	OkdAddComponentSignal	_onAddComponentSignal;
+	OkdAddComponentSignal	_onRemoveComponentSignal;
 
 private:
 	OkdComponentFactory*	_pComponentFactory;

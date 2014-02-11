@@ -85,11 +85,11 @@ void	OrkidEngine::initialize()
 	// Systems and Components
 	_pComponentFactory = new OkdComponentFactory();
 
-	registerComponents();
-	registerSystems();
-
 	// Entities
 	_pEntityManager = new OkdEntityManager( _pComponentFactory );
+
+	registerComponents();
+	registerSystems();
 
 	// Gameplay manager
 	OkdGameplayManager::create();
@@ -138,7 +138,8 @@ void	OrkidEngine::registerSystems()
 	// Render system
 	OkdRenderSystem* pRenderSystem = new OkdRenderSystem();
 
-	OKD_SIGNAL_CONNECT( _pComponentFactory, _onCreateComponentSignal, pRenderSystem, _onCreateComponentSlot );
+	OKD_SIGNAL_CONNECT( _pEntityManager, _onAddComponentSignal, pRenderSystem, _onAddComponentSlot );
+	OKD_SIGNAL_CONNECT( _pEntityManager, _onRemoveComponentSignal, pRenderSystem, _onRemoveComponentSlot );
 
 	_systemList.add( pRenderSystem );
 }

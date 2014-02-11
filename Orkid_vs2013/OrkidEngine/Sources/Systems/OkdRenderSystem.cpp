@@ -13,8 +13,8 @@
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 OkdRenderSystem::OkdRenderSystem()
-: _onCreateComponentSlot( this, &OkdRenderSystem::onComponentCreated )
-, _onRemoveComponentSlot( this, &OkdRenderSystem::onComponentRemoved )
+: _onAddComponentSlot		( this, &OkdRenderSystem::onComponentAdded )
+, _onRemoveComponentSlot	( this, &OkdRenderSystem::onComponentRemoved )
 {
 
 }
@@ -30,11 +30,12 @@ OkdRenderSystem::~OkdRenderSystem()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		onComponentCreated
+// Name:		onComponentAdded
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdRenderSystem::onComponentCreated(const OkdComponentId	componentId)
+void	OkdRenderSystem::onComponentAdded(const OkdEntity*		pEntity, 
+										  const OkdComponentId	componentId)
 {
 	
 }
@@ -44,7 +45,8 @@ void	OkdRenderSystem::onComponentCreated(const OkdComponentId	componentId)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	OkdRenderSystem::onComponentRemoved(const OkdComponentId	componentId)
+void	OkdRenderSystem::onComponentRemoved(const OkdEntity*		pEntity, 
+											const OkdComponentId	componentId)
 {
 	
 }

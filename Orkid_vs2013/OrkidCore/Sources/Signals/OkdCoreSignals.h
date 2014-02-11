@@ -11,6 +11,8 @@
 
 #include	"Root.h"
 
+class OkdEntity;
+
 #include	ORKID_CORE_H(Signals/OkdSignal)
 #include	ORKID_CORE_H(Signals/OkdSlot)
 
@@ -18,7 +20,7 @@
 	OKD_DECLARE_SIGNAL( SignalName, __VA_ARGS__ )		\
 	OKD_DECLARE_SLOT( SignalName, __VA_ARGS__ )
 
-OKD_DECLARE_SIGNAL_AND_SLOT( CreateComponent, const OkdComponentId )
-OKD_DECLARE_SIGNAL_AND_SLOT( RemoveComponent, const OkdComponentId )
+OKD_DECLARE_SIGNAL_AND_SLOT( AddComponent, const OkdEntity*, const OkdComponentId )
+OKD_DECLARE_SIGNAL_AND_SLOT( RemoveComponent, const OkdEntity*, const OkdComponentId )
 
 #endif

@@ -22,12 +22,12 @@ public:
 
 	virtual void							update();
 
-	OkdCreateComponentSlot<OkdRenderSystem>	_onCreateComponentSlot;
+	OkdAddComponentSlot<OkdRenderSystem>	_onAddComponentSlot;
 	OkdRemoveComponentSlot<OkdRenderSystem>	_onRemoveComponentSlot;
 
 private:
-	void									onComponentCreated( const OkdComponentId componentId );
-	void									onComponentRemoved( const OkdComponentId componentId );
+	void									onComponentAdded( const OkdEntity* pEntity, const OkdComponentId componentId );
+	void									onComponentRemoved( const OkdEntity* pEntity, const OkdComponentId componentId );
 };
 
 //*****************************************************************************
