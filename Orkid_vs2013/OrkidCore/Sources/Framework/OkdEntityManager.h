@@ -21,19 +21,19 @@ class OkdComponentFactory;
 class OkdEntityManager
 {
 public:
-							OkdEntityManager( OkdComponentFactory* pComponentFactory );
-							~OkdEntityManager();
+								OkdEntityManager( OkdComponentFactory* pComponentFactory );
+								~OkdEntityManager();
 
-	OkdEntity*				createEntity( const OkdString& entityName );
+	OkdEntity*					createEntity( const OkdString& entityName );
 
-	OkdComponentPtr			addComponent( OkdEntity* pEntity, const OkdComponentId componentId );
-	void					removeComponent( OkdEntity* pEntity, const OkdComponentId componentId );
+	OkdComponentPtr				addComponent( OkdEntity* pEntity, const OkdComponentId componentId );
+	void						removeComponent( OkdEntity* pEntity, const OkdComponentId componentId );
 
-	OkdAddComponentSignal	_onAddComponentSignal;
-	OkdAddComponentSignal	_onRemoveComponentSignal;
+	OkdAddComponentSignal		_onAddComponentSignal;
+	OkdRemoveComponentSignal	_onRemoveComponentSignal;
 
 private:
-	OkdComponentFactory*	_pComponentFactory;
+	OkdComponentFactory*		_pComponentFactory;
 };
 
 //*****************************************************************************
