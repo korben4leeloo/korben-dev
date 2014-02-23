@@ -160,6 +160,9 @@
     <ClInclude Include="Sources\Signals\OkdCoreSignals.h">
       <Filter>Sources\Signals</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Framework\OkdHandleTemplate.h">
+      <Filter>Sources\Framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Math\OkdVector3f.cpp">
@@ -245,6 +248,9 @@
     </ClCompile>
     <ClCompile Include="Sources\String\OkdCrc32.cpp">
       <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Framework\OkdHandleTemplate.cpp">
+      <Filter>Sources\Framework</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

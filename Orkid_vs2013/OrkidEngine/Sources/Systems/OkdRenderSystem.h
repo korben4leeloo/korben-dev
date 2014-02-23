@@ -22,7 +22,7 @@ public:
 
 	virtual void							update();
 
-	OkdAddComponentSlot<OkdRenderSystem>	_onAddComponentSlot;
+	OkdAddComponentSlot<OkdRenderSystem>	_onAddComponentSlot = { 0, &OkdRenderSystem::onComponentAdded };
 	OkdRemoveComponentSlot<OkdRenderSystem>	_onRemoveComponentSlot;
 
 private:

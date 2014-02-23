@@ -19,6 +19,7 @@
     <ClInclude Include="Sources\Framework\OkdComponentFactory.h" />
     <ClInclude Include="Sources\Framework\OkdEntity.h" />
     <ClInclude Include="Sources\Framework\OkdEntityManager.h" />
+    <ClInclude Include="Sources\Framework\OkdHandleTemplate.h" />
     <ClInclude Include="Sources\Framework\Root.h" />
     <ClInclude Include="Sources\Input\OkdInputDevice.h" />
     <ClInclude Include="Sources\Input\OkdInputEvent.h" />
@@ -61,6 +62,7 @@
     <ClCompile Include="Sources\Framework\OkdComponentFactory.cpp" />
     <ClCompile Include="Sources\Framework\OkdEntity.cpp" />
     <ClCompile Include="Sources\Framework\OkdEntityManager.cpp" />
+    <ClCompile Include="Sources\Framework\OkdHandleTemplate.cpp" />
     <ClCompile Include="Sources\Input\OkdInputDevice.cpp" />
     <ClCompile Include="Sources\Input\OkdInputEvent.cpp" />
     <ClCompile Include="Sources\Input\OkdInputManager.cpp" />
