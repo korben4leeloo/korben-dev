@@ -11,12 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CE933A6B-B4C1-4FCE-9020-2D5A36C325C5}</ProjectGuid>
-    <RootNamespace>KosmoCore</RootNamespace>
+    <ProjectGuid>{6CEFFC38-55B1-46A5-BAFB-A453AF226520}</ProjectGuid>
+    <RootNamespace>KosmoRuntime</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
