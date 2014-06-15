@@ -4,5 +4,42 @@
     <Filter Include="Sources">
       <UniqueIdentifier>{04bcc289-2472-48d5-b384-600348ef983c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Math">
+      <UniqueIdentifier>{74878897-f0b8-4965-81a3-b238c3dbae3c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\Math\Quaternionf.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Root.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Vector4f.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Vector3f.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\KosmoCoreRoot.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Transform4f.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\Math\Vector4f.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\Quaternionf.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\Vector3f.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\Transform4f.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

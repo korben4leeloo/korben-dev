@@ -44,6 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(KORBEN_DEV_PATH)\Libraries;$(KORBEN_DEV_PATH)\Kosmo</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -64,6 +65,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\KosmoCoreRoot.h" />
+    <ClInclude Include="Sources\Math\Transform4f.h" />
+    <ClInclude Include="Sources\Math\Quaternionf.h" />
+    <ClInclude Include="Sources\Math\Root.h" />
+    <ClInclude Include="Sources\Math\Vector3f.h" />
+    <ClInclude Include="Sources\Math\Vector4f.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\Math\Transform4f.cpp" />
+    <ClCompile Include="Sources\Math\Quaternionf.cpp" />
+    <ClCompile Include="Sources\Math\Vector3f.cpp" />
+    <ClCompile Include="Sources\Math\Vector4f.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

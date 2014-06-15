@@ -5,4 +5,14 @@
       <UniqueIdentifier>{e852db2b-aab7-4ca2-8fce-3a8adfae3d02}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\KosmoRuntime.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\KosmoRuntimeRoot.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

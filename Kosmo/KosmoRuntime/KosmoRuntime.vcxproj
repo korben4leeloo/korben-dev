@@ -44,6 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(KORBEN_DEV_PATH)\Kosmo;$(KORBEN_DEV_PATH)\Libraries</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -64,6 +65,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\KosmoRuntime.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\KosmoRuntimeRoot.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KosmoCore\KosmoCore.vcxproj">
+      <Project>{ce933a6b-b4c1-4fce-9020-2d5a36c325c5}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
