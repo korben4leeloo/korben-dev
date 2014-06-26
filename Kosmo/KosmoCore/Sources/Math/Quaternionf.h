@@ -11,7 +11,7 @@
 
 #include	"Root.h"
 
-namespace Kosmo {
+KOSMO_CORE_NS_BEGIN
 
 class Vector3f;
 
@@ -60,6 +60,6 @@ inline Quaternionf	Quaternionf::operator*( const Quaternionf& qOther )
 	return	( qResult );
 }
 
-} // namespace Kosmo
+KOSMO_CORE_NS_END
 
 #endif

@@ -7,6 +7,9 @@
     <Filter Include="Sources\Math">
       <UniqueIdentifier>{74878897-f0b8-4965-81a3-b238c3dbae3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\GUI">
+      <UniqueIdentifier>{7045bd63-c81e-451e-8800-d844c3ad3a8a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Math\Quaternionf.h">
@@ -27,6 +30,12 @@
     <ClInclude Include="Sources\Math\Transform4f.h">
       <Filter>Sources\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\GUI\Window.h">
+      <Filter>Sources\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\GUI\Root.h">
+      <Filter>Sources\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Math\Vector4f.cpp">
@@ -40,6 +49,9 @@
     </ClCompile>
     <ClCompile Include="Sources\Math\Transform4f.cpp">
       <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GUI\Window.cpp">
+      <Filter>Sources\GUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

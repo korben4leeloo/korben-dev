@@ -11,7 +11,7 @@
 
 #include	"Root.h"
 
-namespace Kosmo {
+KOSMO_CORE_NS_BEGIN
 
 class Vector3f
 {
@@ -66,6 +66,6 @@ Vector3f	Vector3f::unitZ()
 	return	( Vector3f( 0.0f, 0.0f, 1.0f ) );
 }
 
-} // namespace Kosmo
+KOSMO_CORE_NS_END
 
 #endif

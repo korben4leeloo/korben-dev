@@ -14,7 +14,7 @@
 #include	KOSMO_CORE_H(Math/Vector3f)
 #include	KOSMO_CORE_H(Math/Quaternionf)
 
-namespace Kosmo {
+KOSMO_CORE_NS_BEGIN
 
 class Transform4f
 {
@@ -147,6 +147,6 @@ inline float	Transform4f::operator()(const uint32	uiRow,
 	return	( _m( uiRow, uiCol ) );
 }
 
-} // namespace Kosmo
+KOSMO_CORE_NS_END
 
 #endif

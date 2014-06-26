@@ -11,6 +11,16 @@
 
 #include	<stdint.h>
 
+#define	KOSMO_CORE_NS_BEGIN	\
+namespace Kosmo				\
+{							\
+	namespace Core			\
+	{						\
+
+#define	KOSMO_CORE_NS_END	\
+	}						\
+}							\
+
 // Defines for inclusions
 #define	KOSMO_CORE_H(file)	<KosmoCore/Sources/file.h>
 
@@ -26,7 +36,8 @@ typedef int16_t		int16;
 typedef int32_t		int32;
 typedef int64_t		int64;
 
-namespace Kosmo {}
-using namespace Kosmo;
+KOSMO_CORE_NS_BEGIN
+KOSMO_CORE_NS_END
+using namespace Kosmo::Core;
 
 #endif

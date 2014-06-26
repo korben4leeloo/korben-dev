@@ -11,7 +11,7 @@
 
 #include	"Root.h"
 
-namespace Kosmo {
+KOSMO_CORE_NS_BEGIN
 
 class Vector3f;
 
@@ -22,12 +22,10 @@ public:
 					Vector4f( const float x, const float y, const float z, const float w );
 					~Vector4f();
 
-					Vector4f( const Vector3f& v3f );
-
 private:
 	Eigen::Vector4f	_v;
 };
 
-} // namespace Kosmo
+KOSMO_CORE_NS_END
 
 #endif
