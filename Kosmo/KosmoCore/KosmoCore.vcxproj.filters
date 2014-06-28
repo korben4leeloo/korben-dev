@@ -10,6 +10,9 @@
     <Filter Include="Sources\GUI">
       <UniqueIdentifier>{7045bd63-c81e-451e-8800-d844c3ad3a8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\String">
+      <UniqueIdentifier>{803c52f1-3ad3-4662-882c-30d05c34026a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\KosmoCoreRoot.h">
@@ -33,6 +36,12 @@
     <ClInclude Include="Sources\GUI\KsWindow.h">
       <Filter>Sources\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\String\Root.h">
+      <Filter>Sources\String</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\String\KsString.h">
+      <Filter>Sources\String</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Math\KsQuaternion.cpp">
@@ -49,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="Sources\GUI\KsWindow.cpp">
       <Filter>Sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\String\KsString.cpp">
+      <Filter>Sources\String</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

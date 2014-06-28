@@ -11,7 +11,7 @@
 
 #include	"Root.h"
 
-KOSMO_CORE_NS_BEGIN
+KOSMO_CORE_NAMESPACE_BEGIN
 
 class KsVector3
 {
@@ -68,6 +68,6 @@ KsVector3	KsVector3::unitZ()
 
 typedef KsVector3 KsVec3;
 
-KOSMO_CORE_NS_END
+KOSMO_CORE_NAMESPACE_END
 
 #endif

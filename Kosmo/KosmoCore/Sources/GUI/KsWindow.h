@@ -12,7 +12,7 @@
 #include	"Root.h"
 #include	<Windows.h>
 
-KOSMO_CORE_NS_BEGIN
+KOSMO_CORE_NAMESPACE_BEGIN
 
 class KsWindow
 {
@@ -32,6 +32,6 @@ private:
 //	Inline functions declarations
 //*****************************************************************************
 
-KOSMO_CORE_NS_END
+KOSMO_CORE_NAMESPACE_END
 
 #endif

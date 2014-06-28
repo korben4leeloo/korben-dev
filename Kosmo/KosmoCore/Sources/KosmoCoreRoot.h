@@ -11,13 +11,13 @@
 
 #include	<stdint.h>
 
-#define	KOSMO_CORE_NS_BEGIN	\
+#define	KOSMO_CORE_NAMESPACE_BEGIN	\
 namespace Kosmo				\
 {							\
 	namespace Core			\
 	{						\
 
-#define	KOSMO_CORE_NS_END	\
+#define	KOSMO_CORE_NAMESPACE_END	\
 	}						\
 }							\
 
@@ -36,8 +36,8 @@ typedef int16_t		int16;
 typedef int32_t		int32;
 typedef int64_t		int64;
 
-KOSMO_CORE_NS_BEGIN
-KOSMO_CORE_NS_END
+KOSMO_CORE_NAMESPACE_BEGIN
+KOSMO_CORE_NAMESPACE_END
 using namespace Kosmo::Core;
 
 #endif

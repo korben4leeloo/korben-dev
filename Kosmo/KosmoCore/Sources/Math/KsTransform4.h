@@ -14,7 +14,7 @@
 #include	KOSMO_CORE_H(Math/KsVector3)
 #include	KOSMO_CORE_H(Math/KsQuaternion)
 
-KOSMO_CORE_NS_BEGIN
+KOSMO_CORE_NAMESPACE_BEGIN
 
 class KsTransform4
 {
@@ -147,6 +147,6 @@ inline float	KsTransform4::operator()(const uint32	uiRow,
 	return	( _m( uiRow, uiCol ) );
 }
 
-KOSMO_CORE_NS_END
+KOSMO_CORE_NAMESPACE_END
 
 #endif

@@ -83,6 +83,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(KORBEN_DEV_PATH)\Libraries;$(KORBEN_DEV_PATH)\Kosmo</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -124,6 +125,8 @@
     <ClInclude Include="Sources\Math\KsTransform4.h" />
     <ClInclude Include="Sources\Math\KsVector3.h" />
     <ClInclude Include="Sources\Math\KsVector4.h" />
+    <ClInclude Include="Sources\String\KsString.h" />
+    <ClInclude Include="Sources\String\Root.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\GUI\KsWindow.cpp" />
@@ -131,6 +134,7 @@
     <ClCompile Include="Sources\Math\KsTransform4.cpp" />
     <ClCompile Include="Sources\Math\KsVector3.cpp" />
     <ClCompile Include="Sources\Math\KsVector4.cpp" />
+    <ClCompile Include="Sources\String\KsString.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

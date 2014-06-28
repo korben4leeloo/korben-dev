@@ -1,36 +1,36 @@
 //*****************************************************************************
 //
-//	Class:		KsQuaternion
+//	Class:		KsString
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __KosmoCore_KsQuaternion_h__
-#define __KosmoCore_KsQuaternion_h__
+#ifndef __KosmoCore_KsString_h__
+#define __KosmoCore_KsString_h__
 
 #include	"Root.h"
 
 KOSMO_CORE_NAMESPACE_BEGIN
 
-class KsVector3;
-
-class KsQuaternion
+class KsString
 {
-	friend class KsTransform4;
-
 public:
-						KsQuaternion();
-						KsQuaternion( const KsVector3& vAxis, const float fAngle );
+						KsString( const char* pcData = "" );
+						KsString( const KsString& other );
+						~KsString();
 
-						~KsQuaternion();
+	KsString&			operator=( const KsString& other );
+	KsString&			operator=( const char* pcData );
 
-	inline void			setIdentity();
-
-	inline KsQuaternion	operator*( const KsQuaternion& qOther );
+	inline const char*	getData() const;
+	inline uint32		getLength() const;
 
 private:
-	Eigen::Quaternionf	_q;
+	void				assign( const char* pcData );
+
+	char*				_pcBuffer;
+	uint32				_uiLength;
 };
 
 //*****************************************************************************
@@ -38,29 +38,24 @@ private:
 //*****************************************************************************
 
 //-----------------------------------------------------------------------------
-// Name:		setIdentity
+// Name:		getLength
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	KsQuaternion::setIdentity()
+uint32	KsString::getLength() const
 {
-	_q.setIdentity();
+	return	( _uiLength );
 }
 
 //-----------------------------------------------------------------------------
-// Name:		operator*
+// Name:		getData
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-inline KsQuaternion	KsQuaternion::operator*( const KsQuaternion& qOther )
+const char*	KsString::getData() const
 {
-	KsQuaternion qResult;
-
-	qResult._q = _q * qOther._q;
-	return	( qResult );
+	return	( _pcBuffer );
 }
-
-typedef KsQuaternion KsQuat;
 
 KOSMO_CORE_NAMESPACE_END
 
