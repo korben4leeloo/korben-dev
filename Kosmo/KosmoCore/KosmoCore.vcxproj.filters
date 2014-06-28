@@ -12,45 +12,42 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\Math\Quaternionf.h">
-      <Filter>Sources\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Math\Root.h">
-      <Filter>Sources\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Math\Vector4f.h">
-      <Filter>Sources\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Math\Vector3f.h">
-      <Filter>Sources\Math</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\KosmoCoreRoot.h">
       <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Math\Transform4f.h">
-      <Filter>Sources\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\GUI\Window.h">
-      <Filter>Sources\GUI</Filter>
     </ClInclude>
     <ClInclude Include="Sources\GUI\Root.h">
       <Filter>Sources\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Math\KsQuaternion.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\KsTransform4.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\KsVector3.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\KsVector4.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\GUI\KsWindow.h">
+      <Filter>Sources\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Math\Vector4f.cpp">
+    <ClCompile Include="Sources\Math\KsQuaternion.cpp">
       <Filter>Sources\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Math\Quaternionf.cpp">
+    <ClCompile Include="Sources\Math\KsTransform4.cpp">
       <Filter>Sources\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Math\Vector3f.cpp">
+    <ClCompile Include="Sources\Math\KsVector3.cpp">
       <Filter>Sources\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Math\Transform4f.cpp">
+    <ClCompile Include="Sources\Math\KsVector4.cpp">
       <Filter>Sources\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\GUI\Window.cpp">
+    <ClCompile Include="Sources\GUI\KsWindow.cpp">
       <Filter>Sources\GUI</Filter>
     </ClCompile>
   </ItemGroup>

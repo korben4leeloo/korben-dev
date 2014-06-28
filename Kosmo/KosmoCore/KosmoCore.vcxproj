@@ -117,21 +117,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\GUI\KsWindow.h" />
     <ClInclude Include="Sources\GUI\Root.h" />
-    <ClInclude Include="Sources\GUI\Window.h" />
     <ClInclude Include="Sources\KosmoCoreRoot.h" />
-    <ClInclude Include="Sources\Math\Transform4f.h" />
-    <ClInclude Include="Sources\Math\Quaternionf.h" />
-    <ClInclude Include="Sources\Math\Root.h" />
-    <ClInclude Include="Sources\Math\Vector3f.h" />
-    <ClInclude Include="Sources\Math\Vector4f.h" />
+    <ClInclude Include="Sources\Math\KsQuaternion.h" />
+    <ClInclude Include="Sources\Math\KsTransform4.h" />
+    <ClInclude Include="Sources\Math\KsVector3.h" />
+    <ClInclude Include="Sources\Math\KsVector4.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\GUI\Window.cpp" />
-    <ClCompile Include="Sources\Math\Transform4f.cpp" />
-    <ClCompile Include="Sources\Math\Quaternionf.cpp" />
-    <ClCompile Include="Sources\Math\Vector3f.cpp" />
-    <ClCompile Include="Sources\Math\Vector4f.cpp" />
+    <ClCompile Include="Sources\GUI\KsWindow.cpp" />
+    <ClCompile Include="Sources\Math\KsQuaternion.cpp" />
+    <ClCompile Include="Sources\Math\KsTransform4.cpp" />
+    <ClCompile Include="Sources\Math\KsVector3.cpp" />
+    <ClCompile Include="Sources\Math\KsVector4.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
