@@ -17,15 +17,15 @@ KOSMO_CORE_NAMESPACE_BEGIN
 class KsWindow
 {
 public:
-					KsWindow();
-					~KsWindow();
+							KsWindow();
+							~KsWindow();
 
-	void			create();	
+	void					create();	
 
 private:
-	static LRESULT	windowMessageCallback( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
+	static LRESULT CALLBACK	windowMessageCallback( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
 
-	HWND			_hWnd;
+	HWND					_hWnd;
 };
 
 //*****************************************************************************

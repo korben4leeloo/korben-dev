@@ -26,6 +26,15 @@ int main()
 	str = str3;
 	str = "toto plouf";
 
+	KsString str4 = str + str2;
+
+	str4 = str + str3;
+	
+	KsString str5;
+
+	str5 = str4 + "test";
+	str5 = "test" + str4;
+
 	return	( 0 );
 }
 

@@ -69,10 +69,10 @@ void KsWindow::create()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-LRESULT KsWindow::windowMessageCallback(HWND	hWnd, 
-										UINT	uiMessage, 
-										WPARAM	wParam, 
-										LPARAM	lParam)
+LRESULT CALLBACK KsWindow::windowMessageCallback(HWND	hWnd, 
+												 UINT	uiMessage, 
+												 WPARAM	wParam, 
+												 LPARAM	lParam)
 {
 	switch	( uiMessage )
 	{
