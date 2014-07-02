@@ -1,30 +1,30 @@
 //*****************************************************************************
 //
-//	File:		KsVector4.cpp
+//	File:		KmVector4.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"KsVector4.h"
+#include	"KmVector4.h"
 
-#include	KOSMO_CORE_H(Math/KsVector3)
+#include	KOSMO_CORE_H(Math/KmVector3)
 
 //-----------------------------------------------------------------------------
-// Name:		KsVector4 constructor
+// Name:		KmVector4 constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsVector4::KsVector4()
+KmVector4::KmVector4()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		KsVector4 constructor
+// Name:		KmVector4 constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsVector4::KsVector4(const float x, 
+KmVector4::KmVector4(const float x, 
 				   const float y, 
 				   const float z,
 				   const float w)
@@ -33,11 +33,11 @@ KsVector4::KsVector4(const float x,
 }
 
 //-----------------------------------------------------------------------------
-// Name:		KsVector4 destructor
+// Name:		KmVector4 destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsVector4::~KsVector4()
+KmVector4::~KmVector4()
 {
 
 }

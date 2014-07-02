@@ -1,32 +1,32 @@
 //*****************************************************************************
 //
-//	Class:		KsVector3
+//	Class:		KmVector3
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __KosmoCore_KsVector3_h__
-#define __KosmoCore_KsVector3_h__
+#ifndef __KosmoCore_KmVector3_h__
+#define __KosmoCore_KmVector3_h__
 
 #include	"Root.h"
 
 KOSMO_CORE_NAMESPACE_BEGIN
 
-class KsVector3
+class KmVector3
 {
-	friend class KsTransform4;
-	friend class KsQuaternion;
-	friend class KsVector4;
+	friend class KmTransform4;
+	friend class KmQuaternion;
+	friend class KmVector4;
 
 public:
-							KsVector3();
-							KsVector3( const float x, const float y, const float z );
-							~KsVector3();
+							KmVector3();
+							KmVector3( const float x, const float y, const float z );
+							~KmVector3();
 
-	inline static KsVector3	unitX();
-	inline static KsVector3	unitY();
-	inline static KsVector3	unitZ();
+	inline static KmVector3	unitX();
+	inline static KmVector3	unitY();
+	inline static KmVector3	unitZ();
 
 private:
 	Eigen::Vector3f			_v;
@@ -41,9 +41,9 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsVector3	KsVector3::unitX()
+KmVector3	KmVector3::unitX()
 {
-	return	( KsVector3( 1.0f, 0.0f, 0.0f ) );
+	return	( KmVector3( 1.0f, 0.0f, 0.0f ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -51,9 +51,9 @@ KsVector3	KsVector3::unitX()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsVector3	KsVector3::unitY()
+KmVector3	KmVector3::unitY()
 {
-	return	( KsVector3( 0.0f, 1.0f, 0.0f ) );
+	return	( KmVector3( 0.0f, 1.0f, 0.0f ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -61,12 +61,12 @@ KsVector3	KsVector3::unitY()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsVector3	KsVector3::unitZ()
+KmVector3	KmVector3::unitZ()
 {
-	return	( KsVector3( 0.0f, 0.0f, 1.0f ) );
+	return	( KmVector3( 0.0f, 0.0f, 1.0f ) );
 }
 
-typedef KsVector3 KsVec3;
+typedef KmVector3 KsVec3;
 
 KOSMO_CORE_NAMESPACE_END
 

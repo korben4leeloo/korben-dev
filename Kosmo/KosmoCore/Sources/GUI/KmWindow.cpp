@@ -1,29 +1,29 @@
 //*****************************************************************************
 //
-//	File:		KsWindow.cpp
+//	File:		KmWindow.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"KsWindow.h"
+#include	"KmWindow.h"
 
 //-----------------------------------------------------------------------------
-// Name:		KsWindow constructor
+// Name:		KmWindow constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsWindow::KsWindow()
+KmWindow::KmWindow()
 : _hWnd( NULL )
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		KsWindow destructor
+// Name:		KmWindow destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsWindow::~KsWindow()
+KmWindow::~KmWindow()
 {
 
 }
@@ -33,7 +33,7 @@ KsWindow::~KsWindow()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void KsWindow::create()
+void KmWindow::create()
 {
 	const char* title	= "TestWindow";
 	const int	width	= 500;
@@ -44,7 +44,7 @@ void KsWindow::create()
 	WNDCLASS	windowClass;
 
 	windowClass.style			= CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
-	windowClass.lpfnWndProc		= KsWindow::windowMessageCallback;
+	windowClass.lpfnWndProc		= KmWindow::windowMessageCallback;
 	windowClass.cbClsExtra		= 0;
 	windowClass.cbWndExtra		= 0;
 	windowClass.hInstance		= hInstance;
@@ -69,7 +69,7 @@ void KsWindow::create()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-LRESULT CALLBACK KsWindow::windowMessageCallback(HWND	hWnd, 
+LRESULT CALLBACK KmWindow::windowMessageCallback(HWND	hWnd, 
 												 UINT	uiMessage, 
 												 WPARAM	wParam, 
 												 LPARAM	lParam)

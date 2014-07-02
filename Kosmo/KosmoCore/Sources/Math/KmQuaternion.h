@@ -1,33 +1,33 @@
 //*****************************************************************************
 //
-//	Class:		KsQuaternion
+//	Class:		KmQuaternion
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __KosmoCore_KsQuaternion_h__
-#define __KosmoCore_KsQuaternion_h__
+#ifndef __KosmoCore_KmQuaternion_h__
+#define __KosmoCore_KmQuaternion_h__
 
 #include	"Root.h"
 
 KOSMO_CORE_NAMESPACE_BEGIN
 
-class KsVector3;
+class KmVector3;
 
-class KsQuaternion
+class KmQuaternion
 {
-	friend class KsTransform4;
+	friend class KmTransform4;
 
 public:
-						KsQuaternion();
-						KsQuaternion( const KsVector3& vAxis, const float fAngle );
+						KmQuaternion();
+						KmQuaternion( const KmVector3& vAxis, const float fAngle );
 
-						~KsQuaternion();
+						~KmQuaternion();
 
 	inline void			setIdentity();
 
-	inline KsQuaternion	operator*( const KsQuaternion& qOther );
+	inline KmQuaternion	operator*( const KmQuaternion& qOther );
 
 private:
 	Eigen::Quaternionf	_q;
@@ -42,7 +42,7 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	KsQuaternion::setIdentity()
+void	KmQuaternion::setIdentity()
 {
 	_q.setIdentity();
 }
@@ -52,15 +52,15 @@ void	KsQuaternion::setIdentity()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-inline KsQuaternion	KsQuaternion::operator*( const KsQuaternion& qOther )
+inline KmQuaternion	KmQuaternion::operator*( const KmQuaternion& qOther )
 {
-	KsQuaternion qResult;
+	KmQuaternion qResult;
 
 	qResult._q = _q * qOther._q;
 	return	( qResult );
 }
 
-typedef KsQuaternion KsQuat;
+typedef KmQuaternion KsQuat;
 
 KOSMO_CORE_NAMESPACE_END
 

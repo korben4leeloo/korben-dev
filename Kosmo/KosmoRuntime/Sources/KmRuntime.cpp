@@ -7,7 +7,7 @@
 
 #include	"KosmoRuntimeRoot.h"
 
-#include	KOSMO_CORE_H(GUI/KsWindow)
+#include	KOSMO_CORE_H(GUI/KmWindow)
 #include	KOSMO_CORE_H(String/KmString)
 
 //-----------------------------------------------------------------------------
@@ -48,7 +48,7 @@ int CALLBACK WinMain(_In_ HINSTANCE	hInstance,
 					 _In_ LPSTR		lpCmdLine,
 					 _In_ int		nCmdShow)
 {
-	KsWindow	kosmoWindow;
+	KmWindow	kosmoWindow;
 	MSG			msg;
 
 	kosmoWindow.create();

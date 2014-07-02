@@ -1,41 +1,41 @@
 //*****************************************************************************
 //
-//	File:		KsQuaternion.cpp
+//	File:		KmQuaternion.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"KsQuaternion.h"
+#include	"KmQuaternion.h"
 
-#include	KOSMO_CORE_H(Math/KsVector3)
+#include	KOSMO_CORE_H(Math/KmVector3)
 
 //-----------------------------------------------------------------------------
-// Name:		KsQuaternion constructor
+// Name:		KmQuaternion constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsQuaternion::KsQuaternion()
+KmQuaternion::KmQuaternion()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		KsQuaternion constructor
+// Name:		KmQuaternion constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsQuaternion::KsQuaternion(const KsVector3&	vAxis, 
+KmQuaternion::KmQuaternion(const KmVector3&	vAxis, 
 						 const float		fAngle)
 {
 	_q = Eigen::Quaternionf( Eigen::AngleAxisf( fAngle, vAxis._v ) );
 }
 
 //-----------------------------------------------------------------------------
-// Name:		KsQuaternion destructor
+// Name:		KmQuaternion destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsQuaternion::~KsQuaternion()
+KmQuaternion::~KmQuaternion()
 {
 
 }

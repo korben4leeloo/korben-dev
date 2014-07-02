@@ -1,32 +1,32 @@
 //*****************************************************************************
 //
-//	Class:		KsVector4
+//	Class:		KmVector4
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __KosmoCore_KsVector4_h__
-#define __KosmoCore_KsVector4_h__
+#ifndef __KosmoCore_KmVector4_h__
+#define __KosmoCore_KmVector4_h__
 
 #include	"Root.h"
 
 KOSMO_CORE_NAMESPACE_BEGIN
 
-class KsVector3;
+class KmVector3;
 
-class KsVector4
+class KmVector4
 {
 public:
-					KsVector4();
-					KsVector4( const float x, const float y, const float z, const float w );
-					~KsVector4();
+					KmVector4();
+					KmVector4( const float x, const float y, const float z, const float w );
+					~KmVector4();
 
 private:
 	Eigen::Vector4f	_v;
 };
 
-typedef KsVector4 KsVec4;
+typedef KmVector4 KsVec4;
 
 KOSMO_CORE_NAMESPACE_END
 

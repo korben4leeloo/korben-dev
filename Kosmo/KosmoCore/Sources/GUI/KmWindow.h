@@ -1,24 +1,24 @@
 //*****************************************************************************
 //
-//	Class:		KsWindow
+//	Class:		KmWindow
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __KosmoCore_KsWindow_h__
-#define __KosmoCore_KsWindow_h__
+#ifndef __KosmoCore_KmWindow_h__
+#define __KosmoCore_KmWindow_h__
 
 #include	"Root.h"
 #include	<Windows.h>
 
 KOSMO_CORE_NAMESPACE_BEGIN
 
-class KsWindow
+class KmWindow
 {
 public:
-							KsWindow();
-							~KsWindow();
+							KmWindow();
+							~KmWindow();
 
 	void					create();	
 

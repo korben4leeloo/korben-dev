@@ -1,28 +1,28 @@
 //*****************************************************************************
 //
-//	File:		KsVector3.cpp
+//	File:		KmVector3.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"KsVector3.h"
+#include	"KmVector3.h"
 
 //-----------------------------------------------------------------------------
-// Name:		KsVector3 constructor
+// Name:		KmVector3 constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsVector3::KsVector3()
+KmVector3::KmVector3()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		KsVector3 constructor
+// Name:		KmVector3 constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsVector3::KsVector3(const float x, 
+KmVector3::KmVector3(const float x, 
 				   const float y, 
 				   const float z)
 {
@@ -30,11 +30,11 @@ KsVector3::KsVector3(const float x,
 }
 
 //-----------------------------------------------------------------------------
-// Name:		KsVector3 destructor
+// Name:		KmVector3 destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsVector3::~KsVector3()
+KmVector3::~KmVector3()
 {
 
 }

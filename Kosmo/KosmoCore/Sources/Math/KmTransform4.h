@@ -1,40 +1,40 @@
 //*****************************************************************************
 //
-//	Class:		KsTransform4
+//	Class:		KmTransform4
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __KosmoCore_KsTransform4_h__
-#define __KosmoCore_KsTransform4_h__
+#ifndef __KosmoCore_KmTransform4_h__
+#define __KosmoCore_KmTransform4_h__
 
 #include	"Root.h"
 
-#include	KOSMO_CORE_H(Math/KsVector3)
-#include	KOSMO_CORE_H(Math/KsQuaternion)
+#include	KOSMO_CORE_H(Math/KmVector3)
+#include	KOSMO_CORE_H(Math/KmQuaternion)
 
 KOSMO_CORE_NAMESPACE_BEGIN
 
-class KsTransform4
+class KmTransform4
 {
 public:
-						KsTransform4();
-						~KsTransform4();
+						KmTransform4();
+						~KmTransform4();
 
 	inline void			setIdentity();
 
-	inline void			setTranslation( const KsVector3& vTranslation );
-	inline KsVector3		getTranslation() const;
+	inline void			setTranslation( const KmVector3& vTranslation );
+	inline KmVector3		getTranslation() const;
 
-	inline void			setRotation( const KsQuaternion& qRotation );
+	inline void			setRotation( const KmQuaternion& qRotation );
 
-	inline KsQuaternion	getQuaternion() const;
+	inline KmQuaternion	getQuaternion() const;
 
 	inline const float*	data() const;
 	inline float*		data();
 
-	inline KsTransform4	operator*( const KsTransform4& mOther );
+	inline KmTransform4	operator*( const KmTransform4& mOther );
 	inline float		operator()( const uint32 uiRow, const uint32 uiCol ) const;
 
 private:
@@ -52,7 +52,7 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	KsTransform4::setIdentity()
+void	KmTransform4::setIdentity()
 {
 	_m.setIdentity();
 }
@@ -62,7 +62,7 @@ void	KsTransform4::setIdentity()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-inline void	KsTransform4::setTranslation( const KsVector3& vTranslation )
+inline void	KmTransform4::setTranslation( const KmVector3& vTranslation )
 {
 	_m.translation() = vTranslation._v;
 }
@@ -72,9 +72,9 @@ inline void	KsTransform4::setTranslation( const KsVector3& vTranslation )
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-inline KsVector3	KsTransform4::getTranslation() const
+inline KmVector3	KmTransform4::getTranslation() const
 {
-	KsVector3 vTranslation;
+	KmVector3 vTranslation;
 
 	vTranslation._v = _m.translation();
 	return	( vTranslation );
@@ -85,7 +85,7 @@ inline KsVector3	KsTransform4::getTranslation() const
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-inline void	KsTransform4::setRotation( const KsQuaternion& qRotation )
+inline void	KmTransform4::setRotation( const KmQuaternion& qRotation )
 {
 	_m.linear() = qRotation._q.toRotationMatrix();
 }
@@ -95,9 +95,9 @@ inline void	KsTransform4::setRotation( const KsQuaternion& qRotation )
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-inline KsQuaternion	KsTransform4::getQuaternion() const
+inline KmQuaternion	KmTransform4::getQuaternion() const
 {
-	KsQuaternion qRotation;
+	KmQuaternion qRotation;
 
 	qRotation._q = _m.rotation();
 	return	( qRotation );
@@ -108,7 +108,7 @@ inline KsQuaternion	KsTransform4::getQuaternion() const
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-const float*	KsTransform4::data() const
+const float*	KmTransform4::data() const
 {
 	return	( _m.data() );
 }
@@ -118,7 +118,7 @@ const float*	KsTransform4::data() const
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-float*	KsTransform4::data()
+float*	KmTransform4::data()
 {
 	return	( _m.data() );
 }
@@ -128,9 +128,9 @@ float*	KsTransform4::data()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-inline KsTransform4	KsTransform4::operator*( const KsTransform4& mOther )
+inline KmTransform4	KmTransform4::operator*( const KmTransform4& mOther )
 {
-	KsTransform4 mResult;
+	KmTransform4 mResult;
 
 	mResult._m = _m * mOther._m;
 	return	( mResult );
@@ -141,7 +141,7 @@ inline KsTransform4	KsTransform4::operator*( const KsTransform4& mOther )
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-inline float	KsTransform4::operator()(const uint32	uiRow, 
+inline float	KmTransform4::operator()(const uint32	uiRow, 
 										const uint32	uiCol) const
 {
 	return	( _m( uiRow, uiCol ) );

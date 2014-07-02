@@ -1,28 +1,28 @@
 //*****************************************************************************
 //
-//	File:		KsTransform4.cpp
+//	File:		KmTransform4.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"KsTransform4.h"
+#include	"KmTransform4.h"
 
 //-----------------------------------------------------------------------------
-// Name:		KsTransform4 constructor
+// Name:		KmTransform4 constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsTransform4::KsTransform4()
+KmTransform4::KmTransform4()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		KsTransform4 destructor
+// Name:		KmTransform4 destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsTransform4::~KsTransform4()
+KmTransform4::~KmTransform4()
 {
 
 }
