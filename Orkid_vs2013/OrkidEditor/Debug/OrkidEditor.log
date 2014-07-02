@@ -1,0 +1,23 @@
+﻿Build started 24/12/2013 12:35:27.
+     1>Project "C:\Dev\svn\korben-dev\Orkid_vs2013\OrkidEditor\OrkidEditor.vcxproj" on node 4 (Build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Debug\OrkidEditor.tlog\unsuccessfulbuild".
+       CustomBuild:
+         All outputs are up-to-date.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_OkdEditorMainWnd.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_OkdEditorMainWnd.cpp, GeneratedFiles\Release\moc_OkdEditorMainWnd.cpp.
+       ClCompile:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Dev\svn\korben-dev\Orkid_vs2013\Win32\Debug\\OrkidEditor.exe" /NOLOGO /LIBPATH:C:\Qt\5.1.1\msvc2010\lib /LIBPATH:"C:\Dev\svn\korben-dev\Libraries\OpenGL\glew\lib\Release\Win32" qtmaind.lib Qt5Cored.lib Qt5Guid.lib Qt5Widgetsd.lib Opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Dev\svn\korben-dev\Orkid_vs2013\Win32\Debug\OrkidEditor.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Dev\svn\korben-dev\Orkid_vs2013\Win32\Debug\OrkidEditor.lib" /MACHINE:X86 /SAFESEH Debug\moc_OkdEditorMainWnd.obj
+         Debug\qrc_OkdEditorMainWnd.obj
+         Debug\OkdEditorMainWnd.obj
+         Debug\OrkidEditorMain.obj
+         "C:\Dev\svn\korben-dev\Orkid_vs2013\Debug\OrkidEngine.lib"
+     1>qtmaind.lib(qtmain_win.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1600' doesn't match value '1800' in moc_OkdEditorMainWnd.obj
+     1>C:\Dev\svn\korben-dev\Orkid_vs2013\Win32\Debug\\OrkidEditor.exe : fatal error LNK1319: 1 mismatches detected
+     1>Done Building Project "C:\Dev\svn\korben-dev\Orkid_vs2013\OrkidEditor\OrkidEditor.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.59

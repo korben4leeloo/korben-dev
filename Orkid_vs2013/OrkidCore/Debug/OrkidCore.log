@@ -1,0 +1,50 @@
+﻿Build started 25/06/2014 16:16:43.
+     1>Project "C:\Dev\svn\korben-dev\Orkid_vs2013\OrkidCore\OrkidCore.vcxproj" on node 2 (Rebuild target(s)).
+     1>_PrepareForClean:
+         Deleting file "Debug\OrkidCore.tlog\OrkidCore.lastbuildstate".
+       InitializeBuildStatus:
+         Touching "Debug\OrkidCore.tlog\unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Dev\svn\korben-dev\Libraries\Math\Eigen_3_2_0" /I"C:\Dev\svn\korben-dev\Libraries\Xml\Xerces\include" /I"C:\Dev\svn\korben-dev\Orkid_vs2013" /I"C:\Dev\svn\korben-dev\Libraries\Xml" /ZI /nologo /W3 /WX- /Od /Oy- /D CODE_ANALYSIS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze /analyze:plugin"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\\bin\localespc.dll" /errorReport:prompt   /analyze:quiet Sources\Containers\OkdList.cpp Sources\Containers\OkdMap.cpp Sources\Containers\OkdVector.cpp Sources\Framework\OkdAbstractComponent.cpp Sources\Framework\OkdAbstractSystem.cpp Sources\Framework\OkdComponentFactory.cpp Sources\Framework\OkdEntity.cpp Sources\Framework\OkdEntityManager.cpp Sources\Framework\OkdHandleTemplate.cpp Sources\Input\OkdInputDevice.cpp Sources\Input\OkdInputEvent.cpp Sources\Input\OkdInputManager.cpp Sources\Input\Windows\OkdWindowsRawInputHandler.cpp Sources\Math\OkdMatrix4f.cpp Sources\Math\OkdQuaternionf.cpp Sources\Math\OkdVector3f.cpp Sources\Math\OkdVector4f.cpp Sources\Memory\OkdMemManager.cpp Sources\Memory\OkdSharedPtr.cpp Sources\OrkidCore.cpp Sources\Signals\OkdSignal.cpp Sources\Signals\OkdSlot.cpp Sources\Singleton\OkdSingleton.cpp Sources\Stream\OkdFile.cpp Sources\Stream\OkdFileStream.cpp Sources\String\OkdCrc32.cpp Sources\String\OkdString.cpp Sources\Xml\OkdXmlDocument.cpp Sources\Xml\OkdXmlFile.cpp
+         OkdXmlFile.cpp
+         OkdXmlDocument.cpp
+         OkdString.cpp
+         OkdCrc32.cpp
+         OkdFileStream.cpp
+         OkdFile.cpp
+         OkdSingleton.cpp
+         OkdSlot.cpp
+         OkdSignal.cpp
+         OrkidCore.cpp
+         OkdSharedPtr.cpp
+         OkdMemManager.cpp
+         OkdVector4f.cpp
+         OkdVector3f.cpp
+         OkdQuaternionf.cpp
+         OkdMatrix4f.cpp
+         OkdWindowsRawInputHandler.cpp
+         OkdInputManager.cpp
+         OkdInputEvent.cpp
+         OkdInputDevice.cpp
+         Running Code Analysis for C/C++...
+         Generating Code...
+         Compiling...
+         OkdHandleTemplate.cpp
+         OkdEntityManager.cpp
+     1>c:\dev\svn\korben-dev\orkid_vs2013\orkidcore\sources\framework\okdentitymanager.cpp(40): error C2556: 'OkdEntity *OkdEntityManager::createEntity(const OkdString &)' : overloaded function differs only by return type from 'OkdEntityHandle OkdEntityManager::createEntity(const OkdString &)'
+                 c:\dev\svn\korben-dev\orkid_vs2013\orkidcore\sources\framework\okdentitymanager.h(30) : see declaration of 'OkdEntityManager::createEntity'
+     1>c:\dev\svn\korben-dev\orkid_vs2013\orkidcore\sources\framework\okdentitymanager.cpp(40): error C2040: 'OkdEntityManager::createEntity' : 'OkdEntity *(const OkdString &)' differs in levels of indirection from 'OkdEntityHandle (const OkdString &)'
+         OkdEntity.cpp
+         OkdComponentFactory.cpp
+         OkdAbstractSystem.cpp
+         OkdAbstractComponent.cpp
+         OkdVector.cpp
+         OkdMap.cpp
+         OkdList.cpp
+         Running Code Analysis for C/C++...
+         Generating Code...
+     1>Done Building Project "C:\Dev\svn\korben-dev\Orkid_vs2013\OrkidCore\OrkidCore.vcxproj" (Rebuild target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:01:31.35

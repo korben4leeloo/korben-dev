@@ -125,7 +125,7 @@
     <ClInclude Include="Sources\Math\KsTransform4.h" />
     <ClInclude Include="Sources\Math\KsVector3.h" />
     <ClInclude Include="Sources\Math\KsVector4.h" />
-    <ClInclude Include="Sources\String\KsString.h" />
+    <ClInclude Include="Sources\String\KmString.h" />
     <ClInclude Include="Sources\String\Root.h" />
   </ItemGroup>
   <ItemGroup>
@@ -134,7 +134,7 @@
     <ClCompile Include="Sources\Math\KsTransform4.cpp" />
     <ClCompile Include="Sources\Math\KsVector3.cpp" />
     <ClCompile Include="Sources\Math\KsVector4.cpp" />
-    <ClCompile Include="Sources\String\KsString.cpp" />
+    <ClCompile Include="Sources\String\KmString.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

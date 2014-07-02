@@ -1,0 +1,16 @@
+﻿Build started 25/06/2014 16:18:17.
+     1>Project "C:\Dev\svn\korben-dev\Orkid_vs2013\OrkidRuntime\OrkidRuntime.vcxproj" on node 4 (Rebuild target(s)).
+     1>_PrepareForClean:
+         Deleting file "Debug\OrkidRuntime.tlog\OrkidRuntime.lastbuildstate".
+       InitializeBuildStatus:
+         Touching "Debug\OrkidRuntime.tlog\unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Dev\svn\korben-dev\Libraries\Math\Eigen_3_2_0" /I"C:\Dev\svn\korben-dev\Orkid_vs2013" /I"C:\Dev\svn\korben-dev\Libraries\Xml" /ZI /nologo /W3 /WX- /Od /Oy- /D CODE_ANALYSIS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze /analyze:plugin"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\\bin\localespc.dll" /errorReport:prompt   /analyze:quiet Sources\OkdRuntime.cpp
+         OkdRuntime.cpp
+     1>c:\dev\svn\korben-dev\orkid_vs2013\orkidruntime\sources\okdruntime.cpp(319): error C2440: 'initializing' : cannot convert from 'OkdEntityHandle' to 'OkdEntity *'
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>Done Building Project "C:\Dev\svn\korben-dev\Orkid_vs2013\OrkidRuntime\OrkidRuntime.vcxproj" (Rebuild target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:01.75

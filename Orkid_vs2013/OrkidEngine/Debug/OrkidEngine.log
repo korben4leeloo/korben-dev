@@ -1,0 +1,87 @@
+﻿Build started 25/06/2014 16:16:43.
+     1>Project "C:\Dev\svn\korben-dev\Orkid_vs2013\OrkidEngine\OrkidEngine.vcxproj" on node 3 (Rebuild target(s)).
+     1>_PrepareForClean:
+         Deleting file "Debug\OrkidEngine.tlog\OrkidEngine.lastbuildstate".
+       InitializeBuildStatus:
+         Creating "Debug\OrkidEngine.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Qt\5.1.1\msvc2010\include /IC:\Qt\5.1.1\msvc2010\include\QtCore /I"C:\Dev\svn\korben-dev\Libraries\Math\Eigen_3_2_0" /I"C:\Dev\svn\korben-dev\Libraries\OpenGL" /I"C:\Dev\svn\korben-dev\Orkid_vs2013" /I"C:\Dev\svn\korben-dev\Libraries\Xml\Xerces\include" /I"C:\Dev\svn\korben-dev\Libraries\Xml" /ZI /nologo /W3 /WX- /Od /Oy- /D CODE_ANALYSIS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze /analyze:plugin"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\\bin\localespc.dll" /errorReport:prompt   /analyze:quiet Sources\Components\OkdCameraComponent.cpp Sources\Components\OkdLightComponent.cpp Sources\Components\OkdMeshComponent.cpp Sources\Components\OkdTransformComponent.cpp Sources\Entities\OkdCamera.cpp Sources\Entities\OkdCreature.cpp Sources\Entities\OkdEntity.cpp Sources\Entities\OkdEntityFactory.cpp Sources\Entities\OkdLight.cpp Sources\Entities\OkdMesh.cpp Sources\Entities\OkdMeshInfo.cpp Sources\Entities\OkdShape.cpp Sources\Gameplay\OkdAbstractGameplay.cpp Sources\Gameplay\OkdFreeCameraGameplay.cpp Sources\Gameplay\OkdGameplayManager.cpp Sources\OpenGL\OkdOpenGL_API.cpp Sources\OrkidEngine.cpp Sources\OpenGL\OkdOpenGLContext.cpp Sources\Resources\Allocators\OkdDefaultResourceAllocator.cpp Sources\Resources\Allocators\OkdResourceAllocator.cpp Sources\Resources\Allocators\OkdShaderResourceAllocator.cpp Sources\Resources\OkdAbstractResource.cpp Sources\Resources\OkdResourceDatabase.cpp Sources\Resources\OkdResourceManager.cpp Sources\Resources\OkdResourceMap.cpp Sources\Resources\OkdResourcePtr.cpp Sources\SceneGraph\OkdNode.cpp Sources\SceneGraph\OkdScene.cpp Sources\Shaders\OkdAbstractShader.cpp Sources\Shaders\OkdAbstractShaderProgram.cpp Sources\Shaders\OpenGL\OkdOpenGLShader.cpp Sources\Systems\OkdRenderSystem.cpp
+         OkdRenderSystem.cpp
+         OkdOpenGLShader.cpp
+         OkdAbstractShaderProgram.cpp
+         OkdAbstractShader.cpp
+         OkdScene.cpp
+         OkdNode.cpp
+         OkdResourcePtr.cpp
+         OkdResourceMap.cpp
+         OkdResourceManager.cpp
+         OkdResourceDatabase.cpp
+         OkdAbstractResource.cpp
+         OkdShaderResourceAllocator.cpp
+         OkdResourceAllocator.cpp
+         OkdDefaultResourceAllocator.cpp
+         OkdOpenGLContext.cpp
+         OrkidEngine.cpp
+         OkdOpenGL_API.cpp
+         OkdGameplayManager.cpp
+         OkdFreeCameraGameplay.cpp
+         OkdAbstractGameplay.cpp
+         Running Code Analysis for C/C++...
+         Generating Code...
+         Compiling...
+         OkdShape.cpp
+         OkdMeshInfo.cpp
+         OkdMesh.cpp
+         OkdLight.cpp
+         OkdEntityFactory.cpp
+         OkdEntity.cpp
+         OkdCreature.cpp
+         OkdCamera.cpp
+         OkdTransformComponent.cpp
+         OkdMeshComponent.cpp
+         OkdLightComponent.cpp
+         OkdCameraComponent.cpp
+         Running Code Analysis for C/C++...
+         Generating Code...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Dev\svn\korben-dev\Orkid_vs2013\Debug\OrkidEngine.lib" /NOLOGO Debug\OkdCameraComponent.obj
+         Debug\OkdLightComponent.obj
+         Debug\OkdMeshComponent.obj
+         Debug\OkdTransformComponent.obj
+         Debug\OkdCamera.obj
+         Debug\OkdCreature.obj
+         Debug\OkdEntity.obj
+         Debug\OkdEntityFactory.obj
+         Debug\OkdLight.obj
+         Debug\OkdMesh.obj
+         Debug\OkdMeshInfo.obj
+         Debug\OkdShape.obj
+         Debug\OkdAbstractGameplay.obj
+         Debug\OkdFreeCameraGameplay.obj
+         Debug\OkdGameplayManager.obj
+         Debug\OkdOpenGL_API.obj
+         Debug\OrkidEngine.obj
+         Debug\OkdOpenGLContext.obj
+         Debug\OkdDefaultResourceAllocator.obj
+         Debug\OkdResourceAllocator.obj
+         Debug\OkdShaderResourceAllocator.obj
+         Debug\OkdAbstractResource.obj
+         Debug\OkdResourceDatabase.obj
+         Debug\OkdResourceManager.obj
+         Debug\OkdResourceMap.obj
+         Debug\OkdResourcePtr.obj
+         Debug\OkdNode.obj
+         Debug\OkdScene.obj
+         Debug\OkdAbstractShader.obj
+         Debug\OkdAbstractShaderProgram.obj
+         Debug\OkdOpenGLShader.obj
+         Debug\OkdRenderSystem.obj
+         OrkidEngine.vcxproj -> C:\Dev\svn\korben-dev\Orkid_vs2013\Debug\OrkidEngine.lib
+       FinalizeBuildStatus:
+         Deleting file "Debug\OrkidEngine.tlog\unsuccessfulbuild".
+         Touching "Debug\OrkidEngine.tlog\OrkidEngine.lastbuildstate".
+     1>Done Building Project "C:\Dev\svn\korben-dev\Orkid_vs2013\OrkidEngine\OrkidEngine.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:01:33.90

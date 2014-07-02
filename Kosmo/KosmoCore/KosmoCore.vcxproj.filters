@@ -39,7 +39,7 @@
     <ClInclude Include="Sources\String\Root.h">
       <Filter>Sources\String</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\String\KsString.h">
+    <ClInclude Include="Sources\String\KmString.h">
       <Filter>Sources\String</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,7 +59,7 @@
     <ClCompile Include="Sources\GUI\KsWindow.cpp">
       <Filter>Sources\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\String\KsString.cpp">
+    <ClCompile Include="Sources\String\KmString.cpp">
       <Filter>Sources\String</Filter>
     </ClCompile>
   </ItemGroup>
