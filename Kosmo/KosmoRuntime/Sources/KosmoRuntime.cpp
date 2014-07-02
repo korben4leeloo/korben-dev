@@ -8,7 +8,7 @@
 #include	"KosmoRuntimeRoot.h"
 
 #include	KOSMO_CORE_H(GUI/KsWindow)
-#include	KOSMO_CORE_H(String/KsString)
+#include	KOSMO_CORE_H(String/KmString)
 
 //-----------------------------------------------------------------------------
 // Name:		main
@@ -17,20 +17,20 @@
 //-----------------------------------------------------------------------------
 int main()
 {
-	KsString str;
-	KsString str2( "plouf toto" );
-	KsString str3( str2 );
+	KmString str;
+	KmString str2( "plouf toto" );
+	KmString str3( str2 );
 
 	str2 = str2;
 	str2 = str;
 	str = str3;
 	str = "toto plouf";
 
-	KsString str4 = str + str2;
+	KmString str4 = str + str2;
 
 	str4 = str + str3;
 	
-	KsString str5;
+	KmString str5;
 
 	str5 = str4 + "test";
 	str5 = "test" + str4;

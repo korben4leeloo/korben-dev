@@ -1,23 +1,23 @@
 //*****************************************************************************
 //
-//	File:		KsString.cpp
+//	File:		KmString.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include	"KsString.h"
+#include	"KmString.h"
 
 #include	<string.h>
 
-KsString KsString::_nullString( NULL );
-KsString KsString::_emptyString( "" );
+KmString KmString::_nullString( NULL );
+KmString KmString::_emptyString( "" );
 
 //-----------------------------------------------------------------------------
-// Name:		KsString constructor
+// Name:		KmString constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsString::KsString(const char*	pcData)
+KmString::KmString(const char*	pcData)
 : _pcBuffer	( NULL )
 , _uiLength	( 0 )
 {
@@ -25,11 +25,11 @@ KsString::KsString(const char*	pcData)
 }
 
 //-----------------------------------------------------------------------------
-// Name:		KsString constructor
+// Name:		KmString constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsString::KsString(const KsString&	other)
+KmString::KmString(const KmString&	other)
 : _pcBuffer	( NULL )
 , _uiLength	( 0 )
 {
@@ -37,11 +37,11 @@ KsString::KsString(const KsString&	other)
 }
 
 //-----------------------------------------------------------------------------
-// Name:		KsString constructor
+// Name:		KmString constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsString::KsString(KsString&&	other)
+KmString::KmString(KmString&&	other)
 {
 	_pcBuffer = other._pcBuffer;
 	_uiLength = other._uiLength;
@@ -51,11 +51,11 @@ KsString::KsString(KsString&&	other)
 }
 
 //-----------------------------------------------------------------------------
-// Name:		KsString destructor
+// Name:		KmString destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsString::~KsString()
+KmString::~KmString()
 {
 	if	(_pcBuffer )
 	{
@@ -68,7 +68,7 @@ KsString::~KsString()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsString& KsString::operator=(const KsString&	other)
+KmString& KmString::operator=(const KmString&	other)
 {
 	if	( &other != this )
 	{
@@ -83,7 +83,7 @@ KsString& KsString::operator=(const KsString&	other)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsString& KsString::operator=(KsString&&	other)
+KmString& KmString::operator=(KmString&&	other)
 {
 	if	( &other != this )
 	{
@@ -107,7 +107,7 @@ KsString& KsString::operator=(KsString&&	other)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	KsString::copy(const char*	pcData)
+void	KmString::copy(const char*	pcData)
 {
 	if	( _pcBuffer )
 	{
@@ -128,7 +128,7 @@ void	KsString::copy(const char*	pcData)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	KsString::append(const char*	pcData)
+void	KmString::append(const char*	pcData)
 {
 	uint32 uiDataLength = (uint32)strlen( pcData );
 
@@ -155,10 +155,10 @@ void	KsString::append(const char*	pcData)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsString KsString::join(const char*	pcSourceData1, 
+KmString KmString::join(const char*	pcSourceData1, 
 						const char*	pcSourceData2)
 {
-	KsString result( KsString::_nullString );
+	KmString result( KmString::_nullString );
 
 	result._uiLength = (uint32)( strlen( pcSourceData1 ) + strlen( pcSourceData2 ) );
 	result._pcBuffer = new char[result._uiLength+1];

@@ -1,50 +1,50 @@
 //*****************************************************************************
 //
-//	Class:		KsString
+//	Class:		KmString
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __KosmoCore_KsString_h__
-#define __KosmoCore_KsString_h__
+#ifndef __KosmoCore_KmString_h__
+#define __KosmoCore_KmString_h__
 
 #include	"Root.h"
 
 KOSMO_CORE_NAMESPACE_BEGIN
 
-class KsString
+class KmString
 {
 public:
-						KsString( const char* pcData = "" );
-						KsString( const KsString& other );
-						KsString( KsString&& other );
-						~KsString();
+						KmString( const char* pcData = "" );
+						KmString( const KmString& other );
+						KmString( KmString&& other );
+						~KmString();
 
 	// Accessors
 	inline const char*	getData() const;
 	inline uint32		getLength() const;
 
 	// Operators
-	KsString&			operator=( const KsString& other );
-	KsString&			operator=( KsString&& other );
-	inline KsString&	operator=( const char* pcData );
+	KmString&			operator=( const KmString& other );
+	KmString&			operator=( KmString&& other );
+	inline KmString&	operator=( const char* pcData );
 
-	inline KsString&	operator+=( const KsString& other );
-	inline KsString&	operator+=( const char* pcData );
+	inline KmString&	operator+=( const KmString& other );
+	inline KmString&	operator+=( const char* pcData );
 
 	// String operations
-	inline void			copy( const KsString& other );
+	inline void			copy( const KmString& other );
 	void				copy( const char* pcData );
 
-	inline void			append( const KsString& other );
+	inline void			append( const KmString& other );
 	void				append( const char* pcData );
 
-	static KsString		join( const char* pcSourceData1, const char* pcSourceData2 );
+	static KmString		join( const char* pcSourceData1, const char* pcSourceData2 );
 
 	// Static members
-	static KsString		_nullString;
-	static KsString		_emptyString;
+	static KmString		_nullString;
+	static KmString		_emptyString;
 
 private:
 	char*				_pcBuffer;
@@ -60,7 +60,7 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-uint32	KsString::getLength() const
+uint32	KmString::getLength() const
 {
 	return	( _uiLength );
 }
@@ -70,7 +70,7 @@ uint32	KsString::getLength() const
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-const char*	KsString::getData() const
+const char*	KmString::getData() const
 {
 	return	( _pcBuffer );
 }
@@ -80,7 +80,7 @@ const char*	KsString::getData() const
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	KsString::copy(const KsString&	other)
+void	KmString::copy(const KmString&	other)
 {
 	copy( other.getData() );
 }
@@ -90,7 +90,7 @@ void	KsString::copy(const KsString&	other)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	KsString::append(const KsString&	other)
+void	KmString::append(const KmString&	other)
 {
 	append( other.getData() );
 }
@@ -100,7 +100,7 @@ void	KsString::append(const KsString&	other)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsString& KsString::operator=(const char*	pcData)
+KmString& KmString::operator=(const char*	pcData)
 {
 	copy( pcData );
 	return	( *this );
@@ -111,7 +111,7 @@ KsString& KsString::operator=(const char*	pcData)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsString& KsString::operator+=(const KsString&	other)
+KmString& KmString::operator+=(const KmString&	other)
 {
 	append( other.getData() );
 	return	( *this );
@@ -122,7 +122,7 @@ KsString& KsString::operator+=(const KsString&	other)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-KsString& KsString::operator+=(const char*	pcData)
+KmString& KmString::operator+=(const char*	pcData)
 {
 	append( pcData );
 	return	( *this );
@@ -137,10 +137,10 @@ KsString& KsString::operator+=(const char*	pcData)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-inline KsString operator+(const KsString&	lhs,
-						  const KsString&	rhs)
+inline KmString operator+(const KmString&	lhs,
+						  const KmString&	rhs)
 {
-	KsString result = KsString::join( lhs.getData(), rhs.getData() );
+	KmString result = KmString::join( lhs.getData(), rhs.getData() );
 	return	( result );
 }
 
@@ -149,10 +149,10 @@ inline KsString operator+(const KsString&	lhs,
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-inline KsString operator+(const KsString&	other,
+inline KmString operator+(const KmString&	other,
 						  const char*		pcData)
 {
-	KsString result = KsString::join( other.getData(), pcData );
+	KmString result = KmString::join( other.getData(), pcData );
 	return	( result );
 }
 
@@ -161,10 +161,10 @@ inline KsString operator+(const KsString&	other,
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-inline KsString operator+(const char*		pcData,
-						  const KsString&	other)
+inline KmString operator+(const char*		pcData,
+						  const KmString&	other)
 {
-	KsString result = KsString::join( pcData, other.getData() );
+	KmString result = KmString::join( pcData, other.getData() );
 	return	( result );
 }
 
