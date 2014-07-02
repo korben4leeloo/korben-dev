@@ -21,46 +21,49 @@
     <ClInclude Include="Sources\GUI\Root.h">
       <Filter>Sources\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Math\KsQuaternion.h">
-      <Filter>Sources\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Math\KsTransform4.h">
-      <Filter>Sources\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Math\KsVector3.h">
-      <Filter>Sources\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Math\KsVector4.h">
-      <Filter>Sources\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\GUI\KsWindow.h">
-      <Filter>Sources\GUI</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\String\Root.h">
       <Filter>Sources\String</Filter>
     </ClInclude>
     <ClInclude Include="Sources\String\KmString.h">
       <Filter>Sources\String</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Math\KmVector3.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\KmVector4.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\KmQuaternion.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\KmTransform4.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Root.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\GUI\KmWindow.h">
+      <Filter>Sources\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Math\KsQuaternion.cpp">
-      <Filter>Sources\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Math\KsTransform4.cpp">
-      <Filter>Sources\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Math\KsVector3.cpp">
-      <Filter>Sources\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Math\KsVector4.cpp">
-      <Filter>Sources\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\GUI\KsWindow.cpp">
-      <Filter>Sources\GUI</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\String\KmString.cpp">
       <Filter>Sources\String</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\KmVector4.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\KmQuaternion.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\KmTransform4.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\KmVector3.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GUI\KmWindow.cpp">
+      <Filter>Sources\GUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
