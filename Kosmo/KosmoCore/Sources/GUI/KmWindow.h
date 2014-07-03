@@ -29,7 +29,7 @@ private:
 };
 
 //*****************************************************************************
-//	Inline functions declarations
+//	Inline methods declarations
 //*****************************************************************************
 
 KOSMO_CORE_NAMESPACE_END

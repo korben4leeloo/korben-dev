@@ -13,6 +13,9 @@
     <Filter Include="Sources\String">
       <UniqueIdentifier>{803c52f1-3ad3-4662-882c-30d05c34026a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Containers">
+      <UniqueIdentifier>{76f7736b-c237-4fed-a63a-ad88d9697547}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\KosmoCoreRoot.h">
@@ -45,6 +48,15 @@
     <ClInclude Include="Sources\GUI\KmWindow.h">
       <Filter>Sources\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Containers\KmVector.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Containers\Root.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Containers\KmList.h">
+      <Filter>Sources\Containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\String\KmString.cpp">
@@ -64,6 +76,12 @@
     </ClCompile>
     <ClCompile Include="Sources\GUI\KmWindow.cpp">
       <Filter>Sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Containers\KmList.cpp">
+      <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Containers\KmVector.cpp">
+      <Filter>Sources\Containers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -118,6 +118,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\Containers\KmList.h" />
+    <ClInclude Include="Sources\Containers\KmVector.h" />
+    <ClInclude Include="Sources\Containers\Root.h" />
     <ClInclude Include="Sources\GUI\KmWindow.h" />
     <ClInclude Include="Sources\GUI\Root.h" />
     <ClInclude Include="Sources\KosmoCoreRoot.h" />
@@ -130,6 +133,8 @@
     <ClInclude Include="Sources\String\Root.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Containers\KmList.cpp" />
+    <ClCompile Include="Sources\Containers\KmVector.cpp" />
     <ClCompile Include="Sources\GUI\KmWindow.cpp" />
     <ClCompile Include="Sources\Math\KmQuaternion.cpp" />
     <ClCompile Include="Sources\Math\KmTransform4.cpp" />
