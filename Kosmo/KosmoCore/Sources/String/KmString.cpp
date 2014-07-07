@@ -57,10 +57,7 @@ KmString::KmString(KmString&&	other)
 //-----------------------------------------------------------------------------
 KmString::~KmString()
 {
-	if	(_pcBuffer )
-	{
-		delete[] _pcBuffer;
-	}
+	delete[] _pcBuffer;
 }
 
 //-----------------------------------------------------------------------------
@@ -87,10 +84,7 @@ KmString& KmString::operator=(KmString&&	other)
 {
 	if	( &other != this )
 	{
-		if	( _pcBuffer )
-		{
-			delete[] _pcBuffer;
-		}
+		delete[] _pcBuffer;
 
 		_pcBuffer = other._pcBuffer;
 		_uiLength = other._uiLength;
@@ -109,10 +103,7 @@ KmString& KmString::operator=(KmString&&	other)
 //-----------------------------------------------------------------------------
 void	KmString::copy(const char*	pcData)
 {
-	if	( _pcBuffer )
-	{
-		delete[] _pcBuffer;
-	}
+	delete[] _pcBuffer;
 
 	if	( pcData )
 	{
@@ -140,10 +131,7 @@ void	KmString::append(const char*	pcData)
 		strcpy_s( pcBuffer, uiNewLength + 1, _pcBuffer );
 		strcat_s( pcBuffer, uiNewLength + 1, pcData );
 
-		if	( _pcBuffer )
-		{
-			delete[] _pcBuffer;
-		}
+		delete[] _pcBuffer;
 
 		_uiLength	= uiNewLength;
 		_pcBuffer	= pcBuffer;

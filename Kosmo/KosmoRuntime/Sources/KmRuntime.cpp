@@ -9,13 +9,9 @@
 
 #include	KOSMO_CORE_H(GUI/KmWindow)
 #include	KOSMO_CORE_H(String/KmString)
+#include	KOSMO_CORE_H(Containers/KmVector)
 
-//-----------------------------------------------------------------------------
-// Name:		main
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-int main()
+void testString()
 {
 	KmString str;
 	KmString str2( "plouf toto" );
@@ -34,6 +30,39 @@ int main()
 
 	str5 = str4 + "test";
 	str5 = "test" + str4;
+}
+
+
+void testVector()
+{
+	KmVector<KmString> stringVector;
+
+	//stringVector.add( "test" );
+	//stringVector.add( "test2" );
+
+	for	( uint32 i = 0; i < 10; i++ )
+	{
+		stringVector.add( "test_test" );
+	}
+
+	stringVector.resize( 4 );
+	stringVector.resize( 12 );
+	stringVector.resize( 18 );
+
+	const KmString& s = stringVector[2];
+
+	stringVector[2] = "plouf";
+}
+
+//-----------------------------------------------------------------------------
+// Name:		main
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+int main()
+{
+	//testString();
+	testVector();
 
 	return	( 0 );
 }
