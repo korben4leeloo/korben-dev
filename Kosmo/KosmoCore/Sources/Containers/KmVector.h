@@ -24,16 +24,21 @@ public:
 					~KmVector();
 
 	void			add( const T& item );
+	void			remove( const uint32 uiIndex );
+
+	inline uint32	getSize() const;
 
 	inline T&		operator[]( const uint32 nIndex );
 
-	void			resize( const uint32 uiCount );
-	void			reserve( const uint32 uiCount );
+	void			resize( const uint32 uiSize, const T& defaultValue = T() );
+	void			reserve( const uint32 uiSize );
 
 private:
+	void			destroy();
+
 	T*				_pArray;
-	uint32			_uiCount;
-	uint32			_uiAllocatedCount;
+	uint32			_uiSize;
+	uint32			_uiAllocatedSize;
 	uint32			_uiAllocationBase;
 };
 
@@ -49,8 +54,8 @@ private:
 template<class T>
 KmVector<T>::KmVector(const uint32	uiAllocationBase)
 : _pArray			( NULL )
-, _uiCount			( 0 )
-, _uiAllocatedCount	( 0 )
+, _uiSize			( 0 )
+, _uiAllocatedSize	( 0 )
 , _uiAllocationBase	( uiAllocationBase )
 {
 	
@@ -64,7 +69,26 @@ KmVector<T>::KmVector(const uint32	uiAllocationBase)
 template<class T>
 KmVector<T>::~KmVector()
 {
-	delete[] _pArray;
+	destroy();
+}
+
+//-----------------------------------------------------------------------------
+// Name:		destroy
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+void KmVector<T>::destroy()
+{
+	for	( uint32 i = 0; i < _uiSize; i++ )
+	{
+		( _pArray + i )->~T();
+	}
+
+	delete reinterpret_cast<KmByte*>( _pArray );
+
+	_pArray		= NULL;
+	_uiSize	= 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -75,8 +99,39 @@ KmVector<T>::~KmVector()
 template<class T>
 void KmVector<T>::add(const T&	item)
 {
-	resize( _uiCount + 1 );
-	_pArray[_uiCount-1] = item;
+	resize( _uiSize + 1, item );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		remove
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+void KmVector<T>::remove(const uint32	uiIndex)
+{
+	KOSMO_ASSERT( uiIndex < _uiSize );
+
+	if	( uiIndex < _uiSize )
+	{
+		for	( uint32 i = uiIndex; i < _uiSize - 1; i++ )
+		{
+			_pArray[i] = _pArray[i+1];
+		}
+
+		resize( _uiSize - 1 );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getSize
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+uint32 KmVector<T>::getSize() const
+{
+	return	( _uiSize );
 }
 
 //-----------------------------------------------------------------------------
@@ -87,7 +142,7 @@ void KmVector<T>::add(const T&	item)
 template<class T>
 T& KmVector<T>::operator[](const uint32	uiIndex)
 {
-	KOSMO_ASSERT( uiIndex < _uiCount );
+	KOSMO_ASSERT( uiIndex < _uiSize );
 	return	( _pArray[uiIndex] );
 }
 
@@ -97,48 +152,54 @@ T& KmVector<T>::operator[](const uint32	uiIndex)
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-void KmVector<T>::resize(const uint32	uiCount)
+void KmVector<T>::resize(const uint32	uiSize, 
+						 const T&		defaultValue)
 {
-	uint32 uiAllocationCount = ( ( uiCount % _uiAllocationBase ) != 0 ) ? ( ( uiCount + _uiAllocationBase ) / _uiAllocationBase ) * _uiAllocationBase
-																		: uiCount;
-
-	if	( uiAllocationCount > _uiAllocatedCount )
+	if	( uiSize != _uiSize )
 	{
-		T* pArray = new T[uiAllocationCount];
+		uint32 uiAllocationSize = ( ( uiSize % _uiAllocationBase ) != 0 ) ? ( ( uiSize + _uiAllocationBase ) / _uiAllocationBase ) * _uiAllocationBase
+																		  : uiSize;
 
-		if	( _pArray )
+		if	( uiAllocationSize > _uiAllocatedSize )
 		{
-			for	( uint32 i = 0; i < _uiCount; i++ )
+			T* pArray = reinterpret_cast<T*>( new KmByte[uiAllocationSize*sizeof(T)] );
+
+			// Copy existing values
+			for	( uint32 i = 0; i < _uiSize; i++ )
 			{
-				pArray[i] = _pArray[i];
+				new ( pArray + i ) T( _pArray[i] );
 			}
 
-			delete[] _pArray;
+			// Construct new values
+			for	( uint32 i = _uiSize; i < uiSize; i++ )
+			{
+				new ( pArray + i ) T( defaultValue );
+			}
+
+			destroy();
+
+			_pArray				= pArray;
+			_uiAllocatedSize	= uiAllocationSize;
 		}
-
-		_pArray				= pArray;
-		_uiAllocatedCount	= uiAllocationCount;
-	}
-
-	KOSMO_ASSERT( _pArray );
-
-	if	( uiCount < _uiCount )
-	{
-		for	( uint32 i = uiCount; i < _uiCount; i++ )
+		else
 		{
-			( _pArray + i )->~T();
-		}
-	}
-	else if	( uiCount > _uiCount )
-	{
-		for	( uint32 i = _uiCount; i < uiCount; i++ )
-		{
-			T* p = _pArray + i;
-			new (p) T();
-		}
-	}
+			KOSMO_ASSERT( _pArray );
 
-	_uiCount = uiCount;
+			// Destruct old values
+			for	( uint32 i = uiSize; i < _uiSize; i++ )
+			{
+				( _pArray + i )->~T();
+			}
+
+			// Construct new values
+			for	( uint32 i = _uiSize; i < uiSize; i++ )
+			{
+				new ( _pArray + i ) T( defaultValue );
+			}
+		}
+
+		_uiSize = uiSize;
+	}
 }
 
 KOSMO_CORE_NAMESPACE_END

@@ -11,6 +11,11 @@
 #include	KOSMO_CORE_H(String/KmString)
 #include	KOSMO_CORE_H(Containers/KmVector)
 
+///////////// TEMPORARY /////////////////
+#include	<stdio.h>
+#include	<vector>
+/////////////////////////////////////////
+
 void testString()
 {
 	KmString str;
@@ -48,10 +53,31 @@ void testVector()
 	stringVector.resize( 4 );
 	stringVector.resize( 12 );
 	stringVector.resize( 18 );
+	stringVector.resize( 7 );
 
 	const KmString& s = stringVector[2];
 
 	stringVector[2] = "plouf";
+
+	for	( uint32 i = 0; i < stringVector.getSize(); i++ )
+	{
+		char buf[64];
+		sprintf_s( buf, "test_%d", i );
+		stringVector[i] = buf;
+	}
+
+	stringVector.remove( 1 );
+
+	std::vector<KmString> vs;
+
+	for	( uint32 i = 0; i < 7; i++ )
+	{
+		char buf[64];
+		sprintf_s( buf, "test_%d", i );
+		vs.push_back( buf );
+	}
+
+	vs.erase( vs.begin() + 1 );
 }
 
 //-----------------------------------------------------------------------------
