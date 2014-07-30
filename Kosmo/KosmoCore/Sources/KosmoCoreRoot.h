@@ -10,7 +10,7 @@
 #define __KosmoCore_KosmoCoreRoot_h__
 
 #include	<stdint.h>
-#include	<assert.h>
+#include	<cassert>
 
 #define	KOSMO_CORE_NAMESPACE_BEGIN	\
 namespace Kosmo				\
@@ -22,7 +22,9 @@ namespace Kosmo				\
 	}						\
 }							\
 
-#define KOSMO_ASSERT( condition ) assert( condition );
+//#define KOSMO_ASSERT( condition ) assert( condition );
+//#define KOSMO_ASSERT( condition ) if ( !((bool)condition) ) __debugbreak();
+#define KOSMO_ASSERT( condition ) if ( !(condition) ) __debugbreak();
 
 // Defines for inclusions
 #define	KOSMO_CORE_H(file)	<KosmoCore/Sources/file.h>

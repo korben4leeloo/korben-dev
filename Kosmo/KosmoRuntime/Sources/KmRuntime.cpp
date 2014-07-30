@@ -10,10 +10,12 @@
 #include	KOSMO_CORE_H(GUI/KmWindow)
 #include	KOSMO_CORE_H(String/KmString)
 #include	KOSMO_CORE_H(Containers/KmVector)
+#include	KOSMO_CORE_H(Containers/KmList)
 
 ///////////// TEMPORARY /////////////////
 #include	<stdio.h>
 #include	<vector>
+#include	<list>
 /////////////////////////////////////////
 
 void testString()
@@ -67,6 +69,7 @@ void testVector()
 	}
 
 	stringVector.remove( 1 );
+	stringVector.shrink();
 
 	std::vector<KmString> vs;
 
@@ -80,6 +83,38 @@ void testVector()
 	vs.erase( vs.begin() + 1 );
 }
 
+void testList()
+{
+	KmList<KmString> stringList;
+
+	stringList.pushBack( "test1" );
+	stringList.pushBack( "test3" );
+	stringList.pushBack( "test2" );
+
+	KmList<KmString>::KmIterator it = stringList.begin();
+
+	it++;
+	*it = "test4";
+
+	++it;
+	it--;
+	--it;
+
+	*(it++) = "test5";
+	it->append( "plouf" );
+
+	KmList<KmString>::KmIterator it2;
+
+	stringList.insert( it2, "plouf" );
+	it = stringList.pushBack( "test6" );
+
+	std::list<KmString> l;
+
+	l.push_back( "plouf1" );
+	std::list<KmString>::iterator std_it = l.begin();
+	l.insert( std_it, "plouf2" );
+}
+
 //-----------------------------------------------------------------------------
 // Name:		main
 //
@@ -88,7 +123,8 @@ void testVector()
 int main()
 {
 	//testString();
-	testVector();
+	//testVector();
+	testList();
 
 	return	( 0 );
 }

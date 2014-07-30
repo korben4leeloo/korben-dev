@@ -12,7 +12,7 @@
 #include	"Root.h"
 #include	<new>
 
-#define	KOSMO_DEFAULT_ALLOCATION_BASE	8
+#define	KOSMO_DEFAULT_REALLOC_SIZE	8
 
 KOSMO_CORE_NAMESPACE_BEGIN
 
@@ -20,10 +20,10 @@ template<class T>
 class KmVector
 {
 public:
-					KmVector( const uint32 uiAllocationBase = KOSMO_DEFAULT_ALLOCATION_BASE );
+					KmVector( const uint32 uiReallocSize = KOSMO_DEFAULT_REALLOC_SIZE );
 					~KmVector();
 
-	void			add( const T& item );
+	void			add( const T& value );
 	void			remove( const uint32 uiIndex );
 
 	inline uint32	getSize() const;
@@ -32,6 +32,7 @@ public:
 
 	void			resize( const uint32 uiSize, const T& defaultValue = T() );
 	void			reserve( const uint32 uiSize );
+	void			shrink();
 
 private:
 	void			destroy();
@@ -39,7 +40,7 @@ private:
 	T*				_pArray;
 	uint32			_uiSize;
 	uint32			_uiAllocatedSize;
-	uint32			_uiAllocationBase;
+	uint32			_uiReallocSize;
 };
 
 //*****************************************************************************
@@ -52,11 +53,11 @@ private:
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-KmVector<T>::KmVector(const uint32	uiAllocationBase)
+KmVector<T>::KmVector(const uint32	uiReallocSize)
 : _pArray			( NULL )
 , _uiSize			( 0 )
 , _uiAllocatedSize	( 0 )
-, _uiAllocationBase	( uiAllocationBase )
+, _uiReallocSize	( uiReallocSize )
 {
 	
 }
@@ -97,9 +98,9 @@ void KmVector<T>::destroy()
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-void KmVector<T>::add(const T&	item)
+void KmVector<T>::add(const T&	value)
 {
-	resize( _uiSize + 1, item );
+	resize( _uiSize + 1, value );
 }
 
 //-----------------------------------------------------------------------------
@@ -157,7 +158,7 @@ void KmVector<T>::resize(const uint32	uiSize,
 {
 	if	( uiSize != _uiSize )
 	{
-		uint32 uiAllocationSize = ( ( uiSize % _uiAllocationBase ) != 0 ) ? ( ( uiSize + _uiAllocationBase ) / _uiAllocationBase ) * _uiAllocationBase
+		uint32 uiAllocationSize = ( ( uiSize % _uiReallocSize ) != 0 ) ? ( ( uiSize + _uiReallocSize ) / _uiReallocSize ) * _uiReallocSize
 																		  : uiSize;
 
 		if	( uiAllocationSize > _uiAllocatedSize )
@@ -199,6 +200,34 @@ void KmVector<T>::resize(const uint32	uiSize,
 		}
 
 		_uiSize = uiSize;
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		shrink
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+void KmVector<T>::shrink()
+{
+	uint32 uiAllocationSize = ( ( _uiSize % _uiReallocSize ) != 0 ) ? ( ( _uiSize + _uiReallocSize ) / _uiReallocSize ) * _uiReallocSize
+																		  : _uiSize;
+
+	if	( uiAllocationSize < _uiAllocatedSize )
+	{
+		T* pArray = reinterpret_cast<T*>( new KmByte[uiAllocationSize*sizeof(T)] );
+
+		// Copy existing values
+		for	( uint32 i = 0; i < _uiSize; i++ )
+		{
+			new ( pArray + i ) T( _pArray[i] );
+		}
+
+		destroy();
+
+		_pArray				= pArray;
+		_uiAllocatedSize	= uiAllocationSize;
 	}
 }
 
