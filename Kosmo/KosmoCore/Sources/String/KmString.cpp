@@ -7,8 +7,6 @@
 
 #include	"KmString.h"
 
-#include	<string.h>
-
 KmString KmString::_nullString( NULL );
 KmString KmString::_emptyString( "" );
 

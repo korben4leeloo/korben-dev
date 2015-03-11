@@ -12,19 +12,23 @@
 #include	<stdint.h>
 #include	<cassert>
 
-#define	KOSMO_CORE_NAMESPACE_BEGIN	\
-namespace Kosmo				\
-{							\
-	namespace Core			\
-	{						\
-
-#define	KOSMO_CORE_NAMESPACE_END	\
-	}						\
-}							\
+#define	KOSMO_CORE_NAMESPACE_BEGIN	namespace Kosmo	{ namespace Core {
+#define	KOSMO_CORE_NAMESPACE_END	} }
 
 //#define KOSMO_ASSERT( condition ) assert( condition );
 //#define KOSMO_ASSERT( condition ) if ( !((bool)condition) ) __debugbreak();
-#define KOSMO_ASSERT( condition ) if ( !(condition) ) __debugbreak();
+//#define KOSMO_ASSERT( condition ) if ( !(condition) ) __debugbreak();
+
+//#define KOSMO_ASSERT( condition )
+
+#define KOSMO_ASSERT( condition )	\
+	if ( !(condition) )				\
+	{								\
+		__asm						\
+		{							\
+			int 3					\
+		}							\
+	}							  
 
 // Defines for inclusions
 #define	KOSMO_CORE_H(file)	<KosmoCore/Sources/file.h>

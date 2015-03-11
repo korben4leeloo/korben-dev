@@ -103,16 +103,19 @@ void testList()
 	*(it++) = "test5";
 	it->append( "plouf" );
 
-	KmList<KmString>::KmIterator it2;
+	KmList<KmString>::KmIterator it2 = stringList.find( "test2" );
 
 	stringList.insert( it2, "plouf" );
 	it = stringList.pushBack( "test6" );
 
-	std::list<KmString> l;
+	it2 = stringList.find( "test5plouf" );
+	stringList.insert( it2, "plouf2" );
+
+	/*std::list<KmString> l;
 
 	l.push_back( "plouf1" );
 	std::list<KmString>::iterator std_it = l.begin();
-	l.insert( std_it, "plouf2" );
+	l.insert( std_it, "plouf2" );*/
 }
 
 //-----------------------------------------------------------------------------

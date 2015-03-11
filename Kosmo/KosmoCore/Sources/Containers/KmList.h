@@ -60,8 +60,11 @@ public:
 						~KmList();
 
 	KmIterator			pushBack( const T& value );
+	KmIterator			pushFront( const T& value );
 	KmIterator			insert( const KmIterator& position, const T& value );
 	void				remove( const KmIterator& position );
+
+	KmIterator			find( const T& value );
 
 	inline KmIterator	begin();
 	inline KmIterator	end();
@@ -121,7 +124,37 @@ typename KmList<T>::KmIterator KmList<T>::pushBack(const T&	value)
 	}
 	else
 	{
-		_pHead = _pLast = pListNode;
+		_pHead = pListNode;
+		_pLast = pListNode;
+	}
+
+	_uiSize++;
+
+	return	( KmIterator( pListNode ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		pushFront
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+typename KmList<T>::KmIterator KmList<T>::pushFront(const T&	value)
+{
+	KmListNode* pListNode = new KmListNode( value );
+
+	if	( _pHead )
+	{
+		KOSMO_ASSERT( _pLast );
+
+		pListNode->_pNext	= _pHead;
+		_pHead->_pPrev		= pListNode;
+		_pHead				= pListNode;
+	}
+	else
+	{
+		_pHead = pListNode;
+		_pLast = pListNode;
 	}
 
 	_uiSize++;
@@ -141,9 +174,38 @@ typename KmList<T>::KmIterator KmList<T>::insert(const KmIterator&	position,
 	KOSMO_ASSERT( position.isValid() );
 	KOSMO_ASSERT( _pHead );
 
-	
+	KmListNode* pListNode = new KmListNode( value );
 
-	return	( KmIterator() );
+	pListNode->_pPrev			= position._pListNode;
+	pListNode->_pNext			= position._pListNode->_pNext;
+	position._pListNode->_pNext	= pListNode;
+
+	if ( _pLast == position._pListNode )
+	{
+		_pLast = pListNode;
+	}
+
+	_uiSize++;
+	
+	return	( KmIterator( pListNode ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		find
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+typename KmList<T>::KmIterator KmList<T>::find( const T& value )
+{
+	KmIterator it( _pHead );
+
+	while ( it.isValid() && ( *it != value ) )
+	{
+		it++;
+	}
+
+	return	( it );
 }
 
 //-----------------------------------------------------------------------------
@@ -159,8 +221,8 @@ typename KmList<T>::KmIterator KmList<T>::begin()
 
 //-----------------------------------------------------------------------------
 // Name:		end
-//
 // Created:		2013-08-26
+//
 //-----------------------------------------------------------------------------
 template<class T>
 typename KmList<T>::KmIterator KmList<T>::end()
@@ -259,7 +321,7 @@ typename KmList<T>::KmIterator& KmList<T>::KmIterator::operator++()
 template<class T>
 typename KmList<T>::KmIterator& KmList<T>::KmIterator::operator++(int)
 {
-	KOSMO_ASSERT( isValid() && _pListNode->_pNext );
+	KOSMO_ASSERT( isValid() );
 
 	if	( _pListNode )
 	{

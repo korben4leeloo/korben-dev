@@ -11,6 +11,8 @@
 
 #include	"Root.h"
 
+#include	<string.h>
+
 KOSMO_CORE_NAMESPACE_BEGIN
 
 class KmString
@@ -32,6 +34,9 @@ public:
 
 	inline KmString&	operator+=( const KmString& other );
 	inline KmString&	operator+=( const char* pcData );
+
+	inline bool			operator==( const KmString& other );
+	inline bool			operator!=( const KmString& other );
 
 	// String operations
 	inline void			copy( const KmString& other );
@@ -126,6 +131,26 @@ KmString& KmString::operator+=(const char*	pcData)
 {
 	append( pcData );
 	return	( *this );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator==
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+bool KmString::operator==( const KmString&	other )
+{
+	return	( strcmp( _pcBuffer, other._pcBuffer ) == 0 );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator!=
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+bool KmString::operator!=( const KmString&	other )
+{
+	return	( !( *this == other ) );
 }
 
 //*****************************************************************************
