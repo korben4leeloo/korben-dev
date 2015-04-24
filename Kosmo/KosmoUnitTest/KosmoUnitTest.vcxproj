@@ -18,36 +18,48 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\KmUnitTest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\KosmoUnitTestRoot.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KosmoCore\KosmoCore.vcxproj">
+      <Project>{ce933a6b-b4c1-4fce-9020-2d5a36c325c5}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CE933A6B-B4C1-4FCE-9020-2D5A36C325C5}</ProjectGuid>
-    <RootNamespace>KosmoCore</RootNamespace>
+    <ProjectGuid>{2F9D18E4-5D8A-46B1-AB6D-6E3BD3D24D1E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>KosmoUnitTest</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -65,39 +77,58 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(KORBEN_DEV_PATH)\Libraries;$(KORBEN_DEV_PATH)\Kosmo</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(KORBEN_DEV_PATH)\Kosmo</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(KORBEN_DEV_PATH)\Libraries;$(KORBEN_DEV_PATH)\Kosmo</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(KORBEN_DEV_PATH)\Kosmo</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
@@ -106,54 +137,20 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Sources\Algorithms\BinaryTree\KmBinarySearchTree.h" />
-    <ClInclude Include="Sources\Algorithms\BinaryTree\Root.h" />
-    <ClInclude Include="Sources\Algorithms\Root.h" />
-    <ClInclude Include="Sources\Components\KmComponent.h" />
-    <ClInclude Include="Sources\Components\Root.h" />
-    <ClInclude Include="Sources\Containers\KmList.h" />
-    <ClInclude Include="Sources\Containers\KmVector.h" />
-    <ClInclude Include="Sources\Containers\Root.h" />
-    <ClInclude Include="Sources\GUI\KmWindow.h" />
-    <ClInclude Include="Sources\GUI\Root.h" />
-    <ClInclude Include="Sources\KosmoCoreRoot.h" />
-    <ClInclude Include="Sources\Math\KmQuaternion.h" />
-    <ClInclude Include="Sources\Math\KmTransform4.h" />
-    <ClInclude Include="Sources\Math\KmVector3.h" />
-    <ClInclude Include="Sources\Math\KmVector4.h" />
-    <ClInclude Include="Sources\Math\Root.h" />
-    <ClInclude Include="Sources\Resources\KmResourceId.h" />
-    <ClInclude Include="Sources\Resources\KmResourceManager.h" />
-    <ClInclude Include="Sources\Resources\Root.h" />
-    <ClInclude Include="Sources\String\KmString.h" />
-    <ClInclude Include="Sources\String\Root.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Sources\Algorithms\BinaryTree\KmBinarySearchTree.cpp" />
-    <ClCompile Include="Sources\Components\KmComponent.cpp" />
-    <ClCompile Include="Sources\Containers\KmList.cpp" />
-    <ClCompile Include="Sources\Containers\KmVector.cpp" />
-    <ClCompile Include="Sources\GUI\KmWindow.cpp" />
-    <ClCompile Include="Sources\Math\KmQuaternion.cpp" />
-    <ClCompile Include="Sources\Math\KmTransform4.cpp" />
-    <ClCompile Include="Sources\Math\KmVector3.cpp" />
-    <ClCompile Include="Sources\Math\KmVector4.cpp" />
-    <ClCompile Include="Sources\Resources\KmResourceId.cpp" />
-    <ClCompile Include="Sources\Resources\KmResourceManager.cpp" />
-    <ClCompile Include="Sources\String\KmString.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -33,9 +33,6 @@ public:
 
 	public:
 							KmIterator();
-							/*Iterator( const Iterator& other );
-							Iterator( const Iterator&& other );*/
-							//~KmListIterator();
 
 		inline bool			isValid() const;
 

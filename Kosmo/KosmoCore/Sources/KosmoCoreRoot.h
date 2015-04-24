@@ -9,32 +9,42 @@
 #ifndef __KosmoCore_KosmoCoreRoot_h__
 #define __KosmoCore_KosmoCoreRoot_h__
 
+#include	<stddef.h>
 #include	<stdint.h>
 #include	<cassert>
 
+// Architecture macros definition
+#if defined( _M_X64 ) || defined ( _M_AMD64 )
+	#define	KOSMO_X64
+#else
+	#define	KOSMO_X86
+#endif
+
+// Namespace macros definition
 #define	KOSMO_CORE_NAMESPACE_BEGIN	namespace Kosmo	{ namespace Core {
 #define	KOSMO_CORE_NAMESPACE_END	} }
 
-//#define KOSMO_ASSERT( condition ) assert( condition );
-//#define KOSMO_ASSERT( condition ) if ( !((bool)condition) ) __debugbreak();
-//#define KOSMO_ASSERT( condition ) if ( !(condition) ) __debugbreak();
+// Compile-time messaging
+#define	KOSMO_MSG_START ">>>>>>>>>>>>>>>>>>>> "
+#define	KOSMO_MSG_END	" <<<<<<<<<<<<<<<<<<<<\n"
 
-//#define KOSMO_ASSERT( condition )
+#define KOSMO_MSG( msg ) __pragma(message( "\n\t" ## KOSMO_MSG_START ## "[COMPILE-TIME MESSAGE] " ## msg ## KOSMO_MSG_END ) )
 
-#define KOSMO_ASSERT( condition )	\
-	if ( !(condition) )				\
-	{								\
-		__asm						\
-		{							\
-			int 3					\
-		}							\
-	}							  
+#define KOSMO_TODO( msg ) KOSMO_MSG( "TODO: " ## msg )
 
-// Defines for inclusions
+// Assertion macros definition
+#ifdef KOSMO_X64
+	#define KOSMO_ASSERT( condition ) if ( !(condition) ) __debugbreak();
+#elif defined KOSMO_X86
+	#define KOSMO_ASSERT( condition ) if ( !(condition) ) __asm int 3
+#else
+	#define KOSMO_ASSERT( condition )
+#endif
+
+// Inclusions macros definition
 #define	KOSMO_CORE_H(file)	<KosmoCore/Sources/file.h>
 
-//#include	ORKID_CORE_H(Memory/OkdMemManager)
-
+// Primitive typedefs
 typedef uint8_t			uint8;
 typedef uint16_t		uint16;
 typedef uint32_t		uint32;
@@ -47,6 +57,7 @@ typedef int64_t			int64;
 
 typedef unsigned char	KmByte;
 
+// Common namespace usage
 KOSMO_CORE_NAMESPACE_BEGIN
 KOSMO_CORE_NAMESPACE_END
 using namespace Kosmo::Core;

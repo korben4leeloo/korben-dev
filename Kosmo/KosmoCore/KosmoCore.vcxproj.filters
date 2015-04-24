@@ -16,6 +16,18 @@
     <Filter Include="Sources\Containers">
       <UniqueIdentifier>{76f7736b-c237-4fed-a63a-ad88d9697547}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Components">
+      <UniqueIdentifier>{16add86a-886f-4f62-b351-274e2e8ca68c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Resources">
+      <UniqueIdentifier>{164c1e9f-aa9a-4e5c-be9b-eebfac671c06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Algorithms">
+      <UniqueIdentifier>{dd2c7125-2552-4d30-8fee-d5bade81ac29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Algorithms\BinaryTree">
+      <UniqueIdentifier>{0e6d3bf3-7298-4be0-8fe4-c619abc5d3bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\KosmoCoreRoot.h">
@@ -57,6 +69,30 @@
     <ClInclude Include="Sources\Containers\KmList.h">
       <Filter>Sources\Containers</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Components\KmComponent.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\Root.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Resources\KmResourceManager.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Resources\Root.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Resources\KmResourceId.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Algorithms\BinaryTree\KmBinarySearchTree.h">
+      <Filter>Sources\Algorithms\BinaryTree</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Algorithms\BinaryTree\Root.h">
+      <Filter>Sources\Algorithms\BinaryTree</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Algorithms\Root.h">
+      <Filter>Sources\Algorithms</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\String\KmString.cpp">
@@ -82,6 +118,18 @@
     </ClCompile>
     <ClCompile Include="Sources\Containers\KmVector.cpp">
       <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Components\KmComponent.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Resources\KmResourceManager.cpp">
+      <Filter>Sources\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Resources\KmResourceId.cpp">
+      <Filter>Sources\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Algorithms\BinaryTree\KmBinarySearchTree.cpp">
+      <Filter>Sources\Algorithms\BinaryTree</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
