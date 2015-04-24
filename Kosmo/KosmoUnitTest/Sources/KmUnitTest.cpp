@@ -146,6 +146,8 @@ void testList()
 #ifdef KOSMO_UNIT_TEST_BINARY_SEARCH_TREE
 
 #include	KOSMO_CORE_H(Algorithms/BinaryTree/KmBinarySearchTree)
+#include	<stdio.h>
+#include	<random>
 
 //-----------------------------------------------------------------------------
 // Name:		testBinarySearchTree
@@ -154,9 +156,27 @@ void testList()
 //-----------------------------------------------------------------------------
 void testBinarySearchTree()
 {
+	struct Local
+	{
+		static void displayDataCallback( const int& nData )
+		{
+			printf( "%d\n", nData );
+		}
+	};
+
 	KmBinarySearchTree<int32> bt;
 
-	
+	std::default_random_engine			generator;
+	std::uniform_int_distribution<int>	distribution(0,1000);
+
+	for ( uint32 i = 0; i < 50; i++ )
+	{
+		int dice_roll = distribution(generator);
+		printf( "Generating value %d\n", dice_roll );
+		bt.insert( dice_roll );
+	}
+
+	bt.traverseInOrder( Local::displayDataCallback );
 }
 
 #endif
