@@ -158,25 +158,55 @@ void testBinarySearchTree()
 {
 	struct Local
 	{
-		static void displayDataCallback( const int& nData )
+		static void displayDataCallback( const uint32& nData )
 		{
 			printf( "%d\n", nData );
 		}
 	};
 
-	KmBinarySearchTree<int32> bt;
+	static uint32 uiValueCount			= 50;
+	static uint32 uiRemoveValueCount	= 10;
 
-	std::default_random_engine			generator;
-	std::uniform_int_distribution<int>	distribution(0,1000);
+	uint32*									pValues = new uint32[uiValueCount];
+	std::uniform_int_distribution<uint32>	distribution( 0, 1000 );
+	std::default_random_engine				generator;
+	KmBinarySearchTree<uint32>				bt;
 
-	for ( uint32 i = 0; i < 50; i++ )
+	printf( "Filling tree\n" );
+	printf( "------------\n" );
+
+	for ( uint32 i = 0; i < uiValueCount; i++ )
 	{
-		int dice_roll = distribution(generator);
-		printf( "Generating value %d\n", dice_roll );
-		bt.insert( dice_roll );
+		uint32 uiValue = distribution( generator );
+
+		printf( "Generating value %d\n", uiValue );
+		pValues[i] = uiValue;
+		bt.insert( uiValue );
 	}
 
+	printf( "\nIn order display: %d nodes\n", bt.getSize() );
+	printf( "----------------\n" );
+
 	bt.traverseInOrder( Local::displayDataCallback );
+	printf( "\n" );
+
+	printf( "Removing some values\n" );
+	printf( "------------------\n" );
+
+	for ( uint32 i = 0; i < uiRemoveValueCount; i++ )
+	{
+		uint32	uiRemoveIndex	= distribution( generator ) % uiValueCount;
+		bool	bRemove			= bt.remove( pValues[uiRemoveIndex] );
+
+		printf( "Removing value: %d --> %s\n", pValues[uiRemoveIndex], bRemove ? "OK" : "Not Found" );
+	}
+
+	printf( "\nIn order display after removing values: %d nodes\n", bt.getSize() );
+	printf( "--------------------------------------\n" );
+
+	bt.traverseInOrder( Local::displayDataCallback );
+
+	delete[] pValues;
 }
 
 #endif
@@ -246,7 +276,12 @@ void startUnitTests()
 
 int main()
 {
+	char c;
+
 	startUnitTests();
+
+	printf( "\nPress a key to terminate" );
+	scanf( "%c", &c );
 	return	( 0 );
 }
 
