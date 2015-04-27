@@ -51,7 +51,7 @@ private:
 
 	bool			verify( KmNode* pNode, const T*& pPrevData ) const;
 
-	void			destroy( KmNode*& pNode );
+	void			postOrderDestroy( KmNode*& pNode );
 
 	KmNode*			_pRoot;
 	uint32			_uiSize;
@@ -82,7 +82,7 @@ KmBinarySearchTree<T>::KmBinarySearchTree()
 template<class T>
 KmBinarySearchTree<T>::~KmBinarySearchTree()
 {
-	destroy( _pRoot );
+	postOrderDestroy( _pRoot );
 }
 
 //-----------------------------------------------------------------------------
@@ -329,17 +329,17 @@ bool KmBinarySearchTree<T>::verify(KmNode*		pNode,
 }
 
 //-----------------------------------------------------------------------------
-// Name:		destroy
+// Name:		postOrderDestroy
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-void KmBinarySearchTree<T>::destroy(KmNode*& pNode)
+void KmBinarySearchTree<T>::postOrderDestroy(KmNode*& pNode)
 {
 	if ( pNode )
 	{
-		destroy( pNode->_pLeft );
-		destroy( pNode->_pRight );
+		postOrderDestroy( pNode->_pLeft );
+		postOrderDestroy( pNode->_pRight );
 		delete pNode;
 	}
 }
