@@ -44,6 +44,8 @@ private:
 	bool			insert( KmNode*& pNode, const T& data );
 	bool			remove( KmNode*& pNode, const T& data );
 
+	void			removeNode( KmNode*& pNode );
+
 	void			traverseInOrder( KmNode* pNode, const TraverseCallback pfnTraverseCallback ) const;
 
 	void			replaceWithPredecessor( KmNode*& pNode );
@@ -159,38 +161,7 @@ bool KmBinarySearchTree<T>::remove(KmNode*&	pNode,
 	{
 		if ( data == pNode->_data )
 		{
-			KmNode* pLeftChild		= pNode->_pLeft;
-			KmNode* pRightChild		= pNode->_pRight;
-			KmNode* pNodeToDelete	= pNode;
-
-			if ( pLeftChild )
-			{
-				if ( pRightChild )
-				{
-					// Two children cases
-					replaceWithPredecessor( pNode );
-					//replaceWithSuccessor( pNode );
-				}
-				else
-				{
-					// Left child only case
-					pNode = pLeftChild;
-				}
-			}
-			else if ( pRightChild )
-			{
-				// Right child only case
-				pNode = pRightChild;
-			}
-			else
-			{
-				// No child case
-				pNode = NULL;
-			}
-
-			delete pNodeToDelete;
-			_uiSize--;
-
+			removeNode( pNode );
 			return	( true );
 		}
 		else if ( data < pNode->_data )
@@ -204,6 +175,47 @@ bool KmBinarySearchTree<T>::remove(KmNode*&	pNode,
 	}
 
 	return	( false );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		removeNode
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+void KmBinarySearchTree<T>::removeNode(KmNode*&	pNode)
+{
+	KmNode* pLeftChild		= pNode->_pLeft;
+	KmNode* pRightChild		= pNode->_pRight;
+	KmNode* pNodeToDelete	= pNode;
+
+	if ( pLeftChild )
+	{
+		if ( pRightChild )
+		{
+			// Two children cases
+			replaceWithPredecessor( pNode );
+			//replaceWithSuccessor( pNode );
+		}
+		else
+		{
+			// Left child only case
+			pNode = pLeftChild;
+		}
+	}
+	else if ( pRightChild )
+	{
+		// Right child only case
+		pNode = pRightChild;
+	}
+	else
+	{
+		// No child case
+		pNode = NULL;
+	}
+
+	delete pNodeToDelete;
+	_uiSize--;
 }
 
 //-----------------------------------------------------------------------------
