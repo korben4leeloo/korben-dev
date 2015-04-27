@@ -120,6 +120,7 @@ bool KmBinarySearchTree<T>::insert(KmNode*&	pNode,
 	{
 		pNode = new KmNode( data );
 		_uiSize++;
+
 		return	( true );
 	}
 	else if ( data < pNode->_data )
