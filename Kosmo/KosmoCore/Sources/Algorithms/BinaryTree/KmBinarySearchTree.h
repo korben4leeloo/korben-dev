@@ -27,7 +27,9 @@ public:
 	bool			insert( const T& data );
 	bool			remove( const T& data );
 
-	void			traverseInOrder( const TraverseCallback pfnTraverseCallback );
+	void			traverseInOrder( const TraverseCallback pfnTraverseCallback ) const;
+
+	bool			verify() const;
 
 private:
 	struct KmNode
@@ -42,7 +44,12 @@ private:
 	bool			insert( KmNode*& pNode, const T& data );
 	bool			remove( KmNode*& pNode, const T& data );
 
-	void			traverseInOrder( KmNode* pNode, const TraverseCallback pfnTraverseCallback );
+	void			traverseInOrder( KmNode* pNode, const TraverseCallback pfnTraverseCallback ) const;
+
+	void			replaceWithPredecessor( KmNode*& pNode );
+	void			replaceWithSuccessor( KmNode*& pNode );
+
+	bool			verify( KmNode* pNode, const T*& pPrevData ) const;
 
 	void			destroy( KmNode*& pNode );
 
@@ -160,23 +167,8 @@ bool KmBinarySearchTree<T>::remove(KmNode*&	pNode,
 				if ( pRightChild )
 				{
 					// Two children cases
-					KmNode* pHighestLeft		= pLeftChild;
-					KmNode* pHighestLeftParent	= NULL;
-
-					while ( pHighestLeft->_pRight )
-					{
-						pHighestLeftParent	= pHighestLeft;
-						pHighestLeft		= pHighestLeft->_pRight;
-					}
-
-					if ( pHighestLeftParent )
-					{
-						pHighestLeftParent->_pRight	= pHighestLeft->_pLeft;
-						pHighestLeft->_pLeft		= pLeftChild;
-					}
-
-					pHighestLeft->_pRight	= pRightChild;
-					pNode					= pHighestLeft;
+					replaceWithPredecessor( pNode );
+					//replaceWithSuccessor( pNode );
 				}
 				else
 				{
@@ -214,12 +206,66 @@ bool KmBinarySearchTree<T>::remove(KmNode*&	pNode,
 }
 
 //-----------------------------------------------------------------------------
+// Name:		replaceWithPredecessor
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+void KmBinarySearchTree<T>::replaceWithPredecessor(KmNode*&	pNode)
+{
+	KmNode* pHighestLeft		= pNode->_pLeft;
+	KmNode* pHighestLeftParent	= NULL;
+
+	while ( pHighestLeft->_pRight )
+	{
+		pHighestLeftParent	= pHighestLeft;
+		pHighestLeft		= pHighestLeft->_pRight;
+	}
+
+	if ( pHighestLeftParent )
+	{
+		pHighestLeftParent->_pRight	= pHighestLeft->_pLeft;
+		pHighestLeft->_pLeft		= pNode->_pLeft;
+	}
+
+	pHighestLeft->_pRight	= pNode->_pRight;
+	pNode					= pHighestLeft;
+}
+
+//-----------------------------------------------------------------------------
+// Name:		replaceWithSuccessor
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+void KmBinarySearchTree<T>::replaceWithSuccessor(KmNode*&	pNode)
+{
+	KmNode* pLowestRight		= pNode->_pRight;
+	KmNode* pLowestRightParent	= NULL;
+
+	while ( pLowestRight->_pLeft )
+	{
+		pLowestRightParent	= pLowestRight;
+		pLowestRight		= pLowestRight->_pLeft;
+	}
+
+	if ( pLowestRightParent )
+	{
+		pLowestRightParent->_pLeft	= pLowestRight->_pRight;
+		pLowestRight->_pRight		= pNode->_pRight;
+	}
+
+	pLowestRight->_pLeft	= pNode->_pLeft;
+	pNode					= pLowestRight;
+}
+
+//-----------------------------------------------------------------------------
 // Name:		traverseInOrder
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-void KmBinarySearchTree<T>::traverseInOrder(const TraverseCallback pfnTraverseCallback)
+void KmBinarySearchTree<T>::traverseInOrder(const TraverseCallback pfnTraverseCallback) const
 {
 	traverseInOrder( _pRoot, pfnTraverseCallback );
 }
@@ -231,7 +277,7 @@ void KmBinarySearchTree<T>::traverseInOrder(const TraverseCallback pfnTraverseCa
 //-----------------------------------------------------------------------------
 template<class T>
 void KmBinarySearchTree<T>::traverseInOrder(KmNode*					pNode, 
-											const TraverseCallback	pfnTraverseCallback)
+											const TraverseCallback	pfnTraverseCallback) const
 {
 	if ( pNode )
 	{
@@ -239,6 +285,46 @@ void KmBinarySearchTree<T>::traverseInOrder(KmNode*					pNode,
 		pfnTraverseCallback( pNode->_data );
 		traverseInOrder( pNode->_pRight, pfnTraverseCallback );
 	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		verify
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+bool KmBinarySearchTree<T>::verify() const
+{
+	const T* pPrevData = NULL;
+	return	( verify( _pRoot, pPrevData ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		verify
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+bool KmBinarySearchTree<T>::verify(KmNode*		pNode, 
+								   const T*&	pPrevData) const
+{
+	bool bIsValid = true;
+
+	if ( pNode )
+	{
+		bIsValid &= verify( pNode->_pLeft, pPrevData );
+		
+		if ( pPrevData )
+		{
+			bIsValid &= ( *pPrevData < pNode->_data );
+		}
+
+		pPrevData = &pNode->_data;
+
+		bIsValid &= verify( pNode->_pRight, pPrevData );
+	}
+
+	return	( bIsValid );
 }
 
 //-----------------------------------------------------------------------------
@@ -253,7 +339,6 @@ void KmBinarySearchTree<T>::destroy(KmNode*& pNode)
 	{
 		destroy( pNode->_pLeft );
 		destroy( pNode->_pRight );
-		//printf( "Destroying node with value %d\n", pNode->_data );
 		delete pNode;
 	}
 }

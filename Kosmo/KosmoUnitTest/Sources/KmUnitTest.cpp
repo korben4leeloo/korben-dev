@@ -206,6 +206,11 @@ void testBinarySearchTree()
 
 	bt.traverseInOrder( Local::displayDataCallback );
 
+	bool bIsValidBST = bt.verify();
+
+	printf( "\nIs tree valid: %s\n", bIsValidBST ? "true" : "false" );
+	printf( "--------------------------------------\n" );
+
 	delete[] pValues;
 }
 
