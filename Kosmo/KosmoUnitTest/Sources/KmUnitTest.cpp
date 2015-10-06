@@ -175,14 +175,28 @@ void testBinarySearchTree()
 	printf( "Filling tree\n" );
 	printf( "------------\n" );
 
-	for ( uint32 i = 0; i < uiValueCount; i++ )
+	bt.insert( 50 );
+	bt.insert( 20 );
+	bt.insert( 80 );
+	bt.insert( 60 );
+	bt.insert( 100 );
+	bt.insert( 65 );
+	bt.insert( 62 );
+
+	/*for ( uint32 i = 0; i < uiValueCount; i++ )
 	{
 		uint32 uiValue = distribution( generator );
 
 		printf( "Generating value %d\n", uiValue );
 		pValues[i] = uiValue;
-		bt.insert( uiValue );
-	}
+		
+		if	( bt.insert( uiValue ) == false )
+		{
+			printf( " --> already present" );
+		}
+
+		printf( "\n" );
+	}*/
 
 	printf( "\nIn order display: %d nodes\n", bt.getSize() );
 	printf( "----------------\n" );
@@ -190,7 +204,88 @@ void testBinarySearchTree()
 	bt.traverseInOrder( Local::displayDataCallback );
 	printf( "\n" );
 
-	printf( "Removing some values\n" );
+	/*printf( "Removing some values\n" );
+	printf( "------------------\n" );
+
+	for ( uint32 i = 0; i < uiRemoveValueCount; i++ )
+	{
+		uint32	uiRemoveIndex	= distribution( generator ) % uiValueCount;
+		bool	bRemove			= bt.remove( pValues[uiRemoveIndex] );
+
+		printf( "Removing value: %d --> %s\n", pValues[uiRemoveIndex], bRemove ? "OK" : "Not Found" );
+	}*/
+
+	bt.remove( 80 );
+
+	printf( "\nIn order display after removing values: %d nodes\n", bt.getSize() );
+	printf( "--------------------------------------\n" );
+
+	bt.traverseInOrder( Local::displayDataCallback );
+
+	bool bIsValidBST = bt.verify();
+
+	printf( "\nIs tree valid: %s\n", bIsValidBST ? "true" : "false" );
+	printf( "--------------------------------------\n" );
+
+	delete[] pValues;
+}
+
+#endif
+
+#ifdef KOSMO_UNIT_TEST_RED_BLACK_TREE
+
+#include	KOSMO_CORE_H(Algorithms/BinaryTree/KmRedBlackTree)
+#include	<stdio.h>
+#include	<random>
+
+//-----------------------------------------------------------------------------
+// Name:		testRedBlackTree
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void testRedBlackTree()
+{
+	struct Local
+	{
+		static void displayDataCallback( const uint32& nData )
+		{
+			printf( "%d\n", nData );
+		}
+	};
+
+	static uint32 uiValueCount			= 50;
+	static uint32 uiRemoveValueCount	= 10;
+
+	uint32*									pValues = new uint32[uiValueCount];
+	std::uniform_int_distribution<uint32>	distribution( 0, 1000 );
+	std::default_random_engine				generator;
+	KmRedBlackTree<uint32>					bt;
+
+	printf( "Filling tree\n" );
+	printf( "------------\n" );
+
+	for ( uint32 i = 0; i < uiValueCount; i++ )
+	{
+		uint32 uiValue = distribution( generator );
+
+		printf( "Generating value %d", uiValue );
+		pValues[i] = uiValue;
+		
+		if	( bt.insert( uiValue ) == false )
+		{
+			printf( " --> already present" );
+		}
+
+		printf( "\n" );
+	}
+
+	printf( "\nIn order display: %d nodes\n", bt.size() );
+	printf( "----------------\n" );
+
+	bt.traverseInOrder( Local::displayDataCallback );
+	printf( "\n" );
+
+	/*printf( "Removing some values\n" );
 	printf( "------------------\n" );
 
 	for ( uint32 i = 0; i < uiRemoveValueCount; i++ )
@@ -204,7 +299,7 @@ void testBinarySearchTree()
 	printf( "\nIn order display after removing values: %d nodes\n", bt.getSize() );
 	printf( "--------------------------------------\n" );
 
-	bt.traverseInOrder( Local::displayDataCallback );
+	bt.traverseInOrder( Local::displayDataCallback );*/
 
 	bool bIsValidBST = bt.verify();
 
@@ -272,6 +367,10 @@ void startUnitTests()
 
 #ifdef KOSMO_UNIT_TEST_BINARY_SEARCH_TREE
 	testBinarySearchTree();
+#endif
+
+#ifdef KOSMO_UNIT_TEST_RED_BLACK_TREE
+	testRedBlackTree();
 #endif
 
 #ifdef KOSMO_UNIT_TEST_RESOURCES

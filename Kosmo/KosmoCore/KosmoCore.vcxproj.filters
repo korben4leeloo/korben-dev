@@ -93,6 +93,9 @@
     <ClInclude Include="Sources\Algorithms\Root.h">
       <Filter>Sources\Algorithms</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Algorithms\BinaryTree\KmRedBlackTree.h">
+      <Filter>Sources\Algorithms\BinaryTree</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\String\KmString.cpp">
@@ -129,6 +132,9 @@
       <Filter>Sources\Resources</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Algorithms\BinaryTree\KmBinarySearchTree.cpp">
+      <Filter>Sources\Algorithms\BinaryTree</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Algorithms\BinaryTree\KmRedBlackTree.cpp">
       <Filter>Sources\Algorithms\BinaryTree</Filter>
     </ClCompile>
   </ItemGroup>

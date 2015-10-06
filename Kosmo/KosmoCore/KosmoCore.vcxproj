@@ -119,6 +119,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Algorithms\BinaryTree\KmBinarySearchTree.h" />
+    <ClInclude Include="Sources\Algorithms\BinaryTree\KmRedBlackTree.h" />
     <ClInclude Include="Sources\Algorithms\BinaryTree\Root.h" />
     <ClInclude Include="Sources\Algorithms\Root.h" />
     <ClInclude Include="Sources\Components\KmComponent.h" />
@@ -142,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Algorithms\BinaryTree\KmBinarySearchTree.cpp" />
+    <ClCompile Include="Sources\Algorithms\BinaryTree\KmRedBlackTree.cpp" />
     <ClCompile Include="Sources\Components\KmComponent.cpp" />
     <ClCompile Include="Sources\Containers\KmList.cpp" />
     <ClCompile Include="Sources\Containers\KmVector.cpp" />
