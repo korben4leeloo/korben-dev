@@ -5,7 +5,8 @@
 //
 //*****************************************************************************
 
-#include	"KmString.h"
+#include "KmString.h"
+#include <string.h>
 
 KmString KmString::_nullString( NULL );
 KmString KmString::_emptyString( "" );
@@ -153,4 +154,14 @@ KmString KmString::join(const char*	pcSourceData1,
 	strcat_s( result._pcBuffer, result._uiLength + 1, pcSourceData2 );
 
 	return	( result );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator==
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+bool KmString::operator==( const KmString&	other )
+{
+	return	( strcmp( _pcBuffer, other._pcBuffer ) == 0 );
 }

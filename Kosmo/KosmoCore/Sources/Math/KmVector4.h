@@ -10,23 +10,11 @@
 #define __KosmoCore_KmVector4_h__
 
 #include	"Root.h"
+#include	<glm/vec4.hpp>
 
 KOSMO_CORE_NAMESPACE_BEGIN
 
-class KmVector3;
-
-class KmVector4
-{
-public:
-					KmVector4();
-					KmVector4( const float x, const float y, const float z, const float w );
-					~KmVector4();
-
-private:
-	Eigen::Vector4f	_v;
-};
-
-typedef KmVector4 KsVec4;
+typedef glm::vec4 KmVector4;
 
 KOSMO_CORE_NAMESPACE_END
 

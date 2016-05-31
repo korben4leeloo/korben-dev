@@ -11,7 +11,7 @@
 
 #include	"Root.h"
 
-#include	<string.h>
+//#include	<string.h>
 
 KOSMO_CORE_NAMESPACE_BEGIN
 
@@ -131,16 +131,6 @@ KmString& KmString::operator+=(const char*	pcData)
 {
 	append( pcData );
 	return	( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator==
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-bool KmString::operator==( const KmString&	other )
-{
-	return	( strcmp( _pcBuffer, other._pcBuffer ) == 0 );
 }
 
 //-----------------------------------------------------------------------------

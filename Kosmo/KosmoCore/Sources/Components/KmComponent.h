@@ -12,20 +12,24 @@
 #include	"Root.h"
 
 #include	KOSMO_CORE_H(String/KmString)
+#include	KOSMO_CORE_H(Containers/KmList)
 
 KOSMO_CORE_NAMESPACE_BEGIN
+
+class KmComponentProperty;
 
 class KmComponent
 {
 public:
-							KmComponent( const KmString& componentName );
-							~KmComponent();
+									KmComponent( const KmString& componentName );
+									~KmComponent();
 
 	// Accessors
-	inline const KmString&	getName() const;
+	inline const KmString&			getName() const;
 
 private:
-	KmString				_componentName;
+	KmString						_componentName;
+	KmList<KmComponentProperty*>	_propertyList;
 };
 
 //*****************************************************************************

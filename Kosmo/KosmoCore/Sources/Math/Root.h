@@ -7,4 +7,4 @@
 //*****************************************************************************
 
 #include	"../KosmoCoreRoot.h"
-#include	<Math/Eigen_3_2_0/Eigen/Geometry>
+//#include	<Math/Eigen_3_2_0/Eigen/Geometry>

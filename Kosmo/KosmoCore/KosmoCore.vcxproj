@@ -82,7 +82,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(KORBEN_DEV_PATH)\Libraries;$(KORBEN_DEV_PATH)\Kosmo</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(KORBEN_DEV_PATH)\Kosmo;$(KORBEN_DEV_PATH)\Libraries\Math\glm_0_9_7_2</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -123,6 +123,8 @@
     <ClInclude Include="Sources\Algorithms\BinaryTree\Root.h" />
     <ClInclude Include="Sources\Algorithms\Root.h" />
     <ClInclude Include="Sources\Components\KmComponent.h" />
+    <ClInclude Include="Sources\Components\Properties\KmComponentProperty.h" />
+    <ClInclude Include="Sources\Components\Properties\Root.h" />
     <ClInclude Include="Sources\Components\Root.h" />
     <ClInclude Include="Sources\Containers\KmList.h" />
     <ClInclude Include="Sources\Containers\KmVector.h" />
@@ -131,8 +133,7 @@
     <ClInclude Include="Sources\GUI\Root.h" />
     <ClInclude Include="Sources\KosmoCoreRoot.h" />
     <ClInclude Include="Sources\Math\KmQuaternion.h" />
-    <ClInclude Include="Sources\Math\KmTransform4.h" />
-    <ClInclude Include="Sources\Math\KmVector3.h" />
+    <ClInclude Include="Sources\Math\KmTransform.h" />
     <ClInclude Include="Sources\Math\KmVector4.h" />
     <ClInclude Include="Sources\Math\Root.h" />
     <ClInclude Include="Sources\Resources\KmResourceId.h" />
@@ -145,12 +146,12 @@
     <ClCompile Include="Sources\Algorithms\BinaryTree\KmBinarySearchTree.cpp" />
     <ClCompile Include="Sources\Algorithms\BinaryTree\KmRedBlackTree.cpp" />
     <ClCompile Include="Sources\Components\KmComponent.cpp" />
+    <ClCompile Include="Sources\Components\Properties\KmComponentProperty.cpp" />
     <ClCompile Include="Sources\Containers\KmList.cpp" />
     <ClCompile Include="Sources\Containers\KmVector.cpp" />
     <ClCompile Include="Sources\GUI\KmWindow.cpp" />
     <ClCompile Include="Sources\Math\KmQuaternion.cpp" />
-    <ClCompile Include="Sources\Math\KmTransform4.cpp" />
-    <ClCompile Include="Sources\Math\KmVector3.cpp" />
+    <ClCompile Include="Sources\Math\KmTransform.cpp" />
     <ClCompile Include="Sources\Math\KmVector4.cpp" />
     <ClCompile Include="Sources\Resources\KmResourceId.cpp" />
     <ClCompile Include="Sources\Resources\KmResourceManager.cpp" />

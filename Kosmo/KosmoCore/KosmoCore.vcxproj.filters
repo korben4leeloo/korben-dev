@@ -28,6 +28,15 @@
     <Filter Include="Sources\Algorithms\BinaryTree">
       <UniqueIdentifier>{0e6d3bf3-7298-4be0-8fe4-c619abc5d3bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Assets">
+      <UniqueIdentifier>{394364dd-633a-4de5-a619-92f562449b78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Assets\Importers">
+      <UniqueIdentifier>{4caaa796-47fc-4ce3-9e35-093fb3c9479d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Components\Properties">
+      <UniqueIdentifier>{7ee2d574-7068-4f5a-a14d-4e0b24896642}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\KosmoCoreRoot.h">
@@ -42,16 +51,10 @@
     <ClInclude Include="Sources\String\KmString.h">
       <Filter>Sources\String</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Math\KmVector3.h">
-      <Filter>Sources\Math</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Math\KmVector4.h">
       <Filter>Sources\Math</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Math\KmQuaternion.h">
-      <Filter>Sources\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Math\KmTransform4.h">
       <Filter>Sources\Math</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Math\Root.h">
@@ -96,6 +99,15 @@
     <ClInclude Include="Sources\Algorithms\BinaryTree\KmRedBlackTree.h">
       <Filter>Sources\Algorithms\BinaryTree</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Math\KmTransform.h">
+      <Filter>Sources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\Properties\Root.h">
+      <Filter>Sources\Components\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\Properties\KmComponentProperty.h">
+      <Filter>Sources\Components\Properties</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\String\KmString.cpp">
@@ -105,12 +117,6 @@
       <Filter>Sources\Math</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Math\KmQuaternion.cpp">
-      <Filter>Sources\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Math\KmTransform4.cpp">
-      <Filter>Sources\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Math\KmVector3.cpp">
       <Filter>Sources\Math</Filter>
     </ClCompile>
     <ClCompile Include="Sources\GUI\KmWindow.cpp">
@@ -136,6 +142,12 @@
     </ClCompile>
     <ClCompile Include="Sources\Algorithms\BinaryTree\KmRedBlackTree.cpp">
       <Filter>Sources\Algorithms\BinaryTree</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\KmTransform.cpp">
+      <Filter>Sources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Components\Properties\KmComponentProperty.cpp">
+      <Filter>Sources\Components\Properties</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
