@@ -9,10 +9,8 @@
 #ifndef __TARS_Core_TsWin32Window_h__
 #define __TARS_Core_TsWin32Window_h__
 
+#include <Windows.h>
 #include <QtCore/QString>
-
-struct HINSTANCE;
-struct HWND;
 
 class TsWin32Window
 {
