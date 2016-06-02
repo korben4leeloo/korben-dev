@@ -15,17 +15,23 @@
 class TsWin32Window
 {
 public:
-			TsWin32Window( const QString& strWindowName, const int nClientWidth, const int nClientHeight );
+			TsWin32Window();
 			~TsWin32Window();
 
-	void	create( const HINSTANCE& hInstance, const bool bShow );
+	void	create( const HINSTANCE& hInstance );
 
 private:
+	static LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
+
 	QString	_strWindowName;
+
 	int		_nClientWidth;
 	int		_nClientHeight;
+	int		_nBitsPerPixel;
 
-	HWND*	_hWnd;
+	bool	_bFullscreen;
+
+	HWND	_hWnd;
 };
 
 #endif
