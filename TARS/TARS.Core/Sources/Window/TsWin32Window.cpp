@@ -42,7 +42,7 @@ TsWin32Window::~TsWin32Window()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void	TsWin32Window::create( const HINSTANCE& hInstance )
+void TsWin32Window::create( const HINSTANCE& hInstance )
 {
 	WNDCLASS	wc;						// Windows Class Structure
 	DWORD		dwExStyle;				// Window Extended Style
@@ -118,7 +118,7 @@ void	TsWin32Window::create( const HINSTANCE& hInstance )
 
 	// Create The Window
 	if (!(_hWnd=CreateWindowEx(	dwExStyle,							// Extended Style For The Window
-								"OpenGL",							// Class Name
+								"TsWin32Window",							// Class Name
 								(LPCSTR)_strWindowName.data(),				// Window Title
 								dwStyle |							// Defined Window Style
 								WS_CLIPSIBLINGS |					// Required Window Style
@@ -132,8 +132,22 @@ void	TsWin32Window::create( const HINSTANCE& hInstance )
 								NULL)))								// Dont Pass Anything To WM_CREATE
 	{
 		//KillGLWindow();								// Reset The Display
+		DWORD nError = GetLastError();
 		MessageBox(NULL,"Window Creation Error.","ERROR",MB_OK|MB_ICONEXCLAMATION);
 		//return FALSE;								// Return FALSE
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		show
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void TsWin32Window::show()
+{
+	if	( _hWnd != NULL )
+	{
+		ShowWindow( _hWnd, TRUE );
 	}
 }
 
