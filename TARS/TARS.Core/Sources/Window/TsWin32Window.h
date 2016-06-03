@@ -12,27 +12,43 @@
 #include <Windows.h>
 #include <QtCore/QString>
 
+class TsEventManager;
+
 class TsWin32Window
 {
 public:
-			TsWin32Window();
-			~TsWin32Window();
+							TsWin32Window();
+							~TsWin32Window();
 
-	void	create( const HINSTANCE& hInstance );
-	void	show();
+	void					create( const HINSTANCE& hInstance );
+	void					show();
+
+	inline void				setEventManager( TsEventManager* pEventManager );
 
 private:
 	static LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
 
-	QString	_strWindowName;
+	QString					_strWindowName;
 
-	int		_nClientWidth;
-	int		_nClientHeight;
-	int		_nBitsPerPixel;
+	int						_nClientWidth;
+	int						_nClientHeight;
+	int						_nBitsPerPixel;
 
-	bool	_bFullscreen;
+	bool					_bFullscreen;
 
-	HWND	_hWnd;
+	TsEventManager*			_pEventManager;
+
+	HWND					_hWnd;
 };
+
+//-----------------------------------------------------------------------------
+// Name:		setEventManager
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void TsWin32Window::setEventManager( TsEventManager* pEventManager )
+{
+	_pEventManager = pEventManager;
+}
 
 #endif

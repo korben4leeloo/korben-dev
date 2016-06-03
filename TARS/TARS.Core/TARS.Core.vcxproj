@@ -123,9 +123,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\Application\TsApplication.h" />
+    <ClInclude Include="Sources\Events\TsEventManager.h" />
     <ClInclude Include="Sources\Window\TsWin32Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Application\TsApplication.cpp" />
+    <ClCompile Include="Sources\Events\TsEventManager.cpp" />
     <ClCompile Include="Sources\Window\TsWin32Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

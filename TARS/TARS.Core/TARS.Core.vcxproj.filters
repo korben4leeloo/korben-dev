@@ -15,18 +15,33 @@
     <Filter Include="Source Files\Rendering">
       <UniqueIdentifier>{aab3493d-9421-46c9-918b-b59524adffa4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\String">
-      <UniqueIdentifier>{ff18fae1-0cce-4dcf-836f-ac63bd9ab79b}</UniqueIdentifier>
+    <Filter Include="Source Files\Events">
+      <UniqueIdentifier>{14042d47-0886-469a-80b8-8086b48b086a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Application">
+      <UniqueIdentifier>{71c8b677-c3c4-451e-b1f1-aa62c911d657}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Window\TsWin32Window.h">
       <Filter>Source Files\Window</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Events\TsEventManager.h">
+      <Filter>Source Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Application\TsApplication.h">
+      <Filter>Source Files\Application</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Window\TsWin32Window.cpp">
       <Filter>Source Files\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Events\TsEventManager.cpp">
+      <Filter>Source Files\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Application\TsApplication.cpp">
+      <Filter>Source Files\Application</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

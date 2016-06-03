@@ -23,6 +23,7 @@ TsWin32Window::TsWin32Window()
 , _nClientHeight	( DEFAULT_CLIENT_HEIGHT )
 , _nBitsPerPixel	( DEFAULT_BITS_PER_PIXEL )
 , _bFullscreen		( false )
+, _pEventManager	( NULL )
 {
 	
 }
@@ -72,6 +73,7 @@ void TsWin32Window::create( const HINSTANCE& hInstance )
 	{
 		MessageBox(NULL,"Failed To Register The Window Class.","ERROR",MB_OK|MB_ICONEXCLAMATION);
 		//return FALSE;											// Return FALSE
+		return;
 	}
 	
 	if	( _bFullscreen )										// Attempt Fullscreen Mode?
@@ -97,6 +99,7 @@ void TsWin32Window::create( const HINSTANCE& hInstance )
 				// Pop Up A Message Box Letting User Know The Program Is Closing.
 				MessageBox(NULL,"Program Will Now Close.","ERROR",MB_OK|MB_ICONSTOP);
 				//return FALSE;									// Return FALSE
+				return;
 			}
 		}
 	}
@@ -135,6 +138,7 @@ void TsWin32Window::create( const HINSTANCE& hInstance )
 		DWORD nError = GetLastError();
 		MessageBox(NULL,"Window Creation Error.","ERROR",MB_OK|MB_ICONEXCLAMATION);
 		//return FALSE;								// Return FALSE
+		return;
 	}
 }
 
@@ -161,6 +165,7 @@ LRESULT CALLBACK TsWin32Window::WndProc(	HWND	hWnd,			// Handle For This Window
 											WPARAM	wParam,			// Additional Message Information
 											LPARAM	lParam)			// Additional Message Information
 {
+
 	switch (uMsg)									// Check For Windows Messages
 	{
 		case WM_ACTIVATE:							// Watch For Window Activate Message
