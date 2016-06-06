@@ -123,14 +123,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\Application\TsApplication.h" />
+    <ClInclude Include="Sources\Application\Root.h" />
+    <ClInclude Include="Sources\Application\TsWin32App.h" />
+    <ClInclude Include="Sources\Events\Root.h" />
     <ClInclude Include="Sources\Events\TsEventManager.h" />
-    <ClInclude Include="Sources\Window\TsWin32Window.h" />
+    <ClInclude Include="Sources\Rendering\Root.h" />
+    <ClInclude Include="Sources\Root.h" />
+    <ClInclude Include="Sources\Window\Root.h" />
+    <ClInclude Include="Sources\Window\TsWin32Wnd.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Application\TsApplication.cpp" />
+    <ClCompile Include="Sources\Application\TsWin32App.cpp" />
     <ClCompile Include="Sources\Events\TsEventManager.cpp" />
-    <ClCompile Include="Sources\Window\TsWin32Window.cpp" />
+    <ClCompile Include="Sources\Window\TsWin32Wnd.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

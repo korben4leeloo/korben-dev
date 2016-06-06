@@ -1,11 +1,12 @@
 //*****************************************************************************
 //
-//	File:		TsWin32Window.cpp
+//	File:		TsWin32Wnd.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include "TsWin32Window.h"
+#include "Root.h"
+#include "TsWin32Wnd.h"
 
 #define DEFAULT_WINDOW_NAME		"TsMainWindow"
 #define DEFAULT_CLIENT_WIDTH	1024
@@ -13,11 +14,11 @@
 #define DEFAULT_BITS_PER_PIXEL	32
 
 //-----------------------------------------------------------------------------
-// Name:		TsWin32Window constructor
+// Name:		TsWin32Wnd constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TsWin32Window::TsWin32Window()
+TsWin32Wnd::TsWin32Wnd()
 : _strWindowName	( DEFAULT_WINDOW_NAME )
 , _nClientWidth		( DEFAULT_CLIENT_WIDTH )
 , _nClientHeight	( DEFAULT_CLIENT_HEIGHT )
@@ -29,11 +30,11 @@ TsWin32Window::TsWin32Window()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		TsWin32Window destructor
+// Name:		TsWin32Wnd destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TsWin32Window::~TsWin32Window()
+TsWin32Wnd::~TsWin32Wnd()
 {
 	
 }
@@ -43,7 +44,7 @@ TsWin32Window::~TsWin32Window()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void TsWin32Window::create( const HINSTANCE& hInstance )
+void TsWin32Wnd::create( const HINSTANCE& hInstance )
 {
 	WNDCLASS	wc;						// Windows Class Structure
 	DWORD		dwExStyle;				// Window Extended Style
@@ -59,7 +60,7 @@ void TsWin32Window::create( const HINSTANCE& hInstance )
 
 	//hInstance			= GetModuleHandle(NULL);				// Grab An Instance For Our Window
 	wc.style			= CS_HREDRAW | CS_VREDRAW | CS_OWNDC;	// Redraw On Size, And Own DC For Window.
-	wc.lpfnWndProc		= (WNDPROC)TsWin32Window::WndProc;		// WndProc Handles Messages
+	wc.lpfnWndProc		= (WNDPROC)TsWin32Wnd::WndProc;		// WndProc Handles Messages
 	wc.cbClsExtra		= 0;									// No Extra Window Data
 	wc.cbWndExtra		= 0;									// No Extra Window Data
 	wc.hInstance		= hInstance;							// Set The Instance
@@ -67,7 +68,7 @@ void TsWin32Window::create( const HINSTANCE& hInstance )
 	wc.hCursor			= LoadCursor(NULL, IDC_ARROW);			// Load The Arrow Pointer
 	wc.hbrBackground	= NULL;									// No Background Required For GL
 	wc.lpszMenuName		= NULL;									// We Don't Want A Menu
-	wc.lpszClassName	= "TsWin32Window";						// Set The Class Name
+	wc.lpszClassName	= "TsWin32Wnd";						// Set The Class Name
 
 	if (!RegisterClass(&wc))									// Attempt To Register The Window Class
 	{
@@ -121,7 +122,7 @@ void TsWin32Window::create( const HINSTANCE& hInstance )
 
 	// Create The Window
 	if (!(_hWnd=CreateWindowEx(	dwExStyle,							// Extended Style For The Window
-								"TsWin32Window",							// Class Name
+								"TsWin32Wnd",							// Class Name
 								(LPCSTR)_strWindowName.data(),				// Window Title
 								dwStyle |							// Defined Window Style
 								WS_CLIPSIBLINGS |					// Required Window Style
@@ -147,7 +148,7 @@ void TsWin32Window::create( const HINSTANCE& hInstance )
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void TsWin32Window::show()
+void TsWin32Wnd::show()
 {
 	if	( _hWnd != NULL )
 	{
@@ -160,7 +161,7 @@ void TsWin32Window::show()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-LRESULT CALLBACK TsWin32Window::WndProc(	HWND	hWnd,			// Handle For This Window
+LRESULT CALLBACK TsWin32Wnd::WndProc(	HWND	hWnd,			// Handle For This Window
 											UINT	uMsg,			// Message For This Window
 											WPARAM	wParam,			// Additional Message Information
 											LPARAM	lParam)			// Additional Message Information

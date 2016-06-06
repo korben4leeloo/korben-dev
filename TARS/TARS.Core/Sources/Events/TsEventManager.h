@@ -6,8 +6,8 @@
 //
 //*****************************************************************************
 
-#ifndef __TARS_Core_TsEventManager_h__
-#define __TARS_Core_TsEventManager_h__
+#ifndef __TARS_CORE_TS_EVENT_MANAGER_H__
+#define __TARS_CORE_TS_EVENT_MANAGER_H__
 
 class TsEventManager
 {

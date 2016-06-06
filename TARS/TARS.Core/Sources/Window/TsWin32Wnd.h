@@ -1,24 +1,24 @@
 //*****************************************************************************
 //
-//	Class:		TsWin32Window
+//	Class:		TsWin32Wnd
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __TARS_Core_TsWin32Window_h__
-#define __TARS_Core_TsWin32Window_h__
+#ifndef __TARS_CORE_TS_WIN32_WND_H__
+#define __TARS_CORE_TS_WIN32_WND_H__
 
 #include <Windows.h>
 #include <QtCore/QString>
 
 class TsEventManager;
 
-class TsWin32Window
+class TsWin32Wnd
 {
 public:
-							TsWin32Window();
-							~TsWin32Window();
+							TsWin32Wnd();
+							~TsWin32Wnd();
 
 	void					create( const HINSTANCE& hInstance );
 	void					show();
@@ -46,7 +46,7 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void TsWin32Window::setEventManager( TsEventManager* pEventManager )
+void TsWin32Wnd::setEventManager( TsEventManager* pEventManager )
 {
 	_pEventManager = pEventManager;
 }

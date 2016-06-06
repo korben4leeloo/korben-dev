@@ -7,8 +7,9 @@
 
 #include <Windows.h>
 
-#include <Window/TsWin32Window.h>
-#include <Events/TsEventManager.h>
+#include <Application/TsWin32App.h>
+//#include <Window/TsWin32Wnd.h>
+//#include <Events/TsEventManager.h>
 
 //-----------------------------------------------------------------------------
 // Name:		WinMain
@@ -17,7 +18,7 @@
 //-----------------------------------------------------------------------------
 int WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_opt LPSTR lpCmdLine, __in int nShowCmd )
 {
-	TsWin32Window*	pMainWindow		= new TsWin32Window();
+	/*TsWin32Wnd*		pMainWindow		= new TsWin32Wnd();
 	TsEventManager*	pEventManager	= new TsEventManager();
 
 	pMainWindow->setEventManager( pEventManager );
@@ -27,7 +28,11 @@ int WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_op
 	while ( 1 )
 	{
 		Sleep( 0 );
-	}
+	}*/
+
+	TsWin32App* pWin32App = new TsWin32App( hInstance );
+
+	pWin32App->createMainWindow();
 
 	return 0;
 }

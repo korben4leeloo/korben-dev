@@ -23,25 +23,38 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\Window\TsWin32Window.h">
-      <Filter>Source Files\Window</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Events\TsEventManager.h">
       <Filter>Source Files\Events</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Application\TsApplication.h">
+    <ClInclude Include="Sources\Application\TsWin32App.h">
       <Filter>Source Files\Application</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Window\TsWin32Wnd.h">
+      <Filter>Source Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Application\Root.h">
+      <Filter>Source Files\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Events\Root.h">
+      <Filter>Source Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Rendering\Root.h">
+      <Filter>Source Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Window\Root.h">
+      <Filter>Source Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Root.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Window\TsWin32Window.cpp">
-      <Filter>Source Files\Window</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Events\TsEventManager.cpp">
       <Filter>Source Files\Events</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Application\TsApplication.cpp">
+    <ClCompile Include="Sources\Application\TsWin32App.cpp">
       <Filter>Source Files\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Window\TsWin32Wnd.cpp">
+      <Filter>Source Files\Window</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

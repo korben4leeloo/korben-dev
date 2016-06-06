@@ -1,21 +1,14 @@
 //*****************************************************************************
 //
-//	Class:		TsApplication
+//	File:		Root.h
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __TARS_Core_TsApplication_h__
-#define __TARS_Core_TsApplication_h__
+#ifndef __TARS_Core_Root_h__
+#define __TARS_Core_Root_h__
 
-class TsApplication
-{
-public:
-			TsApplication();
-			~TsApplication();
-
-private:
-};
+#include <stdint.h>
 
 #endif
