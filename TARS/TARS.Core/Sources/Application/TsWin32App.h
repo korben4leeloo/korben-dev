@@ -16,15 +16,28 @@ class TsWin32Wnd;
 class TsWin32App
 {
 public:
-				TsWin32App( const HINSTANCE& hInstance );
-				~TsWin32App();
+						TsWin32App( const HINSTANCE& hInstance );
+						~TsWin32App();
 
-	TsWin32Wnd*	createMainWindow();
-	int64_t		run();
+	inline HINSTANCE	getInstanceHandle() const;
+
+	TsWin32Wnd*			createWindow();
+	//int64_t				runMessageLoop();
+	int					runMessageLoop();
 
 private:
-	HINSTANCE	_hInstance;
-	TsWin32Wnd*	_pMainWindow;
+	HINSTANCE			_hInstance;
+	TsWin32Wnd*			_pMainWindow;
 };
+
+//-----------------------------------------------------------------------------
+// Name:		getInstanceHandle
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+HINSTANCE TsWin32App::getInstanceHandle() const
+{
+	return ( _hInstance );
+}
 
 #endif

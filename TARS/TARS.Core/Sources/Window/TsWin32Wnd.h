@@ -12,18 +12,19 @@
 #include <Windows.h>
 #include <QtCore/QString>
 
-class TsEventManager;
+class TsWin32App;
+//class TsEventManager;
 
 class TsWin32Wnd
 {
 public:
-							TsWin32Wnd();
+							TsWin32Wnd( const TsWin32App* pWin32App );
 							~TsWin32Wnd();
 
-	void					create( const HINSTANCE& hInstance );
+	void					create();
 	void					show();
 
-	inline void				setEventManager( TsEventManager* pEventManager );
+	//inline void				setEventManager( TsEventManager* pEventManager );
 
 private:
 	static LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
@@ -36,19 +37,20 @@ private:
 
 	bool					_bFullscreen;
 
-	TsEventManager*			_pEventManager;
+	const TsWin32App*		_pWin32App;
+	//TsEventManager*			_pEventManager;
 
 	HWND					_hWnd;
 };
 
-//-----------------------------------------------------------------------------
-// Name:		setEventManager
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void TsWin32Wnd::setEventManager( TsEventManager* pEventManager )
-{
-	_pEventManager = pEventManager;
-}
+////-----------------------------------------------------------------------------
+//// Name:		setEventManager
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//void TsWin32Wnd::setEventManager( TsEventManager* pEventManager )
+//{
+//	_pEventManager = pEventManager;
+//}
 
 #endif

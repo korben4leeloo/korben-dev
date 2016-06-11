@@ -34,28 +34,29 @@ TsWin32App::~TsWin32App()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		createMainWindow
+// Name:		createWindow
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TsWin32Wnd* TsWin32App::createMainWindow()
+TsWin32Wnd* TsWin32App::createWindow()
 {
-	TsWin32Wnd*		pMainWindow		= new TsWin32Wnd();
+	TsWin32Wnd*		pWindow		= new TsWin32Wnd( this );
 	//TsEventManager*	pEventManager	= new TsEventManager();
 
 	//pMainWindow->setEventManager( pEventManager );
-	pMainWindow->create( _hInstance );
-	pMainWindow->show();
+	pWindow->create();
+	pWindow->show();
 
-	return ( pMainWindow );
+	return ( pWindow );
 }
 
 //-----------------------------------------------------------------------------
-// Name:		run
+// Name:		runMessageLoop
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-int64_t TsWin32App::run()
+//int64_t TsWin32App::runMessageLoop()
+int TsWin32App::runMessageLoop()
 {
 	BOOL	bRun = true;
 	MSG		msg;

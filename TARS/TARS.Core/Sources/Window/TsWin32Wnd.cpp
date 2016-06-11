@@ -8,7 +8,9 @@
 #include "Root.h"
 #include "TsWin32Wnd.h"
 
-#define DEFAULT_WINDOW_NAME		"TsMainWindow"
+#include TARS_CORE_H(Application/TsWin32App)
+
+#define DEFAULT_WINDOW_NAME		"TARS Window"
 #define DEFAULT_CLIENT_WIDTH	1024
 #define DEFAULT_CLIENT_HEIGHT	768
 #define DEFAULT_BITS_PER_PIXEL	32
@@ -18,13 +20,14 @@
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TsWin32Wnd::TsWin32Wnd()
-: _strWindowName	( DEFAULT_WINDOW_NAME )
+TsWin32Wnd::TsWin32Wnd( const TsWin32App* pWin32App )
+: _pWin32App		( pWin32App )
+, _strWindowName	( DEFAULT_WINDOW_NAME )
 , _nClientWidth		( DEFAULT_CLIENT_WIDTH )
 , _nClientHeight	( DEFAULT_CLIENT_HEIGHT )
 , _nBitsPerPixel	( DEFAULT_BITS_PER_PIXEL )
 , _bFullscreen		( false )
-, _pEventManager	( NULL )
+//, _pEventManager	( NULL )
 {
 	
 }
@@ -44,9 +47,10 @@ TsWin32Wnd::~TsWin32Wnd()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void TsWin32Wnd::create( const HINSTANCE& hInstance )
+void TsWin32Wnd::create()
 {
-	WNDCLASS	wc;						// Windows Class Structure
+	HINSTANCE	hInstance = _pWin32App->getInstanceHandle();
+	WNDCLASSW	wc;						// Windows Class Structure
 	DWORD		dwExStyle;				// Window Extended Style
 	DWORD		dwStyle;				// Window Style
 	RECT		WindowRect;				// Grabs Rectangle Upper Left / Lower Right Values
@@ -58,9 +62,13 @@ void TsWin32Wnd::create( const HINSTANCE& hInstance )
 
 	//fullscreen=fullscreenflag;			// Set The Global Fullscreen Flag
 
+	QString strWndClassName = "TsWin32WndClass";
+
+	//strWndClassName = QString::asprintf( "%s_%x", "TsWin32WndClass", this );
+
 	//hInstance			= GetModuleHandle(NULL);				// Grab An Instance For Our Window
 	wc.style			= CS_HREDRAW | CS_VREDRAW | CS_OWNDC;	// Redraw On Size, And Own DC For Window.
-	wc.lpfnWndProc		= (WNDPROC)TsWin32Wnd::WndProc;		// WndProc Handles Messages
+	wc.lpfnWndProc		= (WNDPROC)TsWin32Wnd::WndProc;			// WndProc Handles Messages
 	wc.cbClsExtra		= 0;									// No Extra Window Data
 	wc.cbWndExtra		= 0;									// No Extra Window Data
 	wc.hInstance		= hInstance;							// Set The Instance
@@ -68,13 +76,24 @@ void TsWin32Wnd::create( const HINSTANCE& hInstance )
 	wc.hCursor			= LoadCursor(NULL, IDC_ARROW);			// Load The Arrow Pointer
 	wc.hbrBackground	= NULL;									// No Background Required For GL
 	wc.lpszMenuName		= NULL;									// We Don't Want A Menu
-	wc.lpszClassName	= "TsWin32Wnd";						// Set The Class Name
+	wc.lpszClassName	= (LPCWSTR)strWndClassName.constData();	// Set The Class Name
 
-	if (!RegisterClass(&wc))									// Attempt To Register The Window Class
+	/*QByteArray qb = strWndClassName.toUtf8();
+	char* p = qb.data();
+
+	p = strWndClassName.toUtf8().data();
+	const char* p2 = qPrintable( strWndClassName );*/
+
+	if (!RegisterClassW(&wc))									// Attempt To Register The Window Class
 	{
-		MessageBox(NULL,"Failed To Register The Window Class.","ERROR",MB_OK|MB_ICONEXCLAMATION);
-		//return FALSE;											// Return FALSE
-		return;
+		DWORD nErrorCode = GetLastError();
+
+		if	( nErrorCode != ERROR_CLASS_ALREADY_EXISTS )
+		{
+			MessageBox(NULL,"Failed To Register The Window Class.","ERROR",MB_OK|MB_ICONEXCLAMATION);
+			//return FALSE;											// Return FALSE
+			return;
+		}
 	}
 	
 	if	( _bFullscreen )										// Attempt Fullscreen Mode?
@@ -121,19 +140,19 @@ void TsWin32Wnd::create( const HINSTANCE& hInstance )
 	AdjustWindowRectEx( &WindowRect, dwStyle, FALSE, dwExStyle );		// Adjust Window To True Requested Size
 
 	// Create The Window
-	if (!(_hWnd=CreateWindowEx(	dwExStyle,							// Extended Style For The Window
-								"TsWin32Wnd",							// Class Name
-								(LPCSTR)_strWindowName.data(),				// Window Title
-								dwStyle |							// Defined Window Style
-								WS_CLIPSIBLINGS |					// Required Window Style
-								WS_CLIPCHILDREN,					// Required Window Style
-								0, 0,								// Window Position
-								WindowRect.right - WindowRect.left,	// Calculate Window Width
-								WindowRect.bottom - WindowRect.top,	// Calculate Window Height
-								NULL,								// No Parent Window
-								NULL,								// No Menu
-								hInstance,							// Instance
-								NULL)))								// Dont Pass Anything To WM_CREATE
+	if (!(_hWnd=CreateWindowExW(dwExStyle,								// Extended Style For The Window
+								(LPCWSTR)strWndClassName.constData(),	// Class Name
+								(LPCWSTR)_strWindowName.constData(),	// Window Title
+								dwStyle |								// Defined Window Style
+								WS_CLIPSIBLINGS |						// Required Window Style
+								WS_CLIPCHILDREN,						// Required Window Style
+								0, 0,									// Window Position
+								WindowRect.right - WindowRect.left,		// Calculate Window Width
+								WindowRect.bottom - WindowRect.top,		// Calculate Window Height
+								NULL,									// No Parent Window
+								NULL,									// No Menu
+								hInstance,								// Instance
+								NULL)))									// Dont Pass Anything To WM_CREATE
 	{
 		//KillGLWindow();								// Reset The Display
 		DWORD nError = GetLastError();
@@ -162,9 +181,9 @@ void TsWin32Wnd::show()
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 LRESULT CALLBACK TsWin32Wnd::WndProc(	HWND	hWnd,			// Handle For This Window
-											UINT	uMsg,			// Message For This Window
-											WPARAM	wParam,			// Additional Message Information
-											LPARAM	lParam)			// Additional Message Information
+										UINT	uMsg,			// Message For This Window
+										WPARAM	wParam,			// Additional Message Information
+										LPARAM	lParam)			// Additional Message Information
 {
 
 	switch (uMsg)									// Check For Windows Messages
@@ -220,5 +239,5 @@ LRESULT CALLBACK TsWin32Wnd::WndProc(	HWND	hWnd,			// Handle For This Window
 	}
 
 	// Pass All Unhandled Messages To DefWindowProc
-	return DefWindowProc(hWnd,uMsg,wParam,lParam);
+	return DefWindowProcW(hWnd,uMsg,wParam,lParam);
 }

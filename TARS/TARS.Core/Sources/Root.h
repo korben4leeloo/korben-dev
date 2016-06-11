@@ -11,4 +11,6 @@
 
 #include <stdint.h>
 
+#define TARS_CORE_H( header ) <TARS.Core/Sources/header.h>
+
 #endif
