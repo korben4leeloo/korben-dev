@@ -26,7 +26,6 @@ public:
 
 private:
 	HINSTANCE			_hInstance;
-	TkWin32Wnd*			_pMainWindow;
 };
 
 //-----------------------------------------------------------------------------
