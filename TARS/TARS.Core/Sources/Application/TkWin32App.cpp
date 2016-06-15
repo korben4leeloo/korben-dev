@@ -1,34 +1,34 @@
 //*****************************************************************************
 //
-//	File:		TsWin32App.cpp
+//	File:		TkWin32App.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
 #include "Root.h"
-#include "TsWin32App.h"
+#include "TkWin32App.h"
 
 #include <Windows.h>
 
-#include <Window/TsWin32Wnd.h>
+#include TARS_CORE_H(Window/TkWin32Wnd)
 
 //-----------------------------------------------------------------------------
-// Name:		TsWin32App constructor
+// Name:		TkWin32App constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TsWin32App::TsWin32App( const HINSTANCE& hInstance )
+TkWin32App::TkWin32App( const HINSTANCE& hInstance )
 : _hInstance( hInstance )
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		TsWin32App destructor
+// Name:		TkWin32App destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TsWin32App::~TsWin32App()
+TkWin32App::~TkWin32App()
 {
 	
 }
@@ -38,10 +38,10 @@ TsWin32App::~TsWin32App()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TsWin32Wnd* TsWin32App::createWindow()
+TkWin32Wnd* TkWin32App::createWindow()
 {
-	TsWin32Wnd*		pWindow		= new TsWin32Wnd( this );
-	//TsEventManager*	pEventManager	= new TsEventManager();
+	TkWin32Wnd*		pWindow		= new TkWin32Wnd( this );
+	//TkEventManager*	pEventManager	= new TkEventManager();
 
 	//pMainWindow->setEventManager( pEventManager );
 	pWindow->create();
@@ -55,8 +55,7 @@ TsWin32Wnd* TsWin32App::createWindow()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-//int64_t TsWin32App::runMessageLoop()
-int TsWin32App::runMessageLoop()
+int64_t TkWin32App::runMessageLoop()
 {
 	BOOL	bRun = true;
 	MSG		msg;

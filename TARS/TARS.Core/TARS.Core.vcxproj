@@ -88,7 +88,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)/Sources;$(KORBEN_DEV_QT_DIR)\include;$(KORBEN_DEV_DIR)\TARS;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(KORBEN_DEV_DIR)\TARS;$(KORBEN_DEV_QT_DIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -125,18 +125,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Application\Root.h" />
-    <ClInclude Include="Sources\Application\TsWin32App.h" />
+    <ClInclude Include="Sources\Application\TkWin32App.h" />
     <ClInclude Include="Sources\Events\Root.h" />
-    <ClInclude Include="Sources\Events\TsEventManager.h" />
+    <ClInclude Include="Sources\Events\TkEventManager.h" />
     <ClInclude Include="Sources\Rendering\Root.h" />
     <ClInclude Include="Sources\Root.h" />
+    <ClInclude Include="Sources\String\Root.h" />
+    <ClInclude Include="Sources\String\TkString.h" />
     <ClInclude Include="Sources\Window\Root.h" />
-    <ClInclude Include="Sources\Window\TsWin32Wnd.h" />
+    <ClInclude Include="Sources\Window\TkWin32Wnd.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Application\TsWin32App.cpp" />
-    <ClCompile Include="Sources\Events\TsEventManager.cpp" />
-    <ClCompile Include="Sources\Window\TsWin32Wnd.cpp" />
+    <ClCompile Include="Sources\Application\TkWin32App.cpp" />
+    <ClCompile Include="Sources\Events\TkEventManager.cpp" />
+    <ClCompile Include="Sources\String\TkString.cpp" />
+    <ClCompile Include="Sources\Window\TkWin32Wnd.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

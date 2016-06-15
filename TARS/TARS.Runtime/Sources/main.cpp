@@ -5,11 +5,13 @@
 //
 //*****************************************************************************
 
+#include "Root.h"
+
 #include <Windows.h>
 
-#include <Application/TsWin32App.h>
-#include <Window/TsWin32Wnd.h>
-#include <Events/TsEventManager.h>
+#include TARS_CORE_H(Application/TkWin32App)
+#include TARS_CORE_H(Window/TkWin32Wnd)
+#include TARS_CORE_H(Events/TkEventManager)
 
 //-----------------------------------------------------------------------------
 // Name:		WinMain
@@ -18,8 +20,8 @@
 //-----------------------------------------------------------------------------
 int WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_opt LPSTR lpCmdLine, __in int nShowCmd )
 {
-	/*TsWin32Wnd*		pMainWindow		= new TsWin32Wnd();
-	TsEventManager*	pEventManager	= new TsEventManager();
+	/*TkWin32Wnd*		pMainWindow		= new TkWin32Wnd();
+	TkEventManager*	pEventManager	= new TkEventManager();
 
 	pMainWindow->setEventManager( pEventManager );
 	pMainWindow->create( hInstance );
@@ -30,11 +32,10 @@ int WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_op
 		Sleep( 0 );
 	}*/
 
-	TsWin32App* pWin32App = new TsWin32App( hInstance );
+	TkWin32App* pWin32App = new TkWin32App( hInstance );
 
 	pWin32App->createWindow();
-	pWin32App->createWindow();
-	pWin32App->runMessageLoop();
+	pWin32App->runMessageLoop();	
 
 	return 0;
 }

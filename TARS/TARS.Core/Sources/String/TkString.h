@@ -1,16 +1,23 @@
 //*****************************************************************************
 //
-//	File:		Root.h
+//	Class:		TkString
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __TARS_CORE_ROOT_H__
-#define __TARS_CORE_ROOT_H__
+#ifndef __TARS_CORE_TK_STRING_H__
+#define __TARS_CORE_TK_STRING_H__
 
-#define USE_TARS_CORE
+class TkString
+{
+public:
+			TkString();
+			~TkString();
 
-#include <TarsRoot.h>
+private:
+	char*	_pcBuffer;
+	int		_nSize;
+};
 
 #endif

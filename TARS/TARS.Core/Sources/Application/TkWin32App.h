@@ -1,33 +1,32 @@
 //*****************************************************************************
 //
-//	Class:		TsWin32App
+//	Class:		TkWin32App
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __TARS_CORE_TS_WIN32_APP_H__
-#define __TARS_CORE_TS_WIN32_APP_H__
+#ifndef __TARS_CORE_TK_WIN32_APP_H__
+#define __TARS_CORE_TK_WIN32_APP_H__
 
 #include <Windows.h>
 
-class TsWin32Wnd;
+class TkWin32Wnd;
 
-class TsWin32App
+class TkWin32App
 {
 public:
-						TsWin32App( const HINSTANCE& hInstance );
-						~TsWin32App();
+						TkWin32App( const HINSTANCE& hInstance );
+						~TkWin32App();
 
 	inline HINSTANCE	getInstanceHandle() const;
 
-	TsWin32Wnd*			createWindow();
-	//int64_t				runMessageLoop();
-	int					runMessageLoop();
+	TkWin32Wnd*			createWindow();
+	int64_t				runMessageLoop();
 
 private:
 	HINSTANCE			_hInstance;
-	TsWin32Wnd*			_pMainWindow;
+	TkWin32Wnd*			_pMainWindow;
 };
 
 //-----------------------------------------------------------------------------
@@ -35,7 +34,7 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-HINSTANCE TsWin32App::getInstanceHandle() const
+HINSTANCE TkWin32App::getInstanceHandle() const
 {
 	return ( _hInstance );
 }

@@ -1,30 +1,30 @@
 //*****************************************************************************
 //
-//	Class:		TsWin32Wnd
+//	Class:		TkWin32Wnd
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __TARS_CORE_TS_WIN32_WND_H__
-#define __TARS_CORE_TS_WIN32_WND_H__
+#ifndef __TARS_CORE_TK_WIN32_WND_H__
+#define __TARS_CORE_TK_WIN32_WND_H__
 
 #include <Windows.h>
 #include <QtCore/QString>
 
-class TsWin32App;
-//class TsEventManager;
+class TkWin32App;
+//class TkEventManager;
 
-class TsWin32Wnd
+class TkWin32Wnd
 {
 public:
-							TsWin32Wnd( const TsWin32App* pWin32App );
-							~TsWin32Wnd();
+							TkWin32Wnd( const TkWin32App* pWin32App );
+							~TkWin32Wnd();
 
 	void					create();
 	void					show();
 
-	//inline void				setEventManager( TsEventManager* pEventManager );
+	//inline void				setEventManager( TkEventManager* pEventManager );
 
 private:
 	static LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
@@ -37,8 +37,8 @@ private:
 
 	bool					_bFullscreen;
 
-	const TsWin32App*		_pWin32App;
-	//TsEventManager*			_pEventManager;
+	const TkWin32App*		_pWin32App;
+	//TkEventManager*			_pEventManager;
 
 	HWND					_hWnd;
 };
@@ -48,7 +48,7 @@ private:
 ////
 //// Created:		2013-08-26
 ////-----------------------------------------------------------------------------
-//void TsWin32Wnd::setEventManager( TsEventManager* pEventManager )
+//void TkWin32Wnd::setEventManager( TkEventManager* pEventManager )
 //{
 //	_pEventManager = pEventManager;
 //}

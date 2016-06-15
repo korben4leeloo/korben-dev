@@ -1,14 +1,14 @@
 //*****************************************************************************
 //
-//	File:		TsWin32Wnd.cpp
+//	File:		TkWin32Wnd.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
 #include "Root.h"
-#include "TsWin32Wnd.h"
+#include "TkWin32Wnd.h"
 
-#include TARS_CORE_H(Application/TsWin32App)
+#include TARS_CORE_H(Application/TkWin32App)
 
 #define DEFAULT_WINDOW_NAME		"TARS Window"
 #define DEFAULT_CLIENT_WIDTH	1024
@@ -16,11 +16,11 @@
 #define DEFAULT_BITS_PER_PIXEL	32
 
 //-----------------------------------------------------------------------------
-// Name:		TsWin32Wnd constructor
+// Name:		TkWin32Wnd constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TsWin32Wnd::TsWin32Wnd( const TsWin32App* pWin32App )
+TkWin32Wnd::TkWin32Wnd( const TkWin32App* pWin32App )
 : _pWin32App		( pWin32App )
 , _strWindowName	( DEFAULT_WINDOW_NAME )
 , _nClientWidth		( DEFAULT_CLIENT_WIDTH )
@@ -33,11 +33,11 @@ TsWin32Wnd::TsWin32Wnd( const TsWin32App* pWin32App )
 }
 
 //-----------------------------------------------------------------------------
-// Name:		TsWin32Wnd destructor
+// Name:		TkWin32Wnd destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TsWin32Wnd::~TsWin32Wnd()
+TkWin32Wnd::~TkWin32Wnd()
 {
 	
 }
@@ -47,7 +47,7 @@ TsWin32Wnd::~TsWin32Wnd()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void TsWin32Wnd::create()
+void TkWin32Wnd::create()
 {
 	HINSTANCE	hInstance = _pWin32App->getInstanceHandle();
 	WNDCLASSW	wc;						// Windows Class Structure
@@ -62,13 +62,13 @@ void TsWin32Wnd::create()
 
 	//fullscreen=fullscreenflag;			// Set The Global Fullscreen Flag
 
-	QString strWndClassName = "TsWin32WndClass";
+	QString strWndClassName = "TkWin32WndClass";
 
-	//strWndClassName = QString::asprintf( "%s_%x", "TsWin32WndClass", this );
+	//strWndClassName = QString::asprintf( "%s_%x", "TkWin32WndClass", this );
 
 	//hInstance			= GetModuleHandle(NULL);				// Grab An Instance For Our Window
 	wc.style			= CS_HREDRAW | CS_VREDRAW | CS_OWNDC;	// Redraw On Size, And Own DC For Window.
-	wc.lpfnWndProc		= (WNDPROC)TsWin32Wnd::WndProc;			// WndProc Handles Messages
+	wc.lpfnWndProc		= (WNDPROC)TkWin32Wnd::WndProc;			// WndProc Handles Messages
 	wc.cbClsExtra		= 0;									// No Extra Window Data
 	wc.cbWndExtra		= 0;									// No Extra Window Data
 	wc.hInstance		= hInstance;							// Set The Instance
@@ -167,7 +167,7 @@ void TsWin32Wnd::create()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void TsWin32Wnd::show()
+void TkWin32Wnd::show()
 {
 	if	( _hWnd != NULL )
 	{
@@ -180,7 +180,7 @@ void TsWin32Wnd::show()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-LRESULT CALLBACK TsWin32Wnd::WndProc(	HWND	hWnd,			// Handle For This Window
+LRESULT CALLBACK TkWin32Wnd::WndProc(	HWND	hWnd,			// Handle For This Window
 										UINT	uMsg,			// Message For This Window
 										WPARAM	wParam,			// Additional Message Information
 										LPARAM	lParam)			// Additional Message Information

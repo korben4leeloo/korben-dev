@@ -21,17 +21,11 @@
     <Filter Include="Source Files\Application">
       <UniqueIdentifier>{71c8b677-c3c4-451e-b1f1-aa62c911d657}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\String">
+      <UniqueIdentifier>{75dbc2c5-b04a-4f1e-9762-bfb05df534fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\Events\TsEventManager.h">
-      <Filter>Source Files\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Application\TsWin32App.h">
-      <Filter>Source Files\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Window\TsWin32Wnd.h">
-      <Filter>Source Files\Window</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Application\Root.h">
       <Filter>Source Files\Application</Filter>
     </ClInclude>
@@ -44,17 +38,37 @@
     <ClInclude Include="Sources\Window\Root.h">
       <Filter>Source Files\Window</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Root.h" />
+    <ClInclude Include="Sources\Application\TkWin32App.h">
+      <Filter>Source Files\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Events\TkEventManager.h">
+      <Filter>Source Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Window\TkWin32Wnd.h">
+      <Filter>Source Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\String\TkString.h">
+      <Filter>Source Files\String</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\String\Root.h">
+      <Filter>Source Files\String</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Root.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Events\TsEventManager.cpp">
-      <Filter>Source Files\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Application\TsWin32App.cpp">
+    <ClCompile Include="Sources\Application\TkWin32App.cpp">
       <Filter>Source Files\Application</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Window\TsWin32Wnd.cpp">
+    <ClCompile Include="Sources\Events\TkEventManager.cpp">
+      <Filter>Source Files\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Window\TkWin32Wnd.cpp">
       <Filter>Source Files\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\String\TkString.cpp">
+      <Filter>Source Files\String</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

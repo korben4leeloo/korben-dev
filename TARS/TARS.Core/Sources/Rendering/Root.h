@@ -6,8 +6,8 @@
 //
 //*****************************************************************************
 
-#ifndef __TARS_Core_Rendering_Root_h__
-#define __TARS_Core_Rendering_Root_h__
+#ifndef __TARS_CORE_RENDERING_ROOT_H__
+#define __TARS_CORE_RENDERING_ROOT_H__
 
 #include "../Root.h"
 

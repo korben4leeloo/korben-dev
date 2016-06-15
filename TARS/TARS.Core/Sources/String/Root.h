@@ -6,11 +6,9 @@
 //
 //*****************************************************************************
 
-#ifndef __TARS_CORE_ROOT_H__
-#define __TARS_CORE_ROOT_H__
+#ifndef __TARS_CORE_STRING_ROOT_H__
+#define __TARS_CORE_STRING_ROOT_H__
 
-#define USE_TARS_CORE
-
-#include <TarsRoot.h>
+#include "../Root.h"
 
 #endif
