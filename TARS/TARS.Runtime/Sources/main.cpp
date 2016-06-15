@@ -40,19 +40,12 @@ int WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_op
 	TkString s5 = "prout prout";
 	TkString s6 = s4;
 
-	bool b;
-	
-	b = ( s1 == s2 );
-	b = ( s2 == s3 );
-	b = ( s3 == s4 );
-	b = ( s4 == s5 );
-	b = ( s6 == s4 );
-	b = ( s1 == s1 );
-	b = ( s5 == s5 );
-	b = ( s5 == s1 );
+	TkString s7 = s1 + s2;
 
-	s5 = "prout";
-	b = ( s5 == s4 );
+	s7 = s1 + s6;
+	s7 = s6 + s4;
+	s7 = s5 + s4;
+	s7 = s6 + "troululu";
 
 	TkWin32App* pWin32App = new TkWin32App( hInstance );
 

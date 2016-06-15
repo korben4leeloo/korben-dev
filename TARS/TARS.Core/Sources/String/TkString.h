@@ -12,6 +12,7 @@
 class TkString
 {
 	friend bool operator==( const TkString& lhs, const TkString& rhs );
+	friend TkString operator+( const TkString& lhs, const TkString& rhs );
 
 public:
 				TkString();
