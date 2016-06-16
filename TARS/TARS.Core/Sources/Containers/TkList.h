@@ -23,20 +23,28 @@ private:
 	};
 
 public:
+	class TkIterator
 	{
 		friend class TkList;
 
 	public:
+							TkIterator();
 
 		inline bool			isValid() const;
 
+		inline TkIterator&	operator=( const TkIterator& other );
 
+		inline TkIterator&	operator++();
+		TkIterator&			operator++(int);
 
+		inline TkIterator&	operator--();
+		TkIterator&			operator--(int);
 
 		T&					operator*();
 		T*					operator->();
 
 	private:
+							TkIterator( TkListNode* pListNode );
 
 		TkListNode*			_pListNode;
 	};
@@ -44,8 +52,15 @@ public:
 						TkList();
 						~TkList();
 
+	TkIterator			pushBack( const T& value );
+	TkIterator			pushFront( const T& value );
+	TkIterator			insert( const TkIterator& position, const T& value );
+	//void				remove( const TkIterator& position );
 
+	TkIterator			find( const T& value );
 
+	inline TkIterator	begin();
+	inline TkIterator	end();
 
 private:
 	TkListNode*			_pHead;
@@ -64,6 +79,8 @@ private:
 //-----------------------------------------------------------------------------
 template<class T>
 TkList<T>::TkList()
+: _pHead	( nullptr )
+, _pLast	( nullptr )
 , _uiSize	( 0 )
 {
 	
@@ -86,6 +103,7 @@ TkList<T>::~TkList()
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
+typename TkList<T>::TkIterator TkList<T>::pushBack(const T&	value)
 {
 	TkListNode* pListNode = new TkListNode( value );
 
@@ -105,6 +123,7 @@ template<class T>
 
 	_uiSize++;
 
+	return	( TkIterator( pListNode ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -113,6 +132,7 @@ template<class T>
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
+typename TkList<T>::TkIterator TkList<T>::pushFront(const T&	value)
 {
 	TkListNode* pListNode = new TkListNode( value );
 
@@ -132,6 +152,7 @@ template<class T>
 
 	_uiSize++;
 
+	return	( TkIterator( pListNode ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -140,6 +161,7 @@ template<class T>
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
+typename TkList<T>::TkIterator TkList<T>::insert(const TkIterator&	position, 
 												 const T&			value)
 {
 	TARS_ASSERT( position.isValid() );
@@ -158,6 +180,7 @@ template<class T>
 
 	_uiSize++;
 	
+	return	( TkIterator( pListNode ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -166,7 +189,9 @@ template<class T>
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
+typename TkList<T>::TkIterator TkList<T>::find( const T& value )
 {
+	TkIterator it( _pHead );
 
 	while ( it.isValid() && ( *it != value ) )
 	{
@@ -182,7 +207,9 @@ template<class T>
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
+typename TkList<T>::TkIterator TkList<T>::begin()
 {
+	return	( TkIterator( _pHead ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -191,23 +218,30 @@ template<class T>
 //
 //-----------------------------------------------------------------------------
 template<class T>
+typename TkList<T>::TkIterator TkList<T>::end()
 {
+	return	( TkIterator( _pLast ) );
 }
 
 //-----------------------------------------------------------------------------
+// Name:		TkIterator constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
+TkList<T>::TkIterator::TkIterator()
+: _pListNode( nullptr )
 {
 	
 }
 
 //-----------------------------------------------------------------------------
+// Name:		TkIterator constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
+TkList<T>::TkIterator::TkIterator(TkListNode*	pListNode)
 : _pListNode( pListNode )
 {
 	
@@ -219,7 +253,9 @@ template<class T>
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
+bool TkList<T>::TkIterator::isValid() const
 {
+	return	( _pListNode != nullptr );
 }
 
 //-----------------------------------------------------------------------------
@@ -228,6 +264,7 @@ template<class T>
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
+typename TkList<T>::TkIterator& TkList<T>::TkIterator::operator=(const TkIterator&	other)
 {
 	_pListNode = other._pListNode;
 	return	( *this );
@@ -239,6 +276,7 @@ template<class T>
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
+T& TkList<T>::TkIterator::operator*()
 {
 	TARS_ASSERT( isValid() );
 	return	( _pListNode->_value );
@@ -250,6 +288,7 @@ template<class T>
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
+T* TkList<T>::TkIterator::operator->()
 {
 	TARS_ASSERT( isValid() );
 	return	( &_pListNode->_value );
@@ -261,6 +300,7 @@ template<class T>
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
+typename TkList<T>::TkIterator& TkList<T>::TkIterator::operator++()
 {
 	(*this)++;
 	return	( *this );
@@ -272,6 +312,7 @@ template<class T>
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
+typename TkList<T>::TkIterator& TkList<T>::TkIterator::operator++(int)
 {
 	TARS_ASSERT( isValid() );
 
@@ -289,6 +330,7 @@ template<class T>
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
+typename TkList<T>::TkIterator& TkList<T>::TkIterator::operator--()
 {
 	(*this)--;
 	return	( *this );
@@ -300,6 +342,7 @@ template<class T>
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
+typename TkList<T>::TkIterator& TkList<T>::TkIterator::operator--(int)
 {
 	TARS_ASSERT( isValid() && _pListNode->_pPrev );
 
@@ -318,6 +361,8 @@ template<class T>
 //-----------------------------------------------------------------------------
 template<class T>
 TkList<T>::TkListNode::TkListNode(const T&	value)
+: _pPrev	( nullptr )
+, _pNext	( nullptr )
 , _value	( value )
 {
 	
