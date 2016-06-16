@@ -13,6 +13,8 @@
 #include TARS_CORE_H(Window/TkWin32Wnd)
 #include TARS_CORE_H(Events/TkEventManager)
 #include TARS_CORE_H(String/TkString)
+#include TARS_CORE_H(Containers/TkList)
+#include TARS_CORE_H(Containers/TkVector)
 
 //-----------------------------------------------------------------------------
 // Name:		WinMain
@@ -40,12 +42,21 @@ int WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_op
 	TkString s5 = "prout prout";
 	TkString s6 = s4;
 
-	TkString s7 = s1 + s2;
+	TkList<TkString> l;
 
-	s7 = s1 + s6;
-	s7 = s6 + s4;
-	s7 = s5 + s4;
-	s7 = s6 + "troululu";
+	l.pushBack( s1 );
+	l.pushBack( s4 );
+	l.pushBack( s5 );
+	l.pushBack( s6 );
+
+	TkVector<TkString> v;
+
+	v.pushBack( s1 );
+	v.pushBack( s4 );
+	v.pushBack( s5 );
+	v.pushBack( s6 );
+
+	//l.remove( l.find( s5 ) );
 
 	TkWin32App* pWin32App = new TkWin32App( hInstance );
 

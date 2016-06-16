@@ -128,6 +128,9 @@
   <ItemGroup>
     <ClInclude Include="Sources\Application\Root.h" />
     <ClInclude Include="Sources\Application\TkWin32App.h" />
+    <ClInclude Include="Sources\Containers\Root.h" />
+    <ClInclude Include="Sources\Containers\TkList.h" />
+    <ClInclude Include="Sources\Containers\TkVector.h" />
     <ClInclude Include="Sources\Events\Root.h" />
     <ClInclude Include="Sources\Events\TkEventManager.h" />
     <ClInclude Include="Sources\Rendering\Root.h" />
@@ -139,6 +142,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Application\TkWin32App.cpp" />
+    <ClCompile Include="Sources\Containers\TkList.cpp" />
+    <ClCompile Include="Sources\Containers\TkVector.cpp" />
     <ClCompile Include="Sources\Events\TkEventManager.cpp" />
     <ClCompile Include="Sources\String\TkString.cpp" />
     <ClCompile Include="Sources\Window\TkWin32Wnd.cpp" />

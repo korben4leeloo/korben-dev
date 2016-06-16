@@ -68,7 +68,7 @@ int64_t TkWin32App::runMessageLoop()
 
 	while ( bRun )
 	{
-		if	( PeekMessage( &msg, NULL, 0, 0, PM_REMOVE ) )	// Is There A Message Waiting?
+		if	( PeekMessage( &msg, nullptr, 0, 0, PM_REMOVE ) )	// Is There A Message Waiting?
 		{
 			if	( msg.message == WM_QUIT )				// Have We Received A Quit Message?
 			{

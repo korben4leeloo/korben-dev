@@ -27,7 +27,7 @@ TkWin32Wnd::TkWin32Wnd( const TkWin32App* pWin32App )
 , _nClientHeight	( DEFAULT_CLIENT_HEIGHT )
 , _nBitsPerPixel	( DEFAULT_BITS_PER_PIXEL )
 , _bFullscreen		( false )
-//, _pEventManager	( NULL )
+//, _pEventManager	( nullptr )
 {
 	
 }
@@ -66,16 +66,16 @@ void TkWin32Wnd::create()
 
 	//strWndClassName = QString::asprintf( "%s_%x", "TkWin32WndClass", this );
 
-	//hInstance			= GetModuleHandle(NULL);				// Grab An Instance For Our Window
+	//hInstance			= GetModuleHandle(nullptr);				// Grab An Instance For Our Window
 	wc.style			= CS_HREDRAW | CS_VREDRAW | CS_OWNDC;	// Redraw On Size, And Own DC For Window.
 	wc.lpfnWndProc		= (WNDPROC)TkWin32Wnd::WndProc;			// WndProc Handles Messages
 	wc.cbClsExtra		= 0;									// No Extra Window Data
 	wc.cbWndExtra		= 0;									// No Extra Window Data
 	wc.hInstance		= hInstance;							// Set The Instance
-	wc.hIcon			= LoadIcon(NULL, IDI_WINLOGO);			// Load The Default Icon
-	wc.hCursor			= LoadCursor(NULL, IDC_ARROW);			// Load The Arrow Pointer
-	wc.hbrBackground	= NULL;									// No Background Required For GL
-	wc.lpszMenuName		= NULL;									// We Don't Want A Menu
+	wc.hIcon			= LoadIcon(nullptr, IDI_WINLOGO);			// Load The Default Icon
+	wc.hCursor			= LoadCursor(nullptr, IDC_ARROW);			// Load The Arrow Pointer
+	wc.hbrBackground	= nullptr;									// No Background Required For GL
+	wc.lpszMenuName		= nullptr;									// We Don't Want A Menu
 	wc.lpszClassName	= (LPCWSTR)strWndClassName.constData();	// Set The Class Name
 
 	/*QByteArray qb = strWndClassName.toUtf8();
@@ -90,7 +90,7 @@ void TkWin32Wnd::create()
 
 		if	( nErrorCode != ERROR_CLASS_ALREADY_EXISTS )
 		{
-			MessageBox(NULL,"Failed To Register The Window Class.","ERROR",MB_OK|MB_ICONEXCLAMATION);
+			MessageBox(nullptr,"Failed To Register The Window Class.","ERROR",MB_OK|MB_ICONEXCLAMATION);
 			//return FALSE;											// Return FALSE
 			return;
 		}
@@ -110,14 +110,14 @@ void TkWin32Wnd::create()
 		if (ChangeDisplaySettings(&dmScreenSettings,CDS_FULLSCREEN)!=DISP_CHANGE_SUCCESSFUL)
 		{
 			// If The Mode Fails, Offer Two Options.  Quit Or Use Windowed Mode.
-			if (MessageBox(NULL,"The Requested Fullscreen Mode Is Not Supported By\nYour Video Card. Use Windowed Mode Instead?","NeHe GL",MB_YESNO|MB_ICONEXCLAMATION)==IDYES)
+			if (MessageBox(nullptr,"The Requested Fullscreen Mode Is Not Supported By\nYour Video Card. Use Windowed Mode Instead?","NeHe GL",MB_YESNO|MB_ICONEXCLAMATION)==IDYES)
 			{
 				_bFullscreen = false;		// Windowed Mode Selected.  Fullscreen = FALSE
 			}
 			else
 			{
 				// Pop Up A Message Box Letting User Know The Program Is Closing.
-				MessageBox(NULL,"Program Will Now Close.","ERROR",MB_OK|MB_ICONSTOP);
+				MessageBox(nullptr,"Program Will Now Close.","ERROR",MB_OK|MB_ICONSTOP);
 				//return FALSE;									// Return FALSE
 				return;
 			}
@@ -149,14 +149,14 @@ void TkWin32Wnd::create()
 								0, 0,									// Window Position
 								WindowRect.right - WindowRect.left,		// Calculate Window Width
 								WindowRect.bottom - WindowRect.top,		// Calculate Window Height
-								NULL,									// No Parent Window
-								NULL,									// No Menu
+								nullptr,									// No Parent Window
+								nullptr,									// No Menu
 								hInstance,								// Instance
-								NULL)))									// Dont Pass Anything To WM_CREATE
+								nullptr)))									// Dont Pass Anything To WM_CREATE
 	{
 		//KillGLWindow();								// Reset The Display
 		DWORD nError = GetLastError();
-		MessageBox(NULL,"Window Creation Error.","ERROR",MB_OK|MB_ICONEXCLAMATION);
+		MessageBox(nullptr,"Window Creation Error.","ERROR",MB_OK|MB_ICONEXCLAMATION);
 		//return FALSE;								// Return FALSE
 		return;
 	}
@@ -169,7 +169,7 @@ void TkWin32Wnd::create()
 //-----------------------------------------------------------------------------
 void TkWin32Wnd::show()
 {
-	if	( _hWnd != NULL )
+	if	( _hWnd != nullptr )
 	{
 		ShowWindow( _hWnd, TRUE );
 	}

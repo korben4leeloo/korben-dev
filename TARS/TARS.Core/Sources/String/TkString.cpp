@@ -16,7 +16,7 @@
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 TkString::TkString()
-: _pcBuffer	( NULL )
+: _pcBuffer	( nullptr )
 , _nSize	( 0 )
 {
 	
@@ -28,7 +28,7 @@ TkString::TkString()
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 TkString::TkString( const char* pcBuffer )
-: _pcBuffer	( NULL )
+: _pcBuffer	( nullptr )
 , _nSize	( 0 )
 {
 	copy( pcBuffer );
@@ -40,7 +40,7 @@ TkString::TkString( const char* pcBuffer )
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 TkString::TkString( const TkString& rhs )
-: _pcBuffer	( NULL )
+: _pcBuffer	( nullptr )
 , _nSize	( 0 )
 {
 	copy( rhs._pcBuffer );
@@ -110,6 +110,16 @@ bool operator==( const TkString& lhs, const TkString& rhs )
 	{
 		return ( ( rhs._nSize > 0 ) && ( strcmp( lhs._pcBuffer, rhs._pcBuffer ) == 0 ) );
 	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator!=
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+bool operator!=( const TkString& lhs, const TkString& rhs )
+{
+	return ( !( lhs == rhs ) );
 }
 
 //-----------------------------------------------------------------------------

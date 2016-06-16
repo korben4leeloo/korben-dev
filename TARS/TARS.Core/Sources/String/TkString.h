@@ -12,6 +12,7 @@
 class TkString
 {
 	friend bool operator==( const TkString& lhs, const TkString& rhs );
+	friend bool operator!=( const TkString& lhs, const TkString& rhs );
 	friend TkString operator+( const TkString& lhs, const TkString& rhs );
 
 public:
@@ -39,7 +40,7 @@ void TkString::clear()
 {
 	delete[] _pcBuffer;
 
-	_pcBuffer	= NULL;
+	_pcBuffer	= nullptr;
 	_nSize		= 0;
 }
 

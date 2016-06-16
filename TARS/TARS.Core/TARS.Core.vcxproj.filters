@@ -24,6 +24,9 @@
     <Filter Include="Source Files\String">
       <UniqueIdentifier>{75dbc2c5-b04a-4f1e-9762-bfb05df534fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Containers">
+      <UniqueIdentifier>{d703968b-c497-471a-be1f-d5f6ea585309}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Application\Root.h">
@@ -56,6 +59,15 @@
     <ClInclude Include="Sources\Root.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Containers\TkList.h">
+      <Filter>Source Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Containers\TkVector.h">
+      <Filter>Source Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Containers\Root.h">
+      <Filter>Source Files\Containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Application\TkWin32App.cpp">
@@ -69,6 +81,12 @@
     </ClCompile>
     <ClCompile Include="Sources\String\TkString.cpp">
       <Filter>Source Files\String</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Containers\TkList.cpp">
+      <Filter>Source Files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Containers\TkVector.cpp">
+      <Filter>Source Files\Containers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
