@@ -19,15 +19,19 @@ public:
 					~TkVector();
 
 	void			pushBack( const T& value );
-	void			remove( const uint32 uiIndex );
 
-	inline uint32	getSize() const;
+	void			remove( const uint32 uiIndex );
+	void			remove( const T& value );
+
+	inline uint32	size() const;
 
 	inline T&		operator[]( const uint32 nIndex );
 
 	void			resize( const uint32 uiSize, const T& defaultValue = T() );
 	void			reserve( const uint32 uiSize );
 	void			shrink();
+
+	void			clear();
 
 private:
 	void			destroy();
@@ -76,14 +80,27 @@ TkVector<T>::~TkVector()
 template<class T>
 void TkVector<T>::destroy()
 {
+	clear();
+
+	delete[] reinterpret_cast<char*>( _pArray );
+
+	_pArray				= nullptr;
+	_uiAllocatedSize	= 0;
+}
+
+//-----------------------------------------------------------------------------
+// Name:		clear
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+void TkVector<T>::clear()
+{
 	for	( uint32 i = 0; i < _uiSize; i++ )
 	{
 		( _pArray + i )->~T();
 	}
 
-	delete[] reinterpret_cast<char*>( _pArray );
-
-	_pArray	= nullptr;
 	_uiSize	= 0;
 }
 
@@ -96,6 +113,7 @@ template<class T>
 void TkVector<T>::pushBack(const T&	value)
 {
 	resize( _uiSize + 1, value );
+	new ( &_pArray[_uiSize-1] ) T( value );
 }
 
 //-----------------------------------------------------------------------------
@@ -120,12 +138,35 @@ void TkVector<T>::remove(const uint32	uiIndex)
 }
 
 //-----------------------------------------------------------------------------
-// Name:		getSize
+// Name:		remove
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-uint32 TkVector<T>::getSize() const
+void TkVector<T>::remove(const T& value)
+{
+	for	( uint32 i = 0; i < _uiSize; i++ )
+	{
+		while	( _pArray[i] == value )
+		{
+			for	( uint32 j = i; j < _uiSize - 1; j++ )
+			{
+				_pArray[j] = _pArray[j+1];
+			}
+
+			(&_pArray[_uiSize-1])->~T();
+			_uiSize--;
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		size
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+uint32 TkVector<T>::size() const
 {
 	return	( _uiSize );
 }
