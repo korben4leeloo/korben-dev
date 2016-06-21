@@ -1,39 +1,55 @@
 //*****************************************************************************
 //
-//	File:		TkEventManager.cpp
+//	File:		TkTextFile.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include "Root.h"
-#include "TkEventManager.h"
+#include "TkTextFile.h"
+
+const char* TkTextFile::_pcFileMode[TARS_FILE_MODE_COUNT] = { "r", "w", "a", "r+", "w+", "a+" };
 
 //-----------------------------------------------------------------------------
-// Name:		TkEventManager constructor
+// Name:		TkTextFile constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkEventManager::TkEventManager()
+TkTextFile::TkTextFile()
+: _pFile( nullptr )
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		TkEventManager destructor
+// Name:		TkTextFile destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkEventManager::~TkEventManager()
+TkTextFile::~TkTextFile()
 {
-	
+	close();
 }
 
 //-----------------------------------------------------------------------------
-// Name:		update
+// Name:		open
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void TkEventManager::update()
+void TkTextFile::open( const TkString& strFileName, const TARS_FILE_MODE eFileMode )
 {
-	
+	_pFile = fopen( strFileName.buffer(), _pcFileMode[eFileMode] );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		close
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void TkTextFile::close()
+{
+	if	( _pFile )
+	{
+		fclose( _pFile );
+		_pFile = nullptr;
+	}
 }

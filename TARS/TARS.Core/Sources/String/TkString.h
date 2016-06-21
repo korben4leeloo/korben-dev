@@ -9,6 +9,8 @@
 #ifndef __TARS_CORE_TK_STRING_H__
 #define __TARS_CORE_TK_STRING_H__
 
+#include "Root.h"
+
 class TkString
 {
 	friend bool operator==( const TkString& lhs, const TkString& rhs );
@@ -16,19 +18,21 @@ class TkString
 	friend TkString operator+( const TkString& lhs, const TkString& rhs );
 
 public:
-				TkString();
-				TkString( const char* pcBuffer );
-				TkString( const TkString& rhs );
-				~TkString();
+						TkString();
+						TkString( const char* pcBuffer );
+						TkString( const TkString& rhs );
+						~TkString();
 
-	TkString&	operator=( const TkString& rhs );
+	TkString&			operator=( const TkString& rhs );
+
+	inline const char*	buffer() const;
 
 private:
-	inline void	clear();
-	void		copy( const char* pcBuffer );
+	inline void			clear();
+	void				copy( const char* pcBuffer );
 
-	char*		_pcBuffer;
-	uint32		_nSize;
+	char*				_pcBuffer;
+	uint32				_nSize;
 };
 
 //-----------------------------------------------------------------------------
@@ -42,6 +46,16 @@ void TkString::clear()
 
 	_pcBuffer	= nullptr;
 	_nSize		= 0;
+}
+
+//-----------------------------------------------------------------------------
+// Name:		buffer
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const char* TkString::buffer() const
+{
+	return ( _pcBuffer );
 }
 
 #endif

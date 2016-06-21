@@ -9,6 +9,8 @@
 #ifndef __TARS_CORE_TK_EVENT_MANAGER_H__
 #define __TARS_CORE_TK_EVENT_MANAGER_H__
 
+#include "Root.h"
+
 class TkEventManager
 {
 public:

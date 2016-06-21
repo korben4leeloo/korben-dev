@@ -9,6 +9,7 @@
 #ifndef __TARS_CORE_TK_WIN32_APP_H__
 #define __TARS_CORE_TK_WIN32_APP_H__
 
+#include "Root.h"
 #include <Windows.h>
 
 class TkWin32Wnd;

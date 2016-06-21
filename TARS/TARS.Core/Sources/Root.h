@@ -13,4 +13,6 @@
 
 #include <TarsRoot.h>
 
+#include TARS_CORE_H(String/TkString)
+
 #endif

@@ -9,8 +9,9 @@
 #ifndef __TARS_CORE_TK_WIN32_WND_H__
 #define __TARS_CORE_TK_WIN32_WND_H__
 
+#include "Root.h"
+
 #include <Windows.h>
-#include <QtCore/QString>
 
 class TkWin32App;
 //class TkEventManager;
@@ -29,7 +30,7 @@ public:
 private:
 	static LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
 
-	QString					_strWindowName;
+	TkString				_strWindowName;
 
 	int						_nClientWidth;
 	int						_nClientHeight;

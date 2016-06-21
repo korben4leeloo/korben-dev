@@ -5,10 +5,7 @@
 //
 //*****************************************************************************
 
-#include "Root.h"
 #include "TkWin32App.h"
-
-#include <Windows.h>
 
 #include TARS_CORE_H(Window/TkWin32Wnd)
 

@@ -5,7 +5,6 @@
 //
 //*****************************************************************************
 
-#include "Root.h"
 #include "TkWin32Wnd.h"
 
 #include TARS_CORE_H(Application/TkWin32App)
@@ -50,7 +49,7 @@ TkWin32Wnd::~TkWin32Wnd()
 void TkWin32Wnd::create()
 {
 	HINSTANCE	hInstance = _pWin32App->getInstanceHandle();
-	WNDCLASSW	wc;						// Windows Class Structure
+	WNDCLASS	wc;						// Windows Class Structure
 	DWORD		dwExStyle;				// Window Extended Style
 	DWORD		dwStyle;				// Window Style
 	RECT		WindowRect;				// Grabs Rectangle Upper Left / Lower Right Values
@@ -62,7 +61,7 @@ void TkWin32Wnd::create()
 
 	//fullscreen=fullscreenflag;			// Set The Global Fullscreen Flag
 
-	QString strWndClassName = "TkWin32WndClass";
+	TkString strWndClassName = "TkWin32WndClass";
 
 	//strWndClassName = QString::asprintf( "%s_%x", "TkWin32WndClass", this );
 
@@ -76,7 +75,7 @@ void TkWin32Wnd::create()
 	wc.hCursor			= LoadCursor(nullptr, IDC_ARROW);			// Load The Arrow Pointer
 	wc.hbrBackground	= nullptr;									// No Background Required For GL
 	wc.lpszMenuName		= nullptr;									// We Don't Want A Menu
-	wc.lpszClassName	= (LPCWSTR)strWndClassName.constData();	// Set The Class Name
+	wc.lpszClassName	= (LPCSTR)strWndClassName.buffer();	// Set The Class Name
 
 	/*QByteArray qb = strWndClassName.toUtf8();
 	char* p = qb.data();
@@ -84,7 +83,7 @@ void TkWin32Wnd::create()
 	p = strWndClassName.toUtf8().data();
 	const char* p2 = qPrintable( strWndClassName );*/
 
-	if (!RegisterClassW(&wc))									// Attempt To Register The Window Class
+	if (!RegisterClass(&wc))									// Attempt To Register The Window Class
 	{
 		DWORD nErrorCode = GetLastError();
 
@@ -140,9 +139,9 @@ void TkWin32Wnd::create()
 	AdjustWindowRectEx( &WindowRect, dwStyle, FALSE, dwExStyle );		// Adjust Window To True Requested Size
 
 	// Create The Window
-	if (!(_hWnd=CreateWindowExW(dwExStyle,								// Extended Style For The Window
-								(LPCWSTR)strWndClassName.constData(),	// Class Name
-								(LPCWSTR)_strWindowName.constData(),	// Window Title
+	if (!(_hWnd=CreateWindowEx(dwExStyle,								// Extended Style For The Window
+								(LPCSTR)strWndClassName.buffer(),	// Class Name
+								(LPCSTR)_strWindowName.buffer(),	// Window Title
 								dwStyle |								// Defined Window Style
 								WS_CLIPSIBLINGS |						// Required Window Style
 								WS_CLIPCHILDREN,						// Required Window Style
