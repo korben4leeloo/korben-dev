@@ -8,6 +8,7 @@
 #include "TkString.h"
 
 #include <cstring>
+#include TARS_CORE_H(File/TkBinaryFile)
 
 //-----------------------------------------------------------------------------
 // Name:		TkString constructor
@@ -149,4 +150,34 @@ TkString operator+( const TkString& lhs, const TkString& rhs )
 	}
 
 	return ( strResult );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator<<
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+TkBinaryFile& operator<<( TkBinaryFile& file, const TkString& s )
+{
+	file << s.size();
+	fwrite( s.buffer(), 1, s.size(), file._pFile );
+	return ( file );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		read
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const TkBinaryFile& operator>>( const TkBinaryFile& file, TkString& s )
+{
+	s.clear();
+
+	file >> s._nSize;
+
+	s._pcBuffer = new char[s._nSize+1];
+	fread( s._pcBuffer, 1, s._nSize, file._pFile );
+	s._pcBuffer[s._nSize] = '\0';
+
+	return ( file );
 }

@@ -11,11 +11,14 @@
 
 #include "Root.h"
 
+class TkBinaryFile;
+
 class TkString
 {
 	friend bool operator==( const TkString& lhs, const TkString& rhs );
 	friend bool operator!=( const TkString& lhs, const TkString& rhs );
 	friend TkString operator+( const TkString& lhs, const TkString& rhs );
+	friend const TkBinaryFile& operator>>( const TkBinaryFile& file, TkString& s );
 
 public:
 						TkString();
@@ -26,6 +29,7 @@ public:
 	TkString&			operator=( const TkString& rhs );
 
 	inline const char*	buffer() const;
+	inline uint32		size() const;
 
 private:
 	inline void			clear();
@@ -57,5 +61,17 @@ const char* TkString::buffer() const
 {
 	return ( _pcBuffer );
 }
+
+//-----------------------------------------------------------------------------
+// Name:		size
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+uint32 TkString::size() const
+{
+	return ( _nSize );
+}
+
+TkBinaryFile& operator<<( TkBinaryFile& file, const TkString& s );
 
 #endif

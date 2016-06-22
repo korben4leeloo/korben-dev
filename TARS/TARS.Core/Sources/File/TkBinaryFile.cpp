@@ -6,6 +6,7 @@
 //*****************************************************************************
 
 #include "TkBinaryFile.h"
+#include <cstring>
 
 const char* TkBinaryFile::_pcFileMode[TARS_FILE_MODE_COUNT] = { "rb", "wb", "ab", "r+b", "w+b", "a+b" };
 
@@ -52,4 +53,18 @@ void TkBinaryFile::close()
 		fclose( _pFile );
 		_pFile = nullptr;
 	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator<<
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+TkBinaryFile& TkBinaryFile::operator<<( const char* pcData )
+{
+	uint32 uiSize = (uint32)strlen( pcData );
+
+	(*this) << uiSize;
+	fwrite( pcData, sizeof(char), uiSize, _pFile );
+	return ( *this );
 }

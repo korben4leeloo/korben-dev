@@ -25,18 +25,19 @@ public:
 	// Stream operators	
 	inline TkTextFile&	operator<<( const bool b );
 	inline TkTextFile&	operator<<( const char c );
-	inline TkTextFile&	operator<<( const int8 n );
-	inline TkTextFile&	operator<<( const int16 n );
-	inline TkTextFile&	operator<<( const int32 n );
-	inline TkTextFile&	operator<<( const int64 n );
-	inline TkTextFile&	operator<<( const uint8 n );
-	inline TkTextFile&	operator<<( const uint16 n );
-	inline TkTextFile&	operator<<( const uint32 n );
-	inline TkTextFile&	operator<<( const uint64 n );
-	inline TkTextFile&	operator<<( const float f );
-	inline TkTextFile&	operator<<( const double d );
 	inline TkTextFile&	operator<<( const char* pcData );
 	inline TkTextFile&	operator<<( const TkString& strData );
+
+	TkTextFile&			operator<<( const int8 n );
+	TkTextFile&			operator<<( const int16 n );
+	TkTextFile&			operator<<( const int32 n );
+	TkTextFile&			operator<<( const int64 n );
+	TkTextFile&			operator<<( const uint8 n );
+	TkTextFile&			operator<<( const uint16 n );
+	TkTextFile&			operator<<( const uint32 n );
+	TkTextFile&			operator<<( const uint64 n );
+	TkTextFile&			operator<<( const float f );
+	TkTextFile&			operator<<( const double d );
 
 private:
 	FILE*				_pFile;
@@ -65,156 +66,6 @@ TkTextFile& TkTextFile::operator<<( const bool b )
 TkTextFile& TkTextFile::operator<<( const char c )
 {
 	putc( c, _pFile );
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const int8 n )
-{
-	char buf[256];
-
-	sprintf( buf, "%d", n );
-	(*this) << buf;
-
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const int16 n )
-{
-	char buf[256];
-
-	sprintf( buf, "%d", n );
-	(*this) << buf;
-
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const int32 n )
-{
-	char buf[256];
-
-	sprintf( buf, "%d", n );
-	(*this) << buf;
-
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const int64 n )
-{
-	char buf[256];
-
-	sprintf( buf, "%d", n );
-	(*this) << buf;
-
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const uint8 n )
-{
-	char buf[256];
-
-	sprintf( buf, "%u", n );
-	(*this) << buf;
-
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const uint16 n )
-{
-	char buf[256];
-
-	sprintf( buf, "%u", n );
-	(*this) << buf;
-
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const uint32 n )
-{
-	char buf[256];
-
-	sprintf( buf, "%u", n );
-	(*this) << buf;
-
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const uint64 n )
-{
-	char buf[256];
-
-	sprintf( buf, "%u", n );
-	(*this) << buf;
-
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const float f )
-{
-	char buf[256];
-
-	sprintf( buf, "%f", f );
-	(*this) << buf;
-
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const double d )
-{
-	char buf[256];
-
-	sprintf( buf, "%f", d );
-	(*this) << buf;
-
 	return ( *this );
 }
 
