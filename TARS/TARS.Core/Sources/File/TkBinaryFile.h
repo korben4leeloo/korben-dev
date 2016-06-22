@@ -15,51 +15,55 @@
 
 class TkBinaryFile
 {
-public:
-							TkBinaryFile();
-							~TkBinaryFile();
+	friend TkBinaryFile& operator<<( TkBinaryFile& file, const TkString& s );
+	friend const TkBinaryFile& operator>>( const TkBinaryFile& file, TkString& s );
 
-	void					open( const TkString& strFileName, const TARS_FILE_MODE eFileMode = TARS_FILE_MODE_IN_OUT_CREATE );
-	void					close();
+public:
+												TkBinaryFile();
+												~TkBinaryFile();
+
+	void										open( const TkString& strFileName, const TARS_FILE_MODE eFileMode = TARS_FILE_MODE_IN_OUT_CREATE );
+	void										close();
 
 	// Stream operators	
-	inline TkBinaryFile&	operator<<( const bool b );
-	inline TkBinaryFile&	operator<<( const char c );
-	inline TkBinaryFile&	operator<<( const int8 n );
-	inline TkBinaryFile&	operator<<( const int16 n );
-	inline TkBinaryFile&	operator<<( const int32 n );
-	inline TkBinaryFile&	operator<<( const int64 n );
-	inline TkBinaryFile&	operator<<( const uint8 n );
-	inline TkBinaryFile&	operator<<( const uint16 n );
-	inline TkBinaryFile&	operator<<( const uint32 n );
-	inline TkBinaryFile&	operator<<( const uint64 n );
-	inline TkBinaryFile&	operator<<( const float f );
-	inline TkBinaryFile&	operator<<( const double d );
-	inline TkBinaryFile&	operator<<( const char* pcData );
-	inline TkBinaryFile&	operator<<( const TkString& strData );
+	inline TkBinaryFile&						operator<<( const bool b );
+	inline TkBinaryFile&						operator<<( const char c );
+	TkBinaryFile&								operator<<( const char* pcData );
+
+	inline TkBinaryFile&						operator<<( const int8 n );
+	inline TkBinaryFile&						operator<<( const int16 n );
+	inline TkBinaryFile&						operator<<( const int32 n );
+	inline TkBinaryFile&						operator<<( const int64 n );
+	inline TkBinaryFile&						operator<<( const uint8 n );
+	inline TkBinaryFile&						operator<<( const uint16 n );
+	inline TkBinaryFile&						operator<<( const uint32 n );
+	inline TkBinaryFile&						operator<<( const uint64 n );
+	inline TkBinaryFile&						operator<<( const float f );
+	inline TkBinaryFile&						operator<<( const double d );
+
+	inline const TkBinaryFile&					operator>>( bool& b ) const;
+	inline const TkBinaryFile&					operator>>( char& c ) const;
+	inline const TkBinaryFile&					operator>>( char*& pcData ) const;
+
+	inline const TkBinaryFile&					operator>>( int8& n ) const;
+	inline const TkBinaryFile&					operator>>( int16& n ) const;
+	inline const TkBinaryFile&					operator>>( int32& n ) const;
+	inline const TkBinaryFile&					operator>>( int64& n ) const;
+	inline const TkBinaryFile&					operator>>( uint8& n ) const;
+	inline const TkBinaryFile&					operator>>( uint16& n ) const;
+	inline const TkBinaryFile&					operator>>( uint32& n ) const;
+	inline const TkBinaryFile&					operator>>( uint64& n ) const;
+	inline const TkBinaryFile&					operator>>( float& f ) const;
+	inline const TkBinaryFile&					operator>>( double& d ) const;
 
 private:
-	FILE*					_pFile;
+	template<typename T> TkBinaryFile&			internalWrite( const T& value );
+	template<typename T> const TkBinaryFile&	internalRead( T& value ) const;
 
-	template<typename T>
-	TkBinaryFile&			internalWrite( const T& value );
+	FILE*										_pFile;
 
-	static const char*		_pcFileMode[TARS_FILE_MODE_COUNT];
-
-private:
+	static const char*							_pcFileMode[TARS_FILE_MODE_COUNT];
 };
-
-//-----------------------------------------------------------------------------
-// Name:		internalWrite
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<typename T>
-TkBinaryFile& TkBinaryFile::internalWrite( const T& value )
-{
-	fwrite( &value, sizeof(T), 1, _pFile );
-	return ( *this );
-}
 
 //-----------------------------------------------------------------------------
 // Name:		operator<<
@@ -121,12 +125,7 @@ TkBinaryFile& TkBinaryFile::operator<<( const int32 n )
 //-----------------------------------------------------------------------------
 TkBinaryFile& TkBinaryFile::operator<<( const int64 n )
 {
-	char buf[256];
-
-	sprintf( buf, "%d", n );
-	(*this) << buf;
-
-	return ( *this );
+	return ( internalWrite( n ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -136,12 +135,7 @@ TkBinaryFile& TkBinaryFile::operator<<( const int64 n )
 //-----------------------------------------------------------------------------
 TkBinaryFile& TkBinaryFile::operator<<( const uint8 n )
 {
-	char buf[256];
-
-	sprintf( buf, "%u", n );
-	(*this) << buf;
-
-	return ( *this );
+	return ( internalWrite( n ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -151,12 +145,7 @@ TkBinaryFile& TkBinaryFile::operator<<( const uint8 n )
 //-----------------------------------------------------------------------------
 TkBinaryFile& TkBinaryFile::operator<<( const uint16 n )
 {
-	char buf[256];
-
-	sprintf( buf, "%u", n );
-	(*this) << buf;
-
-	return ( *this );
+	return ( internalWrite( n ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -166,12 +155,7 @@ TkBinaryFile& TkBinaryFile::operator<<( const uint16 n )
 //-----------------------------------------------------------------------------
 TkBinaryFile& TkBinaryFile::operator<<( const uint32 n )
 {
-	char buf[256];
-
-	sprintf( buf, "%u", n );
-	(*this) << buf;
-
-	return ( *this );
+	return ( internalWrite( n ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -181,12 +165,7 @@ TkBinaryFile& TkBinaryFile::operator<<( const uint32 n )
 //-----------------------------------------------------------------------------
 TkBinaryFile& TkBinaryFile::operator<<( const uint64 n )
 {
-	char buf[256];
-
-	sprintf( buf, "%u", n );
-	(*this) << buf;
-
-	return ( *this );
+	return ( internalWrite( n ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -196,12 +175,7 @@ TkBinaryFile& TkBinaryFile::operator<<( const uint64 n )
 //-----------------------------------------------------------------------------
 TkBinaryFile& TkBinaryFile::operator<<( const float f )
 {
-	char buf[256];
-
-	sprintf( buf, "%f", f );
-	(*this) << buf;
-
-	return ( *this );
+	return ( internalWrite( f ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -211,33 +185,170 @@ TkBinaryFile& TkBinaryFile::operator<<( const float f )
 //-----------------------------------------------------------------------------
 TkBinaryFile& TkBinaryFile::operator<<( const double d )
 {
-	char buf[256];
+	return ( internalWrite( d ) );
+}
 
-	sprintf( buf, "%f", d );
-	(*this) << buf;
+//-----------------------------------------------------------------------------
+// Name:		internalWrite
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+TkBinaryFile& TkBinaryFile::internalWrite( const T& value )
+{
+	fwrite( &value, sizeof(T), 1, _pFile );
+	return ( *this );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator>>
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const TkBinaryFile& TkBinaryFile::operator>>( bool& b ) const
+{
+	(*this) >> (char&)b;
+	return ( *this );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator>>
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const TkBinaryFile& TkBinaryFile::operator>>( char& c ) const
+{
+	c = (char)getc( _pFile );
+	return ( *this );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator>>
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const TkBinaryFile& TkBinaryFile::operator>>( char*& pcData ) const
+{
+	int nSize;
+	(*this) >> nSize;
+
+	pcData = new char[nSize+1];
+	fread( pcData, 1, nSize, _pFile );
+	pcData[nSize] = '\0';
 
 	return ( *this );
 }
 
 //-----------------------------------------------------------------------------
-// Name:		operator<<
+// Name:		operator>>
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkBinaryFile& TkBinaryFile::operator<<( const char* pcData )
+const TkBinaryFile& TkBinaryFile::operator>>( int8& n ) const
 {
-	fputs( pcData, _pFile );
+	putc( n, _pFile );
 	return ( *this );
 }
 
 //-----------------------------------------------------------------------------
-// Name:		operator<<
+// Name:		operator>>
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkBinaryFile& TkBinaryFile::operator<<( const TkString& strData )
+const TkBinaryFile& TkBinaryFile::operator>>( int16& n ) const
 {
-	fputs( strData.buffer(), _pFile );
+	return ( internalRead( n ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator>>
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const TkBinaryFile& TkBinaryFile::operator>>( int32& n ) const
+{
+	return ( internalRead( n ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator>>
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const TkBinaryFile& TkBinaryFile::operator>>( int64& n ) const
+{
+	return ( internalRead( n ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator>>
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const TkBinaryFile& TkBinaryFile::operator>>( uint8& n ) const
+{
+	return ( internalRead( n ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator>>
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const TkBinaryFile& TkBinaryFile::operator>>( uint16& n ) const
+{
+	return ( internalRead( n ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator>>
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const TkBinaryFile& TkBinaryFile::operator>>( uint32& n ) const
+{
+	return ( internalRead( n ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator>>
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const TkBinaryFile& TkBinaryFile::operator>>( uint64& n ) const
+{
+	return ( internalRead( n ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator>>
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const TkBinaryFile& TkBinaryFile::operator>>( float& f ) const
+{
+	return ( internalRead( f ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator>>
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+const TkBinaryFile& TkBinaryFile::operator>>( double& d ) const
+{
+	return ( internalRead( d ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		internalRead
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename T>
+const TkBinaryFile& TkBinaryFile::internalRead( T& value ) const
+{
+	fread( &value, sizeof(T), 1, _pFile );
 	return ( *this );
 }
 
