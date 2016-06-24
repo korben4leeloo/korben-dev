@@ -12,13 +12,18 @@
 #include "Root.h"
 
 class TkBinaryFile;
+class TkTextFile;
 
 class TkString
 {
+	// Operators
 	friend bool operator==( const TkString& lhs, const TkString& rhs );
 	friend bool operator!=( const TkString& lhs, const TkString& rhs );
 	friend TkString operator+( const TkString& lhs, const TkString& rhs );
+
+	// Stream operators
 	friend const TkBinaryFile& operator>>( const TkBinaryFile& file, TkString& s );
+	friend const TkTextFile& operator>>( const TkTextFile& file, TkString& s );
 
 public:
 						TkString();

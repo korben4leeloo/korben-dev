@@ -25,7 +25,7 @@ public:
 	void										open( const TkString& strFileName, const TARS_FILE_MODE eFileMode = TARS_FILE_MODE_IN_OUT_CREATE );
 	void										close();
 
-	// Stream operators	
+	// Stream operators ( input )
 	inline TkBinaryFile&						operator<<( const bool b );
 	inline TkBinaryFile&						operator<<( const char c );
 	TkBinaryFile&								operator<<( const char* pcData );
@@ -41,6 +41,7 @@ public:
 	inline TkBinaryFile&						operator<<( const float f );
 	inline TkBinaryFile&						operator<<( const double d );
 
+	// Stream operators ( output )
 	inline const TkBinaryFile&					operator>>( bool& b ) const;
 	inline const TkBinaryFile&					operator>>( char& c ) const;
 	inline const TkBinaryFile&					operator>>( char*& pcData ) const;
@@ -246,7 +247,7 @@ const TkBinaryFile& TkBinaryFile::operator>>( char*& pcData ) const
 //-----------------------------------------------------------------------------
 const TkBinaryFile& TkBinaryFile::operator>>( int8& n ) const
 {
-	putc( n, _pFile );
+	n = (int8)getc( _pFile );
 	return ( *this );
 }
 

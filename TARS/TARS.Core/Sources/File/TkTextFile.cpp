@@ -6,6 +6,7 @@
 //*****************************************************************************
 
 #include "TkTextFile.h"
+#include <cctype>
 
 const char* TkTextFile::_pcFileMode[TARS_FILE_MODE_COUNT] = { "r", "w", "a", "r+", "w+", "a+" };
 
@@ -16,6 +17,7 @@ const char* TkTextFile::_pcFileMode[TARS_FILE_MODE_COUNT] = { "r", "w", "a", "r+
 //-----------------------------------------------------------------------------
 TkTextFile::TkTextFile()
 : _pFile( nullptr )
+, _nSize( 0 )
 {
 	
 }
@@ -38,6 +40,13 @@ TkTextFile::~TkTextFile()
 void TkTextFile::open( const TkString& strFileName, const TARS_FILE_MODE eFileMode )
 {
 	_pFile = fopen( strFileName.buffer(), _pcFileMode[eFileMode] );
+
+	if	( _pFile )
+	{
+		fseek( _pFile, 0, SEEK_END );
+		_nSize = ftell( _pFile );
+		fseek( _pFile, 0, SEEK_SET );
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -52,118 +61,19 @@ void TkTextFile::close()
 		fclose( _pFile );
 		_pFile = nullptr;
 	}
+
+	_nSize = 0;
 }
 
 //-----------------------------------------------------------------------------
-// Name:		operator<<
+// Name:		trimWhitespaceCharacters
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const int8 n )
+void TkTextFile::trimWhitespaceCharacters() const
 {
-	char buf[256];
-
-	fprintf( _pFile, "%d", n );
-	(*this) << buf;
-
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const int16 n )
-{
-	fprintf( _pFile, "%d", n );
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const int32 n )
-{
-	fprintf( _pFile, "%d", n );
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const int64 n )
-{
-	fprintf( _pFile, "%d", n );
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const uint8 n )
-{
-	fprintf( _pFile, "%u", n );
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const uint16 n )
-{
-	fprintf( _pFile, "%u", n );
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const uint32 n )
-{
-	fprintf( _pFile, "%u", n );
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const uint64 n )
-{
-	fprintf( _pFile, "%u", n );
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const float f )
-{
-	fprintf( _pFile, "%f", f );
-	return ( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator<<
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkTextFile& TkTextFile::operator<<( const double d )
-{
-	fprintf( _pFile, "%f", d );
-	return ( *this );
+	while ( !feof( _pFile ) && ( isspace( _pFile->_ptr[0] ) != 0 ) )
+	{
+		fgetc( _pFile );
+	}
 }

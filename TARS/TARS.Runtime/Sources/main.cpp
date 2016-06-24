@@ -22,30 +22,46 @@ int WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_op
 {
 	TkWin32App* pWin32App = new TkWin32App( hInstance );
 
-	//TkBinaryFile f;
-	TkTextFile f;
+	//TkBinaryFile file;
+	TkTextFile file;
 	TkString s( "prout" );
+	float f = ( 1.0f / 30.0f );
+	double d = ( 1.0 / 30.0 );
 
-	f.open( "D:/test.txt" );
+	file.open( "D:/test.txt" );
 
-	f << 'h';
-	f << 123;
-	f << 1.2536477;
-	f << s;
+	file << 'h' << "\n";
+	file << 123 << "\n";
+	file << s  << "\n";
+	file << f << "\n";
+	file << "tars" << "\n";
+	file << d << "\n";
+	file << s;
 
-	f.close();
+	char str[256];
+    sprintf_s(str, "%.18f", d);
 
-	f.open( "D:/test.txt", TARS_FILE_MODE_IN );
+    OutputDebugString(str);
+
+	file.close();
+
+	file.open( "D:/test.txt", TARS_FILE_MODE_IN );
 
 	char c;
 	int n;
 	char* s2;
-	double d;
+	char* s3;
+	float f1;
+	double d1;
+	TkString s4;
 
-	f >> c;
-	f >> n;
-	f >> d;
-	f >> s2;
+	file >> c;
+	file >> n;
+	file >> s4;
+	file >> f1;
+	file >> s3;
+	file >> d1;
+	file >> s2;
 
 	pWin32App->createWindow();
 	pWin32App->runMessageLoop();
