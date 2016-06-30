@@ -8,6 +8,7 @@
 #include "TkWin32Wnd.h"
 
 #include TARS_CORE_H(Application/TkWin32App)
+#include TARS_CORE_H(Input/TkWin32InputManager)
 
 #define DEFAULT_WINDOW_NAME		"TARS Window"
 #define DEFAULT_CLIENT_WIDTH	1024
@@ -240,7 +241,7 @@ LRESULT CALLBACK TkWin32Wnd::WndProc(	HWND	hWnd,			// Handle For This Window
 
 		case WM_INPUT:
 		{
-			uint32 nRawInputSize;
+			/*uint32 nRawInputSize;
 
 			GetRawInputData( (HRAWINPUT)lParam, RID_INPUT, nullptr, &nRawInputSize, sizeof(RAWINPUTHEADER) );
 
@@ -249,17 +250,17 @@ LRESULT CALLBACK TkWin32Wnd::WndProc(	HWND	hWnd,			// Handle For This Window
 			if ( GetRawInputData((HRAWINPUT)lParam, RID_INPUT, rawInput, &nRawInputSize, sizeof(RAWINPUTHEADER) ) != nRawInputSize )
 			{
 				return ( GetLastError() );
-			}
+			}*/
 
-			TkWin32Wnd* pWindow = (TkWin32Wnd*)GetWindowLongPtr( hWnd, GWLP_USERDATA );
-			/*TkWin32InputManager* pInputManager = pWindow->_pWin32App->getInputManager();
+			TkWin32Wnd*				pWindow			= (TkWin32Wnd*)GetWindowLongPtr( hWnd, GWLP_USERDATA );
+			TkWin32InputManager*	pInputManager	= pWindow->_pWin32App->getInputManager();
 
 			if	( pInputManager )
 			{
+				return ( pInputManager->onReceiveRawInput( lParam ) );
+			}
 
-			}*/
-
-			return ( DefRawInputProc( &rawInput, 1, sizeof(RAWINPUTHEADER) ) );
+			//return ( DefRawInputProc( &rawInput, 1, sizeof(RAWINPUTHEADER) ) );
 		}
 	}
 

@@ -22,7 +22,7 @@ public:
 								~TkWin32App();
 
 	inline HINSTANCE			getInstanceHandle() const;
-	inline TkWin32InputManager*	getInputManager();
+	inline TkWin32InputManager*	getInputManager() const;
 
 	TkWin32InputManager*		initInputs();
 	TkWin32Wnd*					initWindow();
@@ -52,7 +52,7 @@ HINSTANCE TkWin32App::getInstanceHandle() const
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkWin32InputManager* TkWin32App::getInputManager()
+TkWin32InputManager* TkWin32App::getInputManager() const
 {
 	return ( _pInputManager );
 }

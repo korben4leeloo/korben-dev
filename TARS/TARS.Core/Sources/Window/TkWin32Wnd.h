@@ -14,6 +14,7 @@
 #include <Windows.h>
 
 class TkWin32App;
+class TkWin32InputManager;
 
 class TkWin32Wnd
 {
