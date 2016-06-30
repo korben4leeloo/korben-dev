@@ -20,6 +20,8 @@ public:
 	void	registerDevices();
 	void	enumDevices();
 
+	uint64	onReceiveRawInput( const uint64 nRawInputHandle );
+
 private:
 
 };

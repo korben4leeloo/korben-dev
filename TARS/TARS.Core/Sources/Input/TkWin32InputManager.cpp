@@ -105,3 +105,24 @@ void TkWin32InputManager::enumDevices()
 
 	delete[] pDeviceList;
 }
+
+//-----------------------------------------------------------------------------
+// Name:		onReceiveRawInput
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+uint64 TkWin32InputManager::onReceiveRawInput( const uint64 nRawInputHandle )
+{
+	uint32 nRawInputSize;
+
+	GetRawInputData( (HRAWINPUT)nRawInputHandle, RID_INPUT, nullptr, &nRawInputSize, sizeof(RAWINPUTHEADER) );
+
+	RAWINPUT* rawInput = (RAWINPUT*)( new char[nRawInputSize] );
+
+	if ( GetRawInputData((HRAWINPUT)nRawInputHandle, RID_INPUT, rawInput, &nRawInputSize, sizeof(RAWINPUTHEADER) ) != nRawInputSize )
+	{
+		return ( GetLastError() );
+	}
+
+	return ( DefRawInputProc( &rawInput, 1, sizeof(RAWINPUTHEADER) ) );
+}
