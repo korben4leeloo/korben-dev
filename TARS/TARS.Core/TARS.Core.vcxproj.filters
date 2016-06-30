@@ -15,9 +15,6 @@
     <Filter Include="Source Files\Rendering">
       <UniqueIdentifier>{aab3493d-9421-46c9-918b-b59524adffa4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Events">
-      <UniqueIdentifier>{14042d47-0886-469a-80b8-8086b48b086a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Application">
       <UniqueIdentifier>{71c8b677-c3c4-451e-b1f1-aa62c911d657}</UniqueIdentifier>
     </Filter>
@@ -30,13 +27,13 @@
     <Filter Include="Source Files\File">
       <UniqueIdentifier>{f1a5d0b8-01f4-4a7e-a337-41cdb63e905b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{e80efeb1-dc7d-40a4-8c1b-a62e37602c18}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Application\Root.h">
       <Filter>Source Files\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Events\Root.h">
-      <Filter>Source Files\Events</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Rendering\Root.h">
       <Filter>Source Files\Rendering</Filter>
@@ -46,9 +43,6 @@
     </ClInclude>
     <ClInclude Include="Sources\Application\TkWin32App.h">
       <Filter>Source Files\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Events\TkEventManager.h">
-      <Filter>Source Files\Events</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Window\TkWin32Wnd.h">
       <Filter>Source Files\Window</Filter>
@@ -80,13 +74,19 @@
     <ClInclude Include="Sources\File\Root.h">
       <Filter>Source Files\File</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Input\Root.h">
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Input\TkWin32InputManager.h">
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Input\TkInputState.h">
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Application\TkWin32App.cpp">
       <Filter>Source Files\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Events\TkEventManager.cpp">
-      <Filter>Source Files\Events</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Window\TkWin32Wnd.cpp">
       <Filter>Source Files\Window</Filter>
@@ -105,6 +105,12 @@
     </ClCompile>
     <ClCompile Include="Sources\File\TkBinaryFile.cpp">
       <Filter>Source Files\File</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Input\TkWin32InputManager.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Input\TkInputState.cpp">
+      <Filter>Source Files\Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

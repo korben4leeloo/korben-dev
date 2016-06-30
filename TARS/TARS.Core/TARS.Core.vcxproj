@@ -131,11 +131,12 @@
     <ClInclude Include="Sources\Containers\Root.h" />
     <ClInclude Include="Sources\Containers\TkList.h" />
     <ClInclude Include="Sources\Containers\TkVector.h" />
-    <ClInclude Include="Sources\Events\Root.h" />
-    <ClInclude Include="Sources\Events\TkEventManager.h" />
     <ClInclude Include="Sources\File\Root.h" />
     <ClInclude Include="Sources\File\TkBinaryFile.h" />
     <ClInclude Include="Sources\File\TkTextFile.h" />
+    <ClInclude Include="Sources\Input\Root.h" />
+    <ClInclude Include="Sources\Input\TkInputState.h" />
+    <ClInclude Include="Sources\Input\TkWin32InputManager.h" />
     <ClInclude Include="Sources\Rendering\Root.h" />
     <ClInclude Include="Sources\Root.h" />
     <ClInclude Include="Sources\String\Root.h" />
@@ -147,9 +148,10 @@
     <ClCompile Include="Sources\Application\TkWin32App.cpp" />
     <ClCompile Include="Sources\Containers\TkList.cpp" />
     <ClCompile Include="Sources\Containers\TkVector.cpp" />
-    <ClCompile Include="Sources\Events\TkEventManager.cpp" />
     <ClCompile Include="Sources\File\TkBinaryFile.cpp" />
     <ClCompile Include="Sources\File\TkTextFile.cpp" />
+    <ClCompile Include="Sources\Input\TkInputState.cpp" />
+    <ClCompile Include="Sources\Input\TkWin32InputManager.cpp" />
     <ClCompile Include="Sources\String\TkString.cpp" />
     <ClCompile Include="Sources\Window\TkWin32Wnd.cpp" />
   </ItemGroup>

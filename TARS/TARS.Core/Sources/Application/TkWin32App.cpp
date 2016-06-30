@@ -8,6 +8,7 @@
 #include "TkWin32App.h"
 
 #include TARS_CORE_H(Window/TkWin32Wnd)
+#include TARS_CORE_H(Input/TkWin32InputManager)
 
 //-----------------------------------------------------------------------------
 // Name:		TkWin32App constructor
@@ -15,7 +16,9 @@
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 TkWin32App::TkWin32App( const HINSTANCE& hInstance )
-: _hInstance( hInstance )
+: _hInstance		( hInstance )
+, _pInputManager	( nullptr )
+, _pWindow			( nullptr )
 {
 	
 }
@@ -27,32 +30,58 @@ TkWin32App::TkWin32App( const HINSTANCE& hInstance )
 //-----------------------------------------------------------------------------
 TkWin32App::~TkWin32App()
 {
-	
+	destroy();
 }
 
 //-----------------------------------------------------------------------------
-// Name:		createWindow
+// Name:		destroy
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkWin32Wnd* TkWin32App::createWindow()
+void TkWin32App::destroy()
 {
-	TkWin32Wnd*		pWindow		= new TkWin32Wnd( this );
-	//TkEventManager*	pEventManager	= new TkEventManager();
-
-	//pMainWindow->setEventManager( pEventManager );
-	pWindow->create();
-	pWindow->show();
-
-	return ( pWindow );
+	delete _pInputManager;
+	delete _pWindow;
 }
 
 //-----------------------------------------------------------------------------
-// Name:		runMessageLoop
+// Name:		initInputs
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-int64_t TkWin32App::runMessageLoop()
+TkWin32InputManager* TkWin32App::initInputs()
+{
+	delete _pInputManager;
+
+	_pInputManager = new TkWin32InputManager();
+	_pInputManager->registerDevices();
+
+	return ( _pInputManager );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		initWindow
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+TkWin32Wnd* TkWin32App::initWindow()
+{
+	delete _pWindow;
+
+	_pWindow = new TkWin32Wnd( this );
+
+	_pWindow->create();
+	_pWindow->show();
+
+	return ( _pWindow );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		run
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+int64_t TkWin32App::run()
 {
 	BOOL	bRun = true;
 	MSG		msg;

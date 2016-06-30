@@ -13,20 +13,28 @@
 #include <Windows.h>
 
 class TkWin32Wnd;
+class TkWin32InputManager;
 
 class TkWin32App
 {
 public:
-						TkWin32App( const HINSTANCE& hInstance );
-						~TkWin32App();
+								TkWin32App( const HINSTANCE& hInstance );
+								~TkWin32App();
 
-	inline HINSTANCE	getInstanceHandle() const;
+	inline HINSTANCE			getInstanceHandle() const;
+	inline TkWin32InputManager*	getInputManager();
 
-	TkWin32Wnd*			createWindow();
-	int64_t				runMessageLoop();
+	TkWin32InputManager*		initInputs();
+	TkWin32Wnd*					initWindow();
+
+	int64_t						run();
 
 private:
-	HINSTANCE			_hInstance;
+	void						destroy();
+
+	HINSTANCE					_hInstance;
+	TkWin32InputManager*		_pInputManager;
+	TkWin32Wnd*					_pWindow;
 };
 
 //-----------------------------------------------------------------------------
@@ -37,6 +45,16 @@ private:
 HINSTANCE TkWin32App::getInstanceHandle() const
 {
 	return ( _hInstance );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getInputManager
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+TkWin32InputManager* TkWin32App::getInputManager()
+{
+	return ( _pInputManager );
 }
 
 #endif

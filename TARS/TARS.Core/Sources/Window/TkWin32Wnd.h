@@ -14,7 +14,6 @@
 #include <Windows.h>
 
 class TkWin32App;
-//class TkEventManager;
 
 class TkWin32Wnd
 {
@@ -24,8 +23,6 @@ public:
 
 	void					create();
 	void					show();
-
-	//inline void				setEventManager( TkEventManager* pEventManager );
 
 private:
 	static LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
@@ -39,19 +36,8 @@ private:
 	bool					_bFullscreen;
 
 	const TkWin32App*		_pWin32App;
-	//TkEventManager*			_pEventManager;
 
 	HWND					_hWnd;
 };
-
-////-----------------------------------------------------------------------------
-//// Name:		setEventManager
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//void TkWin32Wnd::setEventManager( TkEventManager* pEventManager )
-//{
-//	_pEventManager = pEventManager;
-//}
 
 #endif

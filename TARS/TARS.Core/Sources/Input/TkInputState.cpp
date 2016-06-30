@@ -1,38 +1,28 @@
 //*****************************************************************************
 //
-//	File:		TkEventManager.cpp
+//	File:		TkInputState.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include "TkEventManager.h"
+#include "TkInputState.h"
 
 //-----------------------------------------------------------------------------
-// Name:		TkEventManager constructor
+// Name:		TkInputState constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkEventManager::TkEventManager()
+TkInputState::TkInputState()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		TkEventManager destructor
+// Name:		TkInputState destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkEventManager::~TkEventManager()
-{
-	
-}
-
-//-----------------------------------------------------------------------------
-// Name:		update
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void TkEventManager::update()
+TkInputState::~TkInputState()
 {
 	
 }

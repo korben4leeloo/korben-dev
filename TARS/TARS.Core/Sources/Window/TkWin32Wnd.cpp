@@ -159,6 +159,8 @@ void TkWin32Wnd::create()
 		//return FALSE;								// Return FALSE
 		return;
 	}
+
+	SetWindowLongPtr( _hWnd, GWLP_USERDATA, (LONG_PTR)this );
 }
 
 //-----------------------------------------------------------------------------
@@ -218,25 +220,49 @@ LRESULT CALLBACK TkWin32Wnd::WndProc(	HWND	hWnd,			// Handle For This Window
 			return 0;								// Jump Back
 		}
 
-		case WM_KEYDOWN:							// Is A Key Being Held Down?
-		{
-			//keys[wParam] = TRUE;					// If So, Mark It As TRUE
-			return 0;								// Jump Back
-		}
+		//case WM_KEYDOWN:							// Is A Key Being Held Down?
+		//{
+		//	//keys[wParam] = TRUE;					// If So, Mark It As TRUE
+		//	return 0;								// Jump Back
+		//}
 
-		case WM_KEYUP:								// Has A Key Been Released?
-		{
-			//keys[wParam] = FALSE;					// If So, Mark It As FALSE
-			return 0;								// Jump Back
-		}
+		//case WM_KEYUP:								// Has A Key Been Released?
+		//{
+		//	//keys[wParam] = FALSE;					// If So, Mark It As FALSE
+		//	return 0;								// Jump Back
+		//}
 
 		case WM_SIZE:								// Resize The OpenGL Window
 		{
 			//ReSizeGLScene(LOWORD(lParam),HIWORD(lParam));  // LoWord=Width, HiWord=Height
 			return 0;								// Jump Back
 		}
+
+		case WM_INPUT:
+		{
+			uint32 nRawInputSize;
+
+			GetRawInputData( (HRAWINPUT)lParam, RID_INPUT, nullptr, &nRawInputSize, sizeof(RAWINPUTHEADER) );
+
+			RAWINPUT* rawInput = (RAWINPUT*)( new char[nRawInputSize] );
+
+			if ( GetRawInputData((HRAWINPUT)lParam, RID_INPUT, rawInput, &nRawInputSize, sizeof(RAWINPUTHEADER) ) != nRawInputSize )
+			{
+				return ( GetLastError() );
+			}
+
+			TkWin32Wnd* pWindow = (TkWin32Wnd*)GetWindowLongPtr( hWnd, GWLP_USERDATA );
+			/*TkWin32InputManager* pInputManager = pWindow->_pWin32App->getInputManager();
+
+			if	( pInputManager )
+			{
+
+			}*/
+
+			return ( DefRawInputProc( &rawInput, 1, sizeof(RAWINPUTHEADER) ) );
+		}
 	}
 
 	// Pass All Unhandled Messages To DefWindowProc
-	return DefWindowProcW(hWnd,uMsg,wParam,lParam);
+	return DefWindowProc( hWnd, uMsg, wParam, lParam );
 }
