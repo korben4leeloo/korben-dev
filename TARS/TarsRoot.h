@@ -23,8 +23,10 @@
 // Assertions
 #ifdef TARS_DEBUG
 	#define TARS_ASSERT( condition ) assert( condition )
+	#define TARS_BREAK() TARS_ASSERT( false )
 #else
 	#define TARS_ASSERT( condition )
+	#define TARS_BREAK()
 #endif
 
 // Compile-time messaging
