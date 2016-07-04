@@ -21,7 +21,7 @@ public:
 	void			registerDevices();
 	void			enumDevices();
 
-	uint64			onReceiveRawInput( const uint64 nRawInputHandle );
+	uint64			onRawInput( const uint64 nRawInputHandle );
 
 private:
 	void			initWin32KeyMapper();

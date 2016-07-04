@@ -64,7 +64,6 @@ enum TARS_KEY
 
 	TK_KEY_NUMPAD_ADD,
 	TK_KEY_NUMPAD_SUBSTRACT,
-	TK_KEY_NUMPAD_ENTER,
 
 	TK_KEY_RETURN,
 	TK_KEY_ESCAPE,
@@ -112,8 +111,23 @@ public:
 					TkInputState();
 					~TkInputState();
 
+	inline void		setKeyState( const TARS_KEY eTarsKey, const TARS_KEY_STATE eKeyState );
+
 private:
 	TARS_KEY_STATE	_keyState[TK_KEY_COUNT];
 };
+
+//-----------------------------------------------------------------------------
+// Name:		setKeyState
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void TkInputState::setKeyState( const TARS_KEY eTarsKey, const TARS_KEY_STATE eKeyState )
+{
+	if	( eTarsKey != TK_KEY_INVALID )
+	{
+		_keyState[eTarsKey] = eKeyState;
+	}
+}
 
 #endif

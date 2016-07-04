@@ -59,6 +59,8 @@ void TkWin32InputManager::registerDevices()
 		//registration failed. Call GetLastError for the cause of the error
 		TARS_BREAK();
 	}
+
+	initWin32KeyMapper();
 }
 
 //-----------------------------------------------------------------------------
@@ -107,11 +109,11 @@ void TkWin32InputManager::enumDevices()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		onReceiveRawInput
+// Name:		onRawInput
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-uint64 TkWin32InputManager::onReceiveRawInput( const uint64 nRawInputHandle )
+uint64 TkWin32InputManager::onRawInput( const uint64 nRawInputHandle )
 {
 	uint32 nRawInputSize;
 
@@ -133,7 +135,14 @@ uint64 TkWin32InputManager::onReceiveRawInput( const uint64 nRawInputHandle )
 			switch	( rawKeyboard.Message )
 			{
 			case WM_KEYDOWN:
+				_inputState.setKeyState( _win32KeyMapper[rawKeyboard.VKey], TK_KEY_STATE_DOWN );
+				break;
 
+			case WM_KEYUP:
+				_inputState.setKeyState( _win32KeyMapper[rawKeyboard.VKey], TK_KEY_STATE_UP );
+				break;
+
+			default:
 				break;
 			}
 		}
@@ -162,79 +171,78 @@ void TkWin32InputManager::initWin32KeyMapper()
 {
 	memset( _win32KeyMapper, TK_KEY_INVALID, sizeof(_win32KeyMapper) );
 
-	_win32KeyMapper[TK_KEY_A] = 
-	_win32KeyMapper[TK_KEY_B] = 
-	_win32KeyMapper[TK_KEY_C] = 
-	_win32KeyMapper[TK_KEY_D] = 
-	_win32KeyMapper[TK_KEY_E] = 
-	_win32KeyMapper[TK_KEY_F] = 
-	_win32KeyMapper[TK_KEY_G] = 
-	_win32KeyMapper[TK_KEY_H] = 
-	_win32KeyMapper[TK_KEY_I] = 
-	_win32KeyMapper[TK_KEY_J] = 
-	_win32KeyMapper[TK_KEY_K] = 
-	_win32KeyMapper[TK_KEY_L] = 
-	_win32KeyMapper[TK_KEY_M] = 
-	_win32KeyMapper[TK_KEY_N] = 
-	_win32KeyMapper[TK_KEY_O] = 
-	_win32KeyMapper[TK_KEY_P] = 
-	_win32KeyMapper[TK_KEY_Q] = 
-	_win32KeyMapper[TK_KEY_R] = 
-	_win32KeyMapper[TK_KEY_S] = 
-	_win32KeyMapper[TK_KEY_T] = 
-	_win32KeyMapper[TK_KEY_U] = 
-	_win32KeyMapper[TK_KEY_V] = 
-	_win32KeyMapper[TK_KEY_W] = 
-	_win32KeyMapper[TK_KEY_X] = 
-	_win32KeyMapper[TK_KEY_Y] = 
-	_win32KeyMapper[TK_KEY_Z] = 
-	_win32KeyMapper[TK_KEY_0] = 
-	_win32KeyMapper[TK_KEY_1] = 
-	_win32KeyMapper[TK_KEY_2] = 
-	_win32KeyMapper[TK_KEY_3] = 
-	_win32KeyMapper[TK_KEY_4] = 
-	_win32KeyMapper[TK_KEY_5] = 
-	_win32KeyMapper[TK_KEY_6] = 
-	_win32KeyMapper[TK_KEY_7] = 
-	_win32KeyMapper[TK_KEY_8] = 
-	_win32KeyMapper[TK_KEY_9] = 
-	_win32KeyMapper[TK_KEY_NUMPAD_0] = 
-	_win32KeyMapper[TK_KEY_NUMPAD_1] = 
-	_win32KeyMapper[TK_KEY_NUMPAD_2] = 
-	_win32KeyMapper[TK_KEY_NUMPAD_3] = 
-	_win32KeyMapper[TK_KEY_NUMPAD_4] = 
-	_win32KeyMapper[TK_KEY_NUMPAD_5] = 
-	_win32KeyMapper[TK_KEY_NUMPAD_6] = 
-	_win32KeyMapper[TK_KEY_NUMPAD_7] = 
-	_win32KeyMapper[TK_KEY_NUMPAD_8] = 
-	_win32KeyMapper[TK_KEY_NUMPAD_9] = 
-	_win32KeyMapper[TK_KEY_NUMPAD_ADD] = 
-	_win32KeyMapper[TK_KEY_NUMPAD_SUBSTRACT] = 
-	_win32KeyMapper[TK_KEY_NUMPAD_ENTER] = 
-	_win32KeyMapper[TK_KEY_RETURN] = 
-	_win32KeyMapper[TK_KEY_ESCAPE] = 
-	_win32KeyMapper[TK_KEY_SPACE] = 
-	_win32KeyMapper[TK_KEY_BACKSPACE] = 
-	_win32KeyMapper[TK_KEY_DELETE] = 
-	_win32KeyMapper[TK_KEY_PAGE_UP] = 
-	_win32KeyMapper[TK_KEY_PAGE_DOWN] = 
-	_win32KeyMapper[TK_KEY_HOME] = 
-	_win32KeyMapper[TK_KEY_END] = 
-	_win32KeyMapper[TK_KEY_INSERT] = 
-	_win32KeyMapper[TK_KEY_LSHIFT] = 
-	_win32KeyMapper[TK_KEY_RSHIFT] = 
-	_win32KeyMapper[TK_KEY_LCTRL] = 
-	_win32KeyMapper[TK_KEY_RCTRL] = 
-	_win32KeyMapper[TK_KEY_F1] = 
-	_win32KeyMapper[TK_KEY_F2] = 
-	_win32KeyMapper[TK_KEY_F3] = 
-	_win32KeyMapper[TK_KEY_F4] = 
-	_win32KeyMapper[TK_KEY_F5] = 
-	_win32KeyMapper[TK_KEY_F6] = 
-	_win32KeyMapper[TK_KEY_F7] = 
-	_win32KeyMapper[TK_KEY_F8] = 
-	_win32KeyMapper[TK_KEY_F9] = 
-	_win32KeyMapper[TK_KEY_F10] = 
-	_win32KeyMapper[TK_KEY_F11] = 
-	_win32KeyMapper[TK_KEY_F12] = 
+	_win32KeyMapper[0x41]			= TK_KEY_A;
+	_win32KeyMapper[0x42]			= TK_KEY_B;
+	_win32KeyMapper[0x43]			= TK_KEY_C;
+	_win32KeyMapper[0x44]			= TK_KEY_D;
+	_win32KeyMapper[0x45]			= TK_KEY_E;
+	_win32KeyMapper[0x46]			= TK_KEY_F;
+	_win32KeyMapper[0x47]			= TK_KEY_G;
+	_win32KeyMapper[0x48]			= TK_KEY_H;
+	_win32KeyMapper[0x49]			= TK_KEY_I;
+	_win32KeyMapper[0x4A]			= TK_KEY_J;
+	_win32KeyMapper[0x4B]			= TK_KEY_K;
+	_win32KeyMapper[0x4C]			= TK_KEY_L;
+	_win32KeyMapper[0x4D]			= TK_KEY_M;
+	_win32KeyMapper[0x4E]			= TK_KEY_N;
+	_win32KeyMapper[0x4F]			= TK_KEY_O;
+	_win32KeyMapper[0x50]			= TK_KEY_P;
+	_win32KeyMapper[0x51]			= TK_KEY_Q;
+	_win32KeyMapper[0x52]			= TK_KEY_R;
+	_win32KeyMapper[0x53]			= TK_KEY_S;
+	_win32KeyMapper[0x54]			= TK_KEY_T;
+	_win32KeyMapper[0x55]			= TK_KEY_U;
+	_win32KeyMapper[0x56]			= TK_KEY_V;
+	_win32KeyMapper[0x57]			= TK_KEY_W;
+	_win32KeyMapper[0x58]			= TK_KEY_X;
+	_win32KeyMapper[0x59]			= TK_KEY_Y;
+	_win32KeyMapper[0x5A]			= TK_KEY_Z;
+	_win32KeyMapper[0x30]			= TK_KEY_0;
+	_win32KeyMapper[0x31]			= TK_KEY_1;
+	_win32KeyMapper[0x32]			= TK_KEY_2;
+	_win32KeyMapper[0x33]			= TK_KEY_3;
+	_win32KeyMapper[0x34]			= TK_KEY_4;
+	_win32KeyMapper[0x35]			= TK_KEY_5;
+	_win32KeyMapper[0x36]			= TK_KEY_6;
+	_win32KeyMapper[0x37]			= TK_KEY_7;
+	_win32KeyMapper[0x38]			= TK_KEY_8;
+	_win32KeyMapper[0x39]			= TK_KEY_9;
+	_win32KeyMapper[VK_NUMPAD0]		= TK_KEY_NUMPAD_0;
+	_win32KeyMapper[VK_NUMPAD1]		= TK_KEY_NUMPAD_1;
+	_win32KeyMapper[VK_NUMPAD2]		= TK_KEY_NUMPAD_2;
+	_win32KeyMapper[VK_NUMPAD3]		= TK_KEY_NUMPAD_3;
+	_win32KeyMapper[VK_NUMPAD4]		= TK_KEY_NUMPAD_4;
+	_win32KeyMapper[VK_NUMPAD5]		= TK_KEY_NUMPAD_5;
+	_win32KeyMapper[VK_NUMPAD6]		= TK_KEY_NUMPAD_6;
+	_win32KeyMapper[VK_NUMPAD7]		= TK_KEY_NUMPAD_7;
+	_win32KeyMapper[VK_NUMPAD8]		= TK_KEY_NUMPAD_8;
+	_win32KeyMapper[VK_NUMPAD9]		= TK_KEY_NUMPAD_9;
+	_win32KeyMapper[VK_ADD]			= TK_KEY_NUMPAD_ADD;
+	_win32KeyMapper[VK_SUBTRACT]	= TK_KEY_NUMPAD_SUBSTRACT;
+	_win32KeyMapper[VK_RETURN]		= TK_KEY_RETURN;
+	_win32KeyMapper[VK_ESCAPE]		= TK_KEY_ESCAPE;
+	_win32KeyMapper[VK_SPACE]		= TK_KEY_SPACE;
+	_win32KeyMapper[VK_BACK]		= TK_KEY_BACKSPACE;
+	_win32KeyMapper[VK_DELETE]		= TK_KEY_DELETE;
+	_win32KeyMapper[VK_PRIOR]		= TK_KEY_PAGE_UP;
+	_win32KeyMapper[VK_NEXT]		= TK_KEY_PAGE_DOWN;
+	_win32KeyMapper[VK_HOME]		= TK_KEY_HOME;
+	_win32KeyMapper[VK_END]			= TK_KEY_END;
+	_win32KeyMapper[VK_INSERT]		= TK_KEY_INSERT;
+	_win32KeyMapper[VK_LSHIFT]		= TK_KEY_LSHIFT;
+	_win32KeyMapper[VK_RSHIFT]		= TK_KEY_RSHIFT;
+	_win32KeyMapper[VK_LCONTROL]	= TK_KEY_LCTRL;
+	_win32KeyMapper[VK_RCONTROL]	= TK_KEY_RCTRL;
+	_win32KeyMapper[VK_F1]			= TK_KEY_F1;
+	_win32KeyMapper[VK_F2]			= TK_KEY_F2;
+	_win32KeyMapper[VK_F3]			= TK_KEY_F3;
+	_win32KeyMapper[VK_F4]			= TK_KEY_F4;
+	_win32KeyMapper[VK_F5]			= TK_KEY_F5;
+	_win32KeyMapper[VK_F6]			= TK_KEY_F6;
+	_win32KeyMapper[VK_F7]			= TK_KEY_F7;
+	_win32KeyMapper[VK_F8]			= TK_KEY_F8;
+	_win32KeyMapper[VK_F9]			= TK_KEY_F9;
+	_win32KeyMapper[VK_F10]			= TK_KEY_F10;
+	_win32KeyMapper[VK_F11]			= TK_KEY_F11;
+	_win32KeyMapper[VK_F12]			= TK_KEY_F12;
 }

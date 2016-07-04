@@ -257,7 +257,7 @@ LRESULT CALLBACK TkWin32Wnd::WndProc(	HWND	hWnd,			// Handle For This Window
 
 			if	( pInputManager )
 			{
-				return ( pInputManager->onReceiveRawInput( lParam ) );
+				return ( pInputManager->onRawInput( lParam ) );
 			}
 
 			//return ( DefRawInputProc( &rawInput, 1, sizeof(RAWINPUTHEADER) ) );
