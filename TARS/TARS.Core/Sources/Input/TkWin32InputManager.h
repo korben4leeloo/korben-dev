@@ -26,8 +26,7 @@ public:
 private:
 	void			initWin32KeyMapper();
 
-	TARS_KEY		_win32KeyMapper[256];
-
+	TarsKeyEnum		_win32KeyMapper[256];
 	TkInputState	_inputState;
 };
 

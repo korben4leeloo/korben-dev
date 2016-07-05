@@ -11,7 +11,9 @@
 
 #include "Root.h"
 
-enum TARS_KEY
+#include TARS_CORE_H(Containers/TkVector)
+
+enum TarsKeyEnum
 {
 	TK_KEY_A,
 	TK_KEY_B,
@@ -99,35 +101,30 @@ enum TARS_KEY
 	TK_KEY_INVALID = 0xFFFFFFFF
 };
 
-enum TARS_KEY_STATE
+enum TarsKeyStateEnum
 {
 	TK_KEY_STATE_UP,
 	TK_KEY_STATE_DOWN
 };
 
+struct TkKeyParam
+{
+	typedef void (*KeyStateChangedCallback)( const TarsKeyEnum eTarsKey, const TarsKeyStateEnum eKeyState );
+
+	TarsKeyStateEnum					_eKeyState;
+	TkVector<KeyStateChangedCallback>	_keyStateCallbackArray;
+};
+
 class TkInputState
 {
 public:
-					TkInputState();
-					~TkInputState();
+				TkInputState();
+				~TkInputState();
 
-	inline void		setKeyState( const TARS_KEY eTarsKey, const TARS_KEY_STATE eKeyState );
+	void		setKeyState( const TarsKeyEnum eTarsKey, const TarsKeyStateEnum eKeyState );
 
 private:
-	TARS_KEY_STATE	_keyState[TK_KEY_COUNT];
+	TkKeyParam	_keyParamArray[TK_KEY_COUNT];
 };
-
-//-----------------------------------------------------------------------------
-// Name:		setKeyState
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void TkInputState::setKeyState( const TARS_KEY eTarsKey, const TARS_KEY_STATE eKeyState )
-{
-	if	( eTarsKey != TK_KEY_INVALID )
-	{
-		_keyState[eTarsKey] = eKeyState;
-	}
-}
 
 #endif
