@@ -30,6 +30,9 @@
     <Filter Include="Source Files\Input">
       <UniqueIdentifier>{e80efeb1-dc7d-40a4-8c1b-a62e37602c18}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\OpenGL">
+      <UniqueIdentifier>{f66b4263-4928-4c50-88d8-5f12cf261bf5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Application\Root.h">
@@ -83,6 +86,12 @@
     <ClInclude Include="Sources\Input\TkInputState.h">
       <Filter>Source Files\Input</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\OpenGL\Root.h">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\OpenGL\TkWglContext.h">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Application\TkWin32App.cpp">
@@ -111,6 +120,9 @@
     </ClCompile>
     <ClCompile Include="Sources\Input\TkInputState.cpp">
       <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\OpenGL\TkWglContext.cpp">
+      <Filter>Source Files\OpenGL</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

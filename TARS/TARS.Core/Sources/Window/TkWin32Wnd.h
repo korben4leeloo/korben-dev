@@ -25,6 +25,8 @@ public:
 	void					create();
 	void					show();
 
+	inline HWND				getWindowHandle() const;
+
 private:
 	static LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
 
@@ -40,5 +42,15 @@ private:
 
 	HWND					_hWnd;
 };
+
+//-----------------------------------------------------------------------------
+// Name:		getWindowHandle
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+HWND TkWin32Wnd::getWindowHandle() const
+{
+	return ( _hWnd );
+}
 
 #endif

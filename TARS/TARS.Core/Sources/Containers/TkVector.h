@@ -9,6 +9,8 @@
 #ifndef __TARS_CORE_TK_VECTOR_H__
 #define __TARS_CORE_TK_VECTOR_H__
 
+#include <new>
+
 #define TARS_VECTOR_DEFAULT_REALLOC_SIZE 8
 
 template<class T>
@@ -32,6 +34,7 @@ public:
 	void			shrink();
 
 	void			clear();
+	void			deleteAll();
 
 private:
 	void			destroy();
@@ -99,6 +102,22 @@ void TkVector<T>::clear()
 	for	( uint32 i = 0; i < _uiSize; i++ )
 	{
 		( _pArray + i )->~T();
+	}
+
+	_uiSize	= 0;
+}
+
+//-----------------------------------------------------------------------------
+// Name:		deleteAll
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+void TkVector<T>::deleteAll()
+{
+	for	( uint32 i = 0; i < _uiSize; i++ )
+	{
+		delete _pArray[i];
 	}
 
 	_uiSize	= 0;

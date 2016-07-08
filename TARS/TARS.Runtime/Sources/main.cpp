@@ -24,5 +24,7 @@ int WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_op
 	pWin32App->initWindow();
 	pWin32App->run();
 
+	delete pWin32App;
+
 	return 0;
 }

@@ -18,7 +18,6 @@
 TkWin32App::TkWin32App( const HINSTANCE& hInstance )
 : _hInstance		( hInstance )
 , _pInputManager	( nullptr )
-, _pWindow			( nullptr )
 {
 	
 }
@@ -41,7 +40,9 @@ TkWin32App::~TkWin32App()
 void TkWin32App::destroy()
 {
 	delete _pInputManager;
-	delete _pWindow;
+	_pInputManager = nullptr;
+
+	_windowArray.deleteAll();
 }
 
 //-----------------------------------------------------------------------------
@@ -66,14 +67,14 @@ TkWin32InputManager* TkWin32App::initInputs()
 //-----------------------------------------------------------------------------
 TkWin32Wnd* TkWin32App::initWindow()
 {
-	delete _pWindow;
+	TkWin32Wnd* pWindow = new TkWin32Wnd( this );
 
-	_pWindow = new TkWin32Wnd( this );
+	pWindow->create();
+	pWindow->show();
 
-	_pWindow->create();
-	_pWindow->show();
+	_windowArray.pushBack( pWindow );
 
-	return ( _pWindow );
+	return ( pWindow );
 }
 
 //-----------------------------------------------------------------------------

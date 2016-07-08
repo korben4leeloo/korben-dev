@@ -12,6 +12,8 @@
 #include "Root.h"
 #include <Windows.h>
 
+#include TARS_CORE_H(Containers/TkVector)
+
 class TkWin32Wnd;
 class TkWin32InputManager;
 
@@ -26,6 +28,7 @@ public:
 
 	TkWin32InputManager*		initInputs();
 	TkWin32Wnd*					initWindow();
+	void						initWglContext();
 
 	int64_t						run();
 
@@ -34,7 +37,7 @@ private:
 
 	HINSTANCE					_hInstance;
 	TkWin32InputManager*		_pInputManager;
-	TkWin32Wnd*					_pWindow;
+	TkVector<TkWin32Wnd*>		_windowArray;
 };
 
 //-----------------------------------------------------------------------------
