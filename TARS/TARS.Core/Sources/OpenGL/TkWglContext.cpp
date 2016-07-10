@@ -1,4 +1,4 @@
-//*****************************************************************************
+﻿//*****************************************************************************
 //
 //	File:		TkWglContext.cpp
 //	Created:	2013-08-26
@@ -8,6 +8,8 @@
 #include "TkWglContext.h"
 
 #include <Windows.h>
+#include <gl/GL.h>
+#include <GLext.h>
 
 #include TARS_CORE_H(Window/TkWin32Wnd)
 
@@ -88,5 +90,11 @@ void TkWglContext::init()
 		return;
 	}
 
+	int32 nMajorVersion = -1;
+	int32 nMinorVersion = -1;
 
+	glGetIntegerv( GL_MAJOR_VERSION, &nMajorVersion );
+	glGetIntegerv( GL_MINOR_VERSION, &nMinorVersion );
+
+	int n = 0;
 }
