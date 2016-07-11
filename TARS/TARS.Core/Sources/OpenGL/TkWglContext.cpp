@@ -10,8 +10,10 @@
 #include <Windows.h>
 #include <gl/GL.h>
 #include <GLext.h>
+#include <wglext.h>
 
 #include TARS_CORE_H(Window/TkWin32Wnd)
+#include TARS_CORE_H(OpenGL/TkOpenGLFuncs)
 
 #define COLOR_BITS_COUNT	32
 #define DEPTH_BITS_COUNT	24
@@ -78,6 +80,7 @@ void TkWglContext::init()
 
 	SetPixelFormat( deviceContext, nPixelFormat, &pixelFormatDesc );
 	
+	// Create Windows OpenGL context and bind it
 	HGLRC hGLRC = wglCreateContext( deviceContext );
 
 	if	( hGLRC == nullptr )
@@ -90,11 +93,32 @@ void TkWglContext::init()
 		return;
 	}
 
+	// Load OpenGL function pointers
+	TkOpenGLFuncs::load();
+
 	int32 nMajorVersion = -1;
 	int32 nMinorVersion = -1;
 
 	glGetIntegerv( GL_MAJOR_VERSION, &nMajorVersion );
 	glGetIntegerv( GL_MINOR_VERSION, &nMinorVersion );
+
+	// Browse extensions
+	int32 nExtensionCount;
+	glGetIntegerv( GL_NUM_EXTENSIONS, &nExtensionCount );
+
+	//PFNGLGETSTRINGIPROC glGetStringi = (PFNGLGETSTRINGIPROC)wglGetProcAddress( "glGetStringi" );
+
+
+	for	( int32 i = 0; i < nExtensionCount; i++ )
+	{
+		const GLubyte* pcExtensionName = glGetStringi( GL_EXTENSIONS, i );
+		OutputDebugString( (LPCSTR)pcExtensionName );
+		OutputDebugString( "\n" );
+	}
+
+	PFNWGLGETEXTENSIONSSTRINGARBPROC wglGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC)wglGetProcAddress( "wglGetExtensionsStringARB" );
+
+	const char* pcWglExtensions = (const char*)wglGetExtensionsStringARB( deviceContext );
 
 	int n = 0;
 }

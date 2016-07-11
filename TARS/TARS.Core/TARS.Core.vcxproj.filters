@@ -92,6 +92,9 @@
     <ClInclude Include="Sources\OpenGL\TkWglContext.h">
       <Filter>Source Files\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\OpenGL\TkOpenGLFuncs.h">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Application\TkWin32App.cpp">
@@ -122,6 +125,9 @@
       <Filter>Source Files\Input</Filter>
     </ClCompile>
     <ClCompile Include="Sources\OpenGL\TkWglContext.cpp">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\OpenGL\TkOpenGLFuncs.cpp">
       <Filter>Source Files\OpenGL</Filter>
     </ClCompile>
   </ItemGroup>
