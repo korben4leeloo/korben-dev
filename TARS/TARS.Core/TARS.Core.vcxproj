@@ -138,8 +138,9 @@
     <ClInclude Include="Sources\Input\TkInputState.h" />
     <ClInclude Include="Sources\Input\TkWin32InputManager.h" />
     <ClInclude Include="Sources\OpenGL\Root.h" />
-    <ClInclude Include="Sources\OpenGL\TkOpenGLFuncs.h" />
-    <ClInclude Include="Sources\OpenGL\TkWglContext.h" />
+    <ClInclude Include="Sources\OpenGL\TkOpenGLExt.h" />
+    <ClInclude Include="Sources\OpenGL\TkWGLContext.h" />
+    <ClInclude Include="Sources\OpenGL\TkWGLInterface.h" />
     <ClInclude Include="Sources\Rendering\Root.h" />
     <ClInclude Include="Sources\Root.h" />
     <ClInclude Include="Sources\String\Root.h" />
@@ -155,8 +156,8 @@
     <ClCompile Include="Sources\File\TkTextFile.cpp" />
     <ClCompile Include="Sources\Input\TkInputState.cpp" />
     <ClCompile Include="Sources\Input\TkWin32InputManager.cpp" />
-    <ClCompile Include="Sources\OpenGL\TkOpenGLFuncs.cpp" />
-    <ClCompile Include="Sources\OpenGL\TkWglContext.cpp" />
+    <ClCompile Include="Sources\OpenGL\TkWGLContext.cpp" />
+    <ClCompile Include="Sources\OpenGL\TkWGLInterface.cpp" />
     <ClCompile Include="Sources\String\TkString.cpp" />
     <ClCompile Include="Sources\Window\TkWin32Wnd.cpp" />
   </ItemGroup>

@@ -89,10 +89,13 @@
     <ClInclude Include="Sources\OpenGL\Root.h">
       <Filter>Source Files\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\OpenGL\TkWglContext.h">
+    <ClInclude Include="Sources\OpenGL\TkOpenGLExt.h">
       <Filter>Source Files\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\OpenGL\TkOpenGLFuncs.h">
+    <ClInclude Include="Sources\OpenGL\TkWGLContext.h">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\OpenGL\TkWGLInterface.h">
       <Filter>Source Files\OpenGL</Filter>
     </ClInclude>
   </ItemGroup>
@@ -124,10 +127,10 @@
     <ClCompile Include="Sources\Input\TkInputState.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\OpenGL\TkWglContext.cpp">
+    <ClCompile Include="Sources\OpenGL\TkWGLInterface.cpp">
       <Filter>Source Files\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\OpenGL\TkOpenGLFuncs.cpp">
+    <ClCompile Include="Sources\OpenGL\TkWGLContext.cpp">
       <Filter>Source Files\OpenGL</Filter>
     </ClCompile>
   </ItemGroup>

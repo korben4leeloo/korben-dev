@@ -10,7 +10,7 @@
 #include <Windows.h>
 
 #include TARS_CORE_H(Application/TkWin32App)
-#include TARS_CORE_H(OpenGL/TkWglContext)
+#include TARS_CORE_H(OpenGL/TkWGLContext)
 
 //-----------------------------------------------------------------------------
 // Name:		WinMain
@@ -24,7 +24,7 @@ int WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_op
 	pWin32App->initInputs();
 	
 	TkWin32Wnd* pWindow = pWin32App->initWindow();
-	TkWglContext* pWglContext = new TkWglContext( pWindow );
+	TkWGLContext* pWglContext = new TkWGLContext( pWindow );
 
 	pWglContext->init();
 

@@ -1,6 +1,6 @@
 //*****************************************************************************
 //
-//	Class:		TkWglContext
+//	Class:		TkWGLContext
 //
 //	Created:	2013-08-26
 //
@@ -13,11 +13,11 @@
 
 class TkWin32Wnd;
 
-class TkWglContext
+class TkWGLContext
 {
 public:
-						TkWglContext( const TkWin32Wnd* pWindow );
-						~TkWglContext();
+						TkWGLContext( const TkWin32Wnd* pWindow );
+						~TkWGLContext();
 
 	void				init();
 

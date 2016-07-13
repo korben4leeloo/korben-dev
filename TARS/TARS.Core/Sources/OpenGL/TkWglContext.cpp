@@ -1,19 +1,15 @@
 ﻿//*****************************************************************************
 //
-//	File:		TkWglContext.cpp
+//	File:		TkWGLContext.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include "TkWglContext.h"
-
-#include <Windows.h>
-#include <gl/GL.h>
-#include <GLext.h>
-#include <wglext.h>
+#include "TkWGLContext.h"
 
 #include TARS_CORE_H(Window/TkWin32Wnd)
-#include TARS_CORE_H(OpenGL/TkOpenGLFuncs)
+#include TARS_CORE_H(OpenGL/TkOpenGLExt)
+#include TARS_CORE_H(OpenGL/TkWGLInterface)
 
 #define COLOR_BITS_COUNT	32
 #define DEPTH_BITS_COUNT	24
@@ -24,7 +20,7 @@
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkWglContext::TkWglContext( const TkWin32Wnd* pWindow )
+TkWGLContext::TkWGLContext( const TkWin32Wnd* pWindow )
 : _pWindow( pWindow )
 {
 	
@@ -35,7 +31,7 @@ TkWglContext::TkWglContext( const TkWin32Wnd* pWindow )
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkWglContext::~TkWglContext()
+TkWGLContext::~TkWGLContext()
 {
 	
 }
@@ -45,7 +41,7 @@ TkWglContext::~TkWglContext()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void TkWglContext::init()
+void TkWGLContext::init()
 {
 	TARS_ASSERT( _pWindow );
 
@@ -80,7 +76,7 @@ void TkWglContext::init()
 
 	SetPixelFormat( deviceContext, nPixelFormat, &pixelFormatDesc );
 	
-	// Create Windows OpenGL context and bind it
+	// Create a simple Windows OpenGL context and bind it ( will be used to get OpenGL extensions and create a more up-to-date context )
 	HGLRC hGLRC = wglCreateContext( deviceContext );
 
 	if	( hGLRC == nullptr )
@@ -93,8 +89,8 @@ void TkWglContext::init()
 		return;
 	}
 
-	// Load OpenGL function pointers
-	TkOpenGLFuncs::load();
+	// Load OpenGL extensions functions
+	TkWGLInterface::loadExtensions();
 
 	int32 nMajorVersion = -1;
 	int32 nMinorVersion = -1;
@@ -106,9 +102,6 @@ void TkWglContext::init()
 	int32 nExtensionCount;
 	glGetIntegerv( GL_NUM_EXTENSIONS, &nExtensionCount );
 
-	//PFNGLGETSTRINGIPROC glGetStringi = (PFNGLGETSTRINGIPROC)wglGetProcAddress( "glGetStringi" );
-
-
 	for	( int32 i = 0; i < nExtensionCount; i++ )
 	{
 		const GLubyte* pcExtensionName = glGetStringi( GL_EXTENSIONS, i );
@@ -119,6 +112,11 @@ void TkWglContext::init()
 	PFNWGLGETEXTENSIONSSTRINGARBPROC wglGetExtensionsStringARB = (PFNWGLGETEXTENSIONSSTRINGARBPROC)wglGetProcAddress( "wglGetExtensionsStringARB" );
 
 	const char* pcWglExtensions = (const char*)wglGetExtensionsStringARB( deviceContext );
+
+	TkString strWglExtensions( pcWglExtensions );
+	TkVector<TkString> wglExtensionNameArray;
+
+	strWglExtensions.split( " ", wglExtensionNameArray );
 
 	int n = 0;
 }

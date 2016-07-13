@@ -11,6 +11,8 @@
 
 #include "Root.h"
 
+#include TARS_CORE_H(Containers/TkVector)
+
 class TkBinaryFile;
 class TkTextFile;
 
@@ -35,6 +37,10 @@ public:
 
 	inline const char*	buffer() const;
 	inline uint32		size() const;
+	inline bool			isEmpty() const;
+
+	void				split( const TkString& strSeparator, TkVector<TkString>& tokens );
+	TkString			extract( const uint32 nStartPos, const int32 nEndPos = -1 );
 
 private:
 	inline void			clear();
@@ -75,6 +81,16 @@ const char* TkString::buffer() const
 uint32 TkString::size() const
 {
 	return ( _nSize );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		isEmpty
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+bool TkString::isEmpty() const
+{
+	return ( _nSize == 0 );
 }
 
 TkBinaryFile& operator<<( TkBinaryFile& file, const TkString& s );

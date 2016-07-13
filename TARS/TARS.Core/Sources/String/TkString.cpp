@@ -59,6 +59,68 @@ TkString::~TkString()
 }
 
 //-----------------------------------------------------------------------------
+// Name:		split
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void TkString::split( const TkString& strSeparator, TkVector<TkString>& tokens )
+{
+	tokens.clear();
+
+	if ( _pcBuffer )
+	{
+		uint32 nSeperatorSize	= strSeparator.size();
+		uint32 nBufferIndexMax	= _nSize - nSeperatorSize + 1;
+		uint32 nBufferIndex		= 0;
+		uint32 nLastBufferIndex	= 0;
+
+		while ( nBufferIndex <= nBufferIndexMax )
+		{
+			if ( ( nBufferIndex == nBufferIndexMax ) || ( strncmp( &_pcBuffer[nBufferIndex], strSeparator._pcBuffer, nSeperatorSize ) == 0 ) )
+			{
+				TkString strToken = extract( nLastBufferIndex, nBufferIndex );
+
+				if	( strToken.isEmpty() == false )
+				{
+					tokens.pushBack( strToken );
+				}
+
+				nLastBufferIndex = nBufferIndex + nSeperatorSize;
+			}
+
+			nBufferIndex++;
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		extract
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+TkString TkString::extract( const uint32 nStartPos, const int32 nEndPos )
+{
+	TkString strResult;
+
+	if	( nStartPos < _nSize )
+	{
+		int32 nExtractSize = ( ( nEndPos == -1 ) || ( nEndPos > _nSize ) ) ? ( _nSize - nStartPos ) : ( nEndPos - nStartPos );
+		TARS_ASSERT( nExtractSize >= 0 );
+
+		if	( nExtractSize > 0 )
+		{
+			strResult._nSize	= nExtractSize;
+			strResult._pcBuffer	= new char[nExtractSize+1];
+
+			memcpy( strResult._pcBuffer, &_pcBuffer[nStartPos], nExtractSize );
+			strResult._pcBuffer[nExtractSize] = '\0';
+		}
+	}
+
+	return ( strResult );
+}
+
+//-----------------------------------------------------------------------------
 // Name:		operator=
 //
 // Created:		2013-08-26
