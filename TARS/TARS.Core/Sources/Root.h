@@ -14,5 +14,6 @@
 #include <TarsRoot.h>
 
 #include TARS_CORE_H(String/TkString)
+#include TARS_CORE_H(Debug/TkDebug)
 
 #endif

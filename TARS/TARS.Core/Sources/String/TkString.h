@@ -10,6 +10,7 @@
 #define __TARS_CORE_TK_STRING_H__
 
 #include "Root.h"
+#include <cstdio>
 
 #include TARS_CORE_H(Containers/TkVector)
 
@@ -42,6 +43,9 @@ public:
 	void				split( const TkString& strSeparator, TkVector<TkString>& tokens );
 	TkString			extract( const uint32 nStartPos, const int32 nEndPos = -1 );
 
+	template<typename...FormatArgs>
+	static TkString		format( const char* pcFormat, FormatArgs...formatArgs );
+
 private:
 	inline void			clear();
 	void				copy( const char* pcBuffer );
@@ -49,6 +53,36 @@ private:
 	char*				_pcBuffer;
 	uint32				_nSize;
 };
+
+//-----------------------------------------------------------------------------
+// Name:		format
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<typename...FormatArgs>
+TkString TkString::format( const char* pcFormat, FormatArgs...formatArgs )
+{
+	uint32	uiMaxBufferSize = 1024;
+	int32	nCount			= -1;
+	char*	pcTempBuffer	= nullptr;
+	bool	bCopy			= true;
+
+	while	( bCopy )
+	{
+		delete[] pcTempBuffer;
+
+		pcTempBuffer = new char[uiMaxBufferSize];
+		nCount = _snprintf( pcTempBuffer, uiMaxBufferSize, pcFormat, formatArgs... );
+
+		bCopy = ( nCount < 0 ) || ( nCount == uiMaxBufferSize );
+		uiMaxBufferSize *= 2;
+	}
+
+	TkString strResult;
+	strResult.copy( pcTempBuffer );
+
+	return ( strResult );
+}
 
 //-----------------------------------------------------------------------------
 // Name:		clear

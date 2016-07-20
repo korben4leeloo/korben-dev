@@ -1,11 +1,11 @@
 //*****************************************************************************
 //
-//	File:		TkWin32InputManager.cpp
+//	File:		TkInputManager.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include "TkWin32InputManager.h"
+#include "TkInputManager.h"
 
 #include <Windows.h>
 
@@ -14,21 +14,21 @@
 #define HID_USAGE_MOUSE			2
 
 //-----------------------------------------------------------------------------
-// Name:		TkWin32InputManager constructor
+// Name:		TkInputManager constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkWin32InputManager::TkWin32InputManager()
+TkInputManager::TkInputManager()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		TkWin32InputManager destructor
+// Name:		TkInputManager destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkWin32InputManager::~TkWin32InputManager()
+TkInputManager::~TkInputManager()
 {
 	
 }
@@ -38,7 +38,7 @@ TkWin32InputManager::~TkWin32InputManager()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void TkWin32InputManager::registerDevices()
+void TkInputManager::registerDevices()
 {
 	RAWINPUTDEVICE inputDeviceList[2];
 
@@ -68,7 +68,7 @@ void TkWin32InputManager::registerDevices()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void TkWin32InputManager::enumDevices()
+void TkInputManager::enumDevices()
 {
 	UINT nDeviceCount;
 
@@ -113,7 +113,7 @@ void TkWin32InputManager::enumDevices()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-uint64 TkWin32InputManager::onRawInput( const uint64 nRawInputHandle )
+uint64 TkInputManager::onRawInput( const uint64 nRawInputHandle )
 {
 	uint32 nRawInputSize;
 
@@ -167,7 +167,7 @@ uint64 TkWin32InputManager::onRawInput( const uint64 nRawInputHandle )
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void TkWin32InputManager::initWin32KeyMapper()
+void TkInputManager::initWin32KeyMapper()
 {
 	memset( _win32KeyMapper, TK_KEY_INVALID, sizeof(_win32KeyMapper) );
 

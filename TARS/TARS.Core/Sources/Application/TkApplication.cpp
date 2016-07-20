@@ -1,21 +1,21 @@
 //*****************************************************************************
 //
-//	File:		TkWin32App.cpp
+//	File:		TkApplication.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include "TkWin32App.h"
+#include "TkApplication.h"
 
-#include TARS_CORE_H(Window/TkWin32Wnd)
-#include TARS_CORE_H(Input/TkWin32InputManager)
+#include TARS_CORE_H(Window/TkWindow)
+#include TARS_CORE_H(Input/TkInputManager)
 
 //-----------------------------------------------------------------------------
-// Name:		TkWin32App constructor
+// Name:		TkApplication constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkWin32App::TkWin32App( const HINSTANCE& hInstance )
+TkApplication::TkApplication( const HINSTANCE& hInstance )
 : _hInstance		( hInstance )
 , _pInputManager	( nullptr )
 {
@@ -23,11 +23,11 @@ TkWin32App::TkWin32App( const HINSTANCE& hInstance )
 }
 
 //-----------------------------------------------------------------------------
-// Name:		TkWin32App destructor
+// Name:		TkApplication destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkWin32App::~TkWin32App()
+TkApplication::~TkApplication()
 {
 	destroy();
 }
@@ -37,7 +37,7 @@ TkWin32App::~TkWin32App()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void TkWin32App::destroy()
+void TkApplication::destroy()
 {
 	delete _pInputManager;
 	_pInputManager = nullptr;
@@ -50,11 +50,11 @@ void TkWin32App::destroy()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkWin32InputManager* TkWin32App::initInputs()
+TkInputManager* TkApplication::initInputs()
 {
 	delete _pInputManager;
 
-	_pInputManager = new TkWin32InputManager();
+	_pInputManager = new TkInputManager();
 	_pInputManager->registerDevices();
 
 	return ( _pInputManager );
@@ -65,9 +65,9 @@ TkWin32InputManager* TkWin32App::initInputs()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkWin32Wnd* TkWin32App::initWindow()
+TkWindow* TkApplication::initWindow()
 {
-	TkWin32Wnd* pWindow = new TkWin32Wnd( this );
+	TkWindow* pWindow = new TkWindow( this );
 
 	pWindow->create();
 	pWindow->show();
@@ -82,7 +82,7 @@ TkWin32Wnd* TkWin32App::initWindow()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-int64_t TkWin32App::run()
+int64_t TkApplication::run()
 {
 	BOOL	bRun = true;
 	MSG		msg;

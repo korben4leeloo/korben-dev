@@ -1,6 +1,6 @@
 //*****************************************************************************
 //
-//	Class:		TkWin32InputManager
+//	Class:		TkInputManager
 //
 //	Created:	2013-08-26
 //
@@ -12,11 +12,11 @@
 #include "Root.h"
 #include TARS_CORE_H(Input/TkInputState)
 
-class TkWin32InputManager
+class TkInputManager
 {
 public:
-					TkWin32InputManager();
-					~TkWin32InputManager();
+					TkInputManager();
+					~TkInputManager();
 
 	void			registerDevices();
 	void			enumDevices();

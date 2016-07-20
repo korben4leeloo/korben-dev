@@ -1,6 +1,6 @@
 //*****************************************************************************
 //
-//	Class:		TkWGLContext
+//	Class:		TkOpenGLContext
 //
 //	Created:	2013-08-26
 //
@@ -10,19 +10,25 @@
 #define __TARS_CORE_TK_WGL_CONTEXT_H__
 
 #include "Root.h"
+#include <Windows.h>
 
-class TkWin32Wnd;
+class TkWindow;
 
-class TkWGLContext
+class TkOpenGLContext
 {
 public:
-						TkWGLContext( const TkWin32Wnd* pWindow );
-						~TkWGLContext();
+							TkOpenGLContext( const TkWindow* pWindow );
+							~TkOpenGLContext();
 
-	void				init();
+	void					init();
+
+	HDC						getDeviceContext() const;
 
 private:
-	const TkWin32Wnd*	_pWindow;
+	void					destroy();
+
+	const TkWindow*			_pWindow;
+	HGLRC					_hGLRC;
 };
 
 #endif

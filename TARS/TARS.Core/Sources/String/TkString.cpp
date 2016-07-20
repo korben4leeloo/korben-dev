@@ -104,7 +104,7 @@ TkString TkString::extract( const uint32 nStartPos, const int32 nEndPos )
 
 	if	( nStartPos < _nSize )
 	{
-		int32 nExtractSize = ( ( nEndPos == -1 ) || ( nEndPos > _nSize ) ) ? ( _nSize - nStartPos ) : ( nEndPos - nStartPos );
+		int32 nExtractSize = ( ( nEndPos == -1 ) || ( nEndPos > (int32)_nSize ) ) ? ( (int32)_nSize - nStartPos ) : ( nEndPos - nStartPos );
 		TARS_ASSERT( nExtractSize >= 0 );
 
 		if	( nExtractSize > 0 )
@@ -119,6 +119,21 @@ TkString TkString::extract( const uint32 nStartPos, const int32 nEndPos )
 
 	return ( strResult );
 }
+
+////-----------------------------------------------------------------------------
+//// Name:		format
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//void TkString::format( const char* strFormat, ... )
+//{
+//	char	buf[1024];
+//	va_list args;
+//
+//	va_start( args, strFormat );
+//	
+//	sprintf( buf, strFormat, args );
+//}
 
 //-----------------------------------------------------------------------------
 // Name:		operator=

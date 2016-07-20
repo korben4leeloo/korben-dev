@@ -1,6 +1,6 @@
 //*****************************************************************************
 //
-//	Class:		TkOpenGLExt
+//	Class:		TkOpenGLExtensions
 //
 //	Created:	2013-08-26
 //
@@ -42,5 +42,6 @@ TARS_OPEN_GL_FUNC_EXTERN( PFNGLUSEPROGRAMPROC, glUseProgram )
 TARS_OPEN_GL_FUNC_EXTERN( PFNGLGETATTRIBLOCATIONPROC, glGetAttribLocation )
 TARS_OPEN_GL_FUNC_EXTERN( PFNWGLCREATECONTEXTATTRIBSARBPROC, wglCreateContextAttribsARB )
 TARS_OPEN_GL_FUNC_EXTERN( PFNWGLCHOOSEPIXELFORMATARBPROC, wglChoosePixelFormatARB )
+TARS_OPEN_GL_FUNC_EXTERN( PFNWGLGETEXTENSIONSSTRINGARBPROC, wglGetExtensionsStringARB );
 
 #endif

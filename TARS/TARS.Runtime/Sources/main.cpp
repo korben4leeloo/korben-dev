@@ -9,8 +9,8 @@
 
 #include <Windows.h>
 
-#include TARS_CORE_H(Application/TkWin32App)
-#include TARS_CORE_H(OpenGL/TkWGLContext)
+#include TARS_CORE_H(Application/TkApplication)
+#include TARS_CORE_H(OpenGL/TkOpenGLContext)
 
 //-----------------------------------------------------------------------------
 // Name:		WinMain
@@ -19,18 +19,18 @@
 //-----------------------------------------------------------------------------
 int WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_opt LPSTR lpCmdLine, __in int nShowCmd )
 {
-	TkWin32App* pWin32App = new TkWin32App( hInstance );
+	TkApplication* pApplication = new TkApplication( hInstance );
 
-	pWin32App->initInputs();
+	pApplication->initInputs();
 	
-	TkWin32Wnd* pWindow = pWin32App->initWindow();
-	TkWGLContext* pWglContext = new TkWGLContext( pWindow );
+	TkWindow* pWindow = pApplication->initWindow();
+	TkOpenGLContext* pOpenGLContext = new TkOpenGLContext( pWindow );
 
-	pWglContext->init();
+	pOpenGLContext->init();
 
-	pWin32App->run();
+	pApplication->run();
 
-	delete pWin32App;
+	delete pApplication;
 
 	return 0;
 }

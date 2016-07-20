@@ -1,6 +1,6 @@
 //*****************************************************************************
 //
-//	Class:		TkWin32App
+//	Class:		TkApplication
 //
 //	Created:	2013-08-26
 //
@@ -14,30 +14,30 @@
 
 #include TARS_CORE_H(Containers/TkVector)
 
-class TkWin32Wnd;
-class TkWin32InputManager;
+class TkWindow;
+class TkInputManager;
 
-class TkWin32App
+class TkApplication
 {
 public:
-								TkWin32App( const HINSTANCE& hInstance );
-								~TkWin32App();
+							TkApplication( const HINSTANCE& hInstance );
+							~TkApplication();
 
-	inline HINSTANCE			getInstanceHandle() const;
-	inline TkWin32InputManager*	getInputManager() const;
+	inline HINSTANCE		getInstanceHandle() const;
+	inline TkInputManager*	getInputManager() const;
 
-	TkWin32InputManager*		initInputs();
-	TkWin32Wnd*					initWindow();
-	void						initWglContext();
+	TkInputManager*			initInputs();
+	TkWindow*				initWindow();
+	void					initWglContext();
 
-	int64_t						run();
+	int64_t					run();
 
 private:
-	void						destroy();
+	void					destroy();
 
-	HINSTANCE					_hInstance;
-	TkWin32InputManager*		_pInputManager;
-	TkVector<TkWin32Wnd*>		_windowArray;
+	HINSTANCE				_hInstance;
+	TkInputManager*			_pInputManager;
+	TkVector<TkWindow*>		_windowArray;
 };
 
 //-----------------------------------------------------------------------------
@@ -45,7 +45,7 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-HINSTANCE TkWin32App::getInstanceHandle() const
+HINSTANCE TkApplication::getInstanceHandle() const
 {
 	return ( _hInstance );
 }
@@ -55,7 +55,7 @@ HINSTANCE TkWin32App::getInstanceHandle() const
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkWin32InputManager* TkWin32App::getInputManager() const
+TkInputManager* TkApplication::getInputManager() const
 {
 	return ( _pInputManager );
 }

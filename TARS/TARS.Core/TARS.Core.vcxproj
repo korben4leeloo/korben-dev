@@ -127,39 +127,41 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Application\Root.h" />
-    <ClInclude Include="Sources\Application\TkWin32App.h" />
+    <ClInclude Include="Sources\Application\TkApplication.h" />
     <ClInclude Include="Sources\Containers\Root.h" />
     <ClInclude Include="Sources\Containers\TkList.h" />
     <ClInclude Include="Sources\Containers\TkVector.h" />
+    <ClInclude Include="Sources\Debug\Root.h" />
+    <ClInclude Include="Sources\Debug\TkDebug.h" />
     <ClInclude Include="Sources\File\Root.h" />
     <ClInclude Include="Sources\File\TkBinaryFile.h" />
     <ClInclude Include="Sources\File\TkTextFile.h" />
     <ClInclude Include="Sources\Input\Root.h" />
     <ClInclude Include="Sources\Input\TkInputState.h" />
-    <ClInclude Include="Sources\Input\TkWin32InputManager.h" />
+    <ClInclude Include="Sources\Input\TkInputManager.h" />
     <ClInclude Include="Sources\OpenGL\Root.h" />
-    <ClInclude Include="Sources\OpenGL\TkOpenGLExt.h" />
-    <ClInclude Include="Sources\OpenGL\TkWGLContext.h" />
-    <ClInclude Include="Sources\OpenGL\TkWGLInterface.h" />
-    <ClInclude Include="Sources\Rendering\Root.h" />
+    <ClInclude Include="Sources\OpenGL\TkOpenGLExtensions.h" />
+    <ClInclude Include="Sources\OpenGL\TkOpenGLContext.h" />
+    <ClInclude Include="Sources\OpenGL\TkOpenGLInterface.h" />
     <ClInclude Include="Sources\Root.h" />
     <ClInclude Include="Sources\String\Root.h" />
     <ClInclude Include="Sources\String\TkString.h" />
     <ClInclude Include="Sources\Window\Root.h" />
-    <ClInclude Include="Sources\Window\TkWin32Wnd.h" />
+    <ClInclude Include="Sources\Window\TkWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Application\TkWin32App.cpp" />
+    <ClCompile Include="Sources\Application\TkApplication.cpp" />
     <ClCompile Include="Sources\Containers\TkList.cpp" />
     <ClCompile Include="Sources\Containers\TkVector.cpp" />
+    <ClCompile Include="Sources\Debug\TkDebug.cpp" />
     <ClCompile Include="Sources\File\TkBinaryFile.cpp" />
     <ClCompile Include="Sources\File\TkTextFile.cpp" />
     <ClCompile Include="Sources\Input\TkInputState.cpp" />
-    <ClCompile Include="Sources\Input\TkWin32InputManager.cpp" />
-    <ClCompile Include="Sources\OpenGL\TkWGLContext.cpp" />
-    <ClCompile Include="Sources\OpenGL\TkWGLInterface.cpp" />
+    <ClCompile Include="Sources\Input\TkInputManager.cpp" />
+    <ClCompile Include="Sources\OpenGL\TkOpenGLContext.cpp" />
+    <ClCompile Include="Sources\OpenGL\TkOpenGLInterface.cpp" />
     <ClCompile Include="Sources\String\TkString.cpp" />
-    <ClCompile Include="Sources\Window\TkWin32Wnd.cpp" />
+    <ClCompile Include="Sources\Window\TkWindow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

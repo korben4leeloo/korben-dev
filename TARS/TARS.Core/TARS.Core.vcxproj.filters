@@ -12,9 +12,6 @@
     <Filter Include="Source Files\Window">
       <UniqueIdentifier>{be322a14-3118-4207-8f0c-da6d680d2c6a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Rendering">
-      <UniqueIdentifier>{aab3493d-9421-46c9-918b-b59524adffa4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Application">
       <UniqueIdentifier>{71c8b677-c3c4-451e-b1f1-aa62c911d657}</UniqueIdentifier>
     </Filter>
@@ -33,21 +30,15 @@
     <Filter Include="Source Files\OpenGL">
       <UniqueIdentifier>{f66b4263-4928-4c50-88d8-5f12cf261bf5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Debug">
+      <UniqueIdentifier>{cd7a869a-d76a-4ab4-875c-ee386462dce8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Application\Root.h">
       <Filter>Source Files\Application</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Rendering\Root.h">
-      <Filter>Source Files\Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Window\Root.h">
-      <Filter>Source Files\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Application\TkWin32App.h">
-      <Filter>Source Files\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Window\TkWin32Wnd.h">
       <Filter>Source Files\Window</Filter>
     </ClInclude>
     <ClInclude Include="Sources\String\TkString.h">
@@ -80,32 +71,38 @@
     <ClInclude Include="Sources\Input\Root.h">
       <Filter>Source Files\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Input\TkWin32InputManager.h">
-      <Filter>Source Files\Input</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Input\TkInputState.h">
       <Filter>Source Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="Sources\OpenGL\Root.h">
       <Filter>Source Files\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\OpenGL\TkOpenGLExt.h">
+    <ClInclude Include="Sources\Application\TkApplication.h">
+      <Filter>Source Files\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Input\TkInputManager.h">
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Window\TkWindow.h">
+      <Filter>Source Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\OpenGL\TkOpenGLInterface.h">
       <Filter>Source Files\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\OpenGL\TkWGLContext.h">
+    <ClInclude Include="Sources\OpenGL\TkOpenGLContext.h">
       <Filter>Source Files\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\OpenGL\TkWGLInterface.h">
+    <ClInclude Include="Sources\OpenGL\TkOpenGLExtensions.h">
       <Filter>Source Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Debug\TkDebug.h">
+      <Filter>Source Files\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Debug\Root.h">
+      <Filter>Source Files\Debug</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Application\TkWin32App.cpp">
-      <Filter>Source Files\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Window\TkWin32Wnd.cpp">
-      <Filter>Source Files\Window</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\String\TkString.cpp">
       <Filter>Source Files\String</Filter>
     </ClCompile>
@@ -121,17 +118,26 @@
     <ClCompile Include="Sources\File\TkBinaryFile.cpp">
       <Filter>Source Files\File</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Input\TkWin32InputManager.cpp">
-      <Filter>Source Files\Input</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Input\TkInputState.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\OpenGL\TkWGLInterface.cpp">
+    <ClCompile Include="Sources\Application\TkApplication.cpp">
+      <Filter>Source Files\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Input\TkInputManager.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Window\TkWindow.cpp">
+      <Filter>Source Files\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\OpenGL\TkOpenGLInterface.cpp">
       <Filter>Source Files\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\OpenGL\TkWGLContext.cpp">
+    <ClCompile Include="Sources\OpenGL\TkOpenGLContext.cpp">
       <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Debug\TkDebug.cpp">
+      <Filter>Source Files\Debug</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

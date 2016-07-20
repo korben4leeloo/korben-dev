@@ -1,14 +1,14 @@
 //*****************************************************************************
 //
-//	File:		TkWin32Wnd.cpp
+//	File:		TkWindow.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include "TkWin32Wnd.h"
+#include "TkWindow.h"
 
-#include TARS_CORE_H(Application/TkWin32App)
-#include TARS_CORE_H(Input/TkWin32InputManager)
+#include TARS_CORE_H(Application/TkApplication)
+#include TARS_CORE_H(Input/TkInputManager)
 
 #define DEFAULT_WINDOW_NAME		"TARS Window"
 #define DEFAULT_CLIENT_WIDTH	1024
@@ -16,11 +16,11 @@
 #define DEFAULT_BITS_PER_PIXEL	32
 
 //-----------------------------------------------------------------------------
-// Name:		TkWin32Wnd constructor
+// Name:		TkWindow constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkWin32Wnd::TkWin32Wnd( const TkWin32App* pWin32App )
+TkWindow::TkWindow( const TkApplication* pWin32App )
 : _pWin32App		( pWin32App )
 , _strWindowName	( DEFAULT_WINDOW_NAME )
 , _nClientWidth		( DEFAULT_CLIENT_WIDTH )
@@ -33,11 +33,11 @@ TkWin32Wnd::TkWin32Wnd( const TkWin32App* pWin32App )
 }
 
 //-----------------------------------------------------------------------------
-// Name:		TkWin32Wnd destructor
+// Name:		TkWindow destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkWin32Wnd::~TkWin32Wnd()
+TkWindow::~TkWindow()
 {
 	
 }
@@ -47,7 +47,7 @@ TkWin32Wnd::~TkWin32Wnd()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void TkWin32Wnd::create()
+void TkWindow::create()
 {
 	HINSTANCE	hInstance = _pWin32App->getInstanceHandle();
 	WNDCLASS	wc;						// Windows Class Structure
@@ -68,7 +68,7 @@ void TkWin32Wnd::create()
 
 	//hInstance			= GetModuleHandle(nullptr);				// Grab An Instance For Our Window
 	wc.style			= CS_HREDRAW | CS_VREDRAW | CS_OWNDC;	// Redraw On Size, And Own DC For Window.
-	wc.lpfnWndProc		= (WNDPROC)TkWin32Wnd::WndProc;			// WndProc Handles Messages
+	wc.lpfnWndProc		= (WNDPROC)TkWindow::WndProc;			// WndProc Handles Messages
 	wc.cbClsExtra		= 0;									// No Extra Window Data
 	wc.cbWndExtra		= 0;									// No Extra Window Data
 	wc.hInstance		= hInstance;							// Set The Instance
@@ -162,6 +162,8 @@ void TkWin32Wnd::create()
 	}
 
 	SetWindowLongPtr( _hWnd, GWLP_USERDATA, (LONG_PTR)this );
+
+	_hDC = GetDC( _hWnd );
 }
 
 //-----------------------------------------------------------------------------
@@ -169,7 +171,7 @@ void TkWin32Wnd::create()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void TkWin32Wnd::show()
+void TkWindow::show()
 {
 	if	( _hWnd != nullptr )
 	{
@@ -178,11 +180,24 @@ void TkWin32Wnd::show()
 }
 
 //-----------------------------------------------------------------------------
+// Name:		hide
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void TkWindow::hide()
+{
+	if	( _hWnd != nullptr )
+	{
+		ShowWindow( _hWnd, FALSE );
+	}
+}
+
+//-----------------------------------------------------------------------------
 // Name:		WndProc
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-LRESULT CALLBACK TkWin32Wnd::WndProc(	HWND	hWnd,			// Handle For This Window
+LRESULT CALLBACK TkWindow::WndProc(	HWND	hWnd,			// Handle For This Window
 										UINT	uMsg,			// Message For This Window
 										WPARAM	wParam,			// Additional Message Information
 										LPARAM	lParam)			// Additional Message Information
@@ -252,8 +267,8 @@ LRESULT CALLBACK TkWin32Wnd::WndProc(	HWND	hWnd,			// Handle For This Window
 				return ( GetLastError() );
 			}*/
 
-			TkWin32Wnd*				pWindow			= (TkWin32Wnd*)GetWindowLongPtr( hWnd, GWLP_USERDATA );
-			TkWin32InputManager*	pInputManager	= pWindow->_pWin32App->getInputManager();
+			TkWindow*		pWindow			= (TkWindow*)GetWindowLongPtr( hWnd, GWLP_USERDATA );
+			TkInputManager*	pInputManager	= pWindow->_pWin32App->getInputManager();
 
 			if	( pInputManager )
 			{
