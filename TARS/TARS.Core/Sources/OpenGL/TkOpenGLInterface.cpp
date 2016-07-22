@@ -137,3 +137,13 @@ void TkOpenGLInterface::checkExtensions( const TkOpenGLContext* pContext )
 		TARS_MESSAGE( wglExtensionNameArray[i].buffer() );
 	}
 }
+
+//-----------------------------------------------------------------------------
+// Name:		createContext
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+TkOpenGLContext* TkOpenGLInterface::createContext( TkWindow* pWindow )
+{
+
+}

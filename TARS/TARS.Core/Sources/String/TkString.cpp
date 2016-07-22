@@ -120,21 +120,6 @@ TkString TkString::extract( const uint32 nStartPos, const int32 nEndPos )
 	return ( strResult );
 }
 
-////-----------------------------------------------------------------------------
-//// Name:		format
-////
-//// Created:		2013-08-26
-////-----------------------------------------------------------------------------
-//void TkString::format( const char* strFormat, ... )
-//{
-//	char	buf[1024];
-//	va_list args;
-//
-//	va_start( args, strFormat );
-//	
-//	sprintf( buf, strFormat, args );
-//}
-
 //-----------------------------------------------------------------------------
 // Name:		operator=
 //

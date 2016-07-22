@@ -16,15 +16,19 @@ class TkOpenGLContext;
 class TkOpenGLInterface
 {
 public:
-	static void	initApi();
-	static void	checkExtensions( const TkOpenGLContext* pContext );
-	static void getOpenGLVersion( int32& nMajorVersion, int32& nMinorVersion );
+	// OpenGL API
+	static void				initApi();
+	static void				checkExtensions( const TkOpenGLContext* pContext );
+	static void				getOpenGLVersion( int32& nMajorVersion, int32& nMinorVersion );
+
+	// OpenGL contexts
+	static TkOpenGLContext*	createContext( TkWindow* pWindow );
 
 private:
-				TkOpenGLInterface();
-				~TkOpenGLInterface();
+							TkOpenGLInterface();
+							~TkOpenGLInterface();
 
-	static bool	_bApiLoaded;
+	static bool				_bApiLoaded;
 };
 
 #endif

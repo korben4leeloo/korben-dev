@@ -33,6 +33,12 @@
     <Filter Include="Source Files\Debug">
       <UniqueIdentifier>{cd7a869a-d76a-4ab4-875c-ee386462dce8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Scene">
+      <UniqueIdentifier>{dfbb3099-7f34-4ce4-9c4b-8fdf0b2c64cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene\Entity">
+      <UniqueIdentifier>{a00540b7-559f-4140-b6dd-73d40d1a05b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Application\Root.h">
@@ -101,6 +107,24 @@
     <ClInclude Include="Sources\Debug\Root.h">
       <Filter>Source Files\Debug</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Scene\Root.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Scene\TkScene.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Scene\Entity\Root.h">
+      <Filter>Source Files\Scene\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Scene\Entity\TkEntityComponent.h">
+      <Filter>Source Files\Scene\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Scene\Entity\TkEntityProperty.h">
+      <Filter>Source Files\Scene\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Scene\Entity\TkEntity.h">
+      <Filter>Source Files\Scene\Entity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\String\TkString.cpp">
@@ -138,6 +162,18 @@
     </ClCompile>
     <ClCompile Include="Sources\Debug\TkDebug.cpp">
       <Filter>Source Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Scene\TkScene.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Scene\Entity\TkEntityComponent.cpp">
+      <Filter>Source Files\Scene\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Scene\Entity\TkEntityProperty.cpp">
+      <Filter>Source Files\Scene\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Scene\Entity\TkEntity.cpp">
+      <Filter>Source Files\Scene\Entity</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
