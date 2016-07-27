@@ -10,6 +10,7 @@
 #include <Windows.h>
 
 #include TARS_CORE_H(Application/TkApplication)
+#include TARS_CORE_H(OpenGL/TkOpenGLInterface)
 #include TARS_CORE_H(OpenGL/TkOpenGLContext)
 
 //-----------------------------------------------------------------------------
@@ -24,9 +25,10 @@ int WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_op
 	pApplication->initInputs();
 	
 	TkWindow* pWindow = pApplication->initWindow();
-	TkOpenGLContext* pOpenGLContext = new TkOpenGLContext( pWindow );
+	//TkOpenGLContext* pOpenGLContext = new TkOpenGLContext( pWindow );
+	TkOpenGLContext* pOpenGLContext = TkOpenGLInterface::createContext( pWindow );
 
-	pOpenGLContext->init();
+	//pOpenGLContext->init();
 
 	pApplication->run();
 

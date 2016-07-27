@@ -11,11 +11,16 @@
 
 #include "Root.h"
 
+class TkEntityComponent;
+
 class TkEntity
 {
 public:
-				TkEntity();
-				~TkEntity();
+									TkEntity();
+									~TkEntity();
+
+private:
+	TkVector<TkEntityComponent*>	_components;
 };
 
 #endif

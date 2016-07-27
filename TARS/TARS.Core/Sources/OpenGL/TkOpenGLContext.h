@@ -17,12 +17,12 @@ class TkWindow;
 class TkOpenGLContext
 {
 public:
-							TkOpenGLContext( const TkWindow* pWindow );
+							TkOpenGLContext( const TkWindow* pWindow, const HGLRC hGLRC );
 							~TkOpenGLContext();
 
-	void					init();
+	//void					init();
 
-	HDC						getDeviceContext() const;
+	//HDC						getDeviceContext() const;
 
 private:
 	void					destroy();

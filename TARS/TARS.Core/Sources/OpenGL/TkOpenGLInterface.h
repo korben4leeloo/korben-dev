@@ -12,13 +12,14 @@
 #include "Root.h"
 
 class TkOpenGLContext;
+class TkWindow;
 
 class TkOpenGLInterface
 {
 public:
 	// OpenGL API
 	static void				initApi();
-	static void				checkExtensions( const TkOpenGLContext* pContext );
+	//static void				checkExtensions( const TkOpenGLContext* pContext );
 	static void				getOpenGLVersion( int32& nMajorVersion, int32& nMinorVersion );
 
 	// OpenGL contexts
