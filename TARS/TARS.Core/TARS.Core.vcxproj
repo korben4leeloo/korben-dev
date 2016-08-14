@@ -139,11 +139,13 @@
     <ClInclude Include="Sources\Input\Root.h" />
     <ClInclude Include="Sources\Input\TkInputState.h" />
     <ClInclude Include="Sources\Input\TkInputManager.h" />
-    <ClInclude Include="Sources\OpenGL\Root.h" />
-    <ClInclude Include="Sources\OpenGL\TkOpenGLExtensions.h" />
-    <ClInclude Include="Sources\OpenGL\TkOpenGLContext.h" />
-    <ClInclude Include="Sources\OpenGL\TkOpenGLInterface.h" />
+    <ClInclude Include="Sources\Rendering\OpenGL\Root.h" />
+    <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLContext.h" />
+    <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLExtensions.h" />
+    <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLInterface.h" />
     <ClInclude Include="Sources\Rendering\Root.h" />
+    <ClInclude Include="Sources\Rendering\Window\Root.h" />
+    <ClInclude Include="Sources\Rendering\Window\TkWindow.h" />
     <ClInclude Include="Sources\Root.h" />
     <ClInclude Include="Sources\Scene\Entity\Root.h" />
     <ClInclude Include="Sources\Scene\Entity\TkEntity.h" />
@@ -153,8 +155,6 @@
     <ClInclude Include="Sources\Scene\TkScene.h" />
     <ClInclude Include="Sources\String\Root.h" />
     <ClInclude Include="Sources\String\TkString.h" />
-    <ClInclude Include="Sources\Window\Root.h" />
-    <ClInclude Include="Sources\Window\TkWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Application\TkApplication.cpp" />
@@ -165,14 +165,14 @@
     <ClCompile Include="Sources\File\TkTextFile.cpp" />
     <ClCompile Include="Sources\Input\TkInputState.cpp" />
     <ClCompile Include="Sources\Input\TkInputManager.cpp" />
-    <ClCompile Include="Sources\OpenGL\TkOpenGLContext.cpp" />
-    <ClCompile Include="Sources\OpenGL\TkOpenGLInterface.cpp" />
+    <ClCompile Include="Sources\Rendering\OpenGL\TkOpenGLContext.cpp" />
+    <ClCompile Include="Sources\Rendering\OpenGL\TkOpenGLInterface.cpp" />
+    <ClCompile Include="Sources\Rendering\Window\TkWindow.cpp" />
     <ClCompile Include="Sources\Scene\Entity\TkEntity.cpp" />
     <ClCompile Include="Sources\Scene\Entity\TkEntityComponent.cpp" />
     <ClCompile Include="Sources\Scene\Entity\TkEntityProperty.cpp" />
     <ClCompile Include="Sources\Scene\TkScene.cpp" />
     <ClCompile Include="Sources\String\TkString.cpp" />
-    <ClCompile Include="Sources\Window\TkWindow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

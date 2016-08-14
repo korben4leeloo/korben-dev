@@ -9,9 +9,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Window">
-      <UniqueIdentifier>{be322a14-3118-4207-8f0c-da6d680d2c6a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Application">
       <UniqueIdentifier>{71c8b677-c3c4-451e-b1f1-aa62c911d657}</UniqueIdentifier>
     </Filter>
@@ -27,9 +24,6 @@
     <Filter Include="Source Files\Input">
       <UniqueIdentifier>{e80efeb1-dc7d-40a4-8c1b-a62e37602c18}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\OpenGL">
-      <UniqueIdentifier>{f66b4263-4928-4c50-88d8-5f12cf261bf5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Scene">
       <UniqueIdentifier>{dfbb3099-7f34-4ce4-9c4b-8fdf0b2c64cc}</UniqueIdentifier>
     </Filter>
@@ -42,13 +36,16 @@
     <Filter Include="Source Files\Rendering">
       <UniqueIdentifier>{506faf8e-02af-4c09-a638-d5b25763567e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering\Window">
+      <UniqueIdentifier>{be322a14-3118-4207-8f0c-da6d680d2c6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\OpenGL">
+      <UniqueIdentifier>{f66b4263-4928-4c50-88d8-5f12cf261bf5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Application\Root.h">
       <Filter>Source Files\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Window\Root.h">
-      <Filter>Source Files\Window</Filter>
     </ClInclude>
     <ClInclude Include="Sources\String\TkString.h">
       <Filter>Source Files\String</Filter>
@@ -83,26 +80,11 @@
     <ClInclude Include="Sources\Input\TkInputState.h">
       <Filter>Source Files\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\OpenGL\Root.h">
-      <Filter>Source Files\OpenGL</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Application\TkApplication.h">
       <Filter>Source Files\Application</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Input\TkInputManager.h">
       <Filter>Source Files\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Window\TkWindow.h">
-      <Filter>Source Files\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\OpenGL\TkOpenGLInterface.h">
-      <Filter>Source Files\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\OpenGL\TkOpenGLContext.h">
-      <Filter>Source Files\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\OpenGL\TkOpenGLExtensions.h">
-      <Filter>Source Files\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Scene\Root.h">
       <Filter>Source Files\Scene</Filter>
@@ -131,6 +113,24 @@
     <ClInclude Include="Sources\Rendering\Root.h">
       <Filter>Source Files\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLExtensions.h">
+      <Filter>Source Files\Rendering\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLInterface.h">
+      <Filter>Source Files\Rendering\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Rendering\OpenGL\Root.h">
+      <Filter>Source Files\Rendering\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLContext.h">
+      <Filter>Source Files\Rendering\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Rendering\Window\TkWindow.h">
+      <Filter>Source Files\Rendering\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Rendering\Window\Root.h">
+      <Filter>Source Files\Rendering\Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\String\TkString.cpp">
@@ -157,15 +157,6 @@
     <ClCompile Include="Sources\Input\TkInputManager.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Window\TkWindow.cpp">
-      <Filter>Source Files\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\OpenGL\TkOpenGLInterface.cpp">
-      <Filter>Source Files\OpenGL</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\OpenGL\TkOpenGLContext.cpp">
-      <Filter>Source Files\OpenGL</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Scene\TkScene.cpp">
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
@@ -180,6 +171,15 @@
     </ClCompile>
     <ClCompile Include="Sources\Debugging\TkDebug.cpp">
       <Filter>Source Files\Debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Rendering\OpenGL\TkOpenGLInterface.cpp">
+      <Filter>Source Files\Rendering\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Rendering\OpenGL\TkOpenGLContext.cpp">
+      <Filter>Source Files\Rendering\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Rendering\Window\TkWindow.cpp">
+      <Filter>Source Files\Rendering\Window</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

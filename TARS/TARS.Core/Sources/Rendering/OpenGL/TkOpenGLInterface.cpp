@@ -12,8 +12,8 @@
 #include <GLext.h>
 #include <wglext.h>
 
-#include TARS_CORE_H(OpenGL/TkOpenGLContext)
-#include TARS_CORE_H(Window/TkWindow)
+#include TARS_CORE_H(Rendering/OpenGL/TkOpenGLContext)
+#include TARS_CORE_H(Rendering/Window/TkWindow)
 
 #define TARS_OPEN_GL_FUNC_NULL( PFNOPENGLPROC, funcName ) PFNOPENGLPROC funcName = nullptr;
 #define TARS_OPEN_GL_FUNC_PROC( PFNOPENGLPROC, funcName ) funcName = (PFNOPENGLPROC)wglGetProcAddress( #funcName );

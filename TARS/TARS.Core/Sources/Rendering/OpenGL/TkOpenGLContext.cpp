@@ -7,9 +7,9 @@
 
 #include "TkOpenGLContext.h"
 
-#include TARS_CORE_H(Window/TkWindow)
-#include TARS_CORE_H(OpenGL/TkOpenGLExtensions)
-#include TARS_CORE_H(OpenGL/TkOpenGLInterface)
+#include TARS_CORE_H(Rendering/Window/TkWindow)
+#include TARS_CORE_H(Rendering/OpenGL/TkOpenGLExtensions)
+#include TARS_CORE_H(Rendering/OpenGL/TkOpenGLInterface)
 
 #define OPEN_GL_MAJOR_VERSION_REQUIRED	4
 #define OPEN_GL_MINOR_VERSION_REQUIRED	0

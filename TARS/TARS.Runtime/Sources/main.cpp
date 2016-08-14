@@ -10,8 +10,8 @@
 #include <Windows.h>
 
 #include TARS_CORE_H(Application/TkApplication)
-#include TARS_CORE_H(OpenGL/TkOpenGLInterface)
-#include TARS_CORE_H(OpenGL/TkOpenGLContext)
+#include TARS_CORE_H(Rendering/OpenGL/TkOpenGLInterface)
+#include TARS_CORE_H(Rendering/OpenGL/TkOpenGLContext)
 
 //-----------------------------------------------------------------------------
 // Name:		WinMain

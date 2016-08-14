@@ -7,7 +7,7 @@
 
 #include "TkApplication.h"
 
-#include TARS_CORE_H(Window/TkWindow)
+#include TARS_CORE_H(Rendering/Window/TkWindow)
 #include TARS_CORE_H(Input/TkInputManager)
 
 //-----------------------------------------------------------------------------
