@@ -39,6 +39,9 @@
     <Filter Include="Source Files\Debugging">
       <UniqueIdentifier>{cd7a869a-d76a-4ab4-875c-ee386462dce8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering">
+      <UniqueIdentifier>{506faf8e-02af-4c09-a638-d5b25763567e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Application\Root.h">
@@ -124,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="Sources\Debugging\Root.h">
       <Filter>Source Files\Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Rendering\Root.h">
+      <Filter>Source Files\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

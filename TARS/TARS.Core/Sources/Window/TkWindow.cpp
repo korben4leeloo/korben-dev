@@ -39,7 +39,30 @@ TkWindow::TkWindow( const TkApplication* pWin32App )
 //-----------------------------------------------------------------------------
 TkWindow::~TkWindow()
 {
-	
+	destroy();
+}
+
+//-----------------------------------------------------------------------------
+// Name:		destroy
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void TkWindow::destroy()
+{
+	hide();
+
+	if ( _hDC != nullptr )
+	{
+		TARS_ASSERT( _hWnd != nullptr );
+		ReleaseDC( _hWnd, _hDC );
+		_hDC = nullptr;
+	}
+
+	if ( _hWnd != nullptr )
+	{
+		DestroyWindow( _hWnd );
+		_hWnd = nullptr;
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -198,9 +221,9 @@ void TkWindow::hide()
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 LRESULT CALLBACK TkWindow::WndProc(	HWND	hWnd,			// Handle For This Window
-										UINT	uMsg,			// Message For This Window
-										WPARAM	wParam,			// Additional Message Information
-										LPARAM	lParam)			// Additional Message Information
+									UINT	uMsg,			// Message For This Window
+									WPARAM	wParam,			// Additional Message Information
+									LPARAM	lParam)			// Additional Message Information
 {
 
 	switch (uMsg)									// Check For Windows Messages

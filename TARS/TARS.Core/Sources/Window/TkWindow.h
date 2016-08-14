@@ -32,6 +32,8 @@ public:
 private:
 	static LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
 
+	void					destroy();
+
 	TkString				_strWindowName;
 
 	int						_nClientWidth;

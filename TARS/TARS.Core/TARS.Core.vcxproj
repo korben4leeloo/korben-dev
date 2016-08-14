@@ -143,6 +143,7 @@
     <ClInclude Include="Sources\OpenGL\TkOpenGLExtensions.h" />
     <ClInclude Include="Sources\OpenGL\TkOpenGLContext.h" />
     <ClInclude Include="Sources\OpenGL\TkOpenGLInterface.h" />
+    <ClInclude Include="Sources\Rendering\Root.h" />
     <ClInclude Include="Sources\Root.h" />
     <ClInclude Include="Sources\Scene\Entity\Root.h" />
     <ClInclude Include="Sources\Scene\Entity\TkEntity.h" />
