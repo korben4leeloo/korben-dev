@@ -60,22 +60,22 @@ TkInputManager* TkApplication::initInputs()
 	return ( _pInputManager );
 }
 
-//-----------------------------------------------------------------------------
-// Name:		initWindow
+////-----------------------------------------------------------------------------
+//// Name:		initWindow
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//TkWindow* TkApplication::initWindow()
+//{
+//	TkWindow* pWindow = new TkWindow( this );
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkWindow* TkApplication::initWindow()
-{
-	TkWindow* pWindow = new TkWindow( this );
-
-	pWindow->create();
-	pWindow->show();
-
-	_windowArray.pushBack( pWindow );
-
-	return ( pWindow );
-}
+//	pWindow->create();
+//	pWindow->show();
+//
+//	_windowArray.pushBack( pWindow );
+//
+//	return ( pWindow );
+//}
 
 //-----------------------------------------------------------------------------
 // Name:		run

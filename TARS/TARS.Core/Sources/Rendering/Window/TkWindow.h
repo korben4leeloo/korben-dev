@@ -18,23 +18,27 @@ class TkInputManager;
 
 class TkWindow
 {
-public:
-							TkWindow( const TkApplication* pWin32App );
-							~TkWindow();
+	friend class TkRenderManager;
 
+public:
 	void					create();
 	void					show();
 	void					hide();
+
+	inline void				setWindowTitle( const TkString& strWindowTitle );
 
 	inline HWND				getWindowHandle() const;
 	inline HDC				getDeviceContext() const;
 
 private:
+							TkWindow( const TkApplication* pWin32App );
+							~TkWindow();
+
 	static LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
 
 	void					destroy();
 
-	TkString				_strWindowName;
+	TkString				_strWindowTitle;
 
 	int						_nClientWidth;
 	int						_nClientHeight;
@@ -47,6 +51,16 @@ private:
 	HWND					_hWnd;
 	HDC						_hDC;
 };
+
+//-----------------------------------------------------------------------------
+// Name:		setWindowTitle
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void TkWindow::setWindowTitle( const TkString& strWindowTitle )
+{
+	_strWindowTitle = strWindowTitle;
+}
 
 //-----------------------------------------------------------------------------
 // Name:		getWindowHandle

@@ -27,7 +27,7 @@ public:
 	inline TkInputManager*	getInputManager() const;
 
 	TkInputManager*			initInputs();
-	TkWindow*				initWindow();
+	//TkWindow*				initWindow();
 	void					initWglContext();
 
 	int64_t					run();
