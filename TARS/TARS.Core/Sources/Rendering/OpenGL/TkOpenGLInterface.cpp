@@ -48,9 +48,9 @@ bool TkOpenGLInterface::_bApiLoaded = false;
 #define OPEN_GL_MAJOR_VERSION_REQUIRED	4
 #define OPEN_GL_MINOR_VERSION_REQUIRED	0
 
-#define COLOR_BITS_COUNT				32
-#define DEPTH_BITS_COUNT				24
-#define STENCIL_BITS_COUNT				8
+//#define COLOR_BITS_COUNT				32
+//#define DEPTH_BITS_COUNT				24
+//#define STENCIL_BITS_COUNT				8
 
 //-----------------------------------------------------------------------------
 // Name:		initApi
@@ -181,112 +181,112 @@ void checkExtensions( const HDC hDC )
 	}
 }
 
-//-----------------------------------------------------------------------------
-// Name:		createContext
+////-----------------------------------------------------------------------------
+//// Name:		createContext
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//TkOpenGLContext* TkOpenGLInterface::createContext( TkWindow* pWindow )
+//{
+//	TARS_ASSERT( pWindow );
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-TkOpenGLContext* TkOpenGLInterface::createContext( TkWindow* pWindow )
-{
-	TARS_ASSERT( pWindow );
-
-	HDC hDC = pWindow->getDeviceContext();
-	TARS_ASSERT( hDC != nullptr );
-
-	// Pixel Format Descriptor
-	PIXELFORMATDESCRIPTOR	pixelFormatDesc;
-	int32					nPixelFormat;
-
-	memset( &pixelFormatDesc, 0, sizeof(PIXELFORMATDESCRIPTOR) );
-
-	pixelFormatDesc.nSize			= sizeof(PIXELFORMATDESCRIPTOR);
-	pixelFormatDesc.nVersion		= 1;
-	pixelFormatDesc.dwFlags			= PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
-	pixelFormatDesc.iPixelType		= PFD_TYPE_RGBA;
-	pixelFormatDesc.cColorBits		= COLOR_BITS_COUNT;
-	pixelFormatDesc.cDepthBits		= DEPTH_BITS_COUNT;
-	pixelFormatDesc.cStencilBits	= STENCIL_BITS_COUNT;
-	pixelFormatDesc.iLayerType		= PFD_MAIN_PLANE;
-
-	if ( ( nPixelFormat = ChoosePixelFormat( hDC, &pixelFormatDesc ) ) == 0 )
-	{
-		return ( nullptr );
-	}
-
-	SetPixelFormat( hDC, nPixelFormat, &pixelFormatDesc );
-	
-	// Create a simple Windows OpenGL context and bind it ( will be used to get OpenGL fucntions and create a more up-to-date context )
-	HGLRC hDummyGLRC;
-
-	if	( ( hDummyGLRC = wglCreateContext( hDC ) ) == nullptr )
-	{
-		return ( nullptr );
-	}
-
-	if	( wglMakeCurrent( hDC, hDummyGLRC ) == FALSE )
-	{
-		return ( nullptr );
-	}
-
-	// Load OpenGL extensions functions
-	TkOpenGLInterface::initApi();
-
-	// Display available OpenGL and WGL extensions
-	//TkOpenGLInterface::checkExtensions( this );
-	checkExtensions( hDC );
-
-	// Get OpenGL version
-	int32 nMajorVersion, nMinorVersion;
-
-	TkOpenGLInterface::getOpenGLVersion( nMajorVersion, nMinorVersion );
-	TARS_ASSERT( nMajorVersion >= OPEN_GL_MAJOR_VERSION_REQUIRED );
-	TARS_ASSERT( nMinorVersion >= OPEN_GL_MINOR_VERSION_REQUIRED );
-
-	// Create pixel format with attributes
-	UINT nPixelFormatCount;
-	const int pixelFormatAttribList[] =
-	{
-		WGL_DRAW_TO_WINDOW_ARB,	GL_TRUE,
-		WGL_SUPPORT_OPENGL_ARB,	GL_TRUE,
-		WGL_DOUBLE_BUFFER_ARB,	GL_TRUE,
-		WGL_PIXEL_TYPE_ARB,		WGL_TYPE_RGBA_ARB,
-		WGL_COLOR_BITS_ARB,		COLOR_BITS_COUNT,
-		WGL_DEPTH_BITS_ARB,		DEPTH_BITS_COUNT,
-		WGL_STENCIL_BITS_ARB,	STENCIL_BITS_COUNT,
-		0,						//End
-	};
-
-	// Not really necessary but...
-	if ( wglChoosePixelFormatARB( hDC, pixelFormatAttribList, nullptr, 1, &nPixelFormat, &nPixelFormatCount ) == FALSE )
-	{
-		return ( nullptr );
-	}
-
-	memset( &pixelFormatDesc, 0, sizeof(PIXELFORMATDESCRIPTOR) );
-	DescribePixelFormat( hDC, nPixelFormat, sizeof(pixelFormatDesc), &pixelFormatDesc );
-	SetPixelFormat( hDC, nPixelFormat, &pixelFormatDesc );
-
-	// Create WGL context with attributes
-	const int contextAttribList[] =
-	{
-		WGL_CONTEXT_MAJOR_VERSION_ARB,	nMajorVersion,
-        WGL_CONTEXT_MINOR_VERSION_ARB,	nMinorVersion, 
-        WGL_CONTEXT_FLAGS_ARB,			WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
-        WGL_CONTEXT_PROFILE_MASK_ARB,	WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
-		0,								//End
-	};
-
-	HGLRC hGLRC = wglCreateContextAttribsARB( hDC, nullptr, contextAttribList );
-
-	// Delete the dummy context and bind the real context
-	wglMakeCurrent( hDC, hGLRC );
-	wglDeleteContext( hDummyGLRC );
-
-	TkOpenGLInterface::getOpenGLVersion( nMajorVersion, nMinorVersion );
-	TARS_ASSERT( nMajorVersion >= OPEN_GL_MAJOR_VERSION_REQUIRED );
-	TARS_ASSERT( nMinorVersion >= OPEN_GL_MINOR_VERSION_REQUIRED );
-
-	TkOpenGLContext* pContext = new TkOpenGLContext( pWindow, hGLRC );
-
-	return ( pContext );
-}
+//	HDC hDC = pWindow->getDeviceContext();
+//	TARS_ASSERT( hDC != nullptr );
+//
+//	// Pixel Format Descriptor
+//	PIXELFORMATDESCRIPTOR	pixelFormatDesc;
+//	int32					nPixelFormat;
+//
+//	memset( &pixelFormatDesc, 0, sizeof(PIXELFORMATDESCRIPTOR) );
+//
+//	pixelFormatDesc.nSize			= sizeof(PIXELFORMATDESCRIPTOR);
+//	pixelFormatDesc.nVersion		= 1;
+//	pixelFormatDesc.dwFlags			= PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+//	pixelFormatDesc.iPixelType		= PFD_TYPE_RGBA;
+//	pixelFormatDesc.cColorBits		= COLOR_BITS_COUNT;
+//	pixelFormatDesc.cDepthBits		= DEPTH_BITS_COUNT;
+//	pixelFormatDesc.cStencilBits	= STENCIL_BITS_COUNT;
+//	pixelFormatDesc.iLayerType		= PFD_MAIN_PLANE;
+//
+//	if ( ( nPixelFormat = ChoosePixelFormat( hDC, &pixelFormatDesc ) ) == 0 )
+//	{
+//		return ( nullptr );
+//	}
+//
+//	SetPixelFormat( hDC, nPixelFormat, &pixelFormatDesc );
+//	
+//	// Create a simple Windows OpenGL context and bind it ( will be used to get OpenGL fucntions and create a more up-to-date context )
+//	HGLRC hDummyGLRC;
+//
+//	if	( ( hDummyGLRC = wglCreateContext( hDC ) ) == nullptr )
+//	{
+//		return ( nullptr );
+//	}
+//
+//	if	( wglMakeCurrent( hDC, hDummyGLRC ) == FALSE )
+//	{
+//		return ( nullptr );
+//	}
+//
+//	// Load OpenGL extensions functions
+//	TkOpenGLInterface::initApi();
+//
+//	// Display available OpenGL and WGL extensions
+//	//TkOpenGLInterface::checkExtensions( this );
+//	checkExtensions( hDC );
+//
+//	// Get OpenGL version
+//	int32 nMajorVersion, nMinorVersion;
+//
+//	TkOpenGLInterface::getOpenGLVersion( nMajorVersion, nMinorVersion );
+//	TARS_ASSERT( nMajorVersion >= OPEN_GL_MAJOR_VERSION_REQUIRED );
+//	TARS_ASSERT( nMinorVersion >= OPEN_GL_MINOR_VERSION_REQUIRED );
+//
+//	// Create pixel format with attributes
+//	UINT nPixelFormatCount;
+//	const int pixelFormatAttribList[] =
+//	{
+//		WGL_DRAW_TO_WINDOW_ARB,	GL_TRUE,
+//		WGL_SUPPORT_OPENGL_ARB,	GL_TRUE,
+//		WGL_DOUBLE_BUFFER_ARB,	GL_TRUE,
+//		WGL_PIXEL_TYPE_ARB,		WGL_TYPE_RGBA_ARB,
+//		WGL_COLOR_BITS_ARB,		COLOR_BITS_COUNT,
+//		WGL_DEPTH_BITS_ARB,		DEPTH_BITS_COUNT,
+//		WGL_STENCIL_BITS_ARB,	STENCIL_BITS_COUNT,
+//		0,						//End
+//	};
+//
+//	// Not really necessary but...
+//	if ( wglChoosePixelFormatARB( hDC, pixelFormatAttribList, nullptr, 1, &nPixelFormat, &nPixelFormatCount ) == FALSE )
+//	{
+//		return ( nullptr );
+//	}
+//
+//	memset( &pixelFormatDesc, 0, sizeof(PIXELFORMATDESCRIPTOR) );
+//	DescribePixelFormat( hDC, nPixelFormat, sizeof(pixelFormatDesc), &pixelFormatDesc );
+//	SetPixelFormat( hDC, nPixelFormat, &pixelFormatDesc );
+//
+//	// Create WGL context with attributes
+//	const int contextAttribList[] =
+//	{
+//		WGL_CONTEXT_MAJOR_VERSION_ARB,	nMajorVersion,
+//        WGL_CONTEXT_MINOR_VERSION_ARB,	nMinorVersion, 
+//        WGL_CONTEXT_FLAGS_ARB,			WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
+//        WGL_CONTEXT_PROFILE_MASK_ARB,	WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
+//		0,								//End
+//	};
+//
+//	HGLRC hGLRC = wglCreateContextAttribsARB( hDC, nullptr, contextAttribList );
+//
+//	// Delete the dummy context and bind the real context
+//	wglMakeCurrent( hDC, hGLRC );
+//	wglDeleteContext( hDummyGLRC );
+//
+//	TkOpenGLInterface::getOpenGLVersion( nMajorVersion, nMinorVersion );
+//	TARS_ASSERT( nMajorVersion >= OPEN_GL_MAJOR_VERSION_REQUIRED );
+//	TARS_ASSERT( nMinorVersion >= OPEN_GL_MINOR_VERSION_REQUIRED );
+//
+//	TkOpenGLContext* pContext = new TkOpenGLContext( pWindow, hGLRC );
+//
+//	return ( pContext );
+//}

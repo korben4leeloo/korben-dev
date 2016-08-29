@@ -23,7 +23,7 @@ public:
 	static void				getOpenGLVersion( int32& nMajorVersion, int32& nMinorVersion );
 
 	// OpenGL contexts
-	static TkOpenGLContext*	createContext( TkWindow* pWindow );
+	//static TkOpenGLContext*	createContext( TkWindow* pWindow );
 
 private:
 							TkOpenGLInterface();

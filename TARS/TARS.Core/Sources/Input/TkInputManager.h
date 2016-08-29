@@ -6,8 +6,8 @@
 //
 //*****************************************************************************
 
-#ifndef __TARS_CORE_TK_WIN32_INPUT_MANAGER_H__
-#define __TARS_CORE_TK_WIN32_INPUT_MANAGER_H__
+#ifndef __TARS_CORE_TK_INPUT_MANAGER_H__
+#define __TARS_CORE_TK_INPUT_MANAGER_H__
 
 #include "Root.h"
 #include TARS_CORE_H(Input/TkInputState)

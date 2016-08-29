@@ -46,6 +46,16 @@ void TkApplication::destroy()
 }
 
 //-----------------------------------------------------------------------------
+// Name:		init
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void TkApplication::init()
+{
+	initInputs();
+}
+
+//-----------------------------------------------------------------------------
 // Name:		initInputs
 //
 // Created:		2013-08-26
@@ -61,11 +71,11 @@ TkInputManager* TkApplication::initInputs()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		initWindow
+// Name:		createWindow
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkWindow* TkApplication::initWindow()
+TkWindow* TkApplication::createWindow()
 {
 	TkWindow* pWindow = new TkWindow( this );
 

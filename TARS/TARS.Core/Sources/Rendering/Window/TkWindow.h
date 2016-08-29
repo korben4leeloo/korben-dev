@@ -15,24 +15,29 @@
 
 class TkApplication;
 class TkInputManager;
+class TkOpenGLContext;
 
 class TkWindow
 {
-public:
-							TkWindow( const TkApplication* pWin32App );
-							~TkWindow();
+	friend class TkApplication;
 
-	void					create();
+public:
 	void					show();
 	void					hide();
 
 	inline HWND				getWindowHandle() const;
 	inline HDC				getDeviceContext() const;
 
-private:
-	static LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
+	TkOpenGLContext*		createOpenGLContext();
 
+private:
+							TkWindow( const TkApplication* pWin32App );
+							~TkWindow();
+
+	void					create();
 	void					destroy();
+
+	static LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
 
 	TkString				_strWindowName;
 

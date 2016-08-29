@@ -26,13 +26,15 @@ public:
 	inline HINSTANCE		getInstanceHandle() const;
 	inline TkInputManager*	getInputManager() const;
 
-	TkInputManager*			initInputs();
-	TkWindow*				initWindow();
-	void					initWglContext();
+	void					init();
+
+	TkWindow*				createWindow();
 
 	int64_t					run();
 
 private:
+	TkInputManager*			initInputs();
+
 	void					destroy();
 
 	HINSTANCE				_hInstance;

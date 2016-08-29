@@ -17,10 +17,11 @@ class TkWindow;
 class TkOpenGLContext
 {
 public:
+
+private:
 					TkOpenGLContext( const TkWindow* pWindow, const HGLRC hGLRC );
 					~TkOpenGLContext();
 
-private:
 	void			destroy();
 
 	const TkWindow*	_pWindow;
