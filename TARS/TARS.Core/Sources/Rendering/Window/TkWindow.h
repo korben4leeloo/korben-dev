@@ -42,7 +42,7 @@ private:
 	static LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
 
 	TkString				_strWindowTitle;
-	è
+	
 	int						_nClientWidth;
 	int						_nClientHeight;
 	int						_nBitsPerPixel;
