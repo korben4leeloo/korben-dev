@@ -25,6 +25,8 @@ public:
 	void					show();
 	void					hide();
 
+	inline void				setWindowTitle( const TkString& strWindowTitle );
+
 	inline HWND				getWindowHandle() const;
 	inline HDC				getDeviceContext() const;
 
@@ -39,8 +41,8 @@ private:
 
 	static LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
 
-	TkString				_strWindowName;
-
+	TkString				_strWindowTitle;
+	è
 	int						_nClientWidth;
 	int						_nClientHeight;
 	int						_nBitsPerPixel;
@@ -52,6 +54,16 @@ private:
 	HWND					_hWnd;
 	HDC						_hDC;
 };
+
+//-----------------------------------------------------------------------------
+// Name:		setWindowTitle
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void TkWindow::setWindowTitle( const TkString& strWindowTitle )
+{
+	_strWindowTitle = strWindowTitle;
+}
 
 //-----------------------------------------------------------------------------
 // Name:		getWindowHandle

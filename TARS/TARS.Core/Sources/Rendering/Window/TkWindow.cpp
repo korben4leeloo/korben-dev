@@ -10,7 +10,7 @@
 #include TARS_CORE_H(Application/TkApplication)
 #include TARS_CORE_H(Input/TkInputManager)
 
-#define DEFAULT_WINDOW_NAME		"TARS Window"
+#define DEFAULT_WINDOW_TITLE	"TARS Window"
 #define DEFAULT_CLIENT_WIDTH	1024
 #define DEFAULT_CLIENT_HEIGHT	768
 #define DEFAULT_BITS_PER_PIXEL	32
@@ -22,7 +22,7 @@
 //-----------------------------------------------------------------------------
 TkWindow::TkWindow( const TkApplication* pWin32App )
 : _pWin32App		( pWin32App )
-, _strWindowName	( DEFAULT_WINDOW_NAME )
+, _strWindowTitle	( DEFAULT_WINDOW_TITLE )
 , _nClientWidth		( DEFAULT_CLIENT_WIDTH )
 , _nClientHeight	( DEFAULT_CLIENT_HEIGHT )
 , _nBitsPerPixel	( DEFAULT_BITS_PER_PIXEL )
@@ -164,7 +164,7 @@ void TkWindow::create()
 	// Create The Window
 	if (!(_hWnd=CreateWindowEx(dwExStyle,								// Extended Style For The Window
 								(LPCSTR)strWndClassName.buffer(),	// Class Name
-								(LPCSTR)_strWindowName.buffer(),	// Window Title
+								(LPCSTR)_strWindowTitle.buffer(),	// Window Title
 								dwStyle |								// Defined Window Style
 								WS_CLIPSIBLINGS |						// Required Window Style
 								WS_CLIPCHILDREN,						// Required Window Style
