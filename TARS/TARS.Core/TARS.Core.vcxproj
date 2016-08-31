@@ -140,9 +140,9 @@
     <ClInclude Include="Sources\Input\TkInputState.h" />
     <ClInclude Include="Sources\Input\TkInputManager.h" />
     <ClInclude Include="Sources\Rendering\OpenGL\Root.h" />
+    <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLApi.h" />
     <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLContext.h" />
     <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLExtensions.h" />
-    <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLInterface.h" />
     <ClInclude Include="Sources\Rendering\Root.h" />
     <ClInclude Include="Sources\Rendering\Window\Root.h" />
     <ClInclude Include="Sources\Rendering\Window\TkWindow.h" />
@@ -165,8 +165,8 @@
     <ClCompile Include="Sources\File\TkTextFile.cpp" />
     <ClCompile Include="Sources\Input\TkInputState.cpp" />
     <ClCompile Include="Sources\Input\TkInputManager.cpp" />
+    <ClCompile Include="Sources\Rendering\OpenGL\TkOpenGLApi.cpp" />
     <ClCompile Include="Sources\Rendering\OpenGL\TkOpenGLContext.cpp" />
-    <ClCompile Include="Sources\Rendering\OpenGL\TkOpenGLInterface.cpp" />
     <ClCompile Include="Sources\Rendering\Window\TkWindow.cpp" />
     <ClCompile Include="Sources\Scene\Entity\TkEntity.cpp" />
     <ClCompile Include="Sources\Scene\Entity\TkEntityComponent.cpp" />

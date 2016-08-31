@@ -116,9 +116,6 @@
     <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLExtensions.h">
       <Filter>Source Files\Rendering\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLInterface.h">
-      <Filter>Source Files\Rendering\OpenGL</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Rendering\OpenGL\Root.h">
       <Filter>Source Files\Rendering\OpenGL</Filter>
     </ClInclude>
@@ -130,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="Sources\Rendering\Window\Root.h">
       <Filter>Source Files\Rendering\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLApi.h">
+      <Filter>Source Files\Rendering\OpenGL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -172,14 +172,14 @@
     <ClCompile Include="Sources\Debugging\TkDebug.cpp">
       <Filter>Source Files\Debugging</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Rendering\OpenGL\TkOpenGLInterface.cpp">
-      <Filter>Source Files\Rendering\OpenGL</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Rendering\OpenGL\TkOpenGLContext.cpp">
       <Filter>Source Files\Rendering\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Rendering\Window\TkWindow.cpp">
       <Filter>Source Files\Rendering\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Rendering\OpenGL\TkOpenGLApi.cpp">
+      <Filter>Source Files\Rendering\OpenGL</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

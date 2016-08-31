@@ -9,7 +9,7 @@
 
 #include TARS_CORE_H(Rendering/Window/TkWindow)
 #include TARS_CORE_H(Rendering/OpenGL/TkOpenGLExtensions)
-#include TARS_CORE_H(Rendering/OpenGL/TkOpenGLInterface)
+#include TARS_CORE_H(Rendering/OpenGL/TkOpenGLApi)
 
 #define OPEN_GL_MAJOR_VERSION_REQUIRED	4
 #define OPEN_GL_MINOR_VERSION_REQUIRED	0
@@ -93,7 +93,7 @@ void TkOpenGLContext::create( TkWindow* pWindow )
 	}
 
 	// Load OpenGL extensions functions
-	TkOpenGLInterface::initApi();
+	TkOpenGLApi::init();
 
 	// Display available OpenGL and WGL extensions
 	checkExtensions( hDC );
