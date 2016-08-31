@@ -142,7 +142,6 @@
     <ClInclude Include="Sources\Rendering\OpenGL\Root.h" />
     <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLApi.h" />
     <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLContext.h" />
-    <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLExtensions.h" />
     <ClInclude Include="Sources\Rendering\Root.h" />
     <ClInclude Include="Sources\Rendering\Window\Root.h" />
     <ClInclude Include="Sources\Rendering\Window\TkWindow.h" />

@@ -113,9 +113,6 @@
     <ClInclude Include="Sources\Rendering\Root.h">
       <Filter>Source Files\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Rendering\OpenGL\TkOpenGLExtensions.h">
-      <Filter>Source Files\Rendering\OpenGL</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Rendering\OpenGL\Root.h">
       <Filter>Source Files\Rendering\OpenGL</Filter>
     </ClInclude>
