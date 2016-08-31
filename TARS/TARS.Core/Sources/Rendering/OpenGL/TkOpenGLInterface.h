@@ -16,14 +16,13 @@ class TkWindow;
 
 class TkOpenGLInterface
 {
+	friend class TkWindow;
+
 public:
 	// OpenGL API
 	static void				initApi();
 	//static void				checkExtensions( const TkOpenGLContext* pContext );
-	static void				getOpenGLVersion( int32& nMajorVersion, int32& nMinorVersion );
-
-	// OpenGL contexts
-	//static TkOpenGLContext*	createContext( TkWindow* pWindow );
+	//static void				getOpenGLVersion( int32& nMajorVersion, int32& nMinorVersion );
 
 private:
 							TkOpenGLInterface();

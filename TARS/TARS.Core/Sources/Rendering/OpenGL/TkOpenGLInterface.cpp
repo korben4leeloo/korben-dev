@@ -48,9 +48,9 @@ bool TkOpenGLInterface::_bApiLoaded = false;
 #define OPEN_GL_MAJOR_VERSION_REQUIRED	4
 #define OPEN_GL_MINOR_VERSION_REQUIRED	0
 
-//#define COLOR_BITS_COUNT				32
-//#define DEPTH_BITS_COUNT				24
-//#define STENCIL_BITS_COUNT				8
+#define COLOR_BITS_COUNT				32
+#define DEPTH_BITS_COUNT				24
+#define STENCIL_BITS_COUNT				8
 
 //-----------------------------------------------------------------------------
 // Name:		initApi
@@ -92,24 +92,24 @@ void TkOpenGLInterface::initApi()
 	_bApiLoaded = true;
 }
 
-//-----------------------------------------------------------------------------
-// Name:		getOpenGLVersion
+////-----------------------------------------------------------------------------
+//// Name:		getOpenGLVersion
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//void TkOpenGLInterface::getOpenGLVersion( int32& nMajorVersion, int32& nMinorVersion )
+//{
+//	nMajorVersion = 0;
+//	nMinorVersion = 0;
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void TkOpenGLInterface::getOpenGLVersion( int32& nMajorVersion, int32& nMinorVersion )
-{
-	nMajorVersion = 0;
-	nMinorVersion = 0;
-
-	if	( _bApiLoaded )
-	{
-		glGetIntegerv( GL_MAJOR_VERSION, &nMajorVersion );
-		glGetIntegerv( GL_MINOR_VERSION, &nMinorVersion );
-
-		TARS_MESSAGE( "\nOpenGL version: %d.%d", nMajorVersion, nMinorVersion );
-	}
-}
+//	if	( _bApiLoaded )
+//	{
+//		glGetIntegerv( GL_MAJOR_VERSION, &nMajorVersion );
+//		glGetIntegerv( GL_MINOR_VERSION, &nMinorVersion );
+//
+//		TARS_MESSAGE( "\nOpenGL version: %d.%d", nMajorVersion, nMinorVersion );
+//	}
+//}
 
 ////-----------------------------------------------------------------------------
 //// Name:		checkExtensions
@@ -146,40 +146,40 @@ void TkOpenGLInterface::getOpenGLVersion( int32& nMajorVersion, int32& nMinorVer
 //	}
 //}
 
-//-----------------------------------------------------------------------------
-// Name:		checkExtensions
+////-----------------------------------------------------------------------------
+//// Name:		checkExtensions
+////
+//// Created:		2013-08-26
+////-----------------------------------------------------------------------------
+//void checkExtensions( const HDC hDC )
+//{
+//	// Browse available GL extensions
+//	int32 nExtensionCount;
+//	glGetIntegerv( GL_NUM_EXTENSIONS, &nExtensionCount );
 //
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void checkExtensions( const HDC hDC )
-{
-	// Browse available GL extensions
-	int32 nExtensionCount;
-	glGetIntegerv( GL_NUM_EXTENSIONS, &nExtensionCount );
-
-	TARS_MESSAGE( "\nAvailable OpenGL extensions" );
-	TARS_MESSAGE( "---------------------------" );
-
-	for	( int32 i = 0; i < nExtensionCount; i++ )
-	{
-		const GLubyte* pcExtensionName = glGetStringi( GL_EXTENSIONS, i );
-		TARS_MESSAGE( (char*)pcExtensionName );
-	}
-
-	// Browse available WGL extensions
-	TkString			strWglExtensions( wglGetExtensionsStringARB( hDC ) );
-	TkVector<TkString>	wglExtensionNameArray;
-
-	TARS_MESSAGE( "\nAvailable WGL extensions" );
-	TARS_MESSAGE( "------------------------" );
-
-	strWglExtensions.split( " ", wglExtensionNameArray );
-
-	for	( uint32 i = 0; i < wglExtensionNameArray.size(); i++ )
-	{
-		TARS_MESSAGE( wglExtensionNameArray[i].buffer() );
-	}
-}
+//	TARS_MESSAGE( "\nAvailable OpenGL extensions" );
+//	TARS_MESSAGE( "---------------------------" );
+//
+//	for	( int32 i = 0; i < nExtensionCount; i++ )
+//	{
+//		const GLubyte* pcExtensionName = glGetStringi( GL_EXTENSIONS, i );
+//		TARS_MESSAGE( (char*)pcExtensionName );
+//	}
+//
+//	// Browse available WGL extensions
+//	TkString			strWglExtensions( wglGetExtensionsStringARB( hDC ) );
+//	TkVector<TkString>	wglExtensionNameArray;
+//
+//	TARS_MESSAGE( "\nAvailable WGL extensions" );
+//	TARS_MESSAGE( "------------------------" );
+//
+//	strWglExtensions.split( " ", wglExtensionNameArray );
+//
+//	for	( uint32 i = 0; i < wglExtensionNameArray.size(); i++ )
+//	{
+//		TARS_MESSAGE( wglExtensionNameArray[i].buffer() );
+//	}
+//}
 
 ////-----------------------------------------------------------------------------
 //// Name:		createContext
@@ -188,10 +188,13 @@ void checkExtensions( const HDC hDC )
 ////-----------------------------------------------------------------------------
 //TkOpenGLContext* TkOpenGLInterface::createContext( TkWindow* pWindow )
 //{
-//	TARS_ASSERT( pWindow );
+//	HDC hDC = pWindow ? pWindow->getDeviceContext() : nullptr;
 //
-//	HDC hDC = pWindow->getDeviceContext();
-//	TARS_ASSERT( hDC != nullptr );
+//	if ( hDC == nullptr )
+//	{
+//		TARS_BREAK();
+//		return ( nullptr );
+//	}
 //
 //	// Pixel Format Descriptor
 //	PIXELFORMATDESCRIPTOR	pixelFormatDesc;
@@ -286,7 +289,7 @@ void checkExtensions( const HDC hDC )
 //	TARS_ASSERT( nMajorVersion >= OPEN_GL_MAJOR_VERSION_REQUIRED );
 //	TARS_ASSERT( nMinorVersion >= OPEN_GL_MINOR_VERSION_REQUIRED );
 //
-//	TkOpenGLContext* pContext = new TkOpenGLContext( pWindow, hGLRC );
+//	TkOpenGLContext* pContext = new TkOpenGLContext( hGLRC );
 //
 //	return ( pContext );
 //}

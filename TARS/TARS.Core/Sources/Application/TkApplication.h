@@ -29,6 +29,7 @@ public:
 	void					init();
 
 	TkWindow*				createWindow();
+	void					destroyWindows();
 
 	int64_t					run();
 

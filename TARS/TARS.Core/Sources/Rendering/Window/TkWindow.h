@@ -31,6 +31,7 @@ public:
 	inline HDC				getDeviceContext() const;
 
 	TkOpenGLContext*		createOpenGLContext();
+	void					destroyOpenGLContext();
 
 private:
 							TkWindow( const TkApplication* pWin32App );
@@ -53,6 +54,8 @@ private:
 
 	HWND					_hWnd;
 	HDC						_hDC;
+
+	TkOpenGLContext*		_pOpenGLContext;
 };
 
 //-----------------------------------------------------------------------------

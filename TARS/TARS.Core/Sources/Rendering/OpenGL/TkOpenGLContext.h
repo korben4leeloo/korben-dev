@@ -16,16 +16,33 @@ class TkWindow;
 
 class TkOpenGLContext
 {
+	friend class TkWindow;
+
 public:
+	inline bool	isValid() const;
 
 private:
-					TkOpenGLContext( const TkWindow* pWindow, const HGLRC hGLRC );
-					~TkOpenGLContext();
+				TkOpenGLContext();
+				~TkOpenGLContext();
 
-	void			destroy();
+	void		create( TkWindow* pWindow );
+	void		destroy();
 
-	const TkWindow*	_pWindow;
-	HGLRC			_hGLRC;
+	void		getOpenGLVersion( int32& nMajorVersion, int32& nMinorVersion );
+	void		checkExtensions( const HDC& hDC );
+
+	TkWindow*	_pWindow;
+	HGLRC		_hGLRC;
 };
+
+//-----------------------------------------------------------------------------
+// Name:		isValid
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+bool TkOpenGLContext::isValid() const
+{
+	return ( _hGLRC != nullptr );
+}
 
 #endif

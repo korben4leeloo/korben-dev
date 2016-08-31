@@ -42,7 +42,7 @@ void TkApplication::destroy()
 	delete _pInputManager;
 	_pInputManager = nullptr;
 
-	_windowArray.deleteAll();
+	destroyWindows();
 }
 
 //-----------------------------------------------------------------------------
@@ -85,6 +85,23 @@ TkWindow* TkApplication::createWindow()
 	_windowArray.pushBack( pWindow );
 
 	return ( pWindow );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		destroyWindows
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void TkApplication::destroyWindows()
+{
+	uint32 uiWindowCount = _windowArray.size();
+
+	for ( uint32 i = 0; i < uiWindowCount; i++ )
+	{
+		delete _windowArray[i];
+	}
+
+	_windowArray.clear();
 }
 
 //-----------------------------------------------------------------------------
