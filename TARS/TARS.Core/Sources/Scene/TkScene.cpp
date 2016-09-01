@@ -12,7 +12,8 @@
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkScene::TkScene()
+TkScene::TkScene(const TkString& strSceneName)
+: _strSceneName( strSceneName )
 {
 	
 }

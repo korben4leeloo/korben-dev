@@ -11,11 +11,19 @@
 
 #include "Root.h"
 
+class TkEntity;
+
 class TkScene
 {
 public:
-				TkScene();
-				~TkScene();
+						TkScene( const TkString& strSceneName );
+						~TkScene();
+
+
+
+private:
+	TkString			_strSceneName;
+	TkVector<TkEntity*>	_entityArray;
 };
 
 #endif
