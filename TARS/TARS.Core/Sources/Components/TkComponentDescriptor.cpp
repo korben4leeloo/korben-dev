@@ -1,28 +1,28 @@
 ﻿//*****************************************************************************
 //
-//	File:		TkEntityComponent.cpp
+//	File:		TkComponentDescriptor.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include "TkEntityComponent.h"
+#include "TkComponentDescriptor.h"
 
 //-----------------------------------------------------------------------------
-// Name:		TkEntityComponent constructor
+// Name:		TkComponentDescriptor constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkEntityComponent::TkEntityComponent()
+TkComponentDescriptor::TkComponentDescriptor()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		TkEntityComponent destructor
+// Name:		TkComponentDescriptor destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkEntityComponent::~TkEntityComponent()
+TkComponentDescriptor::~TkComponentDescriptor()
 {
 	
 }

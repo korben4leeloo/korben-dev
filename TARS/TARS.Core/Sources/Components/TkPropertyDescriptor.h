@@ -1,21 +1,21 @@
 //*****************************************************************************
 //
-//	Class:		TkEntityProperty
+//	Class:		TkPropertyDescriptor
 //
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#ifndef __TARS_CORE_TK_ENTITY_PROPERTY_H__
-#define __TARS_CORE_TK_ENTITY_PROPERTY_H__
+#ifndef __TARS_CORE_TK_PROPERTY_DESCRIPTOR_H__
+#define __TARS_CORE_TK_PROPERTY_DESCRIPTOR_H__
 
 #include "Root.h"
 
-class TkEntityProperty
+class TkPropertyDescriptor
 {
 public:
-				TkEntityProperty();
-				~TkEntityProperty();
+				TkPropertyDescriptor();
+				~TkPropertyDescriptor();
 };
 
 #endif

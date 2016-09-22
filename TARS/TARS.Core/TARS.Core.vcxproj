@@ -128,6 +128,10 @@
   <ItemGroup>
     <ClInclude Include="Sources\Application\Root.h" />
     <ClInclude Include="Sources\Application\TkApplication.h" />
+    <ClInclude Include="Sources\Components\Root.h" />
+    <ClInclude Include="Sources\Components\TkComponent.h" />
+    <ClInclude Include="Sources\Components\TkComponentDescriptor.h" />
+    <ClInclude Include="Sources\Components\TkPropertyDescriptor.h" />
     <ClInclude Include="Sources\Containers\Root.h" />
     <ClInclude Include="Sources\Containers\TkList.h" />
     <ClInclude Include="Sources\Containers\TkVector.h" />
@@ -148,8 +152,6 @@
     <ClInclude Include="Sources\Root.h" />
     <ClInclude Include="Sources\Scene\Entity\Root.h" />
     <ClInclude Include="Sources\Scene\Entity\TkEntity.h" />
-    <ClInclude Include="Sources\Scene\Entity\TkEntityComponent.h" />
-    <ClInclude Include="Sources\Scene\Entity\TkEntityProperty.h" />
     <ClInclude Include="Sources\Scene\Root.h" />
     <ClInclude Include="Sources\Scene\TkScene.h" />
     <ClInclude Include="Sources\String\Root.h" />
@@ -157,6 +159,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Application\TkApplication.cpp" />
+    <ClCompile Include="Sources\Components\TkComponent.cpp" />
+    <ClCompile Include="Sources\Components\TkComponentDescriptor.cpp" />
+    <ClCompile Include="Sources\Components\TkPropertyDescriptor.cpp" />
     <ClCompile Include="Sources\Containers\TkList.cpp" />
     <ClCompile Include="Sources\Containers\TkVector.cpp" />
     <ClCompile Include="Sources\Debugging\TkDebug.cpp" />
@@ -168,8 +173,6 @@
     <ClCompile Include="Sources\Rendering\OpenGL\TkOpenGLContext.cpp" />
     <ClCompile Include="Sources\Rendering\Window\TkWindow.cpp" />
     <ClCompile Include="Sources\Scene\Entity\TkEntity.cpp" />
-    <ClCompile Include="Sources\Scene\Entity\TkEntityComponent.cpp" />
-    <ClCompile Include="Sources\Scene\Entity\TkEntityProperty.cpp" />
     <ClCompile Include="Sources\Scene\TkScene.cpp" />
     <ClCompile Include="Sources\String\TkString.cpp" />
   </ItemGroup>

@@ -1,28 +1,29 @@
 ﻿//*****************************************************************************
 //
-//	File:		TkEntityProperty.cpp
+//	File:		TkComponent.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include "TkEntityProperty.h"
+#include "TkComponent.h"
 
 //-----------------------------------------------------------------------------
-// Name:		TkEntityProperty constructor
+// Name:		TkComponent constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkEntityProperty::TkEntityProperty()
+TkComponent::TkComponent()
+: _pDescriptor( nullptr )
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		TkEntityProperty destructor
+// Name:		TkComponent destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-TkEntityProperty::~TkEntityProperty()
+TkComponent::~TkComponent()
 {
 	
 }
