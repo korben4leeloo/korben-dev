@@ -54,7 +54,8 @@ public:
 
 	QmIterator			pushBack( const T& value );
 	QmIterator			pushFront( const T& value );
-	QmIterator			insert( const QmIterator& position, const T& value );
+	QmIterator			insertAfter( const QmIterator& position, const T& value );
+	QmIterator			insertBefore( const QmIterator& position, const T& value );
 	//void				remove( const QmIterator& position );
 
 	QmIterator			find( const T& value );
@@ -156,13 +157,13 @@ typename QmList<T>::QmIterator QmList<T>::pushFront(const T&	value)
 }
 
 //-----------------------------------------------------------------------------
-// Name:		insert
+// Name:		insertAfter
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-typename QmList<T>::QmIterator QmList<T>::insert(const QmIterator&	position, 
-												 const T&			value)
+typename QmList<T>::QmIterator QmList<T>::insertAfter(const QmIterator&	position, 
+													  const T&			value)
 {
 	QUANTUM_ASSERT( position.isValid() );
 	QUANTUM_ASSERT( _pHead );
@@ -176,6 +177,39 @@ typename QmList<T>::QmIterator QmList<T>::insert(const QmIterator&	position,
 	if ( _pLast == position._pListNode )
 	{
 		_pLast = pListNode;
+	}
+
+	_uiSize++;
+	
+	return	( QmIterator( pListNode ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		insertBefore
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+typename QmList<T>::QmIterator QmList<T>::insertBefore(const QmIterator&	position, 
+													   const T&				value)
+{
+	if	( _uiSize == 0 )
+	{
+		return ( pushBack( value ) );
+	}
+
+	QUANTUM_ASSERT( position.isValid() );
+	QUANTUM_ASSERT( _pHead );
+
+	QmListNode* pListNode = new QmListNode( value );
+
+	pListNode->_pPrev			= position._pListNode->_pPrev;
+	pListNode->_pNext			= position._pListNode;
+	position._pListNode->_pPrev	= pListNode;
+
+	if ( _pHead == position._pListNode )
+	{
+		_pHead = pListNode;
 	}
 
 	_uiSize++;

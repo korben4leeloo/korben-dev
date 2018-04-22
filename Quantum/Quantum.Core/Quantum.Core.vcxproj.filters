@@ -39,14 +39,20 @@
     <Filter Include="Source Files\Components">
       <UniqueIdentifier>{3cb0962d-ea8f-4bb8-86da-64589aee03b5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\String\Scene">
-      <UniqueIdentifier>{dfbb3099-7f34-4ce4-9c4b-8fdf0b2c64cc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\String\Scene\Entity">
-      <UniqueIdentifier>{a00540b7-559f-4140-b6dd-73d40d1a05b9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Math">
       <UniqueIdentifier>{9944f379-d1e9-4344-bdb5-426e2bbcfa2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene">
+      <UniqueIdentifier>{dfbb3099-7f34-4ce4-9c4b-8fdf0b2c64cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene\Entity">
+      <UniqueIdentifier>{a00540b7-559f-4140-b6dd-73d40d1a05b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\D3D">
+      <UniqueIdentifier>{a71751a9-e13f-4187-b37d-c039890d982b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scheduler">
+      <UniqueIdentifier>{7c2c973a-5228-457b-beb6-7bedd3fda0e5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -69,10 +75,10 @@
       <Filter>Source Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Scene\Root.h">
-      <Filter>Source Files\String\Scene</Filter>
+      <Filter>Source Files\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Scene\Entity\Root.h">
-      <Filter>Source Files\String\Scene\Entity</Filter>
+      <Filter>Source Files\Scene\Entity</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Debugging\Root.h">
       <Filter>Source Files\Debugging</Filter>
@@ -92,87 +98,136 @@
     <ClInclude Include="Sources\Math\Root.h">
       <Filter>Source Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Application\QmApplication.h" />
-    <ClInclude Include="Sources\Components\QmComponent.h" />
-    <ClInclude Include="Sources\Components\QmComponentDescriptor.h" />
-    <ClInclude Include="Sources\Components\QmPropertyDescriptor.h" />
-    <ClInclude Include="Sources\Containers\QmList.h" />
-    <ClInclude Include="Sources\Containers\QmVector.h" />
-    <ClInclude Include="Sources\Debugging\QmDebug.h" />
-    <ClInclude Include="Sources\File\QmBinaryFile.h" />
-    <ClInclude Include="Sources\File\QmTextFile.h" />
-    <ClInclude Include="Sources\Input\QmInputState.h" />
-    <ClInclude Include="Sources\Input\QmInputManager.h" />
-    <ClInclude Include="Sources\Math\QmQuaternion.h" />
-    <ClInclude Include="Sources\Math\QmTransform.h" />
-    <ClInclude Include="Sources\Math\QmVector4.h" />
-    <ClInclude Include="Sources\Rendering\OpenGL\QmOpenGLApi.h" />
-    <ClInclude Include="Sources\Rendering\OpenGL\QmOpenGLContext.h" />
-    <ClInclude Include="Sources\Rendering\Window\QmWindow.h" />
-    <ClInclude Include="Sources\Scene\Entity\QmEntity.h" />
-    <ClInclude Include="Sources\Scene\QmScene.h" />
-    <ClInclude Include="Sources\String\QmString.h" />
+    <ClInclude Include="Sources\Application\QmApplication.h">
+      <Filter>Source Files\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\File\QmBinaryFile.h">
+      <Filter>Source Files\File</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\QmComponent.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\QmComponentDescriptor.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Debugging\QmDebug.h">
+      <Filter>Source Files\Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Scene\Entity\QmEntity.h">
+      <Filter>Source Files\Scene\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Scene\QmScene.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Input\QmInputManager.h">
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Input\QmInputState.h">
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Containers\QmList.h">
+      <Filter>Source Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Rendering\OpenGL\QmOpenGLApi.h">
+      <Filter>Source Files\Rendering\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Rendering\OpenGL\QmOpenGLContext.h">
+      <Filter>Source Files\Rendering\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\String\QmString.h">
+      <Filter>Source Files\String</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\QmTransform.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\QmVector4.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\QmQuaternion.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\File\QmTextFile.h">
+      <Filter>Source Files\File</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Components\QmPropertyDescriptor.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Containers\QmVector.h">
+      <Filter>Source Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Rendering\Window\QmWindow.h">
+      <Filter>Source Files\Rendering\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Scheduler\QmTaskScheduler.h">
+      <Filter>Source Files\Scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Scheduler\Root.h">
+      <Filter>Source Files\Scheduler</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Application\QmApplication.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Application</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Components\QmComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Components\QmComponentDescriptor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Components\QmPropertyDescriptor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Containers\QmList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Containers\QmVector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Debugging\QmDebug.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="Sources\File\QmBinaryFile.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\File</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\File\QmTextFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Input\QmInputState.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Sources\Debugging\QmDebug.cpp">
+      <Filter>Source Files\Debugging</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Input\QmInputManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Math\QmQuaternion.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Sources\Input\QmInputState.cpp">
+      <Filter>Source Files\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Math\QmTransform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Math\QmVector4.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Sources\Containers\QmList.cpp">
+      <Filter>Source Files\Containers</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Rendering\OpenGL\QmOpenGLApi.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Rendering\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Rendering\OpenGL\QmOpenGLContext.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Rendering\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Rendering\Window\QmWindow.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Sources\Components\QmPropertyDescriptor.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Scene\Entity\QmEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Scene\QmScene.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Sources\Math\QmQuaternion.cpp">
+      <Filter>Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="Sources\String\QmString.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\String</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\File\QmTextFile.cpp">
+      <Filter>Source Files\File</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\QmTransform.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Containers\QmVector.cpp">
+      <Filter>Source Files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\QmVector4.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Rendering\Window\QmWindow.cpp">
+      <Filter>Source Files\Rendering\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Scene\QmScene.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Scene\Entity\QmEntity.cpp">
+      <Filter>Source Files\Scene\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Scheduler\QmTaskScheduler.cpp">
+      <Filter>Source Files\Scheduler</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

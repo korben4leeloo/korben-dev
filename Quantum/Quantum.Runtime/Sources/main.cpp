@@ -11,77 +11,45 @@
 
 #include QUANTUM_CORE_H(Application/QmApplication)
 #include QUANTUM_CORE_H(Rendering/Window/QmWindow)
-#include QUANTUM_CORE_H(Rendering/OpenGL/QmOpenGLContext)
-#include QUANTUM_CORE_H(Rendering/OpenGL/QmOpenGLApi)
-#include QUANTUM_CORE_H(Math/QmTransform)
-#include QUANTUM_CORE_H(File/QmTextFile)
+//#include QUANTUM_CORE_H(Rendering/OpenGL/QmOpenGLContext)
+//#include QUANTUM_CORE_H(Rendering/OpenGL/QmOpenGLApi)
 
-class QmPropertyDescriptor
+#include <d3d11.h>
+
+IDXGISwapChain* SwapChain;
+ID3D11Device* d3d11Device;
+ID3D11DeviceContext* d3d11DevCon;
+ID3D11RenderTargetView* renderTargetView;
+
+float red = 0.0f;
+float green = 0.0f;
+float blue = 0.0f;
+int colormodr = 1;
+int colormodg = 1;
+int colormodb = 1;
+
+void RenderScene()
 {
+	//Update the colors of our scene
+    red += colormodr * 0.00005f;
+    green += colormodg * 0.00002f;
+    blue += colormodb * 0.00001f;
 
-};
+    if(red >= 1.0f || red <= 0.0f)
+        colormodr *= -1;
+    if(green >= 1.0f || green <= 0.0f)
+        colormodg *= -1;
+    if(blue >= 1.0f || blue <= 0.0f)
+        colormodb *= -1;
 
-class QmProperty
-{
-public:
-	virtual void	setValue( const void* pValue ) = 0;
-	virtual void*	getValue() = 0;
-};
+    //Clear our backbuffer to the updated color
+	const float bgColor[4] = { red, green, blue, 1.0f };
 
-template<class T>
-class QmPropertyBase: public QmProperty
-{
-public:
-	inline			QmPropertyBase() {}
-	inline			explicit QmPropertyBase( const T& value ) { _value = value; }
+    d3d11DevCon->ClearRenderTargetView(renderTargetView, bgColor);
 
-	virtual void	setValue( const void* pValue ) { _value = *((T*)pValue); }
-	virtual void*	getValue() { return (void*)(&_value); }
-
-	inline T&		operator=( const T& value ) { _value = value; return _value; }
-	inline			operator T() { return _value; }
-
-private:
-	T				_value;
-};
-
-typedef QmPropertyBase<bool>		QmBoolProperty;
-typedef QmPropertyBase<int>			QmIntProperty;
-typedef QmPropertyBase<float>		QmFloatProperty;
-typedef QmPropertyBase<double>		QmDoubleProperty;
-typedef QmPropertyBase<QmString>	QmStringProperty;
-
-class QmComponentDescriptor
-{
-private:
-	QmString						_strTypeName;
-	QmVector<QmPropertyDescriptor*>	_propertyDescriptors;
-};
-
-class QmComponent
-{
-	QmString	_strTypename;
-};
-
-class QmMeshComponent: public QmComponent
-{
-private:
-	QmStringProperty	_strMeshFilePath;
-	//QmBoolProperty		_bVisible = true;
-};
-
-class QmComponentManager
-{
-private:
-	static QmVector<QmComponentDescriptor*> _componentDescriptors;
-};
-
-class QmEntity
-{
-private:
-	QmString				_strEntityName;
-	QmVector<QmComponent*>	_components;
-};
+    //Present the backbuffer to the screen
+    SwapChain->Present(0, 0);
+}
 
 //-----------------------------------------------------------------------------
 // Name:		WinMain
@@ -90,24 +58,75 @@ private:
 //-----------------------------------------------------------------------------
 int WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_opt LPSTR lpCmdLine, __in int nShowCmd )
 {
-	QmFloatProperty		floatProp, floatProp2;
-	QmDoubleProperty	doubleProp;
-	QmIntProperty		intProp;
-	QmStringProperty	stringProp( "test" );
-
-	//floatProp = intProp;
-	//floatProp = floatProp2;
-	doubleProp = intProp;
-	//intProp		= doubleProp;
-	doubleProp = 1.0;
-
 	// Create the application instance and init it
 	QmApplication* pApplication = new QmApplication( hInstance );
 	pApplication->init();
 	
 	// Create a window with an OpenGL context
 	QmWindow*			pWindow			= pApplication->createWindow();
-	QmOpenGLContext*	pOpenGLContext	= pWindow->createOpenGLContext();
+	//QmOpenGLContext*	pOpenGLContext	= pWindow->createOpenGLContext();
+
+	/*IDXGISwapChain* SwapChain;
+	ID3D11Device* d3d11Device;
+	ID3D11DeviceContext* d3d11DevCon;
+	ID3D11RenderTargetView* renderTargetView;
+
+	float red = 0.0f;
+	float green = 0.0f;
+	float blue = 0.0f;
+	int colormodr = 1;
+	int colormodg = 1;
+	int colormodb = 1;*/
+
+	{
+		//Describe our Buffer
+		DXGI_MODE_DESC bufferDesc;
+
+		ZeroMemory(&bufferDesc, sizeof(DXGI_MODE_DESC));
+
+		RECT wndRect;
+		GetWindowRect( pWindow->getWindowHandle(), &wndRect );
+
+		bufferDesc.Width = wndRect.right - wndRect.left;
+		bufferDesc.Height = wndRect.bottom - wndRect.top;
+		bufferDesc.RefreshRate.Numerator = 60;
+		bufferDesc.RefreshRate.Denominator = 1;
+		bufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+		bufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+		bufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
+    
+		//Describe our SwapChain
+		DXGI_SWAP_CHAIN_DESC swapChainDesc; 
+        
+		ZeroMemory(&swapChainDesc, sizeof(DXGI_SWAP_CHAIN_DESC));
+
+		swapChainDesc.BufferDesc = bufferDesc;
+		swapChainDesc.SampleDesc.Count = 1;
+		swapChainDesc.SampleDesc.Quality = 0;
+		swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+		swapChainDesc.BufferCount = 1;
+		swapChainDesc.OutputWindow = pWindow->getWindowHandle(); 
+		swapChainDesc.Windowed = TRUE; 
+		swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
+
+
+		//Create our SwapChain
+		D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, NULL, NULL, NULL,
+			D3D11_SDK_VERSION, &swapChainDesc, &SwapChain, &d3d11Device, NULL, &d3d11DevCon);
+
+		//Create our BackBuffer
+		ID3D11Texture2D* BackBuffer;
+		SwapChain->GetBuffer( 0, __uuidof( ID3D11Texture2D ), (void**)&BackBuffer );
+
+		//Create our Render Target
+		d3d11Device->CreateRenderTargetView( BackBuffer, NULL, &renderTargetView );
+		BackBuffer->Release();
+
+		//Set our Render Target
+		d3d11DevCon->OMSetRenderTargets( 1, &renderTargetView, NULL );
+
+		pApplication->getTaskScheduler()->createTask( 0, RenderScene );
+	}
 
 	// Run the application loop
 	pApplication->run();

@@ -136,6 +136,8 @@ int64_t QmApplication::run()
 		}
 		else										// If There Are No Messages
 		{
+			_TaskScheduler.execute();
+
 			//// Draw The Scene.  Watch For ESC Key And Quit Messages From DrawGLScene()
 			//if (active)								// Program Active?
 			//{

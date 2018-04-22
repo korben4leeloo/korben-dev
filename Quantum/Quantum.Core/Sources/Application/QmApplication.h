@@ -13,6 +13,7 @@
 #include <Windows.h>
 
 #include QUANTUM_CORE_H(Containers/QmVector)
+#include QUANTUM_CORE_H(Scheduler/QmTaskScheduler)
 
 class QmWindow;
 class QmInputManager;
@@ -25,6 +26,7 @@ public:
 
 	inline HINSTANCE		getInstanceHandle() const;
 	inline QmInputManager*	getInputManager() const;
+	inline QmTaskScheduler*	getTaskScheduler();
 
 	void					init();
 
@@ -41,6 +43,8 @@ private:
 	HINSTANCE				_hInstance;
 	QmInputManager*			_pInputManager;
 	QmVector<QmWindow*>		_windowArray;
+
+	QmTaskScheduler			_TaskScheduler;
 };
 
 //-----------------------------------------------------------------------------
@@ -61,6 +65,16 @@ HINSTANCE QmApplication::getInstanceHandle() const
 QmInputManager* QmApplication::getInputManager() const
 {
 	return ( _pInputManager );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		getTaskScheduler
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+QmTaskScheduler* QmApplication::getTaskScheduler()
+{
+	return ( &_TaskScheduler );
 }
 
 #endif

@@ -1,79 +1,83 @@
 //*****************************************************************************
 //
-//	File:		QmTextFile.cpp
+//	File:		QmTaskScheduler.cpp
 //	Created:	2013-08-26
 //
 //*****************************************************************************
 
-#include "QmTextFile.h"
-#include <cctype>
-
-const char* QmTextFile::_pcFileMode[QUANTUM_FILE_MODE_COUNT] = { "r", "w", "a", "r+", "w+", "a+" };
+#include "QmTaskScheduler.h"
 
 //-----------------------------------------------------------------------------
-// Name:		QmTextFile constructor
+// Name:		QmTaskScheduler constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-QmTextFile::QmTextFile()
-: _pFile( nullptr )
-, _nSize( 0 )
+QmTaskScheduler::QmTaskScheduler()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		QmTextFile destructor
+// Name:		QmTaskScheduler destructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-QmTextFile::~QmTextFile()
+QmTaskScheduler::~QmTaskScheduler()
 {
-	close();
+	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		open
+// Name:		QmTaskScheduler constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void QmTextFile::open( const QmString& strFileName, const QUANTUM_FILE_MODE eFileMode )
+QmTaskScheduler::QmTask::QmTask( const uint32 uiTaskPriority, const QmPfnTaskCallback pfnTaskCallback )
+: _uiTaskPriority	( uiTaskPriority )
+, _pfnTaskCallback	( pfnTaskCallback ) 
 {
-	_pFile = fopen( strFileName.buffer(), _pcFileMode[eFileMode] );
 
-	if	( _pFile )
+}
+
+//-----------------------------------------------------------------------------
+// Name:		createTask
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void QmTaskScheduler::createTask( const uint32 uiTaskPriority, const QmPfnTaskCallback pfnTaskCallback )
+{
+	if	( pfnTaskCallback != nullptr )
 	{
-		fseek( _pFile, 0, SEEK_END );
-		_nSize = ftell( _pFile );
-		fseek( _pFile, 0, SEEK_SET );
+		QmTaskList::QmIterator it = _lTasks.begin();
+
+		while	( it.isValid() )
+		{
+			if	( uiTaskPriority > it->_uiTaskPriority )
+			{
+				it++;
+			}
+			else
+			{
+				break;
+			}
+		}
+
+		_lTasks.insertBefore( it, QmTask( uiTaskPriority, pfnTaskCallback ) );
 	}
 }
 
 //-----------------------------------------------------------------------------
-// Name:		close
+// Name:		execute
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void QmTextFile::close()
+void QmTaskScheduler::execute()
 {
-	if	( _pFile )
+	QmTaskList::QmIterator it = _lTasks.begin();
+	
+	while	( it.isValid() )
 	{
-		fclose( _pFile );
-		_pFile = nullptr;
-	}
-
-	_nSize = 0;
-}
-
-//-----------------------------------------------------------------------------
-// Name:		trimWhitespaceCharacters
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void QmTextFile::trimWhitespaceCharacters() const
-{
-	while ( !feof( _pFile ) && ( isspace( _pFile->_ptr[0] ) != 0 ) )
-	{
-		fgetc( _pFile );
+		it->_pfnTaskCallback();
+		it++;
 	}
 }

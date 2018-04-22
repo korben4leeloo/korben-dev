@@ -11,7 +11,7 @@
 #include QUANTUM_CORE_H(Input/QmInputManager)
 #include QUANTUM_CORE_H(Rendering/OpenGL/QmOpenGLContext)
 
-#define DEFAULT_WINDOW_TITLE	"TARS Window"
+#define DEFAULT_WINDOW_TITLE	"Quantum Window"
 #define DEFAULT_CLIENT_WIDTH	1024
 #define DEFAULT_CLIENT_HEIGHT	768
 #define DEFAULT_BITS_PER_PIXEL	32
