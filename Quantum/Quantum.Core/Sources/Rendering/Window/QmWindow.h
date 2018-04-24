@@ -13,15 +13,13 @@
 
 #include <Windows.h>
 
-class QmApplication;
-class QmInputManager;
-class QmOpenGLContext;
-
 class QmWindow
 {
 	friend class QmApplication;
 
 public:
+	QM_DECLARE_SIGNAL( OnInputReceived, const uint64 )
+
 	void					show();
 	void					hide();
 
@@ -30,14 +28,11 @@ public:
 	inline HWND				getWindowHandle() const;
 	inline HDC				getDeviceContext() const;
 
-	QmOpenGLContext*		createOpenGLContext();
-	void					destroyOpenGLContext();
-
 private:
-							QmWindow( const QmApplication* pWin32App );
+							QmWindow();
 							~QmWindow();
 
-	void					create();
+	void					create( const HINSTANCE hInstance );
 	void					destroy();
 
 	static LRESULT CALLBACK WndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
@@ -50,12 +45,8 @@ private:
 
 	bool					_bFullscreen;
 
-	const QmApplication*	_pWin32App;
-
 	HWND					_hWnd;
 	HDC						_hDC;
-
-	QmOpenGLContext*		_pOpenGLContext;
 };
 
 //-----------------------------------------------------------------------------

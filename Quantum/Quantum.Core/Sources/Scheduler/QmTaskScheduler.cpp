@@ -48,7 +48,7 @@ void QmTaskScheduler::createTask( const uint32 uiTaskPriority, const QmPfnTaskCa
 {
 	if	( pfnTaskCallback != nullptr )
 	{
-		QmTaskList::QmIterator it = _lTasks.begin();
+		QmTaskList::iterator it = _lTasks.begin();
 
 		while	( it.isValid() )
 		{
@@ -73,7 +73,7 @@ void QmTaskScheduler::createTask( const uint32 uiTaskPriority, const QmPfnTaskCa
 //-----------------------------------------------------------------------------
 void QmTaskScheduler::execute()
 {
-	QmTaskList::QmIterator it = _lTasks.begin();
+	QmTaskList::iterator it = _lTasks.begin();
 	
 	while	( it.isValid() )
 	{

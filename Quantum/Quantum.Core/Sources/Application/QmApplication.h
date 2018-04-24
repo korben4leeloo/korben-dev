@@ -25,7 +25,7 @@ public:
 							~QmApplication();
 
 	inline HINSTANCE		getInstanceHandle() const;
-	inline QmInputManager*	getInputManager() const;
+	inline QmInputManager*	getInputManager();
 	inline QmTaskScheduler*	getTaskScheduler();
 
 	void					init();
@@ -36,7 +36,7 @@ public:
 	int64_t					run();
 
 private:
-	QmInputManager*			initInputs();
+	QmInputManager*			createInputManager();
 
 	void					destroy();
 
@@ -62,8 +62,9 @@ HINSTANCE QmApplication::getInstanceHandle() const
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-QmInputManager* QmApplication::getInputManager() const
+QmInputManager* QmApplication::getInputManager()
 {
+	QUANTUM_ASSERT( _pInputManager );
 	return ( _pInputManager );
 }
 

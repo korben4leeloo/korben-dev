@@ -54,6 +54,9 @@
     <Filter Include="Source Files\Scheduler">
       <UniqueIdentifier>{7c2c973a-5228-457b-beb6-7bedd3fda0e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Signals">
+      <UniqueIdentifier>{14a807eb-7973-483d-b6da-e2570dc4f512}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Application\Root.h">
@@ -164,6 +167,18 @@
     <ClInclude Include="Sources\Scheduler\Root.h">
       <Filter>Source Files\Scheduler</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Signals\QmSignal.h">
+      <Filter>Source Files\Signals</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Signals\QmSlot.h">
+      <Filter>Source Files\Signals</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Signals\Root.h">
+      <Filter>Source Files\Signals</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Signals\QmCoreSignals.h">
+      <Filter>Source Files\Signals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Application\QmApplication.cpp">
@@ -228,6 +243,12 @@
     </ClCompile>
     <ClCompile Include="Sources\Scheduler\QmTaskScheduler.cpp">
       <Filter>Source Files\Scheduler</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Signals\QmSlot.cpp">
+      <Filter>Source Files\Signals</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Signals\QmSignal.cpp">
+      <Filter>Source Files\Signals</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

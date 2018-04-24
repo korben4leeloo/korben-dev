@@ -15,6 +15,8 @@
 class QmInputManager
 {
 public:
+	QM_DECLARE_SLOT( QmInputManager, OnInputReceived, const uint64 )
+
 					QmInputManager();
 					~QmInputManager();
 

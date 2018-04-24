@@ -14,6 +14,7 @@
 #include <QuantumRoot.h>
 
 #include QUANTUM_CORE_H(String/QmString)
+#include QUANTUM_CORE_H(Signals/QmSignal)
 #include QUANTUM_CORE_H(Debugging/QmDebug)
 
 #endif

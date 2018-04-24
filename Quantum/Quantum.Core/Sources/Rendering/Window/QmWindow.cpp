@@ -21,14 +21,12 @@
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-QmWindow::QmWindow( const QmApplication* pWin32App )
-: _pWin32App		( pWin32App )
-, _strWindowTitle	( DEFAULT_WINDOW_TITLE )
+QmWindow::QmWindow()
+: _strWindowTitle	( DEFAULT_WINDOW_TITLE )
 , _nClientWidth		( DEFAULT_CLIENT_WIDTH )
 , _nClientHeight	( DEFAULT_CLIENT_HEIGHT )
 , _nBitsPerPixel	( DEFAULT_BITS_PER_PIXEL )
 , _bFullscreen		( false )
-, _pOpenGLContext	( nullptr )
 {
 	
 }
@@ -52,8 +50,6 @@ void QmWindow::destroy()
 {
 	hide();
 
-	destroyOpenGLContext();
-
 	if ( _hDC != nullptr )
 	{
 		QUANTUM_ASSERT( _hWnd != nullptr );
@@ -73,9 +69,8 @@ void QmWindow::destroy()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void QmWindow::create()
+void QmWindow::create( const HINSTANCE hInstance )
 {
-	HINSTANCE	hInstance = _pWin32App->getInstanceHandle();
 	WNDCLASS	wc;						// Windows Class Structure
 	DWORD		dwExStyle;				// Window Extended Style
 	DWORD		dwStyle;				// Window Style
@@ -193,39 +188,6 @@ void QmWindow::create()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		createOpenGLContext
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-QmOpenGLContext* QmWindow::createOpenGLContext()
-{
-	if ( ( _hWnd == nullptr ) || ( _hDC == nullptr ) )
-	{
-		return ( nullptr );
-	}
-
-	destroyOpenGLContext();
-
-	_pOpenGLContext = new QmOpenGLContext();
-	_pOpenGLContext->create( this );
-
-	QUANTUM_ASSERT( _pOpenGLContext->isValid() );
-
-	return ( _pOpenGLContext );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		destroyOpenGLContext
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-void QmWindow::destroyOpenGLContext()
-{
-	delete _pOpenGLContext;
-	_pOpenGLContext = nullptr;
-}
-
-//-----------------------------------------------------------------------------
 // Name:		show
 //
 // Created:		2013-08-26
@@ -315,26 +277,16 @@ LRESULT CALLBACK QmWindow::WndProc(	HWND	hWnd,			// Handle For This Window
 
 		case WM_INPUT:
 		{
-			/*uint32 nRawInputSize;
+			QmWindow* pWindow = (QmWindow*)GetWindowLongPtr( hWnd, GWLP_USERDATA );
+			QM_SIGNAL_SEND( pWindow, OnInputReceived, lParam )
 
-			GetRawInputData( (HRAWINPUT)lParam, RID_INPUT, nullptr, &nRawInputSize, sizeof(RAWINPUTHEADER) );
-
-			RAWINPUT* rawInput = (RAWINPUT*)( new char[nRawInputSize] );
-
-			if ( GetRawInputData((HRAWINPUT)lParam, RID_INPUT, rawInput, &nRawInputSize, sizeof(RAWINPUTHEADER) ) != nRawInputSize )
-			{
-				return ( GetLastError() );
-			}*/
-
-			QmWindow*		pWindow			= (QmWindow*)GetWindowLongPtr( hWnd, GWLP_USERDATA );
+			/*QmWindow*		pWindow			= (QmWindow*)GetWindowLongPtr( hWnd, GWLP_USERDATA );
 			QmInputManager*	pInputManager	= pWindow->_pWin32App->getInputManager();
 
 			if	( pInputManager )
 			{
 				return ( pInputManager->onRawInput( lParam ) );
-			}
-
-			//return ( DefRawInputProc( &rawInput, 1, sizeof(RAWINPUTHEADER) ) );
+			}*/
 		}
 	}
 

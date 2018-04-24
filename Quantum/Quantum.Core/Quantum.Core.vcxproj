@@ -160,6 +160,10 @@
     <ClInclude Include="Sources\Scene\QmScene.h" />
     <ClInclude Include="Sources\Scheduler\QmTaskScheduler.h" />
     <ClInclude Include="Sources\Scheduler\Root.h" />
+    <ClInclude Include="Sources\Signals\QmCoreSignals.h" />
+    <ClInclude Include="Sources\Signals\QmSignal.h" />
+    <ClInclude Include="Sources\Signals\QmSlot.h" />
+    <ClInclude Include="Sources\Signals\Root.h" />
     <ClInclude Include="Sources\String\Root.h" />
     <ClInclude Include="Sources\String\QmString.h" />
   </ItemGroup>
@@ -184,6 +188,8 @@
     <ClCompile Include="Sources\Scene\Entity\QmEntity.cpp" />
     <ClCompile Include="Sources\Scene\QmScene.cpp" />
     <ClCompile Include="Sources\Scheduler\QmTaskScheduler.cpp" />
+    <ClCompile Include="Sources\Signals\QmSignal.cpp" />
+    <ClCompile Include="Sources\Signals\QmSlot.cpp" />
     <ClCompile Include="Sources\String\QmString.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

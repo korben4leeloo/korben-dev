@@ -52,15 +52,15 @@ void QmApplication::destroy()
 //-----------------------------------------------------------------------------
 void QmApplication::init()
 {
-	initInputs();
+	createInputManager();
 }
 
 //-----------------------------------------------------------------------------
-// Name:		initInputs
+// Name:		createInputManager
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-QmInputManager* QmApplication::initInputs()
+QmInputManager* QmApplication::createInputManager()
 {
 	delete _pInputManager;
 
@@ -77,10 +77,15 @@ QmInputManager* QmApplication::initInputs()
 //-----------------------------------------------------------------------------
 QmWindow* QmApplication::createWindow()
 {
-	QmWindow* pWindow = new QmWindow( this );
+	QmWindow* pWindow = new QmWindow();
 
-	pWindow->create();
+	pWindow->create( _hInstance );
 	pWindow->show();
+
+	//QmInputManager::QmOnInputReceivedSlot prout( &QmInputManager::OnInputReceived );
+	//pWindow->OnInputReceivedSignal.connect( _pInputManager, &_pInputManager->OnInputReceivedSlot );
+	//_pInputManager->OnInputReceivedSlot.init( _pInputManager, &QmInputManager::OnInputReceived );
+	QM_SIGNAL_CONNECT( pWindow, OnInputReceived, _pInputManager, OnInputReceived );
 
 	_windowArray.pushBack( pWindow );
 

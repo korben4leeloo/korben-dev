@@ -23,50 +23,53 @@ private:
 	};
 
 public:
-	class QmIterator
+	class iterator
 	{
 		friend class QmList;
 
 	public:
-							QmIterator();
+							iterator();
 
 		inline bool			isValid() const;
 
-		inline QmIterator&	operator=( const QmIterator& other );
+		inline iterator&	operator=( const iterator& other );
 
-		inline QmIterator&	operator++();
-		QmIterator&			operator++(int);
+		inline bool			operator==( const iterator& other );
+		inline bool			operator!=( const iterator& other );
 
-		inline QmIterator&	operator--();
-		QmIterator&			operator--(int);
+		inline iterator&	operator++();
+		iterator&			operator++(int);
+
+		inline iterator&	operator--();
+		iterator&			operator--(int);
 
 		T&					operator*();
 		T*					operator->();
 
 	private:
-							QmIterator( QmListNode* pListNode );
+							iterator( QmListNode* pListNode );
 
 		QmListNode*			_pListNode;
 	};
 
-						QmList();
-						~QmList();
+					QmList();
+					~QmList();
 
-	QmIterator			pushBack( const T& value );
-	QmIterator			pushFront( const T& value );
-	QmIterator			insertAfter( const QmIterator& position, const T& value );
-	QmIterator			insertBefore( const QmIterator& position, const T& value );
-	//void				remove( const QmIterator& position );
+	iterator		pushBack( const T& value );
+	iterator		pushFront( const T& value );
+	iterator		insertAfter( const iterator& position, const T& value );
+	iterator		insertBefore( const iterator& position, const T& value );
+	//void			remove( const iterator& position );
 
-	QmIterator			find( const T& value );
+	iterator		find( const T& value );
 
-	inline QmIterator	begin();
-	inline QmIterator	end();
+	inline iterator	begin();
+	inline iterator	end();
 
 private:
-	QmListNode*			_pHead;
-	QmListNode*			_pLast;
-	uint32				_uiSize;
+	QmListNode*		_pHead;
+	QmListNode*		_pLast;
+	uint32			_uiSize;
 };
 
 //*****************************************************************************
@@ -104,7 +107,7 @@ QmList<T>::~QmList()
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-typename QmList<T>::QmIterator QmList<T>::pushBack(const T&	value)
+typename QmList<T>::iterator QmList<T>::pushBack(const T&	value)
 {
 	QmListNode* pListNode = new QmListNode( value );
 
@@ -124,7 +127,7 @@ typename QmList<T>::QmIterator QmList<T>::pushBack(const T&	value)
 
 	_uiSize++;
 
-	return	( QmIterator( pListNode ) );
+	return	( iterator( pListNode ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -133,7 +136,7 @@ typename QmList<T>::QmIterator QmList<T>::pushBack(const T&	value)
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-typename QmList<T>::QmIterator QmList<T>::pushFront(const T&	value)
+typename QmList<T>::iterator QmList<T>::pushFront(const T&	value)
 {
 	QmListNode* pListNode = new QmListNode( value );
 
@@ -153,7 +156,7 @@ typename QmList<T>::QmIterator QmList<T>::pushFront(const T&	value)
 
 	_uiSize++;
 
-	return	( QmIterator( pListNode ) );
+	return	( iterator( pListNode ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -162,7 +165,7 @@ typename QmList<T>::QmIterator QmList<T>::pushFront(const T&	value)
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-typename QmList<T>::QmIterator QmList<T>::insertAfter(const QmIterator&	position, 
+typename QmList<T>::iterator QmList<T>::insertAfter(const iterator&	position, 
 													  const T&			value)
 {
 	QUANTUM_ASSERT( position.isValid() );
@@ -181,7 +184,7 @@ typename QmList<T>::QmIterator QmList<T>::insertAfter(const QmIterator&	position
 
 	_uiSize++;
 	
-	return	( QmIterator( pListNode ) );
+	return	( iterator( pListNode ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -190,7 +193,7 @@ typename QmList<T>::QmIterator QmList<T>::insertAfter(const QmIterator&	position
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-typename QmList<T>::QmIterator QmList<T>::insertBefore(const QmIterator&	position, 
+typename QmList<T>::iterator QmList<T>::insertBefore(const iterator&	position, 
 													   const T&				value)
 {
 	if	( _uiSize == 0 )
@@ -214,7 +217,7 @@ typename QmList<T>::QmIterator QmList<T>::insertBefore(const QmIterator&	positio
 
 	_uiSize++;
 	
-	return	( QmIterator( pListNode ) );
+	return	( iterator( pListNode ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -223,9 +226,9 @@ typename QmList<T>::QmIterator QmList<T>::insertBefore(const QmIterator&	positio
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-typename QmList<T>::QmIterator QmList<T>::find( const T& value )
+typename QmList<T>::iterator QmList<T>::find( const T& value )
 {
-	QmIterator it( _pHead );
+	iterator it( _pHead );
 
 	while ( it.isValid() && ( *it != value ) )
 	{
@@ -241,9 +244,9 @@ typename QmList<T>::QmIterator QmList<T>::find( const T& value )
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-typename QmList<T>::QmIterator QmList<T>::begin()
+typename QmList<T>::iterator QmList<T>::begin()
 {
-	return	( QmIterator( _pHead ) );
+	return	( iterator( _pHead ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -252,30 +255,30 @@ typename QmList<T>::QmIterator QmList<T>::begin()
 //
 //-----------------------------------------------------------------------------
 template<class T>
-typename QmList<T>::QmIterator QmList<T>::end()
+typename QmList<T>::iterator QmList<T>::end()
 {
-	return	( QmIterator( _pLast ) );
+	return	( iterator( _pLast ) );
 }
 
 //-----------------------------------------------------------------------------
-// Name:		QmIterator constructor
+// Name:		iterator constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-QmList<T>::QmIterator::QmIterator()
+QmList<T>::iterator::iterator()
 : _pListNode( nullptr )
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		QmIterator constructor
+// Name:		iterator constructor
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-QmList<T>::QmIterator::QmIterator(QmListNode*	pListNode)
+QmList<T>::iterator::iterator(QmListNode*	pListNode)
 : _pListNode( pListNode )
 {
 	
@@ -287,7 +290,7 @@ QmList<T>::QmIterator::QmIterator(QmListNode*	pListNode)
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-bool QmList<T>::QmIterator::isValid() const
+bool QmList<T>::iterator::isValid() const
 {
 	return	( _pListNode != nullptr );
 }
@@ -298,10 +301,32 @@ bool QmList<T>::QmIterator::isValid() const
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-typename QmList<T>::QmIterator& QmList<T>::QmIterator::operator=(const QmIterator&	other)
+typename QmList<T>::iterator& QmList<T>::iterator::operator=(const iterator&	other)
 {
 	_pListNode = other._pListNode;
 	return	( *this );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator==
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+bool QmList<T>::iterator::operator==(const iterator&	other)
+{
+	return	( isValid() && ( _pListNode == other._pListNode ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		operator!=
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T>
+bool QmList<T>::iterator::operator!=(const iterator&	other)
+{
+	return	( !( *this == other ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -310,7 +335,7 @@ typename QmList<T>::QmIterator& QmList<T>::QmIterator::operator=(const QmIterato
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-T& QmList<T>::QmIterator::operator*()
+T& QmList<T>::iterator::operator*()
 {
 	QUANTUM_ASSERT( isValid() );
 	return	( _pListNode->_value );
@@ -322,7 +347,7 @@ T& QmList<T>::QmIterator::operator*()
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-T* QmList<T>::QmIterator::operator->()
+T* QmList<T>::iterator::operator->()
 {
 	QUANTUM_ASSERT( isValid() );
 	return	( &_pListNode->_value );
@@ -334,7 +359,7 @@ T* QmList<T>::QmIterator::operator->()
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-typename QmList<T>::QmIterator& QmList<T>::QmIterator::operator++()
+typename QmList<T>::iterator& QmList<T>::iterator::operator++()
 {
 	(*this)++;
 	return	( *this );
@@ -346,7 +371,7 @@ typename QmList<T>::QmIterator& QmList<T>::QmIterator::operator++()
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-typename QmList<T>::QmIterator& QmList<T>::QmIterator::operator++(int)
+typename QmList<T>::iterator& QmList<T>::iterator::operator++(int)
 {
 	QUANTUM_ASSERT( isValid() );
 
@@ -364,7 +389,7 @@ typename QmList<T>::QmIterator& QmList<T>::QmIterator::operator++(int)
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-typename QmList<T>::QmIterator& QmList<T>::QmIterator::operator--()
+typename QmList<T>::iterator& QmList<T>::iterator::operator--()
 {
 	(*this)--;
 	return	( *this );
@@ -376,7 +401,7 @@ typename QmList<T>::QmIterator& QmList<T>::QmIterator::operator--()
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-typename QmList<T>::QmIterator& QmList<T>::QmIterator::operator--(int)
+typename QmList<T>::iterator& QmList<T>::iterator::operator--(int)
 {
 	QUANTUM_ASSERT( isValid() && _pListNode->_pPrev );
 
