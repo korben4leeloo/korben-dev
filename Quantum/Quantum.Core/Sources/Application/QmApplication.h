@@ -16,6 +16,7 @@
 #include QUANTUM_CORE_H(Scheduler/QmTaskScheduler)
 
 class QmWindow;
+class QmD3DContext;
 class QmInputManager;
 
 class QmApplication
@@ -30,8 +31,12 @@ public:
 
 	void					init();
 
+	// Windows
 	QmWindow*				createWindow();
 	void					destroyWindows();
+
+	// D3D
+	QmD3DContext*			createD3DContext( QmWindow* pWindow );
 
 	int64_t					run();
 

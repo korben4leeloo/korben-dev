@@ -8,6 +8,7 @@
 #include "QmApplication.h"
 
 #include QUANTUM_CORE_H(Rendering/Window/QmWindow)
+#include QUANTUM_CORE_H(Rendering/D3D/QmD3DContext)
 #include QUANTUM_CORE_H(Input/QmInputManager)
 
 //-----------------------------------------------------------------------------
@@ -82,9 +83,6 @@ QmWindow* QmApplication::createWindow()
 	pWindow->create( _hInstance );
 	pWindow->show();
 
-	//QmInputManager::QmOnInputReceivedSlot prout( &QmInputManager::OnInputReceived );
-	//pWindow->OnInputReceivedSignal.connect( _pInputManager, &_pInputManager->OnInputReceivedSlot );
-	//_pInputManager->OnInputReceivedSlot.init( _pInputManager, &QmInputManager::OnInputReceived );
 	QM_SIGNAL_CONNECT( pWindow, OnInputReceived, _pInputManager, OnInputReceived );
 
 	_windowArray.pushBack( pWindow );
@@ -107,6 +105,18 @@ void QmApplication::destroyWindows()
 	}
 
 	_windowArray.clear();
+}
+
+//-----------------------------------------------------------------------------
+// Name:		createWindow
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+QmD3DContext* QmApplication::createD3DContext( QmWindow* pWindow )
+{
+	QmD3DContext* pD3DContext = new QmD3DContext();
+	pD3DContext->create( pWindow );
+	return pD3DContext;
 }
 
 //-----------------------------------------------------------------------------

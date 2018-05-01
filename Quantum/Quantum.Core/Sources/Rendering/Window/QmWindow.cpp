@@ -278,7 +278,20 @@ LRESULT CALLBACK QmWindow::WndProc(	HWND	hWnd,			// Handle For This Window
 		case WM_INPUT:
 		{
 			QmWindow* pWindow = (QmWindow*)GetWindowLongPtr( hWnd, GWLP_USERDATA );
-			QM_SIGNAL_SEND( pWindow, OnInputReceived, lParam )
+			uint32 nRawInputSize;
+
+			GetRawInputData( (HRAWINPUT)lParam, RID_INPUT, nullptr, &nRawInputSize, sizeof(RAWINPUTHEADER) );
+
+			RAWINPUT* pRawInput = (RAWINPUT*)( new char[nRawInputSize] );
+
+			if ( GetRawInputData((HRAWINPUT)lParam, RID_INPUT, (LPVOID)pRawInput, &nRawInputSize, sizeof(RAWINPUTHEADER) ) != nRawInputSize )
+			{
+				return ( GetLastError() );
+			}
+
+			QM_SIGNAL_SEND( pWindow, OnInputReceived, pRawInput )
+
+			return ( DefRawInputProc( &pRawInput, 1, sizeof(RAWINPUTHEADER) ) );
 
 			/*QmWindow*		pWindow			= (QmWindow*)GetWindowLongPtr( hWnd, GWLP_USERDATA );
 			QmInputManager*	pInputManager	= pWindow->_pWin32App->getInputManager();

@@ -179,6 +179,9 @@
     <ClInclude Include="Sources\Signals\QmCoreSignals.h">
       <Filter>Source Files\Signals</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Rendering\D3D\QmD3DContext.h">
+      <Filter>Source Files\Rendering\D3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Application\QmApplication.cpp">
@@ -249,6 +252,9 @@
     </ClCompile>
     <ClCompile Include="Sources\Signals\QmSignal.cpp">
       <Filter>Source Files\Signals</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Rendering\D3D\QmD3DContext.cpp">
+      <Filter>Source Files\Rendering\D3D</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

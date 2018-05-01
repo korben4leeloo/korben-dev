@@ -12,10 +12,12 @@
 #include "Root.h"
 #include QUANTUM_CORE_H(Input/QmInputState)
 
+typedef struct tagRAWINPUT RAWINPUT;
+
 class QmInputManager
 {
 public:
-	QM_DECLARE_SLOT( QmInputManager, OnInputReceived, const uint64 )
+	QM_DECLARE_SLOT( QmInputManager, OnInputReceived, RAWINPUT* )
 
 					QmInputManager();
 					~QmInputManager();
@@ -23,7 +25,7 @@ public:
 	void			registerDevices();
 	void			enumDevices();
 
-	uint64			onRawInput( const uint64 nRawInputHandle );
+	void			onRawInput( RAWINPUT* pRawInput );
 
 private:
 	void			initWin32KeyMapper();

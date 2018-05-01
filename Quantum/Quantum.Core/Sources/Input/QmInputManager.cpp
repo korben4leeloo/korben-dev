@@ -113,9 +113,9 @@ void QmInputManager::enumDevices()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void QmInputManager::OnInputReceived( const uint64 nRawInputHandle )
+void QmInputManager::OnInputReceived( RAWINPUT* pRawInput )
 {
-
+	onRawInput( pRawInput );
 }
 
 //-----------------------------------------------------------------------------
@@ -123,24 +123,13 @@ void QmInputManager::OnInputReceived( const uint64 nRawInputHandle )
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-uint64 QmInputManager::onRawInput( const uint64 nRawInputHandle )
+void QmInputManager::onRawInput( RAWINPUT* pRawInput )
 {
-	uint32 nRawInputSize;
-
-	GetRawInputData( (HRAWINPUT)nRawInputHandle, RID_INPUT, nullptr, &nRawInputSize, sizeof(RAWINPUTHEADER) );
-
-	RAWINPUT* rawInput = (RAWINPUT*)( new char[nRawInputSize] );
-
-	if ( GetRawInputData((HRAWINPUT)nRawInputHandle, RID_INPUT, rawInput, &nRawInputSize, sizeof(RAWINPUTHEADER) ) != nRawInputSize )
-	{
-		return ( GetLastError() );
-	}
-
-	switch	( rawInput->header.dwType )
+	switch	( pRawInput->header.dwType )
 	{
 	case RIM_TYPEKEYBOARD:
 		{
-			const RAWKEYBOARD& rawKeyboard = rawInput->data.keyboard;
+			const RAWKEYBOARD& rawKeyboard = pRawInput->data.keyboard;
 
 			switch	( rawKeyboard.Message )
 			{
@@ -168,8 +157,6 @@ uint64 QmInputManager::onRawInput( const uint64 nRawInputHandle )
 		QUANTUM_BREAK();
 		break;
 	}
-
-	return ( DefRawInputProc( &rawInput, 1, sizeof(RAWINPUTHEADER) ) );
 }
 
 //-----------------------------------------------------------------------------

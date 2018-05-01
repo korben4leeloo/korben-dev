@@ -18,7 +18,7 @@ class QmWindow
 	friend class QmApplication;
 
 public:
-	QM_DECLARE_SIGNAL( OnInputReceived, const uint64 )
+	QM_DECLARE_SIGNAL( OnInputReceived, RAWINPUT* )
 
 	void					show();
 	void					hide();

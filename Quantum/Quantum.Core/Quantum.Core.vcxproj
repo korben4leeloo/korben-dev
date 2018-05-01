@@ -147,6 +147,7 @@
     <ClInclude Include="Sources\Math\QmQuaternion.h" />
     <ClInclude Include="Sources\Math\QmTransform.h" />
     <ClInclude Include="Sources\Math\QmVector4.h" />
+    <ClInclude Include="Sources\Rendering\D3D\QmD3DContext.h" />
     <ClInclude Include="Sources\Rendering\OpenGL\Root.h" />
     <ClInclude Include="Sources\Rendering\OpenGL\QmOpenGLApi.h" />
     <ClInclude Include="Sources\Rendering\OpenGL\QmOpenGLContext.h" />
@@ -182,6 +183,7 @@
     <ClCompile Include="Sources\Math\QmQuaternion.cpp" />
     <ClCompile Include="Sources\Math\QmTransform.cpp" />
     <ClCompile Include="Sources\Math\QmVector4.cpp" />
+    <ClCompile Include="Sources\Rendering\D3D\QmD3DContext.cpp" />
     <ClCompile Include="Sources\Rendering\OpenGL\QmOpenGLApi.cpp" />
     <ClCompile Include="Sources\Rendering\OpenGL\QmOpenGLContext.cpp" />
     <ClCompile Include="Sources\Rendering\Window\QmWindow.cpp" />
