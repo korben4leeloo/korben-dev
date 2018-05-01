@@ -148,6 +148,7 @@
     <ClInclude Include="Sources\Math\QmTransform.h" />
     <ClInclude Include="Sources\Math\QmVector4.h" />
     <ClInclude Include="Sources\Rendering\D3D\QmD3DContext.h" />
+    <ClInclude Include="Sources\Rendering\D3D\Root.h" />
     <ClInclude Include="Sources\Rendering\OpenGL\Root.h" />
     <ClInclude Include="Sources\Rendering\OpenGL\QmOpenGLApi.h" />
     <ClInclude Include="Sources\Rendering\OpenGL\QmOpenGLContext.h" />

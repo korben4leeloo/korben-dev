@@ -182,6 +182,9 @@
     <ClInclude Include="Sources\Rendering\D3D\QmD3DContext.h">
       <Filter>Source Files\Rendering\D3D</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Rendering\D3D\Root.h">
+      <Filter>Source Files\Rendering\D3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Application\QmApplication.cpp">
