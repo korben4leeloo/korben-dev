@@ -147,7 +147,7 @@ QmTextFile& QmTextFile::operator<<( const int32 n )
 //-----------------------------------------------------------------------------
 QmTextFile& QmTextFile::operator<<( const int64 n )
 {
-	fprintf( _pFile, "%d", n );
+	fprintf( _pFile, "%lld", n );
 	_nSize = ftell( _pFile );
 	return ( *this );
 }
@@ -195,7 +195,7 @@ QmTextFile& QmTextFile::operator<<( const uint32 n )
 //-----------------------------------------------------------------------------
 QmTextFile& QmTextFile::operator<<( const uint64 n )
 {
-	fprintf( _pFile, "%u", n );
+	fprintf( _pFile, "%llu", n );
 	_nSize = ftell( _pFile );
 	return ( *this );
 }
@@ -255,22 +255,26 @@ const QmTextFile& QmTextFile::operator>>( char& c ) const
 //-----------------------------------------------------------------------------
 const QmTextFile& QmTextFile::operator>>( char*& pcData ) const
 {
-	int32	nStartPos = ftell( _pFile );
-	char	c;
+	int32	nStartPos	= ftell( _pFile );
+	char	c			= fgetc( _pFile );
 
-	while	( ( ftell( _pFile ) != _nSize ) && ( _pFile->_ptr[0] != '\n' ) )
+	while	( !feof( _pFile ) && ( c != '\n' ) )
 	{
 		c = fgetc( _pFile );
 	}
 
-	int32 nSize = ftell( _pFile ) - nStartPos;
+	int32 nSize = ftell( _pFile ) - nStartPos - 1;
 
-	if	( nSize )
+	if	( nSize > 0 )
 	{
-		pcData = new char[nSize+1];
+		pcData = new char[nSize];
 		fseek( _pFile, nStartPos, SEEK_SET );
 		fread( pcData, 1, nSize, _pFile );
-		pcData[nSize] = '\0';
+		pcData[nSize-1] = '\0';
+	}
+	else
+	{
+		pcData = nullptr;
 	}
 
 	trimWhitespaceCharacters();
@@ -296,7 +300,7 @@ const QmTextFile& QmTextFile::operator>>( int8& n ) const
 //-----------------------------------------------------------------------------
 const QmTextFile& QmTextFile::operator>>( int16& n ) const
 {
-	fscanf( _pFile, "%d", &n );
+	fscanf( _pFile, "%hd", &n );
 	trimWhitespaceCharacters();
 	return ( *this );
 }
@@ -320,7 +324,7 @@ const QmTextFile& QmTextFile::operator>>( int32& n ) const
 //-----------------------------------------------------------------------------
 const QmTextFile& QmTextFile::operator>>( int64& n ) const
 {
-	fscanf( _pFile, "%d", &n );
+	fscanf( _pFile, "%lld", &n );
 	trimWhitespaceCharacters();
 	return ( *this );
 }
@@ -332,7 +336,7 @@ const QmTextFile& QmTextFile::operator>>( int64& n ) const
 //-----------------------------------------------------------------------------
 const QmTextFile& QmTextFile::operator>>( uint8& n ) const
 {
-	fscanf( _pFile, "%d", &n );
+	fscanf( _pFile, "%hhd", &n );
 	trimWhitespaceCharacters();
 	return ( *this );
 }
@@ -344,7 +348,7 @@ const QmTextFile& QmTextFile::operator>>( uint8& n ) const
 //-----------------------------------------------------------------------------
 const QmTextFile& QmTextFile::operator>>( uint16& n ) const
 {
-	fscanf( _pFile, "%d", &n );
+	fscanf( _pFile, "%hd", &n );
 	trimWhitespaceCharacters();
 	return ( *this );
 }
@@ -368,7 +372,7 @@ const QmTextFile& QmTextFile::operator>>( uint32& n ) const
 //-----------------------------------------------------------------------------
 const QmTextFile& QmTextFile::operator>>( uint64& n ) const
 {
-	fscanf( _pFile, "%d", &n );
+	fscanf( _pFile, "%lld", &n );
 	trimWhitespaceCharacters();
 	return ( *this );
 }

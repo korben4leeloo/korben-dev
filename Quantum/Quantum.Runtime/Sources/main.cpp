@@ -12,6 +12,7 @@
 #include QUANTUM_CORE_H(Application/QmApplication)
 #include QUANTUM_CORE_H(Rendering/Window/QmWindow)
 #include QUANTUM_CORE_H(Rendering/D3D/QmD3DContext)
+#include QUANTUM_CORE_H(File/QmTextFile)
 //#include QUANTUM_CORE_H(Rendering/OpenGL/QmOpenGLContext)
 //#include QUANTUM_CORE_H(Rendering/OpenGL/QmOpenGLApi)
 
@@ -129,7 +130,7 @@ int WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_op
 		////Set our Render Target
 		//d3d11DevCon->OMSetRenderTargets( 1, &renderTargetView, NULL );
 
-		pApplication->getTaskScheduler()->createTask( 0, RenderScene );
+		//pApplication->getTaskScheduler()->createTask( 0, RenderScene );
 	}
 
 	// Run the application loop

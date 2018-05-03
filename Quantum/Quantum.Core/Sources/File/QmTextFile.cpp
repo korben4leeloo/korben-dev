@@ -72,8 +72,12 @@ void QmTextFile::close()
 //-----------------------------------------------------------------------------
 void QmTextFile::trimWhitespaceCharacters() const
 {
-	while ( !feof( _pFile ) && ( isspace( _pFile->_ptr[0] ) != 0 ) )
+	char c = fgetc( _pFile );
+
+	while ( !feof( _pFile ) && ( isspace( c ) != 0 ) )
 	{
-		fgetc( _pFile );
+		c = fgetc( _pFile );
 	}
+
+	ungetc( c, _pFile );
 }
