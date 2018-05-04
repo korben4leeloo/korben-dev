@@ -10,8 +10,8 @@
 #define __QUANTUM_CORE_TK_VECTOR4_H__
 
 #include	"Root.h"
-#include	<glm/vec4.hpp>
+//#include	<glm/vec4.hpp>
 
-typedef glm::vec4 QmVector4;
+//typedef glm::vec4 QmVector4;
 
 #endif

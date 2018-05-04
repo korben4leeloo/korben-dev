@@ -13,17 +13,17 @@
 
 class QmWindow;
 
-struct IDXGISwapChain;
-struct ID3D11Device;
-struct ID3D11DeviceContext;
-struct ID3D11RenderTargetView;
+//struct IDXGISwapChain;
+//struct ID3D11Device;
+//struct ID3D11DeviceContext;
+//struct ID3D11RenderTargetView;
 
 class QmD3DContext
 {
 	friend class QmApplication;
 
 public:
-	inline bool				isValid() const;
+	//inline bool				isValid() const;
 
 private:
 							QmD3DContext();
@@ -32,10 +32,10 @@ private:
 	void					create( QmWindow* pWindow );
 	void					destroy();
 
-	IDXGISwapChain*			_pSwapChain;
+	/*IDXGISwapChain*			_pSwapChain;
 	ID3D11Device*			_pD3D11Device;
 	ID3D11DeviceContext*	_pD3D11DeviceContext;
-	ID3D11RenderTargetView* _pRenderTargetView;
+	ID3D11RenderTargetView* _pRenderTargetView;*/
 };
 
 //-----------------------------------------------------------------------------
@@ -43,9 +43,9 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-bool QmD3DContext::isValid() const
-{
-	return ( _pRenderTargetView != nullptr );
-}
+//bool QmD3DContext::isValid() const
+//{
+//	return ( _pRenderTargetView != nullptr );
+//}
 
 #endif

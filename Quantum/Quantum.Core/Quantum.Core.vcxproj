@@ -89,7 +89,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(KORBEN_DEV_DIR)\Quantum;$(KORBEN_DEV_DIR)\Libraries\OpenGL;$(KORBEN_DEV_DIR)\Libraries\Math\glm_0_9_7_2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(KORBEN_DEV_DIR)\Quantum;C:\Program Files %28x86%29\Windows Kits\10\Include\10.0.17134.0\shared;C:\Program Files %28x86%29\Windows Kits\10\Include\10.0.17134.0\um;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
