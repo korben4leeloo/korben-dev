@@ -14,9 +14,11 @@
 class QmWindow;
 
 //struct IDXGISwapChain;
-//struct ID3D11Device;
+struct ID3D12Device;
 //struct ID3D11DeviceContext;
 //struct ID3D11RenderTargetView;
+
+struct IDXGIAdapter1;
 
 class QmD3DContext
 {
@@ -31,6 +33,10 @@ private:
 
 	void					create( QmWindow* pWindow );
 	void					destroy();
+
+	IDXGIAdapter1*			findAdapter() const;
+
+	ID3D12Device*			_pD3D12Device = nullptr;
 
 	/*IDXGISwapChain*			_pSwapChain;
 	ID3D11Device*			_pD3D11Device;

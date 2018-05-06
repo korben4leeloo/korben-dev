@@ -8,7 +8,7 @@
 #include "QmD3DContext.h"
 
 #include <d3d12.h>
-#include <dxgi1_6.h>
+#include <dxgi1_4.h>
 
 #include QUANTUM_CORE_H(Rendering/Window/QmWindow)
 
@@ -50,41 +50,23 @@ QmD3DContext::~QmD3DContext()
 //-----------------------------------------------------------------------------
 void QmD3DContext::create( QmWindow* pWindow )
 {
-	// Create factory
-	IDXGIFactory4* pDXGIFactory = nullptr;
+	// Find a suitable D3D12 GPU adapter
+	IDXGIAdapter1* pDXGIAdapter = findAdapter();
 
-	HRESULT hr;
-	
-	hr = CreateDXGIFactory1( IID_PPV_ARGS( &pDXGIFactory ) );
+	if ( !pDXGIAdapter )
+	{
+		return;
+	}
 
-	IDXGIAdapter1* adapter; // adapters are the graphics card (this includes the embedded graphics on the motherboard)
+	// Create D3D12 device
+	HRESULT hr = D3D12CreateDevice( pDXGIAdapter, D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS( &_pD3D12Device ) );
 
-	int adapterIndex = 0; // we'll start looking for directx 12  compatible graphics devices starting at index 0
-
-	bool adapterFound = false; // set this to true when a good one was found
-
-							   // find first hardware gpu that supports d3d 12
-	while (pDXGIFactory->EnumAdapters1(adapterIndex, &adapter) != DXGI_ERROR_NOT_FOUND)
+	if ( SUCCEEDED( hr ) )
 	{
 		DXGI_ADAPTER_DESC1 desc;
-		adapter->GetDesc1(&desc);
+		pDXGIAdapter->GetDesc1( &desc );
 
-		if (desc.Flags & DXGI_ADAPTER_FLAG_SOFTWARE)
-		{
-			// we dont want a software device
-			adapterIndex++; // add this line here. Its not currently in the downloadable project
-			continue;
-		}
-
-		// we want a device that is compatible with direct3d 12 (feature level 11 or higher)
-		/*hr = D3D12CreateDevice(adapter, D3D_FEATURE_LEVEL_11_0, _uuidof(ID3D12Device), nullptr);
-		if (SUCCEEDED(hr))
-		{
-			adapterFound = true;
-			break;
-		}*/
-
-		adapterIndex++;
+		QUANTUM_MESSAGE( "Creating DirectX 12 device on following GPU: %s", QmString::fromUnicode( desc.Description ).buffer() );
 	}
 
 	////Describe our Buffer
@@ -131,6 +113,56 @@ void QmD3DContext::create( QmWindow* pWindow )
 
 	////Set our Render Target
 	//_pD3D11DeviceContext->OMSetRenderTargets( 1, &_pRenderTargetView, NULL );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		findAdapter
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+IDXGIAdapter1* QmD3DContext::findAdapter() const
+{
+	IDXGIFactory4*	pDXGIFactory		= nullptr;
+	IDXGIAdapter1*	pDXGIAdapter		= nullptr; // adapters are the graphics card (this includes the embedded graphics on the motherboard)
+	IDXGIAdapter1*	pBestDXGIAdapter	= nullptr;
+
+	// Create factory
+	if ( SUCCEEDED( CreateDXGIFactory1( IID_PPV_ARGS( &pDXGIFactory ) ) ) )
+	{
+		uint32				nAdapterIndex = 0; // we'll start looking for directx 12  compatible graphics devices starting at index 0
+		DXGI_ADAPTER_DESC1	bestAdapterDesc;
+
+		memset( &bestAdapterDesc, 0, sizeof(DXGI_ADAPTER_DESC1) );
+
+		// find first hardware gpu that supports d3d 12
+		while ( pDXGIFactory->EnumAdapters1( nAdapterIndex, &pDXGIAdapter ) != DXGI_ERROR_NOT_FOUND )
+		{
+			DXGI_ADAPTER_DESC1 desc;
+			pDXGIAdapter->GetDesc1( &desc );
+
+			if ( desc.Flags & DXGI_ADAPTER_FLAG_SOFTWARE )
+			{
+				// we dont want a software device
+				nAdapterIndex++; // add this line here. Its not currently in the downloadable project
+				continue;
+			}
+
+			if ( !pBestDXGIAdapter || ( desc.DedicatedVideoMemory > bestAdapterDesc.DedicatedVideoMemory ) )
+			{
+				HRESULT hr = D3D12CreateDevice( pDXGIAdapter, D3D_FEATURE_LEVEL_11_0, _uuidof( ID3D12Device ), nullptr );
+
+				if ( SUCCEEDED( hr ) )
+				{
+					pBestDXGIAdapter	= pDXGIAdapter;
+					bestAdapterDesc		= desc;
+				}
+			}
+
+			nAdapterIndex++;
+		}
+	}
+
+	return pBestDXGIAdapter;
 }
 
 //-----------------------------------------------------------------------------

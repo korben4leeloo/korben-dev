@@ -46,6 +46,8 @@ public:
 	template<typename...FormatArgs>
 	static QmString		format( const char* pcFormat, FormatArgs...formatArgs );
 
+	static QmString		fromUnicode( void* pcBuffer );
+
 private:
 	inline void			clear();
 	void				copy( const char* pcBuffer );

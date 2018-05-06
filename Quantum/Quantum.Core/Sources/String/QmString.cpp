@@ -121,6 +121,35 @@ QmString QmString::extract( const uint32 nStartPos, const int32 nEndPos )
 }
 
 //-----------------------------------------------------------------------------
+// Name:		fromUnicode
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+QmString QmString::fromUnicode( void* pcBuffer )
+{
+	QmString str;
+
+	if ( pcBuffer )
+	{
+		str._nSize = (uint32)wcslen( (const wchar_t*)pcBuffer );
+
+		if ( str._nSize > 0 )
+		{
+			str._pcBuffer = new char[str._nSize + 1];
+
+			for ( uint32 i = 0; i < str._nSize; i++ )
+			{
+				str._pcBuffer[i] = ((const char*)pcBuffer)[2*i];
+			}
+
+			str._pcBuffer[str._nSize] = '\0';
+		}
+	}
+
+	return str;
+}
+
+//-----------------------------------------------------------------------------
 // Name:		operator=
 //
 // Created:		2013-08-26
