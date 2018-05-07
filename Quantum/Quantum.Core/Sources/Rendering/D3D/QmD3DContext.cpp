@@ -9,6 +9,7 @@
 
 #include <d3d12.h>
 #include <dxgi1_4.h>
+//#include <d3d12sdklayers.h>
 
 #include QUANTUM_CORE_H(Rendering/Window/QmWindow)
 
@@ -50,6 +51,23 @@ QmD3DContext::~QmD3DContext()
 //-----------------------------------------------------------------------------
 void QmD3DContext::create( QmWindow* pWindow )
 {
+	HRESULT hr;
+
+	// Enable debug layer
+	ID3D12Debug* pDebugInterface;
+	hr = D3D12GetDebugInterface( IID_PPV_ARGS( &pDebugInterface ) );
+
+	if ( SUCCEEDED( hr ) )
+	{
+		pDebugInterface->EnableDebugLayer();
+	}
+
+	// Create the factory
+	if ( FAILED( CreateDXGIFactory2( DXGI_CREATE_FACTORY_DEBUG, IID_PPV_ARGS( &_pDXGIFactory ) ) ) )
+	{
+		return;
+	}
+
 	// Find a suitable D3D12 GPU adapter
 	IDXGIAdapter1* pDXGIAdapter = findAdapter();
 
@@ -59,60 +77,31 @@ void QmD3DContext::create( QmWindow* pWindow )
 	}
 
 	// Create D3D12 device
-	HRESULT hr = D3D12CreateDevice( pDXGIAdapter, D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS( &_pD3D12Device ) );
-
-	if ( SUCCEEDED( hr ) )
+	if ( FAILED( D3D12CreateDevice( pDXGIAdapter, D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS( &_pD3D12Device ) ) ) )
 	{
-		DXGI_ADAPTER_DESC1 desc;
-		pDXGIAdapter->GetDesc1( &desc );
-
-		QUANTUM_MESSAGE( "Creating DirectX 12 device on following GPU: %s", QmString::fromUnicode( desc.Description ).buffer() );
+		return;
 	}
 
-	////Describe our Buffer
-	//DXGI_MODE_DESC bufferDesc;
+	DXGI_ADAPTER_DESC1 desc;
+	pDXGIAdapter->GetDesc1( &desc );
+	QUANTUM_MESSAGE( "Creating DirectX 12 device on following GPU: %s", QmString::fromUnicode( desc.Description ).buffer() );
 
-	//ZeroMemory(&bufferDesc, sizeof(DXGI_MODE_DESC));
+	// Setup debug layer info queue
+	ID3D12InfoQueue* pInfoQueue;
 
-	//RECT wndRect;
-	//GetWindowRect( pWindow->getWindowHandle(), &wndRect );
+	/*ComPtr<ID3D12InfoQueue> InfoQueueComPtr;
+	ComPtr<ID3D12Device> D3D12DeviceComPtr( _pD3D12Device );
 
-	//bufferDesc.Width					= wndRect.right - wndRect.left;
-	//bufferDesc.Height					= wndRect.bottom - wndRect.top;
-	//bufferDesc.RefreshRate.Numerator	= 60;
-	//bufferDesc.RefreshRate.Denominator	= 1;
-	//bufferDesc.Format					= DXGI_FORMAT_R8G8B8A8_UNORM;
-	//bufferDesc.ScanlineOrdering			= DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
-	//bufferDesc.Scaling					= DXGI_MODE_SCALING_UNSPECIFIED;
- //   
-	////Describe our SwapChain
-	//DXGI_SWAP_CHAIN_DESC swapChainDesc; 
- //   
-	//ZeroMemory(&swapChainDesc, sizeof(DXGI_SWAP_CHAIN_DESC));
+	HRESULT hr = D3D12DeviceComPtr.As( &InfoQueueComPtr );*/
 
-	//swapChainDesc.BufferDesc			= bufferDesc;
-	//swapChainDesc.SampleDesc.Count		= 1;
-	//swapChainDesc.SampleDesc.Quality	= 0;
-	//swapChainDesc.BufferUsage			= DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	//swapChainDesc.BufferCount			= 1;
-	//swapChainDesc.OutputWindow			= pWindow->getWindowHandle(); 
-	//swapChainDesc.Windowed				= TRUE; 
-	//swapChainDesc.SwapEffect			= DXGI_SWAP_EFFECT_DISCARD;
+	if ( SUCCEEDED( hr = _pD3D12Device->QueryInterface( IID_PPV_ARGS( &pInfoQueue ) ) ) )
+	{
+		pInfoQueue->SetBreakOnSeverity( D3D12_MESSAGE_SEVERITY_CORRUPTION, TRUE );
+		pInfoQueue->SetBreakOnSeverity( D3D12_MESSAGE_SEVERITY_ERROR, TRUE );
+		pInfoQueue->SetBreakOnSeverity( D3D12_MESSAGE_SEVERITY_WARNING, TRUE );
+	}
 
-	////Create our SwapChain
-	//D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, NULL, NULL, NULL,
-	//	D3D11_SDK_VERSION, &swapChainDesc, &_pSwapChain, &_pD3D11Device, NULL, &_pD3D11DeviceContext);
-
-	////Create our BackBuffer
-	//ID3D11Texture2D* BackBuffer;
-	//_pSwapChain->GetBuffer( 0, __uuidof( ID3D11Texture2D ), (void**)&BackBuffer );
-
-	////Create our Render Target
-	//_pD3D11Device->CreateRenderTargetView( BackBuffer, NULL, &_pRenderTargetView );
-	//BackBuffer->Release();
-
-	////Set our Render Target
-	//_pD3D11DeviceContext->OMSetRenderTargets( 1, &_pRenderTargetView, NULL );
+	int n = 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -122,36 +111,33 @@ void QmD3DContext::create( QmWindow* pWindow )
 //-----------------------------------------------------------------------------
 IDXGIAdapter1* QmD3DContext::findAdapter() const
 {
-	IDXGIFactory4*	pDXGIFactory		= nullptr;
-	IDXGIAdapter1*	pDXGIAdapter		= nullptr; // adapters are the graphics card (this includes the embedded graphics on the motherboard)
-	IDXGIAdapter1*	pBestDXGIAdapter	= nullptr;
+	IDXGIAdapter1* pBestDXGIAdapter = nullptr;
 
-	// Create factory
-	if ( SUCCEEDED( CreateDXGIFactory1( IID_PPV_ARGS( &pDXGIFactory ) ) ) )
+	if ( _pDXGIFactory )
 	{
-		uint32				nAdapterIndex = 0; // we'll start looking for directx 12  compatible graphics devices starting at index 0
+		IDXGIAdapter1*		pDXGIAdapter	= nullptr; // adapters are the graphics card (this includes the embedded graphics on the motherboard)
+		uint32				nAdapterIndex	= 0;
 		DXGI_ADAPTER_DESC1	bestAdapterDesc;
 
 		memset( &bestAdapterDesc, 0, sizeof(DXGI_ADAPTER_DESC1) );
 
-		// find first hardware gpu that supports d3d 12
-		while ( pDXGIFactory->EnumAdapters1( nAdapterIndex, &pDXGIAdapter ) != DXGI_ERROR_NOT_FOUND )
+		// Find the best hardware GPU that supports d3d 12
+		while ( _pDXGIFactory->EnumAdapters1( nAdapterIndex, &pDXGIAdapter ) != DXGI_ERROR_NOT_FOUND )
 		{
 			DXGI_ADAPTER_DESC1 desc;
 			pDXGIAdapter->GetDesc1( &desc );
 
 			if ( desc.Flags & DXGI_ADAPTER_FLAG_SOFTWARE )
 			{
-				// we dont want a software device
-				nAdapterIndex++; // add this line here. Its not currently in the downloadable project
+				// We don't want a software device
+				nAdapterIndex++;
 				continue;
 			}
 
 			if ( !pBestDXGIAdapter || ( desc.DedicatedVideoMemory > bestAdapterDesc.DedicatedVideoMemory ) )
 			{
-				HRESULT hr = D3D12CreateDevice( pDXGIAdapter, D3D_FEATURE_LEVEL_11_0, _uuidof( ID3D12Device ), nullptr );
-
-				if ( SUCCEEDED( hr ) )
+				// nullptr for the last argument means just checking the d3d 12 compatibility, the device is actually not created
+				if ( SUCCEEDED( D3D12CreateDevice( pDXGIAdapter, D3D_FEATURE_LEVEL_11_0, _uuidof( ID3D12Device ), nullptr ) ) )
 				{
 					pBestDXGIAdapter	= pDXGIAdapter;
 					bestAdapterDesc		= desc;
