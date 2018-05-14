@@ -8,7 +8,7 @@
 #include "QmD3DContext.h"
 
 #include <d3d12.h>
-#include <dxgi1_4.h>
+#include <dxgi1_5.h>
 //#include <d3d12sdklayers.h>
 
 #include QUANTUM_CORE_H(Rendering/Window/QmWindow)
@@ -19,6 +19,8 @@
 		pInterface->Release(); \
 		pInterface = nullptr; \
 	} \
+
+static uint32 uiSwapChainBufferCount = 3; // Default swap chain buffer count setup for triple buffering
 
 //-----------------------------------------------------------------------------
 // Name:		QmD3DContext constructor
@@ -49,7 +51,7 @@ QmD3DContext::~QmD3DContext()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void QmD3DContext::create( QmWindow* pWindow )
+bool QmD3DContext::create( QmWindow* pWindow )
 {
 	HRESULT hr;
 
@@ -65,7 +67,7 @@ void QmD3DContext::create( QmWindow* pWindow )
 	// Create the factory
 	if ( FAILED( CreateDXGIFactory2( DXGI_CREATE_FACTORY_DEBUG, IID_PPV_ARGS( &_pDXGIFactory ) ) ) )
 	{
-		return;
+		return false;
 	}
 
 	// Find a suitable D3D12 GPU adapter
@@ -73,13 +75,13 @@ void QmD3DContext::create( QmWindow* pWindow )
 
 	if ( !pDXGIAdapter )
 	{
-		return;
+		return false;
 	}
 
 	// Create D3D12 device
-	if ( FAILED( D3D12CreateDevice( pDXGIAdapter, D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS( &_pD3D12Device ) ) ) )
+	if ( FAILED( hr = D3D12CreateDevice( pDXGIAdapter, D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS( &_pD3DDevice ) ) ) )
 	{
-		return;
+		return false;
 	}
 
 	DXGI_ADAPTER_DESC1 desc;
@@ -87,21 +89,57 @@ void QmD3DContext::create( QmWindow* pWindow )
 	QUANTUM_MESSAGE( "Creating DirectX 12 device on following GPU: %s", QmString::fromUnicode( desc.Description ).buffer() );
 
 	// Setup debug layer info queue
-	ID3D12InfoQueue* pInfoQueue;
-
-	/*ComPtr<ID3D12InfoQueue> InfoQueueComPtr;
-	ComPtr<ID3D12Device> D3D12DeviceComPtr( _pD3D12Device );
-
-	HRESULT hr = D3D12DeviceComPtr.As( &InfoQueueComPtr );*/
-
-	if ( SUCCEEDED( hr = _pD3D12Device->QueryInterface( IID_PPV_ARGS( &pInfoQueue ) ) ) )
+	if ( SUCCEEDED( hr = _pD3DDevice->QueryInterface( IID_PPV_ARGS( &_pD3DInfoQueue ) ) ) )
 	{
-		pInfoQueue->SetBreakOnSeverity( D3D12_MESSAGE_SEVERITY_CORRUPTION, TRUE );
-		pInfoQueue->SetBreakOnSeverity( D3D12_MESSAGE_SEVERITY_ERROR, TRUE );
-		pInfoQueue->SetBreakOnSeverity( D3D12_MESSAGE_SEVERITY_WARNING, TRUE );
+		_pD3DInfoQueue->SetBreakOnSeverity( D3D12_MESSAGE_SEVERITY_CORRUPTION, TRUE );
+		_pD3DInfoQueue->SetBreakOnSeverity( D3D12_MESSAGE_SEVERITY_ERROR, TRUE );
+		_pD3DInfoQueue->SetBreakOnSeverity( D3D12_MESSAGE_SEVERITY_WARNING, TRUE );
 	}
 
-	int n = 0;
+	// Create command queue
+	D3D12_COMMAND_QUEUE_DESC cmdQueueDesc;
+
+	cmdQueueDesc.Type		= D3D12_COMMAND_LIST_TYPE_DIRECT;
+	cmdQueueDesc.Priority	= D3D12_COMMAND_QUEUE_PRIORITY_NORMAL;
+	cmdQueueDesc.Flags		= D3D12_COMMAND_QUEUE_FLAG_NONE;
+	cmdQueueDesc.NodeMask	= 0;
+
+	if ( FAILED( _pD3DDevice->CreateCommandQueue( &cmdQueueDesc, IID_PPV_ARGS( &_pD3DCommandQueue ) ) ) )
+	{
+		return false;
+	}
+
+	// Create the swap chain
+	DXGI_SWAP_CHAIN_DESC1 swapChainDesc = {};
+
+	RECT wndRect;
+	GetWindowRect( pWindow->getWindowHandle(), &wndRect );
+
+	swapChainDesc.SampleDesc.Count		= 1; // minimal sampling
+	swapChainDesc.SampleDesc.Quality	= 0;
+
+	swapChainDesc.Width			= wndRect.right - wndRect.left;
+	swapChainDesc.Height		= wndRect.bottom - wndRect.top;
+	swapChainDesc.Format		= DXGI_FORMAT_R8G8B8A8_UNORM;
+	swapChainDesc.Stereo		= FALSE;
+	swapChainDesc.BufferUsage	= DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	swapChainDesc.BufferCount	= uiSwapChainBufferCount;
+	swapChainDesc.Scaling		= DXGI_SCALING_STRETCH;
+	swapChainDesc.SwapEffect	= DXGI_SWAP_EFFECT_FLIP_DISCARD;
+	swapChainDesc.AlphaMode		= DXGI_ALPHA_MODE_UNSPECIFIED;
+
+	// Check tearing support and setup swap chain desc in consequence
+	// It is recommended to always allow tearing if tearing support is available.
+	BOOL bTearingSupport = false;
+	hr = _pDXGIFactory->CheckFeatureSupport( DXGI_FEATURE_PRESENT_ALLOW_TEARING, &bTearingSupport, sizeof( bTearingSupport ) );
+	swapChainDesc.Flags = bTearingSupport ? DXGI_SWAP_CHAIN_FLAG_ALLOW_TEARING : 0;
+
+	if ( FAILED( hr = _pDXGIFactory->CreateSwapChainForHwnd( _pD3DCommandQueue, pWindow->getWindowHandle(), &swapChainDesc, nullptr, nullptr, &_pD3DSwapChain ) ) )
+	{
+		return false;
+	}
+
+	return true;
 }
 
 //-----------------------------------------------------------------------------

@@ -13,9 +13,11 @@
 
 class QmWindow;
 
-struct IDXGIFactory4;
+struct IDXGIFactory5;
 struct ID3D12Device;
-
+struct ID3D12InfoQueue;
+struct ID3D12CommandQueue;
+struct IDXGISwapChain1;
 struct IDXGIAdapter1;
 
 class QmD3DContext
@@ -29,13 +31,16 @@ private:
 							QmD3DContext();
 							~QmD3DContext();
 
-	void					create( QmWindow* pWindow );
+	bool					create( QmWindow* pWindow );
 	void					destroy();
 
 	IDXGIAdapter1*			findAdapter() const;
 
-	IDXGIFactory4*			_pDXGIFactory	= nullptr;
-	ID3D12Device*			_pD3D12Device	= nullptr;
+	IDXGIFactory5*			_pDXGIFactory		= nullptr;
+	ID3D12Device*			_pD3DDevice			= nullptr;
+	ID3D12InfoQueue*		_pD3DInfoQueue		= nullptr;	
+	ID3D12CommandQueue*		_pD3DCommandQueue	= nullptr;
+	IDXGISwapChain1*		_pD3DSwapChain		= nullptr;
 };
 
 //-----------------------------------------------------------------------------
