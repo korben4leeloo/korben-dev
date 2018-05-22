@@ -139,6 +139,37 @@ bool QmD3DContext::create( QmWindow* pWindow )
 		return false;
 	}
 
+	// Creating the render target descriptor heap
+	ID3D12DescriptorHeap*		pDescriptorHeapRTV;
+	D3D12_DESCRIPTOR_HEAP_DESC	heapRTVDesc = {};
+
+	heapRTVDesc.NumDescriptors	= uiSwapChainBufferCount;
+	heapRTVDesc.Type			= D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
+
+	if ( FAILED( hr = _pD3DDevice->CreateDescriptorHeap( &heapRTVDesc, IID_PPV_ARGS( &pDescriptorHeapRTV ) ) ) )
+	{
+		return false;
+	}
+
+	// Get a handle to the first RTV descriptor in the descriptor heap ( in fact a pointer )
+	D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = pDescriptorHeapRTV->GetCPUDescriptorHandleForHeapStart();
+
+	// Iterate through each RTV descriptor handle, create and bind a RTV to each back buffer of the swap chain
+	UINT uiDescHeapRTVSize = _pD3DDevice->GetDescriptorHandleIncrementSize( D3D12_DESCRIPTOR_HEAP_TYPE_RTV );
+
+	_ppRenderTargetArray = new ID3D12Resource*[uiSwapChainBufferCount];
+
+	for ( uint32 i = 0; i < uiSwapChainBufferCount; i++ )
+	{
+		if ( FAILED( hr = _pD3DSwapChain->GetBuffer( i, IID_PPV_ARGS( &_ppRenderTargetArray[i] ) ) ) )
+		{
+			return false;
+		}
+
+		_pD3DDevice->CreateRenderTargetView( _ppRenderTargetArray[i], nullptr, rtvHandle );
+		rtvHandle.ptr += uiDescHeapRTVSize;
+	}
+
 	return true;
 }
 

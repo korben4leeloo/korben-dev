@@ -19,6 +19,7 @@ struct ID3D12InfoQueue;
 struct ID3D12CommandQueue;
 struct IDXGISwapChain1;
 struct IDXGIAdapter1;
+struct ID3D12Resource;
 
 class QmD3DContext
 {
@@ -36,11 +37,12 @@ private:
 
 	IDXGIAdapter1*			findAdapter() const;
 
-	IDXGIFactory5*			_pDXGIFactory		= nullptr;
-	ID3D12Device*			_pD3DDevice			= nullptr;
-	ID3D12InfoQueue*		_pD3DInfoQueue		= nullptr;	
-	ID3D12CommandQueue*		_pD3DCommandQueue	= nullptr;
-	IDXGISwapChain1*		_pD3DSwapChain		= nullptr;
+	IDXGIFactory5*			_pDXGIFactory			= nullptr;
+	ID3D12Device*			_pD3DDevice				= nullptr;
+	ID3D12InfoQueue*		_pD3DInfoQueue			= nullptr;	
+	ID3D12CommandQueue*		_pD3DCommandQueue		= nullptr;
+	IDXGISwapChain1*		_pD3DSwapChain			= nullptr;
+	ID3D12Resource**		_ppRenderTargetArray	= nullptr;
 };
 
 //-----------------------------------------------------------------------------
