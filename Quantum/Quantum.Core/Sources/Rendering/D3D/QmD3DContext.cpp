@@ -157,7 +157,8 @@ bool QmD3DContext::create( QmWindow* pWindow )
 	// Iterate through each RTV descriptor handle, create and bind a RTV to each back buffer of the swap chain
 	UINT uiDescHeapRTVSize = _pD3DDevice->GetDescriptorHandleIncrementSize( D3D12_DESCRIPTOR_HEAP_TYPE_RTV );
 
-	_ppRenderTargetArray = new ID3D12Resource*[uiSwapChainBufferCount];
+	_ppRenderTargetArray		= new ID3D12Resource*[uiSwapChainBufferCount];
+	_ppCommandAllocatorArray	= new ID3D12CommandAllocator*[uiSwapChainBufferCount];
 
 	for ( uint32 i = 0; i < uiSwapChainBufferCount; i++ )
 	{
@@ -169,6 +170,25 @@ bool QmD3DContext::create( QmWindow* pWindow )
 		_pD3DDevice->CreateRenderTargetView( _ppRenderTargetArray[i], nullptr, rtvHandle );
 		rtvHandle.ptr += uiDescHeapRTVSize;
 	}
+
+	// Create the command allocators ( one for each back buffer )
+	for ( uint32 i = 0; i < uiSwapChainBufferCount; i++ )
+	{
+		if ( FAILED( hr = _pD3DDevice->CreateCommandAllocator( D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS( &_ppCommandAllocatorArray[i] ) ) ) )
+		{
+			return false;
+		}
+	}
+
+	// Create the command list ( Note: each rendering thread must have its own command list )
+	// The provided command allocator ( here the first one we created earlier ) is where the command list is allocated from 
+	if ( FAILED( hr = _pD3DDevice->CreateCommandList( 0, D3D12_COMMAND_LIST_TYPE_DIRECT, _ppCommandAllocatorArray[0], nullptr, IID_PPV_ARGS( &_pCommandList ) ) ) )
+	{
+		return false;
+	}
+
+	// By default, the command list is created with record state, so close it for now
+	_pCommandList->Close();
 
 	return true;
 }
