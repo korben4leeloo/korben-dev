@@ -190,6 +190,20 @@ bool QmD3DContext::create( QmWindow* pWindow )
 	// By default, the command list is created with record state, so close it for now
 	_pCommandList->Close();
 
+	// Create the fence
+	if ( FAILED( hr = _pD3DDevice->CreateFence( _uiFenceValue, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS( &_pFence ) ) ) )
+	{
+		return false;
+	}
+
+	// Create the fence event
+	_hFenceEvent = CreateEvent( nullptr, FALSE, FALSE, nullptr );
+
+	if ( _hFenceEvent == nullptr )
+	{
+		return false;
+	}
+
 	return true;
 }
 

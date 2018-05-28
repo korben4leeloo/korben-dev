@@ -22,6 +22,7 @@ struct IDXGIAdapter1;
 struct ID3D12Resource;
 struct ID3D12CommandAllocator;
 struct ID3D12GraphicsCommandList;
+struct ID3D12Fence;
 
 class QmD3DContext
 {
@@ -39,6 +40,7 @@ private:
 
 	IDXGIAdapter1*				findAdapter() const;
 
+	// DirectX interfaces
 	IDXGIFactory5*				_pDXGIFactory				= nullptr;
 	ID3D12Device*				_pD3DDevice					= nullptr;
 	ID3D12InfoQueue*			_pD3DInfoQueue				= nullptr;	
@@ -47,6 +49,11 @@ private:
 	ID3D12Resource**			_ppRenderTargetArray		= nullptr;
 	ID3D12CommandAllocator**	_ppCommandAllocatorArray	= nullptr;
 	ID3D12GraphicsCommandList*	_pCommandList				= nullptr;
+	ID3D12Fence*				_pFence						= nullptr;
+
+	// Others
+	QmWin32Handle				_hFenceEvent				= nullptr;
+	uint64						_uiFenceValue				= 0;
 };
 
 //-----------------------------------------------------------------------------

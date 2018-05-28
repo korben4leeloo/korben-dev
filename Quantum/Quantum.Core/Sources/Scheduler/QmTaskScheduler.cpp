@@ -28,23 +28,11 @@ QmTaskScheduler::~QmTaskScheduler()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		QmTaskScheduler constructor
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-QmTaskScheduler::QmTask::QmTask( const uint32 uiTaskPriority, const QmPfnTaskCallback pfnTaskCallback )
-: _uiTaskPriority	( uiTaskPriority )
-, _pfnTaskCallback	( pfnTaskCallback ) 
-{
-
-}
-
-//-----------------------------------------------------------------------------
 // Name:		createTask
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void QmTaskScheduler::createTask( const uint32 uiTaskPriority, const QmPfnTaskCallback pfnTaskCallback )
+void QmTaskScheduler::createTask( const uint32 uiTaskPriority, const QmStaticTask::QmPfnStaticTaskCallback pfnTaskCallback )
 {
 	if	( pfnTaskCallback != nullptr )
 	{
@@ -52,7 +40,7 @@ void QmTaskScheduler::createTask( const uint32 uiTaskPriority, const QmPfnTaskCa
 
 		while	( it.isValid() )
 		{
-			if	( uiTaskPriority > it->_uiTaskPriority )
+			if	( uiTaskPriority > (*it)->_uiTaskPriority )
 			{
 				it++;
 			}
@@ -62,7 +50,32 @@ void QmTaskScheduler::createTask( const uint32 uiTaskPriority, const QmPfnTaskCa
 			}
 		}
 
-		_lTasks.insertBefore( it, QmTask( uiTaskPriority, pfnTaskCallback ) );
+		_lTasks.insertBefore( it, new QmStaticTask( uiTaskPriority, pfnTaskCallback ) );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		QmTaskScheduler constructor
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+QmTaskScheduler::QmStaticTask::QmStaticTask( const uint32 uiTaskPriority, const QmPfnStaticTaskCallback pfnTaskCallback )
+	: QmTaskBase( uiTaskPriority )
+	, _pfnTaskCallback( pfnTaskCallback )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+// Name:		QmTaskScheduler constructor
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+void QmTaskScheduler::QmStaticTask::execute()
+{
+	if ( _pfnTaskCallback )
+	{
+		_pfnTaskCallback();
 	}
 }
 
@@ -74,10 +87,10 @@ void QmTaskScheduler::createTask( const uint32 uiTaskPriority, const QmPfnTaskCa
 void QmTaskScheduler::execute()
 {
 	QmTaskList::iterator it = _lTasks.begin();
-	
-	while	( it.isValid() )
+
+	while ( it.isValid() )
 	{
-		it->_pfnTaskCallback();
+		(*it)->execute();
 		it++;
 	}
 }

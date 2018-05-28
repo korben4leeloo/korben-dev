@@ -185,6 +185,7 @@
     <ClInclude Include="Sources\Rendering\D3D\Root.h">
       <Filter>Source Files\Rendering\D3D</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Rendering\QmRenderScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Application\QmApplication.cpp">
@@ -258,6 +259,9 @@
     </ClCompile>
     <ClCompile Include="Sources\Rendering\D3D\QmD3DContext.cpp">
       <Filter>Source Files\Rendering\D3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Rendering\QmRenderScene.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Quantum.Core", "Quantum.Core\Quantum.Core.vcxproj", "{36901E6A-65D5-4DB1-A499-20593053B747}"
 EndProject
@@ -9,7 +9,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Quantum.Runtime", "Quantum.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E6CE5C24-847C-4C8A-8D20-4225C4F57077}"
 	ProjectSection(SolutionItems) = preProject
-		TarsRoot.h = TarsRoot.h
+		QuantumRoot.h = QuantumRoot.h
 	EndProjectSection
 EndProject
 Global

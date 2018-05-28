@@ -153,6 +153,7 @@
     <ClInclude Include="Sources\Rendering\OpenGL\Root.h" />
     <ClInclude Include="Sources\Rendering\OpenGL\QmOpenGLApi.h" />
     <ClInclude Include="Sources\Rendering\OpenGL\QmOpenGLContext.h" />
+    <ClInclude Include="Sources\Rendering\QmRenderScene.h" />
     <ClInclude Include="Sources\Rendering\Root.h" />
     <ClInclude Include="Sources\Rendering\Window\Root.h" />
     <ClInclude Include="Sources\Rendering\Window\QmWindow.h" />
@@ -188,6 +189,7 @@
     <ClCompile Include="Sources\Rendering\D3D\QmD3DContext.cpp" />
     <ClCompile Include="Sources\Rendering\OpenGL\QmOpenGLApi.cpp" />
     <ClCompile Include="Sources\Rendering\OpenGL\QmOpenGLContext.cpp" />
+    <ClCompile Include="Sources\Rendering\QmRenderScene.cpp" />
     <ClCompile Include="Sources\Rendering\Window\QmWindow.cpp" />
     <ClCompile Include="Sources\Scene\Entity\QmEntity.cpp" />
     <ClCompile Include="Sources\Scene\QmScene.cpp" />
