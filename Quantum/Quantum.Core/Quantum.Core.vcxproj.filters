@@ -185,7 +185,12 @@
     <ClInclude Include="Sources\Rendering\D3D\Root.h">
       <Filter>Source Files\Rendering\D3D</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Rendering\QmRenderScene.h" />
+    <ClInclude Include="Sources\Rendering\QmRenderScene.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Containers\QmHierarchicalGraph.h">
+      <Filter>Source Files\Containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Application\QmApplication.cpp">
@@ -262,6 +267,9 @@
     </ClCompile>
     <ClCompile Include="Sources\Rendering\QmRenderScene.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Containers\QmHierarchicalGraph.cpp">
+      <Filter>Source Files\Containers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

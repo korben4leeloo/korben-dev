@@ -13,6 +13,7 @@
 #include QUANTUM_CORE_H(Rendering/Window/QmWindow)
 #include QUANTUM_CORE_H(Rendering/D3D/QmD3DContext)
 #include QUANTUM_CORE_H(File/QmTextFile)
+#include QUANTUM_CORE_H(Containers/QmHierarchicalGraph)
 //#include QUANTUM_CORE_H(Rendering/OpenGL/QmOpenGLContext)
 //#include QUANTUM_CORE_H(Rendering/OpenGL/QmOpenGLApi)
 
@@ -68,6 +69,19 @@ int WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_op
 	QmWindow*			pWindow			= pApplication->createWindow();
 	//QmOpenGLContext*	pOpenGLContext	= pWindow->createOpenGLContext();
 	QmD3DContext*		pD3DContext		= pApplication->createD3DContext( pWindow );
+
+	//QmHierarchicalGraph<int> test( 2 );
+	//QmListEx<int> l;
+
+	class testnode: public QmListEx<testnode>::QmListExNode
+	{
+
+	};
+
+	QmListEx<testnode> l;
+	testnode* p = l.begin();
+
+	//QmHierarchicalGraph<int>::NODE* root = test.
 
 	//d3dContext.cr
 
