@@ -57,6 +57,9 @@
     <Filter Include="Source Files\Signals">
       <UniqueIdentifier>{14a807eb-7973-483d-b6da-e2570dc4f512}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Math\agl">
+      <UniqueIdentifier>{94a1625e-bd92-404c-852f-345472ea0793}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Application\Root.h">
@@ -188,8 +191,53 @@
     <ClInclude Include="Sources\Rendering\QmRenderScene.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Containers\QmHierarchicalGraph.h">
+    <ClInclude Include="Sources\Containers\QmTree.h">
       <Filter>Source Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Containers\QmStdList.h">
+      <Filter>Source Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\agl\optimization.h">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\agl\solvers.h">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\agl\specialfunctions.h">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\agl\statistics.h">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\agl\stdafx.h">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\agl\alglibinternal.h">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\agl\alglibmisc.h">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\agl\ap.h">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\agl\dataanalysis.h">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\agl\diffequations.h">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\agl\fasttransforms.h">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\agl\integration.h">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\agl\interpolation.h">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\agl\linalg.h">
+      <Filter>Source Files\Math\agl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -268,8 +316,50 @@
     <ClCompile Include="Sources\Rendering\QmRenderScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Containers\QmHierarchicalGraph.cpp">
+    <ClCompile Include="Sources\Containers\QmTree.cpp">
       <Filter>Source Files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Containers\QmStdList.cpp">
+      <Filter>Source Files\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\agl\optimization.cpp">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\agl\solvers.cpp">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\agl\specialfunctions.cpp">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\agl\statistics.cpp">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\agl\alglibinternal.cpp">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\agl\alglibmisc.cpp">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\agl\ap.cpp">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\agl\dataanalysis.cpp">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\agl\diffequations.cpp">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\agl\fasttransforms.cpp">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\agl\integration.cpp">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\agl\interpolation.cpp">
+      <Filter>Source Files\Math\agl</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Math\agl\linalg.cpp">
+      <Filter>Source Files\Math\agl</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

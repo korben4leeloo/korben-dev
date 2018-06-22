@@ -12,7 +12,7 @@
 #include	"Root.h"
 
 #include	QUANTUM_CORE_H(Signals/QmSlot)
-#include	QUANTUM_CORE_H(Containers/QmList)
+#include	QUANTUM_CORE_H(Containers/QmStdList)
 
 #define	QM_DECLARE_SIGNAL( SignalName, ... ) typedef QmSignal<__VA_ARGS__> Qm##SignalName##Signal; \
 	Qm##SignalName##Signal SignalName##Signal;
@@ -26,7 +26,7 @@
 template<class...SignalArgs>
 class QmSignal
 {
-	typedef QmList<QmAbstractSlot<SignalArgs...>*> QmSlotList;
+	typedef QmStdList<QmAbstractSlot<SignalArgs...>*> QmSlotList;
 
 public:
 				QmSignal();
@@ -87,7 +87,7 @@ void QmSignal<SignalArgs...>::connect(SlotType* pReceiver, QmAbstractSlot<Signal
 template<class...SignalArgs>
 void QmSignal<SignalArgs...>::send(SignalArgs...args)
 {
-	QmSlotList::iterator it = _slots.begin();
+	QmSlotList::iterator it = _slots.head();
 
 	while	( it.isValid() )
 	{

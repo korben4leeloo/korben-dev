@@ -36,7 +36,7 @@ void QmTaskScheduler::createTask( const uint32 uiTaskPriority, const QmStaticTas
 {
 	if	( pfnTaskCallback != nullptr )
 	{
-		QmTaskList::iterator it = _lTasks.begin();
+		QmTaskList::iterator it = _lTasks.head();
 
 		while	( it.isValid() )
 		{
@@ -86,7 +86,7 @@ void QmTaskScheduler::QmStaticTask::execute()
 //-----------------------------------------------------------------------------
 void QmTaskScheduler::execute()
 {
-	QmTaskList::iterator it = _lTasks.begin();
+	QmTaskList::iterator it = _lTasks.head();
 
 	while ( it.isValid() )
 	{

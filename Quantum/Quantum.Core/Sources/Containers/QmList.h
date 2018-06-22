@@ -6,70 +6,44 @@
 //
 //*****************************************************************************
 
-#ifndef __QUANTUM_CORE_TK_LIST_H__
-#define __QUANTUM_CORE_TK_LIST_H__
+#ifndef __QUANTUM_CORE_QM_LIST_H__
+#define __QUANTUM_CORE_QM_LIST_H__
 
 template<class T>
+struct QmListNode
+{
+	template<class U, class NodeType> friend class QmList;
+
+protected:
+	QmListNode( const T& value );
+
+	QmListNode*	_pPrev;
+	QmListNode*	_pNext;
+	T			_value;
+};
+
+template<class T, class NodeType = QmListNode<T>>
 class QmList
 {
-private:
-	struct QmListNode
-	{
-					QmListNode( const T& value );
-
-		QmListNode*	_pPrev;
-		QmListNode*	_pNext;
-		T			_value;
-	};
-
 public:
-	class iterator
-	{
-		friend class QmList;
+						QmList();
+						~QmList();
 
-	public:
-							iterator();
+	NodeType*			pushBack( const T& value );
+	NodeType*			pushFront( const T& value );
+	NodeType*			insertAfter( const NodeType* position, const T& value );
+	NodeType*			insertBefore( const NodeType* position, const T& value );
+	void				remove( const T& value );
+	void				remove( NodeType* pListNode );
+	NodeType*			find( const T& value );
 
-		inline bool			isValid() const;
-
-		inline iterator&	operator=( const iterator& other );
-
-		inline bool			operator==( const iterator& other );
-		inline bool			operator!=( const iterator& other );
-
-		inline iterator&	operator++();
-		iterator&			operator++(int);
-
-		inline iterator&	operator--();
-		iterator&			operator--(int);
-
-		T&					operator*();
-		T*					operator->();
-
-	private:
-							iterator( QmListNode* pListNode );
-
-		QmListNode*			_pListNode;
-	};
-
-					QmList();
-					~QmList();
-
-	iterator		pushBack( const T& value );
-	iterator		pushFront( const T& value );
-	iterator		insertAfter( const iterator& position, const T& value );
-	iterator		insertBefore( const iterator& position, const T& value );
-	//void			remove( const iterator& position );
-
-	iterator		find( const T& value );
-
-	inline iterator	begin();
-	inline iterator	end();
+	inline NodeType*	head();
+	inline NodeType*	queue();
 
 private:
-	QmListNode*		_pHead;
-	QmListNode*		_pLast;
-	uint32			_uiSize;
+	NodeType*			_pHead	= nullptr;
+	NodeType*			_pQueue	= nullptr;
+	uint32				_uiSize	= 0;
 };
 
 //*****************************************************************************
@@ -81,13 +55,10 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-QmList<T>::QmList()
-: _pHead	( nullptr )
-, _pLast	( nullptr )
-, _uiSize	( 0 )
+template<class T, class NodeType>
+QmList<T, NodeType>::QmList()
 {
-	
+
 }
 
 //-----------------------------------------------------------------------------
@@ -95,10 +66,10 @@ QmList<T>::QmList()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-QmList<T>::~QmList()
+template<class T, class NodeType>
+QmList<T, NodeType>::~QmList()
 {
-	
+
 }
 
 //-----------------------------------------------------------------------------
@@ -106,28 +77,28 @@ QmList<T>::~QmList()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-typename QmList<T>::iterator QmList<T>::pushBack(const T&	value)
+template<class T, class NodeType>
+NodeType* QmList<T, NodeType>::pushBack( const T& value )
 {
-	QmListNode* pListNode = new QmListNode( value );
+	NodeType* pListNode = new NodeType( value );
 
-	if	( _pHead )
+	if ( _pHead )
 	{
-		QUANTUM_ASSERT( _pLast );
+		QUANTUM_ASSERT( _pQueue );
 
-		pListNode->_pPrev	= _pLast;
-		_pLast->_pNext		= pListNode;
-		_pLast				= pListNode;
+		pListNode->_pPrev	= _pQueue;
+		_pQueue->_pNext		= pListNode;
+		_pQueue				= pListNode;
 	}
 	else
 	{
-		_pHead = pListNode;
-		_pLast = pListNode;
+		_pHead	= pListNode;
+		_pQueue = pListNode;
 	}
 
 	_uiSize++;
 
-	return	( iterator( pListNode ) );
+	return ( pListNode );
 }
 
 //-----------------------------------------------------------------------------
@@ -135,14 +106,14 @@ typename QmList<T>::iterator QmList<T>::pushBack(const T&	value)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-typename QmList<T>::iterator QmList<T>::pushFront(const T&	value)
+template<class T, class NodeType>
+NodeType* QmList<T, NodeType>::pushFront( const T&	value )
 {
-	QmListNode* pListNode = new QmListNode( value );
+	NodeType* pListNode = new NodeType( value );
 
-	if	( _pHead )
+	if ( _pHead )
 	{
-		QUANTUM_ASSERT( _pLast );
+		QUANTUM_ASSERT( _pQueue );
 
 		pListNode->_pNext	= _pHead;
 		_pHead->_pPrev		= pListNode;
@@ -150,13 +121,13 @@ typename QmList<T>::iterator QmList<T>::pushFront(const T&	value)
 	}
 	else
 	{
-		_pHead = pListNode;
-		_pLast = pListNode;
+		_pHead	= pListNode;
+		_pQueue = pListNode;
 	}
 
 	_uiSize++;
 
-	return	( iterator( pListNode ) );
+	return ( NodeType*( pListNode ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -164,27 +135,26 @@ typename QmList<T>::iterator QmList<T>::pushFront(const T&	value)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-typename QmList<T>::iterator QmList<T>::insertAfter(const iterator&	position, 
-													  const T&			value)
+template<class T, class NodeType>
+NodeType* QmList<T, NodeType>::insertAfter( const NodeType* position, const T& value )
 {
 	QUANTUM_ASSERT( position.isValid() );
 	QUANTUM_ASSERT( _pHead );
 
-	QmListNode* pListNode = new QmListNode( value );
+	NodeType* pListNode = new NodeType( value );
 
 	pListNode->_pPrev			= position._pListNode;
 	pListNode->_pNext			= position._pListNode->_pNext;
-	position._pListNode->_pNext	= pListNode;
+	position._pListNode->_pNext = pListNode;
 
-	if ( _pLast == position._pListNode )
+	if ( _pQueue == position._pListNode )
 	{
-		_pLast = pListNode;
+		_pQueue = pListNode;
 	}
 
 	_uiSize++;
-	
-	return	( iterator( pListNode ) );
+
+	return ( NodeType*( pListNode ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -192,11 +162,10 @@ typename QmList<T>::iterator QmList<T>::insertAfter(const iterator&	position,
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-typename QmList<T>::iterator QmList<T>::insertBefore(const iterator&	position, 
-													   const T&				value)
+template<class T, class NodeType>
+NodeType* QmList<T, NodeType>::insertBefore( const NodeType* position, const T& value )
 {
-	if	( _uiSize == 0 )
+	if ( _uiSize == 0 )
 	{
 		return ( pushBack( value ) );
 	}
@@ -204,11 +173,11 @@ typename QmList<T>::iterator QmList<T>::insertBefore(const iterator&	position,
 	QUANTUM_ASSERT( position.isValid() );
 	QUANTUM_ASSERT( _pHead );
 
-	QmListNode* pListNode = new QmListNode( value );
+	NodeType* pListNode = new NodeType( value );
 
 	pListNode->_pPrev			= position._pListNode->_pPrev;
 	pListNode->_pNext			= position._pListNode;
-	position._pListNode->_pPrev	= pListNode;
+	position._pListNode->_pPrev = pListNode;
 
 	if ( _pHead == position._pListNode )
 	{
@@ -216,8 +185,8 @@ typename QmList<T>::iterator QmList<T>::insertBefore(const iterator&	position,
 	}
 
 	_uiSize++;
-	
-	return	( iterator( pListNode ) );
+
+	return ( NodeType*( pListNode ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -225,192 +194,115 @@ typename QmList<T>::iterator QmList<T>::insertBefore(const iterator&	position,
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-typename QmList<T>::iterator QmList<T>::find( const T& value )
+template<class T, class NodeType>
+NodeType* QmList<T, NodeType>::find( const T& value )
 {
-	iterator it( _pHead );
+	NodeType* it( _pHead );
 
 	while ( it.isValid() && ( *it != value ) )
 	{
 		it++;
 	}
 
-	return	( it );
+	return (it);
 }
 
 //-----------------------------------------------------------------------------
-// Name:		begin
+// Name:		remove
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-typename QmList<T>::iterator QmList<T>::begin()
+template<class T, class NodeType>
+void QmList<T, NodeType>::remove( const T& value )
 {
-	return	( iterator( _pHead ) );
-}
+	NodeType* pNode = _pHead;
 
-//-----------------------------------------------------------------------------
-// Name:		end
-// Created:		2013-08-26
-//
-//-----------------------------------------------------------------------------
-template<class T>
-typename QmList<T>::iterator QmList<T>::end()
-{
-	return	( iterator( _pLast ) );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		iterator constructor
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-QmList<T>::iterator::iterator()
-: _pListNode( nullptr )
-{
-	
-}
-
-//-----------------------------------------------------------------------------
-// Name:		iterator constructor
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-QmList<T>::iterator::iterator(QmListNode*	pListNode)
-: _pListNode( pListNode )
-{
-	
-}
-
-//-----------------------------------------------------------------------------
-// Name:		isValid
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-bool QmList<T>::iterator::isValid() const
-{
-	return	( _pListNode != nullptr );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator=
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-typename QmList<T>::iterator& QmList<T>::iterator::operator=(const iterator&	other)
-{
-	_pListNode = other._pListNode;
-	return	( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator==
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-bool QmList<T>::iterator::operator==(const iterator&	other)
-{
-	return	( isValid() && ( _pListNode == other._pListNode ) );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator!=
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-bool QmList<T>::iterator::operator!=(const iterator&	other)
-{
-	return	( !( *this == other ) );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator*
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-T& QmList<T>::iterator::operator*()
-{
-	QUANTUM_ASSERT( isValid() );
-	return	( _pListNode->_value );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator->
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-T* QmList<T>::iterator::operator->()
-{
-	QUANTUM_ASSERT( isValid() );
-	return	( &_pListNode->_value );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator++
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-typename QmList<T>::iterator& QmList<T>::iterator::operator++()
-{
-	(*this)++;
-	return	( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator++
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-typename QmList<T>::iterator& QmList<T>::iterator::operator++(int)
-{
-	QUANTUM_ASSERT( isValid() );
-
-	if	( _pListNode )
+	while ( pNode )
 	{
-		_pListNode = _pListNode->_pNext;
+		if ( pNode->_value == value )
+		{
+			NodeType* pPrev = pNode->_pPrev;
+			NodeType* pNext = pNode->_pNext;
+
+			if	( pPrev )
+			{
+				pPrev->_pNext = pNext;
+			}
+			else
+			{
+				_pHead = pNext;
+			}
+
+			if	( pNext )
+			{
+				pNext->_pPrev = pPrev;
+			}
+			else
+			{
+				_pQueue = pPrev;
+			}
+
+			QUANTUM_ASSERT( _uiSize > 0 );
+			_uiSize--;
+		}
+
+		pNode = pNode->_pNext;
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		remove
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, class NodeType>
+void QmList<T, NodeType>::remove( NodeType* pListNode )
+{
+	NodeType* pPrev = pListNode->_pPrev;
+	NodeType* pNext = pListNode->_pNext;
+
+	if	( pPrev )
+	{
+		pPrev->_pNext = pNext;
+	}
+	else
+	{
+		_pHead = pNext;
 	}
 
-	return	( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator--
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-typename QmList<T>::iterator& QmList<T>::iterator::operator--()
-{
-	(*this)--;
-	return	( *this );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator--
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-typename QmList<T>::iterator& QmList<T>::iterator::operator--(int)
-{
-	QUANTUM_ASSERT( isValid() && _pListNode->_pPrev );
-
-	if	( _pListNode )
+	if	( pNext )
 	{
-		_pListNode = _pListNode->_pPrev;
+		pNext->_pPrev = pPrev;
+	}
+	else
+	{
+		_pQueue = pPrev;
 	}
 
-	return	( *this );
+	QUANTUM_ASSERT( _uiSize > 0 );
+	_uiSize--;
+}
+
+//-----------------------------------------------------------------------------
+// Name:		head
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, class NodeType>
+NodeType* QmList<T, NodeType>::head()
+{
+	return ( _pHead );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		queue
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class T, class NodeType>
+NodeType* QmList<T, NodeType>::queue()
+{
+	return ( _pQueue );
 }
 
 //-----------------------------------------------------------------------------
@@ -419,12 +311,12 @@ typename QmList<T>::iterator& QmList<T>::iterator::operator--(int)
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 template<class T>
-QmList<T>::QmListNode::QmListNode(const T&	value)
-: _pPrev	( nullptr )
-, _pNext	( nullptr )
-, _value	( value )
+QmListNode<T>::QmListNode( const T&	value )
+: _pPrev( nullptr )
+, _pNext( nullptr )
+, _value( value )
 {
-	
+
 }
 
 #endif

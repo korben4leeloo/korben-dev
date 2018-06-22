@@ -10,7 +10,7 @@
 #define __QUANTUM_CORE_TASK_SCHEDULER_H__
 
 #include "Root.h"
-#include QUANTUM_CORE_H(Containers/QmList)
+#include QUANTUM_CORE_H(Containers/QmStdList)
 
 class QmTaskScheduler
 {
@@ -57,7 +57,7 @@ public:
 private:
 	
 
-	typedef QmList<QmTaskBase*> QmTaskList;
+	typedef QmStdList<QmTaskBase*> QmTaskList;
 
 	QmTaskList	_lTasks;
 };
