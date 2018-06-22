@@ -13,5 +13,6 @@
 #define USE_QUANTUM_RUNTIME
 
 #include <QuantumRoot.h>
+#include QUANTUM_CORE_H(Debugging/QmDebug)
 
 #endif

@@ -132,6 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Sources\main.cpp" />
+    <ClCompile Include="Sources\MotionField.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Quantum.Core\Quantum.Core.vcxproj">
