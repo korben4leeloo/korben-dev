@@ -10,6 +10,7 @@
 #include <d3d12.h>
 #include <dxgi1_5.h>
 //#include <d3d12sdklayers.h>
+#include <D3Dcompiler.h>
 
 #include QUANTUM_CORE_H(Rendering/Window/QmWindow)
 
@@ -201,6 +202,54 @@ bool QmD3DContext::create( QmWindow* pWindow )
 
 	if ( _hFenceEvent == nullptr )
 	{
+		return false;
+	}
+
+	// Create the root signature
+	D3D12_ROOT_SIGNATURE_DESC rootSignDesc;
+
+	rootSignDesc.Flags				= D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
+	rootSignDesc.NumParameters		= 0;
+	rootSignDesc.pParameters		= nullptr;
+	rootSignDesc.NumStaticSamplers	= 0;
+	rootSignDesc.pStaticSamplers	= nullptr;
+
+	ID3DBlob* pRootSignBlob = nullptr;
+	
+	if ( FAILED( hr = D3D12SerializeRootSignature( &rootSignDesc, D3D_ROOT_SIGNATURE_VERSION_1, &pRootSignBlob, nullptr ) ) )
+	{
+		return false;
+	}
+
+	if ( FAILED( hr = _pD3DDevice->CreateRootSignature( 0, pRootSignBlob->GetBufferPointer(), pRootSignBlob->GetBufferSize(), IID_PPV_ARGS( &_pRootSignature ) ) ) )
+	{
+		return false;
+	}
+
+	// create vertex and pixel shaders
+
+	// when debugging, we can compile the shader files at runtime.
+	// but for release versions, we can compile the hlsl shaders
+	// with fxc.exe to create .cso files, which contain the shader
+	// bytecode. We can load the .cso files at runtime to get the
+	// shader bytecode, which of course is faster than compiling
+	// them at runtime
+
+	// compile vertex shader
+	ID3DBlob* vertexShader; // d3d blob for holding vertex shader bytecode
+	ID3DBlob* errorBuff; // a buffer holding the error data if any
+	hr = D3DCompileFromFile(L"VertexShader.hlsl",
+							 nullptr,
+							 nullptr,
+							 "main",
+							 "vs_5_0",
+							 D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION,
+							 0,
+							 &vertexShader,
+							 &errorBuff);
+	if (FAILED(hr))
+	{
+		OutputDebugStringA((char*)errorBuff->GetBufferPointer());
 		return false;
 	}
 

@@ -23,6 +23,7 @@ struct ID3D12Resource;
 struct ID3D12CommandAllocator;
 struct ID3D12GraphicsCommandList;
 struct ID3D12Fence;
+struct ID3D12RootSignature;
 
 class QmD3DContext
 {
@@ -50,6 +51,7 @@ private:
 	ID3D12CommandAllocator**	_ppCommandAllocatorArray	= nullptr;
 	ID3D12GraphicsCommandList*	_pCommandList				= nullptr;
 	ID3D12Fence*				_pFence						= nullptr;
+	ID3D12RootSignature*		_pRootSignature				= nullptr;
 
 	// Others
 	QmWin32Handle				_hFenceEvent				= nullptr;
