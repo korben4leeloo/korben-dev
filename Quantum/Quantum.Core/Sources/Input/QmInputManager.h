@@ -6,8 +6,8 @@
 //
 //*****************************************************************************
 
-#ifndef __QUANTUM_CORE_TK_INPUT_MANAGER_H__
-#define __QUANTUM_CORE_TK_INPUT_MANAGER_H__
+#ifndef __QUANTUM_CORE_INPUT_MANAGER_H__
+#define __QUANTUM_CORE_INPUT_MANAGER_H__
 
 #include "Root.h"
 #include QUANTUM_CORE_H(Input/QmInputState)
@@ -30,7 +30,7 @@ public:
 private:
 	void			initWin32KeyMapper();
 
-	TarsKeyEnum		_win32KeyMapper[256];
+	QuantumKey		_win32KeyMapper[256];
 	QmInputState	_inputState;
 };
 

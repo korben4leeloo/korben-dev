@@ -6,8 +6,8 @@
 //
 //*****************************************************************************
 
-#ifndef __QUANTUM_CORE_TK_STRING_H__
-#define __QUANTUM_CORE_TK_STRING_H__
+#ifndef __QUANTUM_CORE_STRING_H__
+#define __QUANTUM_CORE_STRING_H__
 
 #include "Root.h"
 #include <cstdio>

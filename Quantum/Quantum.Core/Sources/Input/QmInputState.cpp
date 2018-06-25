@@ -16,7 +16,7 @@
 //-----------------------------------------------------------------------------
 QmInputState::QmInputState()
 {
-	memset( _keyParamArray, TK_KEY_STATE_UP, sizeof(_keyParamArray) );
+	memset( _keyParamArray, QmKeyStateUp, sizeof(_keyParamArray) );
 }
 
 //-----------------------------------------------------------------------------
@@ -34,17 +34,17 @@ QmInputState::~QmInputState()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void QmInputState::setKeyState( const TarsKeyEnum eTarsKey, const TarsKeyStateEnum eKeyState )
+void QmInputState::setKeyState( const QuantumKey eQuantumKey, const QuantumKeyState eKeyState )
 {
-	if	( eTarsKey != TK_KEY_INVALID )
+	if	( eQuantumKey != QuantumKeyInvalid )
 	{
-		QmKeyParam& keyParam = _keyParamArray[eTarsKey];
+		QmKeyParam& keyParam = _keyParamArray[eQuantumKey];
 
 		keyParam._eKeyState = eKeyState;
 
 		for	( uint32 i = 0; i < keyParam._keyStateCallbackArray.size(); i++ )
 		{
-			(keyParam._keyStateCallbackArray[i])( eTarsKey, eKeyState );
+			(keyParam._keyStateCallbackArray[i])( eQuantumKey, eKeyState );
 		}
 	}
 }

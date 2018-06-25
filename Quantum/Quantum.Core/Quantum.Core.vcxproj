@@ -166,6 +166,8 @@
     <ClInclude Include="Sources\Math\QmVector4.h" />
     <ClInclude Include="Sources\Rendering\D3D\QmD3DContext.h" />
     <ClInclude Include="Sources\Rendering\D3D\Root.h" />
+    <ClInclude Include="Sources\Rendering\D3D\Shaders\QmD3DShader.h" />
+    <ClInclude Include="Sources\Rendering\D3D\Shaders\Root.h" />
     <ClInclude Include="Sources\Rendering\OpenGL\Root.h" />
     <ClInclude Include="Sources\Rendering\OpenGL\QmOpenGLApi.h" />
     <ClInclude Include="Sources\Rendering\OpenGL\QmOpenGLContext.h" />
@@ -173,6 +175,8 @@
     <ClInclude Include="Sources\Rendering\Root.h" />
     <ClInclude Include="Sources\Rendering\Window\Root.h" />
     <ClInclude Include="Sources\Rendering\Window\QmWindow.h" />
+    <ClInclude Include="Sources\Resources\QmResourceManager.h" />
+    <ClInclude Include="Sources\Resources\Root.h" />
     <ClInclude Include="Sources\Root.h" />
     <ClInclude Include="Sources\Scene\Entity\Root.h" />
     <ClInclude Include="Sources\Scene\Entity\QmEntity.h" />
@@ -218,10 +222,12 @@
     <ClCompile Include="Sources\Math\QmTransform.cpp" />
     <ClCompile Include="Sources\Math\QmVector4.cpp" />
     <ClCompile Include="Sources\Rendering\D3D\QmD3DContext.cpp" />
+    <ClCompile Include="Sources\Rendering\D3D\Shaders\QmD3DShader.cpp" />
     <ClCompile Include="Sources\Rendering\OpenGL\QmOpenGLApi.cpp" />
     <ClCompile Include="Sources\Rendering\OpenGL\QmOpenGLContext.cpp" />
     <ClCompile Include="Sources\Rendering\QmRenderScene.cpp" />
     <ClCompile Include="Sources\Rendering\Window\QmWindow.cpp" />
+    <ClCompile Include="Sources\Resources\QmResourceManager.cpp" />
     <ClCompile Include="Sources\Scene\Entity\QmEntity.cpp" />
     <ClCompile Include="Sources\Scene\QmScene.cpp" />
     <ClCompile Include="Sources\Scheduler\QmTaskScheduler.cpp" />

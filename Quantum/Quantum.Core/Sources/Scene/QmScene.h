@@ -6,8 +6,8 @@
 //
 //*****************************************************************************
 
-#ifndef __QUANTUM_CORE_TK_SCENE_H__
-#define __QUANTUM_CORE_TK_SCENE_H__
+#ifndef __QUANTUM_CORE_QM_SCENE_H__
+#define __QUANTUM_CORE_QM_SCENE_H__
 
 #include "Root.h"
 

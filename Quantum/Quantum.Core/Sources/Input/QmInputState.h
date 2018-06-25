@@ -6,112 +6,112 @@
 //
 //*****************************************************************************
 
-#ifndef __QUANTUM_CORE_TK_INPUT_STATE_H__
-#define __QUANTUM_CORE_TK_INPUT_STATE_H__
+#ifndef __QUANTUM_CORE_INPUT_STATE_H__
+#define __QUANTUM_CORE_INPUT_STATE_H__
 
 #include "Root.h"
 
 #include QUANTUM_CORE_H(Containers/QmVector)
 
-enum TarsKeyEnum
+enum QuantumKey
 {
-	TK_KEY_A,
-	TK_KEY_B,
-	TK_KEY_C,
-	TK_KEY_D,
-	TK_KEY_E,
-	TK_KEY_F,
-	TK_KEY_G,
-	TK_KEY_H,
-	TK_KEY_I,
-	TK_KEY_J,
-	TK_KEY_K,
-	TK_KEY_L,
-	TK_KEY_M,
-	TK_KEY_N,
-	TK_KEY_O,
-	TK_KEY_P,
-	TK_KEY_Q,
-	TK_KEY_R,
-	TK_KEY_S,
-	TK_KEY_T,
-	TK_KEY_U,
-	TK_KEY_V,
-	TK_KEY_W,
-	TK_KEY_X,
-	TK_KEY_Y,
-	TK_KEY_Z,
+	QmKey_A,
+	QmKey_B,
+	QmKey_C,
+	QmKey_D,
+	QmKey_E,
+	QmKey_F,
+	QmKey_G,
+	QmKey_H,
+	QmKey_I,
+	QmKey_J,
+	QmKey_K,
+	QmKey_L,
+	QmKey_M,
+	QmKey_N,
+	QmKey_O,
+	QmKey_P,
+	QmKey_Q,
+	QmKey_R,
+	QmKey_S,
+	QmKey_T,
+	QmKey_U,
+	QmKey_V,
+	QmKey_W,
+	QmKey_X,
+	QmKey_Y,
+	QmKey_Z,
 
-	TK_KEY_0,
-	TK_KEY_1,
-	TK_KEY_2,
-	TK_KEY_3,
-	TK_KEY_4,
-	TK_KEY_5,
-	TK_KEY_6,
-	TK_KEY_7,
-	TK_KEY_8,
-	TK_KEY_9,
+	QmKey_0,
+	QmKey_1,
+	QmKey_2,
+	QmKey_3,
+	QmKey_4,
+	QmKey_5,
+	QmKey_6,
+	QmKey_7,
+	QmKey_8,
+	QmKey_9,
 
-	TK_KEY_NUMPAD_0,
-	TK_KEY_NUMPAD_1,
-	TK_KEY_NUMPAD_2,
-	TK_KEY_NUMPAD_3,
-	TK_KEY_NUMPAD_4,
-	TK_KEY_NUMPAD_5,
-	TK_KEY_NUMPAD_6,
-	TK_KEY_NUMPAD_7,
-	TK_KEY_NUMPAD_8,
-	TK_KEY_NUMPAD_9,
+	QmKey_Numpad0,
+	QmKey_Numpad1,
+	QmKey_Numpad2,
+	QmKey_Numpad3,
+	QmKey_Numpad4,
+	QmKey_Numpad5,
+	QmKey_Numpad6,
+	QmKey_Numpad7,
+	QmKey_Numpad8,
+	QmKey_Numpad9,
 
-	TK_KEY_NUMPAD_ADD,
-	TK_KEY_NUMPAD_SUBSTRACT,
+	QmKey_NumpadAdd,
+	QmKey_NumpadSubstract,
 
-	TK_KEY_RETURN,
-	TK_KEY_ESCAPE,
-	TK_KEY_SPACE,
-	TK_KEY_BACKSPACE,
-	TK_KEY_DELETE,
-	TK_KEY_PAGE_UP,
-	TK_KEY_PAGE_DOWN,
-	TK_KEY_HOME,
-	TK_KEY_END,
-	TK_KEY_INSERT,
+	QmKey_Return,
+	QmKey_Escape,
+	QmKey_Space,
+	QmKey_Backspace,
+	QmKey_Delete,
+	QmKey_PageUp,
+	QmKey_PageDown,
+	QmKey_Home,
+	QmKey_End,
+	QmKey_Insert,
 
-	TK_KEY_LSHIFT,
-	TK_KEY_RSHIFT,
-	TK_KEY_LCTRL,
-	TK_KEY_RCTRL,
+	QmKey_LeftShift,
+	QmKey_RightShift,
+	QmKey_LeftControl,
+	QmKey_RightControl,
 
-	TK_KEY_F1,
-	TK_KEY_F2,
-	TK_KEY_F3,
-	TK_KEY_F4,
-	TK_KEY_F5,
-	TK_KEY_F6,
-	TK_KEY_F7,
-	TK_KEY_F8,
-	TK_KEY_F9,
-	TK_KEY_F10,
-	TK_KEY_F11,
-	TK_KEY_F12,
+	QmKey_F1,
+	QmKey_F2,
+	QmKey_F3,
+	QmKey_F4,
+	QmKey_F5,
+	QmKey_F6,
+	QmKey_F7,
+	QmKey_F8,
+	QmKey_F9,
+	QmKey_F10,
+	QmKey_F11,
+	QmKey_F12,
 
-	TK_KEY_COUNT,
+	QuantumKeyCount,
 
-	TK_KEY_INVALID = 0xFFFFFFFF
+	QuantumKeyInvalid = 0xFFFFFFFF
 };
 
-enum TarsKeyStateEnum
+enum QuantumKeyState
 {
-	TK_KEY_STATE_UP,
-	TK_KEY_STATE_DOWN
+	QmKeyStateUp,
+	QmKeyStateDown
 };
 
 struct QmKeyParam
 {
-	typedef void (*KeyStateChangedCallback)( const TarsKeyEnum eTarsKey, const TarsKeyStateEnum eKeyState );
+	typedef void (*KeyStateChangedCallback)( const QuantumKey eQuantumKey, const QuantumKeyState eKeyState );
 
-	TarsKeyStateEnum					_eKeyState;
+	QuantumKeyState						_eKeyState;
 	QmVector<KeyStateChangedCallback>	_keyStateCallbackArray;
 };
 
@@ -121,10 +121,10 @@ public:
 				QmInputState();
 				~QmInputState();
 
-	void		setKeyState( const TarsKeyEnum eTarsKey, const TarsKeyStateEnum eKeyState );
+	void		setKeyState( const QuantumKey eQuantumKey, const QuantumKeyState eKeyState );
 
 private:
-	QmKeyParam	_keyParamArray[TK_KEY_COUNT];
+	QmKeyParam	_keyParamArray[QuantumKeyCount];
 };
 
 #endif

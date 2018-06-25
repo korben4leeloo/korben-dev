@@ -6,8 +6,8 @@
 //
 //*****************************************************************************
 
-#ifndef __QUANTUM_CORE_TK_VECTOR4_H__
-#define __QUANTUM_CORE_TK_VECTOR4_H__
+#ifndef __QUANTUM_CORE_VECTOR4_H__
+#define __QUANTUM_CORE_VECTOR4_H__
 
 #include	"Root.h"
 //#include	<glm/vec4.hpp>

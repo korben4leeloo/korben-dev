@@ -60,6 +60,18 @@
     <Filter Include="Source Files\Math\agl">
       <UniqueIdentifier>{94a1625e-bd92-404c-852f-345472ea0793}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rendering\D3D\Shaders">
+      <UniqueIdentifier>{c7d26788-4f1f-45ca-a086-c80ac59d8bbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\D3D\Shaders\vs">
+      <UniqueIdentifier>{063957dc-6cf6-4151-8761-1bce3fb489bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering\D3D\Shaders\ps">
+      <UniqueIdentifier>{0d7d40b8-db59-4679-8646-e36420e5200a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Resources">
+      <UniqueIdentifier>{6ba39d3b-3ded-4289-81dc-744d136be65d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Application\Root.h">
@@ -239,6 +251,18 @@
     <ClInclude Include="Sources\Math\agl\linalg.h">
       <Filter>Source Files\Math\agl</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Rendering\D3D\Shaders\QmD3DShader.h">
+      <Filter>Source Files\Rendering\D3D\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Rendering\D3D\Shaders\Root.h">
+      <Filter>Source Files\Rendering\D3D\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Resources\QmResourceManager.h">
+      <Filter>Source Files\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Resources\Root.h">
+      <Filter>Source Files\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Application\QmApplication.cpp">
@@ -360,6 +384,12 @@
     </ClCompile>
     <ClCompile Include="Sources\Math\agl\linalg.cpp">
       <Filter>Source Files\Math\agl</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Rendering\D3D\Shaders\QmD3DShader.cpp">
+      <Filter>Source Files\Rendering\D3D\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Resources\QmResourceManager.cpp">
+      <Filter>Source Files\Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

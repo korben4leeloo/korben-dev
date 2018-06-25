@@ -6,8 +6,8 @@
 //
 //*****************************************************************************
 
-#ifndef __QUANTUM_CORE_TK_VECTOR_H__
-#define __QUANTUM_CORE_TK_VECTOR_H__
+#ifndef __QUANTUM_CORE_VECTOR_H__
+#define __QUANTUM_CORE_VECTOR_H__
 
 #include <new>
 

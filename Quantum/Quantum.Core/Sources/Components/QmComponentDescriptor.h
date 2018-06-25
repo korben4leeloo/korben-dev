@@ -6,8 +6,8 @@
 //
 //*****************************************************************************
 
-#ifndef __QUANTUM_CORE_TK_COMPONENT_DESCRIPTOR_H__
-#define __QUANTUM_CORE_TK_COMPONENT_DESCRIPTOR_H__
+#ifndef __QUANTUM_CORE_COMPONENT_DESCRIPTOR_H__
+#define __QUANTUM_CORE_COMPONENT_DESCRIPTOR_H__
 
 #include "Root.h"
 

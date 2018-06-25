@@ -6,8 +6,8 @@
 //
 //*****************************************************************************
 
-#ifndef __QUANTUM_CORE_TK_WIN32_APP_H__
-#define __QUANTUM_CORE_TK_WIN32_APP_H__
+#ifndef __QUANTUM_CORE_QM_APPLICATION_H__
+#define __QUANTUM_CORE_QM_APPLICATION_H__
 
 #include "Root.h"
 #include <Windows.h>
@@ -18,38 +18,42 @@
 class QmWindow;
 class QmD3DContext;
 class QmInputManager;
+class QmResourceManager;
 
 class QmApplication
 {
 public:
-							QmApplication( const HINSTANCE& hInstance );
-							~QmApplication();
+								QmApplication( const HINSTANCE& hInstance );
+								~QmApplication();
 
-	inline HINSTANCE		getInstanceHandle() const;
-	inline QmInputManager*	getInputManager();
-	inline QmTaskScheduler*	getTaskScheduler();
+	inline HINSTANCE			getInstanceHandle() const;
+	inline QmInputManager*		getInputManager();
+	inline QmResourceManager*	getResourceManager();
+	inline QmTaskScheduler*		getTaskScheduler();
 
-	void					init();
+	void						init();
 
 	// Windows
-	QmWindow*				createWindow();
-	void					destroyWindows();
+	QmWindow*					createWindow();
+	void						destroyWindows();
 
 	// D3D
-	QmD3DContext*			createD3DContext( QmWindow* pWindow );
+	QmD3DContext*				createD3DContext( QmWindow* pWindow );
 
-	int64_t					run();
+	int64_t						run();
 
 private:
-	QmInputManager*			createInputManager();
+	QmInputManager*				createInputManager();
+	QmResourceManager*			createResourceManager();
 
-	void					destroy();
+	void						destroy();
 
-	HINSTANCE				_hInstance;
-	QmInputManager*			_pInputManager;
-	QmVector<QmWindow*>		_windowArray;
+	HINSTANCE					_hInstance;
+	QmInputManager*				_pInputManager		= nullptr;
+	QmResourceManager*			_pResourceManager	= nullptr;
+	QmVector<QmWindow*>			_windowArray;
 
-	QmTaskScheduler			_TaskScheduler;
+	QmTaskScheduler				_TaskScheduler;
 };
 
 //-----------------------------------------------------------------------------

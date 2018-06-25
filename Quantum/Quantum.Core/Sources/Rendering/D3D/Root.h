@@ -6,8 +6,8 @@
 //
 //*****************************************************************************
 
-#ifndef __QUANTUM_CORE_OPEN_GL_H__
-#define __QUANTUM_CORE_OPEN_GL_H__
+#ifndef __QUANTUM_CORE_D3D_H__
+#define __QUANTUM_CORE_D3D_H__
 
 #include "../Root.h"
 

@@ -10,6 +10,7 @@
 #include QUANTUM_CORE_H(Rendering/Window/QmWindow)
 #include QUANTUM_CORE_H(Rendering/D3D/QmD3DContext)
 #include QUANTUM_CORE_H(Input/QmInputManager)
+#include QUANTUM_CORE_H(Resources/QmResourceManager)
 
 //-----------------------------------------------------------------------------
 // Name:		QmApplication constructor
@@ -17,8 +18,7 @@
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
 QmApplication::QmApplication( const HINSTANCE& hInstance )
-: _hInstance		( hInstance )
-, _pInputManager	( nullptr )
+: _hInstance( hInstance )
 {
 	
 }
@@ -54,6 +54,7 @@ void QmApplication::destroy()
 void QmApplication::init()
 {
 	createInputManager();
+	createResourceManager();
 }
 
 //-----------------------------------------------------------------------------
@@ -69,6 +70,21 @@ QmInputManager* QmApplication::createInputManager()
 	_pInputManager->registerDevices();
 
 	return ( _pInputManager );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		createResourceManager
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+QmResourceManager* QmApplication::createResourceManager()
+{
+	delete _pResourceManager;
+
+	_pResourceManager = new QmResourceManager();
+	_pResourceManager->loadResourceDefinitions();
+
+	return ( _pResourceManager );
 }
 
 //-----------------------------------------------------------------------------

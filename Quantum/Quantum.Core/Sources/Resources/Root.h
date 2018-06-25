@@ -6,8 +6,8 @@
 //
 //*****************************************************************************
 
-#ifndef __QUANTUM_CORE_DEBUGGING_H__
-#define __QUANTUM_CORE_DEBUGGING_H__
+#ifndef __QUANTUM_CORE_RESOURCES_H__
+#define __QUANTUM_CORE_RESOURCES_H__
 
 #include "../Root.h"
 
