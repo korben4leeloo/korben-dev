@@ -30,11 +30,11 @@ QmResourceManager::~QmResourceManager()
 }
 
 //-----------------------------------------------------------------------------
-// Name:		loadResourceDefinitions
+// Name:		loadDefinitions
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-void QmResourceManager::loadResourceDefinitions()
+void QmResourceManager::loadDefinitions()
 {
 	
 }

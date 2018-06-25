@@ -82,7 +82,7 @@ QmResourceManager* QmApplication::createResourceManager()
 	delete _pResourceManager;
 
 	_pResourceManager = new QmResourceManager();
-	_pResourceManager->loadResourceDefinitions();
+	_pResourceManager->loadDefinitions();
 
 	return ( _pResourceManager );
 }

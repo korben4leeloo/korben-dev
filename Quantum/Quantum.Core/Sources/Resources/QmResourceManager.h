@@ -16,7 +16,7 @@ class QmResourceManager
 	friend class QmApplication;
 
 public:
-	void	loadResourceDefinitions();			
+	void	loadDefinitions();			
 
 private:
 			QmResourceManager();
