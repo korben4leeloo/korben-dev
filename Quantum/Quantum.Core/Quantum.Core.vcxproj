@@ -133,6 +133,7 @@
     <ClInclude Include="Sources\Components\QmComponent.h" />
     <ClInclude Include="Sources\Components\QmComponentDescriptor.h" />
     <ClInclude Include="Sources\Components\QmPropertyDescriptor.h" />
+    <ClInclude Include="Sources\Containers\QmMap.h" />
     <ClInclude Include="Sources\Containers\QmStdList.h" />
     <ClInclude Include="Sources\Containers\QmTree.h" />
     <ClInclude Include="Sources\Containers\Root.h" />
@@ -197,6 +198,7 @@
     <ClCompile Include="Sources\Components\QmComponentDescriptor.cpp" />
     <ClCompile Include="Sources\Components\QmPropertyDescriptor.cpp" />
     <ClCompile Include="Sources\Containers\QmList.cpp" />
+    <ClCompile Include="Sources\Containers\QmMap.cpp" />
     <ClCompile Include="Sources\Containers\QmStdList.cpp" />
     <ClCompile Include="Sources\Containers\QmTree.cpp" />
     <ClCompile Include="Sources\Containers\QmVector.cpp" />

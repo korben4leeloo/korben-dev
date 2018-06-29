@@ -263,6 +263,9 @@
     <ClInclude Include="Sources\Resources\Root.h">
       <Filter>Source Files\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Containers\QmMap.h">
+      <Filter>Source Files\Containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Application\QmApplication.cpp">
@@ -390,6 +393,9 @@
     </ClCompile>
     <ClCompile Include="Sources\Resources\QmResourceManager.cpp">
       <Filter>Source Files\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Containers\QmMap.cpp">
+      <Filter>Source Files\Containers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
