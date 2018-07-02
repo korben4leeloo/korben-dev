@@ -9,6 +9,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\UnitTest">
+      <UniqueIdentifier>{501df347-f433-4cff-bd2b-3474ed052ef7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\main.cpp">
@@ -17,10 +20,19 @@
     <ClCompile Include="Sources\MotionField.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\UnitTest\QmUnitTest.cpp">
+      <Filter>Source Files\UnitTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Root.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\UnitTest\QmUnitTest.h">
+      <Filter>Source Files\UnitTest</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\UnitTest\Root.h">
+      <Filter>Source Files\UnitTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

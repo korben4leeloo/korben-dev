@@ -12,8 +12,7 @@
 #include QUANTUM_CORE_H(Application/QmApplication)
 #include QUANTUM_CORE_H(Rendering/Window/QmWindow)
 #include QUANTUM_CORE_H(Rendering/D3D/QmD3DContext)
-#include QUANTUM_CORE_H(File/QmTextFile)
-#include QUANTUM_CORE_H(Containers/QmTree)
+#include QUANTUM_RUNTIME_H(UnitTest/QmUnitTest)
 
 //#include QUANTUM_CORE_H(Rendering/OpenGL/QmOpenGLContext)
 //#include QUANTUM_CORE_H(Rendering/OpenGL/QmOpenGLApi)
@@ -62,47 +61,17 @@
 //-----------------------------------------------------------------------------
 int WinMain( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in_opt LPSTR lpCmdLine, __in int nShowCmd )
 {
+	// Unit tests
+	QmUnitTest unitTest;
+	unitTest.launch();
+
 	// Create the application instance and init it
 	QmApplication* pApplication = new QmApplication( hInstance );
 	pApplication->init();
 	
-	// Create a window with an OpenGL context
-	QmWindow*			pWindow			= pApplication->createWindow();
-	//QmOpenGLContext*	pOpenGLContext	= pWindow->createOpenGLContext();
-	QmD3DContext*		pD3DContext		= pApplication->createD3DContext( pWindow );
-
-	typedef QmTree<int>::QmTreeNode QmIntNode;
-	QmTree<int> test;
-	QmIntNode* r = test.getRoot();
-	QmIntNode* n = test.createNode();
-
-	/*QmStdList<int> l;
-
-	l.pushBack( 1 );
-	l.pushBack( 2 );
-	l.pushBack( 3 );
-	l.pushBack( 4 );
-
-	l.remove( 3 );
-	l.remove( 4 );
-	l.remove( 1 );
-	l.remove( 2 );*/
-
-	/*QmList<int> l;
-
-	l.pushBack( 1 );
-	l.pushBack( 2 );
-	l.pushBack( 3 );
-	l.pushBack( 4 );
-
-	l.remove( 3 );
-	l.remove( 4 );
-	l.remove( 1 );
-	l.remove( 2 );*/
-
-	//QmListEx<int> li;
-
-	//QmHierarchicalGraph<int>::NODE* root = test.
+	// Create a window with a Direct3D context
+	QmWindow*		pWindow		= pApplication->createWindow();
+	QmD3DContext*	pD3DContext	= pApplication->createD3DContext( pWindow );
 
 	//d3dContext.cr
 

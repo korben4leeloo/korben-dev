@@ -236,22 +236,22 @@ bool QmD3DContext::create( QmWindow* pWindow )
 	// them at runtime
 
 	// compile vertex shader
-	ID3DBlob* vertexShader; // d3d blob for holding vertex shader bytecode
-	ID3DBlob* errorBuff; // a buffer holding the error data if any
-	hr = D3DCompileFromFile(L"VertexShader.hlsl",
-							 nullptr,
-							 nullptr,
-							 "main",
-							 "vs_5_0",
-							 D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION,
-							 0,
-							 &vertexShader,
-							 &errorBuff);
-	if (FAILED(hr))
-	{
-		OutputDebugStringA((char*)errorBuff->GetBufferPointer());
-		return false;
-	}
+	//ID3DBlob* vertexShader; // d3d blob for holding vertex shader bytecode
+	//ID3DBlob* errorBuff; // a buffer holding the error data if any
+	//hr = D3DCompileFromFile(L"VertexShader.hlsl",
+	//						 nullptr,
+	//						 nullptr,
+	//						 "main",
+	//						 "vs_5_0",
+	//						 D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION,
+	//						 0,
+	//						 &vertexShader,
+	//						 &errorBuff);
+	//if (FAILED(hr))
+	//{
+	//	OutputDebugStringA((char*)errorBuff->GetBufferPointer());
+	//	return false;
+	//}
 
 	return true;
 }

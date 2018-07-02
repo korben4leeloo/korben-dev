@@ -163,7 +163,7 @@ typename QmStdList<T>::iterator QmStdList<T>::pushFront(const T&	value)
 //-----------------------------------------------------------------------------
 template<class T>
 typename QmStdList<T>::iterator QmStdList<T>::insertAfter(const iterator&	position, 
-													  const T&			value)
+														  const T&			value)
 {
 	QUANTUM_ASSERT( position.isValid() );
 	QUANTUM_ASSERT( _pHead );
@@ -191,7 +191,7 @@ typename QmStdList<T>::iterator QmStdList<T>::insertAfter(const iterator&	positi
 //-----------------------------------------------------------------------------
 template<class T>
 typename QmStdList<T>::iterator QmStdList<T>::insertBefore(const iterator&	position, 
-													   const T&				value)
+														   const T&			value)
 {
 	if	( _uiSize == 0 )
 	{

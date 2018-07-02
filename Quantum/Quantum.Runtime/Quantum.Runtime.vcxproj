@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="Sources\main.cpp" />
     <ClCompile Include="Sources\MotionField.cpp" />
+    <ClCompile Include="Sources\UnitTest\QmUnitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Quantum.Core\Quantum.Core.vcxproj">
@@ -141,6 +142,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Root.h" />
+    <ClInclude Include="Sources\UnitTest\QmUnitTest.h" />
+    <ClInclude Include="Sources\UnitTest\Root.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

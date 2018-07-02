@@ -6,8 +6,8 @@
 //
 //*****************************************************************************
 
-#ifndef __QUANTUM_CORE_QM_STD_LIST_H__
-#define __QUANTUM_CORE_QM_STD_LIST_H__
+#ifndef __QUANTUM_CORE_QM_MAP_H__
+#define __QUANTUM_CORE_QM_MAP_H__
 
 template<class KeyType, class ValueType>
 class QmMap
@@ -29,38 +29,39 @@ public:
 		friend class QmMap;
 
 	public:
-							iterator();
+								iterator();
 
-		inline bool			isValid() const;
+		inline bool				isValid() const;
 
-		inline iterator&	operator=( const iterator& other );
+		inline const KeyType&	key() const;
+		inline const ValueType&	value() const;
+		inline void				setValue( const ValueType& value );
 
-		inline bool			operator==( const iterator& other );
-		inline bool			operator!=( const iterator& other );
+		inline iterator&		operator=( const iterator& other );
 
-		inline iterator&	operator++();
-		iterator&			operator++(int);
+		inline bool				operator==( const iterator& other );
+		inline bool				operator!=( const iterator& other );
 
-		inline iterator&	operator--();
-		iterator&			operator--(int);
+		inline iterator&		operator++();
+		iterator&				operator++(int);
 
-		inline KeyType&		key();
-		inline ValueType&	value();
-
-		/*T&					operator*();
-		T*					operator->();*/
+		inline iterator&		operator--();
+		iterator&				operator--(int);
 
 	private:
-							iterator( QmMapNode* pMapNode );
+								iterator( QmMapNode* pMapNode );
 
-		QmMapNode*			_pMapNode;
+		QmMapNode*				_pMapNode;
 	};
 
 					QmMap();
 					~QmMap();
 
-	iterator		insert( const KeyType& key, const ValueType& value );
+	iterator		pushBack( const KeyType& key, const ValueType& value );
+	iterator		insertAfter( const iterator& position, const KeyType& key, const ValueType& value );
+	iterator		insertBefore( const iterator& position, const KeyType& key, const ValueType& value );
 	void			remove( const KeyType& key );
+	void			remove( const iterator& position );
 	iterator		find( const KeyType& key );
 
 	inline iterator	head();
@@ -81,8 +82,8 @@ private:
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-QmMap<T>::QmMap()
+template<class KeyType, class ValueType>
+QmMap<KeyType, ValueType>::QmMap()
 {
 	
 }
@@ -92,43 +93,126 @@ QmMap<T>::QmMap()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-QmMap<T>::~QmMap()
+template<class KeyType, class ValueType>
+QmMap<KeyType, ValueType>::~QmMap()
 {
 	
 }
 
 //-----------------------------------------------------------------------------
-// Name:		insert
+// Name:		pushBack
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-typename QmMap<T>::iterator QmMap<T>::insert(const KeyType& key, const ValueType& value)
+template<class KeyType, class ValueType>
+typename QmMap<KeyType, ValueType>::iterator QmMap<KeyType, ValueType>::pushBack(const KeyType& key, const ValueType& value)
 {
+	iterator it = find( key );
+
+	if	( it.isValid() )
+	{
+		remove( it );
+	}
+	
+	QmMapNode* pMapNode = new QmMapNode( key, value );
+
+	if ( _pHead )
+	{
+		QUANTUM_ASSERT( _pQueue );
+
+		pMapNode->_pPrev	= _pQueue;
+		_pQueue->_pNext		= pMapNode;			
+		_pQueue				= pMapNode;
+	}
+	else
+	{
+		_pHead	= pMapNode;
+		_pQueue	= pMapNode;
+	}
+
+	_uiSize++;
+
+	return	( iterator( pMapNode ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		insertAfter
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class KeyType, class ValueType>
+typename QmMap<KeyType, ValueType>::iterator QmMap<KeyType, ValueType>::insertAfter(const iterator&		position, 
+																					const KeyType&		key, 
+																					const ValueType&	value)
+{
+	QUANTUM_ASSERT( position.isValid() );
 	QUANTUM_ASSERT( _pHead );
 
 	iterator it = find( key );
 
 	if	( it.isValid() )
 	{
-		it.value() = value;
+		remove( it );
+	}
+
+	QmMapNode* pMapNode = new QmMapNode( key, value );
+	QmMapNode* pNext	= position._pMapNode->_pNext;
+
+	pMapNode->_pPrev			= position._pMapNode;
+	pMapNode->_pNext			= position._pMapNode->_pNext;
+	position._pMapNode->_pNext	= pMapNode;
+
+	if ( _pQueue == position._pMapNode )
+	{
+		_pQueue = pMapNode;
 	}
 	else
 	{
-		QmMapNode* pMapNode = new QmMapNode( key, value );
-
-		pMapNode->_pPrev			= position._pMapNode;
-		pMapNode->_pNext			= position._pMapNode->_pNext;
-		position._pMapNode->_pNext	= pMapNode;
-
-		if ( _pQueue == position._pMapNode )
-		{
-			_pQueue = pMapNode;
-		}
-
-		_uiSize++;
+		pNext->_pPrev = pMapNode;
 	}
+
+	_uiSize++;
+	
+	return	( iterator( pMapNode ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		insertBefore
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class KeyType, class ValueType>
+typename QmMap<KeyType, ValueType>::iterator QmMap<KeyType, ValueType>::insertBefore(const iterator&	position, 
+																					 const KeyType&		key, 
+																					 const ValueType&	value)
+{
+	QUANTUM_ASSERT( position.isValid() );
+	QUANTUM_ASSERT( _pHead );
+
+	iterator it = find( key );
+
+	if	( it.isValid() )
+	{
+		remove( it );
+	}
+
+	QmMapNode* pMapNode = new QmMapNode( key, value );
+	QmMapNode* pPrev	= position._pMapNode->_pPrev;
+
+	pMapNode->_pPrev			= position._pMapNode->_pPrev;
+	pMapNode->_pNext			= position._pMapNode;
+	position._pMapNode->_pPrev	= pMapNode;
+
+	if ( _pHead == position._pMapNode )
+	{
+		_pHead = pMapNode;
+	}
+	else
+	{
+		pPrev->_pNext = pMapNode;
+	}
+
+	_uiSize++;
 	
 	return	( iterator( pMapNode ) );
 }
@@ -138,8 +222,8 @@ typename QmMap<T>::iterator QmMap<T>::insert(const KeyType& key, const ValueType
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-typename QmMap<T>::iterator QmMap<T>::find( const KeyType& key )
+template<class KeyType, class ValueType>
+typename QmMap<KeyType, ValueType>::iterator QmMap<KeyType, ValueType>::find( const KeyType& key )
 {
 	iterator it( _pHead );
 
@@ -156,50 +240,51 @@ typename QmMap<T>::iterator QmMap<T>::find( const KeyType& key )
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-void QmMap<T>::remove( const T& value )
+template<class KeyType, class ValueType>
+void QmMap<KeyType, ValueType>::remove( const KeyType& key )
 {
-	iterator it( _pHead );
+	iterator it = find( key );
 
-	while ( it.isValid() )
+	if	( it.isValid() )
 	{
-		if ( *it == value )
-		{
-			QmMapNode* pNode = it._pMapNode;
-			QmMapNode* pPrev = pNode->_pPrev;
-			QmMapNode* pNext = pNode->_pNext;
-
-			if	( pPrev )
-			{
-				pPrev->_pNext = pNext;
-			}
-			else
-			{
-				_pHead = pNext;
-			}
-
-			if	( pNext )
-			{
-				pNext->_pPrev = pPrev;
-			}
-			else
-			{
-				_pQueue = pPrev;
-			}
-
-			QUANTUM_ASSERT( _uiSize > 0 );
-			_uiSize--;
-
-			if ( !pNext )
-			{
-				return;
-			}
-
-			it._pMapNode = pNext;
-		}
-
-		it++;
+		remove( it );
 	}
+}
+
+//-----------------------------------------------------------------------------
+// Name:		remove
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class KeyType, class ValueType>
+void QmMap<KeyType, ValueType>::remove( const iterator& position )
+{
+	QUANTUM_ASSERT( position.isValid() );
+
+	QmMapNode* pNode = position._pMapNode;
+	QmMapNode* pPrev = pNode->_pPrev;
+	QmMapNode* pNext = pNode->_pNext;
+
+	if	( pPrev )
+	{
+		pPrev->_pNext = pNext;
+	}
+	else
+	{
+		_pHead = pNext;
+	}
+
+	if	( pNext )
+	{
+		pNext->_pPrev = pPrev;
+	}
+	else
+	{
+		_pQueue = pPrev;
+	}
+
+	QUANTUM_ASSERT( _uiSize > 0 );
+	_uiSize--;
 }
 
 //-----------------------------------------------------------------------------
@@ -207,8 +292,8 @@ void QmMap<T>::remove( const T& value )
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-typename QmMap<T>::iterator QmMap<T>::head()
+template<class KeyType, class ValueType>
+typename QmMap<KeyType, ValueType>::iterator QmMap<KeyType, ValueType>::head()
 {
 	return	( iterator( _pHead ) );
 }
@@ -218,8 +303,8 @@ typename QmMap<T>::iterator QmMap<T>::head()
 // Created:		2013-08-26
 //
 //-----------------------------------------------------------------------------
-template<class T>
-typename QmMap<T>::iterator QmMap<T>::queue()
+template<class KeyType, class ValueType>
+typename QmMap<KeyType, ValueType>::iterator QmMap<KeyType, ValueType>::queue()
 {
 	return	( iterator( _pQueue ) );
 }
@@ -229,8 +314,8 @@ typename QmMap<T>::iterator QmMap<T>::queue()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-QmMap<T>::iterator::iterator()
+template<class KeyType, class ValueType>
+QmMap<KeyType, ValueType>::iterator::iterator()
 : _pMapNode( nullptr )
 {
 	
@@ -241,8 +326,8 @@ QmMap<T>::iterator::iterator()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-QmMap<T>::iterator::iterator(QmMapNode*	pMapNode)
+template<class KeyType, class ValueType>
+QmMap<KeyType, ValueType>::iterator::iterator(QmMapNode*	pMapNode)
 : _pMapNode( pMapNode )
 {
 	
@@ -253,10 +338,43 @@ QmMap<T>::iterator::iterator(QmMapNode*	pMapNode)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-bool QmMap<T>::iterator::isValid() const
+template<class KeyType, class ValueType>
+bool QmMap<KeyType, ValueType>::iterator::isValid() const
 {
 	return	( _pMapNode != nullptr );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		key
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class KeyType, class ValueType>
+const KeyType& QmMap<KeyType, ValueType>::iterator::key() const
+{
+	return	( _pMapNode->_key );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		value
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class KeyType, class ValueType>
+const ValueType& QmMap<KeyType, ValueType>::iterator::value() const
+{
+	return	( _pMapNode->_value );
+}
+
+//-----------------------------------------------------------------------------
+// Name:		setValue
+//
+// Created:		2013-08-26
+//-----------------------------------------------------------------------------
+template<class KeyType, class ValueType>
+void QmMap<KeyType, ValueType>::iterator::setValue(const ValueType& value)
+{
+	_pMapNode->_value = value;
 }
 
 //-----------------------------------------------------------------------------
@@ -264,8 +382,8 @@ bool QmMap<T>::iterator::isValid() const
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-typename QmMap<T>::iterator& QmMap<T>::iterator::operator=(const iterator&	other)
+template<class KeyType, class ValueType>
+typename QmMap<KeyType, ValueType>::iterator& QmMap<KeyType, ValueType>::iterator::operator=(const iterator&	other)
 {
 	_pMapNode = other._pMapNode;
 	return	( *this );
@@ -276,8 +394,8 @@ typename QmMap<T>::iterator& QmMap<T>::iterator::operator=(const iterator&	other
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-bool QmMap<T>::iterator::operator==(const iterator&	other)
+template<class KeyType, class ValueType>
+bool QmMap<KeyType, ValueType>::iterator::operator==(const iterator&	other)
 {
 	return	( isValid() && ( _pMapNode == other._pMapNode ) );
 }
@@ -287,34 +405,10 @@ bool QmMap<T>::iterator::operator==(const iterator&	other)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-bool QmMap<T>::iterator::operator!=(const iterator&	other)
+template<class KeyType, class ValueType>
+bool QmMap<KeyType, ValueType>::iterator::operator!=(const iterator&	other)
 {
 	return	( !( *this == other ) );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator*
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-T& QmMap<T>::iterator::operator*()
-{
-	QUANTUM_ASSERT( isValid() );
-	return	( _pMapNode->_value );
-}
-
-//-----------------------------------------------------------------------------
-// Name:		operator->
-//
-// Created:		2013-08-26
-//-----------------------------------------------------------------------------
-template<class T>
-T* QmMap<T>::iterator::operator->()
-{
-	QUANTUM_ASSERT( isValid() );
-	return	( &_pMapNode->_value );
 }
 
 //-----------------------------------------------------------------------------
@@ -322,8 +416,8 @@ T* QmMap<T>::iterator::operator->()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-typename QmMap<T>::iterator& QmMap<T>::iterator::operator++()
+template<class KeyType, class ValueType>
+typename QmMap<KeyType, ValueType>::iterator& QmMap<KeyType, ValueType>::iterator::operator++()
 {
 	(*this)++;
 	return	( *this );
@@ -334,8 +428,8 @@ typename QmMap<T>::iterator& QmMap<T>::iterator::operator++()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-typename QmMap<T>::iterator& QmMap<T>::iterator::operator++(int)
+template<class KeyType, class ValueType>
+typename QmMap<KeyType, ValueType>::iterator& QmMap<KeyType, ValueType>::iterator::operator++(int)
 {
 	QUANTUM_ASSERT( isValid() );
 
@@ -352,8 +446,8 @@ typename QmMap<T>::iterator& QmMap<T>::iterator::operator++(int)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-typename QmMap<T>::iterator& QmMap<T>::iterator::operator--()
+template<class KeyType, class ValueType>
+typename QmMap<KeyType, ValueType>::iterator& QmMap<KeyType, ValueType>::iterator::operator--()
 {
 	(*this)--;
 	return	( *this );
@@ -364,8 +458,8 @@ typename QmMap<T>::iterator& QmMap<T>::iterator::operator--()
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-typename QmMap<T>::iterator& QmMap<T>::iterator::operator--(int)
+template<class KeyType, class ValueType>
+typename QmMap<KeyType, ValueType>::iterator& QmMap<KeyType, ValueType>::iterator::operator--(int)
 {
 	QUANTUM_ASSERT( isValid() && _pMapNode->_pPrev );
 
@@ -382,10 +476,11 @@ typename QmMap<T>::iterator& QmMap<T>::iterator::operator--(int)
 //
 // Created:		2013-08-26
 //-----------------------------------------------------------------------------
-template<class T>
-QmMap<T>::QmMapNode::QmMapNode(const T&	value)
+template<class KeyType, class ValueType>
+QmMap<KeyType, ValueType>::QmMapNode::QmMapNode(const KeyType& key, const ValueType& value)
 : _pPrev	( nullptr )
 , _pNext	( nullptr )
+, _key		( key )
 , _value	( value )
 {
 	
